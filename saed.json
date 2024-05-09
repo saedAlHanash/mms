@@ -1,0 +1,23 @@
+{
+  "data": {
+    "user": {
+      "id": 2,
+      "first_name": "saed",
+      "last_name": ".",
+      "phone": "0938891523",
+      "email": "null",
+      "fcm_token": "1",
+      "profile_image_url": "https://e-learning.testbandtech.com/storage/images/we7l2nyurc-1715178376.jpg",
+      "identity_image": "null",
+      "latitude": 33.520053,
+      "longitude": 36.291778,
+      "gender": "male",
+      "educational_grade": {
+        "id": 1,
+        "name": "المرحلة الأساسية",
+        "photo": "null"
+      }
+    },
+    "token": "48|5SGtTxuvDKY2pMoDvNwsmhAzpoqUGyYEbW2ubbY79d7d026f"
+  }
+}

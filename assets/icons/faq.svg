@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19" height="19" viewBox="0 0 19 19">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_23875" data-name="Rectangle 23875" width="19" height="19" transform="translate(30 700)" fill="#231313" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_150" data-name="Mask Group 150" transform="translate(-30 -700)" clip-path="url(#clip-path)">
+    <g id="svgexport-17_42_" data-name="svgexport-17 (42)" transform="translate(30 700)">
+      <path id="Path_43043" data-name="Path 43043" d="M19,12.858a6.16,6.16,0,0,0-3.378-5.486,8.377,8.377,0,0,1-8.249,8.249,6.144,6.144,0,0,0,8.61,2.525l2.99.827-.827-2.99A6.12,6.12,0,0,0,19,12.858Zm0,0" fill="#231313"/>
+      <path id="Path_43044" data-name="Path 43044" d="M14.51,7.255a7.255,7.255,0,1,0-13.5,3.688l-.979,3.54L3.567,13.5A7.256,7.256,0,0,0,14.51,7.255ZM6.142,5.566H5.028A2.227,2.227,0,1,1,8.757,7.209l-.946.866v.868H6.7V7.585l1.308-1.2a1.1,1.1,0,0,0,.362-.822,1.113,1.113,0,0,0-2.227,0Zm.557,4.49H7.812V11.17H6.7Zm0,0" fill="#231313"/>
+    </g>
+  </g>
+</svg>

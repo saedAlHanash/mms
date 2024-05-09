@@ -1,0 +1,10 @@
+<svg id="Group_4331" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+    <path id="Ellipse_103"
+        d="M14,2A12,12,0,0,0,5.515,22.485,12,12,0,1,0,22.485,5.515,11.921,11.921,0,0,0,14,2m0-2A14,14,0,1,1,0,14,14,14,0,0,1,14,0Z" />
+    <circle id="Ellipse_111" cx="13" cy="13" r="13" transform="translate(1 1)" />
+    <g id="svgexport-7_-_2023-02-21T154709.153" transform="translate(6 13)">
+        <path id="Path_1992"
+            d="M.965,55.525H15.139a.967.967,0,0,0,0-1.933H.965a.967.967,0,1,0,0,1.933Z"
+            transform="translate(0.002 -53.592)" fill="#fff" />
+    </g>
+</svg>

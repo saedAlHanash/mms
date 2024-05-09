@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "110826139764",
+    "project_id": "basma-90aaf",
+    "storage_bucket": "basma-90aaf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:110826139764:android:aa2ccf2a0cc2f01141a121",
+        "android_client_info": {
+          "package_name": "com.Bandtech.e_move"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMBei-03AQ1hRMo4Lg0UMW-Gz68OCUIPs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
