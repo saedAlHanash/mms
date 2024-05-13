@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:e_move/core/api_manager/api_service.dart';
+import 'package:mms/core/api_manager/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -29,13 +29,13 @@ class AppSharedPreference {
 
   static String get getToken => _prefs.getString(_token) ?? '';
 
-  static cashUser(UserModel user) async {
+  static cashUser(LoginResponse user) async {
     final json = user.toJson();
     await _prefs.setString(_user, jsonEncode(json));
   }
 
-  static UserModel get getUser =>
-      UserModel.fromJson(jsonDecode(_prefs.getString(_user) ?? '{}'));
+  static LoginResponse get getUser =>
+      LoginResponse.fromJson(jsonDecode(_prefs.getString(_user) ?? '{}'));
 
   static void cashFireToken(String token) {
     _prefs.setString(_fireToken, token);
@@ -72,5 +72,5 @@ class AppSharedPreference {
     await _prefs.setString(_lang, langCode);
   }
 
-  static String get getLocal => _prefs.getString(_lang) ?? 'ar';
+  static String get getLocal => _prefs.getString(_lang) ?? 'en';
 }

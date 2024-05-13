@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:e_move/services/caching_service/caching_service.dart';
-import 'package:e_move/services/firebase_service.dart';
+import 'package:mms/services/caching_service/caching_service.dart';
+import 'package:mms/services/firebase_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';

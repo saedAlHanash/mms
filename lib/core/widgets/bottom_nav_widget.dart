@@ -1,6 +1,6 @@
-// import 'package:e_move/core/strings/app_color_manager.dart';
-// import 'package:e_move/core/strings/app_string_manager.dart';
-// import 'package:e_move/core/util/my_style.dart';
+// import 'package:mms/core/strings/app_color_manager.dart';
+// import 'package:mms/core/strings/app_string_manager.dart';
+// import 'package:mms/core/util/my_style.dart';
 //
 // import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 // import 'package:drawable_text/drawable_text.dart';

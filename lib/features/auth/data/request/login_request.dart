@@ -1,32 +1,33 @@
-import 'package:e_move/services/firebase_service.dart';
-
 class LoginRequest {
-  String? phone;
+  String? userName;
   String? password;
-  String? code;
+  String? programKey;
 
   LoginRequest({
-    this.phone,
+    this.userName,
     this.password,
-    this.code,
+    this.programKey,
   });
 
   LoginRequest copyWith({
-    String? phone,
+    String? userName,
     String? password,
+    String? programKey,
   }) {
     return LoginRequest(
-      phone: phone ?? this.phone,
+      userName: userName ?? this.userName,
       password: password ?? this.password,
+      programKey: programKey ?? this.programKey,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'phone': phone,
+      'identifire': userName,
       'password': password,
-      'verification_code': code,
-      'fcm_token': FirebaseService.getFireTokenFromCache,
+      'verification_code': programKey,
+      'programKey':
+          'c7V9hHLSBKKJAGdMakSA4DUdlF05Q4SK/y6OaUQwmh36Qgm/l7u9GPt6R5+rDlX65D8=',
     };
   }
 }

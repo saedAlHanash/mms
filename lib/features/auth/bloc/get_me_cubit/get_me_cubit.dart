@@ -1,9 +1,9 @@
 // import 'package:equatable/equatable.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:e_move/core/api_manager/api_url.dart';
-// import 'package:e_move/core/extensions/extensions.dart';
-// import 'package:e_move/features/profile/data/response/profile_response.dart';
+// import 'package:mms/core/api_manager/api_url.dart';
+// import 'package:mms/core/extensions/extensions.dart';
+// import 'package:mms/features/profile/data/response/profile_response.dart';
 //
 // import '../../../../core/api_manager/api_service.dart';
 // import '../../../../core/strings/enum_manager.dart';

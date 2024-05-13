@@ -2,11 +2,11 @@ import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:e_move/core/extensions/extensions.dart';
-import 'package:e_move/core/util/shared_preferences.dart';
-import 'package:e_move/core/widgets/my_button.dart';
-import 'package:e_move/core/widgets/my_text_form_widget.dart';
-import 'package:e_move/features/auth/ui/pages/done_page.dart';
+import 'package:mms/core/extensions/extensions.dart';
+import 'package:mms/core/util/shared_preferences.dart';
+import 'package:mms/core/widgets/my_button.dart';
+import 'package:mms/core/widgets/my_text_form_widget.dart';
+import 'package:mms/features/auth/ui/pages/done_page.dart';
 
 import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/my_style.dart';

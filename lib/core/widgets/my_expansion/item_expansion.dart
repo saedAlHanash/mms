@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:e_move/core/strings/app_color_manager.dart';
+import 'package:mms/core/strings/app_color_manager.dart';
 
 class ItemExpansion {
   ItemExpansion({

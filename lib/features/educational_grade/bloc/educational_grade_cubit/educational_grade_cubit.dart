@@ -1,5 +1,5 @@
-import 'package:e_move/core/api_manager/api_url.dart';
-import 'package:e_move/core/extensions/extensions.dart';
+import 'package:mms/core/api_manager/api_url.dart';
+import 'package:mms/core/extensions/extensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 
@@ -37,7 +37,7 @@ class EducationalGradeCubit extends MCubit<EducationalGradeInitial> {
 
     if (cacheType == NeedUpdateEnum.no) return;
 
-    final pair = await _bookedAppointmentsApi();
+    final pair = await _getDataApi();
 
     if (pair.first == null) {
       emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));
@@ -48,7 +48,7 @@ class EducationalGradeCubit extends MCubit<EducationalGradeInitial> {
     }
   }
 
-  Future<Pair<List<EducationalGrade>?, String?>> _bookedAppointmentsApi() async {
+  Future<Pair<List<EducationalGrade>?, String?>> _getDataApi() async {
     final response = await APIService().getApi(url: GetUrl.educationalGrade);
 
     if (response.statusCode.success) {

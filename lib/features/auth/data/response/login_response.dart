@@ -1,115 +1,140 @@
-import 'package:e_move/core/extensions/extensions.dart';
-
-import 'package:e_move/core/extensions/extensions.dart';
-
 class LoginResponse {
   LoginResponse({
+    required this.tokenType,
+    required this.accessToken,
+    required this.expiresIn,
     required this.user,
-    required this.token,
+    required this.twoStepsRequired,
+    required this.claims,
   });
 
-  final UserModel user;
-  final String token;
+  final String tokenType;
+  final String accessToken;
+  final num expiresIn;
+  final User? user;
+  final bool twoStepsRequired;
+  final Claims? claims;
 
-  factory LoginResponse.fromJson(Map<String, dynamic> json) {
+  factory LoginResponse.fromJson(Map<String, dynamic> json){
     return LoginResponse(
-      user: UserModel.fromJson(json["user"] ?? {}),
-      token: json["token"] ?? "",
+      tokenType: json["tokenType"] ?? "",
+      accessToken: json["accessToken"] ?? "",
+      expiresIn: json["expiresIn"] ?? 0,
+      user: json["user"] == null ? null : User.fromJson(json["user"]),
+      twoStepsRequired: json["twoStepsRequired"] ?? false,
+      claims: json["claims"] == null ? null : Claims.fromJson(json["claims"]),
     );
   }
 
   Map<String, dynamic> toJson() => {
-        "user": user.toJson(),
-        "token": token,
-      };
+    "tokenType": tokenType,
+    "accessToken": accessToken,
+    "expiresIn": expiresIn,
+    "user": user?.toJson(),
+    "twoStepsRequired": twoStepsRequired,
+    "claims": claims?.toJson(),
+  };
+
 }
 
-class UserModel {
-  UserModel({
+class Claims {
+  Claims({
+    required this.items,
+    required this.pages,
+    required this.modules,
+    required this.blocks,
+    required this.operations,
+  });
+
+  final List<dynamic> items;
+  final List<dynamic> pages;
+  final List<dynamic> modules;
+  final List<String> blocks;
+  final List<String> operations;
+
+  factory Claims.fromJson(Map<String, dynamic> json){
+    return Claims(
+      items: json["items"] == null ? [] : List<dynamic>.from(json["items"]!.map((x) => x)),
+      pages: json["pages"] == null ? [] : List<dynamic>.from(json["pages"]!.map((x) => x)),
+      modules: json["modules"] == null ? [] : List<dynamic>.from(json["modules"]!.map((x) => x)),
+      blocks: json["blocks"] == null ? [] : List<String>.from(json["blocks"]!.map((x) => x)),
+      operations: json["operations"] == null ? [] : List<String>.from(json["operations"]!.map((x) => x)),
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    "items": items.map((x) => x).toList(),
+    "pages": pages.map((x) => x).toList(),
+    "modules": modules.map((x) => x).toList(),
+    "blocks": blocks.map((x) => x).toList(),
+    "operations": operations.map((x) => x).toList(),
+  };
+
+}
+
+class User {
+  User({
     required this.id,
-    required this.firstName,
-    required this.lastName,
-    required this.phone,
     required this.email,
-    required this.fcmToken,
-    required this.profileImageUrl,
-    required this.identityImage,
-    required this.latitude,
-    required this.longitude,
-    required this.gender,
-    required this.educationalGrade,
+    required this.userName,
+    required this.firstName,
+    required this.middleName,
+    required this.lastName,
+    required this.imageUrl,
+    required this.workPhoneNumber,
+    required this.phoneNumber,
+    required this.phoneNumberCode,
+    required this.attribute,
+    required this.status,
+    required this.customerId,
   });
 
-  final int id;
-  final String firstName;
-  final String lastName;
-  final String phone;
+  final String id;
   final String email;
-  final String fcmToken;
-  final String profileImageUrl;
-  final String identityImage;
-  final num latitude;
-  final num longitude;
-  final String gender;
-  final EducationalGrade? educationalGrade;
+  final String userName;
+  final String firstName;
+  final String middleName;
+  final String lastName;
+  final dynamic imageUrl;
+  final String workPhoneNumber;
+  final String phoneNumber;
+  final String phoneNumberCode;
+  final String attribute;
+  final num status;
+  final String customerId;
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
-    return UserModel(
-      id: json["id"].toString().tryParseOrZeroInt,
-      firstName: json["first_name"] ?? "",
-      lastName: json["last_name"] ?? "",
-      phone: json["phone"] ?? "",
+  factory User.fromJson(Map<String, dynamic> json){
+    return User(
+      id: json["id"] ?? "",
       email: json["email"] ?? "",
-      fcmToken: json["fcm_token"] ?? "",
-      profileImageUrl: json["profile_image_url"] ?? "",
-      identityImage: json["identity_image"] ?? "",
-      latitude: json["latitude"].toString().tryParseOrZero,
-      longitude: json["longitude"].toString().tryParseOrZero,
-      gender: json["gender"] ?? "",
-      educationalGrade: json["educational_grade"] == null
-          ? null
-          : EducationalGrade.fromJson(json["educational_grade"]),
+      userName: json["userName"] ?? "",
+      firstName: json["firstName"] ?? "",
+      middleName: json["middleName"] ?? "",
+      lastName: json["lastName"] ?? "",
+      imageUrl: json["imageUrl"],
+      workPhoneNumber: json["workPhoneNumber"] ?? "",
+      phoneNumber: json["phoneNumber"] ?? "",
+      phoneNumberCode: json["phoneNumberCode"] ?? "",
+      attribute: json["attribute"] ?? "",
+      status: json["status"] ?? 0,
+      customerId: json["customerId"] ?? "",
     );
   }
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "first_name": firstName,
-        "last_name": lastName,
-        "phone": phone,
-        "email": email,
-        "fcm_token": fcmToken,
-        "profile_image_url": profileImageUrl,
-        "identity_image": identityImage,
-        "latitude": latitude,
-        "longitude": longitude,
-        "gender": gender,
-        "educational_grade": educationalGrade?.toJson(),
-      };
-}
+    "id": id,
+    "email": email,
+    "userName": userName,
+    "firstName": firstName,
+    "middleName": middleName,
+    "lastName": lastName,
+    "imageUrl": imageUrl,
+    "workPhoneNumber": workPhoneNumber,
+    "phoneNumber": phoneNumber,
+    "phoneNumberCode": phoneNumberCode,
+    "attribute": attribute,
+    "status": status,
+    "customerId": customerId,
+  };
 
-class EducationalGrade {
-  EducationalGrade({
-    required this.id,
-    required this.name,
-    required this.photo,
-  });
-
-  final int id;
-  final String name;
-  final String photo;
-
-  factory EducationalGrade.fromJson(Map<String, dynamic> json) {
-    return EducationalGrade(
-      id: json["id"] ?? 0,
-      name: json["name"] ?? "",
-      photo: json["photo"] ?? "",
-    );
-  }
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "photo": photo,
-      };
 }

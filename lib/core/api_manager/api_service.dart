@@ -6,7 +6,7 @@ import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
-import 'package:e_move/core/extensions/extensions.dart';
+import 'package:mms/core/extensions/extensions.dart';
 
 import '../injection/injection_container.dart';
 import '../network/network_info.dart';

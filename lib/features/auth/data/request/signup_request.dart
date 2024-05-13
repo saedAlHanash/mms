@@ -1,5 +1,5 @@
-import 'package:e_move/core/api_manager/api_service.dart';
-import 'package:e_move/core/strings/enum_manager.dart';
+import 'package:mms/core/api_manager/api_service.dart';
+import 'package:mms/core/strings/enum_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../../generated/assets.dart';

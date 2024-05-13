@@ -1,9 +1,9 @@
-import 'package:e_move/core/api_manager/api_service.dart';
+import 'package:mms/core/api_manager/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:e_move/core/app/app_provider.dart';
-import 'package:e_move/core/extensions/extensions.dart';
-import 'package:e_move/router/app_router.dart';
+import 'package:mms/core/app/app_provider.dart';
+import 'package:mms/core/extensions/extensions.dart';
+import 'package:mms/router/app_router.dart';
 
 import '../../generated/l10n.dart';
 import '../app/app_widget.dart';

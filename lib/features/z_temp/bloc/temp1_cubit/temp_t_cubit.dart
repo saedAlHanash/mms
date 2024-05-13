@@ -1,5 +1,5 @@
-import 'package:e_move/core/api_manager/api_url.dart';
-import 'package:e_move/core/extensions/extensions.dart';
+import 'package:mms/core/api_manager/api_url.dart';
+import 'package:mms/core/extensions/extensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/api_manager/api_service.dart';
@@ -11,24 +11,34 @@ import '../../data/temp.dart';
 
 part 'temp_t_state.dart';
 
-class TempCubit extends Cubit<TempInitial> {
+class TempCubit extends MCubit<TempInitial> {
   TempCubit() : super(TempInitial.initial());
 
-  Future<void> getTemp() async {
-     
+  @override
+  String get nameCache => 'temp';
 
-    emit(state.copyWith(statuses: CubitStatuses.loading));
-    final pair = await _bookedAppointmentsApi();
+  @override
+  String get id => '';
+
+  @override
+  String get by => '';
+
+  Future<void> getTemp() async {
+    if (await checkCashed()) return;
+
+    final pair = await _getDataApi();
+
     if (pair.first == null) {
       emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));
       showErrorFromApi(state);
     } else {
-      emit(state.copyWith(statuses: CubitStatuses.done, result: pair.first?.data));
+      await storeData(pair.first!);
+      emit(state.copyWith(
+          statuses: CubitStatuses.done, result: pair.first?.data));
     }
   }
 
-
-  Future<Pair<TempList?, String?>> _bookedAppointmentsApi() async {
+  Future<Pair<TempList?, String?>> _getDataApi() async {
     final response = await APIService().getApi(url: GetUrl.temp);
 
     if (response.statusCode.success) {
@@ -36,5 +46,20 @@ class TempCubit extends Cubit<TempInitial> {
     } else {
       return response.getPairError;
     }
+  }
+
+  Future<bool> checkCashed() async {
+    final cacheType = await needGetData();
+
+    emit(
+      state.copyWith(
+        statuses: cacheType.getState,
+        result:
+            (await getListCached()).map((e) => TempModel.fromJson(e)).toList(),
+      ),
+    );
+
+    if (cacheType == NeedUpdateEnum.no) return true;
+    return false;
   }
 }

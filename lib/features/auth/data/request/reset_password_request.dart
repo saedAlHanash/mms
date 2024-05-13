@@ -1,4 +1,4 @@
-import 'package:e_move/core/util/shared_preferences.dart';
+import 'package:mms/core/util/shared_preferences.dart';
 
 import '../../../../core/app/app_provider.dart';
 

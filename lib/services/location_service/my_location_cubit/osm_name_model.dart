@@ -1,5 +1,5 @@
 
-import 'package:e_move/core/extensions/extensions.dart';
+import 'package:mms/core/extensions/extensions.dart';
 
 class OsmNameModel {
   OsmNameModel({

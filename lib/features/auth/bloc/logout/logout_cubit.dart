@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:e_move/core/extensions/extensions.dart';
-import 'package:e_move/core/strings/enum_manager.dart';
+import 'package:mms/core/extensions/extensions.dart';
+import 'package:mms/core/strings/enum_manager.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/api_manager/api_url.dart';

@@ -11,6 +11,8 @@ import '../../features/auth/bloc/otp_password_cubit/otp_password_cubit.dart';
 import '../../features/auth/bloc/resend_code_cubit/resend_code_cubit.dart';
 import '../../features/auth/bloc/reset_password_cubit/reset_password_cubit.dart';
 import '../../features/auth/bloc/signup_cubit/signup_cubit.dart';
+import '../../features/committees/bloc/committee_cubit/committee_cubit.dart';
+import '../../features/committees/bloc/my_committees_cubit/my_committees_cubit.dart';
 import '../../features/educational_grade/bloc/educational_grade_cubit/educational_grade_cubit.dart';
 import '../../services/location_service/my_location_cubit/my_location_cubit.dart';
 import '../app/bloc/loading_cubit.dart';
@@ -21,7 +23,8 @@ final sl = GetIt.instance;
 Future<void> init() async {
   //region Core
 
-  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(connectionChecker: sl()));
+  sl.registerLazySingleton<NetworkInfo>(
+      () => NetworkInfoImpl(connectionChecker: sl()));
   sl.registerLazySingleton(() => InternetConnectionChecker());
   sl.registerLazySingleton(() => LoadingCubit());
   sl.registerLazySingleton(() => GlobalKey<NavigatorState>());
@@ -46,8 +49,9 @@ Future<void> init() async {
 
   //endregion
 
-  //region EducationalGradeInitial
-  sl.registerFactory(() => EducationalGradeCubit());
+  //region Committees
+  sl.registerFactory(() => MyCommitteesCubit());
+  sl.registerFactory(() => CommitteeCubit());
 
   //endregion
 

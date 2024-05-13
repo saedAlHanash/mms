@@ -1,5 +1,5 @@
-import 'package:e_move/core/extensions/extensions.dart';
-import 'package:e_move/services/show_messages_service.dart';
+import 'package:mms/core/extensions/extensions.dart';
+import 'package:mms/services/show_messages_service.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 

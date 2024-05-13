@@ -11,7 +11,7 @@ import 'app_widget.dart';
 class AppProvider {
   final fcmToken = AppSharedPreference.getFireToken;
 
-  UserModel get getMe => AppSharedPreference.getUser;
+  LoginResponse get getMe => AppSharedPreference.getUser;
 
   static bool get isLogin => AppSharedPreference.getToken.isNotEmpty;
 
@@ -36,8 +36,8 @@ class AppProvider {
   }
 
   static Future<void> login({required LoginResponse response}) async {
-    await AppSharedPreference.cashToken(response.token);
-    await AppSharedPreference.cashUser(response.user);
+    await AppSharedPreference.cashToken(response.accessToken);
+    await AppSharedPreference.cashUser(response);
   }
 
   static bool? get isSignupCashed {
@@ -48,6 +48,10 @@ class AppProvider {
 
   static Future<void> logout() async {
     await AppSharedPreference.logout();
+    if (ctx != null) {
+      Navigator.pushNamedAndRemoveUntil(
+          ctx!, RouteName.splash, (route) => false);
+    }
   }
 
   static Future<void> cachePhone(

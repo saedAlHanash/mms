@@ -1,5 +1,5 @@
-// import 'package:e_move/core/app/bloc/loading_cubit.dart';
-// import 'package:e_move/core/util/snack_bar_message.dart';
+// import 'package:mms/core/app/bloc/loading_cubit.dart';
+// import 'package:mms/core/util/snack_bar_message.dart';
 // import 'package:flutter/material.dart';
 //
 //

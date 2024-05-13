@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:e_move/core/util/abstraction.dart';
-import 'package:e_move/services/location_service/location_service.dart';
+import 'package:mms/core/util/abstraction.dart';
+import 'package:mms/services/location_service/location_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';

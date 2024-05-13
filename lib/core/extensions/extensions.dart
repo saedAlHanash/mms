@@ -5,8 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-import 'package:e_move/core/strings/app_color_manager.dart';
-import 'package:e_move/core/util/shared_preferences.dart';
+import 'package:mms/core/api_manager/api_service.dart';
+import 'package:mms/core/strings/app_color_manager.dart';
+import 'package:mms/core/util/shared_preferences.dart';
 
 import '../../generated/l10n.dart';
 import '../error/error_manager.dart';
@@ -53,7 +54,8 @@ extension SplitByLength on String {
   int get numberOnly {
     final regex = RegExp(r'\d+');
 
-    final numbers = regex.allMatches(this).map((match) => match.group(0)).join();
+    final numbers =
+        regex.allMatches(this).map((match) => match.group(0)).join();
 
     try {
       return int.parse(numbers);
@@ -75,10 +77,12 @@ extension SplitByLength on String {
   String? checkPhoneNumber(BuildContext context, String phone) {
     if (phone.startsWith('00964') && phone.length > 11) return phone;
     if (phone.length < 10) {
-      NoteMessage.showSnakeBar(context: context, message: S.of(context).wrongPhone);
+      NoteMessage.showSnakeBar(
+          context: context, message: S.of(context).wrongPhone);
       return null;
     } else if (phone.startsWith("0") && phone.length < 11) {
-      NoteMessage.showSnakeBar(context: context, message: S.of(context).wrongPhone);
+      NoteMessage.showSnakeBar(
+          context: context, message: S.of(context).wrongPhone);
       return null;
     }
 
@@ -139,7 +143,8 @@ extension MaxInt on num {
 extension NeedUpdateEnumH on NeedUpdateEnum {
   bool get loading => this == NeedUpdateEnum.withLoading;
 
-  bool get haveData => this == NeedUpdateEnum.no || this == NeedUpdateEnum.noLoading;
+  bool get haveData =>
+      this == NeedUpdateEnum.no || this == NeedUpdateEnum.noLoading;
 
   CubitStatuses get getState {
     switch (this) {
@@ -262,18 +267,24 @@ extension EnumHelper on Enum {
 }
 
 extension ResponseHelper on http.Response {
-  Map<String, dynamic> get jsonBody {
+  Map<String, dynamic> get jsonBodyPure {
     try {
-      return jsonDecode(body)['data'] ?? {};
+      return jsonDecode(body) ?? {};
     } catch (e) {
       return jsonDecode('{}');
     }
   }
 
-  Map<String, dynamic> get jsonBodyPure {
+  Map<String, dynamic> get jsonBody {
     try {
+      if (body.startsWith('[')) {
+        final convertString = '{"data": $body}';
+        final json = jsonDecode(convertString);
+        return json;
+      }
       return jsonDecode(body);
     } catch (e) {
+      loggerObject.e(e);
       return jsonDecode('{}');
     }
   }
@@ -337,7 +348,8 @@ extension DateUtcHelper on DateTime {
     );
   }
 
-  DateTime initialFromDateTime({required DateTime date, required TimeOfDay time}) {
+  DateTime initialFromDateTime(
+      {required DateTime date, required TimeOfDay time}) {
     return DateTime(date.year, date.month, date.day, time.hour, time.minute);
   }
 

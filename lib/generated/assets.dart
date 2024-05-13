@@ -4,7 +4,7 @@ class Assets {
 
   static const String fontsCairo = 'assets/fonts/cairo.ttf';
   static const String fontsCairoBold = 'assets/fonts/cairo_bold.ttf';
-  static const String fontsCairoSemiBold = 'assets/fonts/cairo_semi_bold.ttf';
+  static const String fontsCairoSimeBold = 'assets/fonts/cairo_semi_bold.ttf';
   static const String iconsCall = 'assets/icons/call.svg';
   static const String iconsCart = 'assets/icons/cart.svg';
   static const String iconsCash = 'assets/icons/cash.svg';

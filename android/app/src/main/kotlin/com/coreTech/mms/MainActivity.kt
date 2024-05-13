@@ -1,4 +1,4 @@
-package com.Bandtech.e_move
+package com.coretech.mms
 
 import io.flutter.embedding.android.FlutterActivity
 

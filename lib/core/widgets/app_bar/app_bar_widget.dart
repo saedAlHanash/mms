@@ -2,7 +2,7 @@ import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:e_move/core/util/my_style.dart';
+import 'package:mms/core/util/my_style.dart';
 
 import '../../app/bloc/loading_cubit.dart';
 import '../../strings/app_color_manager.dart';

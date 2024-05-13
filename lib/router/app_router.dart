@@ -1,4 +1,5 @@
-import 'package:e_move/services/location_service/my_location_cubit/my_location_cubit.dart';
+import 'package:mms/features/auth/ui/pages/intro_screen.dart';
+import 'package:mms/services/location_service/my_location_cubit/my_location_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,176 +20,195 @@ import '../features/auth/ui/pages/otp_password_page.dart';
 import '../features/auth/ui/pages/reset_password_page.dart';
 import '../features/auth/ui/pages/signup_page.dart';
 import '../features/auth/ui/pages/splash_screen_page.dart';
+import '../features/committees/bloc/committee_cubit/committee_cubit.dart';
+import '../features/committees/ui/pages/committee_page.dart';
 import '../features/educational_grade/bloc/educational_grade_cubit/educational_grade_cubit.dart';
+import '../features/home/ui/pages/home_page.dart';
 
-class AppRoutes {
-  static Route<dynamic> routes(RouteSettings settings) {
-    var screenName = settings.name;
+Route<dynamic> routes(RouteSettings settings) {
+  var screenName = settings.name;
 
-    switch (screenName) {
-      //region auth
-      case RouteName.splash:
-        //region
-        return MaterialPageRoute(builder: (_) => const SplashScreenPage());
-      //endregion
-      case RouteName.signup:
-        //region
-        {
-          return MaterialPageRoute(
-            builder: (_) {
-              final providers = [
-                BlocProvider(create: (_) => sl<SignupCubit>()),
-                BlocProvider(create: (_) => sl<LocationServiceCubit>()),
-                BlocProvider(
-                  create: (_) =>
-                      sl<EducationalGradeCubit>()..getEducationalGrade(),
-                ),
-              ];
-              return MultiBlocProvider(
-                providers: providers,
-                child: const SignupPage(),
-              );
-            },
-          );
-        }
-      //endregion
-      case RouteName.login:
-        //region
-        {
-          final providers = [
-            BlocProvider(create: (_) => sl<LoginCubit>()),
-            BlocProvider(create: (_) => sl<LoginSocialCubit>()),
-          ];
-          return MaterialPageRoute(
-            builder: (_) {
-              return MultiBlocProvider(
-                providers: providers,
-                child: const LoginPage(),
-              );
-            },
-          );
-        }
-      //endregion
-      case RouteName.forgetPassword:
-        //region
-        {
-          final providers = [
-            BlocProvider(create: (_) => sl<ForgetPasswordCubit>()),
-          ];
-          final arg = settings.arguments;
-          return MaterialPageRoute(
-            builder: (_) {
-              return MultiBlocProvider(
-                providers: providers,
-                child: ForgetPasswordPage(phone: arg is String ? arg : null),
-              );
-            },
-          );
-        }
-      //endregion
-      case RouteName.resetPasswordPage:
-        //region
-        {
-          final providers = [
-            BlocProvider(create: (_) => sl<ResetPasswordCubit>()),
-          ];
-          return MaterialPageRoute(
-            builder: (_) {
-              return MultiBlocProvider(
-                providers: providers,
-                child: const ResetPasswordPage(),
-              );
-            },
-          );
-        }
-      //endregion
-      case RouteName.confirmCode:
-        //region
-        {
-          final providers = [
-            BlocProvider(create: (_) => sl<ConfirmCodeCubit>()),
-            BlocProvider(create: (_) => sl<ResendCodeCubit>()),
-          ];
-          return MaterialPageRoute(
-            builder: (_) {
-              return MultiBlocProvider(
-                providers: providers,
-                child: const ConfirmCodePage(),
-              );
-            },
-          );
-        }
-      //endregion
-      case RouteName.otpPassword:
-        //region
-        {
-          final providers = [
-            BlocProvider(create: (_) => sl<OtpPasswordCubit>()),
-            BlocProvider(create: (_) => sl<ResendCodeCubit>()),
-          ];
-          return MaterialPageRoute(
-            builder: (_) {
-              return MultiBlocProvider(
-                providers: providers,
-                child: const OtpPasswordPage(),
-              );
-            },
-          );
-        }
-      //endregion
-
-      case RouteName.donePage:
-        //region
-        {
-          return MaterialPageRoute(
-            builder: (_) {
-              return const DonePage();
-            },
-          );
-        }
-      //endregion
-      //endregion
-
-      //region home
-      case RouteName.home:
+  switch (screenName) {
+    //region auth
+    case RouteName.splash:
       //region
-        {
-          return MaterialPageRoute(
-            builder: (_) {
-              return const DonePage();
-            },
-          );
-        }
-      //endregion
+      return MaterialPageRoute(builder: (_) => const SplashScreenPage());
+    //endregion
+    case RouteName.signup:
+      //region
+      {
+        return MaterialPageRoute(
+          builder: (_) {
+            final providers = [
+              BlocProvider(create: (_) => sl<SignupCubit>()),
+              BlocProvider(create: (_) => sl<LocationServiceCubit>()),
+              BlocProvider(
+                create: (_) =>
+                    sl<EducationalGradeCubit>()..getEducationalGrade(),
+              ),
+            ];
+            return MultiBlocProvider(
+              providers: providers,
+              child: const SignupPage(),
+            );
+          },
+        );
+      }
+    //endregion
+    case RouteName.login:
+      //region
+      {
+        final providers = [
+          BlocProvider(create: (_) => sl<LoginCubit>()),
+          BlocProvider(create: (_) => sl<LoginSocialCubit>()),
+        ];
+        return MaterialPageRoute(
+          builder: (_) {
+            return MultiBlocProvider(
+              providers: providers,
+              child: const LoginPage(),
+            );
+          },
+        );
+      }
+    //endregion
+    case RouteName.forgetPassword:
+      //region
+      {
+        final providers = [
+          BlocProvider(create: (_) => sl<ForgetPasswordCubit>()),
+        ];
+        final arg = settings.arguments;
+        return MaterialPageRoute(
+          builder: (_) {
+            return MultiBlocProvider(
+              providers: providers,
+              child: ForgetPasswordPage(phone: arg is String ? arg : null),
+            );
+          },
+        );
+      }
+    //endregion
+    case RouteName.resetPasswordPage:
+      //region
+      {
+        final providers = [
+          BlocProvider(create: (_) => sl<ResetPasswordCubit>()),
+        ];
+        return MaterialPageRoute(
+          builder: (_) {
+            return MultiBlocProvider(
+              providers: providers,
+              child: const ResetPasswordPage(),
+            );
+          },
+        );
+      }
+    //endregion
+    case RouteName.confirmCode:
+      //region
+      {
+        final providers = [
+          BlocProvider(create: (_) => sl<ConfirmCodeCubit>()),
+          BlocProvider(create: (_) => sl<ResendCodeCubit>()),
+        ];
+        return MaterialPageRoute(
+          builder: (_) {
+            return MultiBlocProvider(
+              providers: providers,
+              child: const ConfirmCodePage(),
+            );
+          },
+        );
+      }
+    //endregion
+    case RouteName.otpPassword:
+      //region
+      {
+        final providers = [
+          BlocProvider(create: (_) => sl<OtpPasswordCubit>()),
+          BlocProvider(create: (_) => sl<ResendCodeCubit>()),
+        ];
+        return MaterialPageRoute(
+          builder: (_) {
+            return MultiBlocProvider(
+              providers: providers,
+              child: const OtpPasswordPage(),
+            );
+          },
+        );
+      }
+    //endregion
 
-      //region settings
+    case RouteName.donePage:
+      //region
+      {
+        return MaterialPageRoute(
+          builder: (_) {
+            return const DonePage();
+          },
+        );
+      }
+    //endregion
+    //endregion
 
-      //endregion
+    //region home
+    case RouteName.home:
+      //region
+      {
+        return MaterialPageRoute(
+          builder: (_) {
+            return const HomePage();
+          },
+        );
+      }
+    //endregion
 
-      //region orders and cart
+    //region settings
 
-      //endregion
+    //endregion
 
-      //region product
+    //region orders and cart
 
-      //endregion
+    //endregion
 
-      //region product
+    //region committee
+    case RouteName.committeePage:
+      //region
+      {
+        final uuid = settings.arguments as String;
+        final providers = [
+          BlocProvider(
+              create: (context) =>
+                  sl<CommitteeCubit>()..getCommittee(uuid: uuid)),
+        ];
+        return MaterialPageRoute(
+          builder: (_) {
+            return MultiBlocProvider(
+              providers: providers,
+              child: const CommitteePage(),
+            );
+          },
+        );
+      }
+    //endregion
+    //endregion
 
-      //endregion
+    //region product
 
-      //region webView
+    //endregion
 
-      //endregion
+    //region webView
 
-      //region Chat
+    //endregion
 
-      //endregion
-    }
+    //region Chat
 
-    return MaterialPageRoute(
-        builder: (_) => const Scaffold(backgroundColor: Colors.red));
+    //endregion
   }
+
+  return MaterialPageRoute(
+      builder: (_) => const Scaffold(backgroundColor: Colors.red));
 }
 
 class RouteName {
@@ -202,4 +222,5 @@ class RouteName {
   static const confirmCode = '/7';
   static const otpPassword = '/9';
   static const donePage = '/10';
+  static const committeePage = '/11';
 }

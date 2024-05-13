@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:e_move/core/strings/app_color_manager.dart';
+import 'package:mms/core/strings/app_color_manager.dart';
 
 const primaryColor = AppColorManager.black;
 const secondaryColor = AppColorManager.mainColorDark;
@@ -8,6 +9,10 @@ const secondaryColor = AppColorManager.mainColorDark;
 final appTheme = ThemeData(
     appBarTheme: const AppBarTheme(
       backgroundColor: primaryColor,
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarIconBrightness: Brightness.dark,
+        statusBarColor: AppColorManager.f9
+      ),
       centerTitle: true,
     ),
     brightness: Brightness.light,

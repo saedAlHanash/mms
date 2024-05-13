@@ -1,7 +1,7 @@
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:e_move/router/app_router.dart';
+import 'package:mms/router/app_router.dart';
 
 import '../../../../core/strings/app_color_manager.dart';
 

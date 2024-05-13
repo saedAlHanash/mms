@@ -1,8 +1,8 @@
 import 'dart:typed_data';
 
-import 'package:e_move/core/api_manager/api_url.dart';
-import 'package:e_move/core/app/app_provider.dart';
-import 'package:e_move/core/extensions/extensions.dart';
+import 'package:mms/core/api_manager/api_url.dart';
+import 'package:mms/core/app/app_provider.dart';
+import 'package:mms/core/extensions/extensions.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../../core/api_manager/api_service.dart';

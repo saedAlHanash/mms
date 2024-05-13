@@ -1,4 +1,4 @@
-import 'package:e_move/core/strings/app_color_manager.dart';
+import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:drawable_text/drawable_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -6,10 +6,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
-import 'package:e_move/core/extensions/extensions.dart';
-import 'package:e_move/core/widgets/app_bar/app_bar_widget.dart';
-import 'package:e_move/core/widgets/my_button.dart';
-import 'package:e_move/core/widgets/my_text_form_widget.dart';
+import 'package:mms/core/extensions/extensions.dart';
+import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
+import 'package:mms/core/widgets/my_button.dart';
+import 'package:mms/core/widgets/my_text_form_widget.dart';
 
 import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/my_style.dart';
@@ -20,7 +20,7 @@ import '../../bloc/login_cubit/login_cubit.dart';
 import '../../bloc/login_social_cubit/login_social_cubit.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -86,12 +86,12 @@ class _LoginPageState extends State<LoginPage> {
                           AutofillHints.username,
                           AutofillHints.email,
                         ],
-                        validator: (p0) => loginCubit.validatePhone,
-                        label: S.of(context).phoneNumber,
-                        initialValue: loginCubit.state.request.phone,
-                        keyBordType: TextInputType.phone,
+                        validator: (p0) => loginCubit.validateUserName,
+                        label: S.of(context).userName,
+                        initialValue: loginCubit.state.request.userName,
+                        keyBordType: TextInputType.emailAddress,
                         icon: Assets.iconsCall,
-                        onChanged: (val) => loginCubit.setPhone = val,
+                        onChanged: (val) => loginCubit.setUserName = val,
                       ),
                       15.0.verticalSpace,
                       MyTextFormOutLineWidget(
@@ -106,20 +106,20 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                 ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      RouteName.forgetPassword,
-                      arguments: loginCubit.state.request.phone,
-                    );
-                  },
-                  child: DrawableText(
-                    text: S.of(context).forgetPassword,
-                    matchParent: true,
-                    color: AppColorManager.mainColorLight,
-                  ),
-                ),
+                // TextButton(
+                //   onPressed: () {
+                //     Navigator.pushNamed(
+                //       context,
+                //       RouteName.forgetPassword,
+                //       arguments: loginCubit.state.request.phone,
+                //     );
+                //   },
+                //   child: DrawableText(
+                //     text: S.of(context).forgetPassword,
+                //     matchParent: true,
+                //     color: AppColorManager.mainColorLight,
+                //   ),
+                // ),
                 20.0.verticalSpace,
                 BlocBuilder<LoginCubit, LoginInitial>(
                   builder: (_, state) {
@@ -136,19 +136,19 @@ class _LoginPageState extends State<LoginPage> {
                     );
                   },
                 ),
-                18.0.verticalSpace,
-                DrawableText(
-                  text: S.of(context).doNotHaveAnAccount,
-                  drawableEnd: TextButton(
-                    onPressed: () =>
-                        Navigator.pushNamed(context, RouteName.signup),
-                    child: DrawableText(
-                      fontFamily: FontManager.cairoBold.name,
-                      text: S.of(context).createNewAccount,
-                      color: AppColorManager.mainColorLight,
-                    ),
-                  ),
-                ),
+                // 18.0.verticalSpace,
+                // DrawableText(
+                //   text: S.of(context).doNotHaveAnAccount,
+                //   drawableEnd: TextButton(
+                //     onPressed: () =>
+                //         Navigator.pushNamed(context, RouteName.signup),
+                //     child: DrawableText(
+                //       fontFamily: FontManager.cairoBold.name,
+                //       text: S.of(context).createNewAccount,
+                //       color: AppColorManager.mainColorLight,
+                //     ),
+                //   ),
+                // ),
                 40.0.verticalSpace,
               ],
             ),

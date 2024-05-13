@@ -1,4 +1,4 @@
-import 'package:e_move/core/util/snack_bar_message.dart';
+import 'package:mms/core/util/snack_bar_message.dart';
 
 import '../core/app/app_widget.dart';
 

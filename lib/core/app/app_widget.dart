@@ -6,9 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
-import 'package:e_move/core/extensions/extensions.dart';
-import 'package:e_move/core/strings/app_color_manager.dart';
+import 'package:mms/core/extensions/extensions.dart';
+import 'package:mms/core/strings/app_color_manager.dart';
 
+import '../../features/committees/bloc/my_committees_cubit/my_committees_cubit.dart';
 import '../../generated/assets.dart';
 import '../../generated/l10n.dart';
 import '../../main.dart';
@@ -28,8 +29,8 @@ class MyApp extends StatefulWidget {
     await AppSharedPreference.cashLocal(langCode);
     if (context.mounted) {
       final state = context.findAncestorStateOfType<_MyAppState>();
-      await state
-          ?.setLocale(Locale.fromSubtags(languageCode: AppSharedPreference.getLocal));
+      await state?.setLocale(
+          Locale.fromSubtags(languageCode: AppSharedPreference.getLocal));
     }
   }
 }
@@ -51,10 +52,7 @@ class _MyAppState extends State<MyApp> {
         body = message.data['body'] ?? '';
       }
 
-
-        Note.showBigTextNotification(title: title, body: body);
-
-
+      Note.showBigTextNotification(title: title, body: body);
     });
     setImageMultiTypeErrorImage(
       const Opacity(
@@ -96,7 +94,9 @@ class _MyAppState extends State<MyApp> {
     });
 
     return ScreenUtilInit(
-      designSize: const Size(375, 812),
+      // designSize: const Size(375, 812*3),
+      designSize: Size(MediaQuery.of(context).size.width * 1.3,
+          MediaQuery.of(context).size.height),
       // designSize: const Size(14440, 972),
       minTextAdapt: true,
       // splitScreenMode: true,
@@ -112,7 +112,8 @@ class _MyAppState extends State<MyApp> {
 
         return MaterialApp(
           navigatorKey: sl<GlobalKey<NavigatorState>>(),
-          locale: Locale.fromSubtags(languageCode: AppSharedPreference.getLocal),
+          locale:
+              Locale.fromSubtags(languageCode: AppSharedPreference.getLocal),
           localizationsDelegates: const [
             S.delegate,
             GlobalMaterialLocalizations.delegate,
@@ -123,7 +124,9 @@ class _MyAppState extends State<MyApp> {
           builder: (_, child) {
             return MultiBlocProvider(
               providers: [
-                BlocProvider(create: (_) => sl<LoadingCubit>()),
+                BlocProvider(
+                  create: (_) => sl<MyCommitteesCubit>()..getMyCommittees(),
+                ),
               ],
               child: Stack(
                 children: [child!, loading],
@@ -133,7 +136,7 @@ class _MyAppState extends State<MyApp> {
           scrollBehavior: MyCustomScrollBehavior(),
           debugShowCheckedModeBanner: false,
           theme: appTheme,
-          onGenerateRoute: AppRoutes.routes,
+          onGenerateRoute: routes,
         );
       },
     );

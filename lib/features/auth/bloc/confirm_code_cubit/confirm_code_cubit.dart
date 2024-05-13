@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:e_move/core/app/app_provider.dart';
-import 'package:e_move/core/extensions/extensions.dart';
-import 'package:e_move/core/util/abstraction.dart';
+import 'package:mms/core/app/app_provider.dart';
+import 'package:mms/core/extensions/extensions.dart';
+import 'package:mms/core/util/abstraction.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/api_manager/api_url.dart';
@@ -40,7 +40,7 @@ class ConfirmCodeCubit extends Cubit<ConfirmCodeInitial> {
     if (response.statusCode == 200) {
       final pair = Pair(LoginResponse.fromJson(response.jsonBody), null);
 
-      AppSharedPreference.cashToken(pair.first.token);
+      AppSharedPreference.cashToken(pair.first.accessToken);
       AppSharedPreference.removePhone();
       APIService.reInitial();
       return pair;
@@ -49,12 +49,12 @@ class ConfirmCodeCubit extends Cubit<ConfirmCodeInitial> {
     }
   }
 
-  set setPhone(String? phone) => state.request.phone = phone;
+  set setPhone(String? phone) => state.request.userName = phone;
 
-  set setCode(String? code) => state.request.code = code;
+  set setCode(String? code) => state.request.programKey = code;
 
   String? get validatePhone {
-    if (state.request.phone.isBlank) {
+    if (state.request.userName.isBlank) {
       return '${S().email} - ${S().phoneNumber}'
           ' ${S().is_required}';
     }
@@ -62,7 +62,7 @@ class ConfirmCodeCubit extends Cubit<ConfirmCodeInitial> {
   }
 
   String? get validateCode {
-    if (state.request.code.isBlank) {
+    if (state.request.programKey.isBlank) {
       return S().confirmCode;
     }
     return null;

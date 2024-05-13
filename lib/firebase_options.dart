@@ -50,19 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAMBei-03AQ1hRMo4Lg0UMW-Gz68OCUIPs',
-    appId: '1:110826139764:android:aa2ccf2a0cc2f01141a121',
-    messagingSenderId: '110826139764',
-    projectId: 'basma-90aaf',
-    storageBucket: 'basma-90aaf.appspot.com',
+    apiKey: 'AIzaSyCt7b4fRE7w4zOCew4EptcmhtV5F_jrUEc',
+    appId: '1:537553396470:android:a9b54fbe11fe7f37f0c2d7',
+    messagingSenderId: '537553396470',
+    projectId: 'mms-project-48175',
+    storageBucket: 'mms-project-48175.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDMTqyRoSegx0ZELSFNOsBJ7g17dPhYBus',
-    appId: '1:110826139764:ios:114b97861046490741a121',
-    messagingSenderId: '110826139764',
-    projectId: 'basma-90aaf',
-    storageBucket: 'basma-90aaf.appspot.com',
-    iosBundleId: 'com.Bandtech.eMove',
+    apiKey: 'AIzaSyA-3y2Xzza1RwcE927XEMcOvTsg6WmzEDE',
+    appId: '1:537553396470:ios:5d04e8228c9c3fa1f0c2d7',
+    messagingSenderId: '537553396470',
+    projectId: 'mms-project-48175',
+    storageBucket: 'mms-project-48175.appspot.com',
+    iosBundleId: 'com.coretech.mms',
   );
+
 }

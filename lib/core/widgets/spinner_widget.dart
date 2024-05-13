@@ -1,4 +1,4 @@
-import 'package:e_move/core/api_manager/api_service.dart';
+import 'package:mms/core/api_manager/api_service.dart';
 import 'package:collection/collection.dart';
 import 'package:drawable_text/drawable_text.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';

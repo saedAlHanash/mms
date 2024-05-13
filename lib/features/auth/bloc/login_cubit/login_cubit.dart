@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:e_move/core/api_manager/api_url.dart';
-import 'package:e_move/core/extensions/extensions.dart';
-import 'package:e_move/core/util/shared_preferences.dart';
-import 'package:e_move/features/auth/data/request/login_request.dart';
+import 'package:mms/core/api_manager/api_url.dart';
+import 'package:mms/core/extensions/extensions.dart';
+import 'package:mms/core/util/shared_preferences.dart';
+import 'package:mms/features/auth/data/request/login_request.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/app/app_provider.dart';
@@ -47,7 +47,7 @@ class LoginCubit extends Cubit<LoginInitial> {
     } else {
       final error = response.getPairError as Pair<LoginResponse?, String?>;
       if (error.second?.contains('not verified') ?? false) {
-        AppSharedPreference.cashPhone(state.request.phone);
+        AppSharedPreference.cashPhone(state.request.userName);
         if (ctx != null) {
           Navigator.pushNamedAndRemoveUntil(
               ctx!, RouteName.confirmCode, (route) => false);
@@ -57,12 +57,12 @@ class LoginCubit extends Cubit<LoginInitial> {
     }
   }
 
-  set setPhone(String? phone) => state.request.phone = phone;
+  set setUserName(String? phone) => state.request.userName = phone;
 
   set setPassword(String? password) => state.request.password = password;
 
-  String? get validatePhone {
-    if (state.request.phone.isBlank) {
+  String? get validateUserName {
+    if (state.request.userName.isBlank) {
       return '${S().email} - ${S().phoneNumber}'
           ' ${S().is_required}';
     }

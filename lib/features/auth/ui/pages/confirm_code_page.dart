@@ -1,7 +1,7 @@
-import 'package:e_move/core/extensions/extensions.dart';
-import 'package:e_move/core/strings/app_color_manager.dart';
-import 'package:e_move/core/util/snack_bar_message.dart';
-import 'package:e_move/core/widgets/my_button.dart';
+import 'package:mms/core/extensions/extensions.dart';
+import 'package:mms/core/strings/app_color_manager.dart';
+import 'package:mms/core/util/snack_bar_message.dart';
+import 'package:mms/core/widgets/my_button.dart';
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

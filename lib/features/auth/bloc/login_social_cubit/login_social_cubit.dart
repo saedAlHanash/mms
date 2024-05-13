@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:e_move/core/api_manager/api_url.dart';
-import 'package:e_move/core/extensions/extensions.dart';
-import 'package:e_move/core/util/shared_preferences.dart';
-import 'package:e_move/features/auth/data/request/login_request.dart';
+import 'package:mms/core/api_manager/api_url.dart';
+import 'package:mms/core/extensions/extensions.dart';
+import 'package:mms/core/util/shared_preferences.dart';
+import 'package:mms/features/auth/data/request/login_request.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -84,7 +84,7 @@ class LoginSocialCubit extends Cubit<LoginSocialInitial> {
     if (response.statusCode.success) {
       final pair = Pair(LoginResponse.fromJson(response.jsonBody), null);
 
-      AppSharedPreference.cashToken(pair.first.token);
+      AppSharedPreference.cashToken(pair.first.accessToken);
       AppSharedPreference.removePhone();
       APIService.reInitial();
 

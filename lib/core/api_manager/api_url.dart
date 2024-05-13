@@ -78,12 +78,16 @@ class GetUrl {
 
   static const termsAndConditions = 'pages';
 
-  static var educationalGrade = 'educational-grade';
+  static const educationalGrade = 'educational-grade';
+
+  static const myCommittees = 'Committee/GetMyCommittees';
+
+  static const committee = 'Committee/Get';
 }
 
 class PostUrl {
   static const addReview = 'reviews';
-  static const loginUrl = 'auth/login';
+  static const loginUrl = 'Auth/Authenticate';
   static const signup = 'auth/register';
 
   static const forgetPassword = 'auth/forget-password';
@@ -119,7 +123,7 @@ class PostUrl {
   static const loginSocial = 'social/login';
   static const addPhone = 'social/add-phone';
 
-  static var socialVerifyPhone = 'social/verify-phone';
+  static const socialVerifyPhone = 'social/verify-phone';
 
   static String addMessage(int id) {
     return 'drivers/messages/$id/add';
@@ -148,5 +152,5 @@ class DeleteUrl {
   static const clearCart = 'carts';
 }
 
-const additionalConst = '/student/';
-const baseUrl = 'e-learning.testbandtech.com';
+const additionalConst = '/api/v1/';
+const baseUrl = 'mms.coretech-mena.com';

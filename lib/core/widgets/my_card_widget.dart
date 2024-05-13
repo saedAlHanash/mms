@@ -8,10 +8,10 @@ class MyCardWidget extends StatelessWidget {
     Key? key,
     this.margin,
     this.padding,
-    this.cardColor = AppColorManager.cardColor,
+    this.cardColor = AppColorManager.f9,
     required this.child,
-    this.elevation = 2,
-    this.radios,
+    this.elevation = 0,
+    this.radios = 12.0,
   }) : super(key: key);
 
   final EdgeInsets? margin;

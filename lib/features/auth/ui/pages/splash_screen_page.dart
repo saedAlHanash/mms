@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:e_move/core/api_manager/api_service.dart';
+import 'package:mms/core/api_manager/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
-import 'package:e_move/core/util/shared_preferences.dart';
+import 'package:mms/core/util/shared_preferences.dart';
 
 import '../../../../core/app/app_provider.dart';
 import '../../../../core/strings/enum_manager.dart';
@@ -23,9 +23,6 @@ class SplashScreenPage extends StatefulWidget {
 class _SplashScreenPageState extends State<SplashScreenPage> {
   @override
   void initState() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: [SystemUiOverlay.bottom]);
-
     Future.delayed(
       const Duration(seconds: 2),
       () {
@@ -48,13 +45,6 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     super.initState();
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: SystemUiOverlay.values); // to re-show bars
-  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,8 +1,8 @@
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:e_move/core/strings/app_color_manager.dart';
-import 'package:e_move/core/widgets/my_expansion/my_expansion_panal.dart';
+import 'package:mms/core/strings/app_color_manager.dart';
+import 'package:mms/core/widgets/my_expansion/my_expansion_panal.dart';
 
 import 'item_expansion.dart';
 
