@@ -8,13 +8,13 @@ import 'item_expansion.dart';
 
 class MyExpansionWidget extends StatefulWidget {
   const MyExpansionWidget({
-    Key? key,
+    super.key,
     required this.items,
     this.onTapItem,
     this.elevation,
     this.onExpansion,
     this.decoration,
-  }) : super(key: key);
+  });
 
   final List<ItemExpansion> items;
   final double? elevation;
@@ -34,7 +34,6 @@ class _MyExpansionWidgetState extends State<MyExpansionWidget> {
         return MyExpansionPanel(
           canTapOnHeader: true,
           isExpanded: e.isExpanded,
-          bodyPadding: EdgeInsets.zero,
           withSideColor: e.withSideColor,
           backgroundColor: (e.isExpanded && e.withSideColor)
               ? AppColorManager.lightGray
@@ -50,7 +49,6 @@ class _MyExpansionWidgetState extends State<MyExpansionWidget> {
             }
             return e.header ?? const DrawableText(text: 'header');
           },
-
           body: e.body,
           enable: e.enable,
           onTapItem: widget.onTapItem,
@@ -64,10 +62,12 @@ class _MyExpansionWidgetState extends State<MyExpansionWidget> {
       children: listItem,
       decoration: widget.decoration,
       dividerColor: Colors.transparent,
+      expandedHeaderPadding: EdgeInsets.zero,
       expansionCallback: (panelIndex, isExpanded) {
         widget.onExpansion?.call(panelIndex, isExpanded);
         setState(() {
-          widget.items[panelIndex].isExpanded = !widget.items[panelIndex].isExpanded;
+          widget.items[panelIndex].isExpanded =
+              !widget.items[panelIndex].isExpanded;
         });
       },
     );

@@ -4,7 +4,7 @@ class Assets {
 
   static const String fontsCairo = 'assets/fonts/cairo.ttf';
   static const String fontsCairoBold = 'assets/fonts/cairo_bold.ttf';
-  static const String fontsCairoSimeBold = 'assets/fonts/cairo_semi_bold.ttf';
+  static const String fontsCairoSemiBold = 'assets/fonts/cairo_semi_bold.ttf';
   static const String iconsCall = 'assets/icons/call.svg';
   static const String iconsCart = 'assets/icons/cart.svg';
   static const String iconsCash = 'assets/icons/cash.svg';
@@ -12,8 +12,10 @@ class Assets {
   static const String iconsCircleKey = 'assets/icons/circle_key.svg';
   static const String iconsCredit = 'assets/icons/credit.svg';
   static const String iconsDMRMq = 'assets/icons/dMRMq.png';
+  static const String iconsDashedVerticalLine = 'assets/icons/dashed_vertical_line.svg';
   static const String iconsDdd = 'assets/icons/ddd.svg';
   static const String iconsDdd1 = 'assets/icons/ddd1.svg';
+  static const String iconsDocumentBackground = 'assets/icons/document_background.svg';
   static const String iconsDone = 'assets/icons/done.svg';
   static const String iconsEmail = 'assets/icons/email.svg';
   static const String iconsEmptyPoint = 'assets/icons/empty_point.svg';

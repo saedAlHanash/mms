@@ -217,5 +217,6 @@
   "doneSendSms": "We have sent a text message containing your verification code to the phone number: ",
   "rememberPassword": "Remember Password",
   "isSuccess": "Success!",
+  "changeFile": "Change File",
   "confirmYourPhone": "Confirm Your Phone"
 }

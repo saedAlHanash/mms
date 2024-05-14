@@ -39,58 +39,32 @@ class CommitteesWidget extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (_, i) {
             final item = list[i];
-            return Slidable(
-              key: const ValueKey(0),
-              startActionPane: ActionPane(
-                // A motion is a widget used to control how the pane animates.
-                motion: const ScrollMotion(),
-                // All actions are defined in the children parameter.
-                children: [
-                  // A SlidableAction can have an icon and/or a label.
-                  SlidableAction(
-                    onPressed: (context) {
-                      NoteMessage.showMyDialog(
-                        context,
-                        child: Container(
-                          height: 200.h,
-                          width: 200.w,
-                        ),
-                      );
-                    },
-                    backgroundColor: Color(0xFFFE4A49),
-                    foregroundColor: Colors.white,
-                    icon: Icons.delete,
-                    label: 'Delete',
-                  ),
-                ],
-              ),
-              child: Container(
-                padding: EdgeInsets.only(left: 15.0, top: 3.0, bottom: 3.0).r,
-                decoration: BoxDecoration(
-                    color: AppColorManager.f9,
-                    borderRadius: BorderRadius.circular(12.0.r)),
-                margin: EdgeInsets.symmetric(vertical: 7.0, horizontal: 20.0).r,
-                child: ListTile(
-                  onTap: () {
-                    Navigator.pushNamed(context, RouteName.committeePage,
-                        arguments: item.id);
-                  },
-                  title: DrawableText(
-                    matchParent: true,
-                    text: item.name,
-                    maxLines: 1,
-                  ),
-                  subtitle: DrawableText(
-                    matchParent: true,
-                    text: item.description,
-                    maxLines: 1,
-                    color: Colors.grey,
-                  ),
-                  trailing: ImageMultiType(
-                    url: Icons.arrow_forward_ios,
-                    height: 17.0.r,
-                    width: 17.0.r,
-                  ),
+            return Container(
+              padding: EdgeInsets.only(left: 15.0, top: 3.0, bottom: 3.0).r,
+              decoration: BoxDecoration(
+                  color: AppColorManager.f9,
+                  borderRadius: BorderRadius.circular(12.0.r)),
+              margin: EdgeInsets.symmetric(vertical: 7.0, horizontal: 20.0).r,
+              child: ListTile(
+                onTap: () {
+                  Navigator.pushNamed(context, RouteName.committeePage,
+                      arguments: item.id);
+                },
+                title: DrawableText(
+                  matchParent: true,
+                  text: item.name,
+                  maxLines: 1,
+                ),
+                subtitle: DrawableText(
+                  matchParent: true,
+                  text: item.description,
+                  maxLines: 1,
+                  color: Colors.grey,
+                ),
+                trailing: ImageMultiType(
+                  url: Icons.arrow_forward_ios,
+                  height: 17.0.r,
+                  width: 17.0.r,
                 ),
               ),
             );

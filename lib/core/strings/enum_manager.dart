@@ -4,7 +4,6 @@ enum AttachmentType { image, youtube, video, d3 }
 
 enum PricingMatrixType { day, date }
 
-
 enum FilterItem { activity, group, country, city }
 
 enum UpdateType { name, phone, email, address, pass }
@@ -30,6 +29,29 @@ enum OrderStatus {
   canceled,
   paymentFailed,
   returned,
+}
+
+enum TaskType { PlannedTask, MeetingTask }
+
+enum PollStatus { Open, Closed }
+
+enum PartyType { member, guest }
+
+enum MinuteStatus { pending, approved, rejected, published }
+
+enum MembershipType { member, chair, secretary,guest }
+
+
+enum DiscussionStatus { open, closed }
+
+enum MeetingStatus {
+  planned,
+  scheduled,
+  postponed,
+  canceled,
+  running,
+  completed,
+  archived
 }
 
 //case PENDING = '1'; // قيد المراجعة

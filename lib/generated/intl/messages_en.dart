@@ -49,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "categories": MessageLookupByLibrary.simpleMessage("Categories"),
         "changeAddress": MessageLookupByLibrary.simpleMessage("Change Address"),
         "changeEmail": MessageLookupByLibrary.simpleMessage("Change Email"),
+        "changeFile": MessageLookupByLibrary.simpleMessage("Change File"),
         "changeName": MessageLookupByLibrary.simpleMessage("Change Name"),
         "changePass": MessageLookupByLibrary.simpleMessage("Change Password"),
         "changePassword":

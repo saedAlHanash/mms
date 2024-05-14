@@ -83,6 +83,8 @@ class GetUrl {
   static const myCommittees = 'Committee/GetMyCommittees';
 
   static const committee = 'Committee/Get';
+
+  static var goal = '';
 }
 
 class PostUrl {

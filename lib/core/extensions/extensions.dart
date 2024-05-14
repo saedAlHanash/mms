@@ -55,7 +55,7 @@ extension SplitByLength on String {
     final regex = RegExp(r'\d+');
 
     final numbers =
-        regex.allMatches(this).map((match) => match.group(0)).join();
+    regex.allMatches(this).map((match) => match.group(0)).join();
 
     try {
       return int.parse(numbers);
@@ -78,11 +78,15 @@ extension SplitByLength on String {
     if (phone.startsWith('00964') && phone.length > 11) return phone;
     if (phone.length < 10) {
       NoteMessage.showSnakeBar(
-          context: context, message: S.of(context).wrongPhone);
+          context: context, message: S
+          .of(context)
+          .wrongPhone);
       return null;
     } else if (phone.startsWith("0") && phone.length < 11) {
       NoteMessage.showSnakeBar(
-          context: context, message: S.of(context).wrongPhone);
+          context: context, message: S
+          .of(context)
+          .wrongPhone);
       return null;
     }
 
@@ -169,13 +173,14 @@ extension ListEnumHelper on List<Enum> {
   List<SpinnerItem> getSpinnerItems({int? selectedId, Widget? icon}) {
     return List<SpinnerItem>.from(
       map(
-        (e) => SpinnerItem(
-          id: e.index,
-          isSelected: e.index == selectedId,
-          name: e.getName,
-          icon: icon,
-          item: e,
-        ),
+            (e) =>
+            SpinnerItem(
+              id: e.index,
+              isSelected: e.index == selectedId,
+              name: e.getName,
+              icon: icon,
+              item: e,
+            ),
       ),
     );
   }
@@ -264,6 +269,19 @@ extension EnumHelper on Enum {
     }
     return '';
   }
+
+  Color get getColor {
+    switch (this) {
+      case MembershipType.member:
+        return Colors.green;
+      case MembershipType.chair:
+        return Colors.redAccent;
+      case MembershipType.secretary:
+        return AppColorManager.ampere;
+      default:
+        return Colors.black;
+    }
+  }
 }
 
 extension ResponseHelper on http.Response {
@@ -305,7 +323,8 @@ extension CubitStatusesHelper on CubitStatuses {
 
 extension FormatDuration on Duration {
   String get format =>
-      '${inMinutes.remainder(60).toString().padLeft(2, '0')}:${(inSeconds.remainder(60)).toString().padLeft(2, '0')}';
+      '${inMinutes.remainder(60).toString().padLeft(2, '0')}:${(inSeconds
+          .remainder(60)).toString().padLeft(2, '0')}';
 }
 
 extension ApiStatusCode on int {

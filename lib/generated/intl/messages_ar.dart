@@ -50,6 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "changeAddress": MessageLookupByLibrary.simpleMessage("تغيير العنوان"),
         "changeEmail":
             MessageLookupByLibrary.simpleMessage("تغيير البريد الإلكتروني"),
+        "changeFile": MessageLookupByLibrary.simpleMessage("تعديل الملف"),
         "changeName": MessageLookupByLibrary.simpleMessage("تغيير الاسم"),
         "changePass": MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
         "changePassword":
@@ -164,7 +165,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "homeAddress": MessageLookupByLibrary.simpleMessage("عنوان المنزل"),
         "hours": MessageLookupByLibrary.simpleMessage("ساعات"),
         "identityImage": MessageLookupByLibrary.simpleMessage("صورة الهوية"),
-        "isSuccess": MessageLookupByLibrary.simpleMessage("Success!"),
+        "isSuccess": MessageLookupByLibrary.simpleMessage("نجح!"),
         "is_required": MessageLookupByLibrary.simpleMessage("مطلوب"),
         "ku": MessageLookupByLibrary.simpleMessage("كردي"),
         "language": MessageLookupByLibrary.simpleMessage("اللغة"),

@@ -22,7 +22,7 @@ import '../features/auth/ui/pages/signup_page.dart';
 import '../features/auth/ui/pages/splash_screen_page.dart';
 import '../features/committees/bloc/committee_cubit/committee_cubit.dart';
 import '../features/committees/ui/pages/committee_page.dart';
-import '../features/educational_grade/bloc/educational_grade_cubit/educational_grade_cubit.dart';
+
 import '../features/home/ui/pages/home_page.dart';
 
 Route<dynamic> routes(RouteSettings settings) {
@@ -42,10 +42,7 @@ Route<dynamic> routes(RouteSettings settings) {
             final providers = [
               BlocProvider(create: (_) => sl<SignupCubit>()),
               BlocProvider(create: (_) => sl<LocationServiceCubit>()),
-              BlocProvider(
-                create: (_) =>
-                    sl<EducationalGradeCubit>()..getEducationalGrade(),
-              ),
+
             ];
             return MultiBlocProvider(
               providers: providers,
@@ -177,6 +174,7 @@ Route<dynamic> routes(RouteSettings settings) {
       //region
       {
         final uuid = settings.arguments as String;
+
         final providers = [
           BlocProvider(
               create: (context) =>

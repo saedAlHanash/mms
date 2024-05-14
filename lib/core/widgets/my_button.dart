@@ -14,6 +14,7 @@ class MyButton extends StatelessWidget {
     this.elevation,
     this.textColor,
     this.width,
+    this.height,
     this.enable,
     this.toUpper = true,
     this.padding,
@@ -25,6 +26,7 @@ class MyButton extends StatelessWidget {
   final Color? color;
   final double? elevation;
   final double? width;
+  final double? height;
   final bool? enable;
   final EdgeInsets? padding;
   final Function()? onTap;
@@ -42,12 +44,13 @@ class MyButton extends StatelessWidget {
 
     return SizedBox(
       width: width ?? .9.sw,
+      height: height,
       child: ElevatedButton(
         style: ButtonStyle(
           surfaceTintColor: MaterialStatePropertyAll(color),
           backgroundColor: MaterialStatePropertyAll(color),
           padding: MaterialStatePropertyAll(
-            const EdgeInsets.symmetric(vertical: 13.0).r,
+            EdgeInsets.symmetric(vertical: height != null ? 0.0 : 13.0).r,
           ),
           shape: MaterialStatePropertyAll(
             RoundedRectangleBorder(

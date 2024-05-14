@@ -2230,6 +2230,16 @@ class S {
     );
   }
 
+  /// `Change File`
+  String get changeFile {
+    return Intl.message(
+      'Change File',
+      name: 'changeFile',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Confirm Your Phone`
   String get confirmYourPhone {
     return Intl.message(

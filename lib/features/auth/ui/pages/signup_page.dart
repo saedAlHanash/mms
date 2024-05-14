@@ -16,7 +16,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 
 import '../../../../generated/l10n.dart';
-import '../../../educational_grade/bloc/educational_grade_cubit/educational_grade_cubit.dart';
 import '../../bloc/signup_cubit/signup_cubit.dart';
 
 class SignupPage extends StatefulWidget {
@@ -91,20 +90,6 @@ class _SignupPageState extends State<SignupPage> {
                           '${S.of(context).choosing} ${S.of(context).gender}',
                     ),
                     20.0.verticalSpace,
-                    BlocBuilder<EducationalGradeCubit, EducationalGradeInitial>(
-                      builder: (context, state) {
-                        return SpinnerWidget(
-                          items: state.getSpinnerItems(
-                              selectedId:
-                                  signupState.request.educationalGradeId),
-                          onChanged: (spinnerItem) {
-                            signupCubit.setEducationalGrade = spinnerItem.id;
-                          },
-                          hintText:
-                              '${S.of(context).choosing} ${S.of(context).educationalGrade}',
-                        );
-                      },
-                    ),
                     20.0.verticalSpace,
                     //birthdate
                     MyTextFormOutLineWidget(

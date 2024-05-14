@@ -1,73 +1,41 @@
 {
-  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "name": "string",
-  "formationDate": "2024-05-13T14:11:05.780Z",
-  "statement": "string",
-  "description": "string",
+  "name": "taha text 2",
+  "formationDate": "2024-05-07",
+  "statement": "test ",
+  "description": "test dec ",
   "members": [
     {
-      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "membershipType": 0,
-      "partyId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "membershipType": 2,
+      "partyId": "be00b890-57f1-4e69-1e55-08dc68452dda",
       "party": {
-        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "userName": "string",
-        "firstName": "string",
-        "middleName": "string",
-        "lastName": "string",
-        "dob": "2024-05-13T14:11:05.780Z",
+        "userName": null,
+        "firstName": "taha",
+        "middleName": "m",
+        "lastName": "okla",
+        "dob": "2017-02-01",
         "gender": 0,
-        "address": "string",
-        "email": "string",
-        "mobile": "string",
-        "phone": "string",
-        "workPhone": "string",
-        "personalPhoto": "string",
-        "company": "string",
-        "isUserId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "isCustomerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "workUnitId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "workUnit": "string",
-        "committeesNumber": 0,
-        "tasksNumber": 0
+        "address": "sda",
+        "email": "taha@gmail.com",
+        "mobile": "dasasd",
+        "phone": "dsad",
+        "workPhone": "222",
+        "personalPhoto": null,
+        "company": "das",
+        "isUserId": "eff2bf10-2b16-4b3e-92e2-a89dae204fb8",
+        "isCustomerId": "bc2e9831-f86a-4131-8a6f-9908d6d6cea5",
+        "workUnitId": null,
+        "workUnit": null,
+        "committeesNumber": 1,
+        "tasksNumber": 0,
+        "id": "be00b890-57f1-4e69-1e55-08dc68452dda"
       },
-      "committeeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "isRoleId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "isRoleName": "string"
+      "committeeId": "04af478a-d871-4b87-5c54-08dc6a8e6f3b",
+      "isRoleId": "e59cc5c0-3ecd-4409-95ed-4252f6b088e2",
+      "isRoleName": null,
+      "id": "445cece0-8d79-4cb2-e413-08dc6a949124"
     }
   ],
-  "documents": [
-    {
-      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "documentDate": "2024-05-13T14:11:05.780Z",
-      "name": "string",
-      "isPublished": true,
-      "media": {
-        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "fileName": "string",
-        "originalFileName": "string",
-        "savedPath": "string",
-        "mime": "string"
-      }
-    }
-  ],
-  "goals": [
-    {
-      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "name": "string",
-      "description": "string",
-      "goalDate": "2024-05-13T14:11:05.780Z",
-      "committeeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "tasks": [
-        {
-          "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-          "name": "string",
-          "description": "string",
-          "startDate": "2024-05-13T14:09:35.959Z",
-          "dueDate": "2024-05-13T14:09:35.959Z",
-          "goalId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-        }
-      ]
-    }
-  ]
+  "documents": [],
+  "goals": [],
+  "id": "04af478a-d871-4b87-5c54-08dc6a8e6f3b"
 }

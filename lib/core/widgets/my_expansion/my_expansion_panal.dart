@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mms/core/widgets/my_card_widget.dart';
+
+import '../../strings/app_color_manager.dart';
+import '../my_card_widget.dart';
 
 const double _kPanelHeaderCollapsedHeight = kMinInteractiveDimension;
 const EdgeInsets _kPanelHeaderExpandedDefaultPadding = EdgeInsets.symmetric(
@@ -18,7 +20,9 @@ class _SaltedKey<S, V> extends LocalKey {
     if (other.runtimeType != runtimeType) {
       return false;
     }
-    return other is _SaltedKey<S, V> && other.salt == salt && other.value == value;
+    return other is _SaltedKey<S, V> &&
+        other.salt == salt &&
+        other.value == value;
   }
 
   @override
@@ -164,7 +168,7 @@ class MyExpansionPanelList extends StatefulWidget {
     this.animationDuration = kThemeAnimationDuration,
     this.expandedHeaderPadding = _kPanelHeaderExpandedDefaultPadding,
     this.dividerColor,
-    this.elevation = 0,
+    this.elevation = 2,
     this.cardElevation,
     this.decoration,
   })  : _allowOnlyOnePanelOpen = false,
@@ -191,7 +195,7 @@ class MyExpansionPanelList extends StatefulWidget {
     this.initialOpenPanelValue,
     this.expandedHeaderPadding = _kPanelHeaderExpandedDefaultPadding,
     this.dividerColor,
-    this.elevation = 0,
+    this.elevation = 2,
     this.cardElevation,
     this.decoration,
   }) : _allowOnlyOnePanelOpen = true;
@@ -265,7 +269,8 @@ class _MyExpansionPanelListState extends State<MyExpansionPanelList> {
           'All ExpansionPanelRadio identifier values must be unique.');
       if (widget.initialOpenPanelValue != null) {
         _currentOpenPanel = searchPanelByValue(
-            widget.children.cast<ExpansionPanelRadio>(), widget.initialOpenPanelValue);
+            widget.children.cast<ExpansionPanelRadio>(),
+            widget.initialOpenPanelValue);
       }
     }
   }
@@ -281,7 +286,8 @@ class _MyExpansionPanelListState extends State<MyExpansionPanelList> {
       // open panel to widget.initialOpenPanelValue
       if (!oldWidget._allowOnlyOnePanelOpen) {
         _currentOpenPanel = searchPanelByValue(
-            widget.children.cast<ExpansionPanelRadio>(), widget.initialOpenPanelValue);
+            widget.children.cast<ExpansionPanelRadio>(),
+            widget.initialOpenPanelValue);
       }
     } else {
       _currentOpenPanel = null;
@@ -290,7 +296,8 @@ class _MyExpansionPanelListState extends State<MyExpansionPanelList> {
 
   bool _allIdentifiersUnique() {
     final Map<Object, bool> identifierMap = <Object, bool>{};
-    for (final ExpansionPanelRadio child in widget.children.cast<ExpansionPanelRadio>()) {
+    for (final ExpansionPanelRadio child
+        in widget.children.cast<ExpansionPanelRadio>()) {
       identifierMap[child.value] = true;
     }
     return identifierMap.length == widget.children.length;
@@ -320,7 +327,9 @@ class _MyExpansionPanelListState extends State<MyExpansionPanelList> {
 
       // If another ExpansionPanelRadio was already open, apply its
       // expansionCallback (if any) to false, because it's closing.
-      for (int childIndex = 0; childIndex < widget.children.length; childIndex += 1) {
+      for (int childIndex = 0;
+          childIndex < widget.children.length;
+          childIndex += 1) {
         final ExpansionPanelRadio child =
             widget.children[childIndex] as ExpansionPanelRadio;
         if (widget.expansionCallback != null &&
@@ -357,9 +366,11 @@ class _MyExpansionPanelListState extends State<MyExpansionPanelList> {
     final items = <MergeableMaterialItem>[];
 
     for (int index = 0; index < widget.children.length; index += 1) {
-      if (_isChildExpanded(index) && index != 0 && !_isChildExpanded(index - 1)) {
-        items
-            .add(MaterialGap(key: _SaltedKey<BuildContext, int>(context, index * 2 - 1)));
+      if (_isChildExpanded(index) &&
+          index != 0 &&
+          !_isChildExpanded(index - 1)) {
+        items.add(MaterialGap(
+            key: _SaltedKey<BuildContext, int>(context, index * 2 - 1)));
       }
 
       final MyExpansionPanel child = widget.children[index];
@@ -368,19 +379,54 @@ class _MyExpansionPanelListState extends State<MyExpansionPanelList> {
         _isChildExpanded(index),
       );
 
-      Widget header = AnimatedContainer(
-        duration: widget.animationDuration,
-        curve: Curves.fastOutSlowIn,
-        margin: _isChildExpanded(index) ? widget.expandedHeaderPadding : EdgeInsets.zero,
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(minHeight: _kPanelHeaderCollapsedHeight),
-          child: headerWidget,
+      Widget expandIconContainer = ExpandIcon(
+        isExpanded: _isChildExpanded(index),
+        // padding: const EdgeInsets.all(16.0),
+        color: AppColorManager.mainColor,
+        disabledColor: AppColorManager.mainColor,
+        expandedColor: AppColorManager.mainColor,
+        onPressed: (!child.canTapOnHeader)
+            ? (bool isExpanded) => _handlePressed(isExpanded, index)
+            : null,
+      );
+      if (!child.canTapOnHeader) {
+        final MaterialLocalizations localizations =
+            MaterialLocalizations.of(context);
+        expandIconContainer = Semantics(
+          label: _isChildExpanded(index)
+              ? localizations.expandedIconTapHint
+              : localizations.collapsedIconTapHint,
+          container: true,
+          child: expandIconContainer,
+        );
+      }
+      Widget header = Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0).w,
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: AnimatedContainer(
+                duration: widget.animationDuration,
+                curve: Curves.fastOutSlowIn,
+                margin: _isChildExpanded(index)
+                    ? widget.expandedHeaderPadding
+                    : EdgeInsets.zero,
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(
+                      minHeight: _kPanelHeaderCollapsedHeight),
+                  child: headerWidget,
+                ),
+              ),
+            ),
+            expandIconContainer,
+          ],
         ),
       );
 
       if (child.canTapOnHeader) {
         header = MergeSemantics(
-          child: GestureDetector(
+          child: InkWell(
+            splashColor: Colors.transparent,
             onTap: () {
               _handlePressed(_isChildExpanded(index), index);
             },
@@ -388,49 +434,56 @@ class _MyExpansionPanelListState extends State<MyExpansionPanelList> {
           ),
         );
       }
-      final itemWidget = Column(
-        children: <Widget>[
-          header,
-          AnimatedCrossFade(
-            firstChild: Container(height: 0.0),
-            secondChild: Padding(
-              padding: widget.children[index].bodyPadding ?? EdgeInsets.zero,
-              child: child.body,
-            ),
-            firstCurve: const Interval(0.0, 0.6, curve: Curves.fastOutSlowIn),
-            secondCurve: const Interval(0.4, 1.0, curve: Curves.fastOutSlowIn),
-            sizeCurve: Curves.fastOutSlowIn,
-            crossFadeState: _isChildExpanded(index)
-                ? CrossFadeState.showSecond
-                : CrossFadeState.showFirst,
-            duration: widget.animationDuration,
-          ),
-        ],
+      final itemWidget = AnimatedCrossFade(
+        firstChild: Container(height: 0.0),
+        secondChild: Padding(
+          padding: widget.children[index].bodyPadding ?? EdgeInsets.zero,
+          child: child.body,
+        ),
+        firstCurve: const Interval(0.0, 0.6, curve: Curves.fastOutSlowIn),
+        secondCurve: const Interval(0.4, 1.0, curve: Curves.fastOutSlowIn),
+        sizeCurve: Curves.fastOutSlowIn,
+        crossFadeState: _isChildExpanded(index)
+            ? CrossFadeState.showSecond
+            : CrossFadeState.showFirst,
+        duration: widget.animationDuration,
       );
 
       items.add(
         MaterialSlice(
           key: _SaltedKey<BuildContext, int>(context, index * 2),
           child: widget.decoration == null
-              ? MyCardWidget(
-                  padding: EdgeInsets.zero,
-                  cardColor: widget.children[index].backgroundColor ?? Colors.white,
-                  elevation: 0,
-                  margin: const EdgeInsets.symmetric(vertical: 10.0).h,
-                  child: itemWidget,
-                )
-              : Container(
-                  alignment: Alignment.center,
-                  decoration: widget.decoration!,
-                  margin: const EdgeInsets.symmetric(vertical: 10.0).h,
-                  child: itemWidget,
-                ),
+              ? Column(
+                children: [
+                  MyCardWidget(
+                      padding: const EdgeInsets.only(bottom: 10.0).h,
+                      cardColor:
+                          widget.children[index].backgroundColor ?? Colors.white,
+                      elevation: 3.0,
+                      margin: const EdgeInsets.symmetric(vertical: 10.0).h,
+                      child: header,
+                    ),
+                  itemWidget
+                ],
+              )
+              : Column(
+                children: [
+                  Container(
+                      alignment: Alignment.center,
+                      decoration: widget.decoration!,
+                      margin: const EdgeInsets.symmetric(vertical: 10.0).h,
+                      child: header,
+                    ),
+                  itemWidget
+                ],
+              ),
         ),
       );
 
+
       if (_isChildExpanded(index) && index != widget.children.length - 1) {
-        items
-            .add(MaterialGap(key: _SaltedKey<BuildContext, int>(context, index * 2 + 1)));
+        items.add(MaterialGap(
+            key: _SaltedKey<BuildContext, int>(context, index * 2 + 1)));
       }
     }
 

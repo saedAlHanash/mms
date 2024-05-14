@@ -34,7 +34,7 @@ class MyCardWidget extends StatelessWidget {
       surfaceTintColor: cardColor,
       clipBehavior: Clip.hardEdge,
       elevation: elevation,
-      shadowColor: AppColorManager.lightGray,
+      shadowColor: Colors.black26,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(radios ?? MyStyle.cardRadios),
       ),
