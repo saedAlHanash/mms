@@ -1,5 +1,8 @@
 import 'dart:ffi';
 
+import 'package:collection/collection.dart';
+import 'package:mms/core/app/app_provider.dart';
+
 import '../../../../core/strings/enum_manager.dart';
 import '../../../documents/data/response/documents_response.dart';
 import '../../../goals/data/response/goals_response.dart';
@@ -30,6 +33,7 @@ class Committee {
     required this.formationDate,
     required this.statement,
     required this.description,
+    required this.member,
     required this.members,
     required this.documents,
     required this.goals,
@@ -40,9 +44,11 @@ class Committee {
   final DateTime? formationDate;
   final String statement;
   final String description;
+  final Member member;
   final List<Member> members;
   final List<Document> documents;
   final List<Goal> goals;
+
 
   factory Committee.fromJson(Map<String, dynamic> json) {
     return Committee(
@@ -51,6 +57,7 @@ class Committee {
       formationDate: DateTime.tryParse(json["formationDate"] ?? ""),
       statement: json["statement"] ?? "",
       description: json["description"] ?? "",
+      member: Member.fromJson(json["member"] ?? {}),
       members: json["members"] == null
           ? []
           : List<Member>.from(json["members"]!.map((x) => Member.fromJson(x))),
@@ -70,10 +77,9 @@ class Committee {
         "formationDate": formationDate?.toIso8601String(),
         "statement": statement,
         "description": description,
+        "member": member.toJson(),
         "members": members.map((x) => x.toJson()).toList(),
         "documents": documents.map((x) => x.toJson()).toList(),
         "goals": goals.map((x) => x.toJson()).toList(),
       };
 }
-
-

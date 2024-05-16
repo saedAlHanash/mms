@@ -2240,11 +2240,191 @@ class S {
     );
   }
 
+  /// `Download File`
+  String get downloadFile {
+    return Intl.message(
+      'Download File',
+      name: 'downloadFile',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Confirm Your Phone`
   String get confirmYourPhone {
     return Intl.message(
       'Confirm Your Phone',
       name: 'confirmYourPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Teaching staff`
+  String get teachingStaff {
+    return Intl.message(
+      'Teaching staff',
+      name: 'teachingStaff',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lesson`
+  String get lesson {
+    return Intl.message(
+      'Lesson',
+      name: 'lesson',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Follow`
+  String get follow {
+    return Intl.message(
+      'Follow',
+      name: 'follow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Un Follow`
+  String get unFollow {
+    return Intl.message(
+      'Un Follow',
+      name: 'unFollow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Courses`
+  String get courses {
+    return Intl.message(
+      'Courses',
+      name: 'courses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Free lessons`
+  String get freeLesson {
+    return Intl.message(
+      'Free lessons',
+      name: 'freeLesson',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Free Summary`
+  String get freeSummary {
+    return Intl.message(
+      'Free Summary',
+      name: 'freeSummary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Summaries`
+  String get summaries {
+    return Intl.message(
+      'Summaries',
+      name: 'summaries',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Educational Progress`
+  String get educationalProgress {
+    return Intl.message(
+      'Educational Progress',
+      name: 'educationalProgress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Notifications`
+  String get subTitleNotification {
+    return Intl.message(
+      'All Notifications',
+      name: 'subTitleNotification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To change password`
+  String get subTitlePassword {
+    return Intl.message(
+      'To change password',
+      name: 'subTitlePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Our support `
+  String get subTitleSupport {
+    return Intl.message(
+      'Our support ',
+      name: 'subTitleSupport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacy policy and conditions `
+  String get subTitlePolicy {
+    return Intl.message(
+      'Privacy policy and conditions ',
+      name: 'subTitlePolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete all your data `
+  String get subTitleDeleteAccount {
+    return Intl.message(
+      'Delete all your data ',
+      name: 'subTitleDeleteAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Build Number`
+  String get buildNumber {
+    return Intl.message(
+      'Build Number',
+      name: 'buildNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Middle Name`
+  String get middleName {
+    return Intl.message(
+      'Middle Name',
+      name: 'middleName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Power by `
+  String get devBy {
+    return Intl.message(
+      'Power by ',
+      name: 'devBy',
       desc: '',
       args: [],
     );

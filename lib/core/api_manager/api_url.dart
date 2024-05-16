@@ -84,7 +84,9 @@ class GetUrl {
 
   static const committee = 'Committee/Get';
 
-  static var goal = '';
+  static const goal = '';
+
+  static const loggedParty = 'Party/GetLoggedParty';
 }
 
 class PostUrl {
@@ -99,12 +101,15 @@ class PostUrl {
   static const closeVideo = 'lessons/close-video';
 
   static const insertFireBaseToken = 'auth/me/update-fcm-token';
-  static const uploadFile = 'media';
+
+  static const uploadFile = 'FileManager/Upload';
 
   static const insertCode = 'courses/insert-code';
+
   static const logout = 'logout';
 
   static const confirmCode = 'auth/verify-account';
+
   static const otpPassword = 'password/check';
 
   static const addFavorite = 'favorites';
@@ -118,7 +123,7 @@ class PostUrl {
 
   static const addToCart = 'carts';
 
-  static const updateProfile = 'profile/update';
+  static const updateProfile = 'Party/Update';
 
   static const addSupportMessage = 'messages/add';
 

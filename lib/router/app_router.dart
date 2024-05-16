@@ -23,7 +23,10 @@ import '../features/auth/ui/pages/splash_screen_page.dart';
 import '../features/committees/bloc/committee_cubit/committee_cubit.dart';
 import '../features/committees/ui/pages/committee_page.dart';
 
+import '../features/files/bloc/upload_file_cubit/upload_file_cubit.dart';
 import '../features/home/ui/pages/home_page.dart';
+import '../features/profile/bloc/update_profile_cubit/update_profile_cubit.dart';
+import '../features/profile/ui/pages/profile_page.dart';
 
 Route<dynamic> routes(RouteSettings settings) {
   var screenName = settings.name;
@@ -42,7 +45,6 @@ Route<dynamic> routes(RouteSettings settings) {
             final providers = [
               BlocProvider(create: (_) => sl<SignupCubit>()),
               BlocProvider(create: (_) => sl<LocationServiceCubit>()),
-
             ];
             return MultiBlocProvider(
               providers: providers,
@@ -162,6 +164,24 @@ Route<dynamic> routes(RouteSettings settings) {
     //endregion
 
     //region settings
+    case RouteName.profile:
+      //region
+      {
+        return MaterialPageRoute(
+          builder: (_) {
+            final providers = [
+              BlocProvider(create: (_) => sl<UpdateProfileCubit>()),
+              BlocProvider(create: (_) => sl<FileCubit>()),
+
+            ];
+            return MultiBlocProvider(
+              providers: providers,
+              child: const ProfilePage(),
+            );
+          },
+        );
+      }
+    //endregion
 
     //endregion
 
@@ -221,4 +241,5 @@ class RouteName {
   static const otpPassword = '/9';
   static const donePage = '/10';
   static const committeePage = '/11';
+  static const profile = '/12';
 }

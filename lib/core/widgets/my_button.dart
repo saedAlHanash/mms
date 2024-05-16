@@ -14,9 +14,8 @@ class MyButton extends StatelessWidget {
     this.elevation,
     this.textColor,
     this.width,
-    this.height,
     this.enable,
-    this.toUpper = true,
+    this.loading = false,
     this.padding,
   });
 
@@ -26,31 +25,41 @@ class MyButton extends StatelessWidget {
   final Color? color;
   final double? elevation;
   final double? width;
-  final double? height;
   final bool? enable;
   final EdgeInsets? padding;
   final Function()? onTap;
-  final bool toUpper;
+  final bool loading;
 
   @override
   Widget build(BuildContext context) {
     final child = this.child ??
         DrawableText(
-          text: toUpper ? text.toUpperCase() : text,
+          text: text,
           color: textColor ?? AppColorManager.whit,
           fontFamily: FontManager.cairoBold.name,
-          fontWeight: FontWeight.bold,
+          drawablePadding: 10.0.w,
+          drawableEnd: loading
+              ? SizedBox(
+                  height: 15.0.r,
+                  width: 15.0.r,
+                  child: CircularProgressIndicator.adaptive(
+                    backgroundColor: color,
+                    valueColor:
+                        const AlwaysStoppedAnimation<Color>(Colors.white),
+                  ),
+                )
+              : null,
+          size: 15.0.sp,
         );
 
     return SizedBox(
       width: width ?? .9.sw,
-      height: height,
       child: ElevatedButton(
         style: ButtonStyle(
           surfaceTintColor: MaterialStatePropertyAll(color),
           backgroundColor: MaterialStatePropertyAll(color),
           padding: MaterialStatePropertyAll(
-            EdgeInsets.symmetric(vertical: height != null ? 0.0 : 13.0).r,
+            const EdgeInsets.symmetric(vertical: 13.0).r,
           ),
           shape: MaterialStatePropertyAll(
             RoundedRectangleBorder(
@@ -59,7 +68,11 @@ class MyButton extends StatelessWidget {
           ),
           alignment: Alignment.center,
         ),
-        onPressed: !(enable ?? true) ? null : onTap,
+        onPressed: loading
+            ? null
+            : !(enable ?? true)
+                ? null
+                : onTap,
         child: child,
       ),
     );

@@ -218,7 +218,24 @@
   "rememberPassword": "أتذكر كلمة المرور",
   "isSuccess": "نجح!",
   "changeFile": "تعديل الملف",
+  "downloadFile": "تحميل الملف",
+  "teachingStaff": "الكادر التدريسي",
+  "lesson": "درس",
+  "follow": "متابعة",
+  "unFollow": "إلغاء متابعة",
+  "courses": "الكورسات",
+  "freeLesson": "دروس مقترحة",
+  "freeSummary": "الملازم والكتب المجانية",
+  "summaries":"الملازم",
+  "subTitleNotification": "جميع إعدادات الإخطارات",
+  "subTitlePassword": "قفل الجهاز، أقفال التطبيقات",
+  "subTitleSupport": "خدمه العملاء رسال واتصل",
+  "subTitlePolicy": "إعدادات القفل، مستشعر الحركة",
+  "subTitleDeleteAccount": "سوف يتم حذف الحساب بجميع البيانات والكورسات",
+  "educationalProgress": "مساري التعليمي",
+  "buildNumber": "رقم الإصدار",
+  "devBy": "تم التطوير بواسطة",
+  "middleName": "الاسم الأوسط",
   "confirmYourPhone": "اكد على رقم هاتفك او جوالك"
-
 
 }

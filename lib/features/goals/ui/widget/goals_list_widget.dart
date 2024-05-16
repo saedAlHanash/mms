@@ -26,7 +26,7 @@ class GoalListWidget extends StatelessWidget {
           .map(
             (e) => ItemExpansion(
               header: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(15.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

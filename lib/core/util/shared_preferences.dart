@@ -2,6 +2,9 @@ import 'dart:convert';
 
 import 'package:mms/core/api_manager/api_service.dart';
 import 'package:flutter/material.dart';
+import 'package:mms/features/members/data/response/member_response.dart';
+import 'package:mms/features/members/data/response/member_response.dart';
+import 'package:mms/features/members/data/response/member_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../features/auth/data/response/login_response.dart';
@@ -15,6 +18,8 @@ class AppSharedPreference {
   static const _lang = '4';
   static const _screenType = '5';
   static const _user = '6';
+  static const _notifications = '7';
+  static const _party = '8';
 
   static late SharedPreferences _prefs;
 
@@ -36,6 +41,14 @@ class AppSharedPreference {
 
   static LoginResponse get getUser =>
       LoginResponse.fromJson(jsonDecode(_prefs.getString(_user) ?? '{}'));
+
+  static cashParty(Party user) async {
+    final json = user.toJson();
+    await _prefs.setString(_party, jsonEncode(json));
+  }
+
+  static Party get getParty =>
+      Party.fromJson(jsonDecode(_prefs.getString(_party) ?? '{}'));
 
   static void cashFireToken(String token) {
     _prefs.setString(_fireToken, token);
@@ -73,4 +86,11 @@ class AppSharedPreference {
   }
 
   static String get getLocal => _prefs.getString(_lang) ?? 'en';
+
+  static cashNotificationState(bool n) {
+    _prefs?.setBool(_notifications, n);
+  }
+
+  static bool get getNotificationState =>
+      _prefs?.getBool(_notifications) ?? true;
 }

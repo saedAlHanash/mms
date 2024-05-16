@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:image_multi_type/circle_image_widget.dart';
 import 'package:mms/core/widgets/my_text_form_widget.dart';
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,6 +11,7 @@ import 'package:image_multi_type/round_image_widget.dart';
 
 import '../../../../core/util/pick_image_helper.dart';
 import '../../generated/l10n.dart';
+import '../strings/app_color_manager.dart';
 
 class ItemImageCreate extends StatelessWidget {
   const ItemImageCreate({
@@ -27,38 +29,29 @@ class ItemImageCreate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () async {
-        final image = await PickImageHelper().pickImageBytes();
-        if (image == null) return;
-        onLoad.call(image);
-      },
-      child: SizedBox(
-        height: height ?? 140.0.h,
-        width: 1.0.sw,
-        child: Column(
-          children: [
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12.0.r),
-                ),
-                clipBehavior: Clip.hardEdge,
-                width: 1.0.sw,
-                child: ImageMultiType(
-                  height: double.infinity,
-                  width: double.infinity,
-                  url: image,
-                  fit: BoxFit.fill,
-                ),
+    return Center(
+      child: InkWell(
+        onTap: () async {
+          final image = await PickImageHelper().pickImageBytes();
+          if (image == null) return;
+          onLoad.call(image);
+        },
+        child: SizedBox(
+          height: height ?? 120.0.r,
+          width: height ?? 120.0.r,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              CircleImageWidget(
+                size: height ?? 100.0.r,
+                url: image,
               ),
-            ),
-            if (name.isNotEmpty)
-              DrawableText(
-                text: name,
-                fontWeight: FontWeight.bold,
+              const ImageMultiType(
+                url: Icons.edit,
+                color: AppColorManager.whit,
               ),
-          ],
+            ],
+          ),
         ),
       ),
     );

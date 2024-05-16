@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mms/features/committees/data/response/committees_response.dart';
+import 'package:mms/features/members/data/response/member_response.dart';
 
 import '../../features/auth/data/response/login_response.dart';
 import '../../generated/l10n.dart';
@@ -9,9 +11,15 @@ import '../util/snack_bar_message.dart';
 import 'app_widget.dart';
 
 class AppProvider {
-  final fcmToken = AppSharedPreference.getFireToken;
+  static var currentCommittee = Committee.fromJson({});
 
-  LoginResponse get getMe => AppSharedPreference.getUser;
+  static set setCommittee(Committee c) => currentCommittee = c;
+
+  static Committee get getCurrentCommittee => currentCommittee;
+
+  static LoginResponse get getMe => AppSharedPreference.getUser;
+
+  static Party get getParty => AppSharedPreference.getParty;
 
   static bool get isLogin => AppSharedPreference.getToken.isNotEmpty;
 
@@ -38,6 +46,10 @@ class AppProvider {
   static Future<void> login({required LoginResponse response}) async {
     await AppSharedPreference.cashToken(response.accessToken);
     await AppSharedPreference.cashUser(response);
+  }
+
+  static Future<void> loggedParty({required Party response}) async {
+    await AppSharedPreference.cashParty(response);
   }
 
   static bool? get isSignupCashed {

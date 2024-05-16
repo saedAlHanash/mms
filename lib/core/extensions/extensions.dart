@@ -1,18 +1,19 @@
 import 'dart:convert';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:http/http.dart' as http;
+import 'package:image_multi_type/image_multi_type.dart';
 import 'package:intl/intl.dart';
 import 'package:mms/core/api_manager/api_service.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
-import 'package:mms/core/util/shared_preferences.dart';
+import 'package:mms/features/committees/data/response/committees_response.dart';
 
+import '../../features/members/data/response/member_response.dart';
 import '../../generated/l10n.dart';
+import '../app/app_provider.dart';
 import '../error/error_manager.dart';
 import '../strings/enum_manager.dart';
-import '../util/abstraction.dart';
 import '../util/pair_class.dart';
 import '../util/snack_bar_message.dart';
 import '../widgets/spinner_widget.dart';
@@ -55,7 +56,7 @@ extension SplitByLength on String {
     final regex = RegExp(r'\d+');
 
     final numbers =
-    regex.allMatches(this).map((match) => match.group(0)).join();
+        regex.allMatches(this).map((match) => match.group(0)).join();
 
     try {
       return int.parse(numbers);
@@ -70,7 +71,7 @@ extension SplitByLength on String {
     return '0$this';
   }
 
-  String get formatPrice => '$this';
+  String get formatPrice => this;
 
   bool get isZero => (num.tryParse(this) ?? 0) == 0;
 
@@ -78,15 +79,11 @@ extension SplitByLength on String {
     if (phone.startsWith('00964') && phone.length > 11) return phone;
     if (phone.length < 10) {
       NoteMessage.showSnakeBar(
-          context: context, message: S
-          .of(context)
-          .wrongPhone);
+          context: context, message: S.of(context).wrongPhone);
       return null;
     } else if (phone.startsWith("0") && phone.length < 11) {
       NoteMessage.showSnakeBar(
-          context: context, message: S
-          .of(context)
-          .wrongPhone);
+          context: context, message: S.of(context).wrongPhone);
       return null;
     }
 
@@ -134,6 +131,14 @@ extension StringHelper on String? {
     if (this == null) return true;
     return this!.replaceAll(' ', '').isEmpty;
   }
+
+  String fixUrl(String initialImage) {
+    final type = ImageMultiType.initialType(this);
+
+    if (type == ImageType.tempImg) return initialImage;
+
+    return this!;
+  }
 }
 
 final oCcy = NumberFormat("#,###", "en_US");
@@ -173,14 +178,13 @@ extension ListEnumHelper on List<Enum> {
   List<SpinnerItem> getSpinnerItems({int? selectedId, Widget? icon}) {
     return List<SpinnerItem>.from(
       map(
-            (e) =>
-            SpinnerItem(
-              id: e.index,
-              isSelected: e.index == selectedId,
-              name: e.getName,
-              icon: icon,
-              item: e,
-            ),
+        (e) => SpinnerItem(
+          id: e.index,
+          isSelected: e.index == selectedId,
+          name: e.getName,
+          icon: icon,
+          item: e,
+        ),
       ),
     );
   }
@@ -282,6 +286,19 @@ extension EnumHelper on Enum {
         return Colors.black;
     }
   }
+
+  Color get getColorForRecord {
+    switch (this) {
+      case MembershipType.member:
+        return Colors.white;
+      case MembershipType.chair:
+        return Colors.green.withOpacity(0.3);
+      case MembershipType.secretary:
+        return AppColorManager.ampere.withOpacity(0.3);
+      default:
+        return Colors.white;
+    }
+  }
 }
 
 extension ResponseHelper on http.Response {
@@ -323,8 +340,7 @@ extension CubitStatusesHelper on CubitStatuses {
 
 extension FormatDuration on Duration {
   String get format =>
-      '${inMinutes.remainder(60).toString().padLeft(2, '0')}:${(inSeconds
-          .remainder(60)).toString().padLeft(2, '0')}';
+      '${inMinutes.remainder(60).toString().padLeft(2, '0')}:${(inSeconds.remainder(60)).toString().padLeft(2, '0')}';
 }
 
 extension ApiStatusCode on int {
@@ -351,6 +367,7 @@ extension DateUtcHelper on DateTime {
   DateTime get getUtc => DateTime.utc(year, month, day);
 
   String get formatDate => DateFormat('yyyy/MM/dd', 'en').format(this);
+  String get formatDateToRequest => DateFormat('yyyy-MM-dd', 'en').format(this);
 
   String get formatDateAther => DateFormat('yyyy/MM/dd HH:MM').format(this);
 
@@ -441,6 +458,25 @@ extension GetDateTimesBetween on DateTime {
     }
     return dateTimes;
   }
+}
+
+extension CommitteeHelper on Committee {
+  Member get getMeAsMember {
+    members.firstWhereOrNull(
+      (e) => e.partyId == AppProvider.getCurrentCommittee.member.partyId,
+    );
+    return Member.fromJson({});
+  }
+}
+
+extension MemberHelper on Member {
+
+  bool get isMe {
+    // loggerObject.w('$id\n${AppProvider.getCurrentCommittee.member.id}');
+    return id == AppProvider.getCurrentCommittee.member.id;
+  }
+
+
 }
 
 class FormatDateTime {

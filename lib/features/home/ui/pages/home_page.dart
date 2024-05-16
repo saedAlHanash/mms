@@ -11,6 +11,7 @@ import '../../../../core/widgets/app_bar/app_bar_widget.dart';
 import '../../../committees/ui/pages/committee_screen.dart';
 import '../../../committees/ui/widget/committee_widget.dart';
 import '../widget/bottom_nav_widget.dart';
+import '../widget/menu_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -62,16 +63,16 @@ class _HomePageState extends State<HomePage> {
           },
           controller: _pageController,
         ),
-        appBar: AppBarWidget(zeroHeight: true),
+        appBar: const AppBarWidget(zeroHeight: true),
         body: SizedBox.expand(
           child: PageView(
             controller: _pageController,
             physics: const NeverScrollableScrollPhysics(),
             children: [
-              CommitteeScreen(),
+              const CommitteeScreen(),
               Container(color: Colors.red),
               Container(color: Colors.grey),
-              Container(color: Colors.blueGrey),
+              const MenuScreen(),
             ],
           ),
         ),

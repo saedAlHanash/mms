@@ -40,6 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "at": MessageLookupByLibrary.simpleMessage("At"),
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "birthday": MessageLookupByLibrary.simpleMessage("birthday"),
+        "buildNumber": MessageLookupByLibrary.simpleMessage("Build Number"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "canceled": MessageLookupByLibrary.simpleMessage("Canceled"),
         "card_name": MessageLookupByLibrary.simpleMessage("Card Name"),
@@ -90,6 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "continueTo": MessageLookupByLibrary.simpleMessage("Continue"),
         "country": MessageLookupByLibrary.simpleMessage("Country"),
         "coupon_code": MessageLookupByLibrary.simpleMessage("Coupon Code"),
+        "courses": MessageLookupByLibrary.simpleMessage("Courses"),
         "createAccount": MessageLookupByLibrary.simpleMessage("Create Account"),
         "createNewAccount":
             MessageLookupByLibrary.simpleMessage("Create New Account"),
@@ -101,6 +103,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteAccount": MessageLookupByLibrary.simpleMessage("Delete Account"),
         "deliveryDate": MessageLookupByLibrary.simpleMessage("Delivery Date"),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
+        "devBy": MessageLookupByLibrary.simpleMessage("Power by "),
         "didNotReceiveOTP":
             MessageLookupByLibrary.simpleMessage("Didn\'t Receive The OTP?"),
         "dinar": MessageLookupByLibrary.simpleMessage("Dinar"),
@@ -126,10 +129,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "doneShipping": MessageLookupByLibrary.simpleMessage("Order Shipped"),
         "done_resend_code":
             MessageLookupByLibrary.simpleMessage("Done resend code"),
+        "downloadFile": MessageLookupByLibrary.simpleMessage("Download File"),
         "ePayment": MessageLookupByLibrary.simpleMessage("E-Payment"),
         "editProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
         "educationalGrade":
             MessageLookupByLibrary.simpleMessage("Educational Grade"),
+        "educationalProgress":
+            MessageLookupByLibrary.simpleMessage("Educational Progress"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailEmpty":
             MessageLookupByLibrary.simpleMessage("Email field is required"),
@@ -159,8 +165,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "filters": MessageLookupByLibrary.simpleMessage("Filters"),
         "firstName": MessageLookupByLibrary.simpleMessage("first name"),
         "flash_deal": MessageLookupByLibrary.simpleMessage("Flash Deal"),
+        "follow": MessageLookupByLibrary.simpleMessage("Follow"),
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password?"),
+        "freeLesson": MessageLookupByLibrary.simpleMessage("Free lessons"),
+        "freeSummary": MessageLookupByLibrary.simpleMessage("Free Summary"),
         "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
         "governor": MessageLookupByLibrary.simpleMessage("governor"),
@@ -177,11 +186,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "ku": MessageLookupByLibrary.simpleMessage("Kurdish"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last name"),
+        "lesson": MessageLookupByLibrary.simpleMessage("Lesson"),
         "location": MessageLookupByLibrary.simpleMessage("Location"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "mail": MessageLookupByLibrary.simpleMessage("Mail"),
         "max": MessageLookupByLibrary.simpleMessage("Max"),
+        "middleName": MessageLookupByLibrary.simpleMessage("Middle Name"),
         "min": MessageLookupByLibrary.simpleMessage("Min"),
         "minutes": MessageLookupByLibrary.simpleMessage("Minutes"),
         "myInfo": MessageLookupByLibrary.simpleMessage("My Info"),
@@ -289,12 +300,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "sizes": MessageLookupByLibrary.simpleMessage("Sizes"),
         "subCategories": MessageLookupByLibrary.simpleMessage("Sub Categories"),
+        "subTitleDeleteAccount":
+            MessageLookupByLibrary.simpleMessage("Delete all your data "),
+        "subTitleNotification":
+            MessageLookupByLibrary.simpleMessage("All Notifications"),
+        "subTitlePassword":
+            MessageLookupByLibrary.simpleMessage("To change password"),
+        "subTitlePolicy": MessageLookupByLibrary.simpleMessage(
+            "Privacy policy and conditions "),
+        "subTitleSupport": MessageLookupByLibrary.simpleMessage("Our support "),
         "subtotal": MessageLookupByLibrary.simpleMessage("Subtotal"),
         "successfully": MessageLookupByLibrary.simpleMessage("Successfully."),
+        "summaries": MessageLookupByLibrary.simpleMessage("Summaries"),
         "support": MessageLookupByLibrary.simpleMessage("Support"),
+        "teachingStaff": MessageLookupByLibrary.simpleMessage("Teaching staff"),
         "termsAndConditions":
             MessageLookupByLibrary.simpleMessage("Terms And Conditions"),
         "trackingOrder": MessageLookupByLibrary.simpleMessage("Tracking Order"),
+        "unFollow": MessageLookupByLibrary.simpleMessage("Un Follow"),
         "update": MessageLookupByLibrary.simpleMessage("update"),
         "useCurrentLocation":
             MessageLookupByLibrary.simpleMessage("Use Current Location"),

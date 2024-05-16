@@ -26,8 +26,6 @@ class MyCommitteesCubit extends MCubit<MyCommitteesInitial> {
   Future<void> getMyCommittees() async {
     if (await checkCashed()) return;
 
-    emit(state.copyWith(statuses: CubitStatuses.loading));
-
     final pair = await _getDataApi();
     if (pair.first == null) {
       emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));

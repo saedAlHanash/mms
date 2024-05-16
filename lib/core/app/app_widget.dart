@@ -9,6 +9,7 @@ import 'package:image_multi_type/image_multi_type.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
 
+import '../../features/auth/bloc/get_me_cubit/get_me_cubit.dart';
 import '../../features/committees/bloc/my_committees_cubit/my_committees_cubit.dart';
 import '../../generated/assets.dart';
 import '../../generated/l10n.dart';
@@ -126,6 +127,9 @@ class _MyAppState extends State<MyApp> {
               providers: [
                 BlocProvider(
                   create: (_) => sl<MyCommitteesCubit>()..getMyCommittees(),
+                ),
+                BlocProvider(
+                  create: (_) => sl<LoggedPartyCubit>()..getLoggedParty(),
                 ),
               ],
               child: Stack(

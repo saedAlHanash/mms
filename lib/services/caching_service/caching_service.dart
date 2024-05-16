@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:mms/core/api_manager/api_service.dart';
 
 import '../../core/strings/enum_manager.dart';
 
@@ -76,7 +77,7 @@ class CachingService {
       {String id = '', String by = ''}) async {
     if (id.isNotEmpty) {
       final box = await getBox(name);
-      // loggerObject.t('GetKey: key: _$id${by}_ \n keys ${box.keys}');
+      loggerObject.t('GetKey: key: _$id${by}_ \n keys ${box.keys}');
       if (box.keys.firstWhereOrNull(
               (e) => (e as String).startsWith('_$id${by}_')) !=
           null) {

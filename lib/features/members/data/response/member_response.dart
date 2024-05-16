@@ -1,4 +1,8 @@
+import 'package:image_multi_type/image_multi_type.dart';
+import 'package:mms/core/extensions/extensions.dart';
+
 import '../../../../core/strings/enum_manager.dart';
+import '../../../../generated/assets.dart';
 
 class Member {
   Member({
@@ -31,8 +35,7 @@ class Member {
     );
   }
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "membershipType": membershipType.index,
         "partyId": partyId,
@@ -67,26 +70,26 @@ class Party {
     required this.tasksNumber,
   });
 
-  final String id;
-  final String userName;
-  final String firstName;
-  final String middleName;
-  final String lastName;
-  final DateTime? dob;
-  final GenderEnum gender;
-  final String address;
-  final String email;
-  final String mobile;
-  final String phone;
-  final String workPhone;
-  final String personalPhoto;
-  final String company;
-  final String isUserId;
-  final String isCustomerId;
-  final String workUnitId;
-  final String workUnit;
-  final num committeesNumber;
-  final num tasksNumber;
+  String id;
+  String userName;
+  String firstName;
+  String middleName;
+  String lastName;
+  DateTime? dob;
+  GenderEnum gender;
+  String address;
+  String email;
+  String mobile;
+  String phone;
+  String workPhone;
+  String personalPhoto;
+  String company;
+  String isUserId;
+  String isCustomerId;
+  String workUnitId;
+  String workUnit;
+  num committeesNumber;
+  num tasksNumber;
 
   String get name => '$firstName $lastName';
 
@@ -104,7 +107,8 @@ class Party {
       mobile: json["mobile"] ?? "",
       phone: json["phone"] ?? "",
       workPhone: json["workPhone"] ?? "",
-      personalPhoto: json["personalPhoto"] ?? "",
+      personalPhoto:
+          json["personalPhoto"]?.toString().fixUrl(Assets.imagesAvatar) ?? '',
       company: json["company"] ?? "",
       isUserId: json["isUserId"] ?? "",
       isCustomerId: json["isCustomerId"] ?? "",
@@ -115,8 +119,7 @@ class Party {
     );
   }
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "userName": userName,
         "firstName": firstName,

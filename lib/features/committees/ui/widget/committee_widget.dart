@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:image_multi_type/circle_image_widget.dart';
 import 'package:image_multi_type/image_multi_type.dart';
+import 'package:mms/core/app/app_provider.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:mms/core/util/snack_bar_message.dart';
@@ -47,6 +48,7 @@ class CommitteesWidget extends StatelessWidget {
               margin: EdgeInsets.symmetric(vertical: 7.0, horizontal: 20.0).r,
               child: ListTile(
                 onTap: () {
+                  AppProvider.setCommittee = item;
                   Navigator.pushNamed(context, RouteName.committeePage,
                       arguments: item.id);
                 },

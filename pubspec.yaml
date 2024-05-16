@@ -23,7 +23,9 @@ dependencies:
   image_multi_type:
     git:
       url: https://github.com/saedAlHanash/image_multi_type
+
   flutter_slidable: ^3.1.0
+  flutter_switch:
   introduction_screen: ^3.1.14
   android_power_manager: ^1.0.0
   group_button: ^5.3.4

@@ -41,13 +41,11 @@ class _NewNavState extends State<NewNav> {
       padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 14.0).r,
       decoration: BoxDecoration(
         color: Colors.white,
-        // border: Border.all(color: AppColorManager.e6,width: 1.0.r),
-        borderRadius: BorderRadius.circular(1000.r),
         boxShadow: [
           BoxShadow(
             color: AppColorManager.black.withOpacity(0.09),
-            blurRadius: 30.r,
-            offset: const Offset(0, 5),
+            blurRadius: 3.r,
+            offset: const Offset(0, -2),
           )
         ],
       ),
@@ -106,12 +104,12 @@ class _NewNavState extends State<NewNav> {
           ),
           BottomNavigationBarItem(
             icon: ImageMultiType(
-              url: Icons.print,
+              url: Icons.settings,
               color: Colors.grey,
               height: 25.0.spMin,
             ),
             activeIcon: ImageMultiType(
-              url: Icons.print,
+              url: Icons.settings,
               color: AppColorManager.mainColor,
               height: 25.0.spMin,
             ),

@@ -1,9 +1,11 @@
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:image_multi_type/circle_image_widget.dart';
 import 'package:image_multi_type/image_multi_type.dart';
+import 'package:mms/core/api_manager/api_service.dart';
+import 'package:mms/core/helper/launcher_helper.dart';
 import 'package:mms/core/widgets/my_button.dart';
+
 import '../../../../generated/assets.dart';
 import '../../../../generated/l10n.dart';
 import '../../data/response/documents_response.dart';
@@ -54,16 +56,22 @@ class DocumentsListWidget extends StatelessWidget {
                         ),
                       ),
                       MyButton(
-                        height: 30.0.h,
-                        text: S.of(context).changeFile,
+                        onTap: () {
+                          loggerObject.w(document.media.savedPath);
+                          LauncherHelper.openPage(document.media.savedPath);
+                        },
+
+                        text: S.of(context).downloadFile,
                       ),
                     ],
                   ),
                 ),
-                const ImageMultiType(
-                  url: Assets.iconsDocumentBackground,
-                  height: double.infinity,
-                  width: double.infinity,
+                const IgnorePointer(
+                  child: ImageMultiType(
+                    url: Assets.iconsDocumentBackground,
+                    height: double.infinity,
+                    width: double.infinity,
+                  ),
                 ),
               ],
             ),

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:mms/services/app_info_service.dart';
 import 'package:mms/services/caching_service/caching_service.dart';
 import 'package:mms/services/firebase_service.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -30,11 +31,11 @@ void main() async {
 
   await FirebaseService.initial();
 
+  await AppInfoService.initial();
+
   await Note.initialize();
 
   await di.init();
-
-
 
   HttpOverrides.global = MyHttpOverrides();
 
