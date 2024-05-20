@@ -1,39 +1,36 @@
 part of 'meeting_cubit.dart';
 
 class MeetingInitial extends AbstractCubit<Meeting> {
-  // final MeetingRequest request;
-  // final bool meetingParam;
+  final String id;
 
+  // final bool meetingParam;
 
   const MeetingInitial({
     required super.result,
-
     super.error,
-    // required this.request,
+    required this.id,
     // required this.meetingParam,
     super.statuses,
   });
 
   factory MeetingInitial.initial() {
     return MeetingInitial(
-
       result: Meeting.fromJson({}),
       error: '',
       // meetingParam: false,
-      // request: MeetingRequest(),
+      id: '',
       statuses: CubitStatuses.init,
     );
   }
 
   @override
-  List<Object> get props => [statuses, result, error];
+  List<Object> get props => [statuses, result, error, id];
 
   MeetingInitial copyWith({
     CubitStatuses? statuses,
     Meeting? result,
     String? error,
-
-    // MeetingRequest? request,
+    String? id,
     // bool? meetingParam,
   }) {
     return MeetingInitial(
@@ -41,7 +38,7 @@ class MeetingInitial extends AbstractCubit<Meeting> {
       result: result ?? this.result,
       error: error ?? this.error,
 
-      // request: request ?? this.request,
+      id: id ?? this.id,
       // meetingParam: meetingParam ?? this.meetingParam,
     );
   }

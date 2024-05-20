@@ -36,7 +36,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Already Have An Account?"),
         "apply": MessageLookupByLibrary.simpleMessage("Apply"),
         "apply_filters": MessageLookupByLibrary.simpleMessage("Apply filters"),
+        "approved": MessageLookupByLibrary.simpleMessage("Approved"),
         "ar": MessageLookupByLibrary.simpleMessage("Arabic"),
+        "archived": MessageLookupByLibrary.simpleMessage("Published"),
         "at": MessageLookupByLibrary.simpleMessage("At"),
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "birthday": MessageLookupByLibrary.simpleMessage("birthday"),
@@ -241,6 +243,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "phoneNumberEmpty": MessageLookupByLibrary.simpleMessage(
             "Phone number field is required"),
         "phoneSms": MessageLookupByLibrary.simpleMessage("Phone SMS"),
+        "planned": MessageLookupByLibrary.simpleMessage("Planned"),
         "pleasCreateAccount":
             MessageLookupByLibrary.simpleMessage("Please create an account"),
         "pleasSetYourAddress":
@@ -248,6 +251,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "policy": MessageLookupByLibrary.simpleMessage(
             "Terms of Use and Privacy Policy"),
         "policyJust": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+        "postponed": MessageLookupByLibrary.simpleMessage("Postponed"),
         "price": MessageLookupByLibrary.simpleMessage("Price"),
         "processing": MessageLookupByLibrary.simpleMessage("Processing"),
         "product": MessageLookupByLibrary.simpleMessage("Product"),
@@ -264,6 +268,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Registered Before"),
         "registered_before":
             MessageLookupByLibrary.simpleMessage("Registered Before"),
+        "rejected": MessageLookupByLibrary.simpleMessage("Rejected"),
         "related_products":
             MessageLookupByLibrary.simpleMessage("Related Products"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("Remember Me"),
@@ -275,9 +280,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "returned": MessageLookupByLibrary.simpleMessage("Returned"),
         "reviewOrder": MessageLookupByLibrary.simpleMessage("Review Order"),
         "reviews": MessageLookupByLibrary.simpleMessage("Reviews"),
+        "running": MessageLookupByLibrary.simpleMessage("Running"),
         "saveChange": MessageLookupByLibrary.simpleMessage("save change"),
         "save_for_later":
             MessageLookupByLibrary.simpleMessage("Save For Later?"),
+        "scheduled": MessageLookupByLibrary.simpleMessage("Scheduled"),
         "searchResult": MessageLookupByLibrary.simpleMessage("Search Result"),
         "search_In_All": MessageLookupByLibrary.simpleMessage("Search In All"),
         "seconds": MessageLookupByLibrary.simpleMessage("seconds"),

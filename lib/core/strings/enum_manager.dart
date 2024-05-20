@@ -1,3 +1,16 @@
+import 'dart:ui';
+
+import 'dart:ui';
+
+import 'dart:ui';
+
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+import 'package:mms/core/strings/app_color_manager.dart';
+
+import '../../generated/l10n.dart';
+
 enum CubitStatuses { init, loading, done, error }
 
 enum AttachmentType { image, youtube, video, d3 }
@@ -37,7 +50,12 @@ enum PollStatus { open, closed }
 
 enum PartyType { member, guest }
 
-enum MinuteStatus { pending, approved, rejected, published }
+enum MinuteStatus {
+  pending,
+  approved,
+  rejected,
+  published;
+}
 
 enum MembershipType { member, chair, secretary, guest }
 
@@ -58,14 +76,64 @@ enum FilterOperation {
 
   final String realName;
 
+  static  FilterOperation byName(String s) {
+    switch (s) {
+      case 'Equals':
+        return FilterOperation.equals;
+      case 'NotEqual':
+        return FilterOperation.notEqual;
+      case 'Contains':
+        return FilterOperation.contains;
+      case 'StartsWith':
+        return FilterOperation.startsWith;
+      case 'EndsWith':
+        return FilterOperation.endsWith;
+      case 'LessThan':
+        return FilterOperation.lessThan;
+      case 'LessThanEqual':
+        return FilterOperation.lessThanEqual;
+      case 'GreaterThan':
+        return FilterOperation.greaterThan;
+      case 'GreaterThanEqual':
+        return FilterOperation.greaterThanEqual;
+      default:
+        return FilterOperation.equals;
+    }
+  }
 }
 
 enum MeetingStatus {
-  planned,
-  scheduled,
-  postponed,
-  canceled,
-  running,
-  completed,
-  archived
+
+  planned(color: Color(0xFFBABABA)),
+  scheduled(color: Color(0xFFAA2F0A)),
+  postponed(color: Color(0xFFFFB600)),
+  canceled(color: Color(0xFFD73333)),
+  running(color: Color(0xFF33B843)),
+  completed(color: Color(0xFF3469F9)),
+  archived(color: Color(0xFFFC8441));
+
+  const MeetingStatus({
+    required this.color,
+  });
+
+  String get realName {
+    switch (this) {
+      case MeetingStatus.planned:
+        return S().planned;
+      case MeetingStatus.scheduled:
+        return S().scheduled;
+      case MeetingStatus.postponed:
+        return S().postponed;
+      case MeetingStatus.canceled:
+        return S().canceled;
+      case MeetingStatus.running:
+        return S().running;
+      case MeetingStatus.completed:
+        return S().completed;
+      case MeetingStatus.archived:
+        return S().archived;
+    }
+  }
+
+  final Color color;
 }

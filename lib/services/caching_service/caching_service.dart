@@ -111,7 +111,7 @@ class CachingService {
 
     final d = DateTime.now().difference(latest).inMinutes.abs();
 
-    if (d > 2) {
+    if (d > 0) {
       return haveData ? NeedUpdateEnum.noLoading : NeedUpdateEnum.withLoading;
     }
 

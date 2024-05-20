@@ -88,7 +88,7 @@ class GetUrl {
 
   static const loggedParty = 'Party/GetLoggedParty';
 
-  static var meeting = '';
+  static const meeting = 'Meeting/GetDetails';
 
 
 }
@@ -136,7 +136,7 @@ class PostUrl {
 
   static const socialVerifyPhone = 'social/verify-phone';
 
-  static var meetings='';
+  static const meetings='Meeting/GetAll';
 
 
 

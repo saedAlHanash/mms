@@ -36,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("هل لديك حساب بالفعل؟"),
         "apply": MessageLookupByLibrary.simpleMessage("تطبيق"),
         "apply_filters": MessageLookupByLibrary.simpleMessage("تطبيق الفلاتر"),
+        "approved": MessageLookupByLibrary.simpleMessage("تمت الموافقة"),
         "ar": MessageLookupByLibrary.simpleMessage("عربي"),
         "at": MessageLookupByLibrary.simpleMessage("عند"),
         "back": MessageLookupByLibrary.simpleMessage("عودة"),
@@ -226,7 +227,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "paymentFailed": MessageLookupByLibrary.simpleMessage("فشل الدفع"),
         "paymentMethod": MessageLookupByLibrary.simpleMessage("طريقة الدفع"),
         "payment_summary": MessageLookupByLibrary.simpleMessage("ملخص الدفع"),
-        "pending": MessageLookupByLibrary.simpleMessage("انتظار"),
+        "pending": MessageLookupByLibrary.simpleMessage("معلقة"),
         "phoneCall": MessageLookupByLibrary.simpleMessage("مكالمة هاتفية"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
         "phoneNumberCanNotBeChange":
@@ -235,6 +236,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("حقل رقم الهاتف مطلوب"),
         "phoneSms":
             MessageLookupByLibrary.simpleMessage("رسالة نصية على الهاتف"),
+        "planned": MessageLookupByLibrary.simpleMessage("جاهزة"),
         "pleasCreateAccount":
             MessageLookupByLibrary.simpleMessage("يرجى إنشاء حساب"),
         "pleasSetYourAddress":
@@ -242,6 +244,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "policy":
             MessageLookupByLibrary.simpleMessage("سياسة الاستخدام والخصوصية"),
         "policyJust": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
+        "postponed": MessageLookupByLibrary.simpleMessage("مؤجلة"),
         "price": MessageLookupByLibrary.simpleMessage("السعر"),
         "processing": MessageLookupByLibrary.simpleMessage("معالجة"),
         "product": MessageLookupByLibrary.simpleMessage("منتج"),
@@ -256,6 +259,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "registeredBefore": MessageLookupByLibrary.simpleMessage("مسجل سابقًا"),
         "registered_before":
             MessageLookupByLibrary.simpleMessage("مسجل سابقًا"),
+        "rejected": MessageLookupByLibrary.simpleMessage("مرفوضة"),
         "related_products":
             MessageLookupByLibrary.simpleMessage("منتجات ذات صلة"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("تذكرني"),
@@ -267,8 +271,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "returned": MessageLookupByLibrary.simpleMessage("استعادة"),
         "reviewOrder": MessageLookupByLibrary.simpleMessage("عرض الطلب"),
         "reviews": MessageLookupByLibrary.simpleMessage("التقييمات"),
+        "running": MessageLookupByLibrary.simpleMessage("جارية"),
         "saveChange": MessageLookupByLibrary.simpleMessage("حفظ التغيير"),
         "save_for_later": MessageLookupByLibrary.simpleMessage("حفظ لاحقًا؟"),
+        "scheduled": MessageLookupByLibrary.simpleMessage("مجدولة"),
         "searchResult": MessageLookupByLibrary.simpleMessage("نتائج البحث"),
         "search_In_All": MessageLookupByLibrary.simpleMessage("البحث في الكل"),
         "seconds": MessageLookupByLibrary.simpleMessage("ثواني"),

@@ -110,6 +110,14 @@ class MenuScreen extends StatelessWidget {
                       image: Assets.iconsPolicy,
                     ),
                     ItemMenu(
+                      onTap: () {
+                        AppProvider.logout();
+                      },
+                      name: S.of(context).logout,
+                      subTitle: S.of(context).logout,
+                      image: Icons.logout,
+                    ),
+                    ItemMenu(
                       onTap: () {},
                       name: S.of(context).deleteAccount,
                       subTitle: S.of(context).subTitleDeleteAccount,

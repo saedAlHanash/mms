@@ -56,7 +56,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
           child: Column(
             children: [
               ImageMultiType(
-                url: Assets.iconsCircleKey,
+                url: Assets.iconsKey,
                 height: 150.0.r,
                 width: 150.0.r,
               ),

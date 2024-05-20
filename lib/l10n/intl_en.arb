@@ -176,7 +176,7 @@
   "donePaymentFailed": " PaymentFailed",
   "doneReturned": "Order Returned",
   "at": "At",
-  "pending": "Pending",
+
   "processing": "Processing",
   "ready": "Ready",
   "shipping": "Shipping",
@@ -236,5 +236,15 @@
   "subTitleDeleteAccount": "Delete all your data ",
   "buildNumber": "Build Number",
   "middleName": "Middle Name",
+  "pending": "Pending",
+  "approved": "Approved",
+  "rejected": "Rejected",
+
+  "planned": "Planned",
+  "scheduled": "Scheduled",
+  "postponed": "Postponed",
+  "running": "Running",
+
+  "archived": "Published",
   "devBy": "Power by "
 }

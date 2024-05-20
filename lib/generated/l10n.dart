@@ -1820,16 +1820,6 @@ class S {
     );
   }
 
-  /// `Pending`
-  String get pending {
-    return Intl.message(
-      'Pending',
-      name: 'pending',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Processing`
   String get processing {
     return Intl.message(
@@ -2415,6 +2405,86 @@ class S {
     return Intl.message(
       'Middle Name',
       name: 'middleName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pending`
+  String get pending {
+    return Intl.message(
+      'Pending',
+      name: 'pending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Approved`
+  String get approved {
+    return Intl.message(
+      'Approved',
+      name: 'approved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rejected`
+  String get rejected {
+    return Intl.message(
+      'Rejected',
+      name: 'rejected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Planned`
+  String get planned {
+    return Intl.message(
+      'Planned',
+      name: 'planned',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scheduled`
+  String get scheduled {
+    return Intl.message(
+      'Scheduled',
+      name: 'scheduled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Postponed`
+  String get postponed {
+    return Intl.message(
+      'Postponed',
+      name: 'postponed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Running`
+  String get running {
+    return Intl.message(
+      'Running',
+      name: 'running',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Published`
+  String get archived {
+    return Intl.message(
+      'Published',
+      name: 'archived',
       desc: '',
       args: [],
     );

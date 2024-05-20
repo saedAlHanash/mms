@@ -6,14 +6,14 @@ import 'package:mms/generated/assets.dart';
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/strings/app_color_manager.dart';
 
-class DrawerBtnWidget extends StatefulWidget {
-  const DrawerBtnWidget({super.key});
+class DrawerMemberBtnWidget extends StatefulWidget {
+  const DrawerMemberBtnWidget({super.key});
 
   @override
-  State<DrawerBtnWidget> createState() => _DrawerBtnWidgetState();
+  State<DrawerMemberBtnWidget> createState() => _DrawerMemberBtnWidgetState();
 }
 
-class _DrawerBtnWidgetState extends State<DrawerBtnWidget> {
+class _DrawerMemberBtnWidgetState extends State<DrawerMemberBtnWidget> {
   @override
   Widget build(BuildContext context) {
     return Positioned(

@@ -1,27 +1,23 @@
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/error/error_manager.dart';
 import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/abstraction.dart';
 import '../../../../core/util/pair_class.dart';
-import '../../data/response/meetings_response.dart';
+import '../../data/response/attendee_response.dart';
 
-part 'meeting_state.dart';
 
-class MeetingCubit extends MCubit<MeetingInitial> {
-  MeetingCubit() : super(MeetingInitial.initial());
+part 'attendee_state.dart';
 
-  @override
-  String get nameCache => 'meeting';
+class AttendeeCubit extends MCubit<AttendeeInitial> {
+  AttendeeCubit() : super(AttendeeInitial.initial());
 
   @override
-  String get id => state.id;
+  String get nameCache => 'temp';
 
-  Future<void> getMeeting({required String id}) async {
-    emit(state.copyWith(id: id));
+  Future<void> getAttendee() async {
     if (await checkCashed()) return;
 
     final pair = await _getDataApi();
@@ -30,23 +26,15 @@ class MeetingCubit extends MCubit<MeetingInitial> {
       showErrorFromApi(state);
     } else {
       await storeData(pair.first!);
-      emit(
-        state.copyWith(
-          statuses: CubitStatuses.done,
-          result: pair.first,
-        ),
-      );
+      emit(state.copyWith(statuses: CubitStatuses.done, result: pair.first));
     }
   }
 
-  Future<Pair<Meeting?, String?>> _getDataApi() async {
-    final response = await APIService().getApi(
-      url: GetUrl.meeting,
-      query: {'id': state.id},
-    );
+  Future<Pair<Attendee?, String?>> _getDataApi() async {
+    final response = await APIService().getApi(url: GetUrl.temp);
 
     if (response.statusCode.success) {
-      return Pair(Meeting.fromJson(response.jsonBody), null);
+      return Pair(Attendee.fromJson(response.jsonBody), null);
     } else {
       return response.getPairError;
     }
@@ -58,7 +46,7 @@ class MeetingCubit extends MCubit<MeetingInitial> {
     emit(
       state.copyWith(
         statuses: cacheType.getState,
-        result: Meeting.fromJson(await getDataCached()),
+        result: Attendee.fromJson(await getDataCached()),
       ),
     );
 

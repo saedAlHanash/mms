@@ -66,6 +66,7 @@ dependencies:
   geocoding: ^3.0.0
   google_maps_flutter: ^2.6.1
   table_calendar: ^3.0.9
+  crypto:
 
 dev_dependencies:
   flutter_localizations:

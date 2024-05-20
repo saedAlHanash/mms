@@ -10,6 +10,7 @@ import '../../../../core/strings/app_color_manager.dart';
 import '../../../../core/widgets/app_bar/app_bar_widget.dart';
 import '../../../committees/ui/pages/committee_screen.dart';
 import '../../../committees/ui/widget/committee_widget.dart';
+import '../../../meetings/ui/pages/calender_screen.dart';
 import '../widget/bottom_nav_widget.dart';
 import '../widget/menu_screen.dart';
 
@@ -48,14 +49,6 @@ class _HomePageState extends State<HomePage> {
         }
       },
       child: Scaffold(
-        floatingActionButton: pageIndex == 0
-            ? FloatingActionButton(
-                backgroundColor: AppColorManager.mainColor,
-                child:
-                    const ImageMultiType(url: Icons.add, color: Colors.white),
-                onPressed: () {},
-              )
-            : null,
         bottomNavigationBar: NewNav(
           onChange: (index) {
             pageIndex = index;
@@ -71,7 +64,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               const CommitteeScreen(),
               Container(color: Colors.red),
-              Container(color: Colors.grey),
+              const CalenderScreen(),
               const MenuScreen(),
             ],
           ),

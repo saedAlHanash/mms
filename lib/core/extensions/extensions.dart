@@ -369,7 +369,7 @@ extension DateUtcHelper on DateTime {
 
   String get formatTime => DateFormat('h:mm a').format(this);
 
-  String get formatDateTime => '$formatTime $formatDate';
+  String get formatDateTime => '$formatDate $formatTime';
 
   DateTime addFromNow({int? year, int? month, int? day, int? hour}) {
     return DateTime(

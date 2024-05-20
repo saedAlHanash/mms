@@ -176,7 +176,6 @@
   "donePaymentFailed": "فشل عملية الدفع",
   "doneReturned": "تم الإرجاع",
   "at": "عند",
-  "pending": "انتظار",
   "processing": "معالجة",
   "ready": "جاهز",
   "shipping": "مشحون",
@@ -226,7 +225,7 @@
   "courses": "الكورسات",
   "freeLesson": "دروس مقترحة",
   "freeSummary": "الملازم والكتب المجانية",
-  "summaries":"الملازم",
+  "summaries": "الملازم",
   "subTitleNotification": "جميع إعدادات الإخطارات",
   "subTitlePassword": "قفل الجهاز، أقفال التطبيقات",
   "subTitleSupport": "خدمه العملاء رسال واتصل",
@@ -236,6 +235,13 @@
   "buildNumber": "رقم الإصدار",
   "devBy": "تم التطوير بواسطة",
   "middleName": "الاسم الأوسط",
+  "pending": "معلقة",
+  "approved": "تمت الموافقة",
+  "rejected": "مرفوضة",
+  "published": "منشورة",
+  "planned": "جاهزة",
+  "scheduled": "مجدولة",
+  "postponed": "مؤجلة",
+  "running": "جارية",
   "confirmYourPhone": "اكد على رقم هاتفك او جوالك"
-
 }

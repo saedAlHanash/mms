@@ -1,21 +1,25 @@
-import 'package:mms/core/extensions/extensions.dart';
+import 'dart:convert';
+
+import 'package:crypto/crypto.dart';
 
 import '../../strings/enum_manager.dart';
-import '../../util/abstraction.dart';
 
 class FilterRequest {
   FilterRequest({
-    required this.filters,
-    required this.orderBy,
-    required this.pageableQuery,
+    this.filters,
+    this.orderBy,
+    this.pageableQuery,
+    this.partyId,
   });
 
-  final List<Filter> filters;
-  final List<OrderBy> orderBy;
-  final PageableQuery? pageableQuery;
+  List<Filter>? filters = [];
+  List<OrderBy>? orderBy = [];
+  PageableQuery? pageableQuery;
+  String? partyId;
 
   factory FilterRequest.fromJson(Map<String, dynamic> json) {
     return FilterRequest(
+      partyId: json['partyId'],
       filters: json["filters"] == null
           ? []
           : List<Filter>.from(json["filters"]!.map((x) => Filter.fromJson(x))),
@@ -30,10 +34,19 @@ class FilterRequest {
   }
 
   Map<String, dynamic> toJson() => {
-        "filters": filters.map((x) => x.toJson()).toList(),
-        "orderBy": orderBy.map((x) => x.toJson()).toList(),
+        "filters": filters?.map((x) => x.toJson()).toList(),
+        "orderBy": orderBy?.map((x) => x.toJson()).toList(),
         "pageableQuery": pageableQuery?.toJson(),
+        "partyId": partyId,
       };
+
+  String get getKey {
+    var jsonString = jsonEncode(this);
+    var bytes = utf8.encode(jsonString);
+    var digest = sha1.convert(bytes);
+
+    return '$digest';
+  }
 }
 
 class Filter {
@@ -51,7 +64,7 @@ class Filter {
     return Filter(
       name: json["name"] ?? "",
       val: json["val"] ?? "",
-      operation: _byName(json["operation"] ?? ''),
+      operation: FilterOperation.byName(json["operation"] ?? ''),
     );
   }
 
@@ -104,29 +117,4 @@ class PageableQuery {
         "pageNumer": pageNumer,
         "pageSize": pageSize,
       };
-}
-
-FilterOperation _byName(String s) {
-  switch (s) {
-    case 'Equals':
-      return FilterOperation.equals;
-    case 'NotEqual':
-      return FilterOperation.notEqual;
-    case 'Contains':
-      return FilterOperation.contains;
-    case 'StartsWith':
-      return FilterOperation.startsWith;
-    case 'EndsWith':
-      return FilterOperation.endsWith;
-    case 'LessThan':
-      return FilterOperation.lessThan;
-    case 'LessThanEqual':
-      return FilterOperation.lessThanEqual;
-    case 'GreaterThan':
-      return FilterOperation.greaterThan;
-    case 'GreaterThanEqual':
-      return FilterOperation.greaterThanEqual;
-    default:
-      return FilterOperation.equals;
-  }
 }

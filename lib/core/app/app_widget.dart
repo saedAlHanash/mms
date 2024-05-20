@@ -6,6 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
+import 'package:mms/core/api_manager/api_service.dart';
+import 'package:mms/core/app/app_provider.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
 
@@ -16,6 +18,7 @@ import '../../generated/assets.dart';
 import '../../generated/l10n.dart';
 import '../../main.dart';
 import '../../router/app_router.dart';
+import '../api_manager/request_models/command.dart';
 import '../app_theme.dart';
 import '../injection/injection_container.dart';
 import '../util/shared_preferences.dart';
@@ -77,6 +80,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    loggerObject.w(AppProvider.getParty.id);
     final loading = Builder(builder: (_) {
       return Visibility(
         visible: context.watch<LoadingCubit>().state.isLoading,
@@ -130,7 +134,13 @@ class _MyAppState extends State<MyApp> {
                   create: (_) => sl<MyCommitteesCubit>()..getMyCommittees(),
                 ),
                 BlocProvider(
-                  create: (_) => sl<MeetingsCubit>()..getMeeting(),
+                  create: (_) {
+                    final id  = AppProvider.getParty.id;
+                    return sl<MeetingsCubit>()
+                    ..getMeetings(
+                      request: FilterRequest(partyId: AppProvider.getParty.id),
+                    );
+                  },
                 ),
                 BlocProvider(
                   create: (_) => sl<LoggedPartyCubit>()..getLoggedParty(),

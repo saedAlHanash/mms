@@ -17,11 +17,11 @@ class MeetingsInitial extends AbstractCubit<List<Meeting>> {
   }); //
 
   factory MeetingsInitial.initial() {
-    return const MeetingsInitial(
+    return MeetingsInitial(
       result: [],
       error: '',
       events: {},
-      filterRequest: null,
+      filterRequest: FilterRequest(),
       statuses: CubitStatuses.init,
       // meetingParam: false,
       // request: MeetingRequest(),
@@ -29,7 +29,7 @@ class MeetingsInitial extends AbstractCubit<List<Meeting>> {
   }
 
   @override
-  List<Object> get props => [statuses, result, error];
+  List<Object> get props => [statuses, result, error, filterRequest!];
 
   MeetingsInitial copyWith({
     CubitStatuses? statuses,

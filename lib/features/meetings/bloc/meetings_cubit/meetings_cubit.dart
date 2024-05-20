@@ -21,9 +21,12 @@ class MeetingsCubit extends MCubit<MeetingsInitial> {
   String get id => '';
 
   @override
-  String get by => '';
+  String get by => state.filterRequest?.getKey ?? '';
 
-  Future<void> getMeeting() async {
+  Future<void> getMeetings({FilterRequest? request}) async {
+
+    emit(state.copyWith(filterRequest: request));
+
     if (await checkCashed()) return;
 
     final pair = await _getDataApi();
@@ -42,10 +45,13 @@ class MeetingsCubit extends MCubit<MeetingsInitial> {
   }
 
   Future<Pair<List<Meeting>?, String?>> _getDataApi() async {
-    final response = await APIService().getApi(url: PostUrl.meetings);
+    final response = await APIService().postApi(
+      url: PostUrl.meetings,
+      body: state.filterRequest?.toJson() ?? {},
+    );
 
     if (response.statusCode.success) {
-      return Pair([], null);
+      return Pair(MeetingsResponse.fromJson(response.jsonBodyPure).items, null);
     } else {
       return response.getPairError;
     }
@@ -68,6 +74,7 @@ class MeetingsCubit extends MCubit<MeetingsInitial> {
 
   Map<int, List<Meeting>> _getMapEvent(List<Meeting> list) {
     var map = <int, List<Meeting>>{};
+
     for (var e in list) {
       var key = e.fromDate?.hashDate ?? 0;
 

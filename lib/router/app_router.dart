@@ -1,4 +1,7 @@
+import 'package:mms/core/api_manager/request_models/command.dart';
 import 'package:mms/features/auth/ui/pages/intro_screen.dart';
+import 'package:mms/features/meetings/bloc/meeting_cubit/meeting_cubit.dart';
+import 'package:mms/features/meetings/ui/pages/calender_screen.dart';
 import 'package:mms/services/location_service/my_location_cubit/my_location_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,6 +28,8 @@ import '../features/committees/ui/pages/committee_page.dart';
 
 import '../features/files/bloc/upload_file_cubit/upload_file_cubit.dart';
 import '../features/home/ui/pages/home_page.dart';
+import '../features/meetings/bloc/meetings_cubit/meetings_cubit.dart';
+import '../features/meetings/ui/pages/meeting_page.dart';
 import '../features/profile/bloc/update_profile_cubit/update_profile_cubit.dart';
 import '../features/profile/ui/pages/profile_page.dart';
 
@@ -162,6 +167,7 @@ Route<dynamic> routes(RouteSettings settings) {
         );
       }
     //endregion
+    //endregion home
 
     //region settings
     case RouteName.profile:
@@ -172,7 +178,6 @@ Route<dynamic> routes(RouteSettings settings) {
             final providers = [
               BlocProvider(create: (_) => sl<UpdateProfileCubit>()),
               BlocProvider(create: (_) => sl<FileCubit>()),
-
             ];
             return MultiBlocProvider(
               providers: providers,
@@ -212,8 +217,47 @@ Route<dynamic> routes(RouteSettings settings) {
     //endregion
     //endregion
 
-    //region product
+    //region meeting
+    case RouteName.meeting:
+      //region
+      {
+        final uuid = settings.arguments as String;
 
+        final providers = [
+          BlocProvider(
+              create: (context) => sl<MeetingCubit>()..getMeeting(id: uuid)),
+        ];
+        return MaterialPageRoute(
+          builder: (_) {
+            return MultiBlocProvider(
+              providers: providers,
+              child: const MeetingPage(),
+            );
+          },
+        );
+      }
+    //endregion
+
+    case RouteName.calenderMeetings:
+      //region
+      {
+        final request = settings.arguments as FilterRequest;
+
+        final providers = [
+          BlocProvider(
+              create: (context) =>
+                  sl<MeetingsCubit>()..getMeetings(request: request)),
+        ];
+        return MaterialPageRoute(
+          builder: (_) {
+            return MultiBlocProvider(
+              providers: providers,
+              child: const CalenderMeetingPage(),
+            );
+          },
+        );
+      }
+    //endregion
     //endregion
 
     //region webView
@@ -242,4 +286,6 @@ class RouteName {
   static const donePage = '/10';
   static const committeePage = '/11';
   static const profile = '/12';
+  static const meeting = '/13';
+  static const calenderMeetings = '/14';
 }

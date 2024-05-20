@@ -14,6 +14,7 @@ import '../../../../core/util/abstraction.dart';
 import '../../../../core/util/pair_class.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../router/app_router.dart';
+import '../../../members/data/response/member_response.dart';
 import '../../data/response/login_response.dart';
 
 part 'login_state.dart';
@@ -23,6 +24,7 @@ class LoginCubit extends Cubit<LoginInitial> {
 
   Future<void> login() async {
     emit(state.copyWith(statuses: CubitStatuses.loading));
+
     final pair = await _loginApi();
 
     if (pair.first == null) {
@@ -30,6 +32,10 @@ class LoginCubit extends Cubit<LoginInitial> {
       showErrorFromApi(state);
     } else {
       await AppProvider.login(response: pair.first!);
+      final p = await _getDataApi();
+      if (p.first != null) {
+        await AppProvider.loggedParty(response: p.first!);
+      }
       emit(state.copyWith(statuses: CubitStatuses.done, result: pair.first));
     }
   }
@@ -54,6 +60,16 @@ class LoginCubit extends Cubit<LoginInitial> {
         }
       }
       return error;
+    }
+  }
+
+  Future<Pair<Party?, String?>> _getDataApi() async {
+    final response = await APIService().getApi(url: GetUrl.loggedParty);
+
+    if (response.statusCode.success) {
+      return Pair(Party.fromJson(response.jsonBody), null);
+    } else {
+      return response.getPairError;
     }
   }
 
