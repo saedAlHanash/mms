@@ -5,6 +5,7 @@ class TempInitial extends AbstractCubit<List<TempModel>> {
   // final  bool tempParam;
   const TempInitial({
     required super.result,
+    required super.filterRequest,
     super.error,
     // required this.request,
     // required this.tempParam,
@@ -14,6 +15,7 @@ class TempInitial extends AbstractCubit<List<TempModel>> {
   factory TempInitial.initial() {
     return const TempInitial(
       result: [],
+      filterRequest: null,
       error: '',
       // tempParam: false,
       // request: TempRequest(),
@@ -24,9 +26,11 @@ class TempInitial extends AbstractCubit<List<TempModel>> {
   @override
   List<Object> get props => [statuses, result, error];
 
+
   TempInitial copyWith({
     CubitStatuses? statuses,
     List<TempModel>? result,
+    FilterRequest? filterRequest,
     String? error,
     // TempRequest? request,
     // bool? tempParam,
@@ -34,6 +38,7 @@ class TempInitial extends AbstractCubit<List<TempModel>> {
     return TempInitial(
       statuses: statuses ?? this.statuses,
       result: result ?? this.result,
+      filterRequest: filterRequest ?? this.filterRequest,
       error: error ?? this.error,
       // request: request ?? this.request,
       // tempParam: tempParam ?? this.tempParam,

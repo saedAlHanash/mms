@@ -11,6 +11,7 @@ import 'package:mms/core/strings/app_color_manager.dart';
 
 import '../../features/auth/bloc/get_me_cubit/get_me_cubit.dart';
 import '../../features/committees/bloc/my_committees_cubit/my_committees_cubit.dart';
+import '../../features/meetings/bloc/meetings_cubit/meetings_cubit.dart';
 import '../../generated/assets.dart';
 import '../../generated/l10n.dart';
 import '../../main.dart';
@@ -127,6 +128,9 @@ class _MyAppState extends State<MyApp> {
               providers: [
                 BlocProvider(
                   create: (_) => sl<MyCommitteesCubit>()..getMyCommittees(),
+                ),
+                BlocProvider(
+                  create: (_) => sl<MeetingsCubit>()..getMeeting(),
                 ),
                 BlocProvider(
                   create: (_) => sl<LoggedPartyCubit>()..getLoggedParty(),

@@ -3,47 +3,44 @@ import 'package:mms/core/extensions/extensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/api_manager/api_service.dart';
-import '../../../../core/api_manager/request_models/command.dart';
 import '../../../../core/error/error_manager.dart';
 import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/abstraction.dart';
 import '../../../../core/util/pair_class.dart';
-import '../../data/temp.dart';
+import '../../data/response/meetings_response.dart';
 
-part 'temp_t_state.dart';
+part 'meeting_state.dart';
 
-class TempCubit extends MCubit<TempInitial> {
-  TempCubit() : super(TempInitial.initial());
-
-  @override
-  String get nameCache => 'temp';
+class MeetingCubit extends MCubit<MeetingInitial> {
+  MeetingCubit() : super(MeetingInitial.initial());
 
   @override
-  String get id => '';
+  String get nameCache => 'meeting';
 
-  @override
-  String get by => '';
-
-  Future<void> getTemp() async {
+  Future<void> getMeeting() async {
     if (await checkCashed()) return;
 
     final pair = await _getDataApi();
-
     if (pair.first == null) {
       emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));
       showErrorFromApi(state);
     } else {
       await storeData(pair.first!);
-      emit(state.copyWith(
-          statuses: CubitStatuses.done, result: pair.first?.data));
+      emit(
+        state.copyWith(
+          statuses: CubitStatuses.done,
+          result: pair.first,
+
+        ),
+      );
     }
   }
 
-  Future<Pair<TempList?, String?>> _getDataApi() async {
-    final response = await APIService().getApi(url: GetUrl.temp);
+  Future<Pair<Meeting?, String?>> _getDataApi() async {
+    final response = await APIService().getApi(url: GetUrl.meeting);
 
     if (response.statusCode.success) {
-      return Pair(TempList.fromJson(response.jsonBodyPure), null);
+      return Pair(Meeting.fromJson(response.jsonBody), null);
     } else {
       return response.getPairError;
     }
@@ -55,12 +52,13 @@ class TempCubit extends MCubit<TempInitial> {
     emit(
       state.copyWith(
         statuses: cacheType.getState,
-        result:
-            (await getListCached()).map((e) => TempModel.fromJson(e)).toList(),
+        result: Meeting.fromJson(await getDataCached()),
       ),
     );
 
     if (cacheType == NeedUpdateEnum.no) return true;
     return false;
   }
+
+
 }

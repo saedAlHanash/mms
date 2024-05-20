@@ -21,8 +21,8 @@ class LoadMoreWidget extends StatelessWidget {
   final int length;
   final int totalCount;
   final CubitStatuses statuses;
-  final Command command;
-  final Function(Command command) onNewCommand;
+  final FilterRequest command;
+  final Function(FilterRequest command) onNewCommand;
 
   @override
   Widget build(BuildContext context) {

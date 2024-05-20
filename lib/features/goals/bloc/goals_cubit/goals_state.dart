@@ -1,9 +1,9 @@
 part of 'goals_cubit.dart';
 
-class GoalInitial extends AbstractCubit<List<Goal>> {
+class GoaslInitial extends AbstractCubit<List<Goal>> {
   // final GoalRequest request;
   // final  bool goalParam;
-  const GoalInitial({
+  const GoaslInitial({
     required super.result,
     super.error,
     // required this.request,
@@ -11,8 +11,8 @@ class GoalInitial extends AbstractCubit<List<Goal>> {
     super.statuses,
   });//
 
-  factory GoalInitial.initial() {
-    return const GoalInitial(
+  factory GoaslInitial.initial() {
+    return const GoaslInitial(
       result: [],
       error: '',
       // goalParam: false,
@@ -24,14 +24,14 @@ class GoalInitial extends AbstractCubit<List<Goal>> {
   @override
   List<Object> get props => [statuses, result, error];
 
-  GoalInitial copyWith({
+  GoaslInitial copyWith({
     CubitStatuses? statuses,
     List<Goal>? result,
     String? error,
     // GoalRequest? request,
     // bool? goalParam,
   }) {
-    return GoalInitial(
+    return GoaslInitial(
       statuses: statuses ?? this.statuses,
       result: result ?? this.result,
       error: error ?? this.error,

@@ -87,6 +87,10 @@ class GetUrl {
   static const goal = '';
 
   static const loggedParty = 'Party/GetLoggedParty';
+
+  static var meeting = '';
+
+
 }
 
 class PostUrl {
@@ -131,6 +135,10 @@ class PostUrl {
   static const addPhone = 'social/add-phone';
 
   static const socialVerifyPhone = 'social/verify-phone';
+
+  static var meetings='';
+
+
 
   static String addMessage(int id) {
     return 'drivers/messages/$id/add';

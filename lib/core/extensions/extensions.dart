@@ -299,6 +299,7 @@ extension EnumHelper on Enum {
         return Colors.white;
     }
   }
+
 }
 
 extension ResponseHelper on http.Response {
@@ -346,12 +347,6 @@ extension FormatDuration on Duration {
 extension ApiStatusCode on int {
   bool get success => (this >= 200 && this <= 210);
 
-  //
-  // int get countDiv2 {
-  //   final dr = this / 2; //double result
-  //   final ir = this ~/ 2; //int result
-  //   return (ir < dr) ? ir + 1 : ir;
-  // }
   int get countDiv2 => (this ~/ 2 < this / 2) ? this ~/ 2 + 1 : this ~/ 2;
 }
 
@@ -367,6 +362,7 @@ extension DateUtcHelper on DateTime {
   DateTime get getUtc => DateTime.utc(year, month, day);
 
   String get formatDate => DateFormat('yyyy/MM/dd', 'en').format(this);
+
   String get formatDateToRequest => DateFormat('yyyy-MM-dd', 'en').format(this);
 
   String get formatDateAther => DateFormat('yyyy/MM/dd HH:MM').format(this);
@@ -470,13 +466,10 @@ extension CommitteeHelper on Committee {
 }
 
 extension MemberHelper on Member {
-
   bool get isMe {
     // loggerObject.w('$id\n${AppProvider.getCurrentCommittee.member.id}');
     return id == AppProvider.getCurrentCommittee.member.id;
   }
-
-
 }
 
 class FormatDateTime {

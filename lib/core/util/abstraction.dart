@@ -9,21 +9,13 @@ abstract class AbstractCubit<T> extends Equatable {
   final CubitStatuses statuses;
   final String error;
   final T result;
-  final Command command;
+  final FilterRequest? filterRequest;
 
   const AbstractCubit({
     this.statuses = CubitStatuses.init,
     this.error = '',
-    this.command = commandInitial,
+    this.filterRequest,
     required this.result,
-  });
-}
-
-abstract class AbstractMeta {
-  final Meta meta;
-
-  AbstractMeta({
-    required this.meta,
   });
 }
 
@@ -50,7 +42,6 @@ abstract class MCubit<T> extends Cubit<T> {
   Future<void> storeData(dynamic data) async {
     await CachingService.sortData(data: data, name: nameCache, id: id, by: by);
   }
-
 
   Future<Iterable<dynamic>> getListCached() async {
     final data = await CachingService.getList(nameCache, id: id, by: by);

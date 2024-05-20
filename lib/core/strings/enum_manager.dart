@@ -31,18 +31,34 @@ enum OrderStatus {
   returned,
 }
 
-enum TaskType { PlannedTask, MeetingTask }
+enum TaskType { plannedTask, meetingTask }
 
-enum PollStatus { Open, Closed }
+enum PollStatus { open, closed }
 
 enum PartyType { member, guest }
 
 enum MinuteStatus { pending, approved, rejected, published }
 
-enum MembershipType { member, chair, secretary,guest }
-
+enum MembershipType { member, chair, secretary, guest }
 
 enum DiscussionStatus { open, closed }
+
+enum FilterOperation {
+  equals('Equals'),
+  notEqual('NotEqual'),
+  contains('Contains'),
+  startsWith('StartsWith'),
+  endsWith('EndsWith'),
+  lessThan('LessThan'),
+  lessThanEqual('LessThanEqual'),
+  greaterThan('GreaterThan'),
+  greaterThanEqual('GreaterThanEqual');
+
+  const FilterOperation(this.realName);
+
+  final String realName;
+
+}
 
 enum MeetingStatus {
   planned,
@@ -53,12 +69,3 @@ enum MeetingStatus {
   completed,
   archived
 }
-
-//case PENDING = '1'; // قيد المراجعة
-//     case PROCESSING = '2'; // جاري التجهيز
-//     case READY = '3'; // جاهز للتوصيل
-//     case SHIPPING = '4'; // جاري التوصيل
-//     case COMPLETED = '5'; // تم التسليم
-//     case CANCELED = '6'; // ملغي
-//     case PAYMENT_FAILED = '7'; // فشل الدفع
-//     case RETURNED = '8'; // تم الارجاع

@@ -1,89 +1,132 @@
 import 'package:mms/core/extensions/extensions.dart';
 
+import '../../strings/enum_manager.dart';
 import '../../util/abstraction.dart';
 
-const commandInitial = Command(pag: 1, perPage: 20);
-
-class Command {
-  const Command({
-    required this.pag,
-    required this.perPage,
+class FilterRequest {
+  FilterRequest({
+    required this.filters,
+    required this.orderBy,
+    required this.pageableQuery,
   });
 
-  final int pag;
-  final int perPage;
+  final List<Filter> filters;
+  final List<OrderBy> orderBy;
+  final PageableQuery? pageableQuery;
 
-  factory Command.noPagination() {
-    return Command(perPage: 1.max, pag: 1);
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'page': pag,
-      'perPage': perPage,
-    };
-  }
-
-  factory Command.fromJson(Map<String, dynamic> map) {
-    return Command(
-      pag: map['pag'] ?? 1,
-      perPage: map['perPage'] ?? 15,
-    );
-  }
-
-  Command copyWith({
-    int? pag,
-    int? perPage,
-    int? minimal,
-  }) {
-    return Command(
-      pag: pag ?? this.pag,
-      perPage: perPage ?? this.perPage,
-    );
-  }
-
-  Command fromMeta({required AbstractMeta meta}) {
-    return Command(
-      pag: meta.meta.currentPage,
-      perPage: meta.meta.perPage,
-    );
-  }
-}
-
-class Meta {
-  Meta({
-    required this.currentPage,
-    required this.from,
-    required this.lastPage,
-    required this.perPage,
-    required this.to,
-    required this.total,
-  });
-
-  final int currentPage;
-  final int from;
-  final int lastPage;
-  final int perPage;
-  final int to;
-  final int total;
-
-  factory Meta.fromJson(Map<String, dynamic> json) {
-    return Meta(
-      currentPage: json["current_page"] ?? 1,
-      from: int.tryParse(json["from"].toString()) ?? 0,
-      lastPage: json["last_page"] ?? 1,
-      perPage: json["per_page"] ?? 20,
-      to: json["to"] ?? 1,
-      total: json["total"] ?? 20,
+  factory FilterRequest.fromJson(Map<String, dynamic> json) {
+    return FilterRequest(
+      filters: json["filters"] == null
+          ? []
+          : List<Filter>.from(json["filters"]!.map((x) => Filter.fromJson(x))),
+      orderBy: json["orderBy"] == null
+          ? []
+          : List<OrderBy>.from(
+              json["orderBy"]!.map((x) => OrderBy.fromJson(x))),
+      pageableQuery: json["pageableQuery"] == null
+          ? null
+          : PageableQuery.fromJson(json["pageableQuery"]),
     );
   }
 
   Map<String, dynamic> toJson() => {
-        "current_page": currentPage,
-        "from": from,
-        "last_page": lastPage,
-        "per_page": perPage,
-        "to": to,
-        "total": total,
+        "filters": filters.map((x) => x.toJson()).toList(),
+        "orderBy": orderBy.map((x) => x.toJson()).toList(),
+        "pageableQuery": pageableQuery?.toJson(),
       };
+}
+
+class Filter {
+  Filter({
+    required this.name,
+    required this.val,
+    required this.operation,
+  });
+
+  final String name;
+  final String val;
+  final FilterOperation operation;
+
+  factory Filter.fromJson(Map<String, dynamic> json) {
+    return Filter(
+      name: json["name"] ?? "",
+      val: json["val"] ?? "",
+      operation: _byName(json["operation"] ?? ''),
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+        "name": name,
+        "val": val,
+        "operation": operation.realName,
+      };
+}
+
+class OrderBy {
+  OrderBy({
+    required this.attribute,
+    required this.direction,
+  });
+
+  final String attribute;
+  final String direction;
+
+  factory OrderBy.fromJson(Map<String, dynamic> json) {
+    return OrderBy(
+      attribute: json["attribute"] ?? "",
+      direction: json["direction"] ?? "",
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+        "attribute": attribute,
+        "direction": direction,
+      };
+}
+
+class PageableQuery {
+  PageableQuery({
+    required this.pageNumer,
+    required this.pageSize,
+  });
+
+  final num pageNumer;
+  final num pageSize;
+
+  factory PageableQuery.fromJson(Map<String, dynamic> json) {
+    return PageableQuery(
+      pageNumer: json["pageNumer"] ?? 0,
+      pageSize: json["pageSize"] ?? 0,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+        "pageNumer": pageNumer,
+        "pageSize": pageSize,
+      };
+}
+
+FilterOperation _byName(String s) {
+  switch (s) {
+    case 'Equals':
+      return FilterOperation.equals;
+    case 'NotEqual':
+      return FilterOperation.notEqual;
+    case 'Contains':
+      return FilterOperation.contains;
+    case 'StartsWith':
+      return FilterOperation.startsWith;
+    case 'EndsWith':
+      return FilterOperation.endsWith;
+    case 'LessThan':
+      return FilterOperation.lessThan;
+    case 'LessThanEqual':
+      return FilterOperation.lessThanEqual;
+    case 'GreaterThan':
+      return FilterOperation.greaterThan;
+    case 'GreaterThanEqual':
+      return FilterOperation.greaterThanEqual;
+    default:
+      return FilterOperation.equals;
+  }
 }

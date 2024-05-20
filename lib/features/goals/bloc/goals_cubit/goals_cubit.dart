@@ -11,8 +11,8 @@ import '../../data/response/goals_response.dart';
 
 part 'goals_state.dart';
 
-class GoalCubit extends MCubit<GoalInitial> {
-  GoalCubit() : super(GoalInitial.initial());
+class GoalsCubit extends MCubit<GoaslInitial> {
+  GoalsCubit() : super(GoaslInitial.initial());
 
   @override
   String get nameCache => 'goal';
