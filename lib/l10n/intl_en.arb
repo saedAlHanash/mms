@@ -176,7 +176,6 @@
   "donePaymentFailed": " PaymentFailed",
   "doneReturned": "Order Returned",
   "at": "At",
-
   "processing": "Processing",
   "ready": "Ready",
   "shipping": "Shipping",
@@ -239,12 +238,14 @@
   "pending": "Pending",
   "approved": "Approved",
   "rejected": "Rejected",
-
   "planned": "Planned",
   "scheduled": "Scheduled",
   "postponed": "Postponed",
   "running": "Running",
-
   "archived": "Published",
+  "meeting": "Meeting",
+  "addGuest": "Add guest",
+  "requestAbsence": "Requests for absence",
+  "company": "Company",
   "devBy": "Power by "
 }

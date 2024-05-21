@@ -22,7 +22,7 @@ class DrawerMeetingsBtnWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       right: 0,
-      top: 120.0.h,
+      top: 150.0.h,
       width: 80.0.w,
       height: 45.0.h,
       child: InkWell(
@@ -30,13 +30,20 @@ class DrawerMeetingsBtnWidget extends StatelessWidget {
           Navigator.pushNamed(
             context,
             RouteName.calenderMeetings,
-            arguments: FilterRequest(filters: [
-              Filter(
-                name: 'committeeId',
-                val: context.read<CommitteeCubit>().state.uuid,
-                operation: FilterOperation.equals,
-              ),
-            ]),
+            arguments: FilterRequest(
+              filters: [
+                Filter(
+                  name: 'committeeId',
+                  val: context.read<CommitteeCubit>().state.uuid,
+                  operation: FilterOperation.equals,
+                ),
+                Filter(
+                  name: 'status',
+                  val: MeetingStatus.planned.realName,
+                  operation: FilterOperation.notEqual,
+                ),
+              ],
+            ),
           );
         },
         child: Container(

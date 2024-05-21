@@ -35,7 +35,6 @@ class ItemMeeting extends StatelessWidget {
           Expanded(
             child: ListTile(
               onTap: () {
-
                 Navigator.pushNamed(context, RouteName.meeting,
                     arguments: item.id);
               },

@@ -89,14 +89,14 @@ class SpinnerWidgetState<T> extends State<SpinnerWidget<T>> {
                 )
               : widget.hint,
           onChanged: (value) {
-                loggerObject.f(value?.name);
+
             if (widget.onChanged != null) widget.onChanged!(value!);
             if (!(value!).enable) return;
 
             for (final e in widget.items) {
               e.isSelected = false;
               if (e.id == value.id) {
-                loggerObject.f('${value.id}\n${e.id}');
+                // loggerObject.f('${value.id}\n${e.id}');
                 e.isSelected = true;
               }
             }

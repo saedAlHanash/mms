@@ -3,6 +3,7 @@ import 'package:mms/features/committees/data/response/committees_response.dart';
 import 'package:mms/features/members/data/response/member_response.dart';
 
 import '../../features/auth/data/response/login_response.dart';
+import '../../features/meetings/data/response/meetings_response.dart';
 import '../../generated/l10n.dart';
 import '../../router/app_router.dart';
 import '../strings/enum_manager.dart';
@@ -11,11 +12,19 @@ import '../util/snack_bar_message.dart';
 import 'app_widget.dart';
 
 class AppProvider {
-  static var currentCommittee = Committee.fromJson({});
+  static var _currentCommittee = Committee.fromJson({});
 
-  static set setCommittee(Committee c) => currentCommittee = c;
+  static set setCommittee(Committee c) => _currentCommittee = c;
 
-  static Committee get getCurrentCommittee => currentCommittee;
+  static Committee get getCurrentCommittee => _currentCommittee;
+
+
+  static var _currentMeeting = Meeting.fromJson({});
+
+  static set setMeeting(Meeting c) => _currentMeeting = c;
+
+  static Meeting get getCurrentMeeting => _currentMeeting;
+
 
   static LoginResponse get getMe => AppSharedPreference.getUser;
 

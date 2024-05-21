@@ -41,11 +41,11 @@ class CommitteesWidget extends StatelessWidget {
           itemBuilder: (_, i) {
             final item = list[i];
             return Container(
-              padding: EdgeInsets.only(left: 15.0, top: 3.0, bottom: 3.0).r,
+              padding: const EdgeInsets.only(left: 15.0, top: 3.0, bottom: 3.0).r,
               decoration: BoxDecoration(
                   color: AppColorManager.f9,
                   borderRadius: BorderRadius.circular(12.0.r)),
-              margin: EdgeInsets.symmetric(vertical: 7.0, horizontal: 20.0).r,
+              margin: const EdgeInsets.symmetric(vertical: 7.0, horizontal: 20.0).r,
               child: ListTile(
                 onTap: () {
                   AppProvider.setCommittee = item;

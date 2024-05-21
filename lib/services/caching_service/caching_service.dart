@@ -77,7 +77,7 @@ class CachingService {
       {String id = '', String by = ''}) async {
     if (id.isNotEmpty) {
       final box = await getBox(name);
-      loggerObject.t('GetKey: key: _$id${by}_ \n keys ${box.keys}');
+      // loggerObject.t('GetKey: key: _$id${by}_ \n keys ${box.keys}');
       if (box.keys.firstWhereOrNull(
               (e) => (e as String).startsWith('_$id${by}_')) !=
           null) {

@@ -52,6 +52,7 @@ class Meeting {
     required this.id,
     required this.title,
     required this.meetingPlace,
+    required this.hasRequestAbsence,
     required this.fromDate,
     required this.toDate,
     required this.scheduledDate,
@@ -73,6 +74,7 @@ class Meeting {
   final String id;
   final String title;
   final String meetingPlace;
+  final bool hasRequestAbsence;
   final DateTime? fromDate;
   final DateTime? toDate;
   final DateTime? scheduledDate;
@@ -95,6 +97,7 @@ class Meeting {
       id: json["id"] ?? "",
       title: json["title"] ?? "",
       meetingPlace: json["meetingPlace"] ?? "",
+      hasRequestAbsence: json["hasRequestAbsence"] ?? false,
       fromDate: DateTime.tryParse(json["fromDate"] ?? ""),
       toDate: DateTime.tryParse(json["toDate"] ?? ""),
       scheduledDate: DateTime.tryParse(json["scheduledDate"] ?? ""),
@@ -146,6 +149,7 @@ class Meeting {
         "id": id,
         "title": title,
         "meetingPlace": meetingPlace,
+        "hasRequestAbsence": hasRequestAbsence,
         "fromDate": fromDate?.toIso8601String(),
         "toDate": toDate?.toIso8601String(),
         "scheduledDate": scheduledDate?.toIso8601String(),

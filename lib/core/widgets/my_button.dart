@@ -1,6 +1,7 @@
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_multi_type/image_multi_type.dart';
 
 import '../strings/app_color_manager.dart';
 
@@ -17,6 +18,8 @@ class MyButton extends StatelessWidget {
     this.enable,
     this.loading = false,
     this.padding,
+    this.startIcon,
+    this.endIcon,
   });
 
   final Widget? child;
@@ -29,6 +32,8 @@ class MyButton extends StatelessWidget {
   final EdgeInsets? padding;
   final Function()? onTap;
   final bool loading;
+  final Widget? startIcon;
+  final Widget? endIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +53,9 @@ class MyButton extends StatelessWidget {
                         const AlwaysStoppedAnimation<Color>(Colors.white),
                   ),
                 )
-              : null,
-          size: 15.0.sp,
+              : endIcon,
+          drawableStart: startIcon,
+          size: 18.0.sp,
         );
 
     return SizedBox(

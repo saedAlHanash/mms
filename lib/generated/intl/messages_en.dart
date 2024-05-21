@@ -28,6 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Account Created!"),
         "addCorectData": MessageLookupByLibrary.simpleMessage(
             "يجب عليك إدخال بياناتك الصحيحة لتجنب المشاكل والأخطاء"),
+        "addGuest": MessageLookupByLibrary.simpleMessage("Add guest"),
         "addReview": MessageLookupByLibrary.simpleMessage("Add Review"),
         "add_to_cart": MessageLookupByLibrary.simpleMessage("Add To Cart"),
         "additional_service":
@@ -69,6 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("This Code Is Invalid CODE"),
         "color": MessageLookupByLibrary.simpleMessage("Color"),
         "colors": MessageLookupByLibrary.simpleMessage("Colors"),
+        "company": MessageLookupByLibrary.simpleMessage("Company"),
         "completed": MessageLookupByLibrary.simpleMessage("Completed"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "confirmAddress":
@@ -194,6 +196,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "mail": MessageLookupByLibrary.simpleMessage("Mail"),
         "max": MessageLookupByLibrary.simpleMessage("Max"),
+        "meeting": MessageLookupByLibrary.simpleMessage("Meeting"),
         "middleName": MessageLookupByLibrary.simpleMessage("Middle Name"),
         "min": MessageLookupByLibrary.simpleMessage("Min"),
         "minutes": MessageLookupByLibrary.simpleMessage("Minutes"),
@@ -274,6 +277,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "rememberMe": MessageLookupByLibrary.simpleMessage("Remember Me"),
         "rememberPassword":
             MessageLookupByLibrary.simpleMessage("Remember Password"),
+        "requestAbsence":
+            MessageLookupByLibrary.simpleMessage("Requests for absence"),
         "resend": MessageLookupByLibrary.simpleMessage("Resend"),
         "reset_password":
             MessageLookupByLibrary.simpleMessage("Reset Password"),

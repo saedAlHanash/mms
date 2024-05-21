@@ -26,7 +26,6 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     Future.delayed(
       const Duration(seconds: 2),
       () {
-        loggerObject.t(getStartPage.name);
         switch (getStartPage) {
           case StartPage.login:
             Navigator.pushReplacementNamed(context, RouteName.login);

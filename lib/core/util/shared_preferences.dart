@@ -1,14 +1,9 @@
 import 'dart:convert';
 
-import 'package:mms/core/api_manager/api_service.dart';
-import 'package:flutter/material.dart';
-import 'package:mms/features/members/data/response/member_response.dart';
-import 'package:mms/features/members/data/response/member_response.dart';
 import 'package:mms/features/members/data/response/member_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../features/auth/data/response/login_response.dart';
-import '../../generated/l10n.dart';
 import '../strings/enum_manager.dart';
 
 class AppSharedPreference {
@@ -70,7 +65,6 @@ class AppSharedPreference {
   }
 
   static cashStartPage(StartPage type) async {
-    loggerObject.f(type.index);
     await _prefs.setInt(_screenType, type.index);
   }
 
@@ -88,9 +82,9 @@ class AppSharedPreference {
   static String get getLocal => _prefs.getString(_lang) ?? 'en';
 
   static cashNotificationState(bool n) {
-    _prefs?.setBool(_notifications, n);
+    _prefs.setBool(_notifications, n);
   }
 
   static bool get getNotificationState =>
-      _prefs?.getBool(_notifications) ?? true;
+      _prefs.getBool(_notifications) ?? true;
 }

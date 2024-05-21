@@ -16,6 +16,8 @@ import '../../features/committees/bloc/committee_cubit/committee_cubit.dart';
 import '../../features/committees/bloc/my_committees_cubit/my_committees_cubit.dart';
 
 import '../../features/files/bloc/upload_file_cubit/upload_file_cubit.dart';
+import '../../features/meetings/bloc/add_absence_cubit/add_absence_cubit.dart';
+import '../../features/meetings/bloc/add_guest_cubit/add_guest_cubit.dart';
 import '../../features/meetings/bloc/meeting_cubit/meeting_cubit.dart';
 import '../../features/meetings/bloc/meetings_cubit/meetings_cubit.dart';
 import '../../features/profile/bloc/update_profile_cubit/update_profile_cubit.dart';
@@ -65,6 +67,8 @@ Future<void> init() async {
   //region Meetings
   sl.registerFactory(() => MeetingsCubit());
   sl.registerFactory(() => MeetingCubit());
+  sl.registerFactory(() => AddGuestCubit());
+  sl.registerFactory(() => AddAbsenceCubit());
 
   //endregion
 

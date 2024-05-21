@@ -1,6 +1,5 @@
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/error/error_manager.dart';
@@ -20,9 +19,9 @@ class MeetingCubit extends MCubit<MeetingInitial> {
   @override
   String get id => state.id;
 
-  Future<void> getMeeting({required String id}) async {
+  Future<void> getMeeting({String? id, bool newData = false}) async {
     emit(state.copyWith(id: id));
-    if (await checkCashed()) return;
+    if (await checkCashed(newData: newData)) return;
 
     final pair = await _getDataApi();
     if (pair.first == null) {
@@ -52,8 +51,9 @@ class MeetingCubit extends MCubit<MeetingInitial> {
     }
   }
 
-  Future<bool> checkCashed() async {
-    final cacheType = await needGetData();
+  Future<bool> checkCashed({bool newData = false}) async {
+    final cacheType =
+        newData ? NeedUpdateEnum.withLoading : await needGetData();
 
     emit(
       state.copyWith(
@@ -62,7 +62,7 @@ class MeetingCubit extends MCubit<MeetingInitial> {
       ),
     );
 
-    if (cacheType == NeedUpdateEnum.no) return true;
+    if (cacheType == NeedUpdateEnum.no) return false;
     return false;
   }
 }

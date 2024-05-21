@@ -26,7 +26,7 @@ class SignupInitial extends AbstractCubit<bool> {
     String? error,
     SignupRequest? request,
   }) {
-    loggerObject.t(request?.toJson());
+
     return SignupInitial(
       statuses: statuses ?? this.statuses,
       result: result ?? this.result,

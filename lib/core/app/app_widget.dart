@@ -80,7 +80,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    loggerObject.w(AppProvider.getParty.id);
     final loading = Builder(builder: (_) {
       return Visibility(
         visible: context.watch<LoadingCubit>().state.isLoading,

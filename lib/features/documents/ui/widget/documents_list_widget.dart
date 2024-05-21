@@ -57,7 +57,6 @@ class DocumentsListWidget extends StatelessWidget {
                       ),
                       MyButton(
                         onTap: () {
-                          loggerObject.w(document.media.savedPath);
                           LauncherHelper.openPage(document.media.savedPath);
                         },
 

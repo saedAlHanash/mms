@@ -1,6 +1,8 @@
 import 'package:mms/core/api_manager/request_models/command.dart';
 import 'package:mms/features/auth/ui/pages/intro_screen.dart';
+import 'package:mms/features/meetings/bloc/add_guest_cubit/add_guest_cubit.dart';
 import 'package:mms/features/meetings/bloc/meeting_cubit/meeting_cubit.dart';
+import 'package:mms/features/meetings/ui/pages/add_guest_page.dart';
 import 'package:mms/features/meetings/ui/pages/calender_screen.dart';
 import 'package:mms/services/location_service/my_location_cubit/my_location_cubit.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +30,7 @@ import '../features/committees/ui/pages/committee_page.dart';
 
 import '../features/files/bloc/upload_file_cubit/upload_file_cubit.dart';
 import '../features/home/ui/pages/home_page.dart';
+import '../features/meetings/bloc/add_absence_cubit/add_absence_cubit.dart';
 import '../features/meetings/bloc/meetings_cubit/meetings_cubit.dart';
 import '../features/meetings/ui/pages/meeting_page.dart';
 import '../features/profile/bloc/update_profile_cubit/update_profile_cubit.dart';
@@ -225,7 +228,9 @@ Route<dynamic> routes(RouteSettings settings) {
 
         final providers = [
           BlocProvider(
-              create: (context) => sl<MeetingCubit>()..getMeeting(id: uuid)),
+            create: (context) => sl<MeetingCubit>()..getMeeting(id: uuid),
+          ),
+          BlocProvider(create: (context) => sl<AddAbsenceCubit>()),
         ];
         return MaterialPageRoute(
           builder: (_) {
@@ -253,6 +258,23 @@ Route<dynamic> routes(RouteSettings settings) {
             return MultiBlocProvider(
               providers: providers,
               child: const CalenderMeetingPage(),
+            );
+          },
+        );
+      }
+    //endregion
+
+    case RouteName.addGuest:
+      //region
+      {
+        final providers = [
+          BlocProvider(create: (context) => sl<AddGuestCubit>()),
+        ];
+        return MaterialPageRoute(
+          builder: (_) {
+            return MultiBlocProvider(
+              providers: providers,
+              child: const AddGuestPage(),
             );
           },
         );
@@ -288,4 +310,5 @@ class RouteName {
   static const profile = '/12';
   static const meeting = '/13';
   static const calenderMeetings = '/14';
+  static const addGuest = '/15';
 }

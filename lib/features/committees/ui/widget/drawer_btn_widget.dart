@@ -18,7 +18,7 @@ class _DrawerMemberBtnWidgetState extends State<DrawerMemberBtnWidget> {
   Widget build(BuildContext context) {
     return Positioned(
       right: 0,
-      top: 60.0.h,
+      top: 90.0.h,
       width: 80.0.w,
       height: 45.0.h,
       child: InkWell(

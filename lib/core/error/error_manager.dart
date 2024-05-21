@@ -47,7 +47,6 @@ class ErrorBody {
 
   factory ErrorBody.fromJson(Map<String, dynamic> json) {
     final item = json["errors"];
-    loggerObject.w(item);
     return ErrorBody(
       errors: item == null
           ? []

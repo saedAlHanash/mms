@@ -7,23 +7,17 @@ import '../../../../core/error/error_manager.dart';
 import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/abstraction.dart';
 import '../../../../core/util/pair_class.dart';
-import '../../data/response/committees_response.dart';
+import '../../data/response/goals_response.dart';
 
-part 'my_committees_state.dart';
+part 'goal_state.dart';
 
-class MyCommitteesCubit extends MCubit<MyCommitteesInitial> {
-  MyCommitteesCubit() : super(MyCommitteesInitial.initial());
-
-  @override
-  String get nameCache => 'myCommittees';
+class GoalCubit extends MCubit<GoalInitial> {
+  GoalCubit() : super(GoalInitial.initial());
 
   @override
-  String get id => '';
+  String get nameCache => 'goal';
 
-  @override
-  String get by => '';
-
-  Future<void> getMyCommittees() async {
+  Future<void> getGoal() async {
     if (await checkCashed()) return;
 
     final pair = await _getDataApi();
@@ -36,11 +30,11 @@ class MyCommitteesCubit extends MCubit<MyCommitteesInitial> {
     }
   }
 
-  Future<Pair<List<Committee>?, String?>> _getDataApi() async {
-    final response = await APIService().getApi(url: GetUrl.myCommittees);
+  Future<Pair<Goal?, String?>> _getDataApi() async {
+    final response = await APIService().getApi(url: GetUrl.goal);
 
     if (response.statusCode.success) {
-      return Pair(CommitteesResponse.fromJson(response.jsonBody).data, null);
+      return Pair(Goal.fromJson(response.jsonBody), null);
     } else {
       return response.getPairError;
     }
@@ -52,8 +46,7 @@ class MyCommitteesCubit extends MCubit<MyCommitteesInitial> {
     emit(
       state.copyWith(
         statuses: cacheType.getState,
-        result:
-            (await getListCached()).map((e) => Committee.fromJson(e)).toList(),
+        result: Goal.fromJson(await getDataCached()),
       ),
     );
 

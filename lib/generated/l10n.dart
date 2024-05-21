@@ -2490,6 +2490,46 @@ class S {
     );
   }
 
+  /// `Meeting`
+  String get meeting {
+    return Intl.message(
+      'Meeting',
+      name: 'meeting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add guest`
+  String get addGuest {
+    return Intl.message(
+      'Add guest',
+      name: 'addGuest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Requests for absence`
+  String get requestAbsence {
+    return Intl.message(
+      'Requests for absence',
+      name: 'requestAbsence',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Company`
+  String get company {
+    return Intl.message(
+      'Company',
+      name: 'company',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Power by `
   String get devBy {
     return Intl.message(
