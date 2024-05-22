@@ -6,12 +6,10 @@ import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/util/shared_preferences.dart';
 import 'package:mms/core/widgets/my_button.dart';
 import 'package:mms/core/widgets/my_text_form_widget.dart';
-import 'package:mms/features/auth/ui/pages/done_page.dart';
 
 import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/my_style.dart';
 import '../../../../core/widgets/app_bar/app_bar_widget.dart';
-import '../../../../generated/assets.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../router/app_router.dart';
 import '../../bloc/reset_password_cubit/reset_password_cubit.dart';

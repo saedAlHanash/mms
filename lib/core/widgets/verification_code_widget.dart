@@ -3,11 +3,11 @@ import 'package:pinput/pinput.dart';
 
 class PinCodeWidget extends StatelessWidget {
   const PinCodeWidget({
-    Key? key,
+     super.key,
     this.onCompleted,
     this.onChange,
     this.validator,
-  }) : super(key: key);
+  });
   final Function(String)? onCompleted;
   final Function(String)? onChange;
   final String? Function(String?)? validator;

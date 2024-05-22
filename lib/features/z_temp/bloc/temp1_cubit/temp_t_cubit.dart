@@ -1,6 +1,5 @@
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/api_manager/request_models/command.dart';
@@ -18,11 +17,10 @@ class TempCubit extends MCubit<TempInitial> {
   @override
   String get nameCache => 'temp';
 
-  @override
-  String get id => '';
+
 
   @override
-  String get by => '';
+  String get filter => '';
 
   Future<void> getTemp() async {
     if (await checkCashed()) return;

@@ -2,7 +2,6 @@ import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
-import 'package:mms/core/api_manager/api_service.dart';
 import 'package:mms/core/helper/launcher_helper.dart';
 import 'package:mms/core/widgets/my_button.dart';
 

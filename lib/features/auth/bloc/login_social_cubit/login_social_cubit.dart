@@ -1,13 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/util/shared_preferences.dart';
 import 'package:mms/features/auth/data/request/login_request.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../../../core/api_manager/api_service.dart';
-import '../../../../core/app/app_provider.dart';
 import '../../../../core/error/error_manager.dart';
 import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/abstraction.dart';

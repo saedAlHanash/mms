@@ -1,4 +1,3 @@
-import 'package:image_multi_type/image_multi_type.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
 import '../../../../core/strings/enum_manager.dart';

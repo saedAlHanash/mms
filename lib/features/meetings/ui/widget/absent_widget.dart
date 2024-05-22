@@ -20,10 +20,22 @@ class AbsentWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<MeetingCubit, MeetingInitial>(
       builder: (context, state) {
-        if (state.result.status != MeetingStatus.scheduled ||
-            state.result.hasRequestAbsence) {
+        if (state.result.status != MeetingStatus.scheduled) {
           return 0.0.verticalSpace;
         }
+
+        if (state.result.hasRequestAbsence) {
+          return MyCardWidget(
+            child: DrawableText(
+              text: 'you request you as an absent member ',
+              matchParent: true,
+              size: 20.0.sp,
+              textAlign: TextAlign.center,
+              color: Colors.red,
+            ),
+          );
+        }
+
         return MyCardWidget(
           child: Row(
             children: [

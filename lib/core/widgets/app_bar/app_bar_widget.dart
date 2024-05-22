@@ -9,13 +9,13 @@ import '../../strings/app_color_manager.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   const AppBarWidget({
-    Key? key,
+     super.key,
     this.titleText,
     this.elevation,
     this.zeroHeight,
     this.actions,
     this.title,
-  }) : super(key: key);
+  });
 
   final String? titleText;
   final Widget? title;

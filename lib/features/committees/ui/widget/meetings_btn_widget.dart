@@ -3,12 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 import 'package:mms/core/api_manager/request_models/command.dart';
-import 'package:mms/core/app/app_provider.dart';
-import 'package:mms/features/committees/data/response/committees_response.dart';
 import 'package:mms/generated/assets.dart';
 import 'package:mms/router/app_router.dart';
 
-import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/strings/app_color_manager.dart';
 import '../../../../core/strings/enum_manager.dart';
 import '../../bloc/committee_cubit/committee_cubit.dart';

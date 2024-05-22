@@ -1,5 +1,5 @@
-import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:mms/core/strings/app_color_manager.dart';
 
 class SwitchWidget extends StatefulWidget {
   const SwitchWidget({

@@ -16,54 +16,76 @@ class CachingService {
   static Future<void> sortData({
     required dynamic data,
     required String name,
-    String id = '',
-    String by = '',
+    String filter = '',
   }) async {
+    final key = '_${filter}_';
+
     final boxUpdate = await getBox(latestUpdateBox);
 
     await boxUpdate.put(name, DateTime.now().toIso8601String());
+
     final box = await getBox(name);
 
     if (data is List) {
-      await clearKeysId(box: box, id: id, by: by);
+      await clearKeysId(box: box, filter: filter);
+
       for (var e in data) {
-        await box.put('_$id${by}_${box.values.length}', jsonEncode(e));
+        await box.put('$key${box.values.length}', jsonEncode(e));
       }
-    } else if (id.isNotEmpty) {
-      // loggerObject.d('_$id${by}_\n ${jsonEncode(data)}');
-      await box.put('_$id${by}_', jsonEncode(data));
+
+      loggerObject.w('cached key $key count ${data.length}');
+
+      return;
     }
+
+    await box.put(key, jsonEncode(data));
+    loggerObject.w('cached key $key');
   }
 
   static Future<void> clearKeysId({
     required Box<String> box,
-    required String id,
-    String by = '',
+    String filter = '',
   }) async {
-    final keys = box.keys.where((e) => (e as String).startsWith('_$id${by}_'));
-    // loggerObject.e('Delete :startWtih :${'_$id${by}_'}\n name:${box.name}\n $keys');
+    final key = '_${filter}_';
+
+    final keys = box.keys.where((e) => e.startsWith(key));
+
+    loggerObject.e('deleted keys:\n$key \n$keys');
+
     await box.deleteAll(keys);
   }
 
-  static Future<Iterable<dynamic>> getList(String name,
-      {String id = '', String by = ''}) async {
+  static Future<Iterable<dynamic>> getList(
+    String name, {
+    String filter = '',
+  }) async {
+    final key = '_${filter}_';
+
     final box = await getBox(name);
 
-    // loggerObject.w('getList Data from : ${box.name}\n key need : _$id${by}_\n${box.keys}');
     final f = box.keys
-        .where((e) => (e as String).startsWith('_$id${by}_'))
+        .where((e) => e.startsWith(key))
         .map((e) => jsonDecode(box.get(e) ?? '{}'));
+
+    loggerObject.t('getList(): \nkey:$key count ${f.length}');
 
     return f;
   }
 
-  static Future<dynamic> getData(String name,
-      {String id = '', String by = ''}) async {
+  static Future<dynamic> getData(
+    String name, {
+    String filter = '',
+  }) async {
+    final key = '_${filter}_';
+
     final box = await getBox(name);
 
-    if (box.values.isEmpty) return null;
-    final dataByKey = box.get('_$id${by}_');
+    final dataByKey = box.get(key);
+
     if (dataByKey == null) return null;
+
+    loggerObject.t('getList(): \nkey:$key key found $dataByKey');
+
     return jsonDecode(dataByKey);
   }
 
@@ -74,47 +96,44 @@ class CachingService {
   }
 
   static Future<NeedUpdateEnum> needGetData(String name,
-      {String id = '', String by = ''}) async {
-    if (id.isNotEmpty) {
-      final box = await getBox(name);
-      // loggerObject.t('GetKey: key: _$id${by}_ \n keys ${box.keys}');
-      if (box.keys.firstWhereOrNull(
-              (e) => (e as String).startsWith('_$id${by}_')) !=
-          null) {
-        final latest =
-            DateTime.tryParse((await getBox(latestUpdateBox)).get(name) ?? '');
+      {String filter = ''}) async {
 
-        final haveData = (await getList(name, id: id, by: by)).isNotEmpty;
+    var key = '_${filter}_';
 
-        if (latest == null) return NeedUpdateEnum.withLoading;
+    var message = 'needGetData key: $key';
 
-        final d = DateTime.now().difference(latest).inMinutes.abs();
+    final box = await getBox(name);
+    final keyFounded = box.keys.firstWhereOrNull((e) => (e).startsWith(key));
 
-        if (d > 2) {
-          return haveData
-              ? NeedUpdateEnum.noLoading
-              : NeedUpdateEnum.withLoading;
-        }
-
-        return NeedUpdateEnum.no;
-      } else {
-        return NeedUpdateEnum.withLoading;
-      }
+    if (keyFounded == null) {
+      loggerObject.v(box.keys);
+      loggerObject.f('need get data (key Not Founded): \n$key With loading');
+      return NeedUpdateEnum.withLoading;
     }
 
+    message += '\n found Key with ID : ';
     final latest =
         DateTime.tryParse((await getBox(latestUpdateBox)).get(name) ?? '');
 
-    final haveData = (await getList(name, id: id, by: by)).isNotEmpty;
+    final haveData = (await getList(name, filter: filter)).isNotEmpty;
 
-    if (latest == null) return NeedUpdateEnum.withLoading;
+    if (latest == null) {
+      loggerObject.f('need get data (latest): \n$key With loading');
+      return NeedUpdateEnum.withLoading;
+    }
 
     final d = DateTime.now().difference(latest).inMinutes.abs();
 
-    if (d > 0) {
+    if (d > 2) {
+      loggerObject.f(
+        'need get data :'
+        ' \n$key data > 2 '
+        '\n${haveData ? NeedUpdateEnum.noLoading.name : NeedUpdateEnum.withLoading.name}',
+      );
+
       return haveData ? NeedUpdateEnum.noLoading : NeedUpdateEnum.withLoading;
     }
-
+    loggerObject.f('need get data : \n$key Not get data');
     return NeedUpdateEnum.no;
   }
 }

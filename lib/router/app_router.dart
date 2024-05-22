@@ -1,14 +1,17 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mms/core/api_manager/request_models/command.dart';
-import 'package:mms/features/auth/ui/pages/intro_screen.dart';
+import 'package:mms/features/agendas/bloc/agenda_cubit/agenda_cubit.dart';
+import 'package:mms/features/agendas/data/response/agendas_response.dart';
 import 'package:mms/features/meetings/bloc/add_guest_cubit/add_guest_cubit.dart';
 import 'package:mms/features/meetings/bloc/meeting_cubit/meeting_cubit.dart';
 import 'package:mms/features/meetings/ui/pages/add_guest_page.dart';
 import 'package:mms/features/meetings/ui/pages/calender_screen.dart';
 import 'package:mms/services/location_service/my_location_cubit/my_location_cubit.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../core/injection/injection_container.dart';
+import '../features/agendas/bloc/add_comment_cubit/add_comment_cubit.dart';
+import '../features/agendas/ui/pages/agenda_page.dart';
 import '../features/auth/bloc/confirm_code_cubit/confirm_code_cubit.dart';
 import '../features/auth/bloc/forget_password_cubit/forget_password_cubit.dart';
 import '../features/auth/bloc/login_cubit/login_cubit.dart';
@@ -27,7 +30,6 @@ import '../features/auth/ui/pages/signup_page.dart';
 import '../features/auth/ui/pages/splash_screen_page.dart';
 import '../features/committees/bloc/committee_cubit/committee_cubit.dart';
 import '../features/committees/ui/pages/committee_page.dart';
-
 import '../features/files/bloc/upload_file_cubit/upload_file_cubit.dart';
 import '../features/home/ui/pages/home_page.dart';
 import '../features/meetings/bloc/add_absence_cubit/add_absence_cubit.dart';
@@ -282,8 +284,23 @@ Route<dynamic> routes(RouteSettings settings) {
     //endregion
     //endregion
 
-    //region webView
-
+    //region agenda
+    case RouteName.agenda:
+      //region
+      {
+        final providers = [
+          BlocProvider(create: (context) => sl<AddCommentCubit>()),
+        ];
+        return MaterialPageRoute(
+          builder: (_) {
+            return MultiBlocProvider(
+              providers: providers,
+              child: AgendaPage(agenda: settings.arguments as Agenda),
+            );
+          },
+        );
+      }
+    //endregion
     //endregion
 
     //region Chat
@@ -311,4 +328,5 @@ class RouteName {
   static const meeting = '/13';
   static const calenderMeetings = '/14';
   static const addGuest = '/15';
+  static const agenda = '/16';
 }

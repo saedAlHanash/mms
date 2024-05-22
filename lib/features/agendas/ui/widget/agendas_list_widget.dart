@@ -5,50 +5,23 @@ import 'package:image_multi_type/image_multi_type.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
 import '../../../../core/strings/app_color_manager.dart';
-import '../../../../core/widgets/my_expansion/item_expansion.dart';
-import '../../../../core/widgets/my_expansion/my_expansion_widget.dart';
-import '../../../../generated/assets.dart';
-import '../../../committees/data/response/committees_response.dart';
-import '../../data/response/goals_response.dart';
+import '../../../../router/app_router.dart';
+import '../../data/response/agendas_response.dart';
 
-class GoalListWidget extends StatelessWidget {
-  const GoalListWidget({super.key, required this.goals});
+class AgendaListWidget extends StatelessWidget {
+  const AgendaListWidget({super.key, required this.agendas});
 
-  final List<Goal> goals;
+  final List<Agenda> agendas;
 
   @override
   Widget build(BuildContext context) {
-    return MyExpansionWidget(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.0.r),
-          color: AppColorManager.f9),
-      items: goals
+    return Column(
+      children: agendas
           .map(
-            (e) => ItemExpansion(
-              header: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    DrawableText(
-                      matchParent: true,
-                      text: e.name,
-                      fontFamily: FontManager.cairoBold.name,
-                      size: 20.0.sp,
-                      maxLines: 1,
-                    ),
-                    DrawableText(
-                      matchParent: true,
-                      text: e.description,
-                      color: Colors.black87,
-                      maxLines: 1,
-                    ),
-                  ],
-                ),
-              ),
-              body: Column(
-                children: e.tasks.map((e) => _TaskWidget(task: e)).toList(),
-              ),
+            (e) => AgendaWidget(
+              agenda: e,
+              onTap: () =>
+                  Navigator.pushNamed(context, RouteName.agenda, arguments: e),
             ),
           )
           .toList(),
@@ -56,10 +29,40 @@ class GoalListWidget extends StatelessWidget {
   }
 }
 
-class _TaskWidget extends StatelessWidget {
-  const _TaskWidget({super.key, required this.task});
+class AgendaWidget extends StatelessWidget {
+  const AgendaWidget({super.key, required this.agenda, this.onTap});
 
-  final Task task;
+  final Agenda agenda;
+  final Function()? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColorManager.f9,
+        borderRadius: BorderRadius.circular(8.0.r),
+      ),
+      child: ListTile(
+        onTap: onTap,
+        title: DrawableText(
+          text: agenda.title,
+          fontFamily: FontManager.cairoBold.name,
+        ),
+        subtitle: DrawableText(text: agenda.description, color: Colors.grey),
+        trailing: ImageMultiType(
+          url: Icons.arrow_forward_ios,
+          height: 17.0.r,
+          width: 17.0.r,
+        ),
+      ),
+    );
+  }
+}
+
+class _CommentsWidget extends StatelessWidget {
+  const _CommentsWidget({required this.comment});
+
+  final Comment comment;
 
   @override
   Widget build(BuildContext context) {
@@ -79,14 +82,14 @@ class _TaskWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 DrawableText(
-                  text: task.name,
+                  text: comment.text,
                   fontFamily: FontManager.cairoBold.name,
                   size: 20.0.sp,
                   maxLines: 2,
                 ),
                 10.0.verticalSpace,
                 DrawableText(
-                  text: task.description,
+                  text: comment.date?.formatDateTime ?? '',
                   color: Colors.grey,
                 ),
               ],
@@ -103,7 +106,7 @@ class _TaskWidget extends StatelessWidget {
                   color: Colors.green,
                 ),
                 drawablePadding: 10.0.w,
-                text: task.startDate?.formatDate ?? '',
+                text: comment.party.name,
               ),
               20.0.verticalSpace,
               DrawableText(
@@ -114,7 +117,7 @@ class _TaskWidget extends StatelessWidget {
                   width: 17.0.r,
                 ),
                 drawablePadding: 10.0.w,
-                text: task.dueDate?.formatDate ?? '',
+                text: comment.party.company,
               ),
             ],
           ),

@@ -6,8 +6,8 @@ import '../../strings/app_color_manager.dart';
 
 class TextWithListDote extends StatelessWidget {
   const TextWithListDote(
-      {Key? key, this.textWidget, this.matchParent, this.color, this.text = ''})
-      : super(key: key);
+      { super.key, this.textWidget, this.matchParent, this.color, this.text = ''})
+     ;
 
   final Widget? textWidget;
   final String text;

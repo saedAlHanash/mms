@@ -1,11 +1,9 @@
 import 'dart:async';
-import 'dart:typed_data';
 
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/app/app_provider.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/features/profile/data/request/update_profile_request.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/error/error_manager.dart';
@@ -13,7 +11,6 @@ import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/abstraction.dart';
 import '../../../../core/util/pair_class.dart';
 import '../../../../generated/l10n.dart';
-import '../../../members/data/response/member_response.dart';
 
 part 'update_profile_state.dart';
 

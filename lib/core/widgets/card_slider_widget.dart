@@ -7,13 +7,13 @@ import 'package:mms/core/widgets/my_card_widget.dart';
 
 class CardSlider extends StatelessWidget {
   const CardSlider({
-    Key? key,
+     super.key,
     this.margin,
     this.stackChild,
     required this.images,
     this.height,
     this.width,
-  }) : super(key: key);
+  });
 
   final EdgeInsets? margin;
   final List<Widget>? stackChild;
@@ -104,14 +104,14 @@ class CardSlider extends StatelessWidget {
 
 class CardImageSlider extends StatefulWidget {
   const CardImageSlider({
-    Key? key,
+     super.key,
     this.margin,
     this.stackChild,
     required this.images,
     this.height,
     this.width,
     this.card = false,
-  }) : super(key: key);
+  });
 
   final EdgeInsets? margin;
   final List<Widget>? stackChild;
@@ -227,9 +227,9 @@ class _CardImageSliderState extends State<CardImageSlider> {
 
 class IndicatorSliderWidget extends StatefulWidget {
   const IndicatorSliderWidget({
-    Key? key,
+     super.key,
     required this.length,
-  }) : super(key: key);
+  });
 
   final int length;
 

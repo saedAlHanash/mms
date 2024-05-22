@@ -1,13 +1,13 @@
-part of 'goals_cubit.dart';
+part of 'agendas_cubit.dart';
 
-class GoaslInitial extends AbstractCubit<List<Goal>> {
-  // final GoalRequest request;
-  // final  bool goalParam;
+class GoaslInitial extends AbstractCubit<List<Agenda>> {
+  // final AgendaRequest request;
+  // final  bool agendaParam;
   const GoaslInitial({
     required super.result,
     super.error,
     // required this.request,
-    // required this.goalParam,
+    // required this.agendaParam,
     super.statuses,
   });//
 
@@ -15,8 +15,8 @@ class GoaslInitial extends AbstractCubit<List<Goal>> {
     return const GoaslInitial(
       result: [],
       error: '',
-      // goalParam: false,
-      // request: GoalRequest(),
+      // agendaParam: false,
+      // request: AgendaRequest(),
       statuses: CubitStatuses.init,
     );
   }
@@ -26,17 +26,17 @@ class GoaslInitial extends AbstractCubit<List<Goal>> {
 
   GoaslInitial copyWith({
     CubitStatuses? statuses,
-    List<Goal>? result,
+    List<Agenda>? result,
     String? error,
-    // GoalRequest? request,
-    // bool? goalParam,
+    // AgendaRequest? request,
+    // bool? agendaParam,
   }) {
     return GoaslInitial(
       statuses: statuses ?? this.statuses,
       result: result ?? this.result,
       error: error ?? this.error,
       // request: request ?? this.request,
-      // goalParam: goalParam ?? this.goalParam,
+      // agendaParam: agendaParam ?? this.agendaParam,
     );
   }
 }

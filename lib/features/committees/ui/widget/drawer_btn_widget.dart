@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 import 'package:mms/generated/assets.dart';
 
-import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/strings/app_color_manager.dart';
 
 class DrawerMemberBtnWidget extends StatefulWidget {
@@ -34,6 +33,30 @@ class _DrawerMemberBtnWidgetState extends State<DrawerMemberBtnWidget> {
           child: const ImageMultiType(
             url: Assets.iconsMembers,
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class ActionBarMemberWidget extends StatelessWidget {
+  const ActionBarMemberWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Scaffold.of(context).openEndDrawer();
+      },
+      child: Container(
+        padding: const EdgeInsets.all(12.0).r,
+        margin: const EdgeInsets.symmetric(horizontal: 20.0).r,
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          color: AppColorManager.mainColor,
+        ),
+        child: const ImageMultiType(
+          url: Assets.iconsMembers,
         ),
       ),
     );

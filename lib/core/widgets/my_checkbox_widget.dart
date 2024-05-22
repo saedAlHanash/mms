@@ -8,12 +8,12 @@ import '../strings/app_color_manager.dart';
 
 class MyCheckboxWidget extends StatefulWidget {
   const MyCheckboxWidget({
-    Key? key,
+     super.key,
     required this.items,
     this.buttonBuilder,
     this.onSelected,
     this.isRadio,
-  }) : super(key: key);
+  });
 
   final List<SpinnerItem> items;
   final bool? isRadio;

@@ -1,6 +1,6 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/error/error_manager.dart';

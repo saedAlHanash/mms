@@ -17,7 +17,7 @@ class MeetingCubit extends MCubit<MeetingInitial> {
   String get nameCache => 'meeting';
 
   @override
-  String get id => state.id;
+  String get filter => state.id;
 
   Future<void> getMeeting({String? id, bool newData = false}) async {
     emit(state.copyWith(id: id));

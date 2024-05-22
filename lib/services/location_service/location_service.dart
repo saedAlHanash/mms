@@ -1,10 +1,9 @@
-import 'package:mms/core/extensions/extensions.dart';
-import 'package:mms/services/show_messages_service.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:mms/core/extensions/extensions.dart';
+import 'package:mms/services/show_messages_service.dart';
 
 import '../../core/api_manager/api_service.dart';
-import '../../core/app/app_widget.dart';
 import '../../core/util/pair_class.dart';
 import 'my_location_cubit/osm_name_model.dart';
 

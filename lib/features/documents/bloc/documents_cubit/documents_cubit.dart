@@ -1,6 +1,5 @@
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/error/error_manager.dart';
@@ -17,11 +16,10 @@ class DocumentsCubit extends MCubit<DocumentsInitial> {
   @override
   String get nameCache => 'temp';
 
-  @override
-  String get id => '';
+
 
   @override
-  String get by => '';
+  String get filter => '';
 
   Future<void> getDocuments() async {
     if (await checkCashed()) return;

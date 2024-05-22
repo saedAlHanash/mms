@@ -8,14 +8,14 @@ import 'my_button.dart';
 
 class LoadMoreWidget extends StatelessWidget {
   const LoadMoreWidget({
-    Key? key,
+     super.key,
     required this.child,
     required this.length,
     required this.totalCount,
     this.statuses = CubitStatuses.init,
     required this.onNewCommand,
     required this.command,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final int length;

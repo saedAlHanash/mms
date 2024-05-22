@@ -1,4 +1,3 @@
-import 'package:mms/core/api_manager/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:mms/core/app/app_provider.dart';
@@ -8,7 +7,6 @@ import 'package:mms/router/app_router.dart';
 import '../../generated/l10n.dart';
 import '../app/app_widget.dart';
 import '../util/abstraction.dart';
-import '../util/shared_preferences.dart';
 import '../util/snack_bar_message.dart';
 
 class ErrorManager {

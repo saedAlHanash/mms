@@ -1,259 +1,43 @@
 {
   "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
   "title": "string",
-  "meetingPlace": "string",
-  "fromDate": "2024-05-21T13:29:38.055Z",
-  "toDate": "2024-05-21T13:29:38.055Z",
-  "scheduledDate": "2024-05-21T13:29:38.055Z",
-  "status": 0,
-  "committeeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "committeeName": "string",
-  "hasRequestAbsence": true,
-  "attendeesList": [
+  "description": "string",
+  "fromDate": "2024-05-22T11:43:48.089Z",
+  "toDate": "2024-05-22T11:43:48.089Z",
+  "meetingId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "parentId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "comments": [
     {
       "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "attendanceDate": "2024-05-21T13:29:38.055Z",
-      "hasAttended": true,
+      "text": "string",
+      "date": "2024-05-22T11:43:48.089Z",
       "partyId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "fullName": "string"
-    }
-  ],
-  "guestsList": [
-    {
-      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "meetingId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "firstName": "string",
-      "lastName": "string",
-      "email": "string",
-      "phone": "string",
-      "company": "string"
-    }
-  ],
-  "discussions": [
-    {
-      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "meetingId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "topic": "string",
-      "date": "2024-05-21T13:29:38.055Z",
-      "status": 0,
-      "comments": [
-        {
-          "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-          "text": "string",
-          "date": "2024-05-21T13:29:38.055Z",
-          "partyId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-          "party": {
-            "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "userName": "string",
-            "firstName": "string",
-            "middleName": "string",
-            "lastName": "string",
-            "dob": "2024-05-21",
-            "gender": 0,
-            "address": "string",
-            "email": "string",
-            "mobile": "string",
-            "phone": "string",
-            "workPhone": "string",
-            "personalPhoto": "string",
-            "company": "string",
-            "isUserId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "isCustomerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "workUnitId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "workUnit": "string",
-            "committeesNumber": 0,
-            "tasksNumber": 0
-          },
-          "discussionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-        }
-      ]
-    }
-  ],
-  "documents": [
-    {
-      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "documentDate": "2024-05-21",
-      "name": "string",
-      "isPublished": true,
-      "media": {
-        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "fileName": "string",
-        "originalFileName": "string",
-        "savedPath": "string",
-        "mime": "string"
-      }
-    }
-  ],
-  "agendaItems": [
-    {
-      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "title": "string",
-      "description": "string",
-      "fromDate": "2024-05-21T13:29:38.055Z",
-      "toDate": "2024-05-21T13:29:38.055Z",
-      "meetingId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "parentId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "comments": [
-        {
-          "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-          "text": "string",
-          "date": "2024-05-21T13:29:38.055Z",
-          "partyId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-          "party": {
-            "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "userName": "string",
-            "firstName": "string",
-            "middleName": "string",
-            "lastName": "string",
-            "dob": "2024-05-21",
-            "gender": 0,
-            "address": "string",
-            "email": "string",
-            "mobile": "string",
-            "phone": "string",
-            "workPhone": "string",
-            "personalPhoto": "string",
-            "company": "string",
-            "isUserId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "isCustomerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "workUnitId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "workUnit": "string",
-            "committeesNumber": 0,
-            "tasksNumber": 0
-          },
-          "agendaItemId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-        }
-      ],
-      "childrenItems": [
-        "string"
-      ]
-    }
-  ],
-  "location": {
-    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "meetingId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "address": "string",
-    "locationType": 0,
-    "onlineMeetingLinks": [
-      {
-        "link": "string",
-        "platform": 0
-      }
-    ]
-  },
-  "absenceRequests": [
-    {
-      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
       "party": {
         "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "userName": "string",
         "firstName": "string",
         "middleName": "string",
         "lastName": "string",
-        "personalPhoto": "string"
+        "dob": "2024-05-22",
+        "gender": 0,
+        "address": "string",
+        "email": "string",
+        "mobile": "string",
+        "phone": "string",
+        "workPhone": "string",
+        "personalPhoto": "string",
+        "company": "string",
+        "isUserId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "isCustomerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "workUnitId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "workUnit": "string",
+        "committeesNumber": 0,
+        "tasksNumber": 0
       },
-      "meetingId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "status": 0,
-      "date": "2024-05-21T13:29:38.055Z"
+      "agendaItemId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
     }
   ],
-  "guestSuggestions": [
-    {
-      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "firstName": "string",
-      "lastName": "string",
-      "company": "string",
-      "email": "string",
-      "phone": "string",
-      "meetingID": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "partyID": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-    }
-  ],
-  "decisions": [
-    {
-      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "meetingId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "statement": "string",
-      "date": "2024-05-21T13:29:38.055Z"
-    }
-  ],
-  "polls": [
-    {
-      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "meetingId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "topic": "string",
-      "date": "2024-05-21T13:29:38.055Z",
-      "status": 0,
-      "options": [
-        {
-          "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-          "option": "string"
-        }
-      ]
-    }
-  ],
-  "tasks": [
-    {
-      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "description": "string",
-      "name": "string",
-      "startDate": "2024-05-21T13:29:38.055Z",
-      "dueDate": "2024-05-21T13:29:38.055Z",
-      "taskStatus": 0,
-      "memberTasks": [
-        {
-          "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-          "party": {
-            "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "userName": "string",
-            "firstName": "string",
-            "middleName": "string",
-            "lastName": "string",
-            "dob": "2024-05-21",
-            "gender": 0,
-            "address": "string",
-            "email": "string",
-            "mobile": "string",
-            "phone": "string",
-            "workPhone": "string",
-            "personalPhoto": "string",
-            "company": "string",
-            "isUserId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "isCustomerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "workUnitId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "workUnit": "string",
-            "committeesNumber": 0,
-            "tasksNumber": 0
-          },
-          "meetingTaskId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-          "role": "string"
-        }
-      ]
-    }
-  ],
-  "minutes": {
-    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "minuteId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "date": "2024-05-21T13:29:38.055Z",
-    "status": 0,
-    "media": {
-      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "fileName": "string",
-      "originalFileName": "string",
-      "savedPath": "string",
-      "mime": "string"
-    }
-  },
-  "pollResults": [
-    {
-      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "topic": "string",
-      "totalVotes": 0,
-      "voteResults": [
-        {
-          "option": "string",
-          "voteCount": 0
-        }
-      ]
-    }
+  "childrenItems": [
+    "string"
   ]
 }

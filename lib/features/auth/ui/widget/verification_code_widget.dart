@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
 class PinCodeWidget extends StatelessWidget {
-  const PinCodeWidget({Key? key, this.onCompleted, this.onChange})
-      : super(key: key);
+  const PinCodeWidget({ super.key, this.onCompleted, this.onChange})
+     ;
   final Function(String)? onCompleted;
   final Function(String)? onChange;
 

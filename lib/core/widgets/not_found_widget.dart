@@ -5,10 +5,10 @@ import 'package:image_multi_type/image_multi_type.dart';
 
 class NotFoundWidget extends StatelessWidget {
   const NotFoundWidget({
-    Key? key,
+     super.key,
     required this.text,
     required this.icon,
-  }) : super(key: key);
+  });
   final String text;
   final dynamic icon;
 

@@ -1,13 +1,10 @@
 import 'dart:typed_data';
 
-import 'package:image_multi_type/circle_image_widget.dart';
-import 'package:mms/core/widgets/my_text_form_widget.dart';
-import 'package:drawable_text/drawable_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_multi_type/circle_image_widget.dart';
 import 'package:image_multi_type/image_multi_type.dart';
-import 'package:image_multi_type/round_image_widget.dart';
+import 'package:mms/core/widgets/my_text_form_widget.dart';
 
 import '../../../../core/util/pick_image_helper.dart';
 import '../../generated/l10n.dart';

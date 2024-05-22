@@ -1,29 +1,26 @@
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/error/error_manager.dart';
 import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/abstraction.dart';
 import '../../../../core/util/pair_class.dart';
-import '../../data/response/goals_response.dart';
+import '../../data/response/agendas_response.dart';
 
-part 'goals_state.dart';
+part 'agendas_state.dart';
 
 class AgendasCubit extends MCubit<GoaslInitial> {
   AgendasCubit() : super(GoaslInitial.initial());
 
   @override
-  String get nameCache => 'goal';
+  String get nameCache => 'agenda';
 
+  
   @override
-  String get id => '';
+  String get filter => '';
 
-  @override
-  String get by => '';
-
-  Future<void> getGoal() async {
+  Future<void> getAgenda() async {
     if (await checkCashed()) return;
 
     final pair = await _getDataApi();
@@ -40,8 +37,8 @@ class AgendasCubit extends MCubit<GoaslInitial> {
     }
   }
 
-  Future<Pair<List<Goal>?, String?>> _getDataApi() async {
-    final response = await APIService().getApi(url: GetUrl.goal);
+  Future<Pair<List<Agenda>?, String?>> _getDataApi() async {
+    final response = await APIService().getApi(url: GetUrl.agendas);
 
     if (response.statusCode.success) {
       return Pair([], null);
@@ -56,7 +53,7 @@ class AgendasCubit extends MCubit<GoaslInitial> {
     emit(
       state.copyWith(
         statuses: cacheType.getState,
-        result: (await getListCached()).map((e) => Goal.fromJson(e)).toList(),
+        result: (await getListCached()).map((e) => Agenda.fromJson(e)).toList(),
       ),
     );
 

@@ -1,9 +1,3 @@
-import 'dart:ffi';
-
-import 'package:collection/collection.dart';
-import 'package:mms/core/app/app_provider.dart';
-
-import '../../../../core/strings/enum_manager.dart';
 import '../../../documents/data/response/documents_response.dart';
 import '../../../goals/data/response/goals_response.dart';
 import '../../../members/data/response/member_response.dart';

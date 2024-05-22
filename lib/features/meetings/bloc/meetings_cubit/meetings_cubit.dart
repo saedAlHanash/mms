@@ -18,13 +18,9 @@ class MeetingsCubit extends MCubit<MeetingsInitial> {
   String get nameCache => 'meeting';
 
   @override
-  String get id => '';
-
-  @override
-  String get by => state.filterRequest?.getKey ?? '';
+  String get filter => state.filterRequest?.getKey ?? '';
 
   Future<void> getMeetings({FilterRequest? request}) async {
-
     emit(state.copyWith(filterRequest: request));
 
     if (await checkCashed()) return;
@@ -59,12 +55,13 @@ class MeetingsCubit extends MCubit<MeetingsInitial> {
 
   Future<bool> checkCashed() async {
     final cacheType = await needGetData();
-
+    final list =
+        (await getListCached()).map((e) => Meeting.fromJson(e)).toList();
     emit(
       state.copyWith(
         statuses: cacheType.getState,
-        result:
-            (await getListCached()).map((e) => Meeting.fromJson(e)).toList(),
+        events: _getMapEvent(list),
+        result: list,
       ),
     );
 

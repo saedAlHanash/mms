@@ -89,6 +89,10 @@ class GetUrl {
   static const loggedParty = 'Party/GetLoggedParty';
 
   static const meeting = 'Meeting/GetDetails';
+
+  static const agenda = '';
+
+  static const agendas = '';
 }
 
 class PostUrl {
@@ -139,6 +143,8 @@ class PostUrl {
   static const addGuest = 'Meeting/AddGuestSuggestion';
 
   static const addAbsence = 'AbsenceRequest/Add';
+
+  static const addComment = 'AgendaItemComment/Add';
 
   static String addMessage(int id) {
     return 'drivers/messages/$id/add';

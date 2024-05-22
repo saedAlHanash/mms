@@ -6,11 +6,11 @@ import 'circle_indicator.dart';
 
 class MyTabWidget extends StatelessWidget {
   const MyTabWidget({
-    Key? key,
+     super.key,
     required this.tabs,
     this.height,
     required this.tabsView,
-  }) : super(key: key);
+  });
 
   final List<Widget> tabs;
   final List<Widget> tabsView;

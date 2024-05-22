@@ -1,6 +1,5 @@
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/error/error_manager.dart';
@@ -8,7 +7,6 @@ import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/abstraction.dart';
 import '../../../../core/util/pair_class.dart';
 import '../../data/response/member_response.dart';
-
 
 part 'members_state.dart';
 
@@ -18,11 +16,10 @@ class MembersCubit extends MCubit<MembersInitial> {
   @override
   String get nameCache => 'temp';
 
-  @override
-  String get id => '';
+
 
   @override
-  String get by => '';
+  String get filter => '';
 
   Future<void> getMembers() async {
     if (await checkCashed()) return;

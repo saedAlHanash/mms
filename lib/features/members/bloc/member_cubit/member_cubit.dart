@@ -8,7 +8,6 @@ import '../../../../core/util/abstraction.dart';
 import '../../../../core/util/pair_class.dart';
 import '../../data/response/member_response.dart';
 
-
 part 'member_state.dart';
 
 class MemberCubit extends MCubit<MemberInitial> {

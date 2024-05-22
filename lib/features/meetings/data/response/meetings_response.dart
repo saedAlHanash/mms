@@ -1,7 +1,7 @@
 import '../../../../core/strings/enum_manager.dart';
+import '../../../agendas/data/response/agendas_response.dart';
 import '../../../attendees/data/response/attendee_response.dart';
 import '../../../documents/data/response/documents_response.dart';
-import '../../../members/data/response/member_response.dart';
 
 class MeetingsResponse {
   MeetingsResponse({
@@ -85,7 +85,7 @@ class Meeting {
   final List<Guest> guestsList;
   final List<Discussion> discussions;
   final List<Document> documents;
-  final List<AgendaItem> agendaItems;
+  final List<Agenda> agendaItems;
   final LocationDto? locationDto;
   final List<AbsenceRequest> absenceRequests;
   final List<Guest> guestSuggestions;
@@ -121,8 +121,8 @@ class Meeting {
               json["documents"]!.map((x) => Document.fromJson(x))),
       agendaItems: json["agendaItems"] == null
           ? []
-          : List<AgendaItem>.from(
-              json["agendaItems"]!.map((x) => AgendaItem.fromJson(x))),
+          : List<Agenda>.from(
+              json["agendaItems"]!.map((x) => Agenda.fromJson(x))),
       locationDto: json["locationDto"] == null
           ? null
           : LocationDto.fromJson(json["locationDto"]),
@@ -236,103 +236,6 @@ class AbsenceRequestParty {
         "middleName": middleName,
         "lastName": lastName,
         "personalPhoto": personalPhoto,
-      };
-}
-
-class AgendaItem {
-  AgendaItem({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.fromDate,
-    required this.toDate,
-    required this.meetingId,
-    required this.parentId,
-    required this.comments,
-    required this.childrenItems,
-  });
-
-  final String id;
-  final String title;
-  final String description;
-  final DateTime? fromDate;
-  final DateTime? toDate;
-  final String meetingId;
-  final String parentId;
-  final List<Comment> comments;
-  final List<String> childrenItems;
-
-  factory AgendaItem.fromJson(Map<String, dynamic> json) {
-    return AgendaItem(
-      id: json["id"] ?? "",
-      title: json["title"] ?? "",
-      description: json["description"] ?? "",
-      fromDate: DateTime.tryParse(json["fromDate"] ?? ""),
-      toDate: DateTime.tryParse(json["toDate"] ?? ""),
-      meetingId: json["meetingId"] ?? "",
-      parentId: json["parentId"] ?? "",
-      comments: json["comments"] == null
-          ? []
-          : List<Comment>.from(
-              json["comments"]!.map((x) => Comment.fromJson(x))),
-      childrenItems: json["childrenItems"] == null
-          ? []
-          : List<String>.from(json["childrenItems"]!.map((x) => x)),
-    );
-  }
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "title": title,
-        "description": description,
-        "fromDate": fromDate?.toIso8601String(),
-        "toDate": toDate?.toIso8601String(),
-        "meetingId": meetingId,
-        "parentId": parentId,
-        "comments": comments.map((x) => x.toJson()).toList(),
-        "childrenItems": childrenItems.map((x) => x).toList(),
-      };
-}
-
-class Comment {
-  Comment({
-    required this.id,
-    required this.text,
-    required this.date,
-    required this.partyId,
-    required this.party,
-    required this.agendaItemId,
-    required this.discussionId,
-  });
-
-  final String id;
-  final String text;
-  final DateTime? date;
-  final String partyId;
-  final Party? party;
-  final String agendaItemId;
-  final String discussionId;
-
-  factory Comment.fromJson(Map<String, dynamic> json) {
-    return Comment(
-      id: json["id"] ?? "",
-      text: json["text"] ?? "",
-      date: DateTime.tryParse(json["date"] ?? ""),
-      partyId: json["partyId"] ?? "",
-      party: json["party"] == null ? null : Party.fromJson(json["party"]),
-      agendaItemId: json["agendaItemId"] ?? "",
-      discussionId: json["discussionId"] ?? "",
-    );
-  }
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "text": text,
-        "date": date?.toIso8601String(),
-        "partyId": partyId,
-        "party": party?.toJson(),
-        "agendaItemId": agendaItemId,
-        "discussionId": discussionId,
       };
 }
 
@@ -471,6 +374,8 @@ class Guest {
       guestMeetingId: json["meetingId"] ?? "",
     );
   }
+
+  get name => '$firstName $lastName';
 
   Map<String, dynamic> toJson() => {
         "id": id,

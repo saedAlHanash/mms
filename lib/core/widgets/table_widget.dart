@@ -6,10 +6,10 @@ import 'package:mms/core/widgets/my_card_widget.dart';
 
 class MyTableWidget extends StatelessWidget {
   const MyTableWidget({
-    Key? key,
+     super.key,
     required this.children,
     required this.title,
-  }) : super(key: key);
+  });
 
   final Map<String, String> children;
   final String title;

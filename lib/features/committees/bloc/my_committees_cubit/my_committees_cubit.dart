@@ -1,6 +1,5 @@
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/error/error_manager.dart';
@@ -17,11 +16,10 @@ class MyCommitteesCubit extends MCubit<MyCommitteesInitial> {
   @override
   String get nameCache => 'myCommittees';
 
-  @override
-  String get id => '';
+
 
   @override
-  String get by => '';
+  String get filter => '';
 
   Future<void> getMyCommittees() async {
     if (await checkCashed()) return;

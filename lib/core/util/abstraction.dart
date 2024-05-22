@@ -30,26 +30,24 @@ abstract class MCubit<T> extends Cubit<T> {
 
   String get nameCache => '';
 
-  String get id => '';
-
-  String get by => '';
+  String get filter => '';
 
   Future<NeedUpdateEnum> needGetData() async {
     if (nameCache.isEmpty) return NeedUpdateEnum.withLoading;
-    return await CachingService.needGetData(nameCache, id: id, by: by);
+    return await CachingService.needGetData(nameCache,  filter: filter);
   }
 
   Future<void> storeData(dynamic data) async {
-    await CachingService.sortData(data: data, name: nameCache, id: id, by: by);
+    await CachingService.sortData(data: data, name: nameCache,  filter: filter);
   }
 
   Future<Iterable<dynamic>> getListCached() async {
-    final data = await CachingService.getList(nameCache, id: id, by: by);
+    final data = await CachingService.getList(nameCache,  filter: filter);
     return data;
   }
 
   Future<dynamic> getDataCached() async {
-    return (await CachingService.getData(nameCache, id: id, by: by)) ??
+    return (await CachingService.getData(nameCache,  filter: filter)) ??
         <String, dynamic>{};
   }
 }

@@ -2,18 +2,13 @@ import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:image_multi_type/circle_image_widget.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 import 'package:mms/core/app/app_provider.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
-import 'package:mms/core/util/snack_bar_message.dart';
 import 'package:mms/core/widgets/not_found_widget.dart';
 
 import '../../../../core/util/my_style.dart';
-import '../../../../core/widgets/saed_taple_widget.dart';
-import '../../../../generated/assets.dart';
 import '../../../../router/app_router.dart';
 import '../../bloc/my_committees_cubit/my_committees_cubit.dart';
 

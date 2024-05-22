@@ -1,13 +1,6 @@
 import 'dart:ui';
 
-import 'dart:ui';
-
-import 'dart:ui';
-
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:mms/core/strings/app_color_manager.dart';
 
 import '../../generated/l10n.dart';
 

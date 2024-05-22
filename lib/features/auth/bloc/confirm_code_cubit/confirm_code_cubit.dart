@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:mms/core/app/app_provider.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/util/abstraction.dart';
 

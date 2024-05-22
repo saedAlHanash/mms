@@ -205,7 +205,7 @@
 // class BaseStepper extends StatefulWidget {
 //   /// Creates a basic stepper.
 //   BaseStepper({
-//     Key? key,
+//      super.key,
 //     this.children,
 //     this.nextPreviousButtonsDisabled = true,
 //     this.stepTappingDisabled = true,
@@ -229,7 +229,7 @@
 //     this.scrollingDisabled = false,
 //     this.activeStep = 0,
 //     this.alignment,
-//   }) : super(key: key) {
+//   }) {
 //     assert(
 //     lineDotRadius <= 10 && lineDotRadius > 0,
 //     'lineDotRadius must be less than or equal to 10 and greater than 0',

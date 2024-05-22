@@ -126,7 +126,7 @@ class User {
       firstName: json["firstName"] ?? "",
       middleName: json["middleName"] ?? "",
       lastName: json["lastName"] ?? "",
-      imageUrl: json["imageUrl"].toString().fixUrl(Assets.imagesAvatar) ?? '',
+      imageUrl: json["imageUrl"].toString().fixUrl(Assets.imagesAvatar),
       workPhoneNumber: json["workPhoneNumber"] ?? "",
       phoneNumber: json["phoneNumber"] ?? "",
       phoneNumberCode: json["phoneNumberCode"] ?? "",

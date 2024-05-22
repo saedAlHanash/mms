@@ -1,18 +1,8 @@
-import 'dart:async';
-
-import 'package:mms/core/api_manager/api_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
-import 'package:mms/core/util/shared_preferences.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
-import '../../../../core/app/app_provider.dart';
-import '../../../../core/strings/enum_manager.dart';
-import '../../../../core/util/my_style.dart';
 import '../../../../generated/assets.dart';
-import '../../../../router/app_router.dart';
 
 class IntroScreen extends StatelessWidget {
   const IntroScreen({super.key});

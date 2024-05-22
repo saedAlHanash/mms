@@ -1,77 +1,103 @@
-class Goal {
-  Goal({
+import 'package:collection/collection.dart';
+import 'package:mms/core/app/app_provider.dart';
+
+import '../../../members/data/response/member_response.dart';
+
+class Agenda {
+  Agenda({
     required this.id,
-    required this.name,
+    required this.title,
     required this.description,
-    required this.goalDate,
-    required this.committeeId,
-    required this.tasks,
+    required this.fromDate,
+    required this.toDate,
+    required this.meetingId,
+    required this.parentId,
+    required this.comments,
+    required this.childrenItems,
   });
 
   final String id;
-  final String name;
+  final String title;
   final String description;
-  final DateTime? goalDate;
-  final String committeeId;
-  final List<Task> tasks;
+  final DateTime? fromDate;
+  final DateTime? toDate;
+  final String meetingId;
+  final String parentId;
+  final List<Comment> comments;
+  final List<String> childrenItems;
 
-  factory Goal.fromJson(Map<String, dynamic> json) {
-    return Goal(
+  bool get haveMyComment =>
+      comments.firstWhereOrNull((e) => e.partyId == AppProvider.getParty.id) !=
+      null;
+  Comment? get myComment =>
+      comments.firstWhereOrNull((e) => e.partyId == AppProvider.getParty.id);
+
+  factory Agenda.fromJson(Map<String, dynamic> json) {
+    return Agenda(
       id: json["id"] ?? "",
-      name: json["name"] ?? "",
+      title: json["title"] ?? "",
       description: json["description"] ?? "",
-      goalDate: DateTime.tryParse(json["goalDate"] ?? ""),
-      committeeId: json["committeeId"] ?? "",
-      tasks: json["tasks"] == null
+      fromDate: DateTime.tryParse(json["fromDate"] ?? ""),
+      toDate: DateTime.tryParse(json["toDate"] ?? ""),
+      meetingId: json["meetingId"] ?? "",
+      parentId: json["parentId"] ?? "",
+      comments: json["comments"] == null
           ? []
-          : List<Task>.from(json["tasks"]!.map((x) => Task.fromJson(x))),
+          : List<Comment>.from(
+              json["comments"]!.map((x) => Comment.fromJson(x))),
+      childrenItems: json["childrenItems"] == null
+          ? []
+          : List<String>.from(json["childrenItems"]!.map((x) => x)),
     );
   }
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "name": name,
+        "title": title,
         "description": description,
-        "goalDate": goalDate?.toIso8601String(),
-        "committeeId": committeeId,
-        "tasks": tasks.map((x) => x.toJson()).toList(),
+        "fromDate": fromDate?.toIso8601String(),
+        "toDate": toDate?.toIso8601String(),
+        "meetingId": meetingId,
+        "parentId": parentId,
+        "comments": comments.map((x) => x.toJson()).toList(),
+        "childrenItems": childrenItems.map((x) => x).toList(),
       };
 }
 
-class Task {
-  Task({
+class Comment {
+  Comment({
     required this.id,
-    required this.name,
-    required this.description,
-    required this.startDate,
-    required this.dueDate,
-    required this.goalId,
+    required this.text,
+    required this.date,
+    required this.partyId,
+    required this.party,
+    required this.agendaItemId,
   });
 
   final String id;
-  final String name;
-  final String description;
-  final DateTime? startDate;
-  final DateTime? dueDate;
-  final String goalId;
+  final String text;
+  final DateTime? date;
+  final String partyId;
+  final Party party;
+  final String agendaItemId;
 
-  factory Task.fromJson(Map<String, dynamic> json) {
-    return Task(
+  factory Comment.fromJson(Map<String, dynamic> json) {
+    return Comment(
       id: json["id"] ?? "",
-      name: json["name"] ?? "",
-      description: json["description"] ?? "",
-      startDate: DateTime.tryParse(json["startDate"] ?? ""),
-      dueDate: DateTime.tryParse(json["dueDate"] ?? ""),
-      goalId: json["goalId"] ?? "",
+      text: json["text"] ?? "",
+      date: DateTime.tryParse(json["date"] ?? ""),
+      partyId: json["partyId"] ?? "",
+      party: Party.fromJson(json["party"] ?? {}),
+      agendaItemId: json["agendaItemId"] ?? "",
     );
   }
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "name": name,
-        "description": description,
-        "startDate": startDate?.toIso8601String(),
-        "dueDate": dueDate?.toIso8601String(),
-        "goalId": goalId,
+        "text": text,
+        "date": date?.toIso8601String(),
+        "partyId": partyId,
+        "party": party.toJson(),
+        "agendaItemId": agendaItemId,
       };
 }

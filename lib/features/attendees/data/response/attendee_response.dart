@@ -1,4 +1,3 @@
-import '../../../meetings/data/response/meetings_response.dart';
 import '../../../members/data/response/member_response.dart';
 
 class Attendee {

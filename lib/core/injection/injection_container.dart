@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../features/agendas/bloc/add_comment_cubit/add_comment_cubit.dart';
 import '../../features/auth/bloc/confirm_code_cubit/confirm_code_cubit.dart';
 import '../../features/auth/bloc/forget_password_cubit/forget_password_cubit.dart';
 import '../../features/auth/bloc/get_me_cubit/get_me_cubit.dart';
@@ -14,7 +15,6 @@ import '../../features/auth/bloc/reset_password_cubit/reset_password_cubit.dart'
 import '../../features/auth/bloc/signup_cubit/signup_cubit.dart';
 import '../../features/committees/bloc/committee_cubit/committee_cubit.dart';
 import '../../features/committees/bloc/my_committees_cubit/my_committees_cubit.dart';
-
 import '../../features/files/bloc/upload_file_cubit/upload_file_cubit.dart';
 import '../../features/meetings/bloc/add_absence_cubit/add_absence_cubit.dart';
 import '../../features/meetings/bloc/add_guest_cubit/add_guest_cubit.dart';
@@ -69,6 +69,7 @@ Future<void> init() async {
   sl.registerFactory(() => MeetingCubit());
   sl.registerFactory(() => AddGuestCubit());
   sl.registerFactory(() => AddAbsenceCubit());
+  sl.registerFactory(() => AddCommentCubit());
 
   //endregion
 

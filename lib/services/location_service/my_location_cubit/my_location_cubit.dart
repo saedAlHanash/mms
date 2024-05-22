@@ -1,15 +1,9 @@
-import 'dart:convert';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mms/core/util/abstraction.dart';
 import 'package:mms/services/location_service/location_service.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../../core/api_manager/api_service.dart';
 import '../../../core/strings/enum_manager.dart';
-import 'osm_name_model.dart';
 
 part 'my_location_state.dart';
 

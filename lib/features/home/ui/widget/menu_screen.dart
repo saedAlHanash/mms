@@ -1,34 +1,17 @@
 import 'package:drawable_text/drawable_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:image_multi_type/circle_image_widget.dart';
 import 'package:image_multi_type/image_multi_type.dart';
-import 'package:mms/core/api_manager/api_service.dart';
-import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/app/app_provider.dart';
-import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/util/shared_preferences.dart';
 import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
-import 'package:mms/core/widgets/my_card_widget.dart';
-import 'package:mms/core/widgets/my_text_form_widget.dart';
 import 'package:mms/router/app_router.dart';
 
-import '../../../../../core/helper/launcher_helper.dart';
 import '../../../../../core/strings/app_color_manager.dart';
-import '../../../../../core/strings/app_string_manager.dart';
-import '../../../../../core/strings/enum_manager.dart';
-import '../../../../../core/util/my_style.dart';
-import '../../../../../core/util/snack_bar_message.dart';
-import '../../../../../core/widgets/my_button.dart';
 import '../../../../../core/widgets/switch_widget.dart';
 import '../../../../../generated/assets.dart';
 import '../../../../../generated/l10n.dart';
-import '../../../../../main.dart';
 import '../../../../services/app_info_service.dart';
 
 class MenuScreen extends StatelessWidget {

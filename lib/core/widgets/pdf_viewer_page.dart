@@ -4,7 +4,7 @@
 //
 //
 // class PdfViewerWidget extends StatelessWidget {
-//   const PdfViewerWidget({Key? key, required this.url}) : super(key: key);
+//   const PdfViewerWidget({ super.key, required this.url});
 //
 //   final String url;
 //

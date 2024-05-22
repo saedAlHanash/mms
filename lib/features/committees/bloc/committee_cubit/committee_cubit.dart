@@ -1,6 +1,5 @@
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/error/error_manager.dart';
@@ -18,10 +17,8 @@ class CommitteeCubit extends MCubit<CommitteeInitial> {
   String get nameCache => 'committee';
 
   @override
-  String get id => state.uuid;
+  String get filter => state.uuid;
 
-  @override
-  String get by => '';
 
   Future<void> getCommittee({required String uuid}) async {
     emit(state.copyWith(uuid: uuid));
