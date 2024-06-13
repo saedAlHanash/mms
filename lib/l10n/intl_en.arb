@@ -247,5 +247,7 @@
   "addGuest": "Add guest",
   "requestAbsence": "Requests for absence",
   "company": "Company",
-  "devBy": "Power by "
+  "devBy": "Power by ",
+  "notifications": "Notifications",
+  "vote": "Vote"
 }

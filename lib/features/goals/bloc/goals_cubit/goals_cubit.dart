@@ -39,7 +39,7 @@ class GoalsCubit extends MCubit<GoaslInitial> {
   }
 
   Future<Pair<List<Goal>?, String?>> _getDataApi() async {
-    final response = await APIService().getApi(url: GetUrl.goal);
+    final response = await APIService().callApi(type: ApiType.get,url: GetUrl.goal);
 
     if (response.statusCode.success) {
       return Pair([], null);

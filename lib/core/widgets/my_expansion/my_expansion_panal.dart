@@ -70,14 +70,13 @@ class MyExpansionPanel {
   /// The [headerBuilder], [body], and [isExpanded] arguments must not be null.
   MyExpansionPanel({
     this.onTapItem,
-    this.withSideColor,
     required this.enable,
     required this.headerBuilder,
     required this.body,
     this.isExpanded = false,
     this.canTapOnHeader = false,
     this.backgroundColor,
-    this.bodyPadding,
+    this.margin,
   });
 
   /// The widget builder that builds the expansion panels' header.
@@ -93,10 +92,8 @@ class MyExpansionPanel {
   /// Defaults to false.
   final bool isExpanded;
 
-  final bool? withSideColor;
-
   final bool enable;
-  final EdgeInsets? bodyPadding;
+  final EdgeInsets? margin;
 
   final Function(int index)? onTapItem;
 
@@ -374,17 +371,18 @@ class _MyExpansionPanelListState extends State<MyExpansionPanelList> {
       }
 
       final MyExpansionPanel child = widget.children[index];
-      final Widget headerWidget = child.headerBuilder(
+      final headerWidget = child.headerBuilder(
         context,
         _isChildExpanded(index),
       );
 
       Widget expandIconContainer = ExpandIcon(
         isExpanded: _isChildExpanded(index),
-        // padding: const EdgeInsets.all(16.0),
         color: AppColorManager.mainColor,
         disabledColor: AppColorManager.mainColor,
         expandedColor: AppColorManager.mainColor,
+        padding: EdgeInsets.zero,
+        size: 24.0.r,
         onPressed: (!child.canTapOnHeader)
             ? (bool isExpanded) => _handlePressed(isExpanded, index)
             : null,
@@ -400,22 +398,15 @@ class _MyExpansionPanelListState extends State<MyExpansionPanelList> {
           child: expandIconContainer,
         );
       }
-      Widget header = Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0).w,
+      Widget header = Container(
+        decoration: widget.decoration,
         child: Row(
-          children: <Widget>[
+          children: [
             Expanded(
               child: AnimatedContainer(
                 duration: widget.animationDuration,
                 curve: Curves.fastOutSlowIn,
-                margin: _isChildExpanded(index)
-                    ? widget.expandedHeaderPadding
-                    : EdgeInsets.zero,
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(
-                      minHeight: _kPanelHeaderCollapsedHeight),
-                  child: headerWidget,
-                ),
+                child: headerWidget,
               ),
             ),
             expandIconContainer,
@@ -434,12 +425,10 @@ class _MyExpansionPanelListState extends State<MyExpansionPanelList> {
           ),
         );
       }
+
       final itemWidget = AnimatedCrossFade(
         firstChild: Container(height: 0.0),
-        secondChild: Padding(
-          padding: widget.children[index].bodyPadding ?? EdgeInsets.zero,
-          child: child.body,
-        ),
+        secondChild: child.body,
         firstCurve: const Interval(0.0, 0.6, curve: Curves.fastOutSlowIn),
         secondCurve: const Interval(0.4, 1.0, curve: Curves.fastOutSlowIn),
         sizeCurve: Curves.fastOutSlowIn,
@@ -452,34 +441,14 @@ class _MyExpansionPanelListState extends State<MyExpansionPanelList> {
       items.add(
         MaterialSlice(
           key: _SaltedKey<BuildContext, int>(context, index * 2),
-          child: widget.decoration == null
-              ? Column(
-                children: [
-                  MyCardWidget(
-                      padding: const EdgeInsets.only(bottom: 10.0).h,
-                      cardColor:
-                          widget.children[index].backgroundColor ?? Colors.white,
-                      elevation: 3.0,
-                      margin: const EdgeInsets.symmetric(vertical: 10.0).h,
-                      child: header,
-                    ),
-                  itemWidget
-                ],
-              )
-              : Column(
-                children: [
-                  Container(
-                      alignment: Alignment.center,
-                      decoration: widget.decoration!,
-                      margin: const EdgeInsets.symmetric(vertical: 10.0).h,
-                      child: header,
-                    ),
-                  itemWidget
-                ],
-              ),
+          child: Container(
+            margin: child.margin,
+            child: Column(
+              children: [header, itemWidget],
+            ),
+          ),
         ),
       );
-
 
       if (_isChildExpanded(index) && index != widget.children.length - 1) {
         items.add(MaterialGap(

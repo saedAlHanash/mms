@@ -1,6 +1,6 @@
 part of 'committee_cubit.dart';
 
-class CommitteeInitial extends AbstractCubit<Committee> {
+class CommitteeInitial extends AbstractState<Committee> {
   // final CommitteeRequest request;
   final String uuid;
 

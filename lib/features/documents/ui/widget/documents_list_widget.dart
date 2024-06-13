@@ -55,10 +55,10 @@ class DocumentsListWidget extends StatelessWidget {
                         ),
                       ),
                       MyButton(
+                        width: 220.0.w,
                         onTap: () {
                           LauncherHelper.openPage(document.media.savedPath);
                         },
-
                         text: S.of(context).downloadFile,
                       ),
                     ],
@@ -69,6 +69,7 @@ class DocumentsListWidget extends StatelessWidget {
                     url: Assets.iconsDocumentBackground,
                     height: double.infinity,
                     width: double.infinity,
+                    fit: BoxFit.fill,
                   ),
                 ),
               ],

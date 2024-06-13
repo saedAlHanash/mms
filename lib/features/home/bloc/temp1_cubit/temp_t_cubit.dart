@@ -29,7 +29,7 @@ class TempCubit extends Cubit<TempInitial> {
 
 
   Future<Pair<TempList?, String?>> _getDataApi() async {
-    final response = await APIService().getApi(url: GetUrl.temp);
+    final response = await APIService().callApi(type: ApiType.get,url: GetUrl.temp);
 
     if (response.statusCode.success) {
       return Pair(TempList.fromJson(response.jsonBodyPure), null);

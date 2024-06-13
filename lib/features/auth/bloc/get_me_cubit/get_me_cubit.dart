@@ -35,7 +35,7 @@ class LoggedPartyCubit extends MCubit<LoggedPartyInitial> {
   }
 
   Future<Pair<Party?, String?>> _getDataApi() async {
-    final response = await APIService().getApi(url: GetUrl.loggedParty);
+    final response = await APIService().callApi(type: ApiType.get,url: GetUrl.loggedParty);
 
     if (response.statusCode.success) {
       return Pair(Party.fromJson(response.jsonBody), null);

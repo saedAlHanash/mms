@@ -1,6 +1,6 @@
 part of 'member_cubit.dart';
 
-class MemberInitial extends AbstractCubit<Member> {
+class MemberInitial extends AbstractState<Member> {
   // final MemberRequest request;
   // final bool tempParam;
 

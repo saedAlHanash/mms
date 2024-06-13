@@ -1,6 +1,6 @@
 part of 'members_cubit.dart';
 
-class MembersInitial extends AbstractCubit<List<Member>> {
+class MembersInitial extends AbstractState<List<Member>> {
   // final MembersRequest request;
   // final  bool tempParam;
   const MembersInitial({

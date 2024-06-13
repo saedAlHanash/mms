@@ -1,6 +1,6 @@
 part of 'my_committees_cubit.dart';
 
-class MyCommitteesInitial extends AbstractCubit<List<Committee>> {
+class MyCommitteesInitial extends AbstractState<List<Committee>> {
   // final MyCommitteesRequest request;
   // final  bool myCommitteesParam;
   const MyCommitteesInitial({

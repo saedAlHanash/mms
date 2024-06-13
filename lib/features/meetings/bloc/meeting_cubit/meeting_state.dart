@@ -1,6 +1,6 @@
 part of 'meeting_cubit.dart';
 
-class MeetingInitial extends AbstractCubit<Meeting> {
+class MeetingInitial extends AbstractState<Meeting> {
   final String id;
 
   // final bool meetingParam;

@@ -11,16 +11,14 @@ class MyExpansionWidget extends StatefulWidget {
     super.key,
     required this.items,
     this.onTapItem,
-    this.elevation,
-    this.onExpansion,
     this.decoration,
+    this.margin,
   });
 
   final List<ItemExpansion> items;
-  final double? elevation;
   final BoxDecoration? decoration;
+  final EdgeInsets? margin;
   final Function(int)? onTapItem;
-  final Function(int panelIndex, bool isExpanded)? onExpansion;
 
   @override
   State<MyExpansionWidget> createState() => _MyExpansionWidgetState();
@@ -34,21 +32,10 @@ class _MyExpansionWidgetState extends State<MyExpansionWidget> {
         return MyExpansionPanel(
           canTapOnHeader: true,
           isExpanded: e.isExpanded,
-          withSideColor: e.withSideColor,
-          backgroundColor: (e.isExpanded && e.withSideColor)
-              ? AppColorManager.lightGray
-              : AppColorManager.whit,
-          headerBuilder: (_, isExpanded) {
-            if (e.headerText != null) {
-              return DrawableText(
-                text: e.headerText!,
-                fontFamily: FontManager.cairoBold.name,
-                color: Colors.black,
-                drawablePadding: 10.0.w,
-              );
-            }
+          headerBuilder: (_, __) {
             return e.header ?? const DrawableText(text: 'header');
           },
+          margin: widget.margin,
           body: e.body,
           enable: e.enable,
           onTapItem: widget.onTapItem,
@@ -64,7 +51,6 @@ class _MyExpansionWidgetState extends State<MyExpansionWidget> {
       dividerColor: Colors.transparent,
       expandedHeaderPadding: EdgeInsets.zero,
       expansionCallback: (panelIndex, isExpanded) {
-        widget.onExpansion?.call(panelIndex, isExpanded);
         setState(() {
           widget.items[panelIndex].isExpanded =
               !widget.items[panelIndex].isExpanded;

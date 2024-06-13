@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:mms/core/api_manager/api_service.dart';
 
 import '../../core/strings/enum_manager.dart';
 
@@ -33,13 +32,13 @@ class CachingService {
         await box.put('$key${box.values.length}', jsonEncode(e));
       }
 
-      loggerObject.w('cached key $key count ${data.length}');
+      // loggerObject.w('cached key $key count ${data.length}');
 
       return;
     }
 
     await box.put(key, jsonEncode(data));
-    loggerObject.w('cached key $key');
+    // loggerObject.w('cached key $key');
   }
 
   static Future<void> clearKeysId({
@@ -50,15 +49,15 @@ class CachingService {
 
     final keys = box.keys.where((e) => e.startsWith(key));
 
-    loggerObject.e('deleted keys:\n$key \n$keys');
+    // loggerObject.e('deleted keys:\n$key \n$keys');
 
     await box.deleteAll(keys);
   }
 
   static Future<Iterable<dynamic>> getList(
-    String name, {
-    String filter = '',
-  }) async {
+      String name, {
+        String filter = '',
+      }) async {
     final key = '_${filter}_';
 
     final box = await getBox(name);
@@ -67,15 +66,15 @@ class CachingService {
         .where((e) => e.startsWith(key))
         .map((e) => jsonDecode(box.get(e) ?? '{}'));
 
-    loggerObject.t('getList(): \nkey:$key count ${f.length}');
+    // loggerObject.t('getList(): \nkey:$key count ${f.length}');
 
     return f;
   }
 
   static Future<dynamic> getData(
-    String name, {
-    String filter = '',
-  }) async {
+      String name, {
+        String filter = '',
+      }) async {
     final key = '_${filter}_';
 
     final box = await getBox(name);
@@ -84,7 +83,7 @@ class CachingService {
 
     if (dataByKey == null) return null;
 
-    loggerObject.t('getList(): \nkey:$key key found $dataByKey');
+    // loggerObject.t('getList(): \nkey:$key key found $dataByKey');
 
     return jsonDecode(dataByKey);
   }
@@ -106,34 +105,34 @@ class CachingService {
     final keyFounded = box.keys.firstWhereOrNull((e) => (e).startsWith(key));
 
     if (keyFounded == null) {
-      loggerObject.v(box.keys);
-      loggerObject.f('need get data (key Not Founded): \n$key With loading');
+      // loggerObject.v(box.keys);
+      // loggerObject.f('need get data (key Not Founded): \n$key With loading');
       return NeedUpdateEnum.withLoading;
     }
 
     message += '\n found Key with ID : ';
     final latest =
-        DateTime.tryParse((await getBox(latestUpdateBox)).get(name) ?? '');
+    DateTime.tryParse((await getBox(latestUpdateBox)).get(name) ?? '');
 
     final haveData = (await getList(name, filter: filter)).isNotEmpty;
 
     if (latest == null) {
-      loggerObject.f('need get data (latest): \n$key With loading');
+      // loggerObject.f('need get data (latest): \n$key With loading');
       return NeedUpdateEnum.withLoading;
     }
 
     final d = DateTime.now().difference(latest).inMinutes.abs();
 
     if (d > 2) {
-      loggerObject.f(
-        'need get data :'
-        ' \n$key data > 2 '
-        '\n${haveData ? NeedUpdateEnum.noLoading.name : NeedUpdateEnum.withLoading.name}',
-      );
+      // loggerObject.f(
+      //   'need get data :'
+      //   ' \n$key data > 2 '
+      //   '\n${haveData ? NeedUpdateEnum.noLoading.name : NeedUpdateEnum.withLoading.name}',
+      // );
 
       return haveData ? NeedUpdateEnum.noLoading : NeedUpdateEnum.withLoading;
     }
-    loggerObject.f('need get data : \n$key Not get data');
+    // loggerObject.f('need get data : \n$key Not get data');
     return NeedUpdateEnum.no;
   }
 }

@@ -4,6 +4,7 @@ import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/services/show_messages_service.dart';
 
 import '../../core/api_manager/api_service.dart';
+import '../../core/strings/enum_manager.dart';
 import '../../core/util/pair_class.dart';
 import 'my_location_cubit/osm_name_model.dart';
 
@@ -55,7 +56,7 @@ class LocationService {
 
   static Future<String> getLocationName({required LatLng? latLng}) async {
     if (latLng == null) return '';
-    final response = await APIService().getApi(
+    final response = await APIService().callApi(type: ApiType.get,
       url: 'reverse',
       hostName: 'nominatim.openstreetmap.org',
       query: {

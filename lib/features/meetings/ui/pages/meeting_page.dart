@@ -17,6 +17,7 @@ import 'package:mms/features/meetings/ui/widget/absent_widget.dart';
 import '../../../../core/util/my_style.dart';
 import '../../../../generated/assets.dart';
 import '../../../../generated/l10n.dart';
+import '../../../../router/app_router.dart';
 import '../../bloc/add_absence_cubit/add_absence_cubit.dart';
 import '../../bloc/meeting_cubit/meeting_cubit.dart';
 
@@ -56,6 +57,26 @@ class MeetingPage extends StatelessWidget {
             },
           ),
         ),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            Navigator.pushNamed(context, RouteName.votes,
+                arguments: [0, context.read<MeetingCubit>()]);
+          },
+          backgroundColor: AppColorManager.mainColor,
+          label: DrawableText(
+            text: 'Votes',
+            color: Colors.white,
+            size: 20.0.sp,
+            fontFamily: FontManager.cairoBold.name,
+            drawablePadding: 10.0.w,
+            drawableEnd: ImageMultiType(
+              url: Icons.how_to_vote,
+              color: Colors.white,
+              height: 30.0.r,
+              width: 30.0.r,
+            ),
+          ),
+        ),
         body: BlocBuilder<MeetingCubit, MeetingInitial>(
           builder: (context, state) {
             if (state.statuses.loading) {
@@ -93,46 +114,38 @@ class MeetingPage extends StatelessWidget {
                               width: 15.0.r,
                             ),
                           ),
+                          10.0.verticalSpace,
+                          Row(
+                            children: [
+                              DrawableText(
+                                drawableStart: ImageMultiType(
+                                  url: Icons.not_started_rounded,
+                                  height: 24.0.r,
+                                  width: 24.0.r,
+                                  color: Colors.green,
+                                ),
+                                drawablePadding: 10.0.w,
+                                text: item.fromDate?.formatDateTime ?? '',
+                              ),
+                              const Spacer(),
+                              DrawableText(
+                                drawableStart: ImageMultiType(
+                                  url: Icons.edit_calendar,
+                                  color: Colors.black,
+                                  height: 24.0.r,
+                                  width: 24.0.r,
+                                ),
+                                drawablePadding: 10.0.w,
+                                text: item.toDate?.formatDateTime ?? '',
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),
 
-                    MyCardWidget(
-                      radios: 15.0.r,
-                      child: Row(
-                        children: [
-                          DrawableText(
-                            drawableStart: ImageMultiType(
-                              url: Icons.not_started_rounded,
-                              height: 24.0.r,
-                              width: 24.0.r,
-                              color: Colors.green,
-                            ),
-                            drawablePadding: 10.0.w,
-                            text: item.fromDate?.formatDateTime ?? '',
-                          ),
-                          const Spacer(),
-                          DrawableText(
-                            drawableStart: ImageMultiType(
-                              url: Icons.edit_calendar,
-                              color: Colors.black,
-                              height: 24.0.r,
-                              width: 24.0.r,
-                            ),
-                            drawablePadding: 10.0.w,
-                            text: item.toDate?.formatDateTime ?? '',
-                          ),
-                        ],
-                      ),
-                    ),
-                    50.0.verticalSpace,
                     const AbsentWidget(),
                     20.0.verticalSpace,
-                    DrawableText.title(
-                      text: 'Agenda',
-                      padding: const EdgeInsets.symmetric(horizontal: 15.0).w,
-                    ),
-                    10.0.verticalSpace,
                     AgendaListWidget(agendas: state.result.agendaItems),
                     100.0.verticalSpace,
                     // GoalListWidget(goals: item.goals),

@@ -1,6 +1,6 @@
 part of 'add_guest_cubit.dart';
 
-class AddGuestInitial extends AbstractCubit<bool> {
+class AddGuestInitial extends AbstractState<bool> {
   final AddGuestRequest request;
 
   // final bool addGuestParam;

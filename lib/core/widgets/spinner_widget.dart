@@ -50,7 +50,7 @@ class SpinnerWidgetState<T> extends State<SpinnerWidget<T>> {
         if (widget.hintLabel != null)
           DrawableText(
             text: widget.hintLabel ?? '',
-            color: AppColorManager.gray,
+            color: AppColorManager.grey,
             size: 14.0.sp,
             matchParent: true,
             padding: const EdgeInsets.symmetric(horizontal: 12.0).r,
@@ -70,8 +70,8 @@ class SpinnerWidgetState<T> extends State<SpinnerWidget<T>> {
                   color: (item.id != -1)
                       ? (item.enable)
                           ? Colors.black
-                          : AppColorManager.gray.withOpacity(0.7)
-                      : AppColorManager.gray.withOpacity(0.7),
+                          : AppColorManager.grey.withOpacity(0.7)
+                      : AppColorManager.grey.withOpacity(0.7),
                   drawableStart: item.icon,
                   drawablePadding: 15.0.w,
                 ),
@@ -192,7 +192,7 @@ class SpinnerOutlineTitle extends StatelessWidget {
           expanded: expanded,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12.0.r),
-            border: Border.all(color: AppColorManager.gray, width: 1.0.r),
+            border: Border.all(color: AppColorManager.grey, width: 1.0.r),
           ),
         )
       ],

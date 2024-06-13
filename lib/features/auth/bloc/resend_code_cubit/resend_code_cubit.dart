@@ -27,7 +27,7 @@ class ResendCodeCubit extends Cubit<ResendCodeInitial> {
   }
 
   Future<Pair<String?, String?>> _resendCodeApi({String? phone}) async {
-    final response = await APIService().postApi(
+    final response = await APIService().callApi(type: ApiType.post,
       url: PostUrl.resendCode,
       query: {'phone': phone ?? AppSharedPreference.getPhone},
     );

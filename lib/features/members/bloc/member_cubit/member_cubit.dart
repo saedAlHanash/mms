@@ -30,7 +30,7 @@ class MemberCubit extends MCubit<MemberInitial> {
   }
 
   Future<Pair<Member?, String?>> _getDataApi() async {
-    final response = await APIService().getApi(url: GetUrl.temp);
+    final response = await APIService().callApi(type: ApiType.get,url: GetUrl.temp);
 
     if (response.statusCode.success) {
       return Pair(Member.fromJson(response.jsonBody), null);

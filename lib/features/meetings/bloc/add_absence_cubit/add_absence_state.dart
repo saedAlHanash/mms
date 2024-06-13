@@ -1,6 +1,6 @@
 part of 'add_absence_cubit.dart';
 
-class AddAbsenceInitial extends AbstractCubit<bool> {
+class AddAbsenceInitial extends AbstractState<bool> {
   // final bool addAbsenceParam;
 
   const AddAbsenceInitial({

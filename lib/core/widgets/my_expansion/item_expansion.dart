@@ -3,9 +3,7 @@ import 'package:mms/core/strings/app_color_manager.dart';
 
 class ItemExpansion {
   ItemExpansion({
-    this.headerText,
     this.header,
-    this.withSideColor = false,
     required this.body,
     this.isExpanded = false,
     this.enable = true,
@@ -13,11 +11,10 @@ class ItemExpansion {
   });
 
   final Widget? header;
-  final String? headerText;
   final Widget body;
   bool isExpanded;
   bool enable;
-  bool withSideColor;
+
   String? additional;
 }
 

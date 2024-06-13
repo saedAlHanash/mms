@@ -29,7 +29,7 @@ class OtpPasswordCubit extends Cubit<OtpPasswordInitial> {
   }
 
   Future<Pair<bool?, String?>> _confirmCodeApi() async {
-    final response = await APIService().postApi(
+    final response = await APIService().callApi(type: ApiType.post,
       url: PostUrl.otpPassword,
       body: state.request.toJson(),
     );

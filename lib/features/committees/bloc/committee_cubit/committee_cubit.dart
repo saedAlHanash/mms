@@ -37,7 +37,7 @@ class CommitteeCubit extends MCubit<CommitteeInitial> {
   }
 
   Future<Pair<Committee?, String?>> _getDataApi() async {
-    final response = await APIService().getApi(
+    final response = await APIService().callApi(type: ApiType.get,
       url: GetUrl.committee,
       query: {'id': state.uuid},
     );

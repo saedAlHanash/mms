@@ -1,6 +1,6 @@
 part of 'attendees_cubit.dart';
 
-class AttendeesInitial extends AbstractCubit<List<Attendee>> {
+class AttendeesInitial extends AbstractState<List<Attendee>> {
   // final AttendeesRequest request;
   // final  bool tempParam;
   const AttendeesInitial({

@@ -1,6 +1,6 @@
 part of 'update_profile_cubit.dart';
 
-class UpdateProfileInitial extends AbstractCubit<bool> {
+class UpdateProfileInitial extends AbstractState<bool> {
   final UpdatePartyRequest request;
 
   // final  bool educationalGradeParam;

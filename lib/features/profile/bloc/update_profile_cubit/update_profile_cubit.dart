@@ -36,7 +36,8 @@ class UpdateProfileCubit extends MCubit<UpdateProfileInitial> {
   void setValuesInitial() {}
 
   Future<Pair<bool?, String?>> _updateProfileApi() async {
-    final response = await APIService().puttApi(
+    final response = await APIService().callApi(
+      type: ApiType.put,
       url: PostUrl.updateProfile,
       body: state.request.toJson(),
       query: {'id': AppProvider.getParty.id},

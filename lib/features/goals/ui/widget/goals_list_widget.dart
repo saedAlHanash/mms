@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,34 +19,40 @@ class GoalListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MyExpansionWidget(
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.0.r),
-          color: AppColorManager.f9),
+        borderRadius: BorderRadius.circular(8.0.r),
+        color: AppColorManager.f9,
+      ),
+      margin: const EdgeInsets.symmetric(vertical: 10.0).r,
       items: goals
           .map(
             (e) => ItemExpansion(
-              header: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    DrawableText(
-                      matchParent: true,
-                      text: e.name,
-                      fontFamily: FontManager.cairoBold.name,
-                      size: 20.0.sp,
-                      maxLines: 1,
-                    ),
-                    DrawableText(
-                      matchParent: true,
-                      text: e.description,
-                      color: Colors.black87,
-                      maxLines: 1,
-                    ),
-                  ],
+              header: ListTile(
+                title: DrawableText(
+                  matchParent: true,
+                  text: e.name,
+                  fontFamily: FontManager.cairoBold.name,
+                  size: 20.0.sp,
+                  maxLines: 1,
+                ),
+                subtitle: DrawableText(
+                  matchParent: true,
+                  text: e.description,
+                  color: Colors.black87,
+                  maxLines: 1,
                 ),
               ),
               body: Column(
-                children: e.tasks.map((e) => _TaskWidget(task: e)).toList(),
+                children: e.tasks.mapIndexed((i, e) {
+                  if (i == 0) {
+                    return Column(
+                      children: [
+                        10.0.verticalSpace,
+                        _TaskWidget(task: e),
+                      ],
+                    );
+                  }
+                  return _TaskWidget(task: e);
+                }).toList(),
               ),
             ),
           )

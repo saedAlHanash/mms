@@ -93,9 +93,12 @@ class GetUrl {
   static const agenda = '';
 
   static const agendas = '';
+
+  static const vote = 'Poll/Get';
 }
 
 class PostUrl {
+  static const votes = 'Poll/GetAll';
   static const addReview = 'reviews';
   static const loginUrl = 'Auth/Authenticate';
   static const signup = 'auth/register';
@@ -146,6 +149,14 @@ class PostUrl {
 
   static const addComment = 'AgendaItemComment/Add';
 
+  static var notifications = 'Party/GetNotification';
+
+  static var temps = '';
+
+  static var createTemp = '';
+
+  static var createVote = 'Vote/Add';
+
   static String addMessage(int id) {
     return 'drivers/messages/$id/add';
   }
@@ -163,6 +174,10 @@ class PutUrl {
   static const updateName = 'update-name';
   static const updatePhone = 'update-phone';
   static const updateAddress = 'update-address';
+
+  static var updateTemp = '';
+
+  static var updateVote = 'Vote/Update';
 }
 
 class DeleteUrl {
@@ -171,6 +186,10 @@ class DeleteUrl {
   static const removeFromCart = 'carts/products';
 
   static const clearCart = 'carts';
+
+  static var deleteTemp = '';
+
+  static var deleteVote = 'Vote/Delete';
 }
 
 const additionalConst = '/api/v1/';

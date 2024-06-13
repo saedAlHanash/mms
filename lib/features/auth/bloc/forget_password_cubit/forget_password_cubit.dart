@@ -29,7 +29,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordInitial> {
   }
 
   Future<Pair<bool?, String?>> _forgetPasswordApi() async {
-    final response = await APIService().postApi(
+    final response = await APIService().callApi(type: ApiType.post,
         url: PostUrl.forgetPassword, body: {'phone': state.phoneC.text});
 
     if (response.statusCode.success) {

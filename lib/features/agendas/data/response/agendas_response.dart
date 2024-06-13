@@ -24,11 +24,12 @@ class Agenda {
   final String meetingId;
   final String parentId;
   final List<Comment> comments;
-  final List<String> childrenItems;
+  final List<Agenda> childrenItems;
 
   bool get haveMyComment =>
       comments.firstWhereOrNull((e) => e.partyId == AppProvider.getParty.id) !=
       null;
+
   Comment? get myComment =>
       comments.firstWhereOrNull((e) => e.partyId == AppProvider.getParty.id);
 
@@ -47,7 +48,8 @@ class Agenda {
               json["comments"]!.map((x) => Comment.fromJson(x))),
       childrenItems: json["childrenItems"] == null
           ? []
-          : List<String>.from(json["childrenItems"]!.map((x) => x)),
+          : List<Agenda>.from(
+              json["childrenItems"]!.map((x) => Agenda.fromJson(x))),
     );
   }
 
@@ -60,7 +62,7 @@ class Agenda {
         "meetingId": meetingId,
         "parentId": parentId,
         "comments": comments.map((x) => x.toJson()).toList(),
-        "childrenItems": childrenItems.map((x) => x).toList(),
+        "childrenItems": childrenItems.map((x) => x.toJson()).toList(),
       };
 }
 
@@ -80,6 +82,8 @@ class Comment {
   final String partyId;
   final Party party;
   final String agendaItemId;
+
+  bool get isMyComment => partyId == AppProvider.getParty.id;
 
   factory Comment.fromJson(Map<String, dynamic> json) {
     return Comment(

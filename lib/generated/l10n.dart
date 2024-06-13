@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -2536,6 +2535,26 @@ class S {
     return Intl.message(
       'Power by ',
       name: 'devBy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notifications`
+  String get notifications {
+    return Intl.message(
+      'Notifications',
+      name: 'notifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vote`
+  String get vote {
+    return Intl.message(
+      'Vote',
+      name: 'vote',
       desc: '',
       args: [],
     );

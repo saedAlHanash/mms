@@ -31,7 +31,7 @@ class ConfirmCodeCubit extends Cubit<ConfirmCodeInitial> {
   }
 
   Future<Pair<LoginResponse?, String?>> _confirmCodeApi() async {
-    final response = await APIService().postApi(
+    final response = await APIService().callApi(type: ApiType.post,
       url: PostUrl.confirmCode,
       body: state.request.toJson(),
     );
@@ -41,7 +41,6 @@ class ConfirmCodeCubit extends Cubit<ConfirmCodeInitial> {
 
       AppSharedPreference.cashToken(pair.first.accessToken);
       AppSharedPreference.removePhone();
-      APIService.reInitial();
       return pair;
     } else {
       return response.getPairError;

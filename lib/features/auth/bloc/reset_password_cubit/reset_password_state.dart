@@ -1,6 +1,6 @@
 part of 'reset_password_cubit.dart';
 
-class ResetPasswordInitial extends AbstractCubit<bool> {
+class ResetPasswordInitial extends AbstractState<bool> {
   final ResetPasswordRequest request;
 
   const ResetPasswordInitial({

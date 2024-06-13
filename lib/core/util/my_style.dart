@@ -12,14 +12,16 @@ class MyStyle {
   //endregion
 
 //region margin/padding
-  static final cardPadding = EdgeInsets.symmetric(horizontal: 18.w, vertical: 15.h);
+  static final cardPadding =
+      EdgeInsets.symmetric(horizontal: 18.w, vertical: 15.h);
 
-  static final pagePadding = const EdgeInsets.symmetric(horizontal: 20, vertical: 8).r;
+  static final pagePadding =
+      const EdgeInsets.symmetric(horizontal: 20, vertical: 8).r;
 
 //endregion
 
-  static const underLineStyle =
-  TextStyle(fontStyle: FontStyle.italic, decoration: TextDecoration.underline);
+  static const underLineStyle = TextStyle(
+      fontStyle: FontStyle.italic, decoration: TextDecoration.underline);
 
   static var drawerShape = ShapeDecoration(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
@@ -27,27 +29,27 @@ class MyStyle {
 
   static var normalShadow = [
     BoxShadow(
-        color: AppColorManager.gray.withOpacity(0.6),
+        color: AppColorManager.grey.withOpacity(0.6),
         blurRadius: 15,
         offset: const Offset(0, 5))
   ];
 
   static var lightShadow = [
     BoxShadow(
-        color: AppColorManager.gray.withOpacity(0.5),
+        color: AppColorManager.grey.withOpacity(0.5),
         blurRadius: 5,
         offset: const Offset(0, 2))
   ];
 
   static var allShadow = [
     BoxShadow(
-      color: AppColorManager.gray.withOpacity(0.5),
+      color: AppColorManager.grey.withOpacity(0.5),
       blurRadius: 10,
     )
   ];
   static var allShadowDark = [
     BoxShadow(
-      color: AppColorManager.gray.withOpacity(0.6),
+      color: AppColorManager.grey.withOpacity(0.6),
       blurRadius: 10.spMin,
     )
   ];
@@ -61,7 +63,7 @@ class MyStyle {
   static final hintStyle = TextStyle(
     fontFamily: FontManager.cairoSemiBold.name,
     fontSize: 18.0.spMin,
-    color: AppColorManager.gray.withOpacity(0.6),
+    color: AppColorManager.grey.withOpacity(0.6),
   );
   static final textFormTextStyle = TextStyle(
     fontFamily: FontManager.cairoBold.name,
@@ -70,8 +72,8 @@ class MyStyle {
   );
 
   static var roundBox = BoxDecoration(
-    color: AppColorManager.lightGray,
-    borderRadius: BorderRadius.circular(16.0.r),
+    color: AppColorManager.cardColor,
+    borderRadius: BorderRadius.circular(8.0.r),
   );
 
   static var roundBoxGray = BoxDecoration(
@@ -88,7 +90,7 @@ class MyStyle {
   static Widget loadingWidget({Color? color}) {
     return Padding(
       padding: const EdgeInsets.all(8.0).r,
-      child:  Center(
+      child: Center(
         child: CircularProgressIndicator.adaptive(backgroundColor: color),
       ),
     );
@@ -128,7 +130,8 @@ class BackBtnWidget extends StatelessWidget {
     return IconButton(
       onPressed: () => Navigator.pop(context),
       icon: Icon(
-       /* Platform.isAndroid ? Icons.arrow_back :*/ Icons.arrow_back_ios,
+        /* Platform.isAndroid ? Icons.arrow_back :*/
+        Icons.arrow_back_ios,
         color: AppColorManager.black,
       ),
     );

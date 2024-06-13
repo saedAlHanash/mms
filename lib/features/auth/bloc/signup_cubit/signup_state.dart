@@ -1,6 +1,6 @@
 part of 'signup_cubit.dart';
 
-class SignupInitial extends AbstractCubit<bool> {
+class SignupInitial extends AbstractState<bool> {
   final SignupRequest request;
 
   const SignupInitial({

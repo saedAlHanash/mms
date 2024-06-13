@@ -63,9 +63,7 @@ class MyButton extends StatelessWidget {
         style: ButtonStyle(
           surfaceTintColor: MaterialStatePropertyAll(color),
           backgroundColor: MaterialStatePropertyAll(color),
-          padding: MaterialStatePropertyAll(
-            const EdgeInsets.symmetric(vertical: 13.0).r,
-          ),
+          padding: const MaterialStatePropertyAll(EdgeInsets.zero),
           shape: MaterialStatePropertyAll(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0.r),

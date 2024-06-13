@@ -34,7 +34,7 @@ class DeleteMyAccountCubit extends Cubit<DeleteMyAccountInitial> {
 
   Future<Pair<bool?, String?>> _deleteMyAccountApi() async {
     if (await network.isConnected) {
-      final response = await APIService().getApi(
+      final response = await APIService().callApi(type: ApiType.get,
         url: 'DeleteUrl.deleteMyAccount',
       );
 

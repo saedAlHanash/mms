@@ -1,6 +1,6 @@
 part of 'documents_cubit.dart';
 
-class DocumentsInitial extends AbstractCubit<List<Document>> {
+class DocumentsInitial extends AbstractState<List<Document>> {
   // final DocumentsRequest request;
   // final  bool tempParam;
   const DocumentsInitial({

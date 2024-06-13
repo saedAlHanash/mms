@@ -28,12 +28,12 @@ class TopTitleWidget extends StatelessWidget {
       icon,
       height: iconSize,
       width: iconSize,
-      color: AppColorManager.gray,
+      color: AppColorManager.grey,
     );
 
     final textWidget = DrawableText(
       text: text,
-      color: AppColorManager.gray,
+      color: AppColorManager.grey,
       fontFamily: FontManager.cairoBold.name,
       size: 18.0.spMin,
     );

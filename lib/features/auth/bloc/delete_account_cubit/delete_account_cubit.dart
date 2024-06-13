@@ -32,7 +32,7 @@ class DeleteAccountCubit extends Cubit<DeleteAccountInitial> {
 
   Future<Pair<bool?, String?>> _logoutApi() async {
      
-      final response = await APIService().postApi(
+      final response = await APIService().callApi(type: ApiType.post,
         url: 'destroyAccount',
       );
 

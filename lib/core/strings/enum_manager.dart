@@ -69,7 +69,7 @@ enum FilterOperation {
 
   final String realName;
 
-  static  FilterOperation byName(String s) {
+  static FilterOperation byName(String s) {
     switch (s) {
       case 'Equals':
         return FilterOperation.equals;
@@ -95,8 +95,14 @@ enum FilterOperation {
   }
 }
 
+enum ApiType {
+  get,
+  post,
+  put,
+  patch,
+  delete,
+}
 enum MeetingStatus {
-
   planned(color: Color(0xFFBABABA)),
   scheduled(color: Color(0xFFAA2F0A)),
   postponed(color: Color(0xFFFFB600)),

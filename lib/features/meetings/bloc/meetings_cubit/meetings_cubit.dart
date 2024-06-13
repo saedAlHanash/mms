@@ -41,7 +41,7 @@ class MeetingsCubit extends MCubit<MeetingsInitial> {
   }
 
   Future<Pair<List<Meeting>?, String?>> _getDataApi() async {
-    final response = await APIService().postApi(
+    final response = await APIService().callApi(type: ApiType.post,
       url: PostUrl.meetings,
       body: state.filterRequest?.toJson() ?? {},
     );

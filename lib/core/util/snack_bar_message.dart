@@ -61,7 +61,8 @@ class NoteMessage {
     );
   }
 
-  static Future<bool> showBottomSheet1(BuildContext context, Widget child) async {
+  static Future<bool> showBottomSheet1(
+      BuildContext context, Widget child) async {
     final result = await showModalBottomSheet(
       isScrollControlled: true,
       context: context,
@@ -78,7 +79,8 @@ class NoteMessage {
     return result ?? false;
   }
 
-  static Future<bool> showConfirm(BuildContext context, {required String text}) async {
+  static Future<bool> showConfirm(BuildContext context,
+      {required String text}) async {
     // show the dialog
     final result = await showDialog(
       context: context,
@@ -223,7 +225,8 @@ class NoteMessage {
     );
   }
 
-  static Future<bool> showMyDialog(BuildContext context, {required Widget child}) async {
+  static Future<bool> showMyDialog(BuildContext context,
+      {required Widget child}) async {
     // show the dialog
     final result = await showDialog(
       context: context,
@@ -250,7 +253,8 @@ class NoteMessage {
     return (result ?? false);
   }
 
-  static void showAwesomeError({required BuildContext context, required String message}) {
+  static void showAwesomeError(
+      {required BuildContext context, required String message}) {
     AwesomeDialog(
       context: context,
       dialogType: DialogType.error,
@@ -354,7 +358,8 @@ class NoteMessage {
                   clipBehavior: Clip.hardEdge,
                   decoration: BoxDecoration(
                     color: AppColorManager.f8,
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(20.0.r)),
+                    borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(20.0.r)),
                   ),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -389,7 +394,8 @@ class NoteMessage {
                           splashColor: Colors.transparent,
                           onTap: () => Navigator.pop(context, true),
                           child: DrawableText(
-                            padding: const EdgeInsets.symmetric(vertical: 23.0).r,
+                            padding:
+                                const EdgeInsets.symmetric(vertical: 23.0).r,
                             text: textButton,
                             color: AppColorManager.mainColorLight,
                             fontFamily: FontManager.cairoSemiBold.name,
@@ -403,7 +409,8 @@ class NoteMessage {
                           splashColor: Colors.transparent,
                           onTap: () => Navigator.pop(context, false),
                           child: DrawableText(
-                            padding: const EdgeInsets.symmetric(vertical: 23.0).r,
+                            padding:
+                                const EdgeInsets.symmetric(vertical: 23.0).r,
                             color: Colors.grey,
                             text: S.of(context).cancel,
                             matchParent: true,
@@ -422,6 +429,39 @@ class NoteMessage {
 
     if (result == true) {
       onConfirm?.call();
+    }
+  }
+
+  static Future<void> showBlurDialog(
+    BuildContext context, {
+    required Widget child,
+    Function()? onCancel,
+  }) async {
+    // show the dialog
+    final result = await showDialog(
+      context: context,
+      barrierColor: Colors.black.withOpacity(0.3),
+      builder: (BuildContext context) {
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
+          child: Dialog(
+            surfaceTintColor: Colors.white,
+            alignment: Alignment.center,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(20.0.r),
+              ),
+            ),
+            elevation: 10.0,
+            clipBehavior: Clip.hardEdge,
+            child: child,
+          ),
+        );
+      },
+    );
+
+    if (result == true) {
+      onCancel?.call();
     }
   }
 }

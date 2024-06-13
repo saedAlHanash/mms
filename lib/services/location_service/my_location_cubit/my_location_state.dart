@@ -1,6 +1,6 @@
 part of 'my_location_cubit.dart';
 
-class LocationServiceInitial extends AbstractCubit<LatLng> {
+class LocationServiceInitial extends AbstractState<LatLng> {
   final String locationName;
 
   const LocationServiceInitial({

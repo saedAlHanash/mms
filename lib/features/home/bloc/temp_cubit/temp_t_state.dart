@@ -1,6 +1,6 @@
 part of 'temp_t_cubit.dart';
 
-class TempInitial extends AbstractCubit<TempModel> {
+class TempInitial extends AbstractState<TempModel> {
   // final TempRequest request;
   // final bool tempParam;
 

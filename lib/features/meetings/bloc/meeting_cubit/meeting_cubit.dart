@@ -1,5 +1,7 @@
+import 'package:collection/collection.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
+import 'package:mms/features/agendas/data/response/agendas_response.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/error/error_manager.dart';
@@ -39,7 +41,7 @@ class MeetingCubit extends MCubit<MeetingInitial> {
   }
 
   Future<Pair<Meeting?, String?>> _getDataApi() async {
-    final response = await APIService().getApi(
+    final response = await APIService().callApi(type: ApiType.get,
       url: GetUrl.meeting,
       query: {'id': state.id},
     );
@@ -64,5 +66,21 @@ class MeetingCubit extends MCubit<MeetingInitial> {
 
     if (cacheType == NeedUpdateEnum.no) return false;
     return false;
+  }
+
+  Future<void> addComment({
+    required Comment comment,
+    required String agendaId,
+  }) async {
+    _findAgenda(agendaId, state.result.agendaItems)?.comments.add(comment);
+    await storeData(state.result);
+  }
+
+  Agenda? _findAgenda(String id, List<Agenda> list) {
+    for (var e in list) {
+      if (e.id == id) return e;
+      return _findAgenda(e.id, e.childrenItems);
+    }
+    return null;
   }
 }

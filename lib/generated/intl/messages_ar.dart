@@ -212,6 +212,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "يرجى التحقق من اتصالك بالإنترنت"),
         "notYet": MessageLookupByLibrary.simpleMessage("ليس بعد"),
         "notification": MessageLookupByLibrary.simpleMessage("الإشعارات"),
+        "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "numberPhone": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
         "offer": MessageLookupByLibrary.simpleMessage("عرض"),
         "oops": MessageLookupByLibrary.simpleMessage("حدث خطأ ما!"),

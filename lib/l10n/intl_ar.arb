@@ -243,5 +243,6 @@
   "scheduled": "مجدولة",
   "postponed": "مؤجلة",
   "running": "جارية",
-  "confirmYourPhone": "اكد على رقم هاتفك او جوالك"
+  "confirmYourPhone": "اكد على رقم هاتفك او جوالك",
+  "notifications": "Notifications"
 }

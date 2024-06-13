@@ -1,6 +1,6 @@
 part of 'agenda_cubit.dart';
 
-class AgendaInitial extends AbstractCubit<Agenda> {
+class AgendaInitial extends AbstractState<Agenda> {
   // final AgendaRequest request;
   // final bool agendaParam;
 

@@ -25,26 +25,26 @@ class AbsentWidget extends StatelessWidget {
         }
 
         if (state.result.hasRequestAbsence) {
-          return MyCardWidget(
-            child: DrawableText(
-              text: 'you request you as an absent member ',
-              matchParent: true,
-              size: 20.0.sp,
-              textAlign: TextAlign.center,
-              color: Colors.red,
-            ),
+          return DrawableText(
+            text: 'you request you as an absent member ',
+            matchParent: true,
+            padding: const EdgeInsets.all(20.0).r,
+            textAlign: TextAlign.center,
+            size: 20.0.sp,
+            color: Colors.red,
           );
         }
 
-        return MyCardWidget(
+        return Padding(
+          padding: const EdgeInsets.all(20.0).r,
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               DrawableText(
                 textAlign: TextAlign.center,
                 text: S.of(context).requestAbsence,
-                size: 22.0.sp,
+                size: 18.0.sp,
               ),
-              const Spacer(),
               BlocBuilder<AddAbsenceCubit, AddAbsenceInitial>(
                 builder: (context, state) {
                   return MyButton(
@@ -60,7 +60,7 @@ class AbsentWidget extends StatelessWidget {
                       );
                     },
                     loading: state.statuses.loading,
-                    width: 200.0.w,
+                    width: .35.sw,
                     color: Colors.red,
                     text: 'I will be absent',
                     startIcon: ImageMultiType(

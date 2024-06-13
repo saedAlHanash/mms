@@ -1,6 +1,6 @@
 part of 'get_me_cubit.dart';
 
-class LoggedPartyInitial extends AbstractCubit<Party> {
+class LoggedPartyInitial extends AbstractState<Party> {
   // final LoggedPartyRequest request;
   // final bool loggedPartyParam;
 

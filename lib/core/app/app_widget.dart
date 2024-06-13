@@ -12,6 +12,7 @@ import 'package:mms/core/strings/app_color_manager.dart';
 import '../../features/auth/bloc/get_me_cubit/get_me_cubit.dart';
 import '../../features/committees/bloc/my_committees_cubit/my_committees_cubit.dart';
 import '../../features/meetings/bloc/meetings_cubit/meetings_cubit.dart';
+import '../../features/notification/bloc/notifications_cubit/notifications_cubit.dart';
 import '../../generated/assets.dart';
 import '../../generated/l10n.dart';
 import '../../main.dart';
@@ -128,14 +129,18 @@ class _MyAppState extends State<MyApp> {
             return MultiBlocProvider(
               providers: [
                 BlocProvider(
+                  create: (_) => sl<NotificationsCubit>()..getNotifications(),
+                ),
+                BlocProvider(
                   create: (_) => sl<MyCommitteesCubit>()..getMyCommittees(),
                 ),
                 BlocProvider(
                   create: (_) {
                     return sl<MeetingsCubit>()
-                    ..getMeetings(
-                      request: FilterRequest(partyId: AppProvider.getParty.id),
-                    );
+                      ..getMeetings(
+                        request:
+                            FilterRequest(partyId: AppProvider.getParty.id),
+                      );
                   },
                 ),
                 BlocProvider(

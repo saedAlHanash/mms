@@ -11,7 +11,7 @@ class MyCardWidget extends StatelessWidget {
     this.cardColor = AppColorManager.f9,
     required this.child,
     this.elevation = 0,
-    this.radios = 12.0,
+    this.radios = 8.0,
   });
 
   final EdgeInsets? margin;

@@ -1,6 +1,6 @@
 part of 'forget_password_cubit.dart';
 
-class ForgetPasswordInitial extends AbstractCubit<bool> {
+class ForgetPasswordInitial extends AbstractState<bool> {
   final TextEditingController phoneC;
 
   const ForgetPasswordInitial({

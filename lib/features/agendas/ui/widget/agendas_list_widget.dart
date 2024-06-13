@@ -1,8 +1,14 @@
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 import 'package:mms/core/extensions/extensions.dart';
+import 'package:mms/core/util/my_style.dart';
+import 'package:mms/core/widgets/my_expansion/item_expansion.dart';
+import 'package:mms/core/widgets/my_expansion/my_expansion_panal.dart';
+import 'package:mms/core/widgets/my_expansion/my_expansion_widget.dart';
+import 'package:mms/features/meetings/bloc/meeting_cubit/meeting_cubit.dart';
 
 import '../../../../core/strings/app_color_manager.dart';
 import '../../../../router/app_router.dart';
@@ -15,16 +21,36 @@ class AgendaListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: agendas
-          .map(
-            (e) => AgendaWidget(
-              agenda: e,
-              onTap: () =>
-                  Navigator.pushNamed(context, RouteName.agenda, arguments: e),
+    if (agendas.isEmpty) return 0.0.verticalSpace;
+    return MyExpansionWidget(
+      decoration: MyStyle.roundBox,
+      items: [
+        ItemExpansion(
+            body: Column(
+              children: [
+                ...agendas.map((e) {
+                  return AgendaWidget(
+                    agenda: e,
+                    onTap: () {
+                      return Navigator.pushNamed(
+                        context,
+                        RouteName.agenda,
+                        arguments: [e, context.read<MeetingCubit>()],
+                      );
+                    },
+                  );
+                }),
+              ],
             ),
-          )
-          .toList(),
+            header: DrawableText(
+              text: 'Agendas (${agendas.length})',
+              size: 20.0.sp,
+              matchParent: true,
+              fontWeight: FontWeight.bold,
+              fontFamily: FontManager.cairoBold.name,
+              padding: const EdgeInsets.symmetric(horizontal: 15.0).w,
+            )),
+      ],
     );
   }
 }
@@ -42,6 +68,7 @@ class AgendaWidget extends StatelessWidget {
         color: AppColorManager.f9,
         borderRadius: BorderRadius.circular(8.0.r),
       ),
+      margin: const EdgeInsets.symmetric(vertical: 10.0).h,
       child: ListTile(
         onTap: onTap,
         title: DrawableText(
@@ -54,74 +81,6 @@ class AgendaWidget extends StatelessWidget {
           height: 17.0.r,
           width: 17.0.r,
         ),
-      ),
-    );
-  }
-}
-
-class _CommentsWidget extends StatelessWidget {
-  const _CommentsWidget({required this.comment});
-
-  final Comment comment;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(8.0),
-      margin: EdgeInsetsDirectional.only(start: 30.0.w, bottom: 10.0.h),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.0.r),
-          color: AppColorManager.f9),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          SizedBox(
-            width: 0.6.sw,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                DrawableText(
-                  text: comment.text,
-                  fontFamily: FontManager.cairoBold.name,
-                  size: 20.0.sp,
-                  maxLines: 2,
-                ),
-                10.0.verticalSpace,
-                DrawableText(
-                  text: comment.date?.formatDateTime ?? '',
-                  color: Colors.grey,
-                ),
-              ],
-            ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              DrawableText(
-                drawableEnd: ImageMultiType(
-                  url: Icons.not_started_rounded,
-                  height: 17.0.r,
-                  width: 17.0.r,
-                  color: Colors.green,
-                ),
-                drawablePadding: 10.0.w,
-                text: comment.party.name,
-              ),
-              20.0.verticalSpace,
-              DrawableText(
-                drawableEnd: ImageMultiType(
-                  url: Icons.edit_calendar,
-                  color: Colors.amber,
-                  height: 17.0.r,
-                  width: 17.0.r,
-                ),
-                drawablePadding: 10.0.w,
-                text: comment.party.company,
-              ),
-            ],
-          ),
-        ],
       ),
     );
   }

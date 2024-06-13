@@ -38,7 +38,7 @@ class AgendasCubit extends MCubit<GoaslInitial> {
   }
 
   Future<Pair<List<Agenda>?, String?>> _getDataApi() async {
-    final response = await APIService().getApi(url: GetUrl.agendas);
+    final response = await APIService().callApi(type: ApiType.get,url: GetUrl.agendas);
 
     if (response.statusCode.success) {
       return Pair([], null);

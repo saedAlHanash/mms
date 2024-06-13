@@ -6,20 +6,24 @@ import '../../../../core/error/error_manager.dart';
 import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/abstraction.dart';
 import '../../../../core/util/pair_class.dart';
-import '../../data/temp.dart';
+import '../../data/response/notification_response.dart';
 
-part 'temp_t_state.dart';
+part 'notification_state.dart';
 
-class TempCubit extends MCubit<TempInitial> {
-  TempCubit() : super(TempInitial.initial());
+class NotificationCubit extends MCubit<NotificationInitial> {
+  NotificationCubit() : super(NotificationInitial.initial());
 
   @override
-  String get nameCache => 'temp';
+  String get nameCache => 'notification';
 
-  Future<void> getTemp() async {
+  @override
+  String get filter => state.notificationId ?? '';
+
+  Future<void> getNotification({required String notificationId}) async {
+    emit(state.copyWith(notificationId: notificationId));
     if (await checkCashed()) return;
 
-    final pair = await _getDataApi();
+    final pair = await _getNotification();
     if (pair.first == null) {
       emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));
       showErrorFromApi(state);
@@ -29,27 +33,34 @@ class TempCubit extends MCubit<TempInitial> {
     }
   }
 
-  Future<Pair<TempModel?, String?>> _getDataApi() async {
-    final response = await APIService().getApi(url: GetUrl.temp);
+  Future<Pair<NotificationModel?, String?>> _getNotification() async {
+    final response = await APIService().callApi(type: ApiType.get,
+      url: 'GetUrl.notification',
+      query: {'Id': state.notificationId},
+    );
 
     if (response.statusCode.success) {
-      return Pair(TempModel.fromJson(response.jsonBody), null);
+      return Pair(NotificationModel.fromJson(response.jsonBody), null);
     } else {
       return response.getPairError;
     }
   }
 
   Future<bool> checkCashed() async {
+        try {
     final cacheType = await needGetData();
 
     emit(
       state.copyWith(
         statuses: cacheType.getState,
-        result: TempModel.fromJson(await getDataCached()),
+        result: NotificationModel.fromJson(await getDataCached()),
       ),
     );
 
     if (cacheType == NeedUpdateEnum.no) return true;
     return false;
+        } catch (e) {
+      return false;
+    }
   }
 }

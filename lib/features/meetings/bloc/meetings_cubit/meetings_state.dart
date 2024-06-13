@@ -1,6 +1,6 @@
 part of 'meetings_cubit.dart';
 
-class MeetingsInitial extends AbstractCubit<List<Meeting>> {
+class MeetingsInitial extends AbstractState<List<Meeting>> {
   final Map<int, List<Meeting>> events;
 
   // final MeetingRequest request;

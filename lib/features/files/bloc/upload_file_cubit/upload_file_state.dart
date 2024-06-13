@@ -1,6 +1,6 @@
 part of 'upload_file_cubit.dart';
 
-class FileInitial extends AbstractCubit<FileResponse> {
+class FileInitial extends AbstractState<FileResponse> {
   final UploadFile? request;
 
   // final bool fileParam;

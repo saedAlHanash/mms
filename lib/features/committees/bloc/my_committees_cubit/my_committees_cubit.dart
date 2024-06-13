@@ -16,8 +16,6 @@ class MyCommitteesCubit extends MCubit<MyCommitteesInitial> {
   @override
   String get nameCache => 'myCommittees';
 
-
-
   @override
   String get filter => '';
 
@@ -35,7 +33,7 @@ class MyCommitteesCubit extends MCubit<MyCommitteesInitial> {
   }
 
   Future<Pair<List<Committee>?, String?>> _getDataApi() async {
-    final response = await APIService().getApi(url: GetUrl.myCommittees);
+    final response = await APIService().callApi(type: ApiType.get,url: GetUrl.myCommittees);
 
     if (response.statusCode.success) {
       return Pair(CommitteesResponse.fromJson(response.jsonBody).data, null);

@@ -27,7 +27,7 @@ class AddAbsenceCubit extends Cubit<AddAbsenceInitial> {
   }
 
   Future<Pair<bool?, String?>> _getDataApi() async {
-    final response = await APIService().postApi(
+    final response = await APIService().callApi(type: ApiType.post,
       url: PostUrl.addAbsence,
       body: {
         "partyId": AppProvider.getParty.id,

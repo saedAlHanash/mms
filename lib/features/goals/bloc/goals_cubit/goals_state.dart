@@ -1,6 +1,6 @@
 part of 'goals_cubit.dart';
 
-class GoaslInitial extends AbstractCubit<List<Goal>> {
+class GoaslInitial extends AbstractState<List<Goal>> {
   // final GoalRequest request;
   // final  bool goalParam;
   const GoaslInitial({

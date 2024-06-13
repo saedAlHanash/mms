@@ -132,13 +132,13 @@ class _MyTextFormOutLineWidgetState extends State<MyTextFormOutLineWidget> {
       fillColor: AppColorManager.f9,
       label: DrawableText(
         text: widget.label,
-        color: AppColorManager.gray,
+        color: AppColorManager.grey,
         size: 16.0.spMin,
       ),
       counter: const SizedBox(),
       hintText: widget.hint,
       hintStyle: TextStyle(
-        color: AppColorManager.gray,
+        color: AppColorManager.grey,
         fontSize: 14.0.sp,
         fontFamily: FontManager.cairoSemiBold.name,
       ),

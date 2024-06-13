@@ -31,7 +31,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordInitial> {
   }
 
   Future<Pair<bool?, String?>> _resetPasswordApi() async {
-    final response = await APIService().postApi(
+    final response = await APIService().callApi(type: ApiType.post,
       url: PostUrl.resetPassword,
       body: state.request.toJson(),
     );

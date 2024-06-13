@@ -63,7 +63,7 @@ class ErrorBody {
       };
 }
 
-showErrorFromApi(AbstractCubit state) {
+showErrorFromApi(AbstractState state) {
   if (ctx == null) return;
 
   NoteMessage.showAwesomeError(context: ctx!, message: state.error);

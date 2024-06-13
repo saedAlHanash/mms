@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mms/core/api_manager/api_service.dart';
 import 'package:mms/core/api_manager/request_models/command.dart';
 import 'package:mms/features/agendas/bloc/agenda_cubit/agenda_cubit.dart';
 import 'package:mms/features/agendas/data/response/agendas_response.dart';
@@ -7,8 +8,10 @@ import 'package:mms/features/meetings/bloc/add_guest_cubit/add_guest_cubit.dart'
 import 'package:mms/features/meetings/bloc/meeting_cubit/meeting_cubit.dart';
 import 'package:mms/features/meetings/ui/pages/add_guest_page.dart';
 import 'package:mms/features/meetings/ui/pages/calender_screen.dart';
+import 'package:mms/features/vote/bloc/votes_cubit/votes_cubit.dart';
 import 'package:mms/services/location_service/my_location_cubit/my_location_cubit.dart';
 
+import '../core/app/app_widget.dart';
 import '../core/injection/injection_container.dart';
 import '../features/agendas/bloc/add_comment_cubit/add_comment_cubit.dart';
 import '../features/agendas/ui/pages/agenda_page.dart';
@@ -35,8 +38,10 @@ import '../features/home/ui/pages/home_page.dart';
 import '../features/meetings/bloc/add_absence_cubit/add_absence_cubit.dart';
 import '../features/meetings/bloc/meetings_cubit/meetings_cubit.dart';
 import '../features/meetings/ui/pages/meeting_page.dart';
+import '../features/notification/ui/pages/notifications_page.dart';
 import '../features/profile/bloc/update_profile_cubit/update_profile_cubit.dart';
 import '../features/profile/ui/pages/profile_page.dart';
+import '../features/vote/ui/pages/votes_page.dart';
 
 Route<dynamic> routes(RouteSettings settings) {
   var screenName = settings.name;
@@ -290,12 +295,38 @@ Route<dynamic> routes(RouteSettings settings) {
       {
         final providers = [
           BlocProvider(create: (context) => sl<AddCommentCubit>()),
+          BlocProvider.value(
+            value: (settings.arguments as List)[1] as MeetingCubit,
+          ),
         ];
         return MaterialPageRoute(
           builder: (_) {
             return MultiBlocProvider(
               providers: providers,
-              child: AgendaPage(agenda: settings.arguments as Agenda),
+              child:
+                  AgendaPage(agenda: (settings.arguments as List)[0] as Agenda),
+            );
+          },
+        );
+      }
+    //endregion
+    //endregion
+
+    //region votes
+    case RouteName.votes:
+      //region
+      {
+        final providers = [
+          BlocProvider(create: (context) => sl<VotesCubit>()),
+          BlocProvider.value(
+            value: (settings.arguments as List)[1] as MeetingCubit,
+          ),
+        ];
+        return MaterialPageRoute(
+          builder: (_) {
+            return MultiBlocProvider(
+              providers: providers,
+              child: const VotesPage(),
             );
           },
         );
@@ -306,6 +337,26 @@ Route<dynamic> routes(RouteSettings settings) {
     //region Chat
 
     //endregion
+
+  //region notifications
+
+    case RouteName.notifications:
+    //region
+      {
+        return MaterialPageRoute(
+          builder: (_) {
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider(create: (context) => sl<FileCubit>()),
+              ],
+              child: const NotificationsPage(),
+            );
+          },
+        );
+      }
+  //endregion
+
+  //endregion
   }
 
   return MaterialPageRoute(
@@ -329,4 +380,6 @@ class RouteName {
   static const calenderMeetings = '/14';
   static const addGuest = '/15';
   static const agenda = '/16';
+  static const votes = '/17';
+  static const notifications = '/18';
 }

@@ -7,7 +7,7 @@ class AppColorManager {
   static const textColor = Color(0xFF606060);
   static const black = Color(0xFF000000);
   static const ampere = Color(0xFFFFC107);
-  static const gray = Color(0xFF848484);
+  static const grey = Color(0xFF848484);
   static const lightGray = Color(0xFFFBFBFB);
   static const lightGrayAb = Color(0xFFABABAB);
   static const lightGrayEd = Color(0xFFEDEDED);
@@ -34,15 +34,34 @@ class AppColorManager {
   static const c6e = Color(0xFF6E6E6E);
 
   static const f8 = Color(0xFFF8F8F8);
+
+ static Color getColor(int i) {
+    switch (i) {
+      case 0:
+      case 1:
+        return Colors.grey.withOpacity(0.1);
+      case 2:
+        return Colors.grey.withOpacity(0.2);
+      case 3:
+        return Colors.grey.withOpacity(0.3);
+      case 4:
+        return Colors.grey.withOpacity(0.4);
+      case 5:
+        return Colors.grey.withOpacity(0.5);
+    }
+    return f8f9;
+  }
 }
 
 Color getColorFromHex(String hexColor) {
   String formattedHexColor =
       hexColor.replaceAll("#", ""); // Remove the '#' character if present
   if (formattedHexColor.length == 6) {
-    formattedHexColor = "FF$formattedHexColor"; // Add the alpha value if it's missing
+    formattedHexColor =
+        "FF$formattedHexColor"; // Add the alpha value if it's missing
   }
-  int colorValue = int.parse(formattedHexColor, radix: 16); // Parse the hex color string
+  int colorValue =
+      int.parse(formattedHexColor, radix: 16); // Parse the hex color string
   return Color(colorValue);
 }
 
@@ -56,7 +75,7 @@ Color getCheckColor(Color color) {
   if (isColorDark(color)) {
     return Colors.white;
   } else {
-    return AppColorManager.gray;
+    return AppColorManager.grey;
   }
 }
 

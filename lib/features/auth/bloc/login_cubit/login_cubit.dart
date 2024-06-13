@@ -41,7 +41,7 @@ class LoginCubit extends Cubit<LoginInitial> {
   }
 
   Future<Pair<LoginResponse?, String?>> _loginApi() async {
-    final response = await APIService().postApi(
+    final response = await APIService().callApi(type: ApiType.post,
       url: PostUrl.loginUrl,
       body: state.request.toJson(),
     );
@@ -64,7 +64,7 @@ class LoginCubit extends Cubit<LoginInitial> {
   }
 
   Future<Pair<Party?, String?>> _getDataApi() async {
-    final response = await APIService().getApi(url: GetUrl.loggedParty);
+    final response = await APIService().callApi(type: ApiType.get,url: GetUrl.loggedParty);
 
     if (response.statusCode.success) {
       return Pair(Party.fromJson(response.jsonBody), null);

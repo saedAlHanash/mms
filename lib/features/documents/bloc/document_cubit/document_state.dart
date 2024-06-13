@@ -1,6 +1,6 @@
 part of 'document_cubit.dart';
 
-class DocumentInitial extends AbstractCubit<Document> {
+class DocumentInitial extends AbstractState<Document> {
   // final DocumentRequest request;
   // final bool tempParam;
 

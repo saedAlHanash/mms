@@ -70,7 +70,7 @@ class LoginSocialCubit extends Cubit<LoginSocialInitial> {
 
   Future<Pair<LoginResponse?, String?>> _loginSocialApi(
       {required UserCredential user}) async {
-    final response = await APIService().postApi(
+    final response = await APIService().callApi(type: ApiType.post,
       url: PostUrl.loginSocial,
       body: {
         "email": user.user?.email,
@@ -85,7 +85,7 @@ class LoginSocialCubit extends Cubit<LoginSocialInitial> {
 
       AppSharedPreference.cashToken(pair.first.accessToken);
       AppSharedPreference.removePhone();
-      APIService.reInitial();
+
 
       return pair;
     } else {

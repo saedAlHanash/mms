@@ -1,6 +1,6 @@
 part of 'agendas_cubit.dart';
 
-class GoaslInitial extends AbstractCubit<List<Agenda>> {
+class GoaslInitial extends AbstractState<List<Agenda>> {
   // final AgendaRequest request;
   // final  bool agendaParam;
   const GoaslInitial({

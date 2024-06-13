@@ -30,7 +30,7 @@ class DocumentCubit extends MCubit<DocumentInitial> {
   }
 
   Future<Pair<Document?, String?>> _getDataApi() async {
-    final response = await APIService().getApi(url: GetUrl.temp);
+    final response = await APIService().callApi(type: ApiType.get,url: GetUrl.temp);
 
     if (response.statusCode.success) {
       return Pair(Document.fromJson(response.jsonBody), null);

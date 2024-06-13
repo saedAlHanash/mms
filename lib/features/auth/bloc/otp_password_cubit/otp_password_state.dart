@@ -1,6 +1,6 @@
 part of 'otp_password_cubit.dart';
 
-class OtpPasswordInitial extends AbstractCubit<bool> {
+class OtpPasswordInitial extends AbstractState<bool> {
   final LoginRequest request;
 
   const OtpPasswordInitial({

@@ -1,6 +1,6 @@
 part of 'add_comment_cubit.dart';
 
-class AddCommentInitial extends AbstractCubit<bool> {
+class AddCommentInitial extends AbstractState<bool> {
   final AddCommentRequest request;
 
   // final bool addCommentParam;
@@ -41,4 +41,15 @@ class AddCommentInitial extends AbstractCubit<bool> {
       // addCommentParam: addCommentParam ?? this.addCommentParam,
     );
   }
+
+  Comment get getAddedComment => Comment.fromJson(
+        {
+          "id": 'id',
+          "text": request.text,
+          "date": DateTime.now().toIso8601String(),
+          "partyId": AppProvider.getParty.id,
+          "party": AppProvider.getParty.toJson(),
+          "agendaItemId": request.agendaItemId,
+        },
+      );
 }

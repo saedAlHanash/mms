@@ -30,7 +30,7 @@ class AgendaCubit extends MCubit<AgendaInitial> {
   }
 
   Future<Pair<Agenda?, String?>> _getDataApi() async {
-    final response = await APIService().getApi(url: GetUrl.agenda);
+    final response = await APIService().callApi(type: ApiType.get,url: GetUrl.agenda);
 
     if (response.statusCode.success) {
       return Pair(Agenda.fromJson(response.jsonBody), null);
