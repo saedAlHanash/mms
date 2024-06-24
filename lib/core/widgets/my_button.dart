@@ -14,7 +14,7 @@ class MyButton extends StatelessWidget {
     this.elevation,
     this.textColor,
     this.width,
-    this.enable,
+    this.enable = true,
     this.loading = false,
     this.padding,
     this.startIcon,
@@ -27,7 +27,7 @@ class MyButton extends StatelessWidget {
   final Color? color;
   final double? elevation;
   final double? width;
-  final bool? enable;
+  final bool enable;
   final EdgeInsets? padding;
   final Function()? onTap;
   final bool loading;
@@ -61,10 +61,11 @@ class MyButton extends StatelessWidget {
       width: width ?? .9.sw,
       child: ElevatedButton(
         style: ButtonStyle(
-          surfaceTintColor: MaterialStatePropertyAll(color),
-          backgroundColor: MaterialStatePropertyAll(color),
-          padding: const MaterialStatePropertyAll(EdgeInsets.zero),
-          shape: MaterialStatePropertyAll(
+          surfaceTintColor: WidgetStatePropertyAll(color),
+          backgroundColor:
+              WidgetStatePropertyAll(color?.withOpacity(enable ? 1 : 0.3)),
+          padding: const WidgetStatePropertyAll(EdgeInsets.zero),
+          shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0.r),
             ),

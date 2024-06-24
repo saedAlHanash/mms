@@ -1,3 +1,5 @@
+import 'package:collection/collection.dart';
+
 import '../../../documents/data/response/documents_response.dart';
 import '../../../goals/data/response/goals_response.dart';
 import '../../../members/data/response/member_response.dart';
@@ -18,6 +20,15 @@ class CommitteesResponse {
             ),
     );
   }
+}
+
+List<Member> sortedMembers(List<Member> members) {
+ return  members.sorted(
+    (a, b) {
+      return a.membershipType.weight.compareTo(b.membershipType.weight);
+    },
+  );
+
 }
 
 class Committee {
@@ -43,7 +54,6 @@ class Committee {
   final List<Document> documents;
   final List<Goal> goals;
 
-
   factory Committee.fromJson(Map<String, dynamic> json) {
     return Committee(
       id: json["id"] ?? "",
@@ -52,9 +62,9 @@ class Committee {
       statement: json["statement"] ?? "",
       description: json["description"] ?? "",
       member: Member.fromJson(json["member"] ?? {}),
-      members: json["members"] == null
+      members: sortedMembers(json["members"] == null
           ? []
-          : List<Member>.from(json["members"]!.map((x) => Member.fromJson(x))),
+          : List<Member>.from(json["members"]!.map((x) => Member.fromJson(x)))),
       documents: json["documents"] == null
           ? []
           : List<Document>.from(

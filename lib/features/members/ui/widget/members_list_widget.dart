@@ -28,7 +28,7 @@ class MembersListWidget extends StatelessWidget {
             drawablePadding: 20.0.w,
           ),
           subtitle: DrawableText(
-            text: item.membershipType.getName,
+            text: item.membershipType.name,
             color: item.membershipType.getColor,
             fontFamily: FontManager.cairoBold.name,
           ),

@@ -29,7 +29,7 @@ class _AddGuestPageState extends State<AddGuestPage> {
         Navigator.pop(context, true);
       },
       child: Scaffold(
-        appBar: AppBarWidget(titleText: S.of(context).addGuest),
+        appBar: AppBarWidget(titleText: S.of(context).suggestedGuest),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(40.0).r,
           child: Form(

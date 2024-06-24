@@ -53,11 +53,10 @@ class _HomePageState extends State<HomePage> {
           child: PageView(
             controller: _pageController,
             physics: const NeverScrollableScrollPhysics(),
-            children: [
-              const CommitteeScreen(),
-              Container(color: Colors.red),
-              const CalenderScreen(),
-              const MenuScreen(),
+            children: const [
+              CommitteeScreen(),
+              CalenderScreen(),
+              MenuScreen(),
             ],
           ),
         ),

@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import '../../generated/l10n.dart';
+import 'app_color_manager.dart';
 
 enum CubitStatuses { init, loading, done, error }
 
@@ -12,34 +13,29 @@ enum PricingMatrixType { day, date }
 
 enum FilterItem { activity, group, country, city }
 
-enum UpdateType { name, phone, email, address, pass }
-
-enum PaymentMethod { cash, ePay }
-
 enum StartPage { login, home, signupOtp, passwordOtp }
 
-enum CurrencyEnum { dollar, dinar }
+enum GenderEnum {
+  male,
+  female;
 
-enum GenderEnum { male, female }
+  String get name {
+    switch (this) {
+      case GenderEnum.male:
+        return S().mail;
+      case GenderEnum.female:
+        return S().female;
+    }
+  }
+}
 
 enum NeedUpdateEnum { no, withLoading, noLoading }
 
 enum UpdateProfileType { normal, confirmAddPhone }
 
-enum OrderStatus {
-  pending,
-  processing,
-  ready,
-  shipping,
-  completed,
-  canceled,
-  paymentFailed,
-  returned,
-}
-
 enum TaskType { plannedTask, meetingTask }
 
-enum PollStatus { open, closed }
+enum PollStatus { pending, open, closed }
 
 enum PartyType { member, guest }
 
@@ -50,7 +46,42 @@ enum MinuteStatus {
   published;
 }
 
-enum MembershipType { member, chair, secretary, guest }
+enum MembershipType {
+  member(2),
+  chair(0),
+  secretary(1),
+  guest(3);
+
+  const MembershipType(this.weight);
+
+  final int weight;
+
+  Color get getColor {
+    switch (this) {
+      case MembershipType.member:
+        return Colors.green;
+      case MembershipType.chair:
+        return Colors.redAccent;
+      case MembershipType.secretary:
+        return AppColorManager.ampere;
+      default:
+        return Colors.black;
+    }
+  }
+
+  String get name {
+    switch (this) {
+      case MembershipType.member:
+        return S().member;
+      case MembershipType.chair:
+        return S().chair;
+      case MembershipType.secretary:
+        return S().secretary;
+      case MembershipType.guest:
+        return S().guest;
+    }
+  }
+}
 
 enum DiscussionStatus { open, closed }
 
@@ -102,6 +133,7 @@ enum ApiType {
   patch,
   delete,
 }
+
 enum MeetingStatus {
   planned(color: Color(0xFFBABABA)),
   scheduled(color: Color(0xFFAA2F0A)),

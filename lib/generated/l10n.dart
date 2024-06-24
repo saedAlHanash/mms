@@ -2559,6 +2559,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Votes`
+  String get votes {
+    return Intl.message(
+      'Votes',
+      name: 'votes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Vote`
+  String get editVote {
+    return Intl.message(
+      'Edit Vote',
+      name: 'editVote',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Suggesting Guest`
+  String get suggestingGuest {
+    return Intl.message(
+      'Suggesting Guest',
+      name: 'suggestingGuest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Suggested Guest`
+  String get suggestedGuest {
+    return Intl.message(
+      'Suggested Guest',
+      name: 'suggestedGuest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Suggested Guests`
+  String get suggestedGuests {
+    return Intl.message(
+      'Suggested Guests',
+      name: 'suggestedGuests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Member`
+  String get member {
+    return Intl.message(
+      'Member',
+      name: 'member',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Chair`
+  String get chair {
+    return Intl.message(
+      'Chair',
+      name: 'chair',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Secretary`
+  String get secretary {
+    return Intl.message(
+      'Secretary',
+      name: 'secretary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Guest`
+  String get guest {
+    return Intl.message(
+      'Guest',
+      name: 'guest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Voters`
+  String get voters {
+    return Intl.message(
+      'Voters',
+      name: 'voters',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

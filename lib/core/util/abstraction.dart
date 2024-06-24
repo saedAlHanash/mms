@@ -5,6 +5,7 @@ import 'package:mms/core/extensions/extensions.dart';
 import '../../services/caching_service/caching_service.dart';
 import '../api_manager/api_service.dart';
 import '../api_manager/request_models/command.dart';
+import '../error/error_manager.dart';
 import '../strings/enum_manager.dart';
 
 abstract class AbstractState<T> extends Equatable {
@@ -77,9 +78,9 @@ abstract class MCubit<AbstractState> extends Cubit<AbstractState> {
   Future<bool> checkCashed1<T>({
     required dynamic state,
     required T Function(Map<String, dynamic>) fromJson,
-    bool newData = false,
+    bool? newData,
   }) async {
-    if (newData) {
+    if (newData ?? false) {
       emit(state.copyWith(statuses: CubitStatuses.loading));
       return false;
     }
@@ -108,6 +109,35 @@ abstract class MCubit<AbstractState> extends Cubit<AbstractState> {
     } catch (e) {
       loggerObject.e(e);
       return false;
+    }
+  }
+
+  Future<void> getDataAbstract<T>({
+    required T Function(Map<String, dynamic>) fromJson,
+    required dynamic state,
+    required Function() getDataApi,
+    bool? newData,
+    Future<void> Function()? onError,
+    Future<void> Function()? onSuccess,
+  }) async {
+    final checkData = await checkCashed1(
+      state: state,
+      fromJson: fromJson,
+      newData: newData,
+    );
+
+    if (checkData) return;
+
+    final pair = await getDataApi.call();
+
+    if (pair.first == null) {
+      emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));
+      showErrorFromApi(state);
+      onError?.call();
+    } else {
+      await storeData(pair.first);
+      await onSuccess?.call();
+      emit(state.copyWith(statuses: CubitStatuses.done, result: pair.first));
     }
   }
 }

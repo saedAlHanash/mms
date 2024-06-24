@@ -17,44 +17,28 @@ class LoggedPartyCubit extends MCubit<LoggedPartyInitial> {
   @override
   String get nameCache => 'loggedParty';
 
-  Future<void> getLoggedParty() async {
-    if (await checkCashed()) return;
-
-    final pair = await _getDataApi();
-    if (pair.first == null) {
-      emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));
-      showErrorFromApi(state);
-    } else {
-
-      await storeData(pair.first!);
-
-      await AppProvider.loggedParty(response: pair.first!);
-
-      emit(state.copyWith(statuses: CubitStatuses.done, result: pair.first));
-    }
+  Future<void> getLoggedParty({bool? newData}) async {
+    getDataAbstract(
+      fromJson: Party.fromJson,
+      state: state,
+      getDataApi: _getDataApi,
+      newData: newData,
+      onSuccess: () async {
+        await AppProvider.loggedParty(response: state.result);
+      },
+    );
   }
 
   Future<Pair<Party?, String?>> _getDataApi() async {
-    final response = await APIService().callApi(type: ApiType.get,url: GetUrl.loggedParty);
+    final response = await APIService().callApi(
+      type: ApiType.get,
+      url: GetUrl.loggedParty,
+    );
 
     if (response.statusCode.success) {
       return Pair(Party.fromJson(response.jsonBody), null);
     } else {
       return response.getPairError;
     }
-  }
-
-  Future<bool> checkCashed() async {
-    final cacheType = await needGetData();
-
-    emit(
-      state.copyWith(
-        statuses: cacheType.getState,
-        result: Party.fromJson(await getDataCached()),
-      ),
-    );
-
-    if (cacheType == NeedUpdateEnum.no) return true;
-    return false;
   }
 }

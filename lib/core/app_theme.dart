@@ -43,7 +43,7 @@ final appTheme = ThemeData(
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         alignment: Alignment.center,
-        padding: MaterialStatePropertyAll(EdgeInsets.all(50.0.r)),
+        padding: WidgetStatePropertyAll(EdgeInsets.all(50.0.r)),
         backgroundColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
             if (states.contains(MaterialState.pressed)) {
@@ -52,8 +52,8 @@ final appTheme = ThemeData(
             return AppColorManager.mainColor; // Use the component's default.
           },
         ),
-        surfaceTintColor: const MaterialStatePropertyAll(AppColorManager.mainColor),
-        shape: const MaterialStatePropertyAll(
+        surfaceTintColor: const WidgetStatePropertyAll(AppColorManager.mainColor),
+        shape: const WidgetStatePropertyAll(
             RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
         overlayColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) => secondaryColor,
@@ -69,8 +69,8 @@ final appTheme = ThemeData(
     ),
     iconButtonTheme: IconButtonThemeData(
         style:
-            ButtonStyle(padding: MaterialStatePropertyAll(const EdgeInsets.all(2.0).r))),
+            ButtonStyle(padding: WidgetStatePropertyAll(const EdgeInsets.all(2.0).r))),
     checkboxTheme: const CheckboxThemeData(
-      fillColor: MaterialStatePropertyAll(AppColorManager.mainColor),
+      fillColor: WidgetStatePropertyAll(AppColorManager.mainColor),
     ),
     scaffoldBackgroundColor: AppColorManager.whit);

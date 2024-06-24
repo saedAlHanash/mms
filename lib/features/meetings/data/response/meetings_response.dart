@@ -1,48 +1,28 @@
+import 'package:mms/core/extensions/extensions.dart';
+
 import '../../../../core/strings/enum_manager.dart';
+import '../../../../generated/assets.dart';
 import '../../../agendas/data/response/agendas_response.dart';
 import '../../../attendees/data/response/attendee_response.dart';
+import '../../../poll/data/response/poll_response.dart';
 
 class MeetingsResponse {
   MeetingsResponse({
     required this.items,
-    required this.currentPage,
-    required this.totalPages,
-    required this.pageSize,
-    required this.totalCount,
-    required this.hasPrevious,
-    required this.hasNext,
   });
 
   final List<Meeting> items;
-  final num currentPage;
-  final num totalPages;
-  final num pageSize;
-  final num totalCount;
-  final bool hasPrevious;
-  final bool hasNext;
 
   factory MeetingsResponse.fromJson(Map<String, dynamic> json) {
     return MeetingsResponse(
       items: json["items"] == null
           ? []
           : List<Meeting>.from(json["items"]!.map((x) => Meeting.fromJson(x))),
-      currentPage: json["currentPage"] ?? 0,
-      totalPages: json["totalPages"] ?? 0,
-      pageSize: json["pageSize"] ?? 0,
-      totalCount: json["totalCount"] ?? 0,
-      hasPrevious: json["hasPrevious"] ?? false,
-      hasNext: json["hasNext"] ?? false,
     );
   }
 
   Map<String, dynamic> toJson() => {
         "items": items.map((x) => x.toJson()).toList(),
-        "currentPage": currentPage,
-        "totalPages": totalPages,
-        "pageSize": pageSize,
-        "totalCount": totalCount,
-        "hasPrevious": hasPrevious,
-        "hasNext": hasNext,
       };
 }
 
@@ -239,7 +219,8 @@ class AbsenceRequestParty {
       firstName: json["firstName"] ?? "",
       middleName: json["middleName"] ?? "",
       lastName: json["lastName"] ?? "",
-      personalPhoto: json["personalPhoto"] ?? "",
+      personalPhoto:
+      json["personalPhoto"]?.toString().fixUrl(Assets.imagesAvatar) ?? '',
     );
   }
 
@@ -420,7 +401,8 @@ class PurpleParty {
       mobile: json["mobile"] ?? "",
       phone: json["phone"] ?? "",
       workPhone: json["workPhone"] ?? "",
-      personalPhoto: json["personalPhoto"] ?? "",
+      personalPhoto:
+      json["personalPhoto"]?.toString().fixUrl(Assets.imagesAvatar) ?? '',
       company: json["company"] ?? "",
       isUserId: json["isUserId"] ?? "",
       isCustomerId: json["isCustomerId"] ?? "",
@@ -670,163 +652,6 @@ class Minutes {
         "date": date?.toIso8601String(),
         "status": status,
         "media": media?.toJson(),
-      };
-}
-
-class PollResult {
-  PollResult({
-    required this.id,
-    required this.topic,
-    required this.isResultPublished,
-    required this.totalVotes,
-    required this.voteResults,
-  });
-
-  final String id;
-  final String topic;
-  final bool isResultPublished;
-  final num totalVotes;
-  final List<VoteResult> voteResults;
-
-  factory PollResult.fromJson(Map<String, dynamic> json) {
-    return PollResult(
-      id: json["id"] ?? "",
-      topic: json["topic"] ?? "",
-      isResultPublished: json["isResultPublished"] ?? false,
-      totalVotes: json["totalVotes"] ?? 0,
-      voteResults: json["voteResults"] == null
-          ? []
-          : List<VoteResult>.from(
-              json["voteResults"]!.map((x) => VoteResult.fromJson(x))),
-    );
-  }
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "topic": topic,
-        "isResultPublished": isResultPublished,
-        "totalVotes": totalVotes,
-        "voteResults": voteResults.map((x) => x.toJson()).toList(),
-      };
-}
-
-class VoteResult {
-  VoteResult({
-    required this.optionId,
-    required this.option,
-    required this.voteCount,
-  });
-
-  final String optionId;
-  final String option;
-  final num voteCount;
-
-  factory VoteResult.fromJson(Map<String, dynamic> json) {
-    return VoteResult(
-      optionId: json["optionId"] ?? "",
-      option: json["option"] ?? "",
-      voteCount: json["voteCount"] ?? 0,
-    );
-  }
-
-  Map<String, dynamic> toJson() => {
-        "optionId": optionId,
-        "option": option,
-        "voteCount": voteCount,
-      };
-}
-
-class Poll {
-  Poll({
-    required this.id,
-    required this.meetingId,
-    required this.topic,
-    required this.date,
-    required this.status,
-    required this.isResultPublished,
-    required this.options,
-  });
-
-  final String id;
-  final String meetingId;
-  final String topic;
-  final DateTime? date;
-  final num status;
-  final bool isResultPublished;
-  final List<Option> options;
-
-  factory Poll.fromJson(Map<String, dynamic> json) {
-    return Poll(
-      id: json["id"] ?? "",
-      meetingId: json["meetingId"] ?? "",
-      topic: json["topic"] ?? "",
-      date: DateTime.tryParse(json["date"] ?? ""),
-      status: json["status"] ?? 0,
-      isResultPublished: json["isResultPublished"] ?? false,
-      options: json["options"] == null
-          ? []
-          : List<Option>.from(json["options"]!.map((x) => Option.fromJson(x))),
-    );
-  }
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "meetingId": meetingId,
-        "topic": topic,
-        "date": date?.toIso8601String(),
-        "status": status,
-        "isResultPublished": isResultPublished,
-        "options": options.map((x) => x.toJson()).toList(),
-      };
-}
-
-class Option {
-  Option({
-    required this.id,
-    required this.option,
-    required this.voters,
-  });
-
-  final String id;
-  final String option;
-  final List<Voter> voters;
-
-  factory Option.fromJson(Map<String, dynamic> json) {
-    return Option(
-      id: json["id"] ?? "",
-      option: json["option"] ?? "",
-      voters: json["voters"] == null
-          ? []
-          : List<Voter>.from(json["voters"]!.map((x) => Voter.fromJson(x))),
-    );
-  }
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "option": option,
-        "voters": voters.map((x) => x.toJson()).toList(),
-      };
-}
-
-class Voter {
-  Voter({
-    required this.id,
-    required this.name,
-  });
-
-  final String id;
-  final String name;
-
-  factory Voter.fromJson(Map<String, dynamic> json) {
-    return Voter(
-      id: json["id"] ?? "",
-      name: json["name"] ?? "",
-    );
-  }
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
       };
 }
 

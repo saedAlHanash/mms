@@ -6,14 +6,14 @@ class Attendee {
     required this.attendanceDate,
     required this.hasAttended,
     required this.partyId,
-    required this.party,
+    required this.fullName,
   });
 
   final String id;
   final DateTime? attendanceDate;
   final bool hasAttended;
   final String partyId;
-  final Party party;
+  final String fullName;
 
   factory Attendee.fromJson(Map<String, dynamic> json) {
     return Attendee(
@@ -21,7 +21,7 @@ class Attendee {
       attendanceDate: DateTime.tryParse(json["attendanceDate"] ?? ""),
       hasAttended: json["hasAttended"] ?? false,
       partyId: json["partyId"] ?? "",
-      party: Party.fromJson(json["party"] ?? {}),
+      fullName:json["fullName"] ??'',
     );
   }
 
@@ -30,6 +30,6 @@ class Attendee {
         "attendanceDate": attendanceDate?.toIso8601String(),
         "hasAttended": hasAttended,
         "partyId": partyId,
-        "party": party.toJson(),
+        "fullName": fullName,
       };
 }

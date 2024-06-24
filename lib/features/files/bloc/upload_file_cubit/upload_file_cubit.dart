@@ -15,7 +15,7 @@ class FileCubit extends Cubit<FileInitial> {
   FileCubit() : super(FileInitial.initial());
 
   Future<void> uploadFile({required UploadFile request}) async {
-    emit(state.copyWith(request: request));
+    emit(state.copyWith(request: request, statuses: CubitStatuses.loading));
 
     final pair = await _getDataApi();
     if (pair.first == null) {

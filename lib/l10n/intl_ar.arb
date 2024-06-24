@@ -244,5 +244,15 @@
   "postponed": "مؤجلة",
   "running": "جارية",
   "confirmYourPhone": "اكد على رقم هاتفك او جوالك",
-  "notifications": "Notifications"
+  "notifications": "Notifications",
+  "votes": "Votes",
+  "editVote": "Edit Vote",
+  "suggestingGuest": "Suggesting Guest",
+  "suggestedGuest": "Suggested Guest",
+  "suggestedGuests": "Suggested Guests",
+  "member": "Member",
+  "chair": "Chair",
+  "secretary": "Secretary",
+  "guest": "Guest",
+  "voters": "Voters"
 }

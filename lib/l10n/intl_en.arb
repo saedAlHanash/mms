@@ -249,5 +249,15 @@
   "company": "Company",
   "devBy": "Power by ",
   "notifications": "Notifications",
-  "vote": "Vote"
+  "vote": "Vote",
+  "votes": "Votes",
+  "editVote": "Edit Vote",
+  "suggestingGuest": "Suggesting Guest",
+  "suggestedGuest": "Suggested Guest",
+  "suggestedGuests": "Suggested Guests",
+  "member": "Member",
+  "chair": "Chair",
+  "secretary": "Secretary",
+  "guest": "Guest",
+  "voters": "Voters"
 }

@@ -21,21 +21,12 @@ class TempsCubit extends MCubit<TempsInitial> {
   String get filter => (state.filterRequest?.getKey) ?? state.request ?? '';
 
   Future<void> getTemps({bool newData = false}) async {
-
-    final checkData = await checkCashed1(
-        state: state, fromJson: Temp.fromJson, newData: newData);
-
-    if (checkData) return;
-
-    final pair = await _getTemps();
-
-    if (pair.first == null) {
-      emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));
-      showErrorFromApi(state);
-    } else {
-      await storeData(pair.first!);
-      emit(state.copyWith(statuses: CubitStatuses.done, result: pair.first));
-    }
+    await getDataAbstract(
+      fromJson: Temp.fromJson,
+      state: state,
+      getDataApi: _getTemps,
+      newData: newData,
+    );
   }
 
   Future<Pair<List<Temp>?, String?>> _getTemps() async {
@@ -50,9 +41,5 @@ class TempsCubit extends MCubit<TempsInitial> {
     } else {
       return response.getPairError;
     }
-  }
-
-  void setRequest(FilterRequest request) {
-    emit(state.copyWith(filterRequest: request));
   }
 }

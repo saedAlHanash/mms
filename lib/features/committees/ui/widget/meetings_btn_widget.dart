@@ -6,8 +6,10 @@ import 'package:mms/core/api_manager/request_models/command.dart';
 import 'package:mms/generated/assets.dart';
 import 'package:mms/router/app_router.dart';
 
+import '../../../../core/app/app_provider.dart';
 import '../../../../core/strings/app_color_manager.dart';
 import '../../../../core/strings/enum_manager.dart';
+import '../../../../core/util/my_style.dart';
 import '../../bloc/committee_cubit/committee_cubit.dart';
 
 class DrawerMeetingsBtnWidget extends StatelessWidget {
@@ -17,8 +19,9 @@ class DrawerMeetingsBtnWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      right: 0,
+    return Positioned.directional(
+      end: 0,
+      textDirection: AppProvider.getDirection,
       top: 150.0.h,
       width: 80.0.w,
       height: 45.0.h,
@@ -45,12 +48,7 @@ class DrawerMeetingsBtnWidget extends StatelessWidget {
         },
         child: Container(
           padding: const EdgeInsets.all(10.0).r,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.horizontal(
-              left: Radius.circular(10.0.r),
-            ),
-            color: AppColorManager.mainColor,
-          ),
+          decoration: MyStyle.directionalDecoration,
           child: const ImageMultiType(
             url: Assets.iconsCalendar,
           ),

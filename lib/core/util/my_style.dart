@@ -2,6 +2,7 @@ import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../app/app_provider.dart';
 import '../strings/app_color_manager.dart';
 
 class MyStyle {
@@ -85,6 +86,14 @@ class MyStyle {
     color: AppColorManager.whit,
     borderRadius: BorderRadius.circular(12.0.r),
     boxShadow: MyStyle.allShadowDark,
+  );
+
+  static var directionalDecoration = BoxDecoration(
+    borderRadius: BorderRadius.horizontal(
+      left: AppProvider.arabic ? Radius.zero : Radius.circular(10.0.r),
+      right: !AppProvider.arabic ? Radius.zero : Radius.circular(10.0.r),
+    ),
+    color: AppColorManager.mainColor,
   );
 
   static Widget loadingWidget({Color? color}) {

@@ -1,204 +1,128 @@
 {
   "hasRequestAbsence": false,
-  "attendeesList": [],
-  "guestsList": [],
-  "discussions": [
+  "attendeesList": [
     {
-      "meetingId": "c581488e-b431-48cd-aa2b-08dc62b501a7",
-      "topic": "string",
-      "date": "2024-04-29T20:51:07.797",
-      "status": 0,
-      "comments": [],
-      "id": "58876959-b148-49cf-4542-08dc6839b058"
-    }
-  ],
-  "documents": [
-    {
-      "documentDate": "2024-05-14",
-      "name": null,
-      "isPublished": false,
-      "media": null,
-      "id": "8858f126-7c4d-4998-ada0-08dc74124528"
+      "attendanceDate": "2024-06-12T15:45:13.2996057",
+      "hasAttended": true,
+      "partyId": "f5e7ebf0-72cc-4bc0-88b2-08dc8aebbe56",
+      "fullName": "maisam mohamad  ",
+      "personalPhoto": null,
+      "id": "959786c9-9703-4338-7157-08dc8af6a619"
     },
     {
-      "documentDate": "2024-05-14",
-      "name": null,
-      "isPublished": false,
-      "media": null,
-      "id": "c7939a5b-7b9d-427c-ada6-08dc74124528"
+      "attendanceDate": "2024-06-12T15:45:13.3258722",
+      "hasAttended": true,
+      "partyId": "a4d0105e-a26c-4cbd-88b3-08dc8aebbe56",
+      "fullName": "p2 p2",
+      "personalPhoto": null,
+      "id": "45e14232-6157-4643-7158-08dc8af6a619"
+    },
+    {
+      "attendanceDate": "2024-06-12T15:45:13.326024",
+      "hasAttended": true,
+      "partyId": "4e6d83a7-9dca-47e2-88b5-08dc8aebbe56",
+      "fullName": "p4 p4",
+      "personalPhoto": null,
+      "id": "9bbc962f-e45d-4a58-7159-08dc8af6a619"
+    },
+    {
+      "attendanceDate": null,
+      "hasAttended": false,
+      "partyId": "a17898d5-6507-4d61-81b8-08dc8a279b20",
+      "fullName": "عبد الرحمن  عبد 2 ",
+      "personalPhoto": null,
+      "id": "de0d2096-aff2-4247-bbc3-08dc9367eea0"
+    },
+    {
+      "attendanceDate": "2024-06-23T09:45:56.7680771",
+      "hasAttended": true,
+      "partyId": "e2386c19-84b4-4f8e-42e6-08dc89670b11",
+      "fullName": "taha alokla",
+      "personalPhoto": null,
+      "id": "f667c5cf-4a44-4c20-bbc4-08dc9367eea0"
     }
   ],
-  "agendaItems": [
+  "guestsList": [],
+  "discussions": [],
+  "documents": [],
+  "agendaItems": [],
+  "location": null,
+  "absenceRequests": [],
+  "guestSuggestions": [
     {
-      "title": "doing stuff",
-      "description": "we need to do stuff",
-      "fromDate": "2024-04-30T13:40:59.921",
-      "toDate": "2024-04-30T13:40:59.921",
-      "meetingId": "c581488e-b431-48cd-aa2b-08dc62b501a7",
-      "parentId": null,
-      "comments": [],
-      "childrenItems": [
+      "firstName": "saed",
+      "lastName": "hanash",
+      "company": "Core tech",
+      "email": "saed@gmail,com",
+      "phone": "0938891523",
+      "meetingID": "200a9bab-5afc-405f-7270-08dc8af6a5fd",
+      "partyID": "f5e7ebf0-72cc-4bc0-88b2-08dc8aebbe56",
+      "id": "2f4f772a-348c-434f-e707-08dc93937329"
+    }
+  ],
+  "decisions": [],
+  "polls": [
+    {
+      "meetingId": "200a9bab-5afc-405f-7270-08dc8af6a5fd",
+      "topic": "test",
+      "date": "0001-01-01T00:00:00",
+      "status": 2,
+      "isResultPublished": true,
+      "options": [
         {
-          "title": "first child",
-          "description": "we need to do stuff",
-          "fromDate": "2024-04-30T13:40:59.921",
-          "toDate": "2024-04-30T13:40:59.921",
-          "meetingId": "c581488e-b431-48cd-aa2b-08dc62b501a7",
-          "parentId": "ce24f06d-6e3d-45ed-3bee-08dc69c24d8d",
-          "comments": [
+          "option": "نعم",
+          "voters": [
             {
-              "text": "this is a comment",
-              "date": "2024-04-30T14:37:04.217",
-              "partyId": "433226da-120b-4574-920c-08dc62a82969",
-              "party": null,
-              "agendaItemId": "18082212-3c18-4e54-d34c-08dc69c39692",
-              "id": "0f20a690-69bb-4b17-9d53-08dc69c3e5f2"
-            }
-          ],
-          "childrenItems": [
-            {
-              "title": "first child 3",
-              "description": "we need to do meeting",
-              "fromDate": "2024-04-21T13:40:59.921",
-              "toDate": "2024-04-30T13:40:59.921",
-              "meetingId": "c581488e-b431-48cd-aa2b-08dc62b501a7",
-              "parentId": "18082212-3c18-4e54-d34c-08dc69c39692",
-              "comments": [],
-              "childrenItems": [],
-              "id": "99a9deb4-e9c7-4065-f1dd-08dc7e2c0167"
+              "partyId": "4e6d83a7-9dca-47e2-88b5-08dc8aebbe56",
+              "name": "p4 p4",
+              "id": "889848ed-c710-49f4-126e-08dc93ce509f"
             },
             {
-              "title": "first child 4",
-              "description": "we need to do meeting",
-              "fromDate": "2024-04-21T13:40:59.921",
-              "toDate": "2024-04-30T13:40:59.921",
-              "meetingId": "c581488e-b431-48cd-aa2b-08dc62b501a7",
-              "parentId": "18082212-3c18-4e54-d34c-08dc69c39692",
-              "comments": [],
-              "childrenItems": [],
-              "id": "46d98f69-56c6-4879-f1de-08dc7e2c0167"
-            },
-            {
-              "title": "first child 5",
-              "description": "we need to do meeting",
-              "fromDate": "2024-04-21T13:40:59.921",
-              "toDate": "2024-04-30T13:40:59.921",
-              "meetingId": "c581488e-b431-48cd-aa2b-08dc62b501a7",
-              "parentId": "18082212-3c18-4e54-d34c-08dc69c39692",
-              "comments": [],
-              "childrenItems": [],
-              "id": "cc65f517-32a0-4435-f1df-08dc7e2c0167"
+              "partyId": "f5e7ebf0-72cc-4bc0-88b2-08dc8aebbe56",
+              "name": "maisam maisam",
+              "id": "0c49f7ad-5dde-4f4b-1271-08dc93ce509f"
             }
           ],
-          "id": "18082212-3c18-4e54-d34c-08dc69c39692"
+          "id": "c80f2f9c-3791-43f8-4e4f-08dc93c135da"
         },
         {
-          "title": "agenda test",
-          "description": "test desc",
-          "fromDate": "2024-05-08T07:00:00",
-          "toDate": "2024-05-08T07:00:00",
-          "meetingId": "c581488e-b431-48cd-aa2b-08dc62b501a7",
-          "parentId": "ce24f06d-6e3d-45ed-3bee-08dc69c24d8d",
-          "comments": [],
-          "childrenItems": [],
-          "id": "67e3db33-0b4b-41fe-738f-08dc7036708d"
-        },
-        {
-          "title": "doing reading email",
-          "description": "test",
-          "fromDate": "2024-05-01T07:00:00",
-          "toDate": "2024-05-09T07:00:00",
-          "meetingId": "c581488e-b431-48cd-aa2b-08dc62b501a7",
-          "parentId": "ce24f06d-6e3d-45ed-3bee-08dc69c24d8d",
-          "comments": [],
-          "childrenItems": [],
-          "id": "8e66569f-f885-4020-b31a-08dc727053f5"
-        },
-        {
-          "title": "first child",
-          "description": "we need to do meeting",
-          "fromDate": "2024-04-29T13:40:59.921",
-          "toDate": "2024-04-30T13:40:59.921",
-          "meetingId": "c581488e-b431-48cd-aa2b-08dc62b501a7",
-          "parentId": "ce24f06d-6e3d-45ed-3bee-08dc69c24d8d",
-          "comments": [],
-          "childrenItems": [],
-          "id": "5d86b7ca-d992-4555-f1da-08dc7e2c0167"
-        },
-        {
-          "title": "first child 2",
-          "description": "we need to do meeting",
-          "fromDate": "2024-04-22T13:40:59.921",
-          "toDate": "2024-04-30T13:40:59.921",
-          "meetingId": "c581488e-b431-48cd-aa2b-08dc62b501a7",
-          "parentId": "ce24f06d-6e3d-45ed-3bee-08dc69c24d8d",
-          "comments": [],
-          "childrenItems": [],
-          "id": "d6f0fe1e-45f7-4a2d-f1db-08dc7e2c0167"
-        },
-        {
-          "title": "first child 2",
-          "description": "we need to do meeting",
-          "fromDate": "2024-04-21T13:40:59.921",
-          "toDate": "2024-04-30T13:40:59.921",
-          "meetingId": "c581488e-b431-48cd-aa2b-08dc62b501a7",
-          "parentId": "ce24f06d-6e3d-45ed-3bee-08dc69c24d8d",
-          "comments": [],
-          "childrenItems": [],
-          "id": "c762affc-649d-41c5-f1dc-08dc7e2c0167"
+          "option": "لا",
+          "voters": [],
+          "id": "b210fc4a-c119-4803-4e50-08dc93c135da"
         }
       ],
-      "id": "ce24f06d-6e3d-45ed-3bee-08dc69c24d8d"
-    },
-    {
-      "title": "on root 2",
-      "description": "we need to do stuff",
-      "fromDate": "2024-04-30T13:40:59.921",
-      "toDate": "2024-04-30T13:40:59.921",
-      "meetingId": "c581488e-b431-48cd-aa2b-08dc62b501a7",
-      "parentId": null,
-      "comments": [],
-      "childrenItems": [],
-      "id": "405de29c-952c-43f7-6951-08dc69c3b3fb"
-    },
-    {
-      "title": "doing meeting ",
-      "description": "test",
-      "fromDate": "2024-05-12T07:00:00",
-      "toDate": "2024-05-12T07:00:00",
-      "meetingId": "c581488e-b431-48cd-aa2b-08dc62b501a7",
-      "parentId": null,
-      "comments": [],
-      "childrenItems": [],
-      "id": "6a3003cc-81f3-49b0-e5bd-08dc73261747"
+      "id": "3155688d-7637-4ec8-d9c6-08dc93c135d9"
     }
   ],
-  "location": {
-    "meetingId": "c581488e-b431-48cd-aa2b-08dc62b501a7",
-    "address": "tests",
-    "locationType": 0,
-    "onlineMeetingLinks": [
-      {
-        "link": "test url",
-        "platform": 0
-      }
-    ],
-    "id": "8da094ce-b436-47fb-c202-08dc728aef50"
-  },
-  "absenceRequests": [],
-  "guestSuggestions": [],
-  "decisions": [],
-  "polls": [],
   "tasks": [],
   "minutes": null,
-  "pollResults": null,
-  "title": "meeting 2",
-  "meetingPlace": null,
-  "fromDate": "2024-04-22T10:21:20.127",
-  "toDate": "2024-04-22T10:21:20.127",
-  "scheduledDate": "2024-04-01T10:53:49.43",
-  "status": 1,
-  "committeeId": "16c371d2-4877-42af-9448-08dc62a6ffc3",
+  "pollResults": [
+    {
+      "topic": "test",
+      "isResultPublished": true,
+      "totalVotes": 2,
+      "voteResults": [
+        {
+          "optionId": "c80f2f9c-3791-43f8-4e4f-08dc93c135da",
+          "option": "نعم",
+          "voteCount": 2
+        },
+        {
+          "optionId": "b210fc4a-c119-4803-4e50-08dc93c135da",
+          "option": "لا",
+          "voteCount": 0
+        }
+      ],
+      "id": "3155688d-7637-4ec8-d9c6-08dc93c135d9"
+    }
+  ],
+  "title": "sales discussions",
+  "meetingPlace": "ss",
+  "fromDate": "2024-06-09T09:00:00.127",
+  "toDate": "2024-06-11T12:00:00.127",
+  "scheduledDate": "2024-06-23T22:41:10.07",
+  "status": 4,
+  "committeeId": "e2ac0647-3b16-4a29-bb67-08dc8aef06d2",
   "committeeName": null,
-  "id": "c581488e-b431-48cd-aa2b-08dc62b501a7"
+  "id": "200a9bab-5afc-405f-7270-08dc8af6a5fd"
 }

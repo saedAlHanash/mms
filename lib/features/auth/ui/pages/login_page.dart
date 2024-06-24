@@ -87,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
                         label: S.of(context).userName,
                         initialValue: loginCubit.state.request.userName,
                         keyBordType: TextInputType.emailAddress,
-                        icon: Assets.iconsCall,
+                        icon: Icons.person_2_outlined,
                         onChanged: (val) => loginCubit.setUserName = val,
                       ),
                       15.0.verticalSpace,

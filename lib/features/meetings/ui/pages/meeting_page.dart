@@ -60,21 +60,38 @@ class MeetingPage extends StatelessWidget {
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             Navigator.pushNamed(context, RouteName.votes,
-                arguments: [0, context.read<MeetingCubit>()]);
+                arguments: context.read<MeetingCubit>());
           },
           backgroundColor: AppColorManager.mainColor,
-          label: DrawableText(
-            text: 'Votes',
-            color: Colors.white,
-            size: 20.0.sp,
-            fontFamily: FontManager.cairoBold.name,
-            drawablePadding: 10.0.w,
-            drawableEnd: ImageMultiType(
-              url: Icons.how_to_vote,
-              color: Colors.white,
-              height: 30.0.r,
-              width: 30.0.r,
-            ),
+          label: BlocBuilder<MeetingCubit, MeetingInitial>(
+            builder: (context, state) {
+              return DrawableText(
+                text: S.of(context).votes,
+                color: Colors.white,
+                size: 20.0.sp,
+                fontFamily: FontManager.cairoBold.name,
+                drawablePadding: 10.0.w,
+                drawableStart: state.result.countPollsNotVotes == 0
+                    ? null
+                    : Container(
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.red,
+                        ),
+                        padding: const EdgeInsets.all(7.0).r,
+                        child: DrawableText(
+                          text: state.result.countPollsNotVotes.toString(),
+                          color: Colors.white,
+                        ),
+                      ),
+                drawableEnd: ImageMultiType(
+                  url: Icons.how_to_vote,
+                  color: Colors.white,
+                  height: 30.0.r,
+                  width: 30.0.r,
+                ),
+              );
+            },
           ),
         ),
         body: BlocBuilder<MeetingCubit, MeetingInitial>(

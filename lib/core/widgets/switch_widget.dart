@@ -30,7 +30,7 @@ class _SwitchWidgetState extends State<SwitchWidget> {
       value: val,
       inactiveThumbColor: Colors.white,
       inactiveTrackColor: AppColorManager.lightGrayAb,
-      trackOutlineColor: MaterialStatePropertyAll(
+      trackOutlineColor: WidgetStatePropertyAll(
           val ? Colors.green : AppColorManager.lightGrayAb),
       activeColor: Colors.white,
       activeTrackColor: Colors.green,

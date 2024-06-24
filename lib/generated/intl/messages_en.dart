@@ -51,6 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cart": MessageLookupByLibrary.simpleMessage("Cart"),
         "cashPayment": MessageLookupByLibrary.simpleMessage("Cash Payment"),
         "categories": MessageLookupByLibrary.simpleMessage("Categories"),
+        "chair": MessageLookupByLibrary.simpleMessage("Chair"),
         "changeAddress": MessageLookupByLibrary.simpleMessage("Change Address"),
         "changeEmail": MessageLookupByLibrary.simpleMessage("Change Email"),
         "changeFile": MessageLookupByLibrary.simpleMessage("Change File"),
@@ -136,6 +137,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "downloadFile": MessageLookupByLibrary.simpleMessage("Download File"),
         "ePayment": MessageLookupByLibrary.simpleMessage("E-Payment"),
         "editProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
+        "editVote": MessageLookupByLibrary.simpleMessage("Edit Vote"),
         "educationalGrade":
             MessageLookupByLibrary.simpleMessage("Educational Grade"),
         "educationalProgress":
@@ -177,6 +179,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
         "governor": MessageLookupByLibrary.simpleMessage("governor"),
+        "guest": MessageLookupByLibrary.simpleMessage("Guest"),
         "haveBeenCreated": MessageLookupByLibrary.simpleMessage(
             "Your Account Had Been Created"),
         "helperPhoneText":
@@ -197,6 +200,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mail": MessageLookupByLibrary.simpleMessage("Mail"),
         "max": MessageLookupByLibrary.simpleMessage("Max"),
         "meeting": MessageLookupByLibrary.simpleMessage("Meeting"),
+        "member": MessageLookupByLibrary.simpleMessage("Member"),
         "middleName": MessageLookupByLibrary.simpleMessage("Middle Name"),
         "min": MessageLookupByLibrary.simpleMessage("Min"),
         "minutes": MessageLookupByLibrary.simpleMessage("Minutes"),
@@ -294,6 +298,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "searchResult": MessageLookupByLibrary.simpleMessage("Search Result"),
         "search_In_All": MessageLookupByLibrary.simpleMessage("Search In All"),
         "seconds": MessageLookupByLibrary.simpleMessage("seconds"),
+        "secretary": MessageLookupByLibrary.simpleMessage("Secretary"),
         "see_all": MessageLookupByLibrary.simpleMessage("See All"),
         "selectFromMap": MessageLookupByLibrary.simpleMessage("From Map"),
         "selectGovernor":
@@ -324,6 +329,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "subTitleSupport": MessageLookupByLibrary.simpleMessage("Our support "),
         "subtotal": MessageLookupByLibrary.simpleMessage("Subtotal"),
         "successfully": MessageLookupByLibrary.simpleMessage("Successfully."),
+        "suggestedGuest":
+            MessageLookupByLibrary.simpleMessage("Suggested Guest"),
+        "suggestedGuests":
+            MessageLookupByLibrary.simpleMessage("Suggested Guests"),
+        "suggestingGuest":
+            MessageLookupByLibrary.simpleMessage("Suggesting Guest"),
         "summaries": MessageLookupByLibrary.simpleMessage("Summaries"),
         "support": MessageLookupByLibrary.simpleMessage("Support"),
         "teachingStaff": MessageLookupByLibrary.simpleMessage("Teaching staff"),
@@ -337,6 +348,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "userName": MessageLookupByLibrary.simpleMessage("Username"),
         "verify": MessageLookupByLibrary.simpleMessage("verify"),
         "vote": MessageLookupByLibrary.simpleMessage("Vote"),
+        "voters": MessageLookupByLibrary.simpleMessage("Voters"),
+        "votes": MessageLookupByLibrary.simpleMessage("Votes"),
         "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back!"),
         "wishList": MessageLookupByLibrary.simpleMessage("WishList"),
         "wishlist": MessageLookupByLibrary.simpleMessage("Wishlist"),

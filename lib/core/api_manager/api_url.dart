@@ -95,6 +95,8 @@ class GetUrl {
   static const agendas = '';
 
   static const vote = 'Poll/Get';
+
+  static var poll = '';
 }
 
 class PostUrl {
@@ -157,6 +159,10 @@ class PostUrl {
 
   static var createVote = 'Vote/Add';
 
+  static var createPoll = '';
+
+  static var polls = '';
+
   static String addMessage(int id) {
     return 'drivers/messages/$id/add';
   }
@@ -178,6 +184,8 @@ class PutUrl {
   static var updateTemp = '';
 
   static var updateVote = 'Vote/Update';
+
+  static var updatePoll = '';
 }
 
 class DeleteUrl {
@@ -190,6 +198,8 @@ class DeleteUrl {
   static var deleteTemp = '';
 
   static var deleteVote = 'Vote/Delete';
+
+  static var deletePoll = '';
 }
 
 const additionalConst = '/api/v1/';

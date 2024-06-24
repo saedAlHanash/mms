@@ -14,17 +14,20 @@ import 'app_widget.dart';
 class AppProvider {
   static var _currentCommittee = Committee.fromJson({});
 
+  static TextDirection getDirection =
+      arabic ? TextDirection.rtl : TextDirection.ltr;
+
+  static bool arabic = AppSharedPreference.getLocal == 'ar';
+
   static set setCommittee(Committee c) => _currentCommittee = c;
 
   static Committee get getCurrentCommittee => _currentCommittee;
-
 
   static var _currentMeeting = Meeting.fromJson({});
 
   static set setMeeting(Meeting c) => _currentMeeting = c;
 
   static Meeting get getCurrentMeeting => _currentMeeting;
-
 
   static LoginResponse get getMe => AppSharedPreference.getUser;
 

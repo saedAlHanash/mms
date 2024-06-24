@@ -9,7 +9,9 @@ import 'package:mms/core/api_manager/api_service.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:mms/features/committees/data/response/committees_response.dart';
 
+import '../../features/meetings/data/response/meetings_response.dart';
 import '../../features/members/data/response/member_response.dart';
+import '../../features/poll/data/response/poll_response.dart';
 import '../../generated/l10n.dart';
 import '../app/app_provider.dart';
 import '../error/error_manager.dart';
@@ -104,19 +106,6 @@ extension SplitByLength on String {
     return output;
   }
 
-  OrderStatus get getOrderStatus {
-    if (toLowerCase() == 'pending') return OrderStatus.pending;
-    if (toLowerCase() == 'processing') return OrderStatus.processing;
-    if (toLowerCase() == 'ready') return OrderStatus.ready;
-    if (toLowerCase() == 'shipping') return OrderStatus.shipping;
-    if (toLowerCase() == 'completed') return OrderStatus.completed;
-    if (toLowerCase() == 'canceled') return OrderStatus.canceled;
-    if (toLowerCase() == 'payment_failed') return OrderStatus.paymentFailed;
-    if (toLowerCase() == 'returned') return OrderStatus.returned;
-
-    return OrderStatus.pending;
-  }
-
   num get tryParseOrZero => num.tryParse(this) ?? 0;
 
   int get tryParseOrZeroInt => int.tryParse(this) ?? 0;
@@ -133,12 +122,19 @@ extension StringHelper on String? {
   }
 
   String fixUrl(String initialImage) {
-    final type = ImageMultiType.initialType(this);
+    final type = ImageMultiType.initialType(fixAvatarImage(this));
 
     if (type == ImageType.tempImg) return initialImage;
 
-    return this!;
+    return fixAvatarImage(this);
   }
+}
+
+String fixAvatarImage(String? image) {
+  if (image.isBlank) return '';
+  if (image!.startsWith('http')) return image;
+  final String link = "https://mms.coretech-mena.com/documents/$image";
+  return link;
 }
 
 final oCcy = NumberFormat("#,###", "en_US");
@@ -181,7 +177,7 @@ extension ListEnumHelper on List<Enum> {
         (e) => SpinnerItem(
           id: e.index,
           isSelected: e.index == selectedId,
-          name: e.getName,
+          name: e.name,
           icon: icon,
           item: e,
         ),
@@ -191,102 +187,6 @@ extension ListEnumHelper on List<Enum> {
 }
 
 extension EnumHelper on Enum {
-  String get getName {
-    switch (this) {
-      case UpdateType.name:
-        return S().changeName;
-      case UpdateType.email:
-        return S().changeEmail;
-      case UpdateType.phone:
-        return S().changePhone;
-      case UpdateType.address:
-        return S().changeAddress;
-      case UpdateType.pass:
-        return S().changePassword;
-      case PaymentMethod.cash:
-        return S().cashPayment;
-      case PaymentMethod.ePay:
-        return S().ePayment;
-      case OrderStatus.pending:
-        return S().pending;
-      case OrderStatus.processing:
-        return S().processing;
-      case OrderStatus.ready:
-        return S().ready;
-      case OrderStatus.shipping:
-        return S().shipping;
-      case OrderStatus.completed:
-        return S().completed;
-      case OrderStatus.canceled:
-        return S().canceled;
-      case OrderStatus.paymentFailed:
-        return S().paymentFailed;
-      case OrderStatus.returned:
-        return S().returned;
-      case CurrencyEnum.dollar:
-        return 'USD';
-      case CurrencyEnum.dinar:
-        return 'IQD';
-      case GenderEnum.male:
-        return S().mail;
-      case GenderEnum.female:
-        return S().female;
-    }
-    return name;
-  }
-
-  Color get getOrderStateColorText {
-    switch (this) {
-      case OrderStatus.pending:
-      case OrderStatus.processing:
-      case OrderStatus.ready:
-      case OrderStatus.shipping:
-        return AppColorManager.mainColor;
-      case OrderStatus.completed:
-        return Colors.green;
-      case OrderStatus.canceled:
-      case OrderStatus.paymentFailed:
-      case OrderStatus.returned:
-        return Colors.red;
-    }
-    return AppColorManager.mainColor;
-  }
-
-  String get getNameDateOrderStatus {
-    switch (this) {
-      case OrderStatus.pending:
-        return '${S().donePending} ${S().at}'; //
-      case OrderStatus.processing:
-        return '${S().doneProcessing} ${S().at}'; //
-      case OrderStatus.ready:
-        return '${S().doneReady} ${S().at}'; //
-      case OrderStatus.shipping:
-        return '${S().doneShipping} ${S().at}'; //
-      case OrderStatus.completed:
-        return '${S().doneCompleted} ${S().at}'; //
-      case OrderStatus.canceled:
-        return '${S().doneCanceled} ${S().at}'; //
-      case OrderStatus.paymentFailed:
-        return '${S().donePaymentFailed} ${S().at}'; //
-      case OrderStatus.returned:
-        return '${S().doneReturned} ${S().at}'; //
-    }
-    return '';
-  }
-
-  Color get getColor {
-    switch (this) {
-      case MembershipType.member:
-        return Colors.green;
-      case MembershipType.chair:
-        return Colors.redAccent;
-      case MembershipType.secretary:
-        return AppColorManager.ampere;
-      default:
-        return Colors.black;
-    }
-  }
-
   Color get getColorForRecord {
     switch (this) {
       case MembershipType.member:
@@ -299,7 +199,6 @@ extension EnumHelper on Enum {
         return Colors.white;
     }
   }
-
 }
 
 extension ResponseHelper on http.Response {
@@ -364,8 +263,6 @@ extension DateUtcHelper on DateTime {
   String get formatDate => DateFormat('yyyy/MM/dd', 'en').format(this);
 
   String get formatDateToRequest => DateFormat('yyyy-MM-dd', 'en').format(this);
-
-  String get formatDateAther => DateFormat('yyyy/MM/dd HH:MM').format(this);
 
   String get formatTime => DateFormat('h:mm a').format(this);
 
@@ -469,6 +366,54 @@ extension MemberHelper on Member {
   bool get isMe {
     // loggerObject.w('$id\n${AppProvider.getCurrentCommittee.member.id}');
     return id == AppProvider.getCurrentCommittee.member.id;
+  }
+}
+
+extension PoolH on Poll {
+  List<SpinnerItem> getSpinnerItems({String? selectedId}) {
+    return List<SpinnerItem>.from(
+      options.mapIndexed(
+        (i, e) => SpinnerItem(
+          id: i,
+          isSelected: e.id == selectedId,
+          name: e.option,
+          item: e,
+        ),
+      ),
+    );
+  }
+
+  Option? get meOptionVote {
+    for (var e in options) {
+      for (var v in e.voters) {
+        if (v.partyId == AppProvider.getParty.id) {
+          return e;
+        }
+      }
+    }
+    return null;
+  }
+
+  int get votersCount {
+    final count = options.map((e) => e.voters.length).reduce((a, b) => a + b);
+    return count;
+  }
+}
+
+extension OptionH on Option {
+  String? get voteId =>
+      voters.firstWhereOrNull((e) => e.partyId == AppProvider.getParty.id)?.id;
+}
+
+extension MeetingH on Meeting {
+  int get countPollsNotVotes {
+    int i = 0;
+    for (var e in polls) {
+      // if (e.status == PollStatus.closed) continue;
+      if (e.meOptionVote != null) continue;
+      i += 1;
+    }
+    return i;
   }
 }
 

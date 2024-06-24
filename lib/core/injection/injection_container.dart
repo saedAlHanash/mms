@@ -22,6 +22,8 @@ import '../../features/meetings/bloc/meeting_cubit/meeting_cubit.dart';
 import '../../features/meetings/bloc/meetings_cubit/meetings_cubit.dart';
 import '../../features/notification/bloc/notifications_cubit/notifications_cubit.dart';
 import '../../features/profile/bloc/update_profile_cubit/update_profile_cubit.dart';
+import '../../features/vote/bloc/delete_vote_cubit/delete_vote_cubit.dart';
+import '../../features/vote/bloc/create_vote_cubit/create_vote_cubit.dart';
 import '../../features/vote/bloc/vote_cubit/vote_cubit.dart';
 import '../../features/vote/bloc/votes_cubit/votes_cubit.dart';
 import '../../services/location_service/my_location_cubit/my_location_cubit.dart';
@@ -34,7 +36,7 @@ Future<void> init() async {
   //region Core
 
   sl.registerLazySingleton<NetworkInfo>(
-          () => NetworkInfoImpl(connectionChecker: sl()));
+      () => NetworkInfoImpl(connectionChecker: sl()));
   sl.registerLazySingleton(() => InternetConnectionChecker());
   sl.registerLazySingleton(() => LoadingCubit());
   sl.registerLazySingleton(() => GlobalKey<NavigatorState>());
@@ -93,8 +95,11 @@ Future<void> init() async {
   //endregion
 
   //region Vote
+
   sl.registerFactory(() => VoteCubit());
   sl.registerFactory(() => VotesCubit());
+  sl.registerFactory(() => CreateVoteCubit());
+  sl.registerFactory(() => DeleteVoteCubit());
 
   //endregion
 

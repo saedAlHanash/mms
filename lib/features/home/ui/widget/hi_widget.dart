@@ -2,6 +2,7 @@ import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_multi_type/circle_image_widget.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 
 import '../../../../core/app/app_provider.dart';
@@ -20,24 +21,22 @@ class HiWidget extends StatelessWidget {
       leading: Container(
         height: 50.0.r,
         width: 50.0.r,
+        clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
           border: Border.all(color: AppColorManager.red),
           shape: BoxShape.circle,
         ),
-        child: ImageMultiType(
-          url: Assets.imagesAvatar,
-          height: 50.0.r,
-          width: 50.0.r,
+        child: CircleImageWidget(
+          url: AppProvider.getParty.personalPhoto,
+          size: 50.0.r,
         ),
       ),
       title: DrawableText(
-        text: '${S.of(context).welcomeBack}${AppProvider.getParty.name}',
+        text: S.of(context).welcomeBack,
         fontFamily: FontManager.cairoSemiBold.name,
       ),
       subtitle: DrawableText(
-        text: '',
-        color: AppColorManager.mainColorLight,
-        size: 14.0.sp,
+        text: AppProvider.getParty.name,
       ),
       trailing: InkWell(
         onTap: () {
@@ -50,14 +49,15 @@ class HiWidget extends StatelessWidget {
                 Stack(
                   children: [
                     IconButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, RouteName.notifications);
-                        },
-                        icon: ImageMultiType(
-                          url: Icons.notifications,
-                          height: 30.0.r,
-                          width: 30.0.r,
-                        )),
+                      onPressed: () {
+                        Navigator.pushNamed(context, RouteName.notifications);
+                      },
+                      icon: ImageMultiType(
+                        url: Assets.iconsNotifications,
+                        height: 50.0.r,
+                        width: 50.0.r,
+                      ),
+                    ),
                     (state.result.length - state.numOfRead) != 0
                         ? Container(
                             padding: const EdgeInsets.all(2),

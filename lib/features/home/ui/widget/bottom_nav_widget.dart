@@ -72,19 +72,7 @@ class _NewNavState extends State<NewNav> {
             ),
             label: '',
           ),
-          BottomNavigationBarItem(
-            icon: ImageMultiType(
-              url: Icons.file_copy_sharp,
-              color: Colors.grey,
-              height: 25.0.spMin,
-            ),
-            activeIcon: ImageMultiType(
-              url: Icons.file_copy_sharp,
-              color: AppColorManager.mainColor,
-              height: 25.0.spMin,
-            ),
-            label: '',
-          ),
+
           BottomNavigationBarItem(
             icon: ImageMultiType(
               url: Icons.calendar_month,

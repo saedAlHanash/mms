@@ -41,6 +41,7 @@ import '../features/meetings/ui/pages/meeting_page.dart';
 import '../features/notification/ui/pages/notifications_page.dart';
 import '../features/profile/bloc/update_profile_cubit/update_profile_cubit.dart';
 import '../features/profile/ui/pages/profile_page.dart';
+import '../features/vote/bloc/create_vote_cubit/create_vote_cubit.dart';
 import '../features/vote/ui/pages/votes_page.dart';
 
 Route<dynamic> routes(RouteSettings settings) {
@@ -317,9 +318,9 @@ Route<dynamic> routes(RouteSettings settings) {
       //region
       {
         final providers = [
-          BlocProvider(create: (context) => sl<VotesCubit>()),
+          BlocProvider(create: (context) => sl<CreateVoteCubit>()),
           BlocProvider.value(
-            value: (settings.arguments as List)[1] as MeetingCubit,
+            value: (settings.arguments as MeetingCubit),
           ),
         ];
         return MaterialPageRoute(
@@ -338,10 +339,10 @@ Route<dynamic> routes(RouteSettings settings) {
 
     //endregion
 
-  //region notifications
+    //region notifications
 
     case RouteName.notifications:
-    //region
+      //region
       {
         return MaterialPageRoute(
           builder: (_) {
@@ -354,9 +355,9 @@ Route<dynamic> routes(RouteSettings settings) {
           },
         );
       }
-  //endregion
+    //endregion
 
-  //endregion
+    //endregion
   }
 
   return MaterialPageRoute(

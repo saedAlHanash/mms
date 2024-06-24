@@ -2,13 +2,16 @@ import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:group_button/group_button.dart';
+import 'package:image_multi_type/image_multi_type.dart';
+import 'package:mms/core/api_manager/api_service.dart';
 import 'package:mms/core/widgets/spinner_widget.dart';
 
+import '../../generated/assets.dart';
 import '../strings/app_color_manager.dart';
 
 class MyCheckboxWidget extends StatefulWidget {
   const MyCheckboxWidget({
-     super.key,
+    super.key,
     required this.items,
     this.buttonBuilder,
     this.onSelected,
@@ -29,7 +32,6 @@ class _MyCheckboxWidgetState extends State<MyCheckboxWidget> {
 
   @override
   void initState() {
-
     for (var i = 0; i < widget.items.length; i++) {
       if (widget.items[i].isSelected) {
         controller.selectIndex(i);
@@ -47,23 +49,27 @@ class _MyCheckboxWidgetState extends State<MyCheckboxWidget> {
       buttonBuilder: widget.buttonBuilder ??
           (selected, value, context) {
             return SizedBox(
-              width: 0.4.sw,
+              width: 1.0.sw,
               height: 40.0.h,
               child: DrawableText(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0).w,
                 text: value.name ?? '',
                 maxLines: 1,
-                color: selected ? AppColorManager.mainColor : AppColorManager.textColor,
+                matchParent: true,
+                color: selected
+                    ? AppColorManager.mainColor
+                    : AppColorManager.textColor,
                 size: 16.0.spMin,
-                drawableStart: Radio<bool>(
-                  value: selected,
-                  onChanged: (value) {},
-                  groupValue: true,
+                drawablePadding: 5.0.w,
+                drawableStart: ImageMultiType(
+                  url: selected
+                      ? Assets.iconsRadioSelected
+                      : Assets.iconsRadioNotSelect,
                 ),
               ),
             );
           },
       onSelected: widget.onSelected,
-      enableDeselect: !(widget.isRadio ?? false),
       options: const GroupButtonOptions(
         crossGroupAlignment: CrossGroupAlignment.start,
         mainGroupAlignment: MainGroupAlignment.start,

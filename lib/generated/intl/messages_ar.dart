@@ -49,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cart": MessageLookupByLibrary.simpleMessage("السلة"),
         "cashPayment": MessageLookupByLibrary.simpleMessage("دفع نقدي"),
         "categories": MessageLookupByLibrary.simpleMessage("تصنيفات"),
+        "chair": MessageLookupByLibrary.simpleMessage("Chair"),
         "changeAddress": MessageLookupByLibrary.simpleMessage("تغيير العنوان"),
         "changeEmail":
             MessageLookupByLibrary.simpleMessage("تغيير البريد الإلكتروني"),
@@ -130,6 +131,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ePayment": MessageLookupByLibrary.simpleMessage("دفع إلكتروني"),
         "editProfile":
             MessageLookupByLibrary.simpleMessage("تعديل الصفحة الشخصية"),
+        "editVote": MessageLookupByLibrary.simpleMessage("Edit Vote"),
         "educationalGrade":
             MessageLookupByLibrary.simpleMessage("المرحلة الدراسية"),
         "educationalProgress":
@@ -168,6 +170,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
         "gender": MessageLookupByLibrary.simpleMessage("الجنس"),
         "governor": MessageLookupByLibrary.simpleMessage("المحافظة"),
+        "guest": MessageLookupByLibrary.simpleMessage("Guest"),
         "haveBeenCreated":
             MessageLookupByLibrary.simpleMessage("تم إنشاء حسابك"),
         "helperPhoneText":
@@ -187,6 +190,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "mail": MessageLookupByLibrary.simpleMessage("ذكر"),
         "max": MessageLookupByLibrary.simpleMessage("الأقصى"),
+        "member": MessageLookupByLibrary.simpleMessage("Member"),
         "middleName": MessageLookupByLibrary.simpleMessage("الاسم الأوسط"),
         "min": MessageLookupByLibrary.simpleMessage("دقيقة"),
         "minutes": MessageLookupByLibrary.simpleMessage("دقائق"),
@@ -279,6 +283,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "searchResult": MessageLookupByLibrary.simpleMessage("نتائج البحث"),
         "search_In_All": MessageLookupByLibrary.simpleMessage("البحث في الكل"),
         "seconds": MessageLookupByLibrary.simpleMessage("ثواني"),
+        "secretary": MessageLookupByLibrary.simpleMessage("Secretary"),
         "see_all": MessageLookupByLibrary.simpleMessage("عرض الكل"),
         "selectFromMap": MessageLookupByLibrary.simpleMessage("من الخريطة"),
         "selectGovernor": MessageLookupByLibrary.simpleMessage("اختر المحافظة"),
@@ -309,6 +314,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("خدمه العملاء رسال واتصل"),
         "subtotal": MessageLookupByLibrary.simpleMessage("المجموع الفرعي"),
         "successfully": MessageLookupByLibrary.simpleMessage("بنجاح."),
+        "suggestedGuest":
+            MessageLookupByLibrary.simpleMessage("Suggested Guest"),
+        "suggestedGuests":
+            MessageLookupByLibrary.simpleMessage("Suggested Guests"),
+        "suggestingGuest":
+            MessageLookupByLibrary.simpleMessage("Suggesting Guest"),
         "summaries": MessageLookupByLibrary.simpleMessage("الملازم"),
         "support": MessageLookupByLibrary.simpleMessage("الدعم"),
         "teachingStaff":
@@ -322,6 +333,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("استخدم الموقع الحالي"),
         "userName": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
         "verify": MessageLookupByLibrary.simpleMessage("التحقق"),
+        "voters": MessageLookupByLibrary.simpleMessage("Voters"),
+        "votes": MessageLookupByLibrary.simpleMessage("Votes"),
         "welcomeBack": MessageLookupByLibrary.simpleMessage("أهلا بعودتك!"),
         "wishList": MessageLookupByLibrary.simpleMessage("قائمة أماني"),
         "wishlist": MessageLookupByLibrary.simpleMessage("قائمة الرغبات"),

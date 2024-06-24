@@ -44,7 +44,10 @@ class _ProfilePageState extends State<ProfilePage> {
       listeners: [
         BlocListener<UpdateProfileCubit, UpdateProfileInitial>(
           listenWhen: (p, c) => c.statuses.done,
-          listener: (context, state) => Navigator.pop(context),
+          listener: (context, state) {
+            context.read<LoggedPartyCubit>().getLoggedParty(newData: true);
+            Navigator.pop(context);
+          },
         ),
         BlocListener<LoggedPartyCubit, LoggedPartyInitial>(
           listenWhen: (p, c) => c.statuses.done,

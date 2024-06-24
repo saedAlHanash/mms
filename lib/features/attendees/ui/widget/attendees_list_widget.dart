@@ -34,14 +34,13 @@ class AttendeesListWidget extends StatelessWidget {
               itemCount: meeting.attendeesList.length,
               itemBuilder: (context, i) {
                 final item = meeting.attendeesList[i];
-                loggerObject.w(item.party.toJson());
                 return ListTile(
                   leading: CircleImageWidget(
-                    url: item.party.personalPhoto,
+                    url:  Assets.imagesAvatar,
                     size: 55.0.r,
                   ),
                   title: DrawableText(
-                    text: item.party.name,
+                    text: item.fullName,
                     drawablePadding: 20.0.w,
                   ),
                   subtitle: DrawableText(
@@ -86,7 +85,7 @@ class AttendeesListWidget extends StatelessWidget {
             ),
           ],
           if (meeting.guestSuggestions.isNotEmpty) ...[
-            DrawableText.header(text: 'Guest Suggestions'),
+            DrawableText.header(text: S.of(context).suggestedGuests),
             5.0.verticalSpace,
             Divider(height: 5.0.h),
             Expanded(
@@ -126,7 +125,7 @@ class AttendeesListWidget extends StatelessWidget {
                   }
                 });
               },
-              text: S.of(context).addGuest,
+              text: S.of(context).suggestingGuest,
             ),
           ),
         ],

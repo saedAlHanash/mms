@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
+import 'package:mms/core/app/app_provider.dart';
+import 'package:mms/core/util/my_style.dart';
+import 'package:mms/core/util/shared_preferences.dart';
 import 'package:mms/generated/assets.dart';
 
 import '../../../../core/strings/app_color_manager.dart';
@@ -15,21 +18,17 @@ class DrawerMemberBtnWidget extends StatefulWidget {
 class _DrawerMemberBtnWidgetState extends State<DrawerMemberBtnWidget> {
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      right: 0,
+    return Positioned.directional(
+      end: 0,
       top: 90.0.h,
       width: 80.0.w,
       height: 45.0.h,
+      textDirection: AppProvider.getDirection,
       child: InkWell(
         onTap: () => Scaffold.of(context).openEndDrawer(),
         child: Container(
           padding: const EdgeInsets.all(10.0).r,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.horizontal(
-              left: Radius.circular(10.0.r),
-            ),
-            color: AppColorManager.mainColor,
-          ),
+          decoration: MyStyle.directionalDecoration,
           child: const ImageMultiType(
             url: Assets.iconsMembers,
           ),

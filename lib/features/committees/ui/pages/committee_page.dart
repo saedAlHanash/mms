@@ -6,6 +6,7 @@ import 'package:image_multi_type/image_multi_type.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
 import 'package:mms/core/widgets/my_card_widget.dart';
+import 'package:mms/core/widgets/refresh_widget/refresh_widget.dart';
 import 'package:mms/features/committees/ui/widget/drawer_btn_widget.dart';
 import 'package:mms/features/goals/ui/widget/goals_list_widget.dart';
 import 'package:mms/features/members/ui/widget/members_list_widget.dart';
@@ -23,16 +24,7 @@ class CommitteePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(
-        actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0).w,
-            child: ImageMultiType(
-              url: Assets.imagesAvatar,
-              height: 50.0.r,
-              width: 50.0.r,
-            ),
-          ),
-        ],
+        actions: [0.0.verticalSpace],
         title: BlocBuilder<CommitteeCubit, CommitteeInitial>(
           builder: (context, state) {
             return DrawableText(
@@ -55,68 +47,71 @@ class CommitteePage extends StatelessWidget {
       ),
       body: BlocBuilder<CommitteeCubit, CommitteeInitial>(
         builder: (context, state) {
-          if (state.statuses.loading) {
-            return MyStyle.loadingWidget();
-          }
           final item = state.result;
           return Stack(
             children: [
-              SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0).r,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    MyCardWidget(
-                      radios: 15.0.r,
-                      child: DrawableText(
-                        fontFamily: FontManager.cairoBold.name,
-                        size: 18.0.sp,
-                        text: item.name,
-                        matchParent: true,
-                        drawableEnd: DrawableText(
+              RefreshWidget(
+                statuses: state.statuses,
+                onRefresh: () {
+                  context.read<CommitteeCubit>().getCommittee(newData: true);
+                },
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0).r,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      MyCardWidget(
+                        radios: 15.0.r,
+                        child: DrawableText(
+                          fontFamily: FontManager.cairoBold.name,
                           size: 18.0.sp,
-                          text: item.formationDate?.formatDate ?? '',
+                          text: item.name,
+                          matchParent: true,
+                          drawableEnd: DrawableText(
+                            size: 18.0.sp,
+                            text: item.formationDate?.formatDate ?? '',
+                          ),
                         ),
                       ),
-                    ),
-                    20.0.verticalSpace,
-                    DrawableText.title(
-                      text: 'Description',
-                      padding: const EdgeInsets.symmetric(horizontal: 15.0).w,
-                    ),
-                    DrawableText(
-                      padding: const EdgeInsets.all(20.0).r,
-                      color: Colors.grey,
-                      text: item.description,
-                      maxLines: 3,
-                      matchParent: true,
-                    ),
-                    20.0.verticalSpace,
-                    DrawableText.title(
-                      text: 'Statement',
-                      padding: const EdgeInsets.symmetric(horizontal: 15.0).w,
-                    ),
-                    DrawableText(
-                      padding: const EdgeInsets.all(20.0).r,
-                      color: Colors.grey,
-                      text: item.statement,
-                      maxLines: 3,
-                      matchParent: true,
-                    ),
-                    30.0.verticalSpace,
-                    DrawableText.title(
-                      text: 'Documents',
-                      padding: const EdgeInsets.symmetric(horizontal: 15.0).w,
-                    ),
-                    10.0.verticalSpace,
-                    DocumentsListWidget(documents: item.documents),
-                    20.0.verticalSpace,
-                    DrawableText.title(
-                      text: 'Goals',
-                      padding: const EdgeInsets.symmetric(horizontal: 15.0).w,
-                    ),
-                    GoalListWidget(goals: item.goals),
-                  ],
+                      20.0.verticalSpace,
+                      DrawableText.title(
+                        text: 'Description',
+                        padding: const EdgeInsets.symmetric(horizontal: 15.0).w,
+                      ),
+                      DrawableText(
+                        padding: const EdgeInsets.all(20.0).r,
+                        color: Colors.grey,
+                        text: item.description,
+                        maxLines: 3,
+                        matchParent: true,
+                      ),
+                      20.0.verticalSpace,
+                      DrawableText.title(
+                        text: 'Statement',
+                        padding: const EdgeInsets.symmetric(horizontal: 15.0).w,
+                      ),
+                      DrawableText(
+                        padding: const EdgeInsets.all(20.0).r,
+                        color: Colors.grey,
+                        text: item.statement,
+                        maxLines: 3,
+                        matchParent: true,
+                      ),
+                      30.0.verticalSpace,
+                      DrawableText.title(
+                        text: 'Documents',
+                        padding: const EdgeInsets.symmetric(horizontal: 15.0).w,
+                      ),
+                      10.0.verticalSpace,
+                      DocumentsListWidget(documents: item.documents),
+                      20.0.verticalSpace,
+                      DrawableText.title(
+                        text: 'Goals',
+                        padding: const EdgeInsets.symmetric(horizontal: 15.0).w,
+                      ),
+                      GoalListWidget(goals: item.goals),
+                    ],
+                  ),
                 ),
               ),
               const DrawerMemberBtnWidget(),

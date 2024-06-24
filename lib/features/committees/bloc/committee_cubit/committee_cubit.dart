@@ -19,25 +19,20 @@ class CommitteeCubit extends MCubit<CommitteeInitial> {
   @override
   String get filter => state.uuid;
 
-
-  Future<void> getCommittee({required String uuid}) async {
+  Future<void> getCommittee({String? uuid, bool? newData}) async {
     emit(state.copyWith(uuid: uuid));
 
-    if (await checkCashed()) return;
-
-    final pair = await _getDataApi();
-
-    if (pair.first == null) {
-      emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));
-      showErrorFromApi(state);
-    } else {
-      await storeData(pair.first!);
-      emit(state.copyWith(statuses: CubitStatuses.done, result: pair.first));
-    }
+    getDataAbstract(
+      fromJson: Committee.fromJson,
+      state: state,
+      getDataApi: _getDataApi,
+      newData: newData,
+    );
   }
 
   Future<Pair<Committee?, String?>> _getDataApi() async {
-    final response = await APIService().callApi(type: ApiType.get,
+    final response = await APIService().callApi(
+      type: ApiType.get,
       url: GetUrl.committee,
       query: {'id': state.uuid},
     );
@@ -47,19 +42,5 @@ class CommitteeCubit extends MCubit<CommitteeInitial> {
     } else {
       return response.getPairError;
     }
-  }
-
-  Future<bool> checkCashed() async {
-    final cacheType = await needGetData();
-
-    emit(
-      state.copyWith(
-        statuses: cacheType.getState,
-        result: Committee.fromJson(await getDataCached()),
-      ),
-    );
-
-    if (cacheType == NeedUpdateEnum.no) return true;
-    return false;
   }
 }

@@ -427,7 +427,7 @@ class _MyExpansionPanelListState extends State<MyExpansionPanelList> {
       }
 
       final itemWidget = AnimatedCrossFade(
-        firstChild: Container(height: 0.0),
+        firstChild: 0.0.verticalSpace,
         secondChild: child.body,
         firstCurve: const Interval(0.0, 0.6, curve: Curves.fastOutSlowIn),
         secondCurve: const Interval(0.4, 1.0, curve: Curves.fastOutSlowIn),
@@ -443,8 +443,13 @@ class _MyExpansionPanelListState extends State<MyExpansionPanelList> {
           key: _SaltedKey<BuildContext, int>(context, index * 2),
           child: Container(
             margin: child.margin,
-            child: Column(
-              children: [header, itemWidget],
+            child: Expanded(
+              child: Column(
+                children: [
+                  header,
+                  itemWidget,
+                ],
+              ),
             ),
           ),
         ),
