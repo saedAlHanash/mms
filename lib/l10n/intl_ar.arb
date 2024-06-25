@@ -254,5 +254,6 @@
   "chair": "Chair",
   "secretary": "Secretary",
   "guest": "Guest",
-  "voters": "Voters"
+  "voters": "Voters",
+  "agendas": "Agendas"
 }

@@ -31,14 +31,22 @@ class _RefreshWidgetState extends State<RefreshWidget> {
 
   @override
   Widget build(BuildContext context) {
+
+
     if (widget.statuses.done) {
       _refreshController.refreshCompleted();
     } else if (widget.statuses.loading) {
+      if (!_refreshController.isRefresh) {
+        Future(() => _refreshController.requestRefresh(
+            needCallback: false, duration: Duration.zero, needMove: false));
+      }
       _refreshController.loadComplete();
     }
     return SmartRefresher(
       enablePullDown: true,
-      header: const WaterDropHeader(waterDropColor: AppColorManager.mainColor,),
+      header: const WaterDropHeader(
+        waterDropColor: AppColorManager.mainColor,
+      ),
       controller: _refreshController,
       onRefresh: _onRefresh,
       child: widget.child,

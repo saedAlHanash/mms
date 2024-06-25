@@ -2,20 +2,18 @@ import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:image_multi_type/circle_image_widget.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 import 'package:mms/core/app/app_provider.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
 import 'package:mms/core/widgets/my_card_widget.dart';
+import 'package:mms/core/widgets/refresh_widget/refresh_widget.dart';
 import 'package:mms/features/agendas/ui/widget/agendas_list_widget.dart';
 import 'package:mms/features/attendees/ui/widget/attendees_list_widget.dart';
 import 'package:mms/features/committees/ui/widget/drawer_btn_widget.dart';
 import 'package:mms/features/meetings/ui/widget/absent_widget.dart';
 
-import '../../../../core/util/my_style.dart';
-import '../../../../generated/assets.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../router/app_router.dart';
 import '../../bloc/add_absence_cubit/add_absence_cubit.dart';
@@ -96,17 +94,13 @@ class MeetingPage extends StatelessWidget {
         ),
         body: BlocBuilder<MeetingCubit, MeetingInitial>(
           builder: (context, state) {
-            if (state.statuses.loading) {
-              return MyStyle.loadingWidget();
-            }
             final item = state.result;
 
-            return RefreshIndicator(
-              onRefresh: () async {
-                context.read<MeetingCubit>().getMeeting(newData: true);
-              },
+            return RefreshWidget(
+              onRefresh: () =>
+                  context.read<MeetingCubit>().getMeeting(newData: true),
+              statuses: state.statuses,
               child: SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(),
                 padding: const EdgeInsets.symmetric(horizontal: 20.0).r,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -163,7 +157,22 @@ class MeetingPage extends StatelessWidget {
 
                     const AbsentWidget(),
                     20.0.verticalSpace,
-                    AgendaListWidget(agendas: state.result.agendaItems),
+                    DrawableText(
+                        text:
+                            '${S.of(context).agendas} (${item.agendaItems.length})'),
+                    ...item.agendaItems.map((e) {
+                      return AgendaWidget(
+                        agenda: e,
+                        onTap: () {
+                          return Navigator.pushNamed(
+                            context,
+                            RouteName.agenda,
+                            arguments: [e, context.read<MeetingCubit>()],
+                          );
+                        },
+                      );
+                    }),
+
                     100.0.verticalSpace,
                     // GoalListWidget(goals: item.goals),
                   ],

@@ -121,9 +121,9 @@ class CachingService {
       return NeedUpdateEnum.withLoading;
     }
 
-    final d = DateTime.now().difference(latest).inMinutes.abs();
+    final d = DateTime.now().difference(latest).inSeconds.abs();
 
-    if (d > 2) {
+    if (d > 1) {
       // loggerObject.f(
       //   'need get data :'
       //   ' \n$key data > 2 '

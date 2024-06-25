@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_to_cart": MessageLookupByLibrary.simpleMessage("أضف للسلة"),
         "additional_service":
             MessageLookupByLibrary.simpleMessage("خدمة إضافية"),
+        "agendas": MessageLookupByLibrary.simpleMessage("Agendas"),
         "alreadyHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("هل لديك حساب بالفعل؟"),
         "apply": MessageLookupByLibrary.simpleMessage("تطبيق"),

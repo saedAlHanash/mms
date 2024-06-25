@@ -2,15 +2,12 @@ import 'package:drawable_text/drawable_text.dart';
 
 /// Package imports
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive/hive.dart';
 import 'package:image_multi_type/image_multi_type.dart';
-import 'package:mms/core/api_manager/api_service.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
-import 'package:mms/core/util/my_style.dart';
 import 'package:mms/core/widgets/my_button.dart';
 import 'package:mms/core/widgets/my_checkbox_widget.dart';
 import 'package:mms/features/poll/data/response/poll_response.dart';
@@ -22,6 +19,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 /// Local imports
 import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/widgets/my_card_widget.dart';
+import '../../../../generated/assets.dart';
 import '../../../../generated/l10n.dart';
 import '../../../vote/bloc/create_vote_cubit/create_vote_cubit.dart';
 
@@ -57,7 +55,6 @@ class _PollWidgetState extends State<PollWidget> {
         AppColorManager.mainColor.withOpacity(.3),
         AppColorManager.mainColor.withOpacity(.1),
       ],
-      centerX: '25%',
       series: _getSemiDoughnutSeries(widget.poll.options),
       tooltipBehavior: TooltipBehavior(enable: true),
       margin: EdgeInsets.zero,
@@ -65,22 +62,18 @@ class _PollWidgetState extends State<PollWidget> {
   }
 
   /// Returns  semi doughnut series.
-  List<DoughnutSeries<Option, String>> _getSemiDoughnutSeries(
+  List<PieSeries<Option, String>> _getSemiDoughnutSeries(
     List<Option> options,
   ) {
-    return <DoughnutSeries<Option, String>>[
-      DoughnutSeries(
-
+    return <PieSeries<Option, String>>[
+      PieSeries(
         dataSource: options,
-        innerRadius: '78%',
-        radius: '50%',
-        strokeColor: AppColorManager.whit,
-        strokeWidth: 7.0.r,
         xValueMapper: (Option data, _) => data.option,
         yValueMapper: (Option data, _) => data.voters.length,
         dataLabelMapper: (Option data, _) => data.option,
-        cornerStyle: CornerStyle.bothCurve,
-
+        startAngle: 270,
+        endAngle: 90,
+        dataLabelSettings: const DataLabelSettings(isVisible: true),
       ),
     ];
   }
@@ -89,7 +82,47 @@ class _PollWidgetState extends State<PollWidget> {
   Widget build(BuildContext context) {
     if (widget.poll.status == PollStatus.closed) {
       return MyCardWidget(
-        child: _buildSemiDoughnutChart(),
+        child: Column(
+          children: [
+            DrawableText(
+              text: widget.poll.topic,
+              matchParent: true,
+              size: 18.0.sp,
+              textAlign: TextAlign.start,
+              color: AppColorManager.mainColor,
+            ),
+            10.0.verticalSpace,
+            for (var e in widget.poll.options)
+              Container(
+                width: 1.0.sw,
+                height: 40.0.h,
+                margin: const EdgeInsets.all(12.0).r,
+                child: Stack(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12.0.r),
+                        color: AppColorManager.mainColor.withOpacity(0.2),
+                      ),
+                      alignment: Alignment.center,
+                      width: (e.voters.length / widget.poll.votersCount).sw,
+                      height: 40.0.h,
+                    ),
+                    DrawableText(
+                      text: e.option,
+                      padding: const EdgeInsets.all(12.0).r,
+                      drawablePadding: 10.0.w,
+                      matchParent: true,
+                      drawableEnd: DrawableText(text: '(${e.voters.length})'),
+                      drawableStart: const ImageMultiType(
+                        url: Assets.iconsRadioSelected,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+          ],
+        ),
       );
     }
     return MyCardWidget(
