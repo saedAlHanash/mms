@@ -2,6 +2,7 @@ import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mms/core/widgets/refresh_widget/refresh_widget.dart';
 
 import '../../../../core/util/my_style.dart';
 import '../../../../generated/l10n.dart';
@@ -18,20 +19,17 @@ class NotificationsPage extends StatefulWidget {
 class _NotificationsPageState extends State<NotificationsPage> {
   @override
   void initState() {
-
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar:  AppBarWidget(titleText: S.of(context).notifications),
+        appBar: AppBarWidget(titleText: S.of(context).notifications),
         body: BlocBuilder<NotificationsCubit, NotificationsInitial>(
           builder: (context, state) {
-            if (state.statuses.loading) {
-              return MyStyle.loadingWidget();
-            }
-            return RefreshIndicator(
+            return RefreshWidget(
+              statuses: state.statuses,
               onRefresh: () async {
                 context
                     .read<NotificationsCubit>()

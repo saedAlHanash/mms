@@ -40,16 +40,14 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: 1.0.sw,
+        padding: const EdgeInsets.symmetric(horizontal: 40.0).w,
         height: 1.0.sh,
-        child: const Center(
-          child: ImageMultiType(url: Assets.imagesLogo),
-        ),
+        alignment: Alignment.center,
+        child: const ImageMultiType(url: Assets.iconsFullLogo),
       ),
     );
   }

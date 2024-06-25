@@ -55,26 +55,12 @@ class _LoginPageState extends State<LoginPage> {
             key: _formKey,
             child: Column(
               children: [
-                10.0.verticalSpace,
-                DrawableText(
-                  text: S.of(context).login,
-                  size: 40.0.spMin,
-                  fontFamily: FontManager.cairoBold.name,
-                  matchParent: true,
-                ),
-                10.0.verticalSpace,
-                DrawableText(
-                  text: S.of(context).signInToContinue,
-                  size: 14.0.spMin,
-                  matchParent: true,
-                ),
-                10.0.verticalSpace,
+                100.0.verticalSpace,
                 ImageMultiType(
-                  url: Assets.imagesLogo,
-                  height: 200.0.r,
-                  width: 200.0.r,
+                  url: Assets.iconsFullLogoWithoutSlogen,
+                  width: 1.0.sw,
                 ),
-                30.0.verticalSpace,
+                100.0.verticalSpace,
                 AutofillGroup(
                   child: Column(
                     children: [

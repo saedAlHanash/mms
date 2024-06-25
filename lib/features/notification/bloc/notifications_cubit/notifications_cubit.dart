@@ -22,23 +22,12 @@ class NotificationsCubit extends MCubit<NotificationsInitial> {
   String get filter => (state.filterRequest?.getKey) ?? state.request ?? '';
 
   Future<void> getNotifications({bool newData = false}) async {
-    final checkData = await checkCashed1(
-      state: state,
+    getDataAbstract(
       fromJson: NotificationModel.fromJson,
+      state: state,
       newData: newData,
+      getDataApi: _getNotifications,
     );
-
-    if (checkData) return;
-
-    final pair = await _getNotifications();
-
-    if (pair.first == null) {
-      emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));
-      showErrorFromApi(state);
-    } else {
-      await storeData(pair.first!);
-      emit(state.copyWith(statuses: CubitStatuses.done, result: pair.first));
-    }
   }
 
   Future<Pair<List<NotificationModel>?, String?>> _getNotifications() async {
@@ -55,29 +44,6 @@ class NotificationsCubit extends MCubit<NotificationsInitial> {
     }
   }
 
-  void setRequest(FilterRequest request) {
-    emit(state.copyWith(filterRequest: request));
-  }
-
-  Future<bool> checkCashed() async {
-    try {
-      final cacheType = await needGetData();
-
-      emit(
-        state.copyWith(
-          statuses: cacheType.getState,
-          result: (await getListCached())
-              .map((e) => NotificationModel.fromJson(e))
-              .toList(),
-        ),
-      );
-
-      if (cacheType == NeedUpdateEnum.no) return true;
-      return false;
-    } catch (e) {
-      return false;
-    }
-  }
 //
 // Future<void> setCount() async {
 //   await AppSharedPreference.setNotificationsRead(state.result.length);

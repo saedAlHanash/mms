@@ -225,32 +225,34 @@ class NoteMessage {
     );
   }
 
-  static Future<bool> showMyDialog(BuildContext context,
-      {required Widget child}) async {
+  static void showMyDialog(BuildContext context,
+      {required Widget child, Function(dynamic v)? onCancel}) {
     // show the dialog
-    final result = await showDialog(
+    showDialog(
       context: context,
       barrierColor: Colors.black.withOpacity(0.3),
       builder: (BuildContext context) {
-        return Dialog(
-          surfaceTintColor: Colors.white,
-          backgroundColor: Colors.white,
-          alignment: Alignment.center,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(20.0.r),
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
+          child: Dialog(
+            surfaceTintColor: Colors.white,
+            backgroundColor: Colors.white,
+            alignment: Alignment.center,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(20.0.r),
+              ),
             ),
-          ),
-          insetPadding: const EdgeInsets.all(20.0).r,
-          elevation: 10.0,
-          clipBehavior: Clip.hardEdge,
-          child: SingleChildScrollView(
-            child: child,
+            insetPadding: const EdgeInsets.all(20.0).r,
+            elevation: 10.0,
+            clipBehavior: Clip.hardEdge,
+            child: SingleChildScrollView(
+              child: child,
+            ),
           ),
         );
       },
-    );
-    return (result ?? false);
+    ).then((value) => onCancel?.call(value));
   }
 
   static void showAwesomeError(

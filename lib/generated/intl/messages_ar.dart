@@ -55,6 +55,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "changeEmail":
             MessageLookupByLibrary.simpleMessage("تغيير البريد الإلكتروني"),
         "changeFile": MessageLookupByLibrary.simpleMessage("تعديل الملف"),
+        "changeLanguage":
+            MessageLookupByLibrary.simpleMessage("Change Language"),
         "changeName": MessageLookupByLibrary.simpleMessage("تغيير الاسم"),
         "changePass": MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
         "changePassword":

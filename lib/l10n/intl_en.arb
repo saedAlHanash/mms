@@ -260,5 +260,6 @@
   "secretary": "Secretary",
   "guest": "Guest",
   "voters": "Voters",
-  "agendas": "Agendas"
+  "agendas": "Agendas",
+  "changeLanguage": "Change Language"
 }

@@ -17,7 +17,7 @@ class Notifications {
   }
 
   Map<String, dynamic> toJson() => {
-        "items": items.map((x) => x?.toJson()).toList(),
+        "items": items.map((x) => x.toJson()).toList(),
       };
 }
 

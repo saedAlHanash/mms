@@ -62,7 +62,7 @@ class _MyAppState extends State<MyApp> {
       const Opacity(
         opacity: 0.3,
         child: ImageMultiType(
-          url: Assets.imagesLogo,
+          url: Assets.iconsLogo,
           height: 30.0,
           width: 30.0,
         ),
@@ -147,8 +147,18 @@ class _MyAppState extends State<MyApp> {
                   create: (_) => sl<LoggedPartyCubit>()..getLoggedParty(),
                 ),
               ],
-              child: Stack(
-                children: [child!, loading],
+              child: GestureDetector(
+                onTap: () {
+                  final currentFocus = FocusScope.of(context);
+
+                  if (!currentFocus.hasPrimaryFocus &&
+                      currentFocus.focusedChild != null) {
+                    FocusManager.instance.primaryFocus?.unfocus();
+                  }
+                },
+                child: Stack(
+                  children: [child!, loading],
+                ),
               ),
             );
           },
