@@ -239,6 +239,7 @@ Route<dynamic> routes(RouteSettings settings) {
             create: (context) => sl<MeetingCubit>()..getMeeting(id: uuid),
           ),
           BlocProvider(create: (context) => sl<AddAbsenceCubit>()),
+          BlocProvider(create: (context) => sl<AddCommentCubit>()),
         ];
         return MaterialPageRoute(
           builder: (_) {

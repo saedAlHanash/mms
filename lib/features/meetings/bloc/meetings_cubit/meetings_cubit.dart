@@ -20,28 +20,23 @@ class MeetingsCubit extends MCubit<MeetingsInitial> {
   @override
   String get filter => state.filterRequest?.getKey ?? '';
 
-  Future<void> getMeetings({FilterRequest? request}) async {
+  Future<void> getMeetings({FilterRequest? request, bool? newData}) async {
     emit(state.copyWith(filterRequest: request));
 
-    if (await checkCashed()) return;
-
-    final pair = await _getDataApi();
-
-    if (pair.first == null) {
-      emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));
-      showErrorFromApi(state);
-    } else {
-      await storeData(pair.first!);
-      emit(state.copyWith(
-        statuses: CubitStatuses.done,
-        result: pair.first,
-        events: _getMapEvent(pair.first!),
-      ));
-    }
+    getDataAbstract(
+      fromJson: Meeting.fromJson,
+      state: state,
+      newData: newData,
+      getDataApi: _getDataApi,
+      onSuccess: () async {
+        Future(() => emit(state.copyWith(events: _getMapEvent(state.result))));
+      },
+    );
   }
 
   Future<Pair<List<Meeting>?, String?>> _getDataApi() async {
-    final response = await APIService().callApi(type: ApiType.post,
+    final response = await APIService().callApi(
+      type: ApiType.post,
       url: PostUrl.meetings,
       body: state.filterRequest?.toJson() ?? {},
     );

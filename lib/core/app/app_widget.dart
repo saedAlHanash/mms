@@ -20,6 +20,7 @@ import '../../router/app_router.dart';
 import '../api_manager/request_models/command.dart';
 import '../app_theme.dart';
 import '../injection/injection_container.dart';
+import '../strings/enum_manager.dart';
 import '../util/shared_preferences.dart';
 import 'bloc/loading_cubit.dart';
 
@@ -138,8 +139,15 @@ class _MyAppState extends State<MyApp> {
                   create: (_) {
                     return sl<MeetingsCubit>()
                       ..getMeetings(
-                        request:
-                            FilterRequest(partyId: AppProvider.getParty.id),
+                        request: FilterRequest(
+                            partyId: AppProvider.getParty.id,
+                            filters: [
+                              Filter(
+                                name: 'status',
+                                val: MeetingStatus.planned.name,
+                                operation: FilterOperation.notEqual,
+                              ),
+                            ]),
                       );
                   },
                 ),

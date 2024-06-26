@@ -6,8 +6,8 @@ import 'package:image_multi_type/image_multi_type.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
 import '../../../../core/strings/app_color_manager.dart';
-import '../../../../core/widgets/my_expansion/item_expansion.dart';
-import '../../../../core/widgets/my_expansion/my_expansion_widget.dart';
+import '../../../../core/widgets/expansion/item_expansion.dart';
+import '../../../../core/widgets/expansion/my_expansion_widget.dart';
 import '../../data/response/goals_response.dart';
 
 class GoalListWidget extends StatelessWidget {

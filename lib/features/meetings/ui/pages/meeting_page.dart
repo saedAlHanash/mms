@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
+import 'package:mms/core/api_manager/api_service.dart';
 import 'package:mms/core/app/app_provider.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
 import 'package:mms/core/widgets/my_card_widget.dart';
 import 'package:mms/core/widgets/refresh_widget/refresh_widget.dart';
-import 'package:mms/features/agendas/ui/widget/agendas_list_widget.dart';
+import 'package:mms/features/agendas/ui/widget/agenda_tree_widget.dart';
 import 'package:mms/features/attendees/ui/widget/attendees_list_widget.dart';
 import 'package:mms/features/committees/ui/widget/drawer_btn_widget.dart';
 import 'package:mms/features/meetings/ui/widget/absent_widget.dart';
@@ -95,7 +96,6 @@ class MeetingPage extends StatelessWidget {
         body: BlocBuilder<MeetingCubit, MeetingInitial>(
           builder: (context, state) {
             final item = state.result;
-
             return RefreshWidget(
               onRefresh: () =>
                   context.read<MeetingCubit>().getMeeting(newData: true),
@@ -157,22 +157,10 @@ class MeetingPage extends StatelessWidget {
 
                     const AbsentWidget(),
                     20.0.verticalSpace,
-                    DrawableText(
-                        text:
-                            '${S.of(context).agendas} (${item.agendaItems.length})'),
-                    ...item.agendaItems.map((e) {
-                      return AgendaWidget(
-                        agenda: e,
-                        onTap: () {
-                          return Navigator.pushNamed(
-                            context,
-                            RouteName.agenda,
-                            arguments: [e, context.read<MeetingCubit>()],
-                          );
-                        },
-                      );
-                    }),
 
+                    AgendaTreeWidget(
+                      treeNode: state.getTree(),
+                    ),
                     100.0.verticalSpace,
                     // GoalListWidget(goals: item.goals),
                   ],

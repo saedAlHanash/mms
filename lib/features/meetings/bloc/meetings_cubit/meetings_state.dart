@@ -29,16 +29,14 @@ class MeetingsInitial extends AbstractState<List<Meeting>> {
   }
 
   @override
-  List<Object> get props => [statuses, result, error, filterRequest!];
+  List<Object> get props => [statuses, result, error, filterRequest!, events];
 
   MeetingsInitial copyWith({
     CubitStatuses? statuses,
     List<Meeting>? result,
     FilterRequest? filterRequest,
     String? error,
-    // MeetingRequest? request,
     Map<int, List<Meeting>>? events,
-    // bool? meetingParam,
   }) {
     return MeetingsInitial(
       statuses: statuses ?? this.statuses,

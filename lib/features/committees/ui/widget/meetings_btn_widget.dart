@@ -39,7 +39,7 @@ class DrawerMeetingsBtnWidget extends StatelessWidget {
                 ),
                 Filter(
                   name: 'status',
-                  val: MeetingStatus.planned.realName,
+                  val: MeetingStatus.planned.name,
                   operation: FilterOperation.notEqual,
                 ),
               ],

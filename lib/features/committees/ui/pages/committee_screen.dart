@@ -32,7 +32,7 @@ class CommitteeScreen extends StatelessWidget {
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: 1.9,
+                    childAspectRatio: 1.8,
                   ),
                   itemCount: list.length,
                   itemBuilder: (_, i) {
@@ -54,6 +54,8 @@ class CommitteeScreen extends StatelessWidget {
                           children: [
                             DrawableText(
                               text: item.name,
+                              matchParent:true,
+                              textAlign: TextAlign.center,
                             ),
                             DrawableText(
                               drawablePadding: 10.0.w,

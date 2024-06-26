@@ -45,4 +45,24 @@ class MeetingInitial extends AbstractState<Meeting> {
       // meetingParam: meetingParam ?? this.meetingParam,
     );
   }
+
+  List<Node> it(List<Agenda> childrenItems) {
+    final list = <Node>[];
+
+    if (childrenItems.isEmpty) {
+      return list;
+    }
+
+    for (var e in childrenItems) {
+      list.add(TreeNode(data: e)..addAll(it(e.childrenItems)));
+    }
+
+    return list;
+  }
+
+  TreeNode<Agenda> getTree() {
+    return TreeNode<Agenda>.root(
+      data: Agenda.fromJson({}),
+    )..addAll(it(result.agendaItems));
+  }
 }

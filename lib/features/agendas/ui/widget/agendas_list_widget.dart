@@ -5,9 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/util/my_style.dart';
-import 'package:mms/core/widgets/my_expansion/item_expansion.dart';
-import 'package:mms/core/widgets/my_expansion/my_expansion_panal.dart';
-import 'package:mms/core/widgets/my_expansion/my_expansion_widget.dart';
+import 'package:mms/core/widgets/expansion/item_expansion.dart';
+import 'package:mms/core/widgets/expansion/my_expansion_widget.dart';
 import 'package:mms/features/meetings/bloc/meeting_cubit/meeting_cubit.dart';
 
 import '../../../../core/strings/app_color_manager.dart';
