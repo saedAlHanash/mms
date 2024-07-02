@@ -17,6 +17,7 @@ class TreeWidget<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return TreeView.simpleTyped<T, TreeNode<T>>(
       tree: treeNode,
+      focusToNewNode: false,
       expansionBehavior: ExpansionBehavior.snapToTop,
       expansionIndicatorBuilder: (context, node) {
         return ChevronIndicator.rightDown(
@@ -27,8 +28,8 @@ class TreeWidget<T> extends StatelessWidget {
       },
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      indentation: const Indentation(
-        color: Colors.grey,
+      indentation:  Indentation(
+        color: Colors.grey[500]!,
         style: IndentStyle.roundJoint,
       ),
       builder: (context, node) => builder.call(node),

@@ -37,5 +37,6 @@ class Assets {
   static const String iconsTextLogo = 'assets/icons/text_logo.svg';
   static const String iconsUserName = 'assets/icons/user_name.svg';
   static const String imagesAvatar = 'assets/images/avatar.png';
+  static const String imagesCoreTechLogo = 'assets/images/core_tech_logo.png';
 
 }

@@ -10,6 +10,7 @@ import '../../../../core/strings/app_color_manager.dart';
 import '../../../../generated/assets.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../router/app_router.dart';
+import '../../../auth/bloc/get_me_cubit/get_me_cubit.dart';
 import '../../../notification/bloc/notifications_cubit/notifications_cubit.dart';
 
 class HiWidget extends StatelessWidget {
@@ -17,36 +18,36 @@ class HiWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Container(
-        height: 50.0.r,
-        width: 50.0.r,
-        clipBehavior: Clip.hardEdge,
-        decoration: BoxDecoration(
-          border: Border.all(color: AppColorManager.red),
-          shape: BoxShape.circle,
-        ),
-        child: CircleImageWidget(
-          url: AppProvider.getParty.personalPhoto,
-          size: 50.0.r,
-        ),
-      ),
-      title: DrawableText(
-        text: S.of(context).welcomeBack,
-        fontFamily: FontManager.cairoSemiBold.name,
-      ),
-      subtitle: DrawableText(
-        text: AppProvider.getParty.name,
-      ),
-      trailing: InkWell(
-        onTap: () {
-          // Navigator.pushNamed(context, RouteName.notifications);
-        },
-        child: BlocBuilder<NotificationsCubit, NotificationsInitial>(
-          builder: (context, state) {
-            return Column(
-              children: [
-                Stack(
+    return BlocBuilder<LoggedPartyCubit, LoggedPartyInitial>(
+      builder: (context, state) {
+        return ListTile(
+          leading: Container(
+            height: 50.0.r,
+            width: 50.0.r,
+            clipBehavior: Clip.hardEdge,
+            decoration: BoxDecoration(
+              border: Border.all(color: AppColorManager.red),
+              shape: BoxShape.circle,
+            ),
+            child: CircleImageWidget(
+              url: AppProvider.getParty.personalPhoto,
+              size: 50.0.r,
+            ),
+          ),
+          title: DrawableText(
+            text: S.of(context).welcomeBack,
+            fontFamily: FontManager.cairoSemiBold.name,
+          ),
+          subtitle: DrawableText(
+            text: AppProvider.getParty.name,
+          ),
+          trailing: InkWell(
+            onTap: () {
+              // Navigator.pushNamed(context, RouteName.notifications);
+            },
+            child: BlocBuilder<NotificationsCubit, NotificationsInitial>(
+              builder: (context, state) {
+                return Stack(
                   children: [
                     IconButton(
                       onPressed: () {
@@ -54,8 +55,8 @@ class HiWidget extends StatelessWidget {
                       },
                       icon: ImageMultiType(
                         url: Assets.iconsNotifications,
-                        height: 50.0.r,
-                        width: 50.0.r,
+                        height: 45.0.r,
+                        width: 45.0.r,
                       ),
                     ),
                     (state.result.length - state.numOfRead) != 0
@@ -83,12 +84,12 @@ class HiWidget extends StatelessWidget {
                           )
                         : 0.0.verticalSpace,
                   ],
-                ),
-              ],
-            );
-          },
-        ),
-      ),
+                );
+              },
+            ),
+          ),
+        );
+      },
     );
   }
 }

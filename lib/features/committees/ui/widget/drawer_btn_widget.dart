@@ -20,7 +20,7 @@ class _DrawerMemberBtnWidgetState extends State<DrawerMemberBtnWidget> {
   Widget build(BuildContext context) {
     return Positioned.directional(
       end: 0,
-      top: 90.0.h,
+      top: 70.0.h,
       width: 80.0.w,
       height: 45.0.h,
       textDirection: AppProvider.getDirection,

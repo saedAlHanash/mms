@@ -121,10 +121,13 @@ extension StringHelper on String? {
     return this!.replaceAll(' ', '').isEmpty;
   }
 
-  String fixUrl(String initialImage) {
+  String fixUrl({String? initialImage}) {
+
+    if (initialImage.isBlank) return initialImage ?? '';
+
     final type = ImageMultiType.initialType(fixAvatarImage(this));
 
-    if (type == ImageType.tempImg) return initialImage;
+    if (type == ImageType.tempImg) return initialImage ?? '';
 
     return fixAvatarImage(this);
   }
@@ -364,7 +367,7 @@ extension CommitteeHelper on Committee {
 
 extension MemberHelper on Member {
   bool get isMe {
-    // loggerObject.w('$id\n${AppProvider.getCurrentCommittee.member.id}');
+
     return id == AppProvider.getCurrentCommittee.member.id;
   }
 }
@@ -394,8 +397,17 @@ extension PoolH on Poll {
     return null;
   }
 
-  int get votersCount {
+    int get votersCount {
     final count = options.map((e) => e.voters.length).reduce((a, b) => a + b);
+    return count;
+  }
+}
+extension PollResultH on PollResult {
+
+
+
+    int get votersCount {
+    final count = voteResults.map((e) => e.voteCount).reduce((a, b) => a + b);
     return count;
   }
 }
@@ -403,13 +415,14 @@ extension PoolH on Poll {
 extension OptionH on Option {
   String? get voteId =>
       voters.firstWhereOrNull((e) => e.partyId == AppProvider.getParty.id)?.id;
+
 }
 
 extension MeetingH on Meeting {
   int get countPollsNotVotes {
     int i = 0;
     for (var e in polls) {
-      // if (e.status == PollStatus.closed) continue;
+      if (e.status == PollStatus.closed) continue;
       if (e.meOptionVote != null) continue;
       i += 1;
     }

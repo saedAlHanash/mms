@@ -45,7 +45,7 @@ class CommitteeScreen extends StatelessWidget {
                       },
                       child: MyCardWidget(
                         elevation: 3.0.r,
-                        padding: const EdgeInsets.all(3.0).r,
+                        padding: const EdgeInsets.all(5.0).r,
                         margin: const EdgeInsets.symmetric(
                                 vertical: 7.0, horizontal: 20.0)
                             .r,
@@ -55,6 +55,8 @@ class CommitteeScreen extends StatelessWidget {
                             DrawableText(
                               text: item.name,
                               matchParent:true,
+                              maxLines: 2,
+                              size: 14.0.sp,
                               textAlign: TextAlign.center,
                             ),
                             DrawableText(

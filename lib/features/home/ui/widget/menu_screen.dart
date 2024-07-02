@@ -31,6 +31,7 @@ class MenuScreen extends StatefulWidget {
 class _MenuScreenState extends State<MenuScreen> {
   @override
   Widget build(BuildContext context) {
+
     return BlocListener<LoggedPartyCubit, LoggedPartyInitial>(
       listenWhen: (p, c) => c.statuses.done,
       listener: (context, state) {
@@ -107,7 +108,15 @@ class _MenuScreenState extends State<MenuScreen> {
                       ),
                       ItemMenu(
                         onTap: () {
-                          AppProvider.logout();
+                          NoteMessage.showCheckDialog(
+                            context,
+                            text: S.of(context).logout,
+                            textButton: S.of(context).logout,
+                            image: Assets.iconsLogout,
+                            onConfirm: () {
+                              AppProvider.logout();
+                            },
+                          );
                         },
                         name: S.of(context).logout,
                         subTitle: S.of(context).logout,
@@ -135,7 +144,8 @@ class _MenuScreenState extends State<MenuScreen> {
                       ),
                       ItemMenu(
                         onTap: () {},
-                        name: S.of(context).buildNumber,
+                        name: S.of(context).poweredByCoretech,
+                        image:  Assets.imagesCoreTechLogo,
                         subTitle: AppInfoService.fullVersionName,
                         withD: false,
                       ),
@@ -190,18 +200,17 @@ class ItemMenu extends StatelessWidget {
                 : image is Widget
                     ? image
                     : ImageMultiType(
-                        height: 45.0.r,
-                        width: 45.0.r,
+                        height: 55.0.r,
+                        width: 55.0.r,
                         url: image,
                       ),
             title: DrawableText(
               text: name,
-              size: 16.0.sp,
+              size: 18.0.sp,
               fontFamily: FontManager.cairoBold.name,
             ),
             subtitle: DrawableText(
               text: subTitle,
-              size: 12.0.sp,
               color: Colors.grey,
             ),
             trailing: trailing,

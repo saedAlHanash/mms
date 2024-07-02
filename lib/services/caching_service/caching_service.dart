@@ -32,13 +32,10 @@ class CachingService {
         await box.put('$key${box.values.length}', jsonEncode(e));
       }
 
-      // loggerObject.w('cached key $key count ${data.length}');
-
       return;
     }
 
     await box.put(key, jsonEncode(data));
-    // loggerObject.w('cached key $key');
   }
 
   static Future<void> clearKeysId({
@@ -55,9 +52,9 @@ class CachingService {
   }
 
   static Future<Iterable<dynamic>> getList(
-      String name, {
-        String filter = '',
-      }) async {
+    String name, {
+    String filter = '',
+  }) async {
     final key = '_${filter}_';
 
     final box = await getBox(name);
@@ -72,9 +69,9 @@ class CachingService {
   }
 
   static Future<dynamic> getData(
-      String name, {
-        String filter = '',
-      }) async {
+    String name, {
+    String filter = '',
+  }) async {
     final key = '_${filter}_';
 
     final box = await getBox(name);
@@ -96,7 +93,6 @@ class CachingService {
 
   static Future<NeedUpdateEnum> needGetData(String name,
       {String filter = ''}) async {
-
     var key = '_${filter}_';
 
     var message = 'needGetData key: $key';
@@ -105,34 +101,24 @@ class CachingService {
     final keyFounded = box.keys.firstWhereOrNull((e) => (e).startsWith(key));
 
     if (keyFounded == null) {
-      // loggerObject.v(box.keys);
-      // loggerObject.f('need get data (key Not Founded): \n$key With loading');
       return NeedUpdateEnum.withLoading;
     }
 
     message += '\n found Key with ID : ';
     final latest =
-    DateTime.tryParse((await getBox(latestUpdateBox)).get(name) ?? '');
+        DateTime.tryParse((await getBox(latestUpdateBox)).get(name) ?? '');
 
     final haveData = (await getList(name, filter: filter)).isNotEmpty;
 
     if (latest == null) {
-      // loggerObject.f('need get data (latest): \n$key With loading');
       return NeedUpdateEnum.withLoading;
     }
 
     final d = DateTime.now().difference(latest).inSeconds.abs();
 
     if (d > 1) {
-      // loggerObject.f(
-      //   'need get data :'
-      //   ' \n$key data > 2 '
-      //   '\n${haveData ? NeedUpdateEnum.noLoading.name : NeedUpdateEnum.withLoading.name}',
-      // );
-
       return haveData ? NeedUpdateEnum.noLoading : NeedUpdateEnum.withLoading;
     }
-    // loggerObject.f('need get data : \n$key Not get data');
     return NeedUpdateEnum.no;
   }
 }

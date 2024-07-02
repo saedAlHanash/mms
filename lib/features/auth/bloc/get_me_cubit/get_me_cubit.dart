@@ -24,7 +24,7 @@ class LoggedPartyCubit extends MCubit<LoggedPartyInitial> {
       getDataApi: _getDataApi,
       newData: newData,
       onSuccess: () async {
-        await AppProvider.loggedParty(response: state.result);
+        Future(() => AppProvider.loggedParty(response: state.result));
       },
     );
   }

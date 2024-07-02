@@ -51,6 +51,23 @@ class AppColorManager {
     }
     return f8f9;
   }
+ static Color getPollColor(int i) {
+    switch (i) {
+      case 0:
+        return Color(0xFF45227B);
+      case 1:
+        return Color(0xFF572C9A);
+      case 2:
+        return Color(0xFF624296);
+      case 3:
+        return Color(0xFF8F64D5);
+      case 4:
+        return Color(0xFFB085F5);
+      case 5:
+        return Color(0xffbaa2ff);
+    }
+    return f8f9;
+  }
 }
 
 Color getColorFromHex(String hexColor) {

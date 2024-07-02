@@ -40,4 +40,10 @@ class CommitteeInitial extends AbstractState<Committee> {
       uuid: uuid ?? this.uuid,
     );
   }
+
+  TreeNode<Goal> getTree() {
+    return TreeNode<Goal>.root(
+      data: Goal.fromJson({}),
+    )..addAll(result.goals.map((e) => TreeNode(data: e)));
+  }
 }

@@ -28,6 +28,16 @@ class MeetingsCubit extends MCubit<MeetingsInitial> {
       state: state,
       newData: newData,
       getDataApi: _getDataApi,
+      onGetFromCache: (emitState, data) {
+        emit(
+          state.copyWith(
+            statuses: emitState,
+            result: data,
+            events: _getMapEvent(data),
+          ),
+        );
+      },
+
       onSuccess: () async {
         Future(() => emit(state.copyWith(events: _getMapEvent(state.result))));
       },

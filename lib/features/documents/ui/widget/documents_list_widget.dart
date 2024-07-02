@@ -1,8 +1,10 @@
+
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 import 'package:mms/core/helper/launcher_helper.dart';
+import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:mms/core/widgets/my_button.dart';
 
 import '../../../../generated/assets.dart';
@@ -33,13 +35,13 @@ class DocumentsListWidget extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      DrawableText(text: document.name),
+                      DrawableText(text: document.name,maxLines:1,size: 14.0.sp,),
                       DrawableText(
                         text:
-                            document.isPublished ? 'Published' : 'UnPublished',
+                            document.isPublished ? S.of(context).published : S.of(context).unpublished,
                         size: 14.0.sp,
                         fontFamily: FontManager.cairoBold.name,
                         drawablePadding: 5.0.w,
@@ -56,6 +58,8 @@ class DocumentsListWidget extends StatelessWidget {
                       ),
                       MyButton(
                         width: 220.0.w,
+                        enable: document.isPublished,
+                        color: AppColorManager.mainColor,
                         onTap: () {
                           LauncherHelper.openPage(document.media.savedPath);
                         },

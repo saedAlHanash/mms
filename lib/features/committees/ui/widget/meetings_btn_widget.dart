@@ -22,7 +22,7 @@ class DrawerMeetingsBtnWidget extends StatelessWidget {
     return Positioned.directional(
       end: 0,
       textDirection: AppProvider.getDirection,
-      top: 150.0.h,
+      top: 130.0.h,
       width: 80.0.w,
       height: 45.0.h,
       child: InkWell(
@@ -39,7 +39,7 @@ class DrawerMeetingsBtnWidget extends StatelessWidget {
                 ),
                 Filter(
                   name: 'status',
-                  val: MeetingStatus.planned.name,
+                  val: MeetingStatus.planned.index.toString(),
                   operation: FilterOperation.notEqual,
                 ),
               ],

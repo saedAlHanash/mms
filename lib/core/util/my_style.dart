@@ -88,7 +88,7 @@ class MyStyle {
     boxShadow: MyStyle.allShadowDark,
   );
 
-  static var directionalDecoration = BoxDecoration(
+  static BoxDecoration get directionalDecoration => BoxDecoration(
     borderRadius: BorderRadius.horizontal(
       left: AppProvider.arabic ? Radius.zero : Radius.circular(10.0.r),
       right: !AppProvider.arabic ? Radius.zero : Radius.circular(10.0.r),

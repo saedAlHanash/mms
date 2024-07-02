@@ -2679,6 +2679,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Goals`
+  String get goals {
+    return Intl.message(
+      'Goals',
+      name: 'goals',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `tasks`
+  String get tasks {
+    return Intl.message(
+      'tasks',
+      name: 'tasks',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Published`
+  String get published {
+    return Intl.message(
+      'Published',
+      name: 'published',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `UnPublished`
+  String get unpublished {
+    return Intl.message(
+      'UnPublished',
+      name: 'unpublished',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Statement`
+  String get statement {
+    return Intl.message(
+      'Statement',
+      name: 'statement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Documents`
+  String get documents {
+    return Intl.message(
+      'Documents',
+      name: 'documents',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Version`
+  String get version {
+    return Intl.message(
+      'Version',
+      name: 'version',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Build`
+  String get build {
+    return Intl.message(
+      'Build',
+      name: 'build',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Powered by CORETECH`
+  String get poweredByCoretech {
+    return Intl.message(
+      'Powered by CORETECH',
+      name: 'poweredByCoretech',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

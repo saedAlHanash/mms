@@ -86,6 +86,7 @@ class _MeetingCalenderWidgetState extends State<MeetingCalenderWidget> {
           color: AppColorManager.mainColor,
           shape: BoxShape.circle,
         ),
+
         todayTextStyle: const TextStyle(color: Colors.black),
         markerDecoration: BoxDecoration(
           color: widget.doteColor,

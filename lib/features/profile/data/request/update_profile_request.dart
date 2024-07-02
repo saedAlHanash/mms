@@ -69,8 +69,10 @@ class UpdatePartyRequest {
       mobile: json["mobile"] ?? "",
       phone: json["phone"] ?? "",
       workPhone: json["workPhone"] ?? "",
-      personalPhoto:
-          json["personalPhoto"]?.toString().fixUrl(Assets.imagesAvatar) ?? '',
+      personalPhoto: json["personalPhoto"]
+              ?.toString()
+              .fixUrl(initialImage: Assets.imagesAvatar) ??
+          '',
       company: json["company"] ?? "",
       isUserId: json["isUserId"] ?? "",
       isCustomerId: json["isCustomerId"] ?? "",

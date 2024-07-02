@@ -95,7 +95,7 @@ class SpinnerWidgetState<T> extends State<SpinnerWidget<T>> {
             for (final e in widget.items) {
               e.isSelected = false;
               if (e.id == value.id) {
-                // loggerObject.f('${value.id}\n${e.id}');
+
                 e.isSelected = true;
               }
             }

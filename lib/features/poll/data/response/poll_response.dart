@@ -90,7 +90,7 @@ class PollResult {
       id: json["id"] ?? "",
       topic: json["topic"] ?? "",
       isResultPublished: json["isResultPublished"] ?? false,
-      totalVotes: json["totalVotes"] ?? 0,
+      totalVotes: json["totalVotes"] ?? -1,
       voteResults: json["voteResults"] == null
           ? []
           : List<VoteResult>.from(
@@ -116,7 +116,7 @@ class VoteResult {
 
   final String optionId;
   final String option;
-  final num voteCount;
+  final int voteCount;
 
   factory VoteResult.fromJson(Map<String, dynamic> json) {
     return VoteResult(

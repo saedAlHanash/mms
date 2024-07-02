@@ -1,6 +1,8 @@
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../core/api_manager/api_service.dart';
+import '../core/app/app_widget.dart';
+import '../generated/l10n.dart';
 
 PackageInfo? _appData;
 
@@ -16,5 +18,5 @@ class AppInfoService {
   static PackageInfo get appInfo => _appData!;
 
   static String get fullVersionName =>
-      'version:( ${appInfo.version} ) | Build:( ${appInfo.buildNumber} )';
+      '${S.of(ctx!).version}:( ${appInfo.version} ) | ${S.of(ctx!).build}:( ${appInfo.buildNumber} )';
 }

@@ -261,5 +261,14 @@
   "guest": "Guest",
   "voters": "Voters",
   "agendas": "Agendas",
-  "changeLanguage": "Change Language"
+  "changeLanguage": "Change Language",
+  "goals": "Goals",
+  "tasks": "tasks",
+  "published": "Published",
+  "unpublished": "UnPublished",
+  "statement": "Statement",
+  "documents": "Documents",
+  "version": "Version",
+  "build": "Build",
+  "poweredByCoretech": "Powered by CORETECH"
 }

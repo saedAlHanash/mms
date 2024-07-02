@@ -78,6 +78,8 @@ abstract class MCubit<AbstractState> extends Cubit<AbstractState> {
   Future<bool> checkCashed1<T>({
     required dynamic state,
     required T Function(Map<String, dynamic>) fromJson,
+  void Function(CubitStatuses emitState, dynamic data)?
+        onGetFromCache,
     bool? newData,
   }) async {
     if (newData ?? false) {
@@ -96,12 +98,15 @@ abstract class MCubit<AbstractState> extends Cubit<AbstractState> {
         data = fromJson(await getDataCached());
       }
 
-      emit(
-        state.copyWith(
-          statuses: emitState,
-          result: data,
-        ),
-      );
+      if (onGetFromCache == null) {
+        emit(
+          state.copyWith(
+            statuses: emitState,
+            result: data,
+          ),
+        );
+      }
+      onGetFromCache?.call(emitState, data);
 
       if (cacheType == NeedUpdateEnum.no) return true;
 
@@ -119,11 +124,13 @@ abstract class MCubit<AbstractState> extends Cubit<AbstractState> {
     bool? newData,
     Future<void> Function()? onError,
     Future<void> Function()? onSuccess,
+   void Function(CubitStatuses emitState,dynamic data)? onGetFromCache,
   }) async {
     final checkData = await checkCashed1(
       state: state,
       fromJson: fromJson,
       newData: newData,
+      onGetFromCache: onGetFromCache
     );
 
     if (checkData) return;

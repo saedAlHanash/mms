@@ -80,27 +80,11 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final loading = Builder(builder: (_) {
-      return Visibility(
-        visible: context.watch<LoadingCubit>().state.isLoading,
-        child: SafeArea(
-          child: Column(
-            children: [
-              const LinearProgressIndicator(),
-              Expanded(
-                child: Container(
-                  color: Colors.black.withOpacity(0.4),
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-    });
-
     return ScreenUtilInit(
       // designSize: const Size(375, 812*3),
-      designSize: Size(MediaQuery.of(context).size.width * 1.3,
+      designSize: Size(
+          MediaQuery.of(context).size.width *
+              (MediaQuery.of(context).size.shortestSide < 600 ? 1.3 : 1),
           MediaQuery.of(context).size.height),
       // designSize: const Size(14440, 972),
       minTextAdapt: true,
@@ -144,7 +128,7 @@ class _MyAppState extends State<MyApp> {
                             filters: [
                               Filter(
                                 name: 'status',
-                                val: MeetingStatus.planned.name,
+                                val: MeetingStatus.planned.index.toString(),
                                 operation: FilterOperation.notEqual,
                               ),
                             ]),
@@ -152,7 +136,10 @@ class _MyAppState extends State<MyApp> {
                   },
                 ),
                 BlocProvider(
-                  create: (_) => sl<LoggedPartyCubit>()..getLoggedParty(),
+                  create: (_) => sl<LoggedPartyCubit>()
+                    ..getLoggedParty(
+                      newData: true,
+                    ),
                 ),
               ],
               child: GestureDetector(
@@ -164,8 +151,9 @@ class _MyAppState extends State<MyApp> {
                     FocusManager.instance.primaryFocus?.unfocus();
                   }
                 },
-                child: Stack(
-                  children: [child!, loading],
+                child: MediaQuery(
+                  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                  child: child!,
                 ),
               ),
             );

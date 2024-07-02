@@ -58,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                 100.0.verticalSpace,
                 ImageMultiType(
                   url: Assets.iconsFullLogoWithoutSlogen,
-                  width: 1.0.sw,
+                  width: .8.sw,
                 ),
                 100.0.verticalSpace,
                 AutofillGroup(

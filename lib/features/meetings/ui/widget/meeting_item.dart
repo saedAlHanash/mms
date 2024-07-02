@@ -21,71 +21,56 @@ class ItemMeeting extends StatelessWidget {
         borderRadius: BorderRadius.circular(12.0.r),
         color: AppColorManager.lightGray,
       ),
-      child: Row(
-        children: [
-          Container(
-            width: 20.0.w,
-            height: 110.0.h,
-            decoration: BoxDecoration(
-              borderRadius:
-                  BorderRadius.horizontal(left: Radius.circular(12.0.r)),
+      child: ListTile(
+        onTap: () {
+          Navigator.pushNamed(context, RouteName.meeting, arguments: item.id);
+        },
+        title: DrawableText(
+          text: item.title,
+          fontFamily: FontManager.cairoBold.name,
+          size: 20.0.sp,
+        ),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            10.0.verticalSpace,
+            DrawableText(
+              text: item.status.name,
+              color: item.status.color,
             ),
-          ),
-          Expanded(
-            child: ListTile(
-              onTap: () {
-                Navigator.pushNamed(context, RouteName.meeting,
-                    arguments: item.id);
-              },
-              title: DrawableText(
-                text: item.title,
-                fontFamily: FontManager.cairoBold.name,
-                size: 20.0.sp,
-              ),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  10.0.verticalSpace,
-                  DrawableText(
-                    text: item.status.realName,
-                    color: item.status.color,
-                  ),
-                  3.0.verticalSpace,
-                  Row(
-                    children: [
-                      DrawableText(
-                        text: item.fromDate?.formatTime ?? '',
-                      ),
-                      10.0.horizontalSpace,
-                      ImageMultiType(
-                        url: Icons.arrow_forward,
-                        color: Colors.grey,
-                        height: 20.0.r,
-                        width: 20.0.r,
-                      ),
-                      10.0.horizontalSpace,
-                      DrawableText(text: item.toDate?.formatTime ?? ''),
-                    ],
-                  ),
-                  3.0.verticalSpace,
-                  DrawableText(
-                    text: item.meetingPlace,
-                    drawableStart: ImageMultiType(
-                      url: Icons.place,
-                      height: 15.0.r,
-                      width: 15.0.r,
-                    ),
-                  ),
-                ],
-              ),
-              trailing: ImageMultiType(
-                url: Icons.arrow_forward_ios,
-                height: 17.0.r,
-                width: 17.0.r,
+            3.0.verticalSpace,
+            Row(
+              children: [
+                DrawableText(
+                  text: item.fromDate?.formatTime ?? '',
+                ),
+                10.0.horizontalSpace,
+                ImageMultiType(
+                  url: Icons.arrow_forward,
+                  color: Colors.grey,
+                  height: 20.0.r,
+                  width: 20.0.r,
+                ),
+                10.0.horizontalSpace,
+                DrawableText(text: item.toDate?.formatTime ?? ''),
+              ],
+            ),
+            3.0.verticalSpace,
+            DrawableText(
+              text: item.meetingPlace,
+              drawableStart: ImageMultiType(
+                url: Icons.place,
+                height: 15.0.r,
+                width: 15.0.r,
               ),
             ),
-          ),
-        ],
+          ],
+        ),
+        trailing: ImageMultiType(
+          url: Icons.arrow_forward_ios,
+          height: 17.0.r,
+          width: 17.0.r,
+        ),
       ),
     );
   }

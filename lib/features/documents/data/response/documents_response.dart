@@ -1,3 +1,5 @@
+import 'package:mms/core/extensions/extensions.dart';
+
 class Document {
   Document({
     required this.id,
@@ -45,6 +47,7 @@ class Media {
   final String fileName;
   final String originalFileName;
   final String savedPath;
+
   final String mime;
 
   factory Media.fromJson(Map<String, dynamic> json) {
@@ -52,7 +55,7 @@ class Media {
       id: json["id"] ?? "",
       fileName: json["fileName"] ?? "",
       originalFileName: json["originalFileName"] ?? "",
-      savedPath: json["savedPath"] ?? "",
+      savedPath: json["savedPath"].toString().fixUrl(),
       mime: json["mime"] ?? "",
     );
   }

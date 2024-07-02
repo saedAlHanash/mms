@@ -220,7 +220,7 @@ class AbsenceRequestParty {
       middleName: json["middleName"] ?? "",
       lastName: json["lastName"] ?? "",
       personalPhoto:
-      json["personalPhoto"]?.toString().fixUrl(Assets.imagesAvatar) ?? '',
+      json["personalPhoto"]?.toString().fixUrl(initialImage:Assets.imagesAvatar) ?? '',
     );
   }
 
@@ -402,7 +402,7 @@ class PurpleParty {
       phone: json["phone"] ?? "",
       workPhone: json["workPhone"] ?? "",
       personalPhoto:
-      json["personalPhoto"]?.toString().fixUrl(Assets.imagesAvatar) ?? '',
+      json["personalPhoto"]?.toString().fixUrl(initialImage:Assets.imagesAvatar) ?? '',
       company: json["company"] ?? "",
       isUserId: json["isUserId"] ?? "",
       isCustomerId: json["isCustomerId"] ?? "",

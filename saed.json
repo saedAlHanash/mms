@@ -2,119 +2,92 @@
   "hasRequestAbsence": false,
   "attendeesList": [
     {
-      "attendanceDate": "2024-06-24T15:21:00.2236771",
+      "attendanceDate": "2024-07-01T13:03:51.3615987",
       "hasAttended": true,
       "partyId": "f5e7ebf0-72cc-4bc0-88b2-08dc8aebbe56",
-      "fullName": "maisam mohamad  ",
+      "fullName": "Maisam Mohamad  ",
       "personalPhoto": null,
-      "id": "635c31f9-fdcc-40f9-9c14-08dc9421d430"
+      "id": "699a8cf9-c08d-4008-ce78-08dc99b12eb2"
     },
     {
-      "attendanceDate": "2024-06-24T15:21:00.2238341",
+      "attendanceDate": "2024-07-01T13:03:51.3618714",
       "hasAttended": true,
       "partyId": "a4d0105e-a26c-4cbd-88b3-08dc8aebbe56",
-      "fullName": "p2 p2",
+      "fullName": "عبد الرحمن العلبي",
       "personalPhoto": null,
-      "id": "63a427c7-8208-4d6c-9c15-08dc9421d430"
+      "id": "61e0085e-198f-4a08-ce79-08dc99b12eb2"
     },
     {
-      "attendanceDate": "2024-06-24T15:21:00.2238568",
+      "attendanceDate": "2024-07-01T13:03:51.3619074",
       "hasAttended": true,
       "partyId": "4e6d83a7-9dca-47e2-88b5-08dc8aebbe56",
-      "fullName": "p4 p4",
+      "fullName": "سعيد الحنش",
       "personalPhoto": null,
-      "id": "b80f86d6-c3e1-4608-9c16-08dc9421d430"
-    }
-  ],
-  "guestsList": [
-    {
-      "meetingId": "cfeb3891-23fc-4505-0eb0-08dc94336c1a",
-      "firstName": "عبد الرحمن",
-      "lastName": "العلبي",
-      "email": "abd@gmail.com",
-      "phone": "0945486601",
-      "company": "core tech",
-      "id": "3323c52a-2dd4-4288-3a56-08dc9421d430"
-    }
-  ],
-  "discussions": [],
-  "documents": [
-    {
-      "documentDate": "2024-06-24",
-      "name": "test doc",
-      "isPublished": false,
-      "media": {
-        "fileName": "file_(3)_3e927c59-8444-4e52-a930-a3d1adbdaa96.txt",
-        "originalFileName": "file (3).txt",
-        "savedPath": "https://mms.coretech-mena.com/documents",
-        "mime": "text/plain",
-        "id": "f71aa20e-adef-4074-6b50-08dc941d314b"
-      },
-      "id": "efd577c3-717e-484a-b529-08dc941d3198"
-    }
-  ],
-  "agendaItems": [
-    {
-      "title": "تحديد الأقسام لتقييم العاملين فيها",
-      "description": "سيتم تحديد الأولويات للأقسام التي سيتم البدء بتقييم العاملين فيها",
-      "fromDate": "2024-06-25T01:37:00",
-      "toDate": "2024-06-25T03:37:00",
-      "meetingId": "cfeb3891-23fc-4505-0eb0-08dc94336c1a",
-      "parentId": null,
-      "comments": [],
-      "childrenItems": [
-        {
-          "title": "تقييم تحديد أعداد العاملين بكل قسم",
-          "description": "تحضير قوائم خاصة بأعداد العاملين",
-          "fromDate": "2024-06-25T01:40:00",
-          "toDate": "2024-06-25T03:40:00",
-          "meetingId": "cfeb3891-23fc-4505-0eb0-08dc94336c1a",
-          "parentId": "9a5a07e2-eb52-4058-542a-08dc9462ebba",
-          "comments": [],
-          "childrenItems": [],
-          "id": "dd923cd9-27ef-49fa-542c-08dc9462ebba"
-        }
-      ],
-      "id": "9a5a07e2-eb52-4058-542a-08dc9462ebba"
+      "id": "9ab555e6-134b-49a3-ce7a-08dc99b12eb2"
     },
     {
-      "title": "تحديد المؤسسات التي سيتم تطبيق التقييم عليها",
-      "description": " تحديد المؤسسات التي سيتم تطبيق التقييم عليها من خلال تحديد المحددات الضرورية لذلك",
-      "fromDate": "2024-06-25T01:38:00",
-      "toDate": "2024-06-25T02:38:00",
-      "meetingId": "cfeb3891-23fc-4505-0eb0-08dc94336c1a",
-      "parentId": null,
-      "comments": [],
-      "childrenItems": [],
-      "id": "2836eafb-ba1d-40b5-542b-08dc9462ebba"
+      "attendanceDate": "2024-07-01T13:03:51.3619193",
+      "hasAttended": true,
+      "partyId": "cf90dd78-9444-4711-50ce-08dc95b17f51",
+      "fullName": "خالد الأكرم",
+      "personalPhoto": null,
+      "id": "a60cbf85-6b10-4a15-ce7b-08dc99b12eb2"
+    },
+    {
+      "attendanceDate": "2024-07-01T13:03:51.3620119",
+      "hasAttended": true,
+      "partyId": "a17898d5-6507-4d61-81b8-08dc8a279b20",
+      "fullName": "عبد الرحمن  عبد 2 ",
+      "personalPhoto": null,
+      "id": "c1bcfcf4-9333-4aac-ce7c-08dc99b12eb2"
+    },
+    {
+      "attendanceDate": "2024-07-01T13:03:51.3620214",
+      "hasAttended": true,
+      "partyId": "a17898d5-6507-4d61-81b8-08dc8a279b20",
+      "fullName": "عبد الرحمن  عبد 2 ",
+      "personalPhoto": null,
+      "id": "cd0541b3-b8e0-4dd1-ce7d-08dc99b12eb2"
     }
   ],
-  "location": {
-    "meetingId": "cfeb3891-23fc-4505-0eb0-08dc94336c1a",
-    "address": "دمشق",
-    "locationType": 1,
-    "onlineMeetingLinks": [
-      {
-        "link": "test meet",
-        "platform": 0
-      }
-    ],
-    "id": "78169673-7885-446f-1887-08dc9461ee9e"
-  },
+  "guestsList": [],
+  "discussions": [],
+  "documents": [],
+  "agendaItems": [],
+  "location": null,
   "absenceRequests": [],
   "guestSuggestions": [],
   "decisions": [],
   "polls": [],
   "tasks": [],
   "minutes": null,
-  "pollResults": null,
-  "title": "تحديد قوائم التقييم والشروط الخاصة بها",
-  "meetingPlace": "قاعة الاجتماعات5  ط /3 البناء الرئيسي",
-  "fromDate": "2024-06-25T01:25:00",
-  "toDate": "2024-06-25T03:25:00",
-  "scheduledDate": null,
-  "status": 0,
+  "pollResults": [
+    {
+      "topic": "poll test",
+      "isResultPublished": true,
+      "totalVotes": 2,
+      "voteResults": [
+        {
+          "optionId": "f4e074af-e2a9-4716-c8d1-08dc99b4a174",
+            "option": "نعم ",
+          "voteCount": 2
+        },
+        {
+          "optionId": "e19ba02b-8fd0-4cd7-c8d2-08dc99b4a174",
+          "option": "لا ",
+          "voteCount": 0
+        }
+      ],
+      "id": "72f94304-5a72-45a1-0f5e-08dc99b4a171"
+    }
+  ],
+  "title": "تجريب",
+  "meetingPlace": "دمشق",
+  "fromDate": "2024-07-01T23:08:00",
+  "toDate": "2024-07-02T01:08:00",
+  "scheduledDate": "2024-07-01T23:36:39.842",
+  "status": 4,
   "committeeId": "e2ac0647-3b16-4a29-bb67-08dc8aef06d2",
   "committeeName": null,
-  "id": "cfeb3891-23fc-4505-0eb0-08dc94336c1a"
+  "id": "e4cf9937-0a62-4e71-f6ec-08dc99b12ea2"
 }

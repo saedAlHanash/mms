@@ -32,7 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_to_cart": MessageLookupByLibrary.simpleMessage("أضف للسلة"),
         "additional_service":
             MessageLookupByLibrary.simpleMessage("خدمة إضافية"),
-        "agendas": MessageLookupByLibrary.simpleMessage("Agendas"),
+        "agendas": MessageLookupByLibrary.simpleMessage("جداول الأعمال"),
         "alreadyHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("هل لديك حساب بالفعل؟"),
         "apply": MessageLookupByLibrary.simpleMessage("تطبيق"),
@@ -42,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "at": MessageLookupByLibrary.simpleMessage("عند"),
         "back": MessageLookupByLibrary.simpleMessage("عودة"),
         "birthday": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
+        "build": MessageLookupByLibrary.simpleMessage("رقم الإصدار"),
         "buildNumber": MessageLookupByLibrary.simpleMessage("رقم الإصدار"),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "canceled": MessageLookupByLibrary.simpleMessage("ملغي"),
@@ -50,13 +51,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "cart": MessageLookupByLibrary.simpleMessage("السلة"),
         "cashPayment": MessageLookupByLibrary.simpleMessage("دفع نقدي"),
         "categories": MessageLookupByLibrary.simpleMessage("تصنيفات"),
-        "chair": MessageLookupByLibrary.simpleMessage("Chair"),
+        "chair": MessageLookupByLibrary.simpleMessage("رئيس"),
         "changeAddress": MessageLookupByLibrary.simpleMessage("تغيير العنوان"),
         "changeEmail":
             MessageLookupByLibrary.simpleMessage("تغيير البريد الإلكتروني"),
         "changeFile": MessageLookupByLibrary.simpleMessage("تعديل الملف"),
-        "changeLanguage":
-            MessageLookupByLibrary.simpleMessage("Change Language"),
+        "changeLanguage": MessageLookupByLibrary.simpleMessage("تغيير اللغة"),
         "changeName": MessageLookupByLibrary.simpleMessage("تغيير الاسم"),
         "changePass": MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
         "changePassword":
@@ -112,6 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dinar": MessageLookupByLibrary.simpleMessage("دينار"),
         "doNotHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("لا تمتلك حساب؟"),
+        "documents": MessageLookupByLibrary.simpleMessage("المستندات"),
         "dollar": MessageLookupByLibrary.simpleMessage("دولار"),
         "done": MessageLookupByLibrary.simpleMessage("تم"),
         "doneCanceled": MessageLookupByLibrary.simpleMessage("تم إلغاؤه"),
@@ -134,7 +135,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ePayment": MessageLookupByLibrary.simpleMessage("دفع إلكتروني"),
         "editProfile":
             MessageLookupByLibrary.simpleMessage("تعديل الصفحة الشخصية"),
-        "editVote": MessageLookupByLibrary.simpleMessage("Edit Vote"),
+        "editVote": MessageLookupByLibrary.simpleMessage("تعديل التصويت"),
         "educationalGrade":
             MessageLookupByLibrary.simpleMessage("المرحلة الدراسية"),
         "educationalProgress":
@@ -172,8 +173,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("الملازم والكتب المجانية"),
         "fullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
         "gender": MessageLookupByLibrary.simpleMessage("الجنس"),
+        "goals": MessageLookupByLibrary.simpleMessage("الأهداف"),
         "governor": MessageLookupByLibrary.simpleMessage("المحافظة"),
-        "guest": MessageLookupByLibrary.simpleMessage("Guest"),
+        "guest": MessageLookupByLibrary.simpleMessage("ضيف"),
         "haveBeenCreated":
             MessageLookupByLibrary.simpleMessage("تم إنشاء حسابك"),
         "helperPhoneText":
@@ -193,7 +195,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "mail": MessageLookupByLibrary.simpleMessage("ذكر"),
         "max": MessageLookupByLibrary.simpleMessage("الأقصى"),
-        "member": MessageLookupByLibrary.simpleMessage("Member"),
+        "member": MessageLookupByLibrary.simpleMessage("عضو"),
         "middleName": MessageLookupByLibrary.simpleMessage("الاسم الأوسط"),
         "min": MessageLookupByLibrary.simpleMessage("دقيقة"),
         "minutes": MessageLookupByLibrary.simpleMessage("دقائق"),
@@ -219,7 +221,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "يرجى التحقق من اتصالك بالإنترنت"),
         "notYet": MessageLookupByLibrary.simpleMessage("ليس بعد"),
         "notification": MessageLookupByLibrary.simpleMessage("الإشعارات"),
-        "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
+        "notifications": MessageLookupByLibrary.simpleMessage("إشعارات"),
         "numberPhone": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
         "offer": MessageLookupByLibrary.simpleMessage("عرض"),
         "oops": MessageLookupByLibrary.simpleMessage("حدث خطأ ما!"),
@@ -253,11 +255,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("سياسة الاستخدام والخصوصية"),
         "policyJust": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
         "postponed": MessageLookupByLibrary.simpleMessage("مؤجلة"),
+        "poweredByCoretech":
+            MessageLookupByLibrary.simpleMessage("صمم بواسطة CORETECH"),
         "price": MessageLookupByLibrary.simpleMessage("السعر"),
         "processing": MessageLookupByLibrary.simpleMessage("معالجة"),
         "product": MessageLookupByLibrary.simpleMessage("منتج"),
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
         "profileImage": MessageLookupByLibrary.simpleMessage("صورة شخصية"),
+        "published": MessageLookupByLibrary.simpleMessage("منشورة"),
         "rated": MessageLookupByLibrary.simpleMessage("تم التقييم"),
         "rePassword": MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "ready": MessageLookupByLibrary.simpleMessage("جاهز"),
@@ -286,7 +291,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "searchResult": MessageLookupByLibrary.simpleMessage("نتائج البحث"),
         "search_In_All": MessageLookupByLibrary.simpleMessage("البحث في الكل"),
         "seconds": MessageLookupByLibrary.simpleMessage("ثواني"),
-        "secretary": MessageLookupByLibrary.simpleMessage("Secretary"),
+        "secretary": MessageLookupByLibrary.simpleMessage("أمين السر"),
         "see_all": MessageLookupByLibrary.simpleMessage("عرض الكل"),
         "selectFromMap": MessageLookupByLibrary.simpleMessage("من الخريطة"),
         "selectGovernor": MessageLookupByLibrary.simpleMessage("اختر المحافظة"),
@@ -304,6 +309,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "تسجيل الدخول ببرامج التواصل "),
         "signUp": MessageLookupByLibrary.simpleMessage("الاشتراك"),
         "sizes": MessageLookupByLibrary.simpleMessage("الأحجام"),
+        "statement": MessageLookupByLibrary.simpleMessage("بيان"),
         "subCategories": MessageLookupByLibrary.simpleMessage("تصنيفات فرعية"),
         "subTitleDeleteAccount": MessageLookupByLibrary.simpleMessage(
             "سوف يتم حذف الحساب بجميع البيانات والكورسات"),
@@ -317,27 +323,27 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("خدمه العملاء رسال واتصل"),
         "subtotal": MessageLookupByLibrary.simpleMessage("المجموع الفرعي"),
         "successfully": MessageLookupByLibrary.simpleMessage("بنجاح."),
-        "suggestedGuest":
-            MessageLookupByLibrary.simpleMessage("Suggested Guest"),
-        "suggestedGuests":
-            MessageLookupByLibrary.simpleMessage("Suggested Guests"),
-        "suggestingGuest":
-            MessageLookupByLibrary.simpleMessage("Suggesting Guest"),
+        "suggestedGuest": MessageLookupByLibrary.simpleMessage("ضيف مقترح"),
+        "suggestedGuests": MessageLookupByLibrary.simpleMessage("ضيوف مقترحون"),
+        "suggestingGuest": MessageLookupByLibrary.simpleMessage("ضيف مقترح"),
         "summaries": MessageLookupByLibrary.simpleMessage("الملازم"),
         "support": MessageLookupByLibrary.simpleMessage("الدعم"),
+        "tasks": MessageLookupByLibrary.simpleMessage("المهام"),
         "teachingStaff":
             MessageLookupByLibrary.simpleMessage("الكادر التدريسي"),
         "termsAndConditions":
             MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),
         "trackingOrder": MessageLookupByLibrary.simpleMessage("تتبع الطلب"),
         "unFollow": MessageLookupByLibrary.simpleMessage("إلغاء متابعة"),
+        "unpublished": MessageLookupByLibrary.simpleMessage("غير منشور"),
         "update": MessageLookupByLibrary.simpleMessage("تعديل"),
         "useCurrentLocation":
             MessageLookupByLibrary.simpleMessage("استخدم الموقع الحالي"),
         "userName": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
         "verify": MessageLookupByLibrary.simpleMessage("التحقق"),
-        "voters": MessageLookupByLibrary.simpleMessage("Voters"),
-        "votes": MessageLookupByLibrary.simpleMessage("Votes"),
+        "version": MessageLookupByLibrary.simpleMessage("الإصدار"),
+        "voters": MessageLookupByLibrary.simpleMessage("الناخبون"),
+        "votes": MessageLookupByLibrary.simpleMessage("الأصوات"),
         "welcomeBack": MessageLookupByLibrary.simpleMessage("أهلا بعودتك!"),
         "wishList": MessageLookupByLibrary.simpleMessage("قائمة أماني"),
         "wishlist": MessageLookupByLibrary.simpleMessage("قائمة الرغبات"),

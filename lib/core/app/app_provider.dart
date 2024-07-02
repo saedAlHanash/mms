@@ -14,10 +14,10 @@ import 'app_widget.dart';
 class AppProvider {
   static var _currentCommittee = Committee.fromJson({});
 
-  static TextDirection getDirection =
+  static TextDirection get getDirection =>
       arabic ? TextDirection.rtl : TextDirection.ltr;
 
-  static bool arabic = AppSharedPreference.getLocal == 'ar';
+  static bool get arabic => AppSharedPreference.getLocal == 'ar';
 
   static set setCommittee(Committee c) => _currentCommittee = c;
 
