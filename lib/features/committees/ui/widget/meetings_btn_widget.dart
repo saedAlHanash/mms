@@ -7,7 +7,6 @@ import 'package:mms/generated/assets.dart';
 import 'package:mms/router/app_router.dart';
 
 import '../../../../core/app/app_provider.dart';
-import '../../../../core/strings/app_color_manager.dart';
 import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/my_style.dart';
 import '../../bloc/committee_cubit/committee_cubit.dart';

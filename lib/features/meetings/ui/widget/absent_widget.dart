@@ -8,7 +8,6 @@ import 'package:mms/core/util/snack_bar_message.dart';
 
 import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/widgets/my_button.dart';
-import '../../../../core/widgets/my_card_widget.dart';
 import '../../../../generated/l10n.dart';
 import '../../bloc/add_absence_cubit/add_absence_cubit.dart';
 import '../../bloc/meeting_cubit/meeting_cubit.dart';

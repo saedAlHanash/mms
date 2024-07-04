@@ -1,8 +1,4 @@
-import 'package:collection/collection.dart';
-import 'package:mms/core/app/app_provider.dart';
-
 import '../../../../core/strings/enum_manager.dart';
-import '../../../../core/widgets/spinner_widget.dart';
 
 class Polls {
   Polls({

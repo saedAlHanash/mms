@@ -12,7 +12,6 @@ import '../../features/auth/bloc/login_social_cubit/login_social_cubit.dart';
 import '../../features/auth/bloc/otp_password_cubit/otp_password_cubit.dart';
 import '../../features/auth/bloc/resend_code_cubit/resend_code_cubit.dart';
 import '../../features/auth/bloc/reset_password_cubit/reset_password_cubit.dart';
-import '../../features/auth/bloc/signup_cubit/signup_cubit.dart';
 import '../../features/committees/bloc/committee_cubit/committee_cubit.dart';
 import '../../features/committees/bloc/my_committees_cubit/my_committees_cubit.dart';
 import '../../features/files/bloc/upload_file_cubit/upload_file_cubit.dart';
@@ -22,11 +21,10 @@ import '../../features/meetings/bloc/meeting_cubit/meeting_cubit.dart';
 import '../../features/meetings/bloc/meetings_cubit/meetings_cubit.dart';
 import '../../features/notification/bloc/notifications_cubit/notifications_cubit.dart';
 import '../../features/profile/bloc/update_profile_cubit/update_profile_cubit.dart';
-import '../../features/vote/bloc/delete_vote_cubit/delete_vote_cubit.dart';
 import '../../features/vote/bloc/create_vote_cubit/create_vote_cubit.dart';
+import '../../features/vote/bloc/delete_vote_cubit/delete_vote_cubit.dart';
 import '../../features/vote/bloc/vote_cubit/vote_cubit.dart';
 import '../../features/vote/bloc/votes_cubit/votes_cubit.dart';
-import '../../services/location_service/my_location_cubit/my_location_cubit.dart';
 import '../app/bloc/loading_cubit.dart';
 import '../network/network_info.dart';
 
@@ -40,13 +38,12 @@ Future<void> init() async {
   sl.registerLazySingleton(() => InternetConnectionChecker());
   sl.registerLazySingleton(() => LoadingCubit());
   sl.registerLazySingleton(() => GlobalKey<NavigatorState>());
-  sl.registerLazySingleton(() => LocationServiceCubit());
+
 
   //endregion
 
   //region auth
 
-  sl.registerFactory(() => SignupCubit());
   sl.registerFactory(() => LoginCubit());
   sl.registerFactory(() => LoginSocialCubit());
   sl.registerFactory(() => ForgetPasswordCubit());

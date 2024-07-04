@@ -1,5 +1,4 @@
 import 'package:animated_tree_view/tree_view/tree_node.dart';
-import 'package:animated_tree_view/tree_view/tree_view.dart';
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,7 +10,6 @@ import '../../../../core/strings/app_color_manager.dart';
 import '../../../../generated/assets.dart';
 import '../../../../generated/l10n.dart';
 import '../../data/response/agendas_response.dart';
-import 'agendas_list_widget.dart';
 import 'comment_btn.dart';
 
 class AgendaTreeWidget extends StatelessWidget {

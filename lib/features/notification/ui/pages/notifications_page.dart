@@ -1,10 +1,8 @@
-import 'package:mms/core/extensions/extensions.dart';
-import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
 import 'package:mms/core/widgets/refresh_widget/refresh_widget.dart';
 
-import '../../../../core/util/my_style.dart';
 import '../../../../generated/l10n.dart';
 import '../../bloc/notifications_cubit/notifications_cubit.dart';
 import '../widget/notification_widget.dart';

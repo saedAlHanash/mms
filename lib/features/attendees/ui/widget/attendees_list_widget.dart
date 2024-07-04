@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/circle_image_widget.dart';
 import 'package:image_multi_type/image_multi_type.dart';
-import 'package:mms/core/api_manager/api_service.dart';
 import 'package:mms/core/app/app_provider.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/widgets/my_button.dart';
@@ -14,7 +13,6 @@ import 'package:mms/features/meetings/data/response/meetings_response.dart';
 import '../../../../generated/assets.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../router/app_router.dart';
-import '../../data/response/attendee_response.dart';
 
 class AttendeesListWidget extends StatelessWidget {
   const AttendeesListWidget({super.key, required this.meeting});

@@ -22,7 +22,6 @@ import '../app_theme.dart';
 import '../injection/injection_container.dart';
 import '../strings/enum_manager.dart';
 import '../util/shared_preferences.dart';
-import 'bloc/loading_cubit.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});

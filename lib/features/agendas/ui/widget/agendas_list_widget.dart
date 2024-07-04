@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
-import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/util/my_style.dart';
 import 'package:mms/core/widgets/expansion/item_expansion.dart';
 import 'package:mms/core/widgets/expansion/my_expansion_widget.dart';

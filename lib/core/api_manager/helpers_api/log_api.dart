@@ -20,7 +20,6 @@
 
 import 'dart:convert';
 
-
 import 'package:http/http.dart';
 import 'package:logger/logger.dart';
 import 'package:mms/core/extensions/extensions.dart';

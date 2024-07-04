@@ -1,4 +1,4 @@
-import '../../../members/data/response/member_response.dart';
+
 
 class Attendee {
   Attendee({

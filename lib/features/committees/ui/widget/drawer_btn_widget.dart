@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 import 'package:mms/core/app/app_provider.dart';
 import 'package:mms/core/util/my_style.dart';
-import 'package:mms/core/util/shared_preferences.dart';
 import 'package:mms/generated/assets.dart';
 
 import '../../../../core/strings/app_color_manager.dart';

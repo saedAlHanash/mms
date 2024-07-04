@@ -1,8 +1,9 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_multi_type/image_multi_type.dart';
-import 'package:mms/core/api_manager/api_service.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
@@ -10,22 +11,10 @@ import 'package:mms/core/widgets/refresh_widget/refresh_widget.dart';
 import 'package:mms/features/poll/ui/widget/pool_widget.dart';
 
 import '../../../../core/strings/enum_manager.dart';
-import '../../../../core/util/my_style.dart';
-import '../../../../core/widgets/spinner_widget.dart';
 import '../../../../generated/assets.dart';
 import '../../../../generated/l10n.dart';
 import '../../../meetings/bloc/meeting_cubit/meeting_cubit.dart';
 import '../../bloc/create_vote_cubit/create_vote_cubit.dart';
-import 'package:animated_tree_view/animated_tree_view.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'dart:math' as math;
-
-import 'dart:ui' as ui show lerpDouble;
 
 class PieChartSample3 extends StatefulWidget {
   const PieChartSample3({super.key});
