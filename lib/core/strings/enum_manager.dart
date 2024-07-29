@@ -79,6 +79,8 @@ enum MembershipType {
         return S().guest;
     }
   }
+
+  bool get isMember => this != chair && this != secretary;
 }
 
 enum DiscussionStatus { open, closed }

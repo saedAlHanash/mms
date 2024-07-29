@@ -82,6 +82,8 @@ class GetUrl {
 
   static const myCommittees = 'Committee/GetMyCommittees';
 
+  static const committees = 'Committee/GetAll';
+
   static const committee = 'Committee/Get';
 
   static const goal = '';

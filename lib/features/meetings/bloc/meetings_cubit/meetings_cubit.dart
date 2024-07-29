@@ -1,8 +1,11 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
+import 'package:mms/features/committees/bloc/my_committees_cubit/my_committees_cubit.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/api_manager/request_models/command.dart';
+import '../../../../core/app/app_widget.dart';
 import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/abstraction.dart';
 import '../../../../core/util/pair_class.dart';
@@ -36,7 +39,6 @@ class MeetingsCubit extends MCubit<MeetingsInitial> {
           ),
         );
       },
-
       onSuccess: () async {
         Future(() => emit(state.copyWith(events: _getMapEvent(state.result))));
       },
@@ -51,7 +53,10 @@ class MeetingsCubit extends MCubit<MeetingsInitial> {
     );
 
     if (response.statusCode.success) {
-      return Pair(MeetingsResponse.fromJson(response.jsonBodyPure).items, null);
+      final list = MeetingsResponse.fromJson(response.jsonBodyPure).items;
+      list.removeWhere((e) =>
+          !(ctx!.read<MyCommitteesCubit>().haveCommittee(e.committeeId)));
+      return Pair(list, null);
     } else {
       return response.getPairError;
     }
