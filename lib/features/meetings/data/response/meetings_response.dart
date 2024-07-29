@@ -1,9 +1,12 @@
+import 'package:collection/collection.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
+import '../../../../core/app/app_provider.dart';
 import '../../../../core/strings/enum_manager.dart';
 import '../../../../generated/assets.dart';
 import '../../../agendas/data/response/agendas_response.dart';
 import '../../../attendees/data/response/attendee_response.dart';
+import '../../../members/data/response/member_response.dart';
 import '../../../poll/data/response/poll_response.dart';
 
 class MeetingsResponse {
@@ -219,8 +222,10 @@ class AbsenceRequestParty {
       firstName: json["firstName"] ?? "",
       middleName: json["middleName"] ?? "",
       lastName: json["lastName"] ?? "",
-      personalPhoto:
-      json["personalPhoto"]?.toString().fixUrl(initialImage:Assets.imagesAvatar) ?? '',
+      personalPhoto: json["personalPhoto"]
+              ?.toString()
+              .fixUrl(initialImage: Assets.imagesAvatar) ??
+          '',
     );
   }
 
@@ -277,8 +282,15 @@ class Discussion {
   final String meetingId;
   final String topic;
   final DateTime? date;
-  final num status;
+  final DiscussionStatus status;
   final List<DiscussionComment> comments;
+
+  bool get haveMyComment =>
+      comments.firstWhereOrNull((e) => e.partyId == AppProvider.getParty.id) !=
+      null;
+
+  DiscussionComment? get myComment =>
+      comments.firstWhereOrNull((e) => e.partyId == AppProvider.getParty.id);
 
   factory Discussion.fromJson(Map<String, dynamic> json) {
     return Discussion(
@@ -286,7 +298,7 @@ class Discussion {
       meetingId: json["meetingId"] ?? "",
       topic: json["topic"] ?? "",
       date: DateTime.tryParse(json["date"] ?? ""),
-      status: json["status"] ?? 0,
+      status: DiscussionStatus.values[json["status"] ?? 0],
       comments: json["comments"] == null
           ? []
           : List<DiscussionComment>.from(
@@ -299,7 +311,7 @@ class Discussion {
         "meetingId": meetingId,
         "topic": topic,
         "date": date?.toIso8601String(),
-        "status": status,
+        "status": status.index,
         "comments": comments.map((x) => x.toJson()).toList(),
       };
 }
@@ -318,8 +330,10 @@ class DiscussionComment {
   final String text;
   final DateTime? date;
   final String partyId;
-  final PurpleParty? party;
+  final Party party;
   final String discussionId;
+
+  bool get isMyComment => partyId == AppProvider.getParty.id;
 
   factory DiscussionComment.fromJson(Map<String, dynamic> json) {
     return DiscussionComment(
@@ -327,7 +341,7 @@ class DiscussionComment {
       text: json["text"] ?? "",
       date: DateTime.tryParse(json["date"] ?? ""),
       partyId: json["partyId"] ?? "",
-      party: json["party"] == null ? null : PurpleParty.fromJson(json["party"]),
+      party: Party.fromJson(json["party"] ?? {}),
       discussionId: json["discussionId"] ?? "",
     );
   }
@@ -337,103 +351,8 @@ class DiscussionComment {
         "text": text,
         "date": date?.toIso8601String(),
         "partyId": partyId,
-        "party": party?.toJson(),
+        "party": party.toJson(),
         "discussionId": discussionId,
-      };
-}
-
-class PurpleParty {
-  PurpleParty({
-    required this.id,
-    required this.userName,
-    required this.firstName,
-    required this.middleName,
-    required this.lastName,
-    required this.dob,
-    required this.gender,
-    required this.address,
-    required this.email,
-    required this.mobile,
-    required this.phone,
-    required this.workPhone,
-    required this.personalPhoto,
-    required this.company,
-    required this.isUserId,
-    required this.isCustomerId,
-    required this.workUnitId,
-    required this.workUnit,
-    required this.committeesNumber,
-    required this.tasksNumber,
-  });
-
-  final String id;
-  final String userName;
-  final String firstName;
-  final String middleName;
-  final String lastName;
-  final DateTime? dob;
-  final num gender;
-  final String address;
-  final String email;
-  final String mobile;
-  final String phone;
-  final String workPhone;
-  final String personalPhoto;
-  final String company;
-  final String isUserId;
-  final String isCustomerId;
-  final String workUnitId;
-  final String workUnit;
-  final num committeesNumber;
-  final num tasksNumber;
-
-  factory PurpleParty.fromJson(Map<String, dynamic> json) {
-    return PurpleParty(
-      id: json["id"] ?? "",
-      userName: json["userName"] ?? "",
-      firstName: json["firstName"] ?? "",
-      middleName: json["middleName"] ?? "",
-      lastName: json["lastName"] ?? "",
-      dob: DateTime.tryParse(json["dob"] ?? ""),
-      gender: json["gender"] ?? 0,
-      address: json["address"] ?? "",
-      email: json["email"] ?? "",
-      mobile: json["mobile"] ?? "",
-      phone: json["phone"] ?? "",
-      workPhone: json["workPhone"] ?? "",
-      personalPhoto:
-      json["personalPhoto"]?.toString().fixUrl(initialImage:Assets.imagesAvatar) ?? '',
-      company: json["company"] ?? "",
-      isUserId: json["isUserId"] ?? "",
-      isCustomerId: json["isCustomerId"] ?? "",
-      workUnitId: json["workUnitId"] ?? "",
-      workUnit: json["workUnit"] ?? "",
-      committeesNumber: json["committeesNumber"] ?? 0,
-      tasksNumber: json["tasksNumber"] ?? 0,
-    );
-  }
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "userName": userName,
-        "firstName": firstName,
-        "middleName": middleName,
-        "lastName": lastName,
-        "dob": dob?.toIso8601String(),
-        "gender": gender,
-        "address": address,
-        "email": email,
-        "mobile": mobile,
-        "phone": phone,
-        "workPhone": workPhone,
-        "personalPhoto": personalPhoto,
-        "company": company,
-        "isUserId": isUserId,
-        "isCustomerId": isCustomerId,
-        "workUnitId": workUnitId,
-        "workUnit": workUnit,
-        "committeesNumber": committeesNumber,
-        "tasksNumber": tasksNumber,
       };
 }
 

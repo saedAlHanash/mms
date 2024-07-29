@@ -151,6 +151,8 @@ class PostUrl {
 
   static const addComment = 'AgendaItemComment/Add';
 
+  static const addDiscussionComment = 'DiscussionComment/Add';
+
   static var notifications = 'Party/GetNotification';
 
   static var temps = '';

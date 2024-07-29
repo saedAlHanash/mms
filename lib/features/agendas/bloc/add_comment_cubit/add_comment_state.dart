@@ -52,4 +52,15 @@ class AddCommentInitial extends AbstractState<bool> {
           "agendaItemId": request.agendaItemId,
         },
       );
+
+  DiscussionComment get getAddedDiscussionComment => DiscussionComment.fromJson(
+        {
+          "id": 'id',
+          "text": request.text,
+          "date": DateTime.now().toIso8601String(),
+          "partyId": AppProvider.getParty.id,
+          "party": AppProvider.getParty.toJson(),
+          "discussionId": request.discussionId,
+        },
+      );
 }

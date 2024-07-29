@@ -2,92 +2,209 @@
   "hasRequestAbsence": false,
   "attendeesList": [
     {
-      "attendanceDate": "2024-07-01T13:03:51.3615987",
-      "hasAttended": true,
-      "partyId": "f5e7ebf0-72cc-4bc0-88b2-08dc8aebbe56",
-      "fullName": "Maisam Mohamad  ",
-      "personalPhoto": null,
-      "id": "699a8cf9-c08d-4008-ce78-08dc99b12eb2"
-    },
-    {
-      "attendanceDate": "2024-07-01T13:03:51.3618714",
+      "attendanceDate": "2024-07-28T11:46:55.5226444",
       "hasAttended": true,
       "partyId": "a4d0105e-a26c-4cbd-88b3-08dc8aebbe56",
       "fullName": "عبد الرحمن العلبي",
       "personalPhoto": null,
-      "id": "61e0085e-198f-4a08-ce79-08dc99b12eb2"
+      "id": "234bc423-1ac3-4e6a-a1a6-08dcaefadec1"
     },
     {
-      "attendanceDate": "2024-07-01T13:03:51.3619074",
-      "hasAttended": true,
+      "attendanceDate": null,
+      "hasAttended": false,
       "partyId": "4e6d83a7-9dca-47e2-88b5-08dc8aebbe56",
       "fullName": "سعيد الحنش",
       "personalPhoto": null,
-      "id": "9ab555e6-134b-49a3-ce7a-08dc99b12eb2"
+      "id": "7ff20586-fcf5-4477-a1a7-08dcaefadec1"
     },
     {
-      "attendanceDate": "2024-07-01T13:03:51.3619193",
+      "attendanceDate": "2024-07-28T11:46:55.522909",
       "hasAttended": true,
       "partyId": "cf90dd78-9444-4711-50ce-08dc95b17f51",
       "fullName": "خالد الأكرم",
       "personalPhoto": null,
-      "id": "a60cbf85-6b10-4a15-ce7b-08dc99b12eb2"
+      "id": "bacc472a-fbe7-48a0-a1a8-08dcaefadec1"
     },
     {
-      "attendanceDate": "2024-07-01T13:03:51.3620119",
+      "attendanceDate": "2024-07-28T11:46:55.522933",
       "hasAttended": true,
-      "partyId": "a17898d5-6507-4d61-81b8-08dc8a279b20",
-      "fullName": "عبد الرحمن  عبد 2 ",
+      "partyId": "f5e7ebf0-72cc-4bc0-88b2-08dc8aebbe56",
+      "fullName": "ميسم محمد",
       "personalPhoto": null,
-      "id": "c1bcfcf4-9333-4aac-ce7c-08dc99b12eb2"
+      "id": "a64ca43f-3b86-462f-a1a9-08dcaefadec1"
     },
     {
-      "attendanceDate": "2024-07-01T13:03:51.3620214",
+      "attendanceDate": "2024-07-28T11:46:55.5230235",
       "hasAttended": true,
-      "partyId": "a17898d5-6507-4d61-81b8-08dc8a279b20",
-      "fullName": "عبد الرحمن  عبد 2 ",
+      "partyId": "bf60d8cc-37b1-4896-94f0-08dc95e559ad",
+      "fullName": "محمود المس",
       "personalPhoto": null,
-      "id": "cd0541b3-b8e0-4dd1-ce7d-08dc99b12eb2"
+      "id": "51bdb7fe-fdba-4328-a1aa-08dcaefadec1"
+    },
+    {
+      "attendanceDate": "2024-07-28T11:46:55.523081",
+      "hasAttended": true,
+      "partyId": "e2386c19-84b4-4f8e-42e6-08dc89670b11",
+      "fullName": "محمد طه العقلة",
+      "personalPhoto": null,
+      "id": "37e88d4a-f3c1-4ab4-a1ac-08dcaefadec1"
     }
   ],
   "guestsList": [],
-  "discussions": [],
+  "discussions": [
+    {
+      "meetingId": "9adf73e1-4ea4-40ff-cdeb-08dcaefadeba",
+      "topic": "تدريب المعلمين والطلاب على استخدام التكنولوجيا بشكل فعال.",
+      "date": "0001-01-01T00:00:00",
+      "status": 0,
+      "comments": [
+        {
+          "text": "تعليق",
+          "date": "0001-01-01T00:00:00",
+          "partyId": "a4d0105e-a26c-4cbd-88b3-08dc8aebbe56",
+          "party": {
+            "userName": "AbdMember2@gmail.com",
+            "firstName": "عبد الرحمن",
+            "middleName": "محمد",
+            "lastName": "العلبي",
+            "dob": "1986-10-30",
+            "gender": 0,
+            "address": "damascus",
+            "email": "AbdMember2@gmail.com",
+            "mobile": "0988744158",
+            "phone": "0945673234",
+            "workPhone": "0988744158",
+            "personalPhoto": "https://mms.coretech-mena.com/documents/cc3e08d0-fbfc-4a43-ab4b-1b39a0f042ad_51693f35-4f57-4226-b215-7971d82727b7.jpeg",
+            "company": "core tech",
+            "isUserId": "c8c10ca7-0d93-435d-b534-1f4402bed3ff",
+            "isCustomerId": "bc2e9831-f86a-4131-8a6f-9908d6d6cea5",
+            "workUnitId": "d8dfeb54-b98c-4ece-ac27-08dc913e8d40",
+            "workUnit": null,
+            "committeesNumber": 1,
+            "tasksNumber": 0,
+            "id": "a4d0105e-a26c-4cbd-88b3-08dc8aebbe56"
+          },
+          "discussionId": "e60cdc37-ed63-45c9-884e-08dcaf14bb4a",
+          "id": "da8656f5-af2f-4006-574b-08dcaf156355"
+        }
+      ],
+      "id": "e60cdc37-ed63-45c9-884e-08dcaf14bb4a"
+    },
+    {
+      "meetingId": "9adf73e1-4ea4-40ff-cdeb-08dcaefadeba",
+      "topic": "استخدام تقنيات مثل التعلم التعاوني والمناقشات الجماعية",
+      "date": "0001-01-01T00:00:00",
+      "status": 0,
+      "comments": [],
+      "id": "821a9510-ff7a-4af9-884f-08dcaf14bb4a"
+    },
+    {
+      "meetingId": "9adf73e1-4ea4-40ff-cdeb-08dcaefadeba",
+      "topic": "توفير بيئة صفية تشجع على الحوار والنقاش",
+      "date": "0001-01-01T00:00:00",
+      "status": 0,
+      "comments": [],
+      "id": "5369d248-4e4d-416b-8850-08dcaf14bb4a"
+    }
+  ],
   "documents": [],
-  "agendaItems": [],
+  "agendaItems": [
+    {
+      "title": "مقدمة حول أهمية التحفيز والتفاعل الطلابي",
+      "description": "قديم عام عن أهمية التحفيز والتفاعل في العملية التعليمية\nمناقشة تأثير التحفيز على الأداء الأكاديمي والاندماج الاجتماعي",
+      "fromDate": "2024-07-28T11:55:00",
+      "toDate": "2024-07-28T12:04:00",
+      "meetingId": "9adf73e1-4ea4-40ff-cdeb-08dcaefadeba",
+      "parentId": null,
+      "comments": [],
+      "childrenItems": [],
+      "id": "ffeb64938-e3c3-08dcaefc1faa"
+    },
+    {
+      "title": "استراتيجيات التحفيز",
+      "description": "استراتيجيات التحفيز الداخلية والخارجية\nاستخدام التكنولوجيا في التحفيز (مثل الألعاب التعليمية والتعلم عبر الإنترنت)\nأمثلة ناجحة من مؤسسات تعليمية مختلفة",
+      "fromDate": "2024-07-28T11:56:00",
+      "toDate": "2024-07-28T13:56:00",
+      "meetingId": "9adf73e1-4ea4-40ff-cdeb-08dcaefadeba",
+      "parentId": null,
+      "comments": [],
+      "childrenItems": [],
+      "id": "bc15d127-033e-4282-e3c4-08dcaefc1faa"
+    }
+  ],
   "location": null,
   "absenceRequests": [],
   "guestSuggestions": [],
   "decisions": [],
   "polls": [],
-  "tasks": [],
-  "minutes": null,
-  "pollResults": [
+  "tasks": [
     {
-      "topic": "poll test",
-      "isResultPublished": true,
-      "totalVotes": 2,
-      "voteResults": [
+      "description": "تصميم برامج تحفيزية تشمل المكافآت والشهادات",
+      "name": "تصميم برامج تحفيزية تشمل المكافآت والشهادات",
+      "startDate": "2024-07-28T14:57:00",
+      "dueDate": "2024-07-28T16:57:00",
+      "completionDate": null,
+      "taskStatus": 0,
+      "meetingId": "9adf73e1-4ea4-40ff-cdeb-08dingName",
+      "committeeName": "",
+      "memberTasks": [
         {
-          "optionId": "f4e074af-e2a9-4716-c8d1-08dc99b4a174",
-            "option": "نعم ",
-          "voteCount": 2
-        },
-        {
-          "optionId": "e19ba02b-8fd0-4cd7-c8d2-08dc99b4a174",
-          "option": "لا ",
-          "voteCount": 0
+          "party": {
+            "firstName": "سعيد",
+            "middleName": "محمد",
+            "lastName": "الحنش",
+            "personalPhoto": "https://mms.coretech-mena.com/documents/48458928-8a32-427d-8a42-4beeb8b9c8a3_66c9b386-84fc-40dd-9798-b38f7ce3bd5a.jpeg",
+            "id": "4e6d83a7-9dca-47e2-88b5-08dc8aebbe56"
+          },
+          "meetingTaskId": "2c6a4ead-7fac-49b6-ce42-08dcaf159c82",
+          "role": "مدير مهمة",
+          "id": "112ed0b9-e6d8-42c5-a264-08dcaefc82c4"
         }
       ],
-      "id": "72f94304-5a72-45a1-0f5e-08dc99b4a171"
+      "id": "2c6a4ead-7fac-49b6-ce42-08dcaf159c82"
     }
   ],
-  "title": "تجريب",
-  "meetingPlace": "دمشق",
-  "fromDate": "2024-07-01T23:08:00",
-  "toDate": "2024-07-02T01:08:00",
-  "scheduledDate": "2024-07-01T23:36:39.842",
-  "status": 4,
-  "committeeId": "e2ac0647-3b16-4a29-bb67-08dc8aef06d2",
+  "minutes": {
+    "name": "ملخص الاجتماع",
+    "date": "2024-07-28",
+    "status": 1,
+    "media": {
+      "fileName": "text_56ed7e3a-a614-48b4-bc7b-2ff62b709a8e.txt",
+      "originalFileName": "text.txt",
+      "savedPath": "https://mms.coretech-mena.com/documents",
+      "mime": "text/plain",
+      "id": "4d70b42b-049c-483c-efcd-08dcaeee92ef"
+    },
+    "comments": [],
+    "id": "635de29f-2723-4f62-fc14-08dcaf15a58c"
+  },
+  "pollResults": [
+    {
+      "topic": "استخدام التقنيات التفاعلية مثل اللوحات الذكية والتطبيقات التعليمية",
+      "isResultPublished": false,
+      "totalVotes": 1,
+      "voteResults": [
+        {
+          "optionId": "c1e3fd39-bce4-4f65-e075-08dcaf14a173",
+          "option": "نعم",
+          "voteCount": 0
+        },
+        {
+          "optionId": "0c39a00a-9807-4885-e076-08dcaf14a173",
+          "option": "لا",
+          "voteCount": 1
+        }
+      ],
+      "id": "d6f1541e-5554-4243-7d53-08dcaf14a173"
+    }
+  ],
+  "title": "استراتيجيات التحفيز والتفاعل الطلابي في التعليم",
+  "meetingPlace": "القاعه السابعه",
+  "fromDate": "2024-07-30T11:46:00",
+  "toDate": "2024-07-30T14:46:00",
+  "scheduledDate": "2024-07-28T11:57:31.459",
+  "status": 6,
+  "committeeId": "f5e6e890-1315-43c1-9fb2-08dc95dda7a0",
   "committeeName": null,
-  "id": "e4cf9937-0a62-4e71-f6ec-08dc99b12ea2"
+  "id": "9adf73e1-4ea4-40ff-cdeb-08dcaefadeba"
 }

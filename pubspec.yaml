@@ -76,8 +76,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_localizations:
-    sdk: flutter
 
   flutter_lints: ^3.0.2
 

@@ -1,5 +1,6 @@
 import 'package:animated_tree_view/node/node.dart';
 import 'package:animated_tree_view/tree_view/tree_node.dart';
+import 'package:collection/collection.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/features/agendas/data/response/agendas_response.dart';
@@ -59,5 +60,16 @@ class MeetingCubit extends MCubit<MeetingInitial> {
       return _findAgenda(e.id, e.childrenItems);
     }
     return null;
+  }
+
+  Future<void> addDiscussionComment({
+    required DiscussionComment comment,
+    required String discussionId,
+  }) async {
+    state.result.discussions
+        .firstWhereOrNull((e) => e.id == discussionId)
+        ?.comments
+        .add(comment);
+    await storeData(state.result);
   }
 }

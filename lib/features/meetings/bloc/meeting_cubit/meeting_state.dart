@@ -46,7 +46,7 @@ class MeetingInitial extends AbstractState<Meeting> {
     );
   }
 
-  List<Node> it(List<Agenda> childrenItems) {
+  List<Node> nodeAgenda(List<Agenda> childrenItems) {
     final list = <Node>[];
 
     if (childrenItems.isEmpty) {
@@ -54,15 +54,35 @@ class MeetingInitial extends AbstractState<Meeting> {
     }
 
     for (var e in childrenItems) {
-      list.add(TreeNode(data: e)..addAll(it(e.childrenItems)));
+      list.add(TreeNode(data: e)..addAll(nodeAgenda(e.childrenItems)));
     }
 
     return list;
   }
 
-  TreeNode<Agenda> getTree() {
+  TreeNode<Agenda> getAgendaTree() {
     return TreeNode<Agenda>.root(
       data: Agenda.fromJson({}),
-    )..addAll(it(result.agendaItems));
+    )..addAll(nodeAgenda(result.agendaItems));
+  }
+
+  List<Node> nodeDiscussion(Iterable<Discussion> childrenItems) {
+    final list = <Node>[];
+
+    if (childrenItems.isEmpty) {
+      return list;
+    }
+
+    for (var e in childrenItems) {
+      list.add(TreeNode<Discussion>(data: e));
+    }
+
+    return list;
+  }
+
+  TreeNode<Discussion> getDiscussionTree() {
+    return TreeNode<Discussion>.root(
+      data: Discussion.fromJson({}),
+    )..addAll(nodeDiscussion(result.discussions));
   }
 }

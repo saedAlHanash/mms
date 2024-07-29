@@ -270,5 +270,6 @@
   "documents": "Documents",
   "version": "Version",
   "build": "Build",
+  "discussions": "Discussions",
   "poweredByCoretech": "Powered by CORETECH"
 }

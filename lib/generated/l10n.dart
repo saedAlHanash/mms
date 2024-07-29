@@ -2760,6 +2760,16 @@ class S {
     );
   }
 
+  /// `Discussions`
+  String get discussions {
+    return Intl.message(
+      'Discussions',
+      name: 'discussions',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Powered by CORETECH`
   String get poweredByCoretech {
     return Intl.message(

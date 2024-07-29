@@ -8,6 +8,7 @@ import '../../../../core/error/error_manager.dart';
 import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/abstraction.dart';
 import '../../../../core/util/pair_class.dart';
+import '../../../meetings/data/response/meetings_response.dart';
 import '../../data/request/add_comment_request.dart';
 import '../../data/response/agendas_response.dart';
 
@@ -29,8 +30,11 @@ class AddCommentCubit extends Cubit<AddCommentInitial> {
   }
 
   Future<Pair<bool?, String?>> _getDataApi() async {
-    final response = await APIService().callApi(type: ApiType.post,
-      url: PostUrl.addComment,
+    final response = await APIService().callApi(
+      type: ApiType.post,
+      url: state.request.discussionId.isBlank
+          ? PostUrl.addComment
+          : PostUrl.addDiscussionComment,
       body: state.request.toJson(),
     );
 
@@ -45,4 +49,5 @@ class AddCommentCubit extends Cubit<AddCommentInitial> {
 
   set setAgendaId(String? val) => state.request.agendaItemId = val;
 
+  set setDiscussionId(String? val) => state.request.discussionId = val;
 }

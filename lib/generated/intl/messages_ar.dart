@@ -110,6 +110,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "didNotReceiveOTP":
             MessageLookupByLibrary.simpleMessage("لم تتلقَ الرمز؟"),
         "dinar": MessageLookupByLibrary.simpleMessage("دينار"),
+        "discussions": MessageLookupByLibrary.simpleMessage("نقاشات"),
         "doNotHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("لا تمتلك حساب؟"),
         "documents": MessageLookupByLibrary.simpleMessage("المستندات"),

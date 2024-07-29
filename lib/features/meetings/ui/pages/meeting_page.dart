@@ -13,6 +13,7 @@ import 'package:mms/features/agendas/ui/widget/agenda_tree_widget.dart';
 import 'package:mms/features/attendees/ui/widget/attendees_list_widget.dart';
 import 'package:mms/features/committees/ui/widget/drawer_btn_widget.dart';
 import 'package:mms/features/meetings/ui/widget/absent_widget.dart';
+import 'package:mms/features/meetings/ui/widget/discussions_tree.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../../router/app_router.dart';
@@ -158,8 +159,11 @@ class MeetingPage extends StatelessWidget {
                     20.0.verticalSpace,
 
                     AgendaTreeWidget(
-                      treeNode: state.getTree(),
+                      treeNode: state.getAgendaTree(),
                     ),
+                    20.0.verticalSpace,
+                    if (state.result.discussions.isNotEmpty)
+                      DiscussionsTree(treeNode: state.getDiscussionTree()),
                     100.0.verticalSpace,
                     // GoalListWidget(goals: item.goals),
                   ],
