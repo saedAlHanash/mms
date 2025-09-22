@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:m_cubit/caching_service/caching_service.dart';
+import 'package:mms/core/error/error_manager.dart';
 import 'package:mms/services/app_info_service.dart';
 import 'package:mms/services/caching_service/caching_service.dart';
 import 'package:mms/services/firebase_service.dart';
@@ -22,7 +24,11 @@ void main() async {
     AppSharedPreference.init(value);
   });
 
-  await CachingService.initial();
+  await CachingService.initial(
+    onError: (second) => showErrorFromApi(second),
+    version: 1,
+    timeInterval: 60,
+  );
 
   await FirebaseService.initial();
 
@@ -56,11 +62,9 @@ class MyHttpOverrides extends HttpOverrides {
 
 class Note {
   static Future initialize() async {
-    var androidInitialize =
-        const AndroidInitializationSettings('mipmap/ic_launcher');
+    var androidInitialize = const AndroidInitializationSettings('mipmap/ic_launcher');
     var iOSInitialize = const DarwinInitializationSettings();
-    var initializationsSettings =
-        InitializationSettings(android: androidInitialize, iOS: iOSInitialize);
+    var initializationsSettings = InitializationSettings(android: androidInitialize, iOS: iOSInitialize);
     await flutterLocalNotificationsPlugin.initialize(initializationsSettings);
   }
 
@@ -90,7 +94,6 @@ class Note {
       iOS: DarwinNotificationDetails(),
     );
 
-    await flutterLocalNotificationsPlugin.show(
-        (DateTime.now().millisecondsSinceEpoch ~/ 1000), title, body, not);
+    await flutterLocalNotificationsPlugin.show((DateTime.now().millisecondsSinceEpoch ~/ 1000), title, body, not);
   }
 }

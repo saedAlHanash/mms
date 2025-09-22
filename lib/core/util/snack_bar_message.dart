@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 
 import '../../generated/l10n.dart';
+import '../app/app_widget.dart';
 import '../strings/app_color_manager.dart';
 import '../widgets/my_button.dart';
 import '../widgets/snake_bar_widget.dart';
@@ -59,17 +60,12 @@ class NoteMessage {
     );
   }
 
-  static Future<bool> showBottomSheet1(BuildContext context, Widget child) async {
+  static Future<bool> showBottomSheet1({required Widget child}) async {
     final result = await showModalBottomSheet(
       isScrollControlled: true,
-      context: context,
-      backgroundColor: Colors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadiusDirectional.only(
-          topEnd: Radius.circular(20.0.r),
-          topStart: Radius.circular(20.0.r),
-        ),
-      ),
+      context: ctx!,
+      backgroundColor: Colors.transparent,
+      // barrierColor: Colors.transparent,
       builder: (context) => child,
     );
 
@@ -247,8 +243,11 @@ class NoteMessage {
     ).then((value) => onCancel?.call(value));
   }
 
-  static void showAwesomeError({required BuildContext context, required String message}) {
-    AwesomeDialog(
+  static Future<void> showAwesomeError({
+    required BuildContext context,
+    required String message,
+  }) async {
+    await AwesomeDialog(
       context: context,
       dialogType: DialogType.error,
       animType: AnimType.scale,

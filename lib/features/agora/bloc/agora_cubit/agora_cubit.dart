@@ -1,51 +1,75 @@
-import 'package:mms/core/api_manager/api_service.dart';
-import 'package:mms/core/api_manager/api_url.dart';
-import 'package:mms/core/extensions/extensions.dart';
-import 'package:mms/core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
-import 'package:mms/core/util/pair_class.dart';
-import 'package:mms/features/agora/data/response/agora_response.dart';
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
 import 'package:m_cubit/abstraction.dart';
+import 'package:mms/core/api_manager/api_service.dart';
+import 'package:mms/core/strings/app_color_manager.dart';
+
+import '../../../../services/agora_manager.dart';
 
 part 'agora_state.dart';
 
 class AgoraCubit extends MCubit<AgoraInitial> {
   AgoraCubit() : super(AgoraInitial.initial());
 
-  @override
-  String get nameCache => 'agora';
+  void _eventCallback(String eventName, Map<String, dynamic> eventArgs) {
+    switch (eventName) {
+      case 'onConnectionStateChanged':
+        emit(state.copyWith(id: state.id + 1));
+        break;
 
-  @override
-  String get filter => state.filter;
+      case 'onJoinChannelSuccess':
+        emit(state.copyWith(id: state.id + 1));
+        break;
 
-  Future<void> getData({bool newData = false,  String? agoraId}) async {
-    emit(state.copyWith(request: agoraId));
+      case 'onUserJoined':
+        emit(state.copyWith(id: state.id + 1));
+        break;
 
-    await getDataAbstract(
-      fromJson: Agora.fromJson,
-      state: state,
-      getDataApi: _getData,
-      newData: newData,
-    );
-  }
+      case 'onUserOffline':
+        emit(state.copyWith(id: state.id + 1));
+        break;
 
-  Future<Pair<Agora?, String?>> _getData() async {
-    final response = await APIService().callApi(
-      type: ApiType.get,
-      url: GetUrl.agora,
-      query: {'Id': state.request},
-    );
-
-    if (response.statusCode.success) {
-      return Pair(Agora.fromJson(response.jsonBody), null);
-    } else {
-      return response.getPairError;
+      default:
+        break;
     }
   }
 
-  void setAgora(dynamic agora) {
-    if (agora is! Agora) return;
+  void _messageCallback(String message) {
+    loggerObject.f(message);
+  }
 
-    emit(state.copyWith(result: agora));
+  Future<void> leave() async {
+    emit(state.copyWith(statuses: CubitStatuses.loading));
+
+    state.result.dispose();
+
+    await Future.delayed(Duration(seconds: 2));
+    emit(state.copyWith(statuses: CubitStatuses.done));
+  }
+
+  Future<void> join() async {
+    emit(state.copyWith(statuses: CubitStatuses.loading));
+    await state.result.join();
+    await Future.delayed(Duration(seconds: 2));
+    emit(state.copyWith(statuses: CubitStatuses.done));
+  }
+
+  Future<void> initialize() async {
+    emit(state.copyWith(statuses: CubitStatuses.loading));
+
+    final manager = await AgoraManager.create(
+      currentProduct: ProductName.videoCalling,
+      eventCallback: _eventCallback,
+      messageCallback: _messageCallback,
+    );
+
+    emit(state.copyWith(result: manager, statuses: CubitStatuses.done));
+  }
+
+  @override
+  Future<void> close() {
+    leave();
+    return super.close();
   }
 }
- 

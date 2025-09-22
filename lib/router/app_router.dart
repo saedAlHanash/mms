@@ -11,6 +11,7 @@ import 'package:mms/features/meetings/ui/pages/calender_screen.dart';
 import '../core/injection/injection_container.dart';
 import '../features/agendas/bloc/add_comment_cubit/add_comment_cubit.dart';
 import '../features/agendas/ui/pages/agenda_page.dart';
+import '../features/agora/bloc/agora_cubit/agora_cubit.dart';
 import '../features/auth/bloc/confirm_code_cubit/confirm_code_cubit.dart';
 import '../features/auth/bloc/forget_password_cubit/forget_password_cubit.dart';
 import '../features/auth/bloc/login_cubit/login_cubit.dart';
@@ -216,6 +217,7 @@ Route<dynamic> routes(RouteSettings settings) {
           ),
           BlocProvider(create: (context) => sl<AddAbsenceCubit>()),
           BlocProvider(create: (context) => sl<AddCommentCubit>()),
+          BlocProvider(create: (context) => sl<AgoraCubit>()..initialize()),
         ];
         return MaterialPageRoute(
           builder: (_) {

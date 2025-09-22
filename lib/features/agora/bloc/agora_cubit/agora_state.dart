@@ -1,6 +1,6 @@
 part of 'agora_cubit.dart';
 
-class AgoraInitial extends AbstractState<Agora> {
+class AgoraInitial extends AbstractState<AgoraManager> {
   const AgoraInitial({
     required super.result,
     super.error,
@@ -11,11 +11,15 @@ class AgoraInitial extends AbstractState<Agora> {
 
   factory AgoraInitial.initial() {
     return AgoraInitial(
-      result: Agora.fromJson({}),
+      result: AgoraManager.protectedConstructor(),
       request: '',
-      
+      id: 0,
     );
   }
+
+  bool get isJoin => result.isJoined;
+
+  Color get color => isJoin ? Colors.green : AppColorManager.grey;
 
   @override
   List<Object> get props => [
@@ -26,10 +30,10 @@ class AgoraInitial extends AbstractState<Agora> {
         if (id != null) id,
         if (filterRequest != null) filterRequest!,
       ];
-      
+
   AgoraInitial copyWith({
     CubitStatuses? statuses,
-    Agora? result,
+    AgoraManager? result,
     String? error,
     dynamic id,
     String? request,
@@ -43,5 +47,3 @@ class AgoraInitial extends AbstractState<Agora> {
     );
   }
 }
-
-   

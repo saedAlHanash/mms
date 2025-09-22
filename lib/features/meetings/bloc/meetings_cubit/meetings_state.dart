@@ -25,7 +25,7 @@ class MeetingsInitial extends AbstractState<List<Meeting>> {
         statuses,
         result,
         error,
-        filterRequest!,
+        if (filterRequest != null) filterRequest!,
         events,
       ];
 

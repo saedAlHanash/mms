@@ -1,19 +1,27 @@
+import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
+import 'package:mms/core/api_manager/api_service.dart';
 import 'package:mms/core/app/app_provider.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
+import 'package:mms/core/util/snack_bar_message.dart';
 import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
+import 'package:mms/core/widgets/my_button.dart';
 import 'package:mms/core/widgets/my_card_widget.dart';
 import 'package:mms/core/widgets/refresh_widget/refresh_widget.dart';
 import 'package:mms/features/agendas/ui/widget/agenda_tree_widget.dart';
+import 'package:mms/features/agora/bloc/agora_cubit/agora_cubit.dart';
+import 'package:mms/features/agora/ui/widget/agora_header.dart';
 import 'package:mms/features/attendees/ui/widget/attendees_list_widget.dart';
 import 'package:mms/features/committees/ui/widget/drawer_btn_widget.dart';
+import 'package:mms/features/meetings/ui/pages/call_page.dart';
 import 'package:mms/features/meetings/ui/widget/absent_widget.dart';
 import 'package:mms/features/meetings/ui/widget/discussions_tree.dart';
+import 'package:mms/services/ui_helper.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../../router/app_router.dart';
@@ -56,41 +64,15 @@ class MeetingPage extends StatelessWidget {
             },
           ),
         ),
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {
-            Navigator.pushNamed(context, RouteName.votes, arguments: context.read<MeetingCubit>());
+        bottomNavigationBar: HeaderSheet(
+          onTap: () {
+            NoteMessage.showBottomSheet1(
+              child: BlocProvider.value(
+                value: context.read<AgoraCubit>(),
+                child: CallPage(),
+              ),
+            );
           },
-          backgroundColor: AppColorManager.mainColor,
-          label: BlocBuilder<MeetingCubit, MeetingInitial>(
-            builder: (context, state) {
-              return DrawableText(
-                text: S.of(context).votes,
-                color: Colors.white,
-                size: 20.0.sp,
-                fontWeight: FontWeight.bold,
-                drawablePadding: 10.0.w,
-                drawableStart: state.result.countPollsNotVotes == 0
-                    ? null
-                    : Container(
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.red,
-                        ),
-                        padding: const EdgeInsets.all(7.0).r,
-                        child: DrawableText(
-                          text: state.result.countPollsNotVotes.toString(),
-                          color: Colors.white,
-                        ),
-                      ),
-                drawableEnd: ImageMultiType(
-                  url: Icons.how_to_vote,
-                  color: Colors.white,
-                  height: 30.0.r,
-                  width: 30.0.r,
-                ),
-              );
-            },
-          ),
         ),
         body: BlocBuilder<MeetingCubit, MeetingInitial>(
           builder: (context, state) {
@@ -155,7 +137,39 @@ class MeetingPage extends StatelessWidget {
 
                     const AbsentWidget(),
                     20.0.verticalSpace,
-
+                    ListTile(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0.r)),
+                      tileColor: AppColorManager.mainColor.withValues(alpha: 0.2),
+                      onTap: () {
+                        Navigator.pushNamed(context, RouteName.votes, arguments: context.read<MeetingCubit>());
+                      },
+                      title: DrawableText(
+                        text: S.of(context).votes,
+                        size: 20.0.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      trailing: state.result.countPollsNotVotes == 0
+                          ? ImageMultiType(url: Icons.arrow_forward_ios, color: Colors.grey, width: 17.0.sp)
+                          : Row(
+                              children: [
+                                Container(
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.red,
+                                  ),
+                                  padding: const EdgeInsets.all(7.0).r,
+                                  child: DrawableText(
+                                    text: state.result.countPollsNotVotes.toString(),
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                5.0.horizontalSpace,
+                                ImageMultiType(url: Icons.arrow_forward_ios, color: Colors.grey, width: 17.0.sp)
+                              ],
+                            ),
+                      leading: ImageMultiType(url: Icons.how_to_vote),
+                    ),
+                    20.0.verticalSpace,
                     AgendaTreeWidget(
                       treeNode: state.getAgendaTree(),
                     ),
