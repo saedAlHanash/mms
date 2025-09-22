@@ -161,7 +161,7 @@ class _AgendaPageState extends State<AgendaPage> {
                   title: DrawableText(
                     text: node.data!.title,
                     size: 18.0.sp,
-                    fontFamily: FontManager.cairoBold.name,
+                   fontWeight: FontWeight.bold,
                   ),
                   subtitle: Column(
                     children: [

@@ -30,7 +30,7 @@ class MembersListWidget extends StatelessWidget {
           subtitle: DrawableText(
             text: item.membershipType.name,
             color: item.membershipType.getColor,
-            fontFamily: FontManager.cairoBold.name,
+           fontWeight: FontWeight.bold,
           ),
           trailing: item.isMe
               ? const ImageMultiType(

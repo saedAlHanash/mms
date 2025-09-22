@@ -1,3 +1,8 @@
+      
+import 'package:mms/features/agora/bloc/agora_cubit/agora_cubit.dart';
+import 'package:mms/features/agora/bloc/agoras_cubit/agoras_cubit.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -31,11 +36,16 @@ import '../network/network_info.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
+  //region agora
+  sl.registerFactory(() => AgoraCubit());
+  sl.registerFactory(() => AgorasCubit());
+  //endregion
+
   //region Core
 
   sl.registerLazySingleton<NetworkInfo>(
       () => NetworkInfoImpl(connectionChecker: sl()));
-  sl.registerLazySingleton(() => InternetConnectionChecker());
+  sl.registerLazySingleton(() => InternetConnectionChecker.instance);
   sl.registerLazySingleton(() => LoadingCubit());
   sl.registerLazySingleton(() => GlobalKey<NavigatorState>());
 

@@ -29,7 +29,6 @@ class CommitteePage extends StatelessWidget {
               fontWeight: FontWeight.bold,
               text: state.result.name,
               size: 24.0.sp,
-              fontFamily: FontManager.cairoBold.name,
             );
           },
         ),
@@ -51,7 +50,7 @@ class CommitteePage extends StatelessWidget {
               RefreshWidget(
                 statuses: state.statuses,
                 onRefresh: () {
-                  context.read<CommitteeCubit>().getCommittee(newData: true);
+                  context.read<CommitteeCubit>().getData(newData: true);
                 },
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0).r,
@@ -61,7 +60,7 @@ class CommitteePage extends StatelessWidget {
                       MyCardWidget(
                         radios: 15.0.r,
                         child: DrawableText(
-                          fontFamily: FontManager.cairoBold.name,
+                          fontWeight: FontWeight.bold,
                           size: 18.0.sp,
                           text: item.name,
                           matchParent: true,

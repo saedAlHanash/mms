@@ -1,4 +1,5 @@
 class GetUrl {
+  static const agora = 'forDelete/Get';
   static const temp = '';
   static const getHome = 'home';
 
@@ -102,6 +103,8 @@ class GetUrl {
 }
 
 class PostUrl {
+  static const agoras = 'forDelete/GetAll';
+  static const createAgora = 'forDelete/Add';
   static const votes = 'Poll/GetAll';
   static const addReview = 'reviews';
   static const loginUrl = 'Auth/Authenticate';
@@ -181,6 +184,7 @@ class PostUrl {
 }
 
 class PutUrl {
+  static const updateAgora = 'forDelete/Update';
   static const updateName = 'update-name';
   static const updatePhone = 'update-phone';
   static const updateAddress = 'update-address';
@@ -193,6 +197,7 @@ class PutUrl {
 }
 
 class DeleteUrl {
+  static const deleteAgora = 'forDelete/Delete';
   static const removeFavorite = 'favorites';
 
   static const removeFromCart = 'carts/products';

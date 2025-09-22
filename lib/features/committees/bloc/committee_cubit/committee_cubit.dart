@@ -1,4 +1,5 @@
 import 'package:animated_tree_view/tree_view/tree_node.dart';
+import 'package:m_cubit/abstraction.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/features/goals/data/response/goals_response.dart';
@@ -20,18 +21,18 @@ class CommitteeCubit extends MCubit<CommitteeInitial> {
   @override
   String get filter => state.uuid;
 
-  Future<void> getCommittee({String? uuid, bool? newData}) async {
+  Future<void> getData({String? uuid, bool? newData}) async {
     emit(state.copyWith(uuid: uuid));
 
     getDataAbstract(
       fromJson: Committee.fromJson,
       state: state,
-      getDataApi: _getDataApi,
+      getDataApi: _getData,
       newData: newData,
     );
   }
 
-  Future<Pair<Committee?, String?>> _getDataApi() async {
+  Future<Pair<Committee?, String?>> _getData() async {
     final response = await APIService().callApi(
       type: ApiType.get,
       url: GetUrl.committee,

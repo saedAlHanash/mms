@@ -31,7 +31,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
               onRefresh: () async {
                 context
                     .read<NotificationsCubit>()
-                    .getNotifications(newData: true);
+                    .getData(newData: true);
               },
               child: ListView.builder(
                 shrinkWrap: true,

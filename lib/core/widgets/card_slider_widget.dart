@@ -7,7 +7,7 @@ import 'package:mms/core/widgets/my_card_widget.dart';
 
 class CardSlider extends StatelessWidget {
   const CardSlider({
-     super.key,
+    super.key,
     this.margin,
     this.stackChild,
     required this.images,
@@ -104,7 +104,7 @@ class CardSlider extends StatelessWidget {
 
 class CardImageSlider extends StatefulWidget {
   const CardImageSlider({
-     super.key,
+    super.key,
     this.margin,
     this.stackChild,
     required this.images,
@@ -143,7 +143,6 @@ class _CardImageSliderState extends State<CardImageSlider> {
     final key = GlobalKey<IndicatorSliderWidgetState>();
     widgets.add(
       CarouselSlider(
-        carouselController: controller,
         items: widget.images.map(
           (e) {
             return ImageMultiType(
@@ -227,7 +226,7 @@ class _CardImageSliderState extends State<CardImageSlider> {
 
 class IndicatorSliderWidget extends StatefulWidget {
   const IndicatorSliderWidget({
-     super.key,
+    super.key,
     required this.length,
   });
 

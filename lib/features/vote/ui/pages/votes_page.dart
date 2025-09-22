@@ -10,7 +10,7 @@ import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
 import 'package:mms/core/widgets/refresh_widget/refresh_widget.dart';
 import 'package:mms/features/poll/ui/widget/pool_widget.dart';
 
-import '../../../../core/strings/enum_manager.dart';
+import '../../../../core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
 import '../../../../generated/assets.dart';
 import '../../../../generated/l10n.dart';
 import '../../../meetings/bloc/meeting_cubit/meeting_cubit.dart';
@@ -175,7 +175,7 @@ class VotesPage extends StatelessWidget {
       body: BlocListener<CreateVoteCubit, CreateVoteInitial>(
         listenWhen: (p, c) => c.statuses.done,
         listener: (context, state) {
-          context.read<MeetingCubit>().getMeeting(newData: true);
+          context.read<MeetingCubit>().getData(newData: true);
         },
         child: BlocBuilder<MeetingCubit, MeetingInitial>(
           builder: (context, state) {
@@ -184,7 +184,7 @@ class VotesPage extends StatelessWidget {
 
             return RefreshWidget(
               onRefresh: () {
-                context.read<MeetingCubit>().getMeeting(newData: true);
+                context.read<MeetingCubit>().getData(newData: true);
               },
               statuses: state.statuses,
               child: (myPolls.isEmpty && state.result.pollResults.isEmpty)

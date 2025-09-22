@@ -27,7 +27,7 @@ class ItemMeeting extends StatelessWidget {
         },
         title: DrawableText(
           text: item.title,
-          fontFamily: FontManager.cairoBold.name,
+         fontWeight: FontWeight.bold,
           size: 20.0.sp,
         ),
         subtitle: Column(

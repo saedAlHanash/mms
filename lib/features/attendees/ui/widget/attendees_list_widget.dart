@@ -24,7 +24,7 @@ class AttendeesListWidget extends StatelessWidget {
     return SafeArea(
       child: Column(
         children: [
-          DrawableText.header(text: 'Attendees'),
+          DrawableText(text: 'Attendees'),
           5.0.verticalSpace,
           Divider(height: 5.0.h),
           Expanded(
@@ -43,7 +43,7 @@ class AttendeesListWidget extends StatelessWidget {
                   ),
                   subtitle: DrawableText(
                     text: item.attendanceDate?.formatDate ?? '',
-                    fontFamily: FontManager.cairoBold.name,
+                   fontWeight: FontWeight.bold,
                   ),
                   trailing: item.partyId == AppProvider.getParty.id
                       ? const ImageMultiType(
@@ -56,7 +56,7 @@ class AttendeesListWidget extends StatelessWidget {
             ),
           ),
           if (meeting.guestsList.isNotEmpty) ...[
-            DrawableText.header(text: 'Guests'),
+            DrawableText(text: 'Guests'),
             5.0.verticalSpace,
             Divider(height: 5.0.h),
             Expanded(
@@ -75,7 +75,8 @@ class AttendeesListWidget extends StatelessWidget {
                     ),
                     subtitle: DrawableText(
                       text: item.phone,
-                      fontFamily: FontManager.cairoBold.name,
+
+                     fontWeight: FontWeight.bold,
                     ),
                   );
                 },
@@ -83,7 +84,7 @@ class AttendeesListWidget extends StatelessWidget {
             ),
           ],
           if (meeting.guestSuggestions.isNotEmpty) ...[
-            DrawableText.header(text: S.of(context).suggestedGuests),
+            DrawableText(text: S.of(context).suggestedGuests),
             5.0.verticalSpace,
             Divider(height: 5.0.h),
             Expanded(
@@ -102,7 +103,7 @@ class AttendeesListWidget extends StatelessWidget {
                     ),
                     subtitle: DrawableText(
                       text: item.phone,
-                      fontFamily: FontManager.cairoBold.name,
+                     fontWeight: FontWeight.bold,
                     ),
                   );
                 },
@@ -119,7 +120,7 @@ class AttendeesListWidget extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(context, RouteName.addGuest).then((value) {
                   if (value is bool && value) {
-                    context.read<MeetingCubit>().getMeeting(newData: true);
+                    context.read<MeetingCubit>().getData(newData: true);
                   }
                 });
               },

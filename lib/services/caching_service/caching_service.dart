@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'package:collection/collection.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import '../../core/strings/enum_manager.dart';
+import '../../core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
 
 const latestUpdateBox = 'latestUpdateBox';
 
 class CachingService {
   static Future<void> initial() async {
-    await Hive.initFlutter();
+    await Hive.initFlutter(null);
   }
 
   static Future<void> sortData({
@@ -59,9 +59,7 @@ class CachingService {
 
     final box = await getBox(name);
 
-    final f = box.keys
-        .where((e) => e.startsWith(key))
-        .map((e) => jsonDecode(box.get(e) ?? '{}'));
+    final f = box.keys.where((e) => e.startsWith(key)).map((e) => jsonDecode(box.get(e) ?? '{}'));
 
     // loggerObject.t('getList(): \nkey:$key count ${f.length}');
 
@@ -86,13 +84,10 @@ class CachingService {
   }
 
   static Future<Box<String>> getBox(String name) async {
-    return Hive.isBoxOpen(name)
-        ? Hive.box<String>(name)
-        : await Hive.openBox<String>(name);
+    return Hive.isBoxOpen(name) ? Hive.box<String>(name) : await Hive.openBox<String>(name);
   }
 
-  static Future<NeedUpdateEnum> needGetData(String name,
-      {String filter = ''}) async {
+  static Future<NeedUpdateEnum> needGetData(String name, {String filter = ''}) async {
     var key = '_${filter}_';
 
     var message = 'needGetData key: $key';
@@ -105,8 +100,7 @@ class CachingService {
     }
 
     message += '\n found Key with ID : ';
-    final latest =
-        DateTime.tryParse((await getBox(latestUpdateBox)).get(name) ?? '');
+    final latest = DateTime.tryParse((await getBox(latestUpdateBox)).get(name) ?? '');
 
     final haveData = (await getList(name, filter: filter)).isNotEmpty;
 

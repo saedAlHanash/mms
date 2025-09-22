@@ -58,8 +58,7 @@ class MyTextFormOutLineWidget extends StatefulWidget {
   final TextDirection? textDirection;
 
   @override
-  State<MyTextFormOutLineWidget> createState() =>
-      _MyTextFormOutLineWidgetState();
+  State<MyTextFormOutLineWidget> createState() => _MyTextFormOutLineWidgetState();
 }
 
 class _MyTextFormOutLineWidgetState extends State<MyTextFormOutLineWidget> {
@@ -79,8 +78,7 @@ class _MyTextFormOutLineWidgetState extends State<MyTextFormOutLineWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final padding =
-        widget.innerPadding ?? const EdgeInsets.symmetric(horizontal: 20.0).w;
+    final padding = widget.innerPadding ?? const EdgeInsets.symmetric(horizontal: 20.0).w;
 
     bool obscureText = widget.obscureText;
     Widget? suffixIcon;
@@ -140,7 +138,6 @@ class _MyTextFormOutLineWidgetState extends State<MyTextFormOutLineWidget> {
       hintStyle: TextStyle(
         color: AppColorManager.grey,
         fontSize: 14.0.sp,
-        fontFamily: FontManager.cairoSemiBold.name,
       ),
       filled: true,
       labelStyle: TextStyle(color: widget.color),
@@ -149,7 +146,6 @@ class _MyTextFormOutLineWidgetState extends State<MyTextFormOutLineWidget> {
     );
 
     final textStyle = TextStyle(
-      fontFamily: FontManager.cairoSemiBold.name,
       fontSize: 16.0.spMin,
       color: AppColorManager.black,
     );

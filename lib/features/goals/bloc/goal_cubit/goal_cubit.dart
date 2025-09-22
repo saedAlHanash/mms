@@ -3,7 +3,7 @@ import 'package:mms/core/extensions/extensions.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/error/error_manager.dart';
-import '../../../../core/strings/enum_manager.dart';
+import '../../../../core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
 import '../../../../core/util/abstraction.dart';
 import '../../../../core/util/pair_class.dart';
 import '../../data/response/goals_response.dart';
@@ -17,19 +17,19 @@ class GoalCubit extends MCubit<GoalInitial> {
   String get nameCache => 'goal';
 
   Future<void> getGoal() async {
-    if (await checkCashed()) return;
 
-    final pair = await _getDataApi();
+
+    final pair = await _getData();
     if (pair.first == null) {
       emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));
       showErrorFromApi(state);
     } else {
-      await storeData(pair.first!);
+      await saveData(pair.first!);
       emit(state.copyWith(statuses: CubitStatuses.done, result: pair.first));
     }
   }
 
-  Future<Pair<Goal?, String?>> _getDataApi() async {
+  Future<Pair<Goal?, String?>> _getData() async {
     final response = await APIService().callApi(type: ApiType.get,url: GetUrl.goal);
 
     if (response.statusCode.success) {
@@ -39,17 +39,5 @@ class GoalCubit extends MCubit<GoalInitial> {
     }
   }
 
-  Future<bool> checkCashed() async {
-    final cacheType = await needGetData();
 
-    emit(
-      state.copyWith(
-        statuses: cacheType.getState,
-        result: Goal.fromJson(await getDataCached()),
-      ),
-    );
-
-    if (cacheType == NeedUpdateEnum.no) return true;
-    return false;
-  }
 }

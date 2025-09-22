@@ -1,4 +1,4 @@
-import '../../../../core/strings/enum_manager.dart';
+import '../../../../core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
 
 class Polls {
   Polls({

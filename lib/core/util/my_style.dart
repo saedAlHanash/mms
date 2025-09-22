@@ -1,4 +1,3 @@
-import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,33 +12,24 @@ class MyStyle {
   //endregion
 
 //region margin/padding
-  static final cardPadding =
-      EdgeInsets.symmetric(horizontal: 18.w, vertical: 15.h);
+  static final cardPadding = EdgeInsets.symmetric(horizontal: 18.w, vertical: 15.h);
 
-  static final pagePadding =
-      const EdgeInsets.symmetric(horizontal: 20, vertical: 8).r;
+  static final pagePadding = const EdgeInsets.symmetric(horizontal: 20, vertical: 8).r;
 
 //endregion
 
-  static const underLineStyle = TextStyle(
-      fontStyle: FontStyle.italic, decoration: TextDecoration.underline);
+  static const underLineStyle = TextStyle(fontStyle: FontStyle.italic, decoration: TextDecoration.underline);
 
   static var drawerShape = ShapeDecoration(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
       color: AppColorManager.mainColor.withOpacity(0.9));
 
   static var normalShadow = [
-    BoxShadow(
-        color: AppColorManager.grey.withOpacity(0.6),
-        blurRadius: 15,
-        offset: const Offset(0, 5))
+    BoxShadow(color: AppColorManager.grey.withOpacity(0.6), blurRadius: 15, offset: const Offset(0, 5))
   ];
 
   static var lightShadow = [
-    BoxShadow(
-        color: AppColorManager.grey.withOpacity(0.5),
-        blurRadius: 5,
-        offset: const Offset(0, 2))
+    BoxShadow(color: AppColorManager.grey.withOpacity(0.5), blurRadius: 5, offset: const Offset(0, 2))
   ];
 
   static var allShadow = [
@@ -62,12 +52,11 @@ class MyStyle {
       borderRadius: BorderRadius.circular(10.0.r));
 
   static final hintStyle = TextStyle(
-    fontFamily: FontManager.cairoSemiBold.name,
     fontSize: 18.0.spMin,
     color: AppColorManager.grey.withOpacity(0.6),
   );
   static final textFormTextStyle = TextStyle(
-    fontFamily: FontManager.cairoBold.name,
+    fontWeight: FontWeight.bold,
     fontSize: 18.0.spMin,
     color: Colors.black87,
   );
@@ -89,12 +78,12 @@ class MyStyle {
   );
 
   static BoxDecoration get directionalDecoration => BoxDecoration(
-    borderRadius: BorderRadius.horizontal(
-      left: AppProvider.arabic ? Radius.zero : Radius.circular(10.0.r),
-      right: !AppProvider.arabic ? Radius.zero : Radius.circular(10.0.r),
-    ),
-    color: AppColorManager.mainColor,
-  );
+        borderRadius: BorderRadius.horizontal(
+          left: AppProvider.arabic ? Radius.zero : Radius.circular(10.0.r),
+          right: !AppProvider.arabic ? Radius.zero : Radius.circular(10.0.r),
+        ),
+        color: AppColorManager.mainColor,
+      );
 
   static Widget loadingWidget({Color? color}) {
     return Padding(
@@ -112,10 +101,7 @@ class MyStyle {
   );
 
   static var lightShadowMainColor = [
-    BoxShadow(
-        color: AppColorManager.mainColor.withOpacity(0.2),
-        blurRadius: 5,
-        offset: const Offset(0, 2))
+    BoxShadow(color: AppColorManager.mainColor.withOpacity(0.2), blurRadius: 5, offset: const Offset(0, 2))
   ];
 
   static final appBorderAll = Border.all(
@@ -124,11 +110,10 @@ class MyStyle {
     width: 2.0.spMin,
   );
 
-  static final authPagesPadding =
-      const EdgeInsets.only(left: 40.0, right: 40.0, bottom: 30.0).r;
+  static final authPagesPadding = const EdgeInsets.only(left: 40.0, right: 40.0, bottom: 30.0).r;
 
-  static final productGridDelegate = SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: 2, mainAxisExtent: 250.0.h);
+  static final productGridDelegate =
+      SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisExtent: 250.0.h);
 }
 
 class BackBtnWidget extends StatelessWidget {

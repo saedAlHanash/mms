@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:m_cubit/abstraction.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
@@ -17,7 +18,7 @@ class FileCubit extends Cubit<FileInitial> {
   Future<void> uploadFile({required UploadFile request}) async {
     emit(state.copyWith(request: request, statuses: CubitStatuses.loading));
 
-    final pair = await _getDataApi();
+    final pair = await _getData();
     if (pair.first == null) {
       emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));
       showErrorFromApi(state);
@@ -26,7 +27,7 @@ class FileCubit extends Cubit<FileInitial> {
     }
   }
 
-  Future<Pair<FileResponse?, String?>> _getDataApi() async {
+  Future<Pair<FileResponse?, String?>> _getData() async {
     final response = await APIService().uploadMultiPart(
       url: PostUrl.uploadFile,
       files: [state.request],

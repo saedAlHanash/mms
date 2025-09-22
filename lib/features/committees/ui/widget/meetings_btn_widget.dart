@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
+import 'package:m_cubit/command.dart';
 import 'package:mms/core/api_manager/request_models/command.dart';
 import 'package:mms/generated/assets.dart';
 import 'package:mms/router/app_router.dart';
 
 import '../../../../core/app/app_provider.dart';
 import '../../../../core/strings/enum_manager.dart';
+import 'package:m_cubit/abstraction.dart';
 import '../../../../core/util/my_style.dart';
 import '../../bloc/committee_cubit/committee_cubit.dart';
 
@@ -30,18 +32,16 @@ class DrawerMeetingsBtnWidget extends StatelessWidget {
             context,
             RouteName.calenderMeetings,
             arguments: FilterRequest(
-              filters: [
-                Filter(
+              filters: {
+                "committeeId": Filter(
                   name: 'committeeId',
                   val: context.read<CommitteeCubit>().state.uuid,
-                  operation: FilterOperation.equals,
                 ),
-                Filter(
+                "status": Filter(
                   name: 'status',
                   val: MeetingStatus.planned.index.toString(),
-                  operation: FilterOperation.notEqual,
                 ),
-              ],
+              },
             ),
           );
         },

@@ -18,8 +18,7 @@ class MeetingCalenderWidget extends StatefulWidget {
     this.onSelectDate,
   });
 
-  final Widget Function(BuildContext ctx, List<Meeting> list, Widget? widget)
-      builder;
+  final Widget Function(BuildContext ctx, List<Meeting> list, Widget? widget) builder;
   final void Function(DateTime d)? onSelectDate;
   final Color doteColor;
 
@@ -43,7 +42,7 @@ class _MeetingCalenderWidgetState extends State<MeetingCalenderWidget> {
     super.initState();
 
     kToday = DateTime.now();
-    kFirstDay = DateTime(kToday.year - 1, kToday.month, kToday.day);
+    kFirstDay = DateTime(kToday.year - 2, kToday.month, kToday.day);
     kLastDay = DateTime(kToday.year + 10, kToday.month, kToday.day);
 
     _selectedEvents = ValueNotifier([]);
@@ -59,8 +58,7 @@ class _MeetingCalenderWidgetState extends State<MeetingCalenderWidget> {
     return map[day.hashDate] ?? [];
   }
 
-  void _onDaySelected(
-      DateTime selectedDay, DateTime focusedDay, Map<int, List<Meeting>> map) {
+  void _onDaySelected(DateTime selectedDay, DateTime focusedDay, Map<int, List<Meeting>> map) {
     if (!isSameDay(_selectedDay, selectedDay)) {
       setState(() {
         _selectedDay = selectedDay;
@@ -86,7 +84,6 @@ class _MeetingCalenderWidgetState extends State<MeetingCalenderWidget> {
           color: AppColorManager.mainColor,
           shape: BoxShape.circle,
         ),
-
         todayTextStyle: const TextStyle(color: Colors.black),
         markerDecoration: BoxDecoration(
           color: widget.doteColor,

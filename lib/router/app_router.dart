@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/api_manager/request_models/command.dart';
 import 'package:mms/features/agendas/data/response/agendas_response.dart';
 import 'package:mms/features/meetings/bloc/add_guest_cubit/add_guest_cubit.dart';
@@ -189,9 +190,7 @@ Route<dynamic> routes(RouteSettings settings) {
         final uuid = settings.arguments as String;
 
         final providers = [
-          BlocProvider(
-              create: (context) =>
-                  sl<CommitteeCubit>()..getCommittee(uuid: uuid)),
+          BlocProvider(create: (context) => sl<CommitteeCubit>()..getData(uuid: uuid)),
         ];
         return MaterialPageRoute(
           builder: (_) {
@@ -213,7 +212,7 @@ Route<dynamic> routes(RouteSettings settings) {
 
         final providers = [
           BlocProvider(
-            create: (context) => sl<MeetingCubit>()..getMeeting(id: uuid),
+            create: (context) => sl<MeetingCubit>()..getData(id: uuid),
           ),
           BlocProvider(create: (context) => sl<AddAbsenceCubit>()),
           BlocProvider(create: (context) => sl<AddCommentCubit>()),
@@ -236,8 +235,9 @@ Route<dynamic> routes(RouteSettings settings) {
 
         final providers = [
           BlocProvider(
-              create: (context) =>
-                  sl<MeetingsCubit>()..getMeetings(request: request)),
+              create: (context) => sl<MeetingsCubit>()
+                ..setFilterRequest(request)
+                ..getData()),
         ];
         return MaterialPageRoute(
           builder: (_) {
@@ -282,8 +282,7 @@ Route<dynamic> routes(RouteSettings settings) {
           builder: (_) {
             return MultiBlocProvider(
               providers: providers,
-              child:
-                  AgendaPage(agenda: (settings.arguments as List)[0] as Agenda),
+              child: AgendaPage(agenda: (settings.arguments as List)[0] as Agenda),
             );
           },
         );
@@ -338,8 +337,7 @@ Route<dynamic> routes(RouteSettings settings) {
     //endregion
   }
 
-  return MaterialPageRoute(
-      builder: (_) => const Scaffold(backgroundColor: Colors.red));
+  return MaterialPageRoute(builder: (_) => const Scaffold(backgroundColor: Colors.red));
 }
 
 class RouteName {

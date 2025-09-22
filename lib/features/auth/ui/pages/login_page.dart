@@ -126,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                 //     onPressed: () =>
                 //         Navigator.pushNamed(context, RouteName.signup),
                 //     child: DrawableText(
-                //       fontFamily: FontManager.cairoBold.name,
+                //      fontWeight: FontWeight.bold,
                 //       text: S.of(context).createNewAccount,
                 //       color: AppColorManager.mainColorLight,
                 //     ),

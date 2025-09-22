@@ -40,7 +40,7 @@ class MyButton extends StatelessWidget {
         DrawableText(
           text: text,
           color: textColor ?? AppColorManager.whit,
-          fontFamily: FontManager.cairoBold.name,
+          fontWeight: FontWeight.bold,
           drawablePadding: 10.0.w,
           drawableEnd: loading
               ? SizedBox(
@@ -48,8 +48,7 @@ class MyButton extends StatelessWidget {
                   width: 15.0.r,
                   child: CircularProgressIndicator.adaptive(
                     backgroundColor: color,
-                    valueColor:
-                        const AlwaysStoppedAnimation<Color>(Colors.white),
+                    valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
                   ),
                 )
               : endIcon,
@@ -62,8 +61,7 @@ class MyButton extends StatelessWidget {
       child: ElevatedButton(
         style: ButtonStyle(
           surfaceTintColor: WidgetStatePropertyAll(color),
-          backgroundColor:
-              WidgetStatePropertyAll(color?.withOpacity(enable ? 1 : 0.3)),
+          backgroundColor: WidgetStatePropertyAll(color?.withOpacity(enable ? 1 : 0.3)),
           padding: const WidgetStatePropertyAll(EdgeInsets.zero),
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(

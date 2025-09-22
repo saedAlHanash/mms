@@ -36,7 +36,7 @@ class MeetingPage extends StatelessWidget {
         BlocListener<AddAbsenceCubit, AddAbsenceInitial>(
           listenWhen: (p, c) => c.statuses.done,
           listener: (context, state) {
-            context.read<MeetingCubit>().getMeeting(newData: true);
+            context.read<MeetingCubit>().getData(newData: true);
           },
         ),
       ],
@@ -58,8 +58,7 @@ class MeetingPage extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            Navigator.pushNamed(context, RouteName.votes,
-                arguments: context.read<MeetingCubit>());
+            Navigator.pushNamed(context, RouteName.votes, arguments: context.read<MeetingCubit>());
           },
           backgroundColor: AppColorManager.mainColor,
           label: BlocBuilder<MeetingCubit, MeetingInitial>(
@@ -68,7 +67,7 @@ class MeetingPage extends StatelessWidget {
                 text: S.of(context).votes,
                 color: Colors.white,
                 size: 20.0.sp,
-                fontFamily: FontManager.cairoBold.name,
+                fontWeight: FontWeight.bold,
                 drawablePadding: 10.0.w,
                 drawableStart: state.result.countPollsNotVotes == 0
                     ? null
@@ -97,8 +96,7 @@ class MeetingPage extends StatelessWidget {
           builder: (context, state) {
             final item = state.result;
             return RefreshWidget(
-              onRefresh: () =>
-                  context.read<MeetingCubit>().getMeeting(newData: true),
+              onRefresh: () => context.read<MeetingCubit>().getData(newData: true),
               statuses: state.statuses,
               child: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0).r,
@@ -112,7 +110,7 @@ class MeetingPage extends StatelessWidget {
                         children: [
                           DrawableText(
                             matchParent: true,
-                            fontFamily: FontManager.cairoBold.name,
+                            fontWeight: FontWeight.bold,
                             size: 20.0.sp,
                             text: item.title,
                           ),
@@ -162,8 +160,7 @@ class MeetingPage extends StatelessWidget {
                       treeNode: state.getAgendaTree(),
                     ),
                     20.0.verticalSpace,
-                    if (state.result.discussions.isNotEmpty)
-                      DiscussionsTree(treeNode: state.getDiscussionTree()),
+                    if (state.result.discussions.isNotEmpty) DiscussionsTree(treeNode: state.getDiscussionTree()),
                     100.0.verticalSpace,
                     // GoalListWidget(goals: item.goals),
                   ],

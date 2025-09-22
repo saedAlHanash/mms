@@ -10,7 +10,6 @@ import 'package:mms/core/widgets/my_text_form_widget.dart';
 import 'package:mms/generated/assets.dart';
 
 import '../../../../core/strings/app_color_manager.dart';
-import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/my_style.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../router/app_router.dart';
@@ -45,8 +44,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
     return BlocListener<ForgetPasswordCubit, ForgetPasswordInitial>(
       listenWhen: (p, c) => c.statuses.done,
       listener: (context, state) {
-        Navigator.pushNamedAndRemoveUntil(
-            context, RouteName.otpPassword, (route) => false);
+        Navigator.pushNamedAndRemoveUntil(context, RouteName.otpPassword, (route) => false);
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -88,7 +86,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
               const Spacer(),
               BlocBuilder<ForgetPasswordCubit, ForgetPasswordInitial>(
                 builder: (_, state) {
-                  if (state.statuses == CubitStatuses.loading) {
+                  if (state.loading) {
                     return MyStyle.loadingWidget();
                   }
                   return MyButton(
@@ -103,10 +101,9 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
               DrawableText(
                 text: S.of(context).rememberPassword,
                 drawableEnd: TextButton(
-                  onPressed: () =>
-                      Navigator.pushReplacementNamed(context, RouteName.login),
+                  onPressed: () => Navigator.pushReplacementNamed(context, RouteName.login),
                   child: DrawableText(
-                    fontFamily: FontManager.cairoBold.name,
+                    fontWeight: FontWeight.bold,
                     text: S.of(context).login,
                     color: AppColorManager.mainColorLight,
                   ),

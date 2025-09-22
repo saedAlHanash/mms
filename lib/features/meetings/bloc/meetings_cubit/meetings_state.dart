@@ -3,16 +3,11 @@ part of 'meetings_cubit.dart';
 class MeetingsInitial extends AbstractState<List<Meeting>> {
   final Map<int, List<Meeting>> events;
 
-  // final MeetingRequest request;
-  // final  bool meetingParam;
-
   const MeetingsInitial({
     required super.result,
-    required super.filterRequest,
+    super.filterRequest,
     super.error,
-    // required this.request,
     required this.events,
-    // required this.meetingParam,
     super.statuses,
   }); //
 
@@ -21,15 +16,18 @@ class MeetingsInitial extends AbstractState<List<Meeting>> {
       result: [],
       error: '',
       events: {},
-      filterRequest: FilterRequest(),
       statuses: CubitStatuses.init,
-      // meetingParam: false,
-      // request: MeetingRequest(),
     );
   }
 
   @override
-  List<Object> get props => [statuses, result, error, filterRequest!, events];
+  List<Object> get props => [
+        statuses,
+        result,
+        error,
+        filterRequest!,
+        events,
+      ];
 
   MeetingsInitial copyWith({
     CubitStatuses? statuses,
@@ -44,9 +42,6 @@ class MeetingsInitial extends AbstractState<List<Meeting>> {
       error: error ?? this.error,
       events: events ?? this.events,
       filterRequest: filterRequest ?? this.filterRequest,
-
-      // request: request ?? this.request,
-      // meetingParam: meetingParam ?? this.meetingParam,
     );
   }
 }

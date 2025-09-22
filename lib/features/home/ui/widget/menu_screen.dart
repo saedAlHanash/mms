@@ -206,7 +206,7 @@ class ItemMenu extends StatelessWidget {
             title: DrawableText(
               text: name,
               size: 18.0.sp,
-              fontFamily: FontManager.cairoBold.name,
+             fontWeight: FontWeight.bold,
             ),
             subtitle: DrawableText(
               text: subTitle,
@@ -260,7 +260,7 @@ class _LanWidgetState extends State<LanWidget> {
             color: const Color(0xFF333333),
             size: 18.0.sp,
             padding: const EdgeInsets.symmetric(vertical: 30.0).h,
-            fontFamily: FontManager.cairoBold.name,
+           fontWeight: FontWeight.bold,
             text: S.of(context).language,
           ),
           Row(
@@ -299,7 +299,7 @@ class _LanWidgetState extends State<LanWidget> {
                         child: DrawableText(
                           text: 'EN',
                           size: 20.0.sp,
-                          fontFamily: FontManager.cairoBold.name,
+                         fontWeight: FontWeight.bold,
                         ),
                       ),
                       6.0.verticalSpace,
@@ -345,7 +345,7 @@ class _LanWidgetState extends State<LanWidget> {
                         child: DrawableText(
                           text: 'ع',
                           size: 20.0.sp,
-                          fontFamily: FontManager.cairoBold.name,
+                         fontWeight: FontWeight.bold,
                         ),
                       ),
                       DrawableText(

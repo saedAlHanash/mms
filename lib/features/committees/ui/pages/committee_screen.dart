@@ -26,7 +26,7 @@ class CommitteeScreen extends StatelessWidget {
                 onRefresh: () {
                   context
                       .read<MyCommitteesCubit>()
-                      .getMyCommittees(newData: true);
+                      .getData(newData: true);
                 },
                 statuses: state.statuses,
                 child: GridView.builder(

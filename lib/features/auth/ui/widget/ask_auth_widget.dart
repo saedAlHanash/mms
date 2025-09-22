@@ -32,7 +32,7 @@ class AskAuthWidget extends StatelessWidget {
         child: DrawableText(
           text: (login ?? false) ? 'قم بالتسجيل' : 'تسجيل الدخول',
           color: AppColorManager.mainColor,
-          fontFamily: FontManager.cairoBold.name,
+         fontWeight: FontWeight.bold,
         ),
       ),
     );

@@ -10,6 +10,7 @@ import '../../../../core/app/app_provider.dart';
 import '../../../../core/app/app_widget.dart';
 import '../../../../core/error/error_manager.dart';
 import '../../../../core/strings/enum_manager.dart';
+import 'package:m_cubit/abstraction.dart';
 import '../../../../core/util/abstraction.dart';
 import '../../../../core/util/pair_class.dart';
 import '../../../../generated/l10n.dart';
@@ -32,7 +33,7 @@ class LoginCubit extends Cubit<LoginInitial> {
       showErrorFromApi(state);
     } else {
       await AppProvider.login(response: pair.first!);
-      final p = await _getDataApi();
+      final p = await _getData();
       if (p.first != null) {
         await AppProvider.loggedParty(response: p.first!);
       }
@@ -41,7 +42,8 @@ class LoginCubit extends Cubit<LoginInitial> {
   }
 
   Future<Pair<LoginResponse?, String?>> _loginApi() async {
-    final response = await APIService().callApi(type: ApiType.post,
+    final response = await APIService().callApi(
+      type: ApiType.post,
       url: PostUrl.loginUrl,
       body: state.request.toJson(),
     );
@@ -55,16 +57,15 @@ class LoginCubit extends Cubit<LoginInitial> {
       if (error.second?.contains('not verified') ?? false) {
         AppSharedPreference.cashPhone(state.request.userName);
         if (ctx != null) {
-          Navigator.pushNamedAndRemoveUntil(
-              ctx!, RouteName.confirmCode, (route) => false);
+          Navigator.pushNamedAndRemoveUntil(ctx!, RouteName.confirmCode, (route) => false);
         }
       }
       return error;
     }
   }
 
-  Future<Pair<Party?, String?>> _getDataApi() async {
-    final response = await APIService().callApi(type: ApiType.get,url: GetUrl.loggedParty);
+  Future<Pair<Party?, String?>> _getData() async {
+    final response = await APIService().callApi(type: ApiType.get, url: GetUrl.loggedParty);
 
     if (response.statusCode.success) {
       return Pair(Party.fromJson(response.jsonBody), null);

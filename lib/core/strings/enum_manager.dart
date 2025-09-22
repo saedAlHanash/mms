@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../generated/l10n.dart';
 import 'app_color_manager.dart';
 
-enum CubitStatuses { init, loading, done, error }
+// enum CubitStatuses { init, loading, done, error }
 
 enum AttachmentType { image, youtube, video, d3 }
 
@@ -85,46 +85,6 @@ enum MembershipType {
 
 enum DiscussionStatus { open, closed }
 
-enum FilterOperation {
-  equals('Equals'),
-  notEqual('NotEqual'),
-  contains('Contains'),
-  startsWith('StartsWith'),
-  endsWith('EndsWith'),
-  lessThan('LessThan'),
-  lessThanEqual('LessThanEqual'),
-  greaterThan('GreaterThan'),
-  greaterThanEqual('GreaterThanEqual');
-
-  const FilterOperation(this.realName);
-
-  final String realName;
-
-  static FilterOperation byName(String s) {
-    switch (s) {
-      case 'Equals':
-        return FilterOperation.equals;
-      case 'NotEqual':
-        return FilterOperation.notEqual;
-      case 'Contains':
-        return FilterOperation.contains;
-      case 'StartsWith':
-        return FilterOperation.startsWith;
-      case 'EndsWith':
-        return FilterOperation.endsWith;
-      case 'LessThan':
-        return FilterOperation.lessThan;
-      case 'LessThanEqual':
-        return FilterOperation.lessThanEqual;
-      case 'GreaterThan':
-        return FilterOperation.greaterThan;
-      case 'GreaterThanEqual':
-        return FilterOperation.greaterThanEqual;
-      default:
-        return FilterOperation.equals;
-    }
-  }
-}
 
 enum ApiType {
   get,

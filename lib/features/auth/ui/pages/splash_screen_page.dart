@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 
 import '../../../../core/app/app_provider.dart';
-import '../../../../core/strings/enum_manager.dart';
+import '../../../../core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
 import '../../../../generated/assets.dart';
 import '../../../../router/app_router.dart';
 

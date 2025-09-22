@@ -26,7 +26,7 @@ class DonePage extends StatelessWidget {
           DrawableText(
             text: S.of(context).isSuccess,
             size: 24.0.sp,
-            fontFamily: FontManager.cairoBold.name,
+           fontWeight: FontWeight.bold,
             textAlign: TextAlign.center,
           ),
           200.0.verticalSpace,

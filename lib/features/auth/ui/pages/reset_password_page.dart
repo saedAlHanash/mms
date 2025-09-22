@@ -7,7 +7,7 @@ import 'package:mms/core/util/shared_preferences.dart';
 import 'package:mms/core/widgets/my_button.dart';
 import 'package:mms/core/widgets/my_text_form_widget.dart';
 
-import '../../../../core/strings/enum_manager.dart';
+import '../../../../core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
 import '../../../../core/util/my_style.dart';
 import '../../../../core/widgets/app_bar/app_bar_widget.dart';
 import '../../../../generated/l10n.dart';
@@ -55,8 +55,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
           },
           child: DrawableText(
             size: 18.0.sp,
-            underLine: true,
-            fontFamily: FontManager.cairoBold.name,
+            textDecoration: TextDecoration.underline,
+            fontWeight: FontWeight.bold,
             text: '${S.of(context).login}.',
           ),
         ),

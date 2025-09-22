@@ -7,7 +7,7 @@ import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:mms/core/util/snack_bar_message.dart';
 import 'package:mms/core/widgets/my_button.dart';
 
-import '../../../../core/strings/enum_manager.dart';
+import '../../../../core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
 import '../../../../core/util/my_style.dart';
 import '../../../../core/util/shared_preferences.dart';
 import '../../../../core/widgets/app_bar/app_bar_widget.dart';
@@ -149,7 +149,7 @@ class _ConfirmCodePageState extends State<ConfirmCodePage> {
                 },
                 child: DrawableText(
                   size: 18.0.sp,
-                  fontFamily: FontManager.cairoBold.name,
+                 fontWeight: FontWeight.bold,
                   text: '${S.of(context).alreadyHaveAnAccount}.',
                 ),
               ),

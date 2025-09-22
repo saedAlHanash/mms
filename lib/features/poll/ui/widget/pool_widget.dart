@@ -12,7 +12,7 @@ import 'package:mms/core/widgets/my_checkbox_widget.dart';
 import 'package:mms/features/poll/data/response/poll_response.dart';
 import 'package:mms/features/vote/data/request/create_vote_request.dart';
 
-import '../../../../core/strings/enum_manager.dart';
+import '../../../../core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
 import '../../../../core/widgets/my_card_widget.dart';
 import '../../../../generated/l10n.dart';
 import '../../../vote/bloc/create_vote_cubit/create_vote_cubit.dart';
@@ -53,17 +53,14 @@ class _PollWidgetState extends State<PollWidget> {
           ),
           10.0.verticalSpace,
           MyCheckboxWidget(
-            items: widget.poll
-                .getSpinnerItems(selectedId: widget.poll.meOptionVote?.id),
+            items: widget.poll.getSpinnerItems(selectedId: widget.poll.meOptionVote?.id),
             isRadio: true,
             buttonBuilder: (selected, value, context) {
               return Container(
                 width: 1.0.sw,
                 height: 40.0.h,
                 decoration: BoxDecoration(
-                  color: selected
-                      ? AppColorManager.mainColor.withOpacity(0.2)
-                      : Colors.transparent,
+                  color: selected ? AppColorManager.mainColor.withOpacity(0.2) : Colors.transparent,
                   borderRadius: BorderRadius.circular(8.0.sp),
                 ),
                 padding: const EdgeInsets.symmetric(horizontal: 20.0).w,
@@ -71,14 +68,10 @@ class _PollWidgetState extends State<PollWidget> {
                 child: DrawableText(
                   text: value.name ?? '',
                   drawablePadding: 5.0.w,
-                  fontFamily: FontManager.cairoBold.name,
+                  fontWeight: FontWeight.bold,
                   drawableStart: ImageMultiType(
-                    url: selected
-                        ? Icons.check_box_outlined
-                        : Icons.check_box_outline_blank,
-                    color: selected
-                        ? AppColorManager.mainColor
-                        : AppColorManager.grey,
+                    url: selected ? Icons.check_box_outlined : Icons.check_box_outline_blank,
+                    color: selected ? AppColorManager.mainColor : AppColorManager.grey,
                   ),
                 ),
               );
@@ -97,8 +90,7 @@ class _PollWidgetState extends State<PollWidget> {
             drawableEnd: BlocBuilder<CreateVoteCubit, CreateVoteInitial>(
               buildWhen: (p, c) => c.mRequest.pollId == widget.poll.id,
               builder: (context, state) {
-                if (!enable ||
-                    request.pollOptionId == widget.poll.meOptionVote?.id) {
+                if (!enable || request.pollOptionId == widget.poll.meOptionVote?.id) {
                   return 0.0.verticalSpace;
                 }
                 return MyButton(
@@ -107,9 +99,7 @@ class _PollWidgetState extends State<PollWidget> {
                       request.id = widget.poll.meOptionVote!.voteId;
                     }
 
-                    context
-                        .read<CreateVoteCubit>()
-                        .createVote(request: request);
+                    context.read<CreateVoteCubit>().createVote(request: request);
                   },
                   width: 0.4.sw,
                   color: AppColorManager.mainColor,
@@ -118,9 +108,7 @@ class _PollWidgetState extends State<PollWidget> {
                     url: Icons.done,
                     color: Colors.white,
                   ),
-                  text: widget.poll.meOptionVote == null
-                      ? S.of(context).vote
-                      : S.of(context).editVote,
+                  text: widget.poll.meOptionVote == null ? S.of(context).vote : S.of(context).editVote,
                 );
               },
             ),
@@ -163,8 +151,7 @@ class PollResultWidget extends StatelessWidget {
                             (i, e) {
                               return PieChartSectionData(
                                 color: AppColorManager.getPollColor(i),
-                                value:
-                                    e.voteCount * 100 / (pollResult.totalVotes),
+                                value: e.voteCount * 100 / (pollResult.totalVotes),
                                 title: '',
                                 radius: 15.0.r,
                               );
@@ -173,10 +160,9 @@ class PollResultWidget extends StatelessWidget {
                         ),
                       ),
                       DrawableText(
-                          fontFamily: FontManager.cairoBold.name,
+                          fontWeight: FontWeight.bold,
                           size: 20.0.sp,
-                          text:
-                              '${pollResult.votersCount} ${S.of(context).votes}'),
+                          text: '${pollResult.votersCount} ${S.of(context).votes}'),
                     ],
                   ),
                 ),
@@ -188,7 +174,7 @@ class PollResultWidget extends StatelessWidget {
                       .mapIndexed(
                         (i, e) => Container(
                           margin: const EdgeInsets.symmetric(vertical: 3.0).h,
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 3.0).r,
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 3.0).r,
                           decoration: BoxDecoration(
                             color: AppColorManager.cardColor,
                             borderRadius: BorderRadius.circular(8.0.sp),
@@ -215,7 +201,7 @@ class PollResultWidget extends StatelessWidget {
                                   text: e.option ?? '',
                                   color: AppColorManager.getPollColor(i),
                                   padding: const EdgeInsets.symmetric(vertical: 5.0).r,
-                                  fontFamily: FontManager.cairoBold.name,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                               DrawableText(
@@ -223,7 +209,7 @@ class PollResultWidget extends StatelessWidget {
                                 size: 22.0.sp,
                                 color: Colors.black,
                                 padding: const EdgeInsets.symmetric(vertical: 5.0).r,
-                                fontFamily: FontManager.cairoBold.name,
+                                fontWeight: FontWeight.bold,
                               ),
                             ],
                           ),

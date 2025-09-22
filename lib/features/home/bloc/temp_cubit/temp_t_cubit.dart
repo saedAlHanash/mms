@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:m_cubit/abstraction.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
@@ -18,7 +19,7 @@ class TempCubit extends Cubit<TempInitial> {
      
 
     emit(state.copyWith(statuses: CubitStatuses.loading));
-    final pair = await _getDataApi();
+    final pair = await _getData();
     if (pair.first == null) {
       emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));
       showErrorFromApi(state);
@@ -27,7 +28,7 @@ class TempCubit extends Cubit<TempInitial> {
     }
   }
 
-  Future<Pair<TempModel?, String?>> _getDataApi() async {
+  Future<Pair<TempModel?, String?>> _getData() async {
     final response = await APIService().callApi(type: ApiType.get,url: GetUrl.temp);
 
     if (response.statusCode.success) {

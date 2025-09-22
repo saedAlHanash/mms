@@ -7,7 +7,7 @@
 //
 // import '../../../../core/api_manager/api_service.dart';
 // import '../../../../core/error/error_manager.dart';
-// import '../../../../core/strings/enum_manager.dart';
+// import '../../../../core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
 // import '../../../../core/util/abstraction.dart';
 // import '../../../../core/util/pair_class.dart';
 // import '../../../../generated/l10n.dart';
@@ -30,7 +30,7 @@
 //   Future<void> signup() async {
 //     emit(state.copyWith(statuses: CubitStatuses.loading));
 //
-//     await storeData(state.request.toJson());
+//     await saveData(state.request.toJson());
 //
 //     final pair = await _signupApi();
 //

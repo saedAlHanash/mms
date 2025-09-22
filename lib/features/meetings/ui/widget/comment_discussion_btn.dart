@@ -12,7 +12,6 @@ import '../../../../core/strings/app_color_manager.dart';
 import '../../../../core/util/my_style.dart';
 import '../../../../core/widgets/my_text_form_widget.dart';
 import '../../../../generated/assets.dart';
-
 import '../../../agendas/bloc/add_comment_cubit/add_comment_cubit.dart';
 import '../../data/response/meetings_response.dart';
 

@@ -41,7 +41,7 @@ class TextWithListDote extends StatelessWidget {
             child: DrawableText(
               text: text,
               size: 20.0.spMin,
-              fontFamily: FontManager.cairoBold.name,
+             fontWeight: FontWeight.bold,
               color: AppColorManager.black,
             ),
           ),

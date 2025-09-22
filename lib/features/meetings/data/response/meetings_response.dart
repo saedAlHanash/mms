@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
 import '../../../../core/app/app_provider.dart';
-import '../../../../core/strings/enum_manager.dart';
+import '../../../../core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
 import '../../../../generated/assets.dart';
 import '../../../agendas/data/response/agendas_response.dart';
 import '../../../attendees/data/response/attendee_response.dart';

@@ -6,7 +6,7 @@ import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/features/agendas/data/response/agendas_response.dart';
 
 import '../../../../core/api_manager/api_service.dart';
-import '../../../../core/strings/enum_manager.dart';
+import '../../../../core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
 import '../../../../core/util/abstraction.dart';
 import '../../../../core/util/pair_class.dart';
 import '../../data/response/meetings_response.dart';
@@ -22,17 +22,17 @@ class MeetingCubit extends MCubit<MeetingInitial> {
   @override
   String get filter => state.request ?? '';
 
-  Future<void> getMeeting({String? id, bool newData = false}) async {
+  Future<void> getData({String? id, bool newData = false}) async {
     emit(state.copyWith(request: id));
     getDataAbstract(
       fromJson: Meeting.fromJson,
       state: state,
       newData: newData,
-      getDataApi: _getDataApi,
+      getDataApi: _getData,
     );
   }
 
-  Future<Pair<Meeting?, String?>> _getDataApi() async {
+  Future<Pair<Meeting?, String?>> _getData() async {
     final response = await APIService().callApi(
       type: ApiType.get,
       url: GetUrl.meeting,
@@ -51,7 +51,7 @@ class MeetingCubit extends MCubit<MeetingInitial> {
     required String agendaId,
   }) async {
     _findAgenda(agendaId, state.result.agendaItems)?.comments.add(comment);
-    await storeData(state.result);
+    await saveData(state.result);
   }
 
   Agenda? _findAgenda(String id, List<Agenda> list) {
@@ -70,6 +70,6 @@ class MeetingCubit extends MCubit<MeetingInitial> {
         .firstWhereOrNull((e) => e.id == discussionId)
         ?.comments
         .add(comment);
-    await storeData(state.result);
+    await saveData(state.result);
   }
 }

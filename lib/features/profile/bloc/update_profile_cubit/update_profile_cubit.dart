@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:m_cubit/abstraction.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/app/app_provider.dart';
 import 'package:mms/core/extensions/extensions.dart';
@@ -73,9 +74,7 @@ class UpdateProfileCubit extends MCubit<UpdateProfileInitial> {
   set serPersonalPhoto(String? val) => state.request.personalPhoto = val;
 
   String? get validateName {
-    if (state.request.firstName == null ||
-        state.request.lastName == null ||
-        state.request.middleName == null) {
+    if (state.request.firstName == null || state.request.lastName == null || state.request.middleName == null) {
       return S().nameEmpty;
     }
     return null;

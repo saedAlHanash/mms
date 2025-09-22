@@ -1,3 +1,4 @@
+import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/api_manager/request_models/command.dart';
 import 'package:mms/core/extensions/extensions.dart';
@@ -21,19 +22,12 @@ class VotesCubit extends MCubit<VotesInitial> {
   String get filter => (state.filterRequest?.getKey) ?? state.request ?? '';
 
   Future<void> getVotes({bool newData = false}) async {
-
-    final checkData = await checkCashed1(
-        state: state, fromJson: Vote.fromJson, newData: newData);
-
-    if (checkData) return;
-
     final pair = await _getVotes();
 
     if (pair.first == null) {
       emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));
       showErrorFromApi(state);
     } else {
-      await storeData(pair.first!);
       emit(state.copyWith(statuses: CubitStatuses.done, result: pair.first));
     }
   }

@@ -70,7 +70,7 @@ class GoalListWidget extends StatelessWidget {
     //             title: DrawableText(
     //               matchParent: true,
     //               text: e.name,
-    //               fontFamily: FontManager.cairoBold.name,
+    //              fontWeight: FontWeight.bold,
     //               size: 20.0.sp,
     //               maxLines: 1,
     //             ),
@@ -111,9 +111,7 @@ class _TaskWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(8.0),
       margin: EdgeInsetsDirectional.only(start: 30.0.w, bottom: 10.0.h),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.0.r),
-          color: AppColorManager.f9),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.0.r), color: AppColorManager.f9),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -124,7 +122,7 @@ class _TaskWidget extends StatelessWidget {
               children: [
                 DrawableText(
                   text: task.name,
-                  fontFamily: FontManager.cairoBold.name,
+                  fontWeight: FontWeight.bold,
                   size: 20.0.sp,
                   maxLines: 2,
                 ),
