@@ -18,7 +18,7 @@ import 'package:mms/features/agora/bloc/agora_cubit/agora_cubit.dart';
 import 'package:mms/features/agora/ui/widget/agora_header.dart';
 import 'package:mms/features/attendees/ui/widget/attendees_list_widget.dart';
 import 'package:mms/features/committees/ui/widget/drawer_btn_widget.dart';
-import 'package:mms/features/meetings/ui/pages/call_page.dart';
+import 'package:mms/features/agora/ui/pages/call_page.dart';
 import 'package:mms/features/meetings/ui/widget/absent_widget.dart';
 import 'package:mms/features/meetings/ui/widget/discussions_tree.dart';
 import 'package:mms/services/ui_helper.dart';

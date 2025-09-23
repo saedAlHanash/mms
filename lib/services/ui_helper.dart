@@ -21,13 +21,11 @@ class UiHelper {
     scrollViewUids.clear();
   }
 
-  // Display local video preview
   Widget mainVideoView() {
     if (_agoraManager.currentProduct == ProductName.voiceCalling) {
       return Container();
     } else if (_agoraManager.isJoined) {
       if (mainViewUid == -1 && _agoraManager.isBroadcaster) {
-        // Initialize local video in the main view
         mainViewUid = 0;
       } else if (mainViewUid == -1) {
         return textContainer("Waiting for a host to join", 240);
@@ -51,8 +49,7 @@ class UiHelper {
         child: Center(child: Text(text, textAlign: TextAlign.center)));
   }
 
-  // Display remote user's video
-  Widget scrollVideoView() {
+  Widget scrollVideoView({double? h, double? w}) {
     if (_agoraManager.currentProduct != ProductName.videoCalling) {
       return Container();
     } else if (_agoraManager.remoteUids.isEmpty) {
@@ -65,27 +62,28 @@ class UiHelper {
 
     if (_agoraManager.agoraEngine == null) return textContainer("", 240);
 
-    // Create a list of Uids for videos in the scroll view
     scrollViewUids.clear();
     scrollViewUids.addAll(_agoraManager.remoteUids);
-    scrollViewUids.remove(mainViewUid); // This video is displayed in the main view
+    scrollViewUids.remove(mainViewUid);
     if (mainViewUid > 0) {
-      scrollViewUids.add(0); // Add local video to scroll view
+      scrollViewUids.add(0);
     }
 
-    final uid = scrollViewUids.first;
+    final uid = scrollViewUids.last;
     if (uid == 0) return 0.0.verticalSpace;
     return Container(
-      width: 1.0.sw,
-      height: 0.3.sh,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(12.0).r),
       clipBehavior: Clip.hardEdge,
-      padding: EdgeInsets.all(15.0).r,
+      margin: EdgeInsets.all(15.0).r,
       child: InteractiveViewer(
-        minScale: 1.0, // أقل نسبة تكبير
-        maxScale: 4.0, // أقصى نسبة تكبير
-        panEnabled: true, // يسمح بالسحب والتحريك
-        child: _agoraManager.remoteVideoView(uid),
+        boundaryMargin: const EdgeInsets.all(double.infinity),
+        minScale: 1,
+        maxScale: 4.0,
+        panEnabled: true,
+        child: AspectRatio(
+          aspectRatio: 16 / 9,
+          child: _agoraManager.remoteVideoView(uid),
+        ),
       ),
     );
   }
@@ -96,7 +94,6 @@ class UiHelper {
   }
 
   Widget radioButtons() {
-    // Radio Buttons
     if (_agoraManager.currentProduct == ProductName.interactiveLiveStreaming ||
         _agoraManager.currentProduct == ProductName.broadcastStreaming) {
       return Row(children: <Widget>[
@@ -132,7 +129,6 @@ class UiHelper {
     _setStateCallback();
   }
 
-  // Set the client role when a radio button is selected
   void _handleRadioValueChange(bool? value) async {
     _agoraManager.isBroadcaster = (value == true);
     _setStateCallback();

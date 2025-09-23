@@ -37,10 +37,10 @@ class DrawerMeetingsBtnWidget extends StatelessWidget {
                   name: 'committeeId',
                   val: context.read<CommitteeCubit>().state.uuid,
                 ),
-                "status": Filter(
-                  name: 'status',
-                  val: MeetingStatus.planned.index.toString(),
-                ),
+                // "status": Filter(
+                //   name: 'status',
+                //   val: MeetingStatus.planned.index.toString(),
+                // ),
               },
             ),
           );

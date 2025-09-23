@@ -7,13 +7,25 @@ class AgoraInitial extends AbstractState<AgoraManager> {
     required super.request,
     super.statuses,
     super.id,
+    required this.isMicrophoneMuted,
+    required this.isSharingMuted,
+    required this.isAllAudioMuted,
   });
+
+  final bool isMicrophoneMuted;
+
+  final bool isSharingMuted;
+
+  final bool isAllAudioMuted;
 
   factory AgoraInitial.initial() {
     return AgoraInitial(
       result: AgoraManager.protectedConstructor(),
       request: '',
       id: 0,
+      isMicrophoneMuted: false,
+      isSharingMuted: false,
+      isAllAudioMuted: false,
     );
   }
 
@@ -26,6 +38,9 @@ class AgoraInitial extends AbstractState<AgoraManager> {
         statuses,
         result,
         error,
+        isMicrophoneMuted,
+        isSharingMuted,
+        isAllAudioMuted,
         if (request != null) request,
         if (id != null) id,
         if (filterRequest != null) filterRequest!,
@@ -37,6 +52,9 @@ class AgoraInitial extends AbstractState<AgoraManager> {
     String? error,
     dynamic id,
     String? request,
+    bool? isMicrophoneMuted,
+    bool? isSharingMuted,
+    bool? isAllAudioMuted,
   }) {
     return AgoraInitial(
       statuses: statuses ?? this.statuses,
@@ -44,6 +62,9 @@ class AgoraInitial extends AbstractState<AgoraManager> {
       error: error ?? this.error,
       id: id ?? this.id,
       request: request ?? this.request,
+      isMicrophoneMuted: isMicrophoneMuted ?? this.isMicrophoneMuted,
+      isSharingMuted: isSharingMuted ?? this.isSharingMuted,
+      isAllAudioMuted: isAllAudioMuted ?? this.isAllAudioMuted,
     );
   }
 }

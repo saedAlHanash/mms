@@ -115,10 +115,10 @@ class _MyAppState extends State<MyApp> {
                         FilterRequest(
                           filters: {
                             "partyId": Filter(name: 'partyId', val: AppProvider.getParty.id),
-                            "status": Filter(
-                              name: 'status',
-                              val: MeetingStatus.planned.index.toString(),
-                            ),
+                            // "status": Filter(
+                            //   name: 'status',
+                            //   val: MeetingStatus.planned.index.toString(),
+                            // ),
                           },
                         ),
                       )

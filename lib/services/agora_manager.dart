@@ -138,6 +138,7 @@ class AgoraManager {
 
     if (currentProduct != ProductName.voiceCalling) {
       await agoraEngine!.enableVideo();
+      agoraEngine!.muteLocalVideoStream(true);
     }
 
     // Register the event handler

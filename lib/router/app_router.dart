@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/api_manager/request_models/command.dart';
 import 'package:mms/features/agendas/data/response/agendas_response.dart';
+import 'package:mms/features/agora/ui/pages/full_screen_call.dart';
 import 'package:mms/features/meetings/bloc/add_guest_cubit/add_guest_cubit.dart';
 import 'package:mms/features/meetings/bloc/meeting_cubit/meeting_cubit.dart';
 import 'package:mms/features/meetings/ui/pages/add_guest_page.dart';
@@ -48,7 +49,7 @@ Route<dynamic> routes(RouteSettings settings) {
       //region
       return MaterialPageRoute(builder: (_) => const SplashScreenPage());
     //endregion
-    //endregion
+
     case RouteName.login:
       //region
       {
@@ -337,6 +338,26 @@ Route<dynamic> routes(RouteSettings settings) {
     //endregion
 
     //endregion
+
+    //region agora
+
+    case RouteName.fullScreen:
+      //region
+      {
+        return MaterialPageRoute(
+          builder: (_) {
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider.value(value: settings.arguments! as AgoraCubit),
+              ],
+              child: const FullScreenCall(),
+            );
+          },
+        );
+      }
+    //endregion
+
+    //endregion
   }
 
   return MaterialPageRoute(builder: (_) => const Scaffold(backgroundColor: Colors.red));
@@ -361,4 +382,5 @@ class RouteName {
   static const agenda = '/16';
   static const votes = '/17';
   static const notifications = '/18';
+  static const fullScreen = '/19';
 }

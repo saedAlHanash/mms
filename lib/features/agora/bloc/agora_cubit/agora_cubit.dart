@@ -5,6 +5,7 @@ import 'package:m_cubit/abstraction.dart';
 import 'package:mms/core/api_manager/api_service.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
 
+import '../../../../core/app/app_widget.dart';
 import '../../../../services/agora_manager.dart';
 
 part 'agora_state.dart';
@@ -52,6 +53,7 @@ class AgoraCubit extends MCubit<AgoraInitial> {
     emit(state.copyWith(statuses: CubitStatuses.loading));
     await state.result.join();
     await Future.delayed(Duration(seconds: 2));
+    state.result.agoraEngine!.muteLocalVideoStream(true);
     emit(state.copyWith(statuses: CubitStatuses.done));
   }
 
@@ -65,6 +67,26 @@ class AgoraCubit extends MCubit<AgoraInitial> {
     );
 
     emit(state.copyWith(result: manager, statuses: CubitStatuses.done));
+  }
+
+  void disconnect() {
+    state.result.agoraEngine!.leaveChannel();
+    Navigator.pop(ctx!, true);
+  }
+
+  void muteLocalAudioStream() {
+    state.result.agoraEngine!.muteLocalAudioStream(!state.isMicrophoneMuted);
+    emit(state.copyWith(isMicrophoneMuted: !state.isMicrophoneMuted));
+  }
+
+  void muteSharingStream() {
+    state.result.agoraEngine!.muteAllRemoteVideoStreams(!state.isSharingMuted);
+    emit(state.copyWith(isSharingMuted: !state.isSharingMuted));
+  }
+
+  void muteAllRemoteAudioStreams() {
+    state.result.agoraEngine!.muteAllRemoteAudioStreams(!state.isAllAudioMuted);
+    emit(state.copyWith(isAllAudioMuted: !state.isAllAudioMuted));
   }
 
   @override
