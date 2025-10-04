@@ -24,11 +24,9 @@ class CommitteeScreen extends StatelessWidget {
               final list = state.result;
               return RefreshWidget(
                 onRefresh: () {
-                  context
-                      .read<MyCommitteesCubit>()
-                      .getData(newData: true);
+                  context.read<MyCommitteesCubit>().getData(newData: true);
                 },
-                statuses: state.statuses,
+                isLoading: state.loading,
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
@@ -40,21 +38,18 @@ class CommitteeScreen extends StatelessWidget {
                     return InkWell(
                       onTap: () {
                         AppProvider.setCommittee = item;
-                        Navigator.pushNamed(context, RouteName.committeePage,
-                            arguments: item.id);
+                        Navigator.pushNamed(context, RouteName.committeePage, arguments: item.id);
                       },
                       child: MyCardWidget(
                         elevation: 3.0.r,
                         padding: const EdgeInsets.all(5.0).r,
-                        margin: const EdgeInsets.symmetric(
-                                vertical: 7.0, horizontal: 20.0)
-                            .r,
+                        margin: const EdgeInsets.symmetric(vertical: 7.0, horizontal: 20.0).r,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             DrawableText(
                               text: item.name,
-                              matchParent:true,
+                              matchParent: true,
                               maxLines: 2,
                               size: 14.0.sp,
                               textAlign: TextAlign.center,

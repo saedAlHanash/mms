@@ -1,5 +1,5 @@
-class Agora {
-  Agora({
+class LiveKit {
+  LiveKit({
     required this.id,
   });
 
@@ -11,18 +11,18 @@ class Agora {
     };
   }
 
-  factory Agora.fromJson(Map<String, dynamic> json) {
-    return Agora(
+  factory LiveKit.fromJson(Map<String, dynamic> json) {
+    return LiveKit(
       id: json["id"] ?? "",
     );
   }
 
 }
 
-class Agoras {
-  final List<Agora> items;
+class LiveKits {
+  final List<LiveKit> items;
 
-  const Agoras({
+  const LiveKits({
     required this.items,
   });
 
@@ -32,9 +32,9 @@ class Agoras {
     };
   }
 
-  factory Agoras.fromJson(Map<String, dynamic> json) {
-    return Agoras(
-      items: json['items'] as List<Agora>,
+  factory LiveKits.fromJson(Map<String, dynamic> json) {
+    return LiveKits(
+      items: json['items'] as List<LiveKit>,
     );
   }
 }

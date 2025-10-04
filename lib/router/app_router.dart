@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:m_cubit/m_cubit.dart';
-import 'package:mms/core/api_manager/request_models/command.dart';
 import 'package:mms/features/agendas/data/response/agendas_response.dart';
-import 'package:mms/features/agora/ui/pages/full_screen_call.dart';
 import 'package:mms/features/meetings/bloc/add_guest_cubit/add_guest_cubit.dart';
 import 'package:mms/features/meetings/bloc/meeting_cubit/meeting_cubit.dart';
 import 'package:mms/features/meetings/ui/pages/add_guest_page.dart';
@@ -12,7 +10,6 @@ import 'package:mms/features/meetings/ui/pages/calender_screen.dart';
 import '../core/injection/injection_container.dart';
 import '../features/agendas/bloc/add_comment_cubit/add_comment_cubit.dart';
 import '../features/agendas/ui/pages/agenda_page.dart';
-import '../features/agora/bloc/agora_cubit/agora_cubit.dart';
 import '../features/auth/bloc/confirm_code_cubit/confirm_code_cubit.dart';
 import '../features/auth/bloc/forget_password_cubit/forget_password_cubit.dart';
 import '../features/auth/bloc/login_cubit/login_cubit.dart';
@@ -218,7 +215,6 @@ Route<dynamic> routes(RouteSettings settings) {
           ),
           BlocProvider(create: (context) => sl<AddAbsenceCubit>()),
           BlocProvider(create: (context) => sl<AddCommentCubit>()),
-          BlocProvider(create: (context) => sl<AgoraCubit>()..initialize()),
         ];
         return MaterialPageRoute(
           builder: (_) {
@@ -331,26 +327,6 @@ Route<dynamic> routes(RouteSettings settings) {
                 BlocProvider(create: (context) => sl<FileCubit>()),
               ],
               child: const NotificationsPage(),
-            );
-          },
-        );
-      }
-    //endregion
-
-    //endregion
-
-    //region agora
-
-    case RouteName.fullScreen:
-      //region
-      {
-        return MaterialPageRoute(
-          builder: (_) {
-            return MultiBlocProvider(
-              providers: [
-                BlocProvider.value(value: settings.arguments! as AgoraCubit),
-              ],
-              child: const FullScreenCall(),
             );
           },
         );

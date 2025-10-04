@@ -1,4 +1,5 @@
 class GetUrl {
+  static const liveKit = 'lk/Get';
   static const agora = 'forDelete/Get';
   static const temp = '';
   static const getHome = 'home';
@@ -103,6 +104,8 @@ class GetUrl {
 }
 
 class PostUrl {
+  static const liveKits = 'lk/GetAll';
+  static const createLiveKit = 'lk/Add';
   static const agoras = 'forDelete/GetAll';
   static const createAgora = 'forDelete/Add';
   static const votes = 'Poll/GetAll';
@@ -184,6 +187,7 @@ class PostUrl {
 }
 
 class PutUrl {
+  static const updateLiveKit = 'lk/Update';
   static const updateAgora = 'forDelete/Update';
   static const updateName = 'update-name';
   static const updatePhone = 'update-phone';
@@ -197,6 +201,7 @@ class PutUrl {
 }
 
 class DeleteUrl {
+  static const deleteLiveKit = 'lk/Delete';
   static const deleteAgora = 'forDelete/Delete';
   static const removeFavorite = 'favorites';
 
@@ -212,4 +217,4 @@ class DeleteUrl {
 }
 
 const additionalConst = '/api/v1/';
-const baseUrl = 'mms.coretech-mena.com';
+const baseUrl = 'mmsv2-be.coretech-mena.com';

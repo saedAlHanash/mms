@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
+import 'package:m_cubit/abstraction.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/error/error_manager.dart';
-import '../../../../core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
-import '../../../../core/util/abstraction.dart';
+import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/pair_class.dart';
 import '../../data/request/create_poll_request.dart';
 import '../../data/response/poll_response.dart';
@@ -34,13 +34,15 @@ class CreatePollCubit extends Cubit<CreatePollInitial> {
   Future<Pair<Poll?, String?>> _createPollApi() async {
     late final Response response;
     if (!state.mRequest.id.isBlank) {
-           response = await APIService().callApi(type: ApiType.put,
+      response = await APIService().callApi(
+        type: ApiType.put,
         url: PutUrl.updatePoll,
         query: {'id': state.mRequest.id},
         body: state.mRequest.toJson(),
       );
     } else {
-           response = await APIService().callApi(type: ApiType.post,
+      response = await APIService().callApi(
+        type: ApiType.post,
         url: PostUrl.createPoll,
         body: state.mRequest.toJson(),
       );

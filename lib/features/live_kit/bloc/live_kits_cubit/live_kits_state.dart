@@ -1,7 +1,7 @@
-part of 'agoras_cubit.dart';
+part of 'live_kits_cubit.dart';
 
-class AgorasInitial extends AbstractState<List<Agora>> {
-  const AgorasInitial({
+class LiveKitsInitial extends AbstractState<List<LiveKit>> {
+  const LiveKitsInitial({
     required super.result,
     super.error,
     super.request,
@@ -12,14 +12,14 @@ class AgorasInitial extends AbstractState<List<Agora>> {
     super.id,
   });
 
-  factory AgorasInitial.initial() {
-    return  AgorasInitial(
+  factory LiveKitsInitial.initial() {
+    return  LiveKitsInitial(
       result: [],
-      createUpdateRequest: CreateAgoraRequest.fromJson({}),
+      createUpdateRequest: CreateLiveKitRequest.fromJson({}),
     );
   }
 
-  CreateAgoraRequest get cRequest => createUpdateRequest;
+  CreateLiveKitRequest get cRequest => createUpdateRequest;
 
   String get mId => id;
 
@@ -35,17 +35,17 @@ class AgorasInitial extends AbstractState<List<Agora>> {
         if (createUpdateRequest != null) createUpdateRequest!,
       ];
 
-  AgorasInitial copyWith({
+  LiveKitsInitial copyWith({
     CubitStatuses? statuses,
     CubitCrud? cubitCrud,
-    List<Agora>? result,
+    List<LiveKit>? result,
     String? error,
     FilterRequest? filterRequest,
     dynamic request,
     dynamic cRequest,
     dynamic id,
   }) {
-    return AgorasInitial(
+    return LiveKitsInitial(
       statuses: statuses ?? this.statuses,
       cubitCrud: cubitCrud ?? this.cubitCrud,
       result: result ?? this.result,

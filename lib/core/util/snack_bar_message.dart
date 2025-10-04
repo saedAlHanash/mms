@@ -76,7 +76,7 @@ class NoteMessage {
     // show the dialog
     final result = await showDialog(
       context: context,
-      barrierColor: Colors.black.withOpacity(0.3),
+      barrierColor: Colors.black.withValues(alpha: 0.3),
       builder: (BuildContext context) {
         return Dialog(
           surfaceTintColor: Colors.white,
@@ -125,7 +125,7 @@ class NoteMessage {
     // show the dialog
     final result = await showDialog(
       context: context,
-      barrierColor: Colors.black.withOpacity(0.3),
+      barrierColor: Colors.black.withValues(alpha: 0.3),
       builder: (BuildContext context) {
         return Dialog(
           surfaceTintColor: Colors.white,
@@ -175,7 +175,7 @@ class NoteMessage {
     // show the dialog
     showDialog(
       context: context,
-      barrierColor: Colors.black.withOpacity(0.3),
+      barrierColor: Colors.black.withValues(alpha: 0.3),
       builder: (BuildContext context) {
         return Dialog(
           surfaceTintColor: Colors.white,
@@ -218,7 +218,7 @@ class NoteMessage {
     // show the dialog
     showDialog(
       context: context,
-      barrierColor: Colors.black.withOpacity(0.3),
+      barrierColor: Colors.black.withValues(alpha: 0.3),
       builder: (BuildContext context) {
         return BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
@@ -325,7 +325,7 @@ class NoteMessage {
     // show the dialog
     final result = await showDialog(
       context: context,
-      barrierColor: Colors.black.withOpacity(0.3),
+      barrierColor: Colors.black.withValues(alpha: 0.3),
       builder: (BuildContext context) {
         return BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
@@ -425,7 +425,7 @@ class NoteMessage {
     // show the dialog
     final result = await showDialog(
       context: context,
-      barrierColor: Colors.black.withOpacity(0.3),
+      barrierColor: Colors.black.withValues(alpha: 0.3),
       builder: (BuildContext context) {
         return BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),

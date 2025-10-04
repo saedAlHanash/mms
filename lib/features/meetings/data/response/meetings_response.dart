@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
 import '../../../../core/app/app_provider.dart';
-import '../../../../core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
+import '../../../../core/strings/enum_manager.dart';
 import '../../../../generated/assets.dart';
 import '../../../agendas/data/response/agendas_response.dart';
 import '../../../attendees/data/response/attendee_response.dart';
@@ -18,9 +18,7 @@ class MeetingsResponse {
 
   factory MeetingsResponse.fromJson(Map<String, dynamic> json) {
     return MeetingsResponse(
-      items: json["items"] == null
-          ? []
-          : List<Meeting>.from(json["items"]!.map((x) => Meeting.fromJson(x))),
+      items: json["items"] == null ? [] : List<Meeting>.from(json["items"]!.map((x) => Meeting.fromJson(x))),
     );
   }
 
@@ -94,47 +92,30 @@ class Meeting {
       hasRequestAbsence: json["hasRequestAbsence"] ?? false,
       attendeesList: json["attendeesList"] == null
           ? <Attendee>[]
-          : List<Attendee>.from(
-              json["attendeesList"]!.map((x) => Attendee.fromJson(x))),
-      guestsList: json["guestsList"] == null
-          ? []
-          : List<Guest>.from(json["guestsList"]!.map((x) => Guest.fromJson(x))),
+          : List<Attendee>.from(json["attendeesList"]!.map((x) => Attendee.fromJson(x))),
+      guestsList: json["guestsList"] == null ? [] : List<Guest>.from(json["guestsList"]!.map((x) => Guest.fromJson(x))),
       discussions: json["discussions"] == null
           ? []
-          : List<Discussion>.from(
-              json["discussions"]!.map((x) => Discussion.fromJson(x))),
-      documents: json["documents"] == null
-          ? []
-          : List<Document>.from(
-              json["documents"]!.map((x) => Document.fromJson(x))),
-      agendaItems: json["agendaItems"] == null
-          ? []
-          : List<Agenda>.from(
-              json["agendaItems"]!.map((x) => Agenda.fromJson(x))),
+          : List<Discussion>.from(json["discussions"]!.map((x) => Discussion.fromJson(x))),
+      documents:
+          json["documents"] == null ? [] : List<Document>.from(json["documents"]!.map((x) => Document.fromJson(x))),
+      agendaItems:
+          json["agendaItems"] == null ? [] : List<Agenda>.from(json["agendaItems"]!.map((x) => Agenda.fromJson(x))),
       location: Location.fromJson(json["location"] ?? {}),
       absenceRequests: json["absenceRequests"] == null
           ? []
-          : List<AbsenceRequest>.from(
-              json["absenceRequests"]!.map((x) => AbsenceRequest.fromJson(x))),
+          : List<AbsenceRequest>.from(json["absenceRequests"]!.map((x) => AbsenceRequest.fromJson(x))),
       guestSuggestions: json["guestSuggestions"] == null
           ? []
-          : List<Guest>.from(
-              json["guestSuggestions"]!.map((x) => Guest.fromJson(x))),
-      decisions: json["decisions"] == null
-          ? []
-          : List<Decision>.from(
-              json["decisions"]!.map((x) => Decision.fromJson(x))),
-      polls: json["polls"] == null
-          ? []
-          : List<Poll>.from(json["polls"]!.map((x) => Poll.fromJson(x))),
-      tasks: json["tasks"] == null
-          ? []
-          : List<Task>.from(json["tasks"]!.map((x) => Task.fromJson(x))),
+          : List<Guest>.from(json["guestSuggestions"]!.map((x) => Guest.fromJson(x))),
+      decisions:
+          json["decisions"] == null ? [] : List<Decision>.from(json["decisions"]!.map((x) => Decision.fromJson(x))),
+      polls: json["polls"] == null ? [] : List<Poll>.from(json["polls"]!.map((x) => Poll.fromJson(x))),
+      tasks: json["tasks"] == null ? [] : List<Task>.from(json["tasks"]!.map((x) => Task.fromJson(x))),
       minutes: Minutes.fromJson(json["minutes"] ?? {}),
       pollResults: json["pollResults"] == null
           ? []
-          : List<PollResult>.from(
-              json["pollResults"]!.map((x) => PollResult.fromJson(x))),
+          : List<PollResult>.from(json["pollResults"]!.map((x) => PollResult.fromJson(x))),
     );
   }
 
@@ -183,9 +164,7 @@ class AbsenceRequest {
   factory AbsenceRequest.fromJson(Map<String, dynamic> json) {
     return AbsenceRequest(
       id: json["id"] ?? "",
-      party: json["party"] == null
-          ? null
-          : AbsenceRequestParty.fromJson(json["party"]),
+      party: json["party"] == null ? null : AbsenceRequestParty.fromJson(json["party"]),
       meetingId: json["meetingId"] ?? "",
       status: json["status"] ?? 0,
       date: DateTime.tryParse(json["date"] ?? ""),
@@ -222,10 +201,7 @@ class AbsenceRequestParty {
       firstName: json["firstName"] ?? "",
       middleName: json["middleName"] ?? "",
       lastName: json["lastName"] ?? "",
-      personalPhoto: json["personalPhoto"]
-              ?.toString()
-              .fixUrl(initialImage: Assets.imagesAvatar) ??
-          '',
+      personalPhoto: json["personalPhoto"]?.toString().fixUrl(initialImage: Assets.imagesAvatar) ?? '',
     );
   }
 
@@ -285,12 +261,9 @@ class Discussion {
   final DiscussionStatus status;
   final List<DiscussionComment> comments;
 
-  bool get haveMyComment =>
-      comments.firstWhereOrNull((e) => e.partyId == AppProvider.getParty.id) !=
-      null;
+  bool get haveMyComment => comments.firstWhereOrNull((e) => e.partyId == AppProvider.getParty.id) != null;
 
-  DiscussionComment? get myComment =>
-      comments.firstWhereOrNull((e) => e.partyId == AppProvider.getParty.id);
+  DiscussionComment? get myComment => comments.firstWhereOrNull((e) => e.partyId == AppProvider.getParty.id);
 
   factory Discussion.fromJson(Map<String, dynamic> json) {
     return Discussion(
@@ -301,8 +274,7 @@ class Discussion {
       status: DiscussionStatus.values[json["status"] ?? 0],
       comments: json["comments"] == null
           ? []
-          : List<DiscussionComment>.from(
-              json["comments"]!.map((x) => DiscussionComment.fromJson(x))),
+          : List<DiscussionComment>.from(json["comments"]!.map((x) => DiscussionComment.fromJson(x))),
     );
   }
 
@@ -499,8 +471,7 @@ class Location {
       locationType: json["locationType"] ?? 0,
       onlineMeetingLinks: json["onlineMeetingLinks"] == null
           ? []
-          : List<OnlineMeetingLink>.from(json["onlineMeetingLinks"]!
-              .map((x) => OnlineMeetingLink.fromJson(x))),
+          : List<OnlineMeetingLink>.from(json["onlineMeetingLinks"]!.map((x) => OnlineMeetingLink.fromJson(x))),
     );
   }
 
@@ -509,8 +480,7 @@ class Location {
         "meetingId": meetingId,
         "address": address,
         "locationType": locationType,
-        "onlineMeetingLinks":
-            onlineMeetingLinks.map((x) => x.toJson()).toList(),
+        "onlineMeetingLinks": onlineMeetingLinks.map((x) => x.toJson()).toList(),
       };
 }
 
@@ -609,8 +579,7 @@ class Task {
       meetingName: json["meetingName"] ?? "",
       memberTasks: json["memberTasks"] == null
           ? []
-          : List<MemberTask>.from(
-              json["memberTasks"]!.map((x) => MemberTask.fromJson(x))),
+          : List<MemberTask>.from(json["memberTasks"]!.map((x) => MemberTask.fromJson(x))),
     );
   }
 
@@ -643,9 +612,7 @@ class MemberTask {
   factory MemberTask.fromJson(Map<String, dynamic> json) {
     return MemberTask(
       id: json["id"] ?? "",
-      party: json["party"] == null
-          ? null
-          : AbsenceRequestParty.fromJson(json["party"]),
+      party: json["party"] == null ? null : AbsenceRequestParty.fromJson(json["party"]),
       meetingTaskId: json["meetingTaskId"] ?? "",
       role: json["role"] ?? "",
     );

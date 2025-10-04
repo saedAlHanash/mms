@@ -61,7 +61,7 @@ class MyButton extends StatelessWidget {
       child: ElevatedButton(
         style: ButtonStyle(
           surfaceTintColor: WidgetStatePropertyAll(color),
-          backgroundColor: WidgetStatePropertyAll(color?.withOpacity(enable ? 1 : 0.3)),
+          backgroundColor: WidgetStatePropertyAll(color?.withValues(alpha: enable ? 1 : 0.3)),
           padding: const WidgetStatePropertyAll(EdgeInsets.zero),
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(

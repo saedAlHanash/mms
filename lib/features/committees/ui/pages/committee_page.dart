@@ -48,7 +48,7 @@ class CommitteePage extends StatelessWidget {
           return Stack(
             children: [
               RefreshWidget(
-                statuses: state.statuses,
+                isLoading: state.loading,
                 onRefresh: () {
                   context.read<CommitteeCubit>().getData(newData: true);
                 },

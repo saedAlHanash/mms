@@ -1,9 +1,9 @@
+import 'package:m_cubit/abstraction.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
 import '../../../../core/api_manager/api_service.dart';
-import '../../../../core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
-import '../../../../core/util/abstraction.dart';
+import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/pair_class.dart';
 import '../../data/response/poll_response.dart';
 
@@ -19,7 +19,6 @@ class PollCubit extends MCubit<PollInitial> {
   String get filter => state.request ?? '';
 
   Future<void> getPoll({bool newData = false, required String pollId}) async {
-
     emit(state.copyWith(request: pollId));
 
     await getDataAbstract(
@@ -28,7 +27,6 @@ class PollCubit extends MCubit<PollInitial> {
       getDataApi: _getPoll,
       newData: newData,
     );
-
   }
 
   Future<Pair<Poll?, String?>> _getPoll() async {

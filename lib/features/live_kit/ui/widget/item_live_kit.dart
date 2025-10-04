@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 
-import '../../data/response/agora_response.dart';
+import '../../data/response/live_kit_response.dart';
 
-class ItemAgora extends StatelessWidget {
-  const ItemAgora({super.key, required this.agora});
+class ItemLiveKit extends StatelessWidget {
+  const ItemLiveKit({super.key, required this.liveKit});
 
-  final Agora agora;
+  final LiveKit liveKit;
 
   @override
   Widget build(BuildContext context) {

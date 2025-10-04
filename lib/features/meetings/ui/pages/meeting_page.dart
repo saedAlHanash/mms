@@ -1,27 +1,19 @@
-import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
-import 'package:mms/core/api_manager/api_service.dart';
 import 'package:mms/core/app/app_provider.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
-import 'package:mms/core/util/snack_bar_message.dart';
 import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
-import 'package:mms/core/widgets/my_button.dart';
 import 'package:mms/core/widgets/my_card_widget.dart';
 import 'package:mms/core/widgets/refresh_widget/refresh_widget.dart';
 import 'package:mms/features/agendas/ui/widget/agenda_tree_widget.dart';
-import 'package:mms/features/agora/bloc/agora_cubit/agora_cubit.dart';
-import 'package:mms/features/agora/ui/widget/agora_header.dart';
 import 'package:mms/features/attendees/ui/widget/attendees_list_widget.dart';
 import 'package:mms/features/committees/ui/widget/drawer_btn_widget.dart';
-import 'package:mms/features/agora/ui/pages/call_page.dart';
 import 'package:mms/features/meetings/ui/widget/absent_widget.dart';
 import 'package:mms/features/meetings/ui/widget/discussions_tree.dart';
-import 'package:mms/services/ui_helper.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../../router/app_router.dart';
@@ -64,22 +56,22 @@ class MeetingPage extends StatelessWidget {
             },
           ),
         ),
-        bottomNavigationBar: HeaderSheet(
-          onTap: () {
-            NoteMessage.showBottomSheet1(
-              child: BlocProvider.value(
-                value: context.read<AgoraCubit>(),
-                child: CallPage(),
-              ),
-            );
-          },
-        ),
+        // bottomNavigationBar: HeaderSheet(
+        //   onTap: () {
+        //     NoteMessage.showBottomSheet1(
+        //       child: BlocProvider.value(
+        //         value: context.read<AgoraCubit>(),
+        //         child: CallPage(),
+        //       ),
+        //     );
+        //   },
+        // ),
         body: BlocBuilder<MeetingCubit, MeetingInitial>(
           builder: (context, state) {
             final item = state.result;
             return RefreshWidget(
               onRefresh: () => context.read<MeetingCubit>().getData(newData: true),
-              statuses: state.statuses,
+              isLoading: state.loading,
               child: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0).r,
                 child: Column(

@@ -2,12 +2,12 @@ import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:m_cubit/abstraction.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:mms/core/util/snack_bar_message.dart';
 import 'package:mms/core/widgets/my_button.dart';
 
-import '../../../../core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
 import '../../../../core/util/my_style.dart';
 import '../../../../core/util/shared_preferences.dart';
 import '../../../../core/widgets/app_bar/app_bar_widget.dart';
@@ -54,8 +54,7 @@ class _ConfirmCodePageState extends State<ConfirmCodePage> {
         BlocListener<ResendCodeCubit, ResendCodeInitial>(
           listenWhen: (p, c) => c.statuses.done,
           listener: (context, state) {
-            NoteMessage.showAwesomeDoneDialog(context,
-                message: '${S.of(context).done_resend_code} ${state.result}');
+            NoteMessage.showAwesomeDoneDialog(context, message: '${S.of(context).done_resend_code} ${state.result}');
           },
         ),
       ],
@@ -85,8 +84,7 @@ class _ConfirmCodePageState extends State<ConfirmCodePage> {
                 fontWeight: FontWeight.bold,
               ),
               DrawableText(
-                text:
-                    '${S.of(context).doneSendSms} ${AppSharedPreference.getPhone}',
+                text: '${S.of(context).doneSendSms} ${AppSharedPreference.getPhone}',
                 size: 14.0.sp,
               ),
               Form(
@@ -105,8 +103,7 @@ class _ConfirmCodePageState extends State<ConfirmCodePage> {
                     text: S.of(context).verify,
                     onTap: () {
                       if (AppSharedPreference.getPhone.isEmpty) {
-                        Navigator.pushReplacementNamed(
-                            context, RouteName.login);
+                        Navigator.pushReplacementNamed(context, RouteName.login);
                         return;
                       }
                       if (!_formKey.currentState!.validate()) return;
@@ -131,8 +128,7 @@ class _ConfirmCodePageState extends State<ConfirmCodePage> {
                       textColor: AppColorManager.mainColor,
                       onTap: () {
                         if (AppSharedPreference.getPhone.isEmpty) {
-                          Navigator.pushReplacementNamed(
-                              context, RouteName.login);
+                          Navigator.pushReplacementNamed(context, RouteName.login);
                           return;
                         }
                         resendCodeCubit.resendCode();
@@ -149,7 +145,7 @@ class _ConfirmCodePageState extends State<ConfirmCodePage> {
                 },
                 child: DrawableText(
                   size: 18.0.sp,
-                 fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.bold,
                   text: '${S.of(context).alreadyHaveAnAccount}.',
                 ),
               ),

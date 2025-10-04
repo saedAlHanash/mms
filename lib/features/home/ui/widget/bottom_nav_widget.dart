@@ -38,7 +38,7 @@ class _NewNavState extends State<NewNav> {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: AppColorManager.black.withOpacity(0.09),
+            color: AppColorManager.black.withValues(alpha: 0.09),
             blurRadius: 3.r,
             offset: const Offset(0, -2),
           )

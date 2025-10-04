@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:livekit_client/livekit_client.dart';
 
 import '../../generated/l10n.dart';
 import 'app_color_manager.dart';
@@ -85,7 +86,6 @@ enum MembershipType {
 
 enum DiscussionStatus { open, closed }
 
-
 enum ApiType {
   get,
   post,
@@ -127,4 +127,59 @@ enum MeetingStatus {
   }
 
   final Color color;
+}
+
+enum MediaType {
+  media,
+  screen;
+
+  bool get isMedia => this == MediaType.media;
+
+  bool get isScreen => this == MediaType.screen;
+
+  IconData get icon {
+    return switch (this) { MediaType.media => Icons.videocam, MediaType.screen => Icons.monitor };
+  }
+
+  TrackSource get videoSourceType {
+    return switch (this) {
+      MediaType.media => TrackSource.camera,
+      MediaType.screen => TrackSource.screenShareVideo,
+    };
+  }
+
+  TrackSource get audioSourceType {
+    return switch (this) {
+      MediaType.media => TrackSource.microphone,
+      MediaType.screen => TrackSource.screenShareAudio,
+    };
+  }
+}
+
+enum ManagerActions {
+  mic,
+  video,
+  shareScreen,
+  raseHand;
+
+  IconData get icon {
+    return switch (this) {
+      ManagerActions.mic => Icons.mic,
+      ManagerActions.video => Icons.videocam,
+      ManagerActions.shareScreen => Icons.screen_share,
+      ManagerActions.raseHand => Icons.front_hand,
+    };
+  }
+}
+
+enum LkUserType {
+  manager,
+  sharer,
+  user;
+
+  bool get isManager => this == LkUserType.manager;
+
+  bool get isSharer => this == LkUserType.sharer;
+
+  bool get isUser => this == LkUserType.user;
 }

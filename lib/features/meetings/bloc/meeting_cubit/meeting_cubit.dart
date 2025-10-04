@@ -1,13 +1,13 @@
 import 'package:animated_tree_view/node/node.dart';
 import 'package:animated_tree_view/tree_view/tree_node.dart';
 import 'package:collection/collection.dart';
+import 'package:m_cubit/abstraction.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/features/agendas/data/response/agendas_response.dart';
 
 import '../../../../core/api_manager/api_service.dart';
-import '../../../../core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
-import '../../../../core/util/abstraction.dart';
+import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/pair_class.dart';
 import '../../data/response/meetings_response.dart';
 
@@ -66,10 +66,7 @@ class MeetingCubit extends MCubit<MeetingInitial> {
     required DiscussionComment comment,
     required String discussionId,
   }) async {
-    state.result.discussions
-        .firstWhereOrNull((e) => e.id == discussionId)
-        ?.comments
-        .add(comment);
+    state.result.discussions.firstWhereOrNull((e) => e.id == discussionId)?.comments.add(comment);
     await saveData(state.result);
   }
 }

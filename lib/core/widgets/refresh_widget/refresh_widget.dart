@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mms/core/extensions/extensions.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
-import 'package:mms/core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class RefreshWidget extends StatefulWidget {
@@ -9,12 +8,14 @@ class RefreshWidget extends StatefulWidget {
     super.key,
     required this.child,
     this.onRefresh,
-    required this.statuses,
+    required this.isLoading,
+    this.padding,
   });
 
   final Widget child;
   final Function()? onRefresh;
-  final CubitStatuses statuses;
+  final bool isLoading;
+  final EdgeInsets? padding;
 
   @override
   State<RefreshWidget> createState() => _RefreshWidgetState();
@@ -29,25 +30,30 @@ class _RefreshWidgetState extends State<RefreshWidget> {
 
   @override
   Widget build(BuildContext context) {
-
-
-    if (widget.statuses.done) {
+    if (!widget.isLoading) {
       _refreshController.refreshCompleted();
-    } else if (widget.statuses.loading) {
-      if (!_refreshController.isRefresh) {
-        Future(() => _refreshController.requestRefresh(
-            needCallback: false, duration: Duration.zero, needMove: false));
-      }
-      _refreshController.loadComplete();
+    } else {
+      Future(() => _refreshController.requestRefresh(needCallback: false));
     }
-    return SmartRefresher(
-      enablePullDown: true,
-      header: const WaterDropHeader(
-        waterDropColor: AppColorManager.mainColor,
+    var d = bool.hasEnvironment('');
+    return Padding(
+      padding: widget.padding ?? const EdgeInsets.all(0),
+      child: SmartRefresher(
+        enablePullDown: true,
+        header: WaterDropHeader(
+          waterDropColor: AppColorManager.mainColor,
+          refresh: SizedBox(
+            height: 15.0.r,
+            width: 15.0.r,
+            child: CircularProgressIndicator.adaptive(
+              valueColor: AlwaysStoppedAnimation<Color>(AppColorManager.mainColor),
+            ),
+          ),
+        ),
+        controller: _refreshController,
+        onRefresh: _onRefresh,
+        child: widget.child,
       ),
-      controller: _refreshController,
-      onRefresh: _onRefresh,
-      child: widget.child,
     );
   }
 }

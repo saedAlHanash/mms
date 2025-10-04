@@ -35,23 +35,24 @@ class AppColorManager {
 
   static const f8 = Color(0xFFF8F8F8);
 
- static Color getColor(int i) {
+  static Color getColor(int i) {
     switch (i) {
       case 0:
       case 1:
-        return Colors.grey.withOpacity(0.1);
+        return Colors.grey.withValues(alpha: 0.1);
       case 2:
-        return Colors.grey.withOpacity(0.2);
+        return Colors.grey.withValues(alpha: 0.2);
       case 3:
-        return Colors.grey.withOpacity(0.3);
+        return Colors.grey.withValues(alpha: 0.3);
       case 4:
-        return Colors.grey.withOpacity(0.4);
+        return Colors.grey.withValues(alpha: 0.4);
       case 5:
-        return Colors.grey.withOpacity(0.5);
+        return Colors.grey.withValues(alpha: 0.5);
     }
     return f8f9;
   }
- static Color getPollColor(int i) {
+
+  static Color getPollColor(int i) {
     switch (i) {
       case 0:
         return Color(0xFF45227B);
@@ -71,20 +72,16 @@ class AppColorManager {
 }
 
 Color getColorFromHex(String hexColor) {
-  String formattedHexColor =
-      hexColor.replaceAll("#", ""); // Remove the '#' character if present
+  String formattedHexColor = hexColor.replaceAll("#", ""); // Remove the '#' character if present
   if (formattedHexColor.length == 6) {
-    formattedHexColor =
-        "FF$formattedHexColor"; // Add the alpha value if it's missing
+    formattedHexColor = "FF$formattedHexColor"; // Add the alpha value if it's missing
   }
-  int colorValue =
-      int.parse(formattedHexColor, radix: 16); // Parse the hex color string
+  int colorValue = int.parse(formattedHexColor, radix: 16); // Parse the hex color string
   return Color(colorValue);
 }
 
 bool isColorDark(Color color) {
-  final luminance =
-      (0.2126 * color.red + 0.7152 * color.green + 0.0722 * color.blue) / 255;
+  final luminance = (0.2126 * color.red + 0.7152 * color.green + 0.0722 * color.blue) / 255;
   return luminance < 0.5;
 }
 

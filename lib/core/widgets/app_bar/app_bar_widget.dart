@@ -42,7 +42,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         leading: Navigator.canPop(context) ? const BackBtnWidget() : null,
         actions: actions,
         elevation: elevation ?? 0.0,
-        shadowColor: AppColorManager.black.withOpacity(0.28),
+        shadowColor: AppColorManager.black.withValues(alpha: 0.28),
         iconTheme: const IconThemeData(color: AppColorManager.mainColor),
       ),
     );

@@ -1,9 +1,9 @@
+import 'package:m_cubit/abstraction.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/error/error_manager.dart';
-import '../../../../core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
-import '../../../../core/util/abstraction.dart';
+import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/pair_class.dart';
 import '../../data/response/notification_response.dart';
 
@@ -21,7 +21,6 @@ class NotificationCubit extends MCubit<NotificationInitial> {
   Future<void> getNotification({required String notificationId}) async {
     emit(state.copyWith(notificationId: notificationId));
 
-
     final pair = await _getNotification();
     if (pair.first == null) {
       emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));
@@ -33,7 +32,8 @@ class NotificationCubit extends MCubit<NotificationInitial> {
   }
 
   Future<Pair<NotificationModel?, String?>> _getNotification() async {
-    final response = await APIService().callApi(type: ApiType.get,
+    final response = await APIService().callApi(
+      type: ApiType.get,
       url: 'GetUrl.notification',
       query: {'Id': state.notificationId},
     );
@@ -44,5 +44,4 @@ class NotificationCubit extends MCubit<NotificationInitial> {
       return response.getPairError;
     }
   }
-
 }

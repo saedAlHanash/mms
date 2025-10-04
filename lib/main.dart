@@ -6,7 +6,6 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:m_cubit/caching_service/caching_service.dart';
 import 'package:mms/core/error/error_manager.dart';
 import 'package:mms/services/app_info_service.dart';
-import 'package:mms/services/caching_service/caching_service.dart';
 import 'package:mms/services/firebase_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

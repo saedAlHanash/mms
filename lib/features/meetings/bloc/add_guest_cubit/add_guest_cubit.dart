@@ -1,11 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:m_cubit/abstraction.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/error/error_manager.dart';
-import '../../../../core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
-import '../../../../core/util/abstraction.dart';
+import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/pair_class.dart';
 import '../../../../generated/l10n.dart';
 import '../../data/request/add_guest_request.dart';
@@ -28,7 +28,8 @@ class AddGuestCubit extends Cubit<AddGuestInitial> {
   }
 
   Future<Pair<bool?, String?>> _getData() async {
-    final response = await APIService().callApi(type: ApiType.post,
+    final response = await APIService().callApi(
+      type: ApiType.post,
       url: PostUrl.addGuest,
       body: state.request.toJson(),
     );

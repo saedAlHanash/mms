@@ -12,7 +12,7 @@ import 'package:mms/core/widgets/my_checkbox_widget.dart';
 import 'package:mms/features/poll/data/response/poll_response.dart';
 import 'package:mms/features/vote/data/request/create_vote_request.dart';
 
-import '../../../../core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
+import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/widgets/my_card_widget.dart';
 import '../../../../generated/l10n.dart';
 import '../../../vote/bloc/create_vote_cubit/create_vote_cubit.dart';
@@ -60,7 +60,7 @@ class _PollWidgetState extends State<PollWidget> {
                 width: 1.0.sw,
                 height: 40.0.h,
                 decoration: BoxDecoration(
-                  color: selected ? AppColorManager.mainColor.withOpacity(0.2) : Colors.transparent,
+                  color: selected ? AppColorManager.mainColor.withValues(alpha: 0.2) : Colors.transparent,
                   borderRadius: BorderRadius.circular(8.0.sp),
                 ),
                 padding: const EdgeInsets.symmetric(horizontal: 20.0).w,

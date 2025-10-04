@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:m_cubit/abstraction.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/error/error_manager.dart';
-import '../../../../core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
-import '../../../../core/util/abstraction.dart';
+import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/pair_class.dart';
 
 part 'delete_poll_state.dart';
@@ -29,7 +29,8 @@ class DeletePollCubit extends Cubit<DeletePollInitial> {
   }
 
   Future<Pair<bool?, String?>> _deletePollApi() async {
-       final  response = await APIService().callApi(type: ApiType.delete,
+    final response = await APIService().callApi(
+      type: ApiType.delete,
       url: DeleteUrl.deletePoll,
       query: {'id': state.request},
     );

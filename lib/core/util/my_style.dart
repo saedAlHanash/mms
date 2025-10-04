@@ -22,38 +22,38 @@ class MyStyle {
 
   static var drawerShape = ShapeDecoration(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
-      color: AppColorManager.mainColor.withOpacity(0.9));
+      color: AppColorManager.mainColor.withValues(alpha: 0.9));
 
   static var normalShadow = [
-    BoxShadow(color: AppColorManager.grey.withOpacity(0.6), blurRadius: 15, offset: const Offset(0, 5))
+    BoxShadow(color: AppColorManager.grey.withValues(alpha: 0.6), blurRadius: 15, offset: const Offset(0, 5))
   ];
 
   static var lightShadow = [
-    BoxShadow(color: AppColorManager.grey.withOpacity(0.5), blurRadius: 5, offset: const Offset(0, 2))
+    BoxShadow(color: AppColorManager.grey.withValues(alpha: 0.5), blurRadius: 5, offset: const Offset(0, 2))
   ];
 
   static var allShadow = [
     BoxShadow(
-      color: AppColorManager.grey.withOpacity(0.5),
+      color: AppColorManager.grey.withValues(alpha: 0.5),
       blurRadius: 10,
     )
   ];
   static var allShadowDark = [
     BoxShadow(
-      color: AppColorManager.grey.withOpacity(0.6),
+      color: AppColorManager.grey.withValues(alpha: 0.6),
       blurRadius: 10.spMin,
     )
   ];
 
   static final formBorder = OutlineInputBorder(
       borderSide: BorderSide(
-        color: AppColorManager.offWhit.withOpacity(0.27),
+        color: AppColorManager.offWhit.withValues(alpha: 0.27),
       ),
       borderRadius: BorderRadius.circular(10.0.r));
 
   static final hintStyle = TextStyle(
     fontSize: 18.0.spMin,
-    color: AppColorManager.grey.withOpacity(0.6),
+    color: AppColorManager.grey.withValues(alpha: 0.6),
   );
   static final textFormTextStyle = TextStyle(
     fontWeight: FontWeight.bold,
@@ -101,7 +101,7 @@ class MyStyle {
   );
 
   static var lightShadowMainColor = [
-    BoxShadow(color: AppColorManager.mainColor.withOpacity(0.2), blurRadius: 5, offset: const Offset(0, 2))
+    BoxShadow(color: AppColorManager.mainColor.withValues(alpha: 0.2), blurRadius: 5, offset: const Offset(0, 2))
   ];
 
   static final appBorderAll = Border.all(

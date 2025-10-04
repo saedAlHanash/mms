@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
+import 'package:m_cubit/abstraction.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/error/error_manager.dart';
-import '../../../../core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
-import '../../../../core/util/abstraction.dart';
+import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/pair_class.dart';
 import '../../data/request/create_vote_request.dart';
 import '../../data/response/vote_response.dart';
@@ -30,7 +30,6 @@ class CreateVoteCubit extends Cubit<CreateVoteInitial> {
       emit(state.copyWith(statuses: CubitStatuses.done, result: pair.first));
     }
   }
-
 
   Future<Pair<Vote?, String?>> _createVoteApi() async {
     late final Response response;

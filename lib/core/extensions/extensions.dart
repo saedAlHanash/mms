@@ -2,20 +2,24 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_multi_type/image_multi_type.dart';
 import 'package:intl/intl.dart';
+import 'package:livekit_client/livekit_client.dart';
+import 'package:m_cubit/abstraction.dart';
 import 'package:mms/core/api_manager/api_service.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:mms/features/committees/data/response/committees_response.dart';
 
+import '../../features/live_kit/ui/widget/participant_info.dart';
 import '../../features/meetings/data/response/meetings_response.dart';
 import '../../features/members/data/response/member_response.dart';
 import '../../features/poll/data/response/poll_response.dart';
 import '../../generated/l10n.dart';
 import '../app/app_provider.dart';
 import '../error/error_manager.dart';
-import '../strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
+import '../strings/enum_manager.dart';
 import '../util/pair_class.dart';
 import '../util/snack_bar_message.dart';
 import '../widgets/spinner_widget.dart';
@@ -57,8 +61,7 @@ extension SplitByLength on String {
   int get numberOnly {
     final regex = RegExp(r'\d+');
 
-    final numbers =
-        regex.allMatches(this).map((match) => match.group(0)).join();
+    final numbers = regex.allMatches(this).map((match) => match.group(0)).join();
 
     try {
       return int.parse(numbers);
@@ -80,12 +83,10 @@ extension SplitByLength on String {
   String? checkPhoneNumber(BuildContext context, String phone) {
     if (phone.startsWith('00964') && phone.length > 11) return phone;
     if (phone.length < 10) {
-      NoteMessage.showSnakeBar(
-          context: context, message: S.of(context).wrongPhone);
+      NoteMessage.showSnakeBar(context: context, message: S.of(context).wrongPhone);
       return null;
     } else if (phone.startsWith("0") && phone.length < 11) {
-      NoteMessage.showSnakeBar(
-          context: context, message: S.of(context).wrongPhone);
+      NoteMessage.showSnakeBar(context: context, message: S.of(context).wrongPhone);
       return null;
     }
 
@@ -122,7 +123,6 @@ extension StringHelper on String? {
   }
 
   String fixUrl({String? initialImage}) {
-
     if (initialImage.isBlank) return initialImage ?? '';
 
     final type = ImageMultiType.initialType(fixAvatarImage(this));
@@ -151,8 +151,7 @@ extension MaxInt on num {
 extension NeedUpdateEnumH on NeedUpdateEnum {
   bool get loading => this == NeedUpdateEnum.withLoading;
 
-  bool get haveData =>
-      this == NeedUpdateEnum.no || this == NeedUpdateEnum.noLoading;
+  bool get haveData => this == NeedUpdateEnum.no || this == NeedUpdateEnum.noLoading;
 
   CubitStatuses get getState {
     switch (this) {
@@ -195,9 +194,9 @@ extension EnumHelper on Enum {
       case MembershipType.member:
         return Colors.white;
       case MembershipType.chair:
-        return Colors.green.withOpacity(0.3);
+        return Colors.green.withValues(alpha: 0.3);
       case MembershipType.secretary:
-        return AppColorManager.ampere.withOpacity(0.3);
+        return AppColorManager.ampere.withValues(alpha: 0.3);
       default:
         return Colors.white;
     }
@@ -280,8 +279,7 @@ extension DateUtcHelper on DateTime {
     );
   }
 
-  DateTime initialFromDateTime(
-      {required DateTime date, required TimeOfDay time}) {
+  DateTime initialFromDateTime({required DateTime date, required TimeOfDay time}) {
     return DateTime(date.year, date.month, date.day, time.hour, time.minute);
   }
 
@@ -367,7 +365,6 @@ extension CommitteeHelper on Committee {
 
 extension MemberHelper on Member {
   bool get isMe {
-
     return id == AppProvider.getCurrentCommittee.member.id;
   }
 }
@@ -397,25 +394,21 @@ extension PoolH on Poll {
     return null;
   }
 
-    int get votersCount {
+  int get votersCount {
     final count = options.map((e) => e.voters.length).reduce((a, b) => a + b);
     return count;
   }
 }
+
 extension PollResultH on PollResult {
-
-
-
-    int get votersCount {
+  int get votersCount {
     final count = voteResults.map((e) => e.voteCount).reduce((a, b) => a + b);
     return count;
   }
 }
 
 extension OptionH on Option {
-  String? get voteId =>
-      voters.firstWhereOrNull((e) => e.partyId == AppProvider.getParty.id)?.id;
-
+  String? get voteId => voters.firstWhereOrNull((e) => e.partyId == AppProvider.getParty.id)?.id;
 }
 
 extension MeetingH on Meeting {
@@ -453,4 +446,51 @@ class FormatDateTime {
         '$minutes\n'
         '$seconds\n';
   }
+}
+
+extension ParticipantH on Participant {
+  String get displayName {
+    if (identity.isNotEmpty) return identity;
+    if (name.isNotEmpty) return name;
+    return sid;
+  }
+}
+
+extension ParticipantTrackH on ParticipantTrack {
+  RemoteParticipant get participant => this.participant as RemoteParticipant;
+
+  MediaType get type => this.type;
+
+  RemoteTrackPublication<RemoteVideoTrack>? get videoPublication =>
+      participant.videoTrackPublications.where((element) => element.source == type.videoSourceType).firstOrNull;
+
+  RemoteTrackPublication<RemoteAudioTrack>? get audioPublication =>
+      participant.audioTrackPublications.where((element) => element.source == type.audioSourceType).firstOrNull;
+
+  VideoTrack? get activeVideoTrack => videoPublication?.track;
+
+  AudioTrack? get activeAudioTrack => audioPublication?.track;
+
+  bool get videoActive => activeVideoTrack != null && !activeVideoTrack!.muted;
+
+  bool get audioActive => activeAudioTrack != null && !activeAudioTrack!.muted;
+
+  LkUserType get userType =>
+      LkUserType.values[(participant.attributes['lkUserType'] ?? 0).toString().tryParseOrZeroInt];
+}
+
+extension RemoteParticipantH on RemoteParticipant {
+  LkUserType get userType => LkUserType.values[(attributes['lkUserType'] ?? 0).toString().tryParseOrZeroInt];
+}
+
+extension ConnectionQualityH on ConnectionQuality {
+  Widget get icon => ImageMultiType(
+        url: this == ConnectionQuality.poor ? Icons.wifi_off_outlined : Icons.wifi,
+        color: {
+          ConnectionQuality.excellent: Colors.green,
+          ConnectionQuality.good: Colors.orange,
+          ConnectionQuality.poor: Colors.red,
+        }[this],
+        height: 16.0.dg,
+      );
 }

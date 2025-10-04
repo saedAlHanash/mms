@@ -1,11 +1,11 @@
 import 'package:bloc/bloc.dart';
+import 'package:m_cubit/abstraction.dart';
 import 'package:mms/core/extensions/extensions.dart';
-import 'package:mms/core/util/abstraction.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/api_manager/api_url.dart';
 import '../../../../core/error/error_manager.dart';
-import '../../../../core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
+import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/pair_class.dart';
 import '../../../../core/util/shared_preferences.dart';
 import '../../../../generated/l10n.dart';
@@ -31,7 +31,8 @@ class ConfirmCodeCubit extends Cubit<ConfirmCodeInitial> {
   }
 
   Future<Pair<LoginResponse?, String?>> _confirmCodeApi() async {
-    final response = await APIService().callApi(type: ApiType.post,
+    final response = await APIService().callApi(
+      type: ApiType.post,
       url: PostUrl.confirmCode,
       body: state.request.toJson(),
     );

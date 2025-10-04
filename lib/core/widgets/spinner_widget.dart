@@ -68,8 +68,8 @@ class SpinnerWidgetState<T> extends State<SpinnerWidget<T>> {
                   color: (item.id != -1)
                       ? (item.enable)
                           ? Colors.black
-                          : AppColorManager.grey.withOpacity(0.7)
-                      : AppColorManager.grey.withOpacity(0.7),
+                          : AppColorManager.grey.withValues(alpha: 0.7)
+                      : AppColorManager.grey.withValues(alpha: 0.7),
                   drawableStart: item.icon,
                   drawablePadding: 15.0.w,
                 ),

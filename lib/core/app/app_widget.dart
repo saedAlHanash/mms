@@ -17,11 +17,8 @@ import '../../generated/assets.dart';
 import '../../generated/l10n.dart';
 import '../../main.dart';
 import '../../router/app_router.dart';
-import '../api_manager/request_models/command.dart';
 import '../app_theme.dart';
 import '../injection/injection_container.dart';
-import '../strings/enum_manager.dart';
-import 'package:m_cubit/abstraction.dart';
 import '../util/shared_preferences.dart';
 
 class MyApp extends StatefulWidget {

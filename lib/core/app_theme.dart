@@ -9,16 +9,13 @@ const secondaryColor = AppColorManager.mainColorDark;
 final appTheme = ThemeData(
     appBarTheme: const AppBarTheme(
       backgroundColor: primaryColor,
-      systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarIconBrightness: Brightness.dark,
-        statusBarColor: AppColorManager.f9
-      ),
+      systemOverlayStyle:
+          SystemUiOverlayStyle(statusBarIconBrightness: Brightness.dark, statusBarColor: AppColorManager.f9),
       centerTitle: true,
     ),
     brightness: Brightness.light,
     primaryColor: primaryColor,
-    colorScheme: const ColorScheme.light(
-        primary: primaryColor, secondary: secondaryColor, background: Colors.white),
+    colorScheme: const ColorScheme.light(primary: primaryColor, secondary: secondaryColor, background: Colors.white),
     progressIndicatorTheme: const ProgressIndicatorThemeData(color: primaryColor),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: primaryColor,
@@ -47,14 +44,13 @@ final appTheme = ThemeData(
         backgroundColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
             if (states.contains(MaterialState.pressed)) {
-              return AppColorManager.mainColor.withOpacity(0.8);
+              return AppColorManager.mainColor.withValues(alpha: 0.8);
             }
             return AppColorManager.mainColor; // Use the component's default.
           },
         ),
         surfaceTintColor: const WidgetStatePropertyAll(AppColorManager.mainColor),
-        shape: const WidgetStatePropertyAll(
-            RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
+        shape: const WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
         overlayColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) => secondaryColor,
         ),
@@ -67,9 +63,8 @@ final appTheme = ThemeData(
       space: 40.0.h,
       thickness: 1.0.h,
     ),
-    iconButtonTheme: IconButtonThemeData(
-        style:
-            ButtonStyle(padding: WidgetStatePropertyAll(const EdgeInsets.all(2.0).r))),
+    iconButtonTheme:
+        IconButtonThemeData(style: ButtonStyle(padding: WidgetStatePropertyAll(const EdgeInsets.all(2.0).r))),
     checkboxTheme: const CheckboxThemeData(
       fillColor: WidgetStatePropertyAll(AppColorManager.mainColor),
     ),

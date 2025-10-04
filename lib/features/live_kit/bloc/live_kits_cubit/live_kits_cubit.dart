@@ -1,22 +1,22 @@
+import 'package:http/http.dart';
+import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/api_manager/api_service.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
-import 'package:mms/core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
+import 'package:mms/core/strings/enum_manager.dart';
 import 'package:mms/core/util/pair_class.dart';
-import 'package:mms/features/agora/data/request/create_agora_request.dart';
-import 'package:mms/features/agora/data/response/agora_response.dart';
-import 'package:http/http.dart';
-import 'package:m_cubit/m_cubit.dart';
+import 'package:mms/features/live_kit/data/request/create_live_kit_request.dart';
+import 'package:mms/features/live_kit/data/response/live_kit_response.dart';
 
 import '../../../../core/error/error_manager.dart';
 
-part 'agoras_state.dart';
+part 'live_kits_state.dart';
 
-class AgorasCubit extends MCubit<AgorasInitial> {
-  AgorasCubit() : super(AgorasInitial.initial()) ;
+class LiveKitsCubit extends MCubit<LiveKitsInitial> {
+  LiveKitsCubit() : super(LiveKitsInitial.initial());
 
   @override
-  String get nameCache => 'agoras';
+  String get nameCache => 'liveKits';
 
   @override
   String get filter => state.filter;
@@ -24,30 +24,31 @@ class AgorasCubit extends MCubit<AgorasInitial> {
   //region getData
 
   void getDataFromCache() => getFromCache(
-  fromJson: Agora.fromJson, 
-  state: state,   
-  onSuccess: (data) {
+        fromJson: LiveKit.fromJson,
+        state: state,
+        onSuccess: (data) {
           emit(state.copyWith(result: data));
-        },);
+        },
+      );
 
   Future<void> getData({bool newData = false}) async {
     await getDataAbstract(
-      fromJson: Agora.fromJson,
+      fromJson: LiveKit.fromJson,
       state: state,
       getDataApi: _getData,
       newData: newData,
     );
   }
 
-  Future<Pair<List<Agora>?, String?>> _getData() async {
+  Future<Pair<List<LiveKit>?, String?>> _getData() async {
     final response = await APIService().callApi(
       type: ApiType.post,
-      url: PostUrl.agoras,
+      url: PostUrl.liveKits,
       body: state.filterRequest?.toJson() ?? {},
     );
 
     if (response.statusCode.success) {
-      return Pair(Agoras.fromJson(response.jsonBody).items, null);
+      return Pair(LiveKits.fromJson(response.jsonBody).items, null);
     } else {
       return response.getPairError;
     }
@@ -61,7 +62,7 @@ class AgorasCubit extends MCubit<AgorasInitial> {
 
     final response = await APIService().callApi(
       type: ApiType.post,
-      url: PostUrl.createAgora,
+      url: PostUrl.createLiveKit,
       body: state.cRequest.toJson(),
     );
 
@@ -73,7 +74,7 @@ class AgorasCubit extends MCubit<AgorasInitial> {
 
     final response = await APIService().callApi(
       type: ApiType.put,
-      url: PutUrl.updateAgora,
+      url: PutUrl.updateLiveKit,
       query: {'id': state.cRequest.id},
       body: state.cRequest.toJson(),
     );
@@ -85,7 +86,7 @@ class AgorasCubit extends MCubit<AgorasInitial> {
 
     final response = await APIService().callApi(
       type: ApiType.delete,
-      url: DeleteUrl.deleteAgora,
+      url: DeleteUrl.deleteLiveKit,
       query: {'id': state.id.toString()},
     );
 
@@ -100,12 +101,12 @@ class AgorasCubit extends MCubit<AgorasInitial> {
 
     final response = await APIService().callApi(
       type: ApiType.delete,
-      url: DeleteUrl.deleteAgora,
+      url: DeleteUrl.deleteLiveKit,
       query: {'id': state.id.toString()},
     );
 
     if (response.statusCode.success) {
-      await deleteAgoraFromCache(item.id);
+      await deleteLiveKitFromCache(item.id);
     } else {
       showErrorFromApi(state);
       state.result.insert(index, item);
@@ -115,8 +116,8 @@ class AgorasCubit extends MCubit<AgorasInitial> {
 
   Future<void> _updateState(Response response, {bool isDelete = false}) async {
     if (response.statusCode.success) {
-      final item = Agora.fromJson(response.jsonBody);
-      isDelete ? await deleteAgoraFromCache(state.id.toString()) : await addOrUpdateAgoraToCache(item);
+      final item = LiveKit.fromJson(response.jsonBody);
+      isDelete ? await deleteLiveKitFromCache(state.id.toString()) : await addOrUpdateLiveKitToCache(item);
       emit(state.copyWith(statuses: CubitStatuses.done));
     } else {
       emit(state.copyWith(statuses: CubitStatuses.error, error: response.getPairError.second));
@@ -126,19 +127,17 @@ class AgorasCubit extends MCubit<AgorasInitial> {
 
   //endregion
 
-  Future<void> addOrUpdateAgoraToCache(Agora item) async {
+  Future<void> addOrUpdateLiveKitToCache(LiveKit item) async {
     final listJson = await addOrUpdateDate([item]);
     if (listJson == null) return;
-    final list = listJson.map((e) => Agora.fromJson(e)).toList();
+    final list = listJson.map((e) => LiveKit.fromJson(e)).toList();
     emit(state.copyWith(result: list));
   }
 
-  Future<void> deleteAgoraFromCache(String id) async {
+  Future<void> deleteLiveKitFromCache(String id) async {
     final listJson = await deleteDate([id]);
     if (listJson == null) return;
-    final list = listJson.map((e) => Agora.fromJson(e)).toList();
+    final list = listJson.map((e) => LiveKit.fromJson(e)).toList();
     emit(state.copyWith(result: list));
   }
 }
-
-   

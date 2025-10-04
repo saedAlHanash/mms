@@ -1,11 +1,8 @@
-      
-import 'package:mms/features/agora/bloc/agora_cubit/agora_cubit.dart';
-import 'package:mms/features/agora/bloc/agoras_cubit/agoras_cubit.dart';
-
-
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:mms/features/live_kit/bloc/live_kit_cubit/live_kit_cubit.dart';
+import 'package:mms/features/live_kit/bloc/live_kits_cubit/live_kits_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../features/agendas/bloc/add_comment_cubit/add_comment_cubit.dart';
@@ -36,19 +33,17 @@ import '../network/network_info.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  //region agora
-  sl.registerFactory(() => AgoraCubit());
-  sl.registerFactory(() => AgorasCubit());
+  //region liveKit
+  sl.registerFactory(() => LiveKitCubit());
+  sl.registerFactory(() => LiveKitsCubit());
   //endregion
 
   //region Core
 
-  sl.registerLazySingleton<NetworkInfo>(
-      () => NetworkInfoImpl(connectionChecker: sl()));
+  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(connectionChecker: sl()));
   sl.registerLazySingleton(() => InternetConnectionChecker.instance);
   sl.registerLazySingleton(() => LoadingCubit());
   sl.registerLazySingleton(() => GlobalKey<NavigatorState>());
-
 
   //endregion
 

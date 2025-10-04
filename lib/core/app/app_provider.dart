@@ -6,7 +6,7 @@ import '../../features/auth/data/response/login_response.dart';
 import '../../features/meetings/data/response/meetings_response.dart';
 import '../../generated/l10n.dart';
 import '../../router/app_router.dart';
-import '../strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
+import '../strings/enum_manager.dart';
 import '../util/shared_preferences.dart';
 import '../util/snack_bar_message.dart';
 import 'app_widget.dart';

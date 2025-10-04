@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:m_cubit/abstraction.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/app/app_provider.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/error/error_manager.dart';
-import '../../../../core/strings/enum_manager.dart';import 'package:m_cubit/abstraction.dart';
-import '../../../../core/util/abstraction.dart';
+import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/pair_class.dart';
 
 part 'forget_password_state.dart';
@@ -23,14 +23,14 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordInitial> {
       emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));
       showErrorFromApi(state);
     } else {
-     await AppProvider.cachePhone(phone:state.phoneC.text,type: StartPage.passwordOtp);
+      await AppProvider.cachePhone(phone: state.phoneC.text, type: StartPage.passwordOtp);
       emit(state.copyWith(statuses: CubitStatuses.done, result: pair.first));
     }
   }
 
   Future<Pair<bool?, String?>> _forgetPasswordApi() async {
-    final response = await APIService().callApi(type: ApiType.post,
-        url: PostUrl.forgetPassword, body: {'phone': state.phoneC.text});
+    final response =
+        await APIService().callApi(type: ApiType.post, url: PostUrl.forgetPassword, body: {'phone': state.phoneC.text});
 
     if (response.statusCode.success) {
       return Pair(true, null);
