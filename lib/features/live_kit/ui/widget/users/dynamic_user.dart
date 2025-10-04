@@ -9,12 +9,18 @@ class DynamicUser extends StatelessWidget {
   const DynamicUser({super.key, required this.participantTrack});
 
   final ParticipantTrack participantTrack;
+
   @override
   Widget build(BuildContext context) {
     if (participantTrack.participant is LocalParticipant) {
       return LocalUser(participantTrack: participantTrack);
     } else if (participantTrack.participant is RemoteParticipant) {
-      return RemoteUser(participantTrack: participantTrack);
+      return InteractiveViewer(
+        minScale: 1,
+        maxScale: 4.0,
+        panEnabled: true,
+        child: RemoteUser(participantTrack: participantTrack),
+      );
     }
     throw UnimplementedError('Unknown participant type');
   }

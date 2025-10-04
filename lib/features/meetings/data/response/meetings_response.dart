@@ -45,6 +45,8 @@ class Meeting {
     required this.documents,
     required this.agendaItems,
     required this.location,
+    required this.onlineMeetingUrl,
+    required this.onlineMeetingToken,
     required this.absenceRequests,
     required this.guestSuggestions,
     required this.decisions,
@@ -70,6 +72,8 @@ class Meeting {
   final List<Document> documents;
   final List<Agenda> agendaItems;
   final Location location;
+  final String onlineMeetingUrl;
+  final String onlineMeetingToken;
   final List<AbsenceRequest> absenceRequests;
   final List<Guest> guestSuggestions;
   final List<Decision> decisions;
@@ -102,6 +106,8 @@ class Meeting {
       agendaItems:
           json["agendaItems"] == null ? [] : List<Agenda>.from(json["agendaItems"]!.map((x) => Agenda.fromJson(x))),
       location: Location.fromJson(json["location"] ?? {}),
+      onlineMeetingUrl: json["onlineMeetingUrl"] ?? "",
+      onlineMeetingToken: json["onlineMeetingToken"] ?? "",
       absenceRequests: json["absenceRequests"] == null
           ? []
           : List<AbsenceRequest>.from(json["absenceRequests"]!.map((x) => AbsenceRequest.fromJson(x))),
@@ -136,6 +142,8 @@ class Meeting {
         "documents": documents.map((x) => x.toJson()).toList(),
         "agendaItems": agendaItems.map((x) => x.toJson()).toList(),
         "location": location.toJson(),
+        "onlineMeetingUrl": onlineMeetingUrl,
+        "onlineMeetingToken": onlineMeetingToken,
         "absenceRequests": absenceRequests.map((x) => x.toJson()).toList(),
         "guestSuggestions": guestSuggestions.map((x) => x.toJson()).toList(),
         "decisions": decisions.map((x) => x.toJson()).toList(),

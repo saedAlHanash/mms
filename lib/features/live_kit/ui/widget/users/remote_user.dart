@@ -65,12 +65,12 @@ class _RemoteUserState extends State<RemoteUser> {
     return videoActive
         ? VideoTrackRenderer(
             renderMode: VideoRenderMode.auto,
-            fit: VideoViewFit.cover,
+            fit: VideoViewFit.contain,
             activeVideoTrack!,
           )
         : ImageMultiType(
             url: participant.attributes['imageUrl'],
-            fit: BoxFit.cover,
+            fit: BoxFit.contain,
           );
   }
 }

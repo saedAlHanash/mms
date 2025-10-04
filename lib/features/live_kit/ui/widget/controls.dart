@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_background/flutter_background.dart';
+import 'package:flutter_webrtc/flutter_webrtc.dart' as rtc;
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:livekit_client/livekit_client.dart' as client;
 import 'package:livekit_client/livekit_client.dart';
@@ -13,11 +14,13 @@ class ControlsWidget extends StatefulWidget {
   //
   final Room room;
   final LocalParticipant participant;
+  final VoidCallback? onFullScreen;
 
   const ControlsWidget(
     this.room,
     this.participant, {
     super.key,
+    this.onFullScreen,
   });
 
   @override
@@ -32,6 +35,8 @@ class _ControlsWidgetState extends State<ControlsWidget> {
   List<MediaDevice>? _videoInputs;
 
   StreamSubscription? _subscription;
+
+  bool _fullScreen = false;
 
   bool _speakerphoneOn = Hardware.instance.speakerOn ?? false;
 
@@ -119,6 +124,10 @@ class _ControlsWidgetState extends State<ControlsWidget> {
       print('could not restart track: $error');
       return;
     }
+  }
+
+  void _onFullScreen() {
+    widget.onFullScreen?.call();
   }
 
   void _enableScreenShare() async {
@@ -264,48 +273,61 @@ class _ControlsWidgetState extends State<ControlsWidget> {
           if (participant.isMicrophoneEnabled())
             IconButton(
               onPressed: _disableAudio,
-              icon: const Icon(Icons.mic),
+              icon: const Icon(
+                Icons.mic,
+                color: Colors.green,
+              ),
               tooltip: 'mute audio',
             )
           else
             IconButton(
               onPressed: _enableAudio,
-              icon: const Icon(Icons.mic_off),
+              icon: const Icon(
+                Icons.mic_off,
+                color: Colors.red,
+              ),
               tooltip: 'un-mute audio',
             ),
           if (participant.isCameraEnabled())
             IconButton(
               onPressed: _disableVideo,
-              icon: const Icon(Icons.videocam),
+              icon: const Icon(
+                Icons.videocam,
+                color: Colors.green,
+              ),
               tooltip: 'mute video',
             )
           else
             IconButton(
               onPressed: _enableVideo,
-              icon: const Icon(Icons.videocam_off),
+              icon: const Icon(
+                Icons.videocam_off,
+                color: Colors.red,
+              ),
               tooltip: 'un-mute video',
             ),
           if (participant.isScreenShareEnabled())
             IconButton(
-              icon: const Icon(Icons.stop_screen_share_sharp),
+              icon: const Icon(Icons.screen_share_sharp, color: Colors.green),
               onPressed: () => _disableScreenShare(),
               tooltip: 'unshare screen (experimental)',
             )
           else
             IconButton(
-              icon: const Icon(Icons.screen_share_sharp),
+              icon: const Icon(Icons.stop_screen_share_sharp),
+              color: Colors.red,
               onPressed: () => _enableScreenShare(),
               tooltip: 'share screen (experimental)',
             ),
           IconButton(
-            onPressed: _onTapDisconnect,
-            icon: const Icon(Icons.call_end),
-            tooltip: 'disconnect',
-          ),
+              onPressed: () => _onFullScreen(), icon: const Icon(Icons.fullscreen), tooltip: 'enter full screen'),
           IconButton(
-            onPressed: _onTapSendData,
-            icon: const Icon(Icons.message),
-            tooltip: 'send demo data',
+            onPressed: _onTapDisconnect,
+            icon: const Icon(
+              Icons.call_end,
+              color: Colors.red,
+            ),
+            tooltip: 'disconnect',
           ),
         ],
       ),
