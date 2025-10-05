@@ -121,7 +121,7 @@ class NoteMessage {
     return (result ?? false);
   }
 
-  static Future<bool> showErrorDialog(BuildContext context, {required String text, bool tryAgne = true}) async {
+  static Future<bool> showErrorDialog(BuildContext context, {required String text, bool tryAgne = false}) async {
     // show the dialog
     final result = await showDialog(
       context: context,
@@ -136,30 +136,33 @@ class NoteMessage {
           ),
           elevation: 10.0,
           clipBehavior: Clip.hardEdge,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              DrawableText(
-                text: 'Oops!',
-                size: 20.0.spMin,
-                padding: const EdgeInsets.symmetric(vertical: 15.0).h,
-                fontWeight: FontWeight.bold,
-                color: AppColorManager.textColor,
-              ),
-              const Divider(color: Colors.black),
-              DrawableText(
-                text: text,
-                textAlign: TextAlign.center,
-                size: 16.0.spMin,
-                padding: const EdgeInsets.symmetric(vertical: 20.0).h,
-                fontWeight: FontWeight.bold,
-                color: AppColorManager.textColor,
-              ),
-              const Divider(color: Colors.black),
-              TextButton(
-                  onPressed: () => Navigator.pop(context, true),
-                  child: DrawableText(text: tryAgne ? 'Try Again' : 'OK'))
-            ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                DrawableText(
+                  text: 'Oops!',
+                  size: 20.0.spMin,
+                  padding: const EdgeInsets.symmetric(vertical: 15.0).h,
+                  fontWeight: FontWeight.bold,
+                  color: AppColorManager.textColor,
+                ),
+                const Divider(color: Colors.black),
+                DrawableText(
+                  text: text,
+                  textAlign: TextAlign.center,
+                  size: 16.0.spMin,
+                  padding: const EdgeInsets.symmetric(vertical: 20.0).h,
+                  fontWeight: FontWeight.bold,
+                  color: AppColorManager.textColor,
+                ),
+                const Divider(color: Colors.black),
+                TextButton(
+                    onPressed: () => Navigator.pop(context, true),
+                    child: DrawableText(text: tryAgne ? 'Try Again' : 'OK'))
+              ],
+            ),
           ),
         );
       },

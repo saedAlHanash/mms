@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -152,22 +153,22 @@ class _ControlsWidgetState extends State<ControlsWidget> {
     }
     if (lkPlatformIs(PlatformType.android)) {
       // Android specific
-      bool hasCapturePermission = await Helper.requestCapturePermission();
-      if (!hasCapturePermission) {
-        return;
-      }
+      final hasCapturePermission = await Helper.requestCapturePermission();
+      if (!hasCapturePermission) return;
 
       requestBackgroundPermission([bool isRetry = false]) async {
         // Required for android screenshare.
         try {
-          bool hasPermissions = await FlutterBackground.hasPermissions;
+          var hasPermissions = await FlutterBackground.hasPermissions;
+
           if (!isRetry) {
             const androidConfig = FlutterBackgroundAndroidConfig(
               notificationTitle: 'Screen Sharing',
-              notificationText: 'LiveKit Example is sharing the screen.',
+              notificationText: 'MMS is sharing the screen.',
               notificationImportance: AndroidNotificationImportance.normal,
               notificationIcon: AndroidResource(name: 'livekit_ic_launcher', defType: 'mipmap'),
             );
+
             hasPermissions = await FlutterBackground.initialize(androidConfig: androidConfig);
           }
           if (hasPermissions && !FlutterBackground.isBackgroundExecutionEnabled) {
@@ -194,8 +195,7 @@ class _ControlsWidgetState extends State<ControlsWidget> {
   void _disableScreenShare() async {
     await participant.setScreenShareEnabled(false);
 
-    if (lkPlatformIs(PlatformType.android)) {
-      // Android specific
+    if (Platform.isAndroid) {
       try {
         await FlutterBackground.disableBackgroundExecution();
       } catch (error) {

@@ -27,7 +27,7 @@ class ItemMeeting extends StatelessWidget {
         },
         title: DrawableText(
           text: item.title,
-         fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.bold,
           size: 20.0.sp,
         ),
         subtitle: Column(
@@ -36,6 +36,8 @@ class ItemMeeting extends StatelessWidget {
             10.0.verticalSpace,
             DrawableText(
               text: item.status.name,
+              matchParent: true,
+              maxLines: 1,
               color: item.status.color,
             ),
             3.0.verticalSpace,
@@ -57,6 +59,8 @@ class ItemMeeting extends StatelessWidget {
             ),
             3.0.verticalSpace,
             DrawableText(
+              matchParent: true,
+              // maxLines: 1,
               text: item.meetingPlace,
               drawableStart: ImageMultiType(
                 url: Icons.place,

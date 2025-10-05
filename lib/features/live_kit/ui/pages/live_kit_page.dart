@@ -335,7 +335,7 @@ class _LiveKitPageState extends State<LiveKitPage> {
                                   child: DynamicUser(participantTrack: item),
                                 );
                               }),
-                            if (room != null)
+                            if (room != null && room!.localParticipant != null)
                               ControlsWidget(
                                 room!,
                                 room!.localParticipant!,
@@ -379,4 +379,4 @@ class _Temp extends StatelessWidget {
 }
 
 const tTest =
-    'eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoic2FlZDIgMSIsImF0dHJpYnV0ZXMiOnsibGtVc2VyVHlwZSI6IjIifSwidmlkZW8iOnsicm9vbUpvaW4iOnRydWUsImNhblB1Ymxpc2giOnRydWUsImNhblN1YnNjcmliZSI6dHJ1ZSwiY2FuUHVibGlzaERhdGEiOnRydWUsInJvb20iOiJtMyJ9LCJpc3MiOiJBUEllU0ZpVjd4aUNSelIiLCJleHAiOjE3NTk1OTkyNDAsIm5iZiI6MCwic3ViIjoidXNlcjIifQ.lhUXtkxolB8kLcEICzVmHLFH-Y_njRjYkXUGQKSWdsM';
+    'eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoic2FlZCAxIiwiYXR0cmlidXRlcyI6eyJsa1VzZXJUeXBlIjoiMiJ9LCJ2aWRlbyI6eyJyb29tSm9pbiI6dHJ1ZSwiY2FuUHVibGlzaCI6dHJ1ZSwiY2FuU3Vic2NyaWJlIjp0cnVlLCJjYW5QdWJsaXNoRGF0YSI6dHJ1ZSwicm9vbSI6Im0zIn0sImlzcyI6IkFQSWVTRmlWN3hpQ1J6UiIsImV4cCI6MTc1OTY3NDQ4NywibmJmIjowLCJzdWIiOiJ1c2VyMSJ9.yMQvpv9SpJixqOQmbodFB1oDVBLctRny53BsaIHjAtA';

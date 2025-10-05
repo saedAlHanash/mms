@@ -1,107 +1,50 @@
-{
-  "hasRequestAbsence": false,
-  "attendeesList": [
-    {
-      "attendanceDate": "2025-09-30T08:38:09.0220095",
-      "hasAttended": true,
-      "partyId": "a4d0105e-a26c-4cbd-88b3-08dc8aebbe56",
-      "fullName": "عبد الرحمن العلبي",
-      "personalPhoto": null,
-      "locationType": null,
-      "isDelegator": null,
-      "attendanceDelegations": [],
-      "id": "142aa6cb-386f-4634-c9cd-08ddfffbcbfb"
-    },
-    {
-      "attendanceDate": "2025-09-30T08:38:09.0222091",
-      "hasAttended": true,
-      "partyId": "4e6d83a7-9dca-47e2-88b5-08dc8aebbe56",
-      "fullName": "سعيد الحنش",
-      "personalPhoto": null,
-      "locationType": null,
-      "isDelegator": null,
-      "attendanceDelegations": [],
-      "id": "8e6bd78c-652d-4f92-c9ce-08ddfffbcbfb"
-    },
-    {
-      "attendanceDate": "2025-09-30T08:38:09.0222452",
-      "hasAttended": true,
-      "partyId": "cf90dd78-9444-4711-50ce-08dc95b17f51",
-      "fullName": "خالد الأكرم",
-      "personalPhoto": null,
-      "locationType": null,
-      "isDelegator": null,
-      "attendanceDelegations": [],
-      "id": "f6ac9d55-29a8-4e8a-c9cf-08ddfffbcbfb"
-    },
-    {
-      "attendanceDate": "2025-09-30T08:38:09.0222656",
-      "hasAttended": true,
-      "partyId": "f5e7ebf0-72cc-4bc0-88b2-08dc8aebbe56",
-      "fullName": "ميسم محمد",
-      "personalPhoto": null,
-      "locationType": null,
-      "isDelegator": null,
-      "attendanceDelegations": [],
-      "id": "1593a737-b2bf-4151-c9d0-08ddfffbcbfb"
-    },
-    {
-      "attendanceDate": "2025-09-30T08:38:09.0222992",
-      "hasAttended": true,
-      "partyId": "bf60d8cc-37b1-4896-94f0-08dc95e559ad",
-      "fullName": "محمود المس",
-      "personalPhoto": null,
-      "locationType": null,
-      "isDelegator": null,
-      "attendanceDelegations": [],
-      "id": "9e6d6f5d-7407-4dfe-c9d1-08ddfffbcbfb"
-    },
-    {
-      "attendanceDate": "2025-09-30T08:38:09.0223348",
-      "hasAttended": true,
-      "partyId": "e2386c19-84b4-4f8e-42e6-08dc89670b11",
-      "fullName": "محمد طه العقلة",
-      "personalPhoto": null,
-      "locationType": null,
-      "isDelegator": null,
-      "attendanceDelegations": [],
-      "id": "d82bdba5-3900-4c70-c9d3-08ddfffbcbfb"
+[
+  {
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi2KfZhNmF2K_ZitixIDEiLCJhdHRyaWJ1dGVzIjp7ImxrVXNlclR5cGUiOiIwIn0sInZpZGVvIjp7InJvb21Kb2luIjp0cnVlLCJjYW5QdWJsaXNoIjp0cnVlLCJjYW5TdWJzY3JpYmUiOnRydWUsImNhblB1Ymxpc2hEYXRhIjp0cnVlLCJyb29tIjoibTMifSwiaXNzIjoiQVBJZVNGaVY3eGlDUnpSIiwiZXhwIjoxNzU5Njc0NDg3LCJuYmYiOjAsInN1YiI6Im1hbmFnZXIxIn0.uQLsY2lxnoDzLHFnM6M6wYdT1CrI20U3fq7DMPVPjao",
+    "room": "m3",
+    "identity": "manager1",
+    "display_name": "المدير 1",
+    "role": "participant",
+    "ttl": null,
+    "metadata": "",
+    "attributes": {
+      "lkUserType": "0"
     }
-  ],
-  "guestsList": [],
-  "discussions": [],
-  "documents": [],
-  "agendaItems": [],
-  "location": null,
-  "absenceRequests": [],
-  "guestSuggestions": [],
-  "decisions": [],
-  "polls": [],
-  "tasks": [],
-  "minutes": null,
-  "pollResults": null,
-  "title": "sd",
-  "meetingPlace": "دمشق - برامكة - رئاسة جامعة دمشق - بناء رقم 2 - القاعة 1",
-  "fromDate": "2025-09-30T08:39:00",
-  "toDate": "2025-09-30T10:39:00",
-  "scheduledDate": null,
-  "status": 1,
-  "committeeId": "f5e6e890-1315-43c1-9fb2-08dc95dda7a0",
-  "committeeName": null,
-  "hallId": "b0b54c4f-e8db-4f31-8ca0-08ddff6be5cb",
-  "hall": {
-    "name": "قاعة 1",
-    "capacity": 10,
-    "buildingId": "b0a2a0c0-b3d6-4992-7518-08ddff65a11e",
-    "building": {
-      "name": "بناء رقم 1",
-      "address": "دمشق ـ برامكة ـ رئاسة جامعة دمشق",
-      "id": "b0a2a0c0-b3d6-4992-7518-08ddff65a11e"
-    },
-    "hallEquipments": [],
-    "id": "b0b54c4f-e8db-4f31-8ca0-08ddff6be5cb"
   },
-  "onlineMeetingUrl": null,
-  "onlineMeetingToken": null,
-  "id": "2db1f822-37f5-460f-17a2-08ddfffbcbe6"
-}
+  {
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi2KfZhNmF2LTYp9ix2YMgMSIsImF0dHJpYnV0ZXMiOnsibGtVc2VyVHlwZSI6IjEifSwidmlkZW8iOnsicm9vbUpvaW4iOnRydWUsImNhblB1Ymxpc2giOnRydWUsImNhblN1YnNjcmliZSI6dHJ1ZSwiY2FuUHVibGlzaERhdGEiOnRydWUsInJvb20iOiJtMyJ9LCJpc3MiOiJBUEllU0ZpVjd4aUNSelIiLCJleHAiOjE3NTk2NzQ0ODcsIm5iZiI6MCwic3ViIjoic2hhcmVyMSJ9.Z_ImrX629DIWzH3D8F8G7F8NqZ4Qh1kEhQ_ZYLHb4ec",
+    "room": "m3",
+    "identity": "sharer1",
+    "display_name": "المشارك 1",
+    "role": "participant",
+    "ttl": null,
+    "metadata": "",
+    "attributes": {
+      "lkUserType": "1"
+    }
+  },
+  {
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoic2FlZCAxIiwiYXR0cmlidXRlcyI6eyJsa1VzZXJUeXBlIjoiMiJ9LCJ2aWRlbyI6eyJyb29tSm9pbiI6dHJ1ZSwiY2FuUHVibGlzaCI6dHJ1ZSwiY2FuU3Vic2NyaWJlIjp0cnVlLCJjYW5QdWJsaXNoRGF0YSI6dHJ1ZSwicm9vbSI6Im0zIn0sImlzcyI6IkFQSWVTRmlWN3hpQ1J6UiIsImV4cCI6MTc1OTY3NDQ4NywibmJmIjowLCJzdWIiOiJ1c2VyMSJ9.yMQvpv9SpJixqOQmbodFB1oDVBLctRny53BsaIHjAtA",
+    "room": "m3",
+    "identity": "user1",
+    "display_name": "saed 1",
+    "role": "participant",
+    "ttl": null,
+    "metadata": "",
+    "attributes": {
+      "lkUserType": "2"
+    }
+  },
+  {
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoic2FlZDIgMSIsImF0dHJpYnV0ZXMiOnsibGtVc2VyVHlwZSI6IjIifSwidmlkZW8iOnsicm9vbUpvaW4iOnRydWUsImNhblB1Ymxpc2giOnRydWUsImNhblN1YnNjcmliZSI6dHJ1ZSwiY2FuUHVibGlzaERhdGEiOnRydWUsInJvb20iOiJtMyJ9LCJpc3MiOiJBUEllU0ZpVjd4aUNSelIiLCJleHAiOjE3NTk2NzQ0ODcsIm5iZiI6MCwic3ViIjoidXNlcjIifQ.E_S6kR414MBiPGllRdqY6v_5Rsw6W2loMmDKnhY-t8s",
+    "room": "m3",
+    "identity": "user2",
+    "display_name": "saed2 1",
+    "role": "participant",
+    "ttl": null,
+    "metadata": "",
+    "attributes": {
+      "lkUserType": "2"
+    }
+  }
+]

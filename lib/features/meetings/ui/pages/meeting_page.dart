@@ -120,7 +120,7 @@ class MeetingPage extends StatelessWidget {
                           ),
                         ),
 
-                        const AbsentWidget(),
+                        // const AbsentWidget(),
                         20.0.verticalSpace,
                         ListTile(
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0.r)),
@@ -209,7 +209,7 @@ class _VideoCallState extends State<_VideoCall> {
                 ),
                 child: DrawableText(
                   padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 3.0).r,
-                  text: 'Video Call',
+                  text: 'Online Meeting',
                   matchParent: true,
                   drawableEnd: Padding(
                     padding: const EdgeInsets.all(10.0),
