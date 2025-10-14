@@ -236,7 +236,7 @@ class _LiveKitPageState extends State<LiveKitPage> {
   Future<void> _connect() async {
     setState(() => _busy = true);
 
-    var url = /*widget.link.isEmpty ?*/ 'wss://coretik.coretech-mena.com' /*: widget.link*/;
+    var url = /*widget.link.isEmpty ?*/ 'ws://192.168.1.69:7880' /*: widget.link*/;
 
     var token = /*widget.token.isEmpty ?*/ tTest /*: widget.token*/;
 
@@ -379,4 +379,4 @@ class _Temp extends StatelessWidget {
 }
 
 const tTest =
-    'eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoic2FlZCAxIiwiYXR0cmlidXRlcyI6eyJsa1VzZXJUeXBlIjoiMiJ9LCJ2aWRlbyI6eyJyb29tSm9pbiI6dHJ1ZSwiY2FuUHVibGlzaCI6dHJ1ZSwiY2FuU3Vic2NyaWJlIjp0cnVlLCJjYW5QdWJsaXNoRGF0YSI6dHJ1ZSwicm9vbSI6Im0zIn0sImlzcyI6IkFQSWVTRmlWN3hpQ1J6UiIsImV4cCI6MTc1OTY3NDQ4NywibmJmIjowLCJzdWIiOiJ1c2VyMSJ9.yMQvpv9SpJixqOQmbodFB1oDVBLctRny53BsaIHjAtA';
+    'eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiYWJkIGFsLVJhaG1hbiAiLCJhdHRyaWJ1dGVzIjp7ImxrVXNlclR5cGUiOiIyIn0sInZpZGVvIjp7InJvb21Kb2luIjp0cnVlLCJjYW5QdWJsaXNoIjp0cnVlLCJjYW5TdWJzY3JpYmUiOnRydWUsImNhblB1Ymxpc2hEYXRhIjp0cnVlLCJyb29tIjoibTMifSwiaXNzIjoiQVBJUXhaUGp3cEdvY2NyIiwiZXhwIjoxNzYwNDUxOTc0LCJuYmYiOjAsInN1YiI6InVzZXIyIn0.4zuEN0suI8Rtar5GF3Fdc96qfPECmbEPKcWd2OBqd0k';

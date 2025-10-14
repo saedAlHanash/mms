@@ -190,105 +190,113 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
               return RefreshWidget(
                 onRefresh: () => context.read<MeetingCubit>().getData(newData: true),
                 isLoading: state.loading,
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0).r,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      MyCardWidget(
-                        radios: 15.0.r,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            DrawableText(
-                              matchParent: true,
-                              fontWeight: FontWeight.bold,
-                              size: 20.0.sp,
-                              text: item.title,
-                            ),
-                            5.0.verticalSpace,
-                            DrawableText(
-                              text: item.meetingPlace,
-                              drawableStart: ImageMultiType(
-                                url: Icons.place,
-                                height: 15.0.r,
-                                width: 15.0.r,
-                              ),
-                            ),
-                            10.0.verticalSpace,
-                            Row(
+                child: Stack(
+                  children: [
+                    SingleChildScrollView(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0).r,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          MyCardWidget(
+                            radios: 15.0.r,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 DrawableText(
-                                  drawableStart: ImageMultiType(
-                                    url: Icons.not_started_rounded,
-                                    height: 24.0.r,
-                                    width: 24.0.r,
-                                    color: Colors.green,
-                                  ),
-                                  drawablePadding: 10.0.w,
-                                  text: item.fromDate?.formatDateTime ?? '',
+                                  matchParent: true,
+                                  fontWeight: FontWeight.bold,
+                                  size: 20.0.sp,
+                                  text: item.title,
                                 ),
-                                const Spacer(),
+                                5.0.verticalSpace,
                                 DrawableText(
+                                  text: item.meetingPlace,
                                   drawableStart: ImageMultiType(
-                                    url: Icons.edit_calendar,
-                                    color: Colors.black,
-                                    height: 24.0.r,
-                                    width: 24.0.r,
+                                    url: Icons.place,
+                                    height: 15.0.r,
+                                    width: 15.0.r,
                                   ),
-                                  drawablePadding: 10.0.w,
-                                  text: item.toDate?.formatDateTime ?? '',
+                                ),
+                                10.0.verticalSpace,
+                                Row(
+                                  children: [
+                                    DrawableText(
+                                      drawableStart: ImageMultiType(
+                                        url: Icons.not_started_rounded,
+                                        height: 24.0.r,
+                                        width: 24.0.r,
+                                        color: Colors.green,
+                                      ),
+                                      drawablePadding: 10.0.w,
+                                      text: item.fromDate?.formatDateTime ?? '',
+                                    ),
+                                    const Spacer(),
+                                    DrawableText(
+                                      drawableStart: ImageMultiType(
+                                        url: Icons.edit_calendar,
+                                        color: Colors.black,
+                                        height: 24.0.r,
+                                        width: 24.0.r,
+                                      ),
+                                      drawablePadding: 10.0.w,
+                                      text: item.toDate?.formatDateTime ?? '',
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
-                          ],
-                        ),
-                      ),
+                          ),
 
-                      // const AbsentWidget(),
-                      20.0.verticalSpace,
-                      ListTile(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0.r)),
-                        tileColor: AppColorManager.mainColor.withValues(alpha: 0.2),
-                        onTap: () {
-                          Navigator.pushNamed(context, RouteName.votes, arguments: context.read<MeetingCubit>());
-                        },
-                        title: DrawableText(
-                          text: S.of(context).votes,
-                          size: 20.0.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        trailing: state.result.countPollsNotVotes == 0
-                            ? ImageMultiType(url: Icons.arrow_forward_ios, color: Colors.grey, width: 17.0.sp)
-                            : Row(
-                                children: [
-                                  Container(
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Colors.red,
-                                    ),
-                                    padding: const EdgeInsets.all(7.0).r,
-                                    child: DrawableText(
-                                      text: state.result.countPollsNotVotes.toString(),
-                                      color: Colors.white,
-                                    ),
+                          // const AbsentWidget(),
+                          20.0.verticalSpace,
+                          ListTile(
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0.r)),
+                            tileColor: AppColorManager.mainColor.withValues(alpha: 0.2),
+                            onTap: () {
+                              Navigator.pushNamed(context, RouteName.votes, arguments: context.read<MeetingCubit>());
+                            },
+                            title: DrawableText(
+                              text: S.of(context).votes,
+                              size: 20.0.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            trailing: state.result.countPollsNotVotes == 0
+                                ? ImageMultiType(url: Icons.arrow_forward_ios, color: Colors.grey, width: 17.0.sp)
+                                : Row(
+                                    children: [
+                                      Container(
+                                        decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Colors.red,
+                                        ),
+                                        padding: const EdgeInsets.all(7.0).r,
+                                        child: DrawableText(
+                                          text: state.result.countPollsNotVotes.toString(),
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      5.0.horizontalSpace,
+                                      ImageMultiType(url: Icons.arrow_forward_ios, color: Colors.grey, width: 17.0.sp)
+                                    ],
                                   ),
-                                  5.0.horizontalSpace,
-                                  ImageMultiType(url: Icons.arrow_forward_ios, color: Colors.grey, width: 17.0.sp)
-                                ],
-                              ),
-                        leading: ImageMultiType(url: Icons.how_to_vote),
+                            leading: ImageMultiType(url: Icons.how_to_vote),
+                          ),
+                          20.0.verticalSpace,
+                          AgendaTreeWidget(
+                            treeNode: state.getAgendaTree(),
+                          ),
+                          20.0.verticalSpace,
+                          if (state.result.discussions.isNotEmpty) DiscussionsTree(treeNode: state.getDiscussionTree()),
+                          100.0.verticalSpace,
+                          // GoalListWidget(goals: item.goals),
+                        ],
                       ),
-                      20.0.verticalSpace,
-                      AgendaTreeWidget(
-                        treeNode: state.getAgendaTree(),
-                      ),
-                      20.0.verticalSpace,
-                      if (state.result.discussions.isNotEmpty) DiscussionsTree(treeNode: state.getDiscussionTree()),
-                      100.0.verticalSpace,
-                      // GoalListWidget(goals: item.goals),
-                    ],
-                  ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: _VideoCall(),
+                    ),
+                  ],
                 ),
               );
             },

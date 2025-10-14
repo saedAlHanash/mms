@@ -9,7 +9,11 @@ import 'package:flutter_webrtc/flutter_webrtc.dart' as rtc;
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:livekit_client/livekit_client.dart' as client;
 import 'package:livekit_client/livekit_client.dart';
+import 'package:mms/core/api_manager/api_service.dart';
+import 'package:mms/core/strings/enum_manager.dart';
 import 'package:mms/core/util/exts.dart';
+
+import '../../data/response/setting_message.dart';
 
 class ControlsWidget extends StatefulWidget {
   //
@@ -270,6 +274,29 @@ class _ControlsWidgetState extends State<ControlsWidget> {
         spacing: 5,
         runSpacing: 5,
         children: [
+          IconButton(
+            onPressed: () => _onFullScreen(),
+            icon: const Icon(Icons.fullscreen),
+            tooltip: 'enter full screen',
+          ),
+          IconButton(
+            onPressed: () async {
+              await widget.room.localParticipant?.publishData(
+                utf8.encode(
+                  jsonEncode(
+                    SettingMessage(
+                      sid: participant.sid,
+                      name: participant.name,
+                      action: ManagerActions.raseHand,
+                    ),
+                  ),
+                ),
+              );
+              loggerObject.w('send message ');
+            },
+            icon: const Icon(Icons.back_hand_outlined),
+            tooltip: 'raise hand',
+          ),
           if (participant.isMicrophoneEnabled())
             IconButton(
               onPressed: _disableAudio,
@@ -319,8 +346,6 @@ class _ControlsWidgetState extends State<ControlsWidget> {
               onPressed: () => _enableScreenShare(),
               tooltip: 'share screen (experimental)',
             ),
-          IconButton(
-              onPressed: () => _onFullScreen(), icon: const Icon(Icons.fullscreen), tooltip: 'enter full screen'),
           IconButton(
             onPressed: _onTapDisconnect,
             icon: const Icon(
