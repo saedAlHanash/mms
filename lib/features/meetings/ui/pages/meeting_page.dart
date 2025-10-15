@@ -47,7 +47,7 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
 
   final _nativePlugin = NativePlugin();
 
-  AppLifecycleState _lastAppLifecycleState = AppLifecycleState.resumed;
+  var _lastAppLifecycleState = AppLifecycleState.resumed;
 
   @override
   void initState() {

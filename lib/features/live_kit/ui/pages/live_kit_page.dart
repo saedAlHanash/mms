@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:math' as math;
 import 'package:flutter_background/flutter_background.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
@@ -129,7 +130,11 @@ class _LiveKitPageState extends State<LiveKitPage> {
 
               break;
             case ManagerActions.shareScreen:
-              me.setScreenShareEnabled(!(me.isScreenShareEnabled()));
+              if (me.isScreenShareEnabled()) {
+                _disableScreenShare();
+              } else {
+                _enableScreenShare();
+              }
               break;
             case ManagerActions.raseHand:
               break;
@@ -150,24 +155,43 @@ class _LiveKitPageState extends State<LiveKitPage> {
     });
 
   void _enableScreenShare() async {
+    if (lkPlatformIsDesktop()) {
+      try {
+        final source = await showDialog<DesktopCapturerSource>(
+          context: context,
+          builder: (context) => ScreenSelectDialog(),
+        );
+
+        if (source == null) return;
+
+        print('DesktopCapturerSource: ${source.id}');
+        var track = await LocalVideoTrack.createScreenShareTrack(
+          ScreenShareCaptureOptions(sourceId: source.id, maxFrameRate: 15.0),
+        );
+        await room!.localParticipant!.publishVideoTrack(track);
+      } catch (e) {
+        print('could not publish video: $e');
+      }
+      return;
+    }
     if (lkPlatformIs(PlatformType.android)) {
       // Android specific
-      bool hasCapturePermission = await Helper.requestCapturePermission();
-      if (!hasCapturePermission) {
-        return;
-      }
+      final hasCapturePermission = await Helper.requestCapturePermission();
+      if (!hasCapturePermission) return;
 
       requestBackgroundPermission([bool isRetry = false]) async {
         // Required for android screenshare.
         try {
-          bool hasPermissions = await FlutterBackground.hasPermissions;
+          var hasPermissions = await FlutterBackground.hasPermissions;
+
           if (!isRetry) {
             const androidConfig = FlutterBackgroundAndroidConfig(
               notificationTitle: 'Screen Sharing',
-              notificationText: 'LiveKit Example is sharing the screen.',
+              notificationText: 'MMS is sharing the screen.',
               notificationImportance: AndroidNotificationImportance.normal,
               notificationIcon: AndroidResource(name: 'livekit_ic_launcher', defType: 'mipmap'),
             );
+
             hasPermissions = await FlutterBackground.initialize(androidConfig: androidConfig);
           }
           if (hasPermissions && !FlutterBackground.isBackgroundExecutionEnabled) {
@@ -189,6 +213,18 @@ class _LiveKitPageState extends State<LiveKitPage> {
       return;
     }
     await room!.localParticipant!.setScreenShareEnabled(true, captureScreenAudio: true);
+  }
+
+  void _disableScreenShare() async {
+    await room!.localParticipant!.setScreenShareEnabled(false);
+
+    if (Platform.isAndroid) {
+      try {
+        await FlutterBackground.disableBackgroundExecution();
+      } catch (error) {
+        print('error disabling screen share: $error');
+      }
+    }
   }
 
   void _sortParticipants() {
@@ -379,4 +415,4 @@ class _Temp extends StatelessWidget {
 }
 
 const tTest =
-    'eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiYWJkIGFsLVJhaG1hbiAiLCJhdHRyaWJ1dGVzIjp7ImxrVXNlclR5cGUiOiIyIn0sInZpZGVvIjp7InJvb21Kb2luIjp0cnVlLCJjYW5QdWJsaXNoIjp0cnVlLCJjYW5TdWJzY3JpYmUiOnRydWUsImNhblB1Ymxpc2hEYXRhIjp0cnVlLCJyb29tIjoibTMifSwiaXNzIjoiQVBJUXhaUGp3cEdvY2NyIiwiZXhwIjoxNzYwNDUxOTc0LCJuYmYiOjAsInN1YiI6InVzZXIyIn0.4zuEN0suI8Rtar5GF3Fdc96qfPECmbEPKcWd2OBqd0k';
+    'eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiU2FlZCBBbCBIYW5hc2giLCJhdHRyaWJ1dGVzIjp7ImxrVXNlclR5cGUiOiIyIn0sInZpZGVvIjp7InJvb21Kb2luIjp0cnVlLCJjYW5QdWJsaXNoIjp0cnVlLCJjYW5TdWJzY3JpYmUiOnRydWUsImNhblB1Ymxpc2hEYXRhIjp0cnVlLCJyb29tIjoibTMifSwiaXNzIjoiQVBJUXhaUGp3cEdvY2NyIiwiZXhwIjoxNzYwNTUzMTAzLCJuYmYiOjAsInN1YiI6InVzZXIxIn0.3Xej7La7wgZMHNTi1Ya-tm4-B2wuCtyJU1WEJa6t8lY';
