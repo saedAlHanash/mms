@@ -441,7 +441,7 @@ class Guest {
     );
   }
 
-  get name => '$firstName $lastName';
+  String get name => '$firstName $lastName';
 
   Map<String, dynamic> toJson() => {
         "id": id,

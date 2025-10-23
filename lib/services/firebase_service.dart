@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/app/app_provider.dart';
-import 'package:mms/core/extensions/extensions.dart';
 
 import '../core/api_manager/api_service.dart';
 import '../core/strings/enum_manager.dart';

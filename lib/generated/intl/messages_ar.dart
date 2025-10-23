@@ -90,6 +90,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "confirm_address": MessageLookupByLibrary.simpleMessage("تأكيد العنوان"),
     "confirmation": MessageLookupByLibrary.simpleMessage("تأكيد"),
+    "connect": MessageLookupByLibrary.simpleMessage("Connect"),
     "contact": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
     "continueSignUp": MessageLookupByLibrary.simpleMessage("استكمال التسجيل"),
     "continueTo": MessageLookupByLibrary.simpleMessage("متابعة"),

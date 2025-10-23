@@ -51,7 +51,7 @@ class NoteMessage {
     ScaffoldMessenger.of(context).showSnackBar(snack);
   }
 
-  static showBottomSheet(BuildContext context, Widget child) {
+  static void showBottomSheet(BuildContext context, Widget child) {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.white,
@@ -259,7 +259,7 @@ class NoteMessage {
     ).show();
   }
 
-  static showAwesomeDoneDialog(BuildContext context, {required String message, Function()? onCancel}) async {
+  static Future<void> showAwesomeDoneDialog(BuildContext context, {required String message, Function()? onCancel}) async {
     await AwesomeDialog(
       context: context,
       dialogType: DialogType.success,

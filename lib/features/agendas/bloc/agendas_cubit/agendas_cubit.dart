@@ -1,4 +1,4 @@
-import 'package:m_cubit/abstraction.dart';
+import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
@@ -11,7 +11,8 @@ part 'agendas_state.dart';
 
 class AgendasCubit extends MCubit<GoaslInitial> {
   AgendasCubit() : super(GoaslInitial.initial());
-
+  @override
+  get mState => state;
   @override
   String get nameCache => 'agenda';
 

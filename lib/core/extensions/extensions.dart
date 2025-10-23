@@ -1,23 +1,26 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
+import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_multi_type/image_multi_type.dart';
 import 'package:intl/intl.dart';
+import 'package:livekit_client/livekit_client.dart' as lk;
 import 'package:livekit_client/livekit_client.dart';
-import 'package:m_cubit/abstraction.dart';
+import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/api_manager/api_service.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:mms/features/committees/data/response/committees_response.dart';
 
-import '../../features/live_kit/ui/widget/participant_info.dart';
 import '../../features/meetings/data/response/meetings_response.dart';
 import '../../features/members/data/response/member_response.dart';
 import '../../features/poll/data/response/poll_response.dart';
 import '../../generated/l10n.dart';
 import '../app/app_provider.dart';
+import '../app/app_widget.dart';
 import '../error/error_manager.dart';
 import '../strings/enum_manager.dart';
 import '../util/pair_class.dart';
@@ -114,14 +117,110 @@ extension SplitByLength on String {
   num? get tryParseOrNull => num.tryParse(this);
 
   int? get tryParseOrNullInt => int.tryParse(this);
+  String? get validateEmpty {
+    if (isEmpty) {
+      return S().is_required;
+    } else {
+      return null;
+    }
+  }
+
+  String get decimalNumbersOnly {
+    final matches = RegExp(r'\d+([.,]\d+)?').allMatches(this);
+    return matches.map((m) => m.group(0)).join(' ');
+  }
+
+  String get toSnakeCase {
+    final regex = RegExp(r'(?<=[a-z])[A-Z]');
+    return replaceAllMapped(regex, (match) => '_${match.group(0)}').toLowerCase();
+  }
+
+  String get toSplitsSpaceCase {
+    final regex = RegExp(r'(?<=[a-z])[A-Z]');
+    return replaceAllMapped(regex, (match) => '_${match.group(0)}').toLowerCase().replaceAll('_', ' ');
+  }
+
+  String get toPascalCase {
+    final words = split('_');
+    return words.map((word) => word[0].toUpperCase() + word.substring(1)).join();
+  }
+
+  String get toCamelCase {
+    final words = split('_');
+    if (words.isEmpty) return '';
+    final capitalized = words.map((word) => word[0].toUpperCase() + word.substring(1)).join();
+    return capitalized[0].toLowerCase() + capitalized.substring(1);
+  }
+
+  Color get colorFromId {
+    final hash = hashCode;
+    final hue = (hash % 360).toDouble(); // 0 → 360
+    const saturation = 0.6; // تشبع متوسط
+    const lightness = 0.5; // سطوع متوسط
+
+    return HSLColor.fromAHSL(1.0, hue, saturation, lightness).toColor();
+  }
+
+  Widget get copySymbol {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        GestureDetector(
+          onTap: () {
+            Clipboard.setData(ClipboardData(text: this));
+            ScaffoldMessenger.of(ctx!).showSnackBar(
+              SnackBar(content: Text(S().done)),
+            );
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: Colors.white12,
+            ),
+            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 1.0).r,
+            margin: EdgeInsets.symmetric(vertical: 3.0).r,
+            child: DrawableText(
+              text: this,
+              maxLength: 4,
+              drawablePadding: 5.0.w,
+              drawableEnd: ImageMultiType(
+                url: Icons.copy,
+                height: 15.0.r,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Color get gradeColor {
+    final upperCaseGrade = toUpperCase();
+    if (upperCaseGrade.contains('A')) {
+      return Colors.green;
+    } else if (upperCaseGrade.contains('B')) {
+      return Colors.blue;
+    } else if (upperCaseGrade.contains('C')) {
+      return Colors.yellow;
+    } else if (upperCaseGrade.contains('D')) {
+      return Colors.orange;
+    } else if (upperCaseGrade.contains('F')) {
+      return Colors.red;
+    } else {
+      // Return a default color or throw an error for unknown grades
+      return Colors.grey; // Or throw ArgumentError('Invalid grade: $this');
+    }
+  }
+
+  String get firstCharacter {
+    if (isEmpty) {
+      return '';
+    }
+    return this[0];
+  }
 }
 
 extension StringHelper on String? {
-  bool get isBlank {
-    if (this == null) return true;
-    return this!.replaceAll(' ', '').isEmpty;
-  }
-
   String fixUrl({String? initialImage}) {
     if (initialImage.isBlank) return initialImage ?? '';
 
@@ -146,23 +245,6 @@ extension MaxInt on num {
   int get max => 2147483647;
 
   String get formatPrice => oCcy.format(this);
-}
-
-extension NeedUpdateEnumH on NeedUpdateEnum {
-  bool get loading => this == NeedUpdateEnum.withLoading;
-
-  bool get haveData => this == NeedUpdateEnum.no || this == NeedUpdateEnum.noLoading;
-
-  CubitStatuses get getState {
-    switch (this) {
-      case NeedUpdateEnum.no:
-        return CubitStatuses.done;
-      case NeedUpdateEnum.withLoading:
-        return CubitStatuses.loading;
-      case NeedUpdateEnum.noLoading:
-        return CubitStatuses.done;
-    }
-  }
 }
 
 extension HelperJson on Map<String, dynamic> {
@@ -229,7 +311,7 @@ extension ResponseHelper on http.Response {
   // Pair<T?, String?> getPairError<T>() {
   //   return Pair(null, ErrorManager.getApiError(this));
   // }
-  get getPairError {
+  Pair<Null, String> get getPairError {
     return Pair(null, ErrorManager.getApiError(this));
   }
 }
@@ -449,38 +531,95 @@ class FormatDateTime {
 }
 
 extension ParticipantH on Participant {
-  String get displayName {
-    if (identity.isNotEmpty) return identity;
-    if (name.isNotEmpty) return name;
-    return sid;
+  RemoteParticipant get remoteParticipant => this as RemoteParticipant;
+
+  LocalParticipant get localParticipant => this as LocalParticipant;
+
+  MediaType get type => videoTrackPublications.any((e) => e.isScreenShare) ? MediaType.screen : MediaType.media;
+
+  RemoteTrackPublication<RemoteVideoTrack>? get remoteVideoPublication {
+    return remoteParticipant.videoTrackPublications.where((e) => e.source == type.videoSourceType).firstOrNull;
   }
-}
 
-extension ParticipantTrackH on ParticipantTrack {
-  RemoteParticipant get participant => this.participant as RemoteParticipant;
+  RemoteTrackPublication<RemoteAudioTrack>? get remoteAudioPublication =>
+      remoteParticipant.audioTrackPublications.where((e) => e.source == type.audioSourceType).firstOrNull;
 
-  MediaType get type => this.type;
+  LocalTrackPublication<LocalVideoTrack>? get localVideoPublication {
+    return localParticipant.videoTrackPublications.where((e) => e.source == type.videoSourceType).firstOrNull;
+  }
 
-  RemoteTrackPublication<RemoteVideoTrack>? get videoPublication =>
-      participant.videoTrackPublications.where((element) => element.source == type.videoSourceType).firstOrNull;
+  LocalTrackPublication<LocalAudioTrack>? get localAudioPublication =>
+      localParticipant.audioTrackPublications.where((e) => e.source == type.audioSourceType).firstOrNull;
 
-  RemoteTrackPublication<RemoteAudioTrack>? get audioPublication =>
-      participant.audioTrackPublications.where((element) => element.source == type.audioSourceType).firstOrNull;
+  bool get isAdmin {
+    return attributes['type'].toString() == LkUserType.manager.index.toString();
+  }
 
-  VideoTrack? get activeVideoTrack => videoPublication?.track;
+  String get image => attributes['imageUrl'].toString();
 
-  AudioTrack? get activeAudioTrack => audioPublication?.track;
+  //
+  // LocalTrackPublication<LocalVideoTrack>? get videoPublication {
+  //   return remoteParticipant.videoTrackPublications.where((e) => e.source == type.videoSourceType).firstOrNull;
+  // }
+  //
+  // LocalTrackPublication<LocalAudioTrack>? get audioPublication =>
+  //     remoteParticipant.audioTrackPublications.where((e) => e.source == type.audioSourceType).firstOrNull;
+
+  VideoTrack? get activeVideoTrack =>
+      (this is LocalParticipant) ? localVideoPublication?.track : remoteVideoPublication?.track;
+
+  AudioTrack? get activeAudioTrack =>
+      (this is LocalParticipant) ? localAudioPublication?.track : remoteAudioPublication?.track;
 
   bool get videoActive => activeVideoTrack != null && !activeVideoTrack!.muted;
 
   bool get audioActive => activeAudioTrack != null && !activeAudioTrack!.muted;
 
-  LkUserType get userType =>
-      LkUserType.values[(participant.attributes['lkUserType'] ?? 0).toString().tryParseOrZeroInt];
+  LkUserType get userType => LkUserType.values[(attributes['lkUserType'] ?? 0).toString().tryParseOrZeroInt];
+
+  String get displayName {
+    if (identity.isNotEmpty) return identity;
+    if (name.isNotEmpty) return name;
+    return sid;
+  }
+
+  bool get isSuspend => permissions.isSuspend;
 }
 
 extension RemoteParticipantH on RemoteParticipant {
   LkUserType get userType => LkUserType.values[(attributes['lkUserType'] ?? 0).toString().tryParseOrZeroInt];
+
+  RemoteAudioTrack? get activeAudioTrack => audioTrackPublications.firstWhereOrNull((e) => e.enabled)?.track;
+
+  RemoteVideoTrack? get shareScreenTrack => videoTrackPublications.firstWhereOrNull((e) => e.isScreenShare)?.track;
+
+  RemoteVideoTrack? get cameraTrack => videoTrackPublications.firstWhereOrNull((e) => !e.isScreenShare)?.track;
+}
+
+extension LocalParticipantH on LocalParticipant {
+  LkUserType get userType => LkUserType.values[(attributes['lkUserType'] ?? 0).toString().tryParseOrZeroInt];
+
+  LocalAudioTrack? get activeAudioTrack => audioTrackPublications.firstWhereOrNull((e) => !e.muted)?.track;
+
+  LocalVideoTrack? get shareScreenTrack => videoTrackPublications.firstWhereOrNull((e) => e.isScreenShare)?.track;
+
+  LocalVideoTrack? get cameraTrack => videoTrackPublications.firstWhereOrNull((e) => !e.isScreenShare)?.track;
+}
+
+extension ParticipantPermissionsH on ParticipantPermissions {
+  bool get isSuspend => !canSubscribe && !canPublish;
+
+  bool get isMuteAll => canSubscribe && !canPublish;
+
+  bool get isAll => canSubscribe && canPublish;
+
+  String get printFun {
+    return 'canSubscribe: $canSubscribe\n'
+        'canPublish: $canPublish\n'
+        'canPublishData: $canPublishData\n'
+        'canUpdateMetadata: $canUpdateMetadata\n'
+        'hidden: $hidden';
+  }
 }
 
 extension ConnectionQualityH on ConnectionQuality {
@@ -493,4 +632,14 @@ extension ConnectionQualityH on ConnectionQuality {
         }[this],
         height: 16.0.dg,
       );
+}
+
+extension ConnectionStateH on lk.ConnectionState {
+  bool get isDisconnected => this == lk.ConnectionState.disconnected;
+
+  bool get isConnecting => this == lk.ConnectionState.connecting;
+
+  bool get isReconnecting => this == lk.ConnectionState.reconnecting;
+
+  bool get isConnected => this == lk.ConnectionState.connected;
 }

@@ -11,7 +11,8 @@ part 'polls_state.dart';
 
 class PollsCubit extends MCubit<PollsInitial> {
   PollsCubit() : super(PollsInitial.initial());
-
+  @override
+  get mState => state;
   @override
   String get nameCache => 'polls';
 

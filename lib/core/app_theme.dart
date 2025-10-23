@@ -15,7 +15,7 @@ final appTheme = ThemeData(
     ),
     brightness: Brightness.light,
     primaryColor: primaryColor,
-    colorScheme: const ColorScheme.light(primary: primaryColor, secondary: secondaryColor, background: Colors.white),
+    colorScheme: const ColorScheme.light(primary: primaryColor, secondary: secondaryColor, surface: Colors.white),
     progressIndicatorTheme: const ProgressIndicatorThemeData(color: primaryColor),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: primaryColor,
@@ -41,9 +41,9 @@ final appTheme = ThemeData(
       style: ButtonStyle(
         alignment: Alignment.center,
         padding: WidgetStatePropertyAll(EdgeInsets.all(50.0.r)),
-        backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) {
-            if (states.contains(MaterialState.pressed)) {
+        backgroundColor: WidgetStateProperty.resolveWith<Color?>(
+          (Set<WidgetState> states) {
+            if (states.contains(WidgetState.pressed)) {
               return AppColorManager.mainColor.withValues(alpha: 0.8);
             }
             return AppColorManager.mainColor; // Use the component's default.
@@ -51,8 +51,8 @@ final appTheme = ThemeData(
         ),
         surfaceTintColor: const WidgetStatePropertyAll(AppColorManager.mainColor),
         shape: const WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
-        overlayColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) => secondaryColor,
+        overlayColor: WidgetStateProperty.resolveWith<Color?>(
+          (Set<WidgetState> states) => secondaryColor,
         ),
       ),
     ),

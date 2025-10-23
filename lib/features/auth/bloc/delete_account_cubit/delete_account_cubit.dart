@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:m_cubit/abstraction.dart';
+import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/strings/enum_manager.dart';
 
@@ -14,7 +14,6 @@ part 'delete_account_state.dart';
 
 class DeleteAccountCubit extends Cubit<DeleteAccountInitial> {
   DeleteAccountCubit() : super(DeleteAccountInitial.initial());
-  
 
   Future<void> deleteAccount(BuildContext context) async {
     emit(state.copyWith(statuses: CubitStatuses.loading));
@@ -25,23 +24,22 @@ class DeleteAccountCubit extends Cubit<DeleteAccountInitial> {
         NoteMessage.showSnakeBar(message: pair.second ?? '', context: context);
       }
       emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));
-    await  AppProvider.logout();
+      await AppProvider.logout();
     } else {
       emit(state.copyWith(statuses: CubitStatuses.done, result: pair.first));
     }
   }
 
   Future<Pair<bool?, String?>> _logoutApi() async {
-     
-      final response = await APIService().callApi(type: ApiType.post,
-        url: 'destroyAccount',
-      );
+    final response = await APIService().callApi(
+      type: ApiType.post,
+      url: 'destroyAccount',
+    );
 
-      if (response.statusCode == 200) {
-        return Pair(true, null);
-      } else {
-          return response.getPairError;
-      }
-     
+    if (response.statusCode == 200) {
+      return Pair(true, null);
+    } else {
+      return response.getPairError;
+    }
   }
 }

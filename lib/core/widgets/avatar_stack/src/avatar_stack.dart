@@ -22,7 +22,7 @@ import 'widget_stack.dart';
 /// If height or width are not set is gets them from parent.
 class AvatarStack extends StatelessWidget {
   const AvatarStack({
-    Key? key,
+    super.key,
     required this.avatars,
     this.settings,
     this.infoWidgetBuilder,
@@ -30,7 +30,7 @@ class AvatarStack extends StatelessWidget {
     this.height,
     this.borderWidth,
     this.borderColor,
-  }) : super(key: key);
+  });
 
   /// List of avatars.
   /// If you have avatars in Internet you can use [NetworkImage],
@@ -60,12 +60,9 @@ class AvatarStack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _settings =
-        settings ?? RestrictedPositions(maxCoverage: 0.4, minCoverage: 0.3);
+    final _settings = settings ?? RestrictedPositions(maxCoverage: 0.4, minCoverage: 0.3);
 
-    final border = BorderSide(
-        color: borderColor ?? Theme.of(context).colorScheme.onPrimary,
-        width: borderWidth ?? 2.0);
+    final border = BorderSide(color: borderColor ?? Theme.of(context).colorScheme.onPrimary, width: borderWidth ?? 2.0);
 
     return SizedBox(
       height: height,
@@ -73,8 +70,7 @@ class AvatarStack extends StatelessWidget {
       child: WidgetStack(
         positions: _settings,
         buildInfoWidget: infoWidgetBuilder,
-        stackedWidgets:
-            avatars.map((avatar) => CircleImageWidget(url: avatar)).toList(),
+        stackedWidgets: avatars.map((avatar) => CircleImageWidget(url: avatar)).toList(),
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:http/http.dart';
-import 'package:m_cubit/abstraction.dart';
+import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/app/app_provider.dart';
 import 'package:mms/core/extensions/extensions.dart';
 

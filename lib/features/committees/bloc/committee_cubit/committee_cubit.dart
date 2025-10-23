@@ -1,5 +1,5 @@
 import 'package:animated_tree_view/tree_view/tree_node.dart';
-import 'package:m_cubit/abstraction.dart';
+import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/features/goals/data/response/goals_response.dart';
@@ -13,7 +13,8 @@ part 'committee_state.dart';
 
 class CommitteeCubit extends MCubit<CommitteeInitial> {
   CommitteeCubit() : super(CommitteeInitial.initial());
-
+  @override
+  get mState => state;
   @override
   String get nameCache => 'committee';
 

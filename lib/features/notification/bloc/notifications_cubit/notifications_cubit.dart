@@ -11,7 +11,8 @@ part 'notifications_state.dart';
 
 class NotificationsCubit extends MCubit<NotificationsInitial> {
   NotificationsCubit() : super(NotificationsInitial.initial());
-
+  @override
+  get mState => state;
   @override
   String get nameCache => 'notifications';
 

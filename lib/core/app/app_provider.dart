@@ -56,7 +56,7 @@ class AppProvider {
   }
 
   static Future<void> login({required LoginResponse response}) async {
-    await AppSharedPreference.cashToken(response.accessToken);
+    AppSharedPreference.cashToken(response.accessToken);
     await AppSharedPreference.cashUser(response);
   }
 

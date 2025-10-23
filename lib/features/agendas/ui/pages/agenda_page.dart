@@ -132,12 +132,13 @@ class _AgendaPageState extends State<AgendaPage> {
         showRootNode: true,
         expansionBehavior: ExpansionBehavior.scrollToLastChild,
         expansionIndicatorBuilder: (context, node) {
-          if (node.isRoot)
+          if (node.isRoot) {
             return PlusMinusIndicator(
               tree: node,
               alignment: Alignment.centerLeft,
               color: Colors.grey[700],
             );
+          }
 
           return ChevronIndicator.rightDown(
             tree: node,

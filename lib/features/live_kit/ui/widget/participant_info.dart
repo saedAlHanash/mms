@@ -4,20 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:livekit_client/livekit_client.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
-import '../../../../core/strings/enum_manager.dart';
-
-extension ParticipantTrackTypeExt on MediaType {}
-
-class ParticipantTrack {
-  ParticipantTrack({
-    required this.participant,
-    this.type = MediaType.media,
-  });
-
-  Participant participant;
-  final MediaType type;
-}
-
 class ParticipantInfoWidget extends StatelessWidget {
   const ParticipantInfoWidget({
     this.title,

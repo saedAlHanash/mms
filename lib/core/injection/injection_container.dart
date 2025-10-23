@@ -23,6 +23,7 @@ import '../../features/meetings/bloc/meeting_cubit/meeting_cubit.dart';
 import '../../features/meetings/bloc/meetings_cubit/meetings_cubit.dart';
 import '../../features/notification/bloc/notifications_cubit/notifications_cubit.dart';
 import '../../features/profile/bloc/update_profile_cubit/update_profile_cubit.dart';
+import '../../features/room/bloc/room_cubit/room_cubit.dart';
 import '../../features/vote/bloc/create_vote_cubit/create_vote_cubit.dart';
 import '../../features/vote/bloc/delete_vote_cubit/delete_vote_cubit.dart';
 import '../../features/vote/bloc/vote_cubit/vote_cubit.dart';
@@ -34,6 +35,7 @@ final sl = GetIt.instance;
 
 Future<void> init() async {
   //region liveKit
+  sl.registerFactory(() => RoomCubit());
   sl.registerFactory(() => LiveKitCubit());
   sl.registerFactory(() => LiveKitsCubit());
   //endregion

@@ -95,6 +95,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "confirm_address": MessageLookupByLibrary.simpleMessage("Confirm Address"),
     "confirmation": MessageLookupByLibrary.simpleMessage("Confirmation"),
+    "connect": MessageLookupByLibrary.simpleMessage("Connect"),
     "contact": MessageLookupByLibrary.simpleMessage("Contact Us"),
     "continueSignUp": MessageLookupByLibrary.simpleMessage("Continue Sign Up"),
     "continueTo": MessageLookupByLibrary.simpleMessage("Continue"),

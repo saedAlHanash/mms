@@ -14,7 +14,8 @@ part 'live_kits_state.dart';
 
 class LiveKitsCubit extends MCubit<LiveKitsInitial> {
   LiveKitsCubit() : super(LiveKitsInitial.initial());
-
+  @override
+  get mState => state;
   @override
   String get nameCache => 'liveKits';
 

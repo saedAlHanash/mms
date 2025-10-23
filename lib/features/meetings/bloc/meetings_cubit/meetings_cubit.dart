@@ -14,7 +14,8 @@ part 'meetings_state.dart';
 
 class MeetingsCubit extends MCubit<MeetingsInitial> {
   MeetingsCubit() : super(MeetingsInitial.initial());
-
+  @override
+  get mState => state;
   @override
   String get nameCache => 'meeting';
 

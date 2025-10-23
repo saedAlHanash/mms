@@ -1,6 +1,7 @@
 part of 'login_social_cubit.dart';
 
 class LoginSocialInitial extends AbstractState<LoginResponse> {
+  @override
   final LoginRequest request;
  final  bool isTrainer;
   const LoginSocialInitial({

@@ -102,7 +102,7 @@ class GoalListWidget extends StatelessWidget {
 }
 
 class _TaskWidget extends StatelessWidget {
-  const _TaskWidget({super.key, required this.task});
+  const _TaskWidget({required this.task});
 
   final Task task;
 

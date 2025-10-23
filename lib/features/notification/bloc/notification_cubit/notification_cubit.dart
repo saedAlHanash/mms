@@ -1,4 +1,4 @@
-import 'package:m_cubit/abstraction.dart';
+import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
 import '../../../../core/api_manager/api_service.dart';
@@ -11,7 +11,8 @@ part 'notification_state.dart';
 
 class NotificationCubit extends MCubit<NotificationInitial> {
   NotificationCubit() : super(NotificationInitial.initial());
-
+  @override
+  get mState => state;
   @override
   String get nameCache => 'notification';
 

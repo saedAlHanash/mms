@@ -1,55 +1,37 @@
+import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
-import 'package:image_multi_type/image_multi_type.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:livekit_client/livekit_client.dart';
-
-import '../../../../../core/strings/enum_manager.dart';
-import '../participant_info.dart';
+import 'package:mms/core/extensions/extensions.dart';
 
 class RemoteUser extends StatefulWidget {
-  const RemoteUser({super.key, required this.participantTrack});
+  const RemoteUser({super.key, required this.participant, this.fit = VideoViewFit.contain});
 
-  final ParticipantTrack participantTrack;
+  final Participant participant;
+  final VideoViewFit fit;
 
   @override
   State<RemoteUser> createState() => _RemoteUserState();
 }
 
 class _RemoteUserState extends State<RemoteUser> {
-  RemoteParticipant get participant => widget.participantTrack.participant as RemoteParticipant;
-
-  MediaType get type => widget.participantTrack.type;
-
-  RemoteTrackPublication<RemoteVideoTrack>? get videoPublication =>
-      participant.videoTrackPublications.where((element) => element.source == type.videoSourceType).firstOrNull;
-
-  RemoteTrackPublication<RemoteAudioTrack>? get audioPublication =>
-      participant.audioTrackPublications.where((element) => element.source == type.audioSourceType).firstOrNull;
-
-  VideoTrack? get activeVideoTrack => videoPublication?.track;
-
-  AudioTrack? get activeAudioTrack => audioPublication?.track;
-
-  bool get videoActive => activeVideoTrack != null && !activeVideoTrack!.muted;
-
-  bool get audioActive => activeAudioTrack != null && !activeAudioTrack!.muted;
-
   @override
   void initState() {
     super.initState();
-    participant.addListener(_onParticipantChanged);
+    widget.participant.addListener(_onParticipantChanged);
     _onParticipantChanged();
   }
 
   @override
   void dispose() {
-    participant.removeListener(_onParticipantChanged);
+    widget.participant.removeListener(_onParticipantChanged);
     super.dispose();
   }
 
   @override
   void didUpdateWidget(covariant RemoteUser oldWidget) {
-    oldWidget.participantTrack.participant.removeListener(_onParticipantChanged);
-    participant.addListener(_onParticipantChanged);
+    oldWidget.participant.remoteParticipant.removeListener(_onParticipantChanged);
+    widget.participant.addListener(_onParticipantChanged);
     _onParticipantChanged();
     super.didUpdateWidget(oldWidget);
   }
@@ -62,15 +44,24 @@ class _RemoteUserState extends State<RemoteUser> {
 
   @override
   Widget build(BuildContext ctx) {
-    return videoActive
+    return widget.participant.videoActive
         ? VideoTrackRenderer(
             renderMode: VideoRenderMode.auto,
-            fit: VideoViewFit.contain,
-            activeVideoTrack!,
+            fit: widget.fit,
+            widget.participant.activeVideoTrack!,
           )
-        : ImageMultiType(
-            url: participant.attributes['imageUrl'],
-            fit: BoxFit.contain,
+        : Container(
+            height: 60.0,
+            width: 60.0,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: widget.participant.sid.colorFromId),
+            ),
+            alignment: AlignmentGeometry.center,
+            child: DrawableText(
+              text: widget.participant.displayName.firstCharacter.toUpperCase(),
+              size: 30.0.sp,
+            ),
           );
   }
 }

@@ -1,12 +1,8 @@
-import 'dart:io';
-
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
-import 'package:mms/core/api_manager/api_service.dart';
 import 'package:mms/core/app/app_provider.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
@@ -18,8 +14,7 @@ import 'package:mms/features/attendees/ui/widget/attendees_list_widget.dart';
 import 'package:mms/features/committees/ui/widget/drawer_btn_widget.dart';
 import 'package:mms/features/live_kit/ui/pages/live_kit_page.dart';
 import 'package:mms/features/meetings/ui/widget/discussions_tree.dart';
-import 'package:native_plugin/native_plugin.dart';
-import 'package:pip/pip.dart';
+import 'package:mms/services/pip.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../../router/app_router.dart';
@@ -34,83 +29,16 @@ class MeetingPage extends StatefulWidget {
 }
 
 class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
-  final _pip = Pip();
-  final _formKey = GlobalKey<FormState>();
-
-  bool _isPipSupported = false;
-  bool _isPipAutoEnterSupported = false;
-  bool _isPipActive = false;
-  final int _playerView = 0;
-  int _pipContentView = 0;
-
-  bool _autoEnterEnabled = false;
-
-  final _nativePlugin = NativePlugin();
-
-  var _lastAppLifecycleState = AppLifecycleState.resumed;
-
   @override
   void initState() {
     WidgetsBinding.instance.addObserver(this);
-    initPlatformState();
+    PipService.initial();
     super.initState();
-  }
-
-  Future<void> initPlatformState() async {
-    try {
-      await _nativePlugin.getPlatformVersion();
-      _isPipSupported = await _pip.isSupported();
-      _isPipAutoEnterSupported = await _pip.isAutoEnterSupported();
-      _isPipActive = await _pip.isActived();
-      await _pip.registerStateChangedObserver(PipStateChangedObserver(
-        onPipStateChanged: (state, error) {
-          setState(() {
-            _isPipActive = state == PipState.pipStateStarted;
-          });
-
-          if (state == PipState.pipStateFailed) {
-            _pip.dispose();
-          }
-        },
-      ));
-    } on PlatformException {
-      _isPipSupported = false;
-      _isPipAutoEnterSupported = false;
-      _isPipActive = false;
-    }
-    _autoEnterEnabled = true;
-    setState(() {});
-    await _setupPip();
-    setState(() {});
-  }
-
-  Future<void> _setupPip() async {
-    if (Platform.isIOS && _pipContentView == 0) {
-      _pipContentView = await _nativePlugin.createPipContentView();
-    }
-
-    final options = PipOptions(
-      autoEnterEnabled: _autoEnterEnabled,
-      seamlessResizeEnabled: true,
-      useExternalStateMonitor: true,
-      externalStateMonitorInterval: 100,
-      // ios only
-      contentView: _pipContentView,
-      sourceContentView: _playerView,
-      controlStyle: 2,
-    );
-
-    try {
-      await _pip.setup(options);
-    } catch (_) {}
   }
 
   @override
   void dispose() {
-    if (Platform.isIOS && _pipContentView != 0) {
-      _nativePlugin.disposePipContentView(_pipContentView);
-    }
-
+    PipService.dispose();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
@@ -118,29 +46,9 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
   @override
   Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
     super.didChangeAppLifecycleState(state);
-
-    if (state == AppLifecycleState.inactive) {
-      if (_lastAppLifecycleState != AppLifecycleState.paused && !_isPipAutoEnterSupported) {
-        await _pip.start();
-      }
-    } else if (state == AppLifecycleState.resumed) {
-      if (!Platform.isAndroid) await _pip.stop();
-    }
-
-    switch (state) {
-      case AppLifecycleState.resumed:
-      case AppLifecycleState.inactive:
-      case AppLifecycleState.paused:
-      case AppLifecycleState.detached:
-        if (_lastAppLifecycleState != state) {
-          setState(() {
-            _lastAppLifecycleState = state;
-          });
-        }
-        break;
-      default:
-        break;
-    }
+    PipService.didChangeAppLifecycleState(state).then(
+      (value) => setState(() {}),
+    );
   }
 
   @override
@@ -162,12 +70,7 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
       ],
       child: PopScope(
         canPop: false,
-        onPopInvokedWithResult: (didPop, result) {
-          loggerObject.w('$result $didPop');
-          // return;
-          if (!_isPipSupported) return;
-          final success = _pip.start();
-        },
+        onPopInvokedWithResult: (didPop, result) {},
         child: Scaffold(
           appBar: AppBarWidget(
             titleText: S.of(context).meeting,
@@ -308,7 +211,7 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
 }
 
 class _VideoCall extends StatefulWidget {
-  const _VideoCall({super.key});
+  const _VideoCall();
 
   @override
   State<_VideoCall> createState() => _VideoCallState();

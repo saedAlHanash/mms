@@ -1,4 +1,4 @@
-import 'package:m_cubit/abstraction.dart';
+import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
@@ -12,7 +12,8 @@ part 'document_state.dart';
 
 class DocumentCubit extends MCubit<DocumentInitial> {
   DocumentCubit() : super(DocumentInitial.initial());
-
+  @override
+  get mState => state;
   @override
   String get nameCache => 'temp';
 

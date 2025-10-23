@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:m_cubit/abstraction.dart';
+import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
 import '../../../../core/api_manager/api_service.dart';

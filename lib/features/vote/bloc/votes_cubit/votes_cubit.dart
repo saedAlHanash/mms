@@ -12,7 +12,8 @@ part 'votes_state.dart';
 
 class VotesCubit extends MCubit<VotesInitial> {
   VotesCubit() : super(VotesInitial.initial());
-
+  @override
+  get mState => state;
   @override
   String get nameCache => 'votes';
 

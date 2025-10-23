@@ -1,6 +1,7 @@
 part of 'confirm_code_cubit.dart';
 
 class ConfirmCodeInitial extends AbstractState<LoginResponse> {
+  @override
   final LoginRequest request;
 
   const ConfirmCodeInitial({

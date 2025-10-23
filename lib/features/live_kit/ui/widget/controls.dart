@@ -5,7 +5,6 @@ import 'dart:io';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_background/flutter_background.dart';
-import 'package:flutter_webrtc/flutter_webrtc.dart' as rtc;
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:livekit_client/livekit_client.dart' as client;
 import 'package:livekit_client/livekit_client.dart';
@@ -14,19 +13,19 @@ import 'package:mms/core/strings/enum_manager.dart';
 import 'package:mms/core/util/exts.dart';
 
 import '../../data/response/setting_message.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class ControlsWidget extends StatefulWidget {
-  //
-  final Room room;
-  final LocalParticipant participant;
-  final VoidCallback? onFullScreen;
-
   const ControlsWidget(
     this.room,
     this.participant, {
     super.key,
     this.onFullScreen,
   });
+  //
+  final Room room;
+  final LocalParticipant participant;
+  final VoidCallback? onFullScreen;
 
   @override
   State<StatefulWidget> createState() => _ControlsWidgetState();
@@ -41,7 +40,7 @@ class _ControlsWidgetState extends State<ControlsWidget> {
 
   StreamSubscription? _subscription;
 
-  bool _fullScreen = false;
+  final bool _fullScreen = false;
 
   bool _speakerphoneOn = Hardware.instance.speakerOn ?? false;
 
@@ -93,9 +92,13 @@ class _ControlsWidgetState extends State<ControlsWidget> {
   }
 
   void _enableVideo() async {
-    await participant.setCameraEnabled(
-      true,
-    );
+    if (await Permission.camera.isGranted) {
+      await participant.setCameraEnabled(
+        true,
+      );
+    } else {
+      await Permission.camera.request();
+    }
   }
 
   void _selectAudioOutput(MediaDevice device) async {
@@ -227,7 +230,7 @@ class _ControlsWidgetState extends State<ControlsWidget> {
   void _onTapSimulateScenario() async {
     final result = await context.showSimulateScenarioDialog();
     if (result != null) {
-      print('${result}');
+      print('$result');
 
       if (SimulateScenarioResult.e2eeKeyRatchet == result) {
         await widget.room.e2eeManager?.ratchetKey();

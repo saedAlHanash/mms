@@ -265,5 +265,6 @@
   "version": "الإصدار",
   "build": "رقم الإصدار",
   "discussions": "نقاشات",
-  "poweredByCoretech": "صمم بواسطة CORETECH"
+  "poweredByCoretech": "صمم بواسطة CORETECH",
+  "connect": "Connect"
 }

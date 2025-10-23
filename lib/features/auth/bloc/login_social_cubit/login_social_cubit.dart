@@ -1,6 +1,6 @@
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:m_cubit/abstraction.dart';
+import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/features/auth/data/request/login_request.dart';
 
 import '../../../../core/api_manager/api_service.dart';

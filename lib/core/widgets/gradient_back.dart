@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-
-class GradientBack extends StatelessWidget {
-  const GradientBack({Key? key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
+// import 'package:flutter/material.dart';
+//
+// class GradientBack extends StatelessWidget {
+//   const GradientBack({super.key, Key? key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return const Placeholder();
+//   }
+// }

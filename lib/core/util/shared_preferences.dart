@@ -18,18 +18,18 @@ class AppSharedPreference {
 
   static late SharedPreferences _prefs;
 
-  static init(SharedPreferences preferences) async {
+  static Future<void> init(SharedPreferences preferences) async {
     _prefs = preferences;
   }
 
-  static cashToken(String? token) {
+  static void cashToken(String? token) {
     if (token == null) return;
     _prefs.setString(_token, token);
   }
 
   static String get getToken => _prefs.getString(_token) ?? '';
 
-  static cashUser(LoginResponse user) async {
+  static Future<void> cashUser(LoginResponse user) async {
     final json = user.toJson();
     await _prefs.setString(_user, jsonEncode(json));
   }
@@ -37,7 +37,7 @@ class AppSharedPreference {
   static LoginResponse get getUser =>
       LoginResponse.fromJson(jsonDecode(_prefs.getString(_user) ?? '{}'));
 
-  static cashParty(Party user) async {
+  static Future<void> cashParty(Party user) async {
     final json = user.toJson();
     await _prefs.setString(_party, jsonEncode(json));
   }
@@ -51,7 +51,7 @@ class AppSharedPreference {
 
   static String get getFireToken => _prefs.getString(_fireToken) ?? '';
 
-  static cashPhone(String? phone) async {
+  static Future<void> cashPhone(String? phone) async {
     if (phone == null) return;
     await _prefs.setString(_phoneNumber, phone);
   }
@@ -64,7 +64,7 @@ class AppSharedPreference {
     await _prefs.remove(_phoneNumber);
   }
 
-  static cashStartPage(StartPage type) async {
+  static Future<void> cashStartPage(StartPage type) async {
     await _prefs.setInt(_screenType, type.index);
   }
 
@@ -81,7 +81,7 @@ class AppSharedPreference {
 
   static String get getLocal => _prefs.getString(_lang) ?? 'en';
 
-  static cashNotificationState(bool n) {
+  static void cashNotificationState(bool n) {
     _prefs.setBool(_notifications, n);
   }
 
