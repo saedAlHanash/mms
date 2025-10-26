@@ -48,11 +48,12 @@ class APIService {
     Map<String, String>? header,
     String? path,
     String? hostName,
+    String? additional,
   }) async {
     // if (!await network.isConnected) noInternet;
 
     final uri =
-        getUri(url: url, query: query, path: path, body: body, type: type);
+        getUri(url: url, query: query, path: path, body: body, type: type, additional: additional, hostName: hostName);
 
     try {
       late final http.Response response;
@@ -64,23 +65,19 @@ class APIService {
               .timeout(connectionTimeOut, onTimeout: () => timeOut);
         case ApiType.post:
           response = await http
-              .post(uri,
-                  body: jsonEncode(body), headers: (header ?? innerHeader))
+              .post(uri, body: jsonEncode(body), headers: (header ?? innerHeader))
               .timeout(connectionTimeOut, onTimeout: () => timeOut);
         case ApiType.put:
           response = await http
-              .put(uri,
-                  body: jsonEncode(body), headers: (header ?? innerHeader))
+              .put(uri, body: jsonEncode(body), headers: (header ?? innerHeader))
               .timeout(connectionTimeOut, onTimeout: () => timeOut);
         case ApiType.patch:
           response = await http
-              .patch(uri,
-                  body: jsonEncode(body), headers: (header ?? innerHeader))
+              .patch(uri, body: jsonEncode(body), headers: (header ?? innerHeader))
               .timeout(connectionTimeOut, onTimeout: () => timeOut);
         case ApiType.delete:
           response = await http
-              .delete(uri,
-                  body: jsonEncode(body), headers: (header ?? innerHeader))
+              .delete(uri, body: jsonEncode(body), headers: (header ?? innerHeader))
               .timeout(connectionTimeOut, onTimeout: () => timeOut);
       }
 

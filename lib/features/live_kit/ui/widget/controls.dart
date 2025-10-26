@@ -288,7 +288,7 @@ class _ControlsWidgetState extends State<ControlsWidget> {
                 utf8.encode(
                   jsonEncode(
                     SettingMessage(
-                      sid: participant.sid,
+                      identity: participant.identity,
                       name: participant.name,
                       action: ManagerActions.raseHand,
                     ),

@@ -46,7 +46,7 @@ class UserImageOrName extends StatelessWidget {
             width: size,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(color: participant.sid.colorFromId),
+              border: Border.all(color: participant.identity.colorFromId),
             ),
             alignment: AlignmentGeometry.center,
             child: DrawableText(

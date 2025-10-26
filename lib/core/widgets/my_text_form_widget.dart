@@ -44,7 +44,7 @@ class MyTextFormOutLineWidget extends StatefulWidget {
   final int maxLength;
   final bool obscureText;
   final TextAlign textAlign;
-  final Function(String)? onChanged;
+  final Function(String s)? onChanged;
   final Function(bool)? onChangedFocus;
   final Function()? onTap;
 

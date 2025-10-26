@@ -55,7 +55,7 @@ class _RemoteUserState extends State<RemoteUser> {
             width: 60.0,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(color: widget.participant.sid.colorFromId),
+              border: Border.all(color: widget.participant.identity.colorFromId),
             ),
             alignment: AlignmentGeometry.center,
             child: DrawableText(

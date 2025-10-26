@@ -1,8 +1,9 @@
+import 'dart:io';
+
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../core/api_manager/api_service.dart';
-import '../core/app/app_widget.dart';
-import '../generated/l10n.dart';
 
 PackageInfo? _appData;
 
@@ -18,5 +19,20 @@ class AppInfoService {
   static PackageInfo get appInfo => _appData!;
 
   static String get fullVersionName =>
-      '${S.of(ctx!).version}:( ${appInfo.version} ) | ${S.of(ctx!).build}:( ${appInfo.buildNumber} )';
+      'version:( ${appInfo.version} ) | Build:( ${appInfo.buildNumber} )';
+}
+
+Future<String?> getDeviceIdAsync() async {
+  final deviceInfoPlugin = DeviceInfoPlugin();
+  String? deviceId;
+
+  if (Platform.isAndroid) {
+    AndroidDeviceInfo androidInfo = await deviceInfoPlugin.androidInfo;
+    deviceId = androidInfo.id;
+  } else if (Platform.isIOS) {
+    IosDeviceInfo iosInfo = await deviceInfoPlugin.iosInfo;
+    deviceId = iosInfo.identifierForVendor ?? '';
+  }
+
+  return deviceId;
 }

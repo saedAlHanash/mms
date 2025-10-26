@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_multi_type/image_multi_type.dart';
 import 'package:livekit_client/livekit_client.dart';
+import 'package:mms/core/api_manager/api_service.dart';
 import 'package:mms/core/extensions/extensions.dart';
+import 'package:mms/core/strings/enum_manager.dart';
 import 'package:mms/core/util/my_style.dart';
 import 'package:mms/core/widgets/my_button.dart';
+import 'package:mms/core/widgets/my_text_form_widget.dart';
 import 'package:mms/features/live_kit/ui/widget/controls.dart';
+import 'package:mms/features/live_kit/ui/widget/video_widget.dart';
 
 import '../../../../generated/l10n.dart';
+import '../../../../services/app_info_service.dart';
 import '../../../room/bloc/room_cubit/room_cubit.dart';
 import '../widget/users/dynamic_user.dart';
 
@@ -42,12 +48,48 @@ class _LiveKitPageState extends State<LiveKitPage> {
 
   Future<void> _connect() async {
     context.read<RoomCubit>()
-      ..setToken(
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzYWVkIHVzZXIiLCJqdGkiOiJzYWVkIHVzZXIiLCJpc3MiOiJBUEllU0ZpVjd4aUNSelIiLCJuYmYiOjE3NjEyMjQ4ODksImlhdCI6MTc2MTIyNDg4OSwiZXhwIjoxNzYxMjI4NDg5LCJ2aWRlbyI6eyJhZ2VudCI6ZmFsc2UsImNhblB1Ymxpc2giOnRydWUsImNhblB1Ymxpc2hEYXRhIjp0cnVlLCJjYW5QdWJsaXNoU291cmNlcyI6W10sImNhblN1YnNjcmliZSI6dHJ1ZSwiY2FuU3Vic2NyaWJlTWV0cmljcyI6ZmFsc2UsImNhblVwZGF0ZU93bk1ldGFkYXRhIjpmYWxzZSwiZGVzdGluYXRpb25Sb29tIjoiIiwiaGlkZGVuIjpmYWxzZSwiaW5ncmVzc0FkbWluIjpmYWxzZSwicmVjb3JkZXIiOmZhbHNlLCJyb29tIjoiczEiLCJyb29tQWRtaW4iOmZhbHNlLCJyb29tQ3JlYXRlIjp0cnVlLCJyb29tSm9pbiI6dHJ1ZSwicm9vbUxpc3QiOnRydWUsInJvb21SZWNvcmQiOmZhbHNlfSwic2lwIjp7ImFkbWluIjpmYWxzZSwiY2FsbCI6ZmFsc2V9LCJuYW1lIjoic2FlZCBhbCBIYW5hc2giLCJtZXRhZGF0YSI6IiIsInNoYTI1NiI6IiIsImtpbmQiOiIiLCJhdHRyaWJ1dGVzIjp7InR5cGUiOiIyIiwiaW1hZ2VVcmwiOiJodHRwczovL3Njb250ZW50LXNvZjEtMS54eC5mYmNkbi5uZXQvdi90MzkuMzA4MDgtNi8zMDA0OTczNTFfMTY4MTM0MTY1ODkxNDg2MV8zMjczOTAyMzM2OTA2NDQ0NTg2X24uanBnP19uY19jYXQ9MTA0JmNjYj0xLTcmX25jX3NpZD02ZWUxMWEmX25jX29oYz1vRENFRUZ6TlhuUVE3a052d0VzVGc1dCZfbmNfb2M9QWRrZXVibjB5NGhIZURGMUNUTG5uNlE0Q2pfSFhjT0NQTmpiRTZEcVpjS2lnclpLanVIY1RraEtkUXdmZ3NRUEJRdyZfbmNfenQ9MjMmX25jX2h0PXNjb250ZW50LXNvZjEtMS54eCZfbmNfZ2lkPWtHcGY1TEpXb3lheklic0cxdTYtc2cmb2g9MDBfQWZmc3RoVnltanFhNkM1UWJtclUtMGFkRkI5dWpDazk1RkZHdDJESnFzNVM0dyZvZT02OEZFRDQyMCJ9LCJyb29tQ29uZmlnIjp7fX0.KIS_jSVy6_0UxrA2G8YmJi97scqa4i_SnmxTTZv3JBw')
-      ..setUrl('wss://coretik.coretech-mena.com')
-      ..connect();
+      ..setToken(controller.text)
+      ..setUrl('wss://coretik.coretech-mena.com');
+    await context.read<RoomCubit>().initial();
+    await context.read<RoomCubit>().connect();
     // if (!(await _checkPermissions())) return;
   }
+
+  Future<void> getToken() async {
+    final dId = await getDeviceIdAsync();
+    final r = await APIService().callApi(
+      url: 'GetJoinToken',
+      type: ApiType.post,
+      hostName: 'coretik-be.coretech-mena.com',
+      additional: '/api/v1/Index/',
+      body: {
+        "identity": "$dId",
+        "name": "${dId}user",
+        "videoGrants": {
+          "canPublish": true,
+          "canPublishData": true,
+          "canSubscribe": true,
+          "room": "s1",
+          "roomAdmin": false,
+          "roomCreate": true,
+          "roomJoin": true,
+          "roomList": false
+        },
+        "attributes": {
+          "type": "2",
+          // "imageUrl": ""
+        }
+      },
+    );
+
+    try {
+      setState(() {
+        controller.text = r.jsonBodyPure['token'];
+      });
+    } catch (e) {}
+  }
+
+  var controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -68,21 +110,24 @@ class _LiveKitPageState extends State<LiveKitPage> {
                         : Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              if (state.result.connectionState.isDisconnected)
+                              if (state.result.connectionState.isDisconnected) ...[
+                                MyTextFormOutLineWidget(
+                                  label: 'Token',
+                                  controller: controller,
+                                  icon: IconButton(
+                                    onPressed: () {
+                                      getToken();
+                                    },
+                                    icon: ImageMultiType(url: Icons.generating_tokens),
+                                  ),
+                                ),
+                                10.0.verticalSpace,
                                 MyButton(
                                   onTap: _connect,
                                   text: S.of(context).connect,
                                 )
-                              else
-                                Builder(builder: (context) {
-                                  final item = state.participantTracks.isNotEmpty
-                                      ? state.participantTracks.first
-                                      : state.result.localParticipant!;
-                                  return AspectRatio(
-                                    aspectRatio: 16 / 9,
-                                    child: DynamicUser(participant: item),
-                                  );
-                                }),
+                              ] else
+                                VideoWidget(),
                               if (state.result.localParticipant != null && state.result.connectionState.isConnected)
                                 ControlsWidget(
                                   state.result,
@@ -128,6 +173,3 @@ class _Temp extends StatelessWidget {
     );
   }
 }
-
-const tTest =
-    'eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiU2FlZCBBbCBIYW5hc2giLCJhdHRyaWJ1dGVzIjp7ImxrVXNlclR5cGUiOiIyIn0sInZpZGVvIjp7InJvb21Kb2luIjp0cnVlLCJjYW5QdWJsaXNoIjp0cnVlLCJjYW5TdWJzY3JpYmUiOnRydWUsImNhblB1Ymxpc2hEYXRhIjp0cnVlLCJyb29tIjoibTMifSwiaXNzIjoiQVBJUXhaUGp3cEdvY2NyIiwiZXhwIjoxNzYwNTUzMTAzLCJuYmYiOjAsInN1YiI6InVzZXIxIn0.3Xej7La7wgZMHNTi1Ya-tm4-B2wuCtyJU1WEJa6t8lY';

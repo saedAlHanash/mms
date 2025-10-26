@@ -22,7 +22,6 @@ class RoomCubit extends MCubit<RoomInitial> {
   get mState => state;
 
   Future<void> initial() async {
-    await Permission.microphone.request();
     await state.result.prepareConnection(state.url, state.token);
     state.result.addListener(_sortParticipants);
     setListeners();
@@ -36,7 +35,10 @@ class RoomCubit extends MCubit<RoomInitial> {
         // end call and dispose all
       })
       //re sort list users
-      ..on<ParticipantEvent>((e) => _sortParticipants())
+      ..on<ParticipantEvent>((e) {
+        loggerObject.w(e.toString());
+        _sortParticipants();
+      })
       ..on<LocalTrackPublishedEvent>((e) => _sortParticipants())
       ..on<LocalTrackUnpublishedEvent>((e) => _sortParticipants())
       ..on<TrackSubscribedEvent>((e) => _sortParticipants())
@@ -50,7 +52,7 @@ class RoomCubit extends MCubit<RoomInitial> {
         try {
           final message = SettingMessage.fromJson(jsonDecode(utf8.decode(e.data)));
           loggerObject.w(message.toJson());
-          // if (message.sid != state.result.localParticipant?.sid) return;
+          // if (message.identity != state.result.localParticipant?.identity) return;
           switch (message.action) {
             case ManagerActions.mic:
               break;
@@ -59,12 +61,12 @@ class RoomCubit extends MCubit<RoomInitial> {
             case ManagerActions.shareScreen:
               break;
             case ManagerActions.raseHand:
-              emit(state.copyWith(raiseHands: state.raiseHands..add(message.sid)));
+              emit(state.copyWith(raiseHands: state.raiseHands..add(message.identity)));
               Future.delayed(
                 Duration(seconds: 5),
                 () {
                   emit(state.copyWith(raiseHands: {
-                    ...state.raiseHands..remove(message.sid),
+                    ...state.raiseHands..remove(message.identity),
                   }, id: state.notifyIndex + 1));
                 },
               );
@@ -77,38 +79,50 @@ class RoomCubit extends MCubit<RoomInitial> {
   }
 
   void _sortParticipants() {
-    List<Participant> userMediaTracks = [];
+    // List<Participant> userMediaTracks = [];
     List<Participant> screenTracks = [];
 
     for (var participant in state.result.remoteParticipants.values) {
-      screenTracks.add(participant);
+      if (participant.videoTrackPublications.isNotEmpty) {
+        screenTracks.add(participant);
+      }
     }
 
     if (state.result.localParticipant != null) {
-      screenTracks.add(state.result.localParticipant!);
-    }
-
-    userMediaTracks.sort((a, b) {
-      if (a.isSpeaking && b.isSpeaking) {
-        return (a.audioLevel > b.audioLevel) ? -1 : 1;
+      if ((state.result.localParticipant?.videoTrackPublications ?? []).isNotEmpty) {
+        screenTracks.add(state.result.localParticipant!);
       }
+    }
+    //
+    // userMediaTracks.sort((a, b) {
+    //   if (a.isSpeaking && b.isSpeaking) {
+    //     return (a.audioLevel > b.audioLevel) ? -1 : 1;
+    //   }
+    //
+    //   // last spoken at
+    //   final aSpokeAt = a.lastSpokeAt?.millisecondsSinceEpoch ?? 0;
+    //   final bSpokeAt = b.lastSpokeAt?.millisecondsSinceEpoch ?? 0;
+    //
+    //   if (aSpokeAt != bSpokeAt) return aSpokeAt > bSpokeAt ? -1 : 1;
+    //
+    //   // video on
+    //   if (a.hasVideo != b.hasVideo) return a.hasVideo ? -1 : 1;
+    //
+    //   // joinedAt
+    //   return a.joinedAt.millisecondsSinceEpoch - b.joinedAt.millisecondsSinceEpoch;
+    // });
 
-      // last spoken at
-      final aSpokeAt = a.lastSpokeAt?.millisecondsSinceEpoch ?? 0;
-      final bSpokeAt = b.lastSpokeAt?.millisecondsSinceEpoch ?? 0;
+    final list = [
+      ...screenTracks, /*...userMediaTracks*/
+    ];
 
-      if (aSpokeAt != bSpokeAt) return aSpokeAt > bSpokeAt ? -1 : 1;
+    final selectedTruck = state.selectedParticipantId.isNotEmpty
+        ? null
+        : list.isEmpty
+            ? null
+            : list.first.identity;
 
-      // video on
-      if (a.hasVideo != b.hasVideo) return a.hasVideo ? -1 : 1;
-
-      // joinedAt
-      return a.joinedAt.millisecondsSinceEpoch - b.joinedAt.millisecondsSinceEpoch;
-    });
-
-    final list = [...screenTracks, ...userMediaTracks];
-
-    emit(state.copyWith(participantTracks: list, id: state.notifyIndex + 1));
+    emit(state.copyWith(participantTracks: list, selectedParticipantId: selectedTruck, id: state.notifyIndex + 1));
   }
 
   Future<void> connect() async {
@@ -145,8 +159,8 @@ class RoomCubit extends MCubit<RoomInitial> {
     );
   }
 
-  void selectParticipant(String participantTrackId) {
-    emit(state.copyWith(selectedUserId: participantTrackId));
+  void selectParticipant(String participantId) {
+    emit(state.copyWith(selectedParticipantId: participantId));
   }
 
   Future<bool> _checkPermissions() async {
