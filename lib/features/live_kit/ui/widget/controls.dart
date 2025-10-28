@@ -22,6 +22,7 @@ class ControlsWidget extends StatefulWidget {
     super.key,
     this.onFullScreen,
   });
+
   //
   final Room room;
   final LocalParticipant participant;

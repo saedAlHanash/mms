@@ -7,6 +7,7 @@ import 'package:mms/core/api_manager/api_service.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/strings/enum_manager.dart';
 import 'package:mms/core/util/my_style.dart';
+import 'package:mms/core/util/shared_preferences.dart';
 import 'package:mms/core/widgets/my_button.dart';
 import 'package:mms/core/widgets/my_text_form_widget.dart';
 import 'package:mms/features/live_kit/ui/widget/controls.dart';
@@ -29,6 +30,8 @@ class LiveKitPage extends StatefulWidget {
 }
 
 class _LiveKitPageState extends State<LiveKitPage> {
+  var controller = TextEditingController(text: AppSharedPreference.getTokenVC);
+
   void showFullScreenDialog() {
     showGeneralDialog(
       context: context,
@@ -37,9 +40,7 @@ class _LiveKitPageState extends State<LiveKitPage> {
       pageBuilder: (context, _, __) {
         return BlocBuilder<RoomCubit, RoomInitial>(
           builder: (context, state) {
-            final item =
-                state.participantTracks.isNotEmpty ? state.participantTracks.first : state.result.localParticipant;
-            return _Temp(item: item!);
+            return _Temp(item: state.selectedParticipant!);
           },
         );
       },
@@ -66,7 +67,7 @@ class _LiveKitPageState extends State<LiveKitPage> {
         "identity": "$dId",
         "name": "${dId}user",
         "videoGrants": {
-          "canPublish": true,
+          "canPublish": false,
           "canPublishData": true,
           "canSubscribe": true,
           "room": "s1",
@@ -81,15 +82,10 @@ class _LiveKitPageState extends State<LiveKitPage> {
         }
       },
     );
-
-    try {
-      setState(() {
-        controller.text = r.jsonBodyPure['token'];
-      });
-    } catch (e) {}
+    final token = r.jsonBodyPure['token'];
+    AppSharedPreference.cashTokenVC(token);
+    controller.text = token;
   }
-
-  var controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
