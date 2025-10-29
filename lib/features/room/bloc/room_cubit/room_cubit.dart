@@ -4,13 +4,14 @@ import 'package:collection/collection.dart';
 import 'package:livekit_client/livekit_client.dart';
 import 'package:m_cubit/abstraction.dart';
 import 'package:mms/core/error/error_manager.dart';
+import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/util/exts.dart';
-import 'package:mms/core/util/shared_preferences.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/app/app_widget.dart';
 import '../../../../core/strings/enum_manager.dart';
+import '../../../../main.dart';
 import '../../data/request/setting_message.dart';
 
 part 'room_state.dart';
@@ -20,6 +21,12 @@ class RoomCubit extends MCubit<RoomInitial> {
 
   @override
   get mState => state;
+
+  @override
+  String get nameCache => 'roomNotes';
+
+  @override
+  String get filter => state.result.name ?? '';
 
   Future<void> initial() async {
     await state.result.prepareConnection(state.url, state.token);
@@ -38,7 +45,6 @@ class RoomCubit extends MCubit<RoomInitial> {
       // 🔹🔹 أحداث عامة للمشاركين (Participant Events)
       // هذا الحدث عام، يُطلق عند حدوث أي تغيير يخص المشاركين (اتصال، نشر، إلغاء نشر...).
       ..on<ParticipantEvent>((e) {
-        loggerObject.d(e.toString());
         _sortParticipants();
       })
 
@@ -136,7 +142,12 @@ class RoomCubit extends MCubit<RoomInitial> {
       // ..on<ParticipantConnectionQualityUpdatedEvent>((e) => _sortParticipants())
 
       // 🔹 عندما تتغير صلاحيات المشارك (مثل السماح بالنشر أو لا).
-      ..on<ParticipantPermissionsUpdatedEvent>((e) {})
+      ..on<ParticipantPermissionsUpdatedEvent>((e) {
+        if (!e.permissions.canPublish) {
+          emit(state.copyWith(loadingPermissions: false));
+          state.result.localParticipant?.unpublishAllTracks();
+        }
+      })
 
       // 🔹🔹 عندما يغيّر المشارك اسمه المعروض (display name).
       // ..on<ParticipantNameUpdatedEvent>((e) => _sortParticipants())
@@ -144,32 +155,21 @@ class RoomCubit extends MCubit<RoomInitial> {
       // 🔹 عندما يتم استقبال بيانات (DataPacket) من أحد المشاركين (مثل رسالة أو إشارة تحكم).
       ..on<DataReceivedEvent>(
         (e) async {
-          // Events handler most be hear, not another place.
-          // Cuse this is the listener for data event.
-          // Data will be as JSON type with modl with MessageAction enum.
-
           try {
             final message = SettingMessage.fromJson(jsonDecode(utf8.decode(e.data)));
             loggerObject.w(message.toJson());
-            // if (message.identity != state.result.localParticipant?.identity) return;
+
+            if (!message.toUserType.isUser) return;
+
+            if (message.toIdentity.isNotEmpty && message.toIdentity != state.result.localParticipant?.identity) return;
+
             switch (message.action) {
-              case ManagerActions.mic:
-                break;
-              case ManagerActions.video:
-                break;
-              case ManagerActions.shareScreen:
-                break;
-              case ManagerActions.raseHand:
-                emit(state.copyWith(raiseHands: state.raiseHands..add(message.identity)));
-                Future.delayed(
-                  Duration(seconds: 5),
-                  () {
-                    emit(state.copyWith(raiseHands: {
-                      ...state.raiseHands..remove(message.identity),
-                    }, id: state.notifyIndex + 1));
-                  },
-                );
-                // await SoundService.play(Assets.soundsNewJoin);
+              case ManagerActions.requestPermission:
+              case ManagerActions.requestToDisconnect:
+              case ManagerActions.changeScreen:
+              case ManagerActions.message:
+                emit(state.copyWith(loadingPermissions: false));
+                Note.showBigTextNotification(title: 'New message', body: message.message);
                 break;
             }
           } catch (err) {
@@ -180,7 +180,6 @@ class RoomCubit extends MCubit<RoomInitial> {
   }
 
   void _sortParticipants() {
-    // List<Participant> userMediaTracks = [];
     List<Participant> screenTracks = [];
 
     for (var participant in state.result.remoteParticipants.values) {
@@ -194,28 +193,8 @@ class RoomCubit extends MCubit<RoomInitial> {
         screenTracks.add(state.result.localParticipant!);
       }
     }
-    //
-    // userMediaTracks.sort((a, b) {
-    //   if (a.isSpeaking && b.isSpeaking) {
-    //     return (a.audioLevel > b.audioLevel) ? -1 : 1;
-    //   }
-    //
-    //   // last spoken at
-    //   final aSpokeAt = a.lastSpokeAt?.millisecondsSinceEpoch ?? 0;
-    //   final bSpokeAt = b.lastSpokeAt?.millisecondsSinceEpoch ?? 0;
-    //
-    //   if (aSpokeAt != bSpokeAt) return aSpokeAt > bSpokeAt ? -1 : 1;
-    //
-    //   // video on
-    //   if (a.hasVideo != b.hasVideo) return a.hasVideo ? -1 : 1;
-    //
-    //   // joinedAt
-    //   return a.joinedAt.millisecondsSinceEpoch - b.joinedAt.millisecondsSinceEpoch;
-    // });
 
-    final list = [
-      ...screenTracks, /*...userMediaTracks*/
-    ];
+    final list = [...screenTracks];
 
     final selectedTruck = state.selectedParticipantId.isNotEmpty
         ? null
@@ -234,6 +213,7 @@ class RoomCubit extends MCubit<RoomInitial> {
         state.token,
         fastConnectOptions: FastConnectOptions(),
       );
+
       state.result.connectionState;
       emit(state.copyWith(statuses: CubitStatuses.done));
     } catch (e) {
@@ -263,11 +243,56 @@ class RoomCubit extends MCubit<RoomInitial> {
     emit(state.copyWith(selectedParticipantId: participantId));
   }
 
-  Future<bool> _checkPermissions() async {
-    var cameraStatus = await Permission.camera.request();
-    var micStatus = await Permission.microphone.request();
+  Future<void> addOrUpdateToCache(SettingMessage item) async {
+    final listJson = await addOrUpdateDate([item]);
+    if (listJson == null) return;
+    final list = listJson.map((e) => SettingMessage.fromJson(e)).toList();
+    emit(state.copyWith(raiseHands: list));
+  }
 
-    return cameraStatus.isGranted && micStatus.isGranted;
+  Future<void> deleteFromCache(String id) async {
+    final listJson = await deleteDate([id]);
+    if (listJson == null) return;
+    loggerObject.w('id: $id, listJson: $listJson');
+    final list = listJson.map((e) => SettingMessage.fromJson(e)).toList();
+    emit(state.copyWith(raiseHands: list));
+  }
+
+  Future<void> raiseHand() async {
+    await state.result.localParticipant?.publishData(
+      utf8.encode(
+        jsonEncode(
+          SettingMessage(
+            id: state.result.localParticipant?.identity ?? '',
+            toUserType: LkUserType.manager,
+            action: ManagerActions.requestPermission,
+            metadata: {
+              'name': state.result.localParticipant?.name,
+              'id': state.result.localParticipant?.identity,
+            },
+          ),
+        ),
+      ),
+    );
+    emit(state.copyWith(loadingPermissions: true));
+  }
+
+  Future<void> sendMessage(String message) async {
+    await state.result.localParticipant?.publishData(
+      utf8.encode(
+        jsonEncode(
+          SettingMessage(
+            toUserType: LkUserType.manager,
+            action: ManagerActions.message,
+            metadata: {
+              'message': message,
+              'name': state.result.localParticipant?.name,
+              'id': state.result.localParticipant?.identity,
+            },
+          ),
+        ),
+      ),
+    );
   }
 
   @override

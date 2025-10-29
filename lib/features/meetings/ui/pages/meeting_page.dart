@@ -12,12 +12,13 @@ import 'package:mms/core/widgets/refresh_widget/refresh_widget.dart';
 import 'package:mms/features/agendas/ui/widget/agenda_tree_widget.dart';
 import 'package:mms/features/attendees/ui/widget/attendees_list_widget.dart';
 import 'package:mms/features/committees/ui/widget/drawer_btn_widget.dart';
-import 'package:mms/features/live_kit/ui/pages/live_kit_page.dart';
+
 import 'package:mms/features/meetings/ui/widget/discussions_tree.dart';
 import 'package:mms/services/pip.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../../router/app_router.dart';
+import '../../../room/ui/pages/live_kit_page.dart';
 import '../../bloc/add_absence_cubit/add_absence_cubit.dart';
 import '../../bloc/meeting_cubit/meeting_cubit.dart';
 

@@ -80,7 +80,8 @@ Color getColorFromHex(String hexColor) {
   return Color(colorValue);
 }
 
-bool isColorDark(Color color) {
+bool isColorDark(Color? color) {
+  if (color == null) return false;
   final luminance = (0.2126 * color.red + 0.7152 * color.green + 0.0722 * color.blue) / 255;
   return luminance < 0.5;
 }

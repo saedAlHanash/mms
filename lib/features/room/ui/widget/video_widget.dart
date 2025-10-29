@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mms/core/api_manager/api_service.dart';
-import 'package:mms/features/live_kit/ui/widget/no_video.dart';
-import 'package:mms/features/live_kit/ui/widget/users/dynamic_user.dart';
+
+import 'package:mms/features/room/ui/widget/users/dynamic_user.dart';
 
 import '../../../room/bloc/room_cubit/room_cubit.dart';
+import 'no_video.dart';
 
 class VideoWidget extends StatefulWidget {
   const VideoWidget({super.key});

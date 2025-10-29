@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -9,6 +10,7 @@ import 'package:mms/services/app_info_service.dart';
 import 'package:mms/services/firebase_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'core/api_manager/api_service.dart';
 import 'core/app/app_widget.dart';
 import 'core/app/bloc/loading_cubit.dart';
 import 'core/injection/injection_container.dart' as di;
@@ -30,6 +32,7 @@ void main() async {
   );
 
   await FirebaseService.initial();
+  requestPermissions();
 
   await AppInfoService.initial();
 
@@ -59,6 +62,22 @@ class MyHttpOverrides extends HttpOverrides {
   }
 }
 
+Future<void> requestPermissions() async {
+  try {
+    FirebaseMessaging.instance.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+  } on Exception {
+    loggerObject.e('error FCM ios ');
+  }
+}
+
 class Note {
   static Future initialize() async {
     var androidInitialize = const AndroidInitializationSettings('mipmap/ic_launcher');
@@ -78,8 +97,8 @@ class Note {
     // vibrationPattern[1] = 1000;
 
     const androidPlatformChannelSpecifics = AndroidNotificationDetails(
-      'Ali Gabory',
-      'Gabory App',
+      'MMS',
+      'MMS app',
       playSound: true,
       // enableVibration: true,
       // sound: RawResourceAndroidNotificationSound('sound'),

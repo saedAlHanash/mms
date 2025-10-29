@@ -156,22 +156,6 @@ enum MediaType {
   }
 }
 
-enum ManagerActions {
-  mic,
-  video,
-  shareScreen,
-  raseHand;
-
-  IconData get icon {
-    return switch (this) {
-      ManagerActions.mic => Icons.mic,
-      ManagerActions.video => Icons.videocam,
-      ManagerActions.shareScreen => Icons.screen_share,
-      ManagerActions.raseHand => Icons.front_hand,
-    };
-  }
-}
-
 enum LkUserType {
   manager,
   sharer,
@@ -182,4 +166,45 @@ enum LkUserType {
   bool get isSharer => this == LkUserType.sharer;
 
   bool get isUser => this == LkUserType.user;
+}
+
+enum ManagerActions {
+  requestPermission,
+  requestToDisconnect,
+  message,
+  changeScreen;
+
+  IconData get icon {
+    return switch (this) {
+      ManagerActions.requestPermission => Icons.pan_tool_outlined,
+      ManagerActions.requestToDisconnect => Icons.exit_to_app,
+      ManagerActions.message => Icons.message,
+      ManagerActions.changeScreen => Icons.screen_share_outlined,
+    };
+  }
+}
+
+enum NotesMessages {
+  cannotHear,
+  cannotSee,
+  needHelp;
+
+  IconData get icon {
+    return switch (this) {
+      NotesMessages.cannotHear => Icons.hearing_disabled,
+      NotesMessages.cannotSee => Icons.visibility_off_outlined,
+      NotesMessages.needHelp => Icons.help_outline,
+    };
+  }
+
+  String get message {
+    switch (this) {
+      case NotesMessages.cannotHear:
+        return 'لا أسمع';
+      case NotesMessages.cannotSee:
+        return 'لا أرى الشاشة';
+      case NotesMessages.needHelp:
+        return 'أحتاج مساعدة';
+    }
+  }
 }

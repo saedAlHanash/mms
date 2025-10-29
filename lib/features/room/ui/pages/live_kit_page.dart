@@ -10,13 +10,13 @@ import 'package:mms/core/util/my_style.dart';
 import 'package:mms/core/util/shared_preferences.dart';
 import 'package:mms/core/widgets/my_button.dart';
 import 'package:mms/core/widgets/my_text_form_widget.dart';
-import 'package:mms/features/live_kit/ui/widget/controls.dart';
-import 'package:mms/features/live_kit/ui/widget/video_widget.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../../services/app_info_service.dart';
 import '../../../room/bloc/room_cubit/room_cubit.dart';
+import '../widget/controls.dart';
 import '../widget/users/dynamic_user.dart';
+import '../widget/video_widget.dart';
 
 class LiveKitPage extends StatefulWidget {
   const LiveKitPage({super.key, required this.isOpen, required this.link, required this.token});
