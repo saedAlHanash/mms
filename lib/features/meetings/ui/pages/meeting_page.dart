@@ -18,6 +18,7 @@ import 'package:mms/services/pip.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../../router/app_router.dart';
+import '../../../room/bloc/my_status_cubit/my_status_cubit.dart';
 import '../../../room/ui/pages/live_kit_page.dart';
 import '../../bloc/add_absence_cubit/add_absence_cubit.dart';
 import '../../bloc/meeting_cubit/meeting_cubit.dart';
@@ -57,13 +58,13 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
     return MultiBlocListener(
       listeners: [
         BlocListener<MeetingCubit, MeetingInitial>(
-          listenWhen: (p, c) => c.statuses.done,
+          listenWhen: (p, c) => c.done,
           listener: (context, state) {
             AppProvider.setMeeting = state.result;
           },
         ),
         BlocListener<AddAbsenceCubit, AddAbsenceInitial>(
-          listenWhen: (p, c) => c.statuses.done,
+          listenWhen: (p, c) => c.done,
           listener: (context, state) {
             context.read<MeetingCubit>().getData(newData: true);
           },

@@ -172,7 +172,7 @@ class VotesPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBarWidget(titleText: S.of(context).vote),
       body: BlocListener<CreateVoteCubit, CreateVoteInitial>(
-        listenWhen: (p, c) => c.statuses.done,
+        listenWhen: (p, c) => c.done,
         listener: (context, state) {
           context.read<MeetingCubit>().getData(newData: true);
         },

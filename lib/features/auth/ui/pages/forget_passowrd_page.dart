@@ -42,7 +42,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<ForgetPasswordCubit, ForgetPasswordInitial>(
-      listenWhen: (p, c) => c.statuses.done,
+      listenWhen: (p, c) => c.done,
       listener: (context, state) {
         Navigator.pushNamedAndRemoveUntil(context, RouteName.otpPassword, (route) => false);
       },

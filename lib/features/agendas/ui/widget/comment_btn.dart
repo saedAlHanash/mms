@@ -33,8 +33,7 @@ class _CommentBtnState extends State<CommentBtn> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<AddCommentCubit, AddCommentInitial>(
-      listenWhen: (p, c) =>
-          c.statuses.done && c.request.agendaItemId == widget.agenda.id,
+      listenWhen: (p, c) => c.done && c.request.agendaItemId == widget.agenda.id,
       listener: (context, state) {
         setState(() {
           widget.agenda.comments.add(state.getAddedComment);
@@ -67,8 +66,7 @@ class _CommentBtnState extends State<CommentBtn> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            const DrawableText(
-                                text: 'Add Comment to this agenda'),
+                            const DrawableText(text: 'Add Comment to this agenda'),
                             10.0.verticalSpace,
                             MyTextFormOutLineWidget(
                               label: 'add Comment',

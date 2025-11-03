@@ -47,6 +47,7 @@ class Meeting {
     required this.location,
     required this.onlineMeetingUrl,
     required this.onlineMeetingToken,
+    required this.attendeeOnlineToken,
     required this.absenceRequests,
     required this.guestSuggestions,
     required this.decisions,
@@ -74,6 +75,7 @@ class Meeting {
   final Location location;
   final String onlineMeetingUrl;
   final String onlineMeetingToken;
+  final String attendeeOnlineToken;
   final List<AbsenceRequest> absenceRequests;
   final List<Guest> guestSuggestions;
   final List<Decision> decisions;
@@ -108,6 +110,7 @@ class Meeting {
       location: Location.fromJson(json["location"] ?? {}),
       onlineMeetingUrl: json["onlineMeetingUrl"] ?? "",
       onlineMeetingToken: json["onlineMeetingToken"] ?? "",
+      attendeeOnlineToken: json["attendeeOnlineToken"] ?? "",
       absenceRequests: json["absenceRequests"] == null
           ? []
           : List<AbsenceRequest>.from(json["absenceRequests"]!.map((x) => AbsenceRequest.fromJson(x))),
@@ -144,6 +147,7 @@ class Meeting {
         "location": location.toJson(),
         "onlineMeetingUrl": onlineMeetingUrl,
         "onlineMeetingToken": onlineMeetingToken,
+        "attendeeOnlineToken": attendeeOnlineToken,
         "absenceRequests": absenceRequests.map((x) => x.toJson()).toList(),
         "guestSuggestions": guestSuggestions.map((x) => x.toJson()).toList(),
         "decisions": decisions.map((x) => x.toJson()).toList(),

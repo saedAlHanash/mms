@@ -10,10 +10,14 @@ import 'package:mms/core/util/my_style.dart';
 import 'package:mms/core/util/shared_preferences.dart';
 import 'package:mms/core/widgets/my_button.dart';
 import 'package:mms/core/widgets/my_text_form_widget.dart';
+import 'package:mms/features/meetings/data/response/meetings_response.dart';
+import 'package:mms/features/room/bloc/user_control_cubit/user_control_cubit.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../../services/app_info_service.dart';
+import '../../../meetings/bloc/meeting_cubit/meeting_cubit.dart';
 import '../../../room/bloc/room_cubit/room_cubit.dart';
+import '../../bloc/my_status_cubit/my_status_cubit.dart';
 import '../widget/controls.dart';
 import '../widget/users/dynamic_user.dart';
 import '../widget/video_widget.dart';
@@ -47,79 +51,75 @@ class _LiveKitPageState extends State<LiveKitPage> {
     );
   }
 
-  Future<void> _connect() async {
+  Future<void> _connect(Meeting result) async {
     context.read<RoomCubit>()
-      ..setToken(controller.text)
-      ..setUrl('wss://coretik.coretech-mena.com');
-    await context.read<RoomCubit>().initial();
-    await context.read<RoomCubit>().connect();
-    // if (!(await _checkPermissions())) return;
-  }
+      ..setToken(result.attendeeOnlineToken)
+      ..setUrl(result.onlineMeetingUrl);
 
-  Future<void> getToken() async {
-    final dId = await getDeviceIdAsync();
-    final r = await APIService().callApi(
-      url: 'GetJoinToken',
-      type: ApiType.post,
-      hostName: 'coretik-be.coretech-mena.com',
-      additional: '/api/v1/Index/',
-      body: {
-        "identity": "$dId",
-        "name": "${dId}user",
-        "videoGrants": {
-          "canPublish": false,
-          "canPublishData": true,
-          "canSubscribe": true,
-          "room": "s1",
-          "roomAdmin": false,
-          "roomCreate": true,
-          "roomJoin": true,
-          "roomList": false
-        },
-        "attributes": {
-          "type": "2",
-          // "imageUrl": ""
-        }
-      },
-    );
-    final token = r.jsonBodyPure['token'];
-    AppSharedPreference.cashTokenVC(token);
-    controller.text = token;
+    await context.read<RoomCubit>().connect();
+    context
+        .read<MyStatusCubit>()
+        .fetchMyStatus(context.read<RoomCubit>().state.result.localParticipant?.identity ?? '');
   }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: AnimatedSize(
-        duration: const Duration(milliseconds: 300),
-        child: !widget.isOpen
-            ? 0.0.verticalSpace
-            : BlocBuilder<RoomCubit, RoomInitial>(
-                builder: (context, state) {
-                  return Container(
-                    alignment: Alignment.center,
-                    constraints: BoxConstraints(minHeight: 0.2.sh, maxHeight: 0.4.sh, minWidth: 1.0.sw),
-                    child: state.loading
-                        ? Center(
-                            child: MyStyle.loadingWidget(),
-                          )
-                        : Column(
+    return BlocBuilder<MeetingCubit, MeetingInitial>(
+      builder: (context, mState) {
+        return BlocBuilder<RoomCubit, RoomInitial>(
+          builder: (context, state) {
+            return BlocListener<MyStatusCubit, MyStatusInitial>(
+              listenWhen: (p, c) => c.statuses.done,
+              listener: (context, sState) {
+                switch ((sState.result.state.canPublish, sState.result.state.canSubscribe)) {
+                  //suspended
+                  case (false, false):
+                    if (state.result.localParticipant?.permissions.isSuspend ?? true) return;
+                    context.read<UserControlCubit>().suspend(state.result.localParticipant!.identity);
+                    break;
+                  //only listen
+                  case (false, true):
+                    if (state.result.localParticipant?.permissions.isSilence ?? true) return;
+                    context.read<UserControlCubit>().revoke(state.result.localParticipant!, PermissionType.speak);
+                    break;
+                  //only speak
+                  case (true, false):
+                    break;
+                  //normal
+                  case (true, true):
+                    if (state.result.localParticipant?.permissions.isAll ?? true) return;
+                    context.read<UserControlCubit>().grant(state.result.localParticipant!, PermissionType.both);
+                    break;
+                }
+              },
+              child: SafeArea(
+                child: AnimatedSize(
+                  duration: const Duration(milliseconds: 300),
+                  child: !widget.isOpen
+                      ? 0.0.verticalSpace
+                      : Container(
+                          alignment: Alignment.center,
+                          constraints: BoxConstraints(minHeight: 0.2.sh, maxHeight: 0.4.sh, minWidth: 1.0.sw),
+                          child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               if (state.result.connectionState.isDisconnected) ...[
-                                MyTextFormOutLineWidget(
-                                  label: 'Token',
-                                  controller: controller,
-                                  icon: IconButton(
-                                    onPressed: () {
-                                      getToken();
-                                    },
-                                    icon: ImageMultiType(url: Icons.generating_tokens),
-                                  ),
-                                ),
-                                10.0.verticalSpace,
+                                // MyTextFormOutLineWidget(
+                                //   label: 'Token',
+                                //   controller: controller,
+                                //   icon: IconButton(
+                                //     onPressed: () {
+                                //       getToken();
+                                //     },
+                                //     icon: ImageMultiType(url: Icons.generating_tokens),
+                                //   ),
+                                // ),
+                                // 10.0.verticalSpace,
                                 MyButton(
-                                  onTap: _connect,
+                                  onTap: () {
+                                    _connect(mState.result);
+                                  },
+                                  loading: state.loading,
                                   text: S.of(context).connect,
                                 )
                               ] else
@@ -134,10 +134,13 @@ class _LiveKitPageState extends State<LiveKitPage> {
                                 ),
                             ],
                           ),
-                  );
-                },
+                        ),
+                ),
               ),
-      ),
+            );
+          },
+        );
+      },
     );
   }
 }

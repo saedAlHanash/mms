@@ -32,7 +32,7 @@ class _MenuScreenState extends State<MenuScreen> {
   Widget build(BuildContext context) {
 
     return BlocListener<LoggedPartyCubit, LoggedPartyInitial>(
-      listenWhen: (p, c) => c.statuses.done,
+      listenWhen: (p, c) => c.done,
       listener: (context, state) {
         setState(() {});
       },

@@ -42,18 +42,18 @@ class _ProfilePageState extends State<ProfilePage> {
     return MultiBlocListener(
       listeners: [
         BlocListener<UpdateProfileCubit, UpdateProfileInitial>(
-          listenWhen: (p, c) => c.statuses.done,
+          listenWhen: (p, c) => c.done,
           listener: (context, state) {
             context.read<LoggedPartyCubit>().getData(newData: true);
             Navigator.pop(context);
           },
         ),
         BlocListener<LoggedPartyCubit, LoggedPartyInitial>(
-          listenWhen: (p, c) => c.statuses.done,
+          listenWhen: (p, c) => c.done,
           listener: (context, state) => updateCubit.setParty(),
         ),
         BlocListener<FileCubit, FileInitial>(
-          listenWhen: (p, c) => c.statuses.done,
+          listenWhen: (p, c) => c.done,
           listener: (context, state) {
             updateState.request.personalPhoto = state.result.fileName;
             updateCubit.updateProfile();

@@ -117,6 +117,7 @@ extension SplitByLength on String {
   num? get tryParseOrNull => num.tryParse(this);
 
   int? get tryParseOrNullInt => int.tryParse(this);
+
   String? get validateEmpty {
     if (isEmpty) {
       return S().is_required;
@@ -541,6 +542,10 @@ extension ParticipantH on Participant {
     return remoteParticipant.videoTrackPublications.where((e) => e.source == type.videoSourceType).firstOrNull;
   }
 
+  List<RemoteTrackPublication<RemoteVideoTrack>> get remoteVideoPublications {
+    return remoteParticipant.videoTrackPublications /*.where((e) => e.source == type.videoSourceType).toList()*/;
+  }
+
   RemoteTrackPublication<RemoteAudioTrack>? get remoteAudioPublication =>
       remoteParticipant.audioTrackPublications.where((e) => e.source == type.audioSourceType).firstOrNull;
 
@@ -550,10 +555,6 @@ extension ParticipantH on Participant {
 
   LocalTrackPublication<LocalAudioTrack>? get localAudioPublication =>
       localParticipant.audioTrackPublications.where((e) => e.source == type.audioSourceType).firstOrNull;
-
-  bool get isAdmin {
-    return attributes['type'].toString() == LkUserType.manager.index.toString();
-  }
 
   String get image => attributes['imageUrl'].toString();
 
@@ -578,8 +579,8 @@ extension ParticipantH on Participant {
   LkUserType get userType => LkUserType.values[(attributes['lkUserType'] ?? 0).toString().tryParseOrZeroInt];
 
   String get displayName {
-    if (identity.isNotEmpty) return identity;
     if (name.isNotEmpty) return name;
+    if (identity.isNotEmpty) return identity;
     return sid;
   }
 
@@ -587,8 +588,6 @@ extension ParticipantH on Participant {
 }
 
 extension RemoteParticipantH on RemoteParticipant {
-  LkUserType get userType => LkUserType.values[(attributes['lkUserType'] ?? 0).toString().tryParseOrZeroInt];
-
   RemoteAudioTrack? get activeAudioTrack => audioTrackPublications.firstWhereOrNull((e) => e.enabled)?.track;
 
   RemoteVideoTrack? get shareScreenTrack => videoTrackPublications.firstWhereOrNull((e) => e.isScreenShare)?.track;
@@ -597,8 +596,6 @@ extension RemoteParticipantH on RemoteParticipant {
 }
 
 extension LocalParticipantH on LocalParticipant {
-  LkUserType get userType => LkUserType.values[(attributes['lkUserType'] ?? 0).toString().tryParseOrZeroInt];
-
   LocalAudioTrack? get activeAudioTrack => audioTrackPublications.firstWhereOrNull((e) => !e.muted)?.track;
 
   LocalVideoTrack? get shareScreenTrack => videoTrackPublications.firstWhereOrNull((e) => e.isScreenShare)?.track;
@@ -609,7 +606,7 @@ extension LocalParticipantH on LocalParticipant {
 extension ParticipantPermissionsH on ParticipantPermissions {
   bool get isSuspend => !canSubscribe && !canPublish;
 
-  bool get isMuteAll => canSubscribe && !canPublish;
+  bool get isSilence => !canPublish && canSubscribe;
 
   bool get isAll => canSubscribe && canPublish;
 

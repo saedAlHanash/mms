@@ -2,11 +2,10 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 import 'package:livekit_client/livekit_client.dart';
-import 'package:m_cubit/abstraction.dart';
+import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/error/error_manager.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/util/exts.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/app/app_widget.dart';
@@ -208,12 +207,12 @@ class RoomCubit extends MCubit<RoomInitial> {
   Future<void> connect() async {
     try {
       emit(state.copyWith(statuses: CubitStatuses.loading));
+      await initial();
       await state.result.connect(
         state.url,
         state.token,
         fastConnectOptions: FastConnectOptions(),
       );
-
       state.result.connectionState;
       emit(state.copyWith(statuses: CubitStatuses.done));
     } catch (e) {
@@ -221,6 +220,8 @@ class RoomCubit extends MCubit<RoomInitial> {
       showErrorFromApi(state);
     }
   }
+
+  void getCurrentState() {}
 
   void disconnect() async {
     final result = await ctx!.showDisconnectDialog();
@@ -287,6 +288,7 @@ class RoomCubit extends MCubit<RoomInitial> {
             metadata: {
               'message': message,
               'name': state.result.localParticipant?.name,
+              if (!(state.result.localParticipant?.image).isBlank) 'image': state.result.localParticipant?.image,
               'id': state.result.localParticipant?.identity,
             },
           ),

@@ -1,4 +1,4 @@
-// import '../response/room_response.dart';
+// import '../response/my_status.dart';
 //
 // class CreateRoomRequest {
 //   CreateRoomRequest({

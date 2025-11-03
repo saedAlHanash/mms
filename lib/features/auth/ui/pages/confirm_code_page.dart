@@ -52,7 +52,7 @@ class _ConfirmCodePageState extends State<ConfirmCodePage> {
           },
         ),
         BlocListener<ResendCodeCubit, ResendCodeInitial>(
-          listenWhen: (p, c) => c.statuses.done,
+          listenWhen: (p, c) => c.done,
           listener: (context, state) {
             NoteMessage.showAwesomeDoneDialog(context, message: '${S.of(context).done_resend_code} ${state.result}');
           },

@@ -38,7 +38,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<ResetPasswordCubit, ResetPasswordInitial>(
-      listenWhen: (p, c) => c.statuses == CubitStatuses.done,
+      listenWhen: (p, c) => c.done,
       listener: (context, state) {
         Navigator.pushNamedAndRemoveUntil(
           context,

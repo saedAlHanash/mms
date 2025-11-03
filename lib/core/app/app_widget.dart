@@ -13,7 +13,9 @@ import '../../features/auth/bloc/get_me_cubit/get_me_cubit.dart';
 import '../../features/committees/bloc/my_committees_cubit/my_committees_cubit.dart';
 import '../../features/meetings/bloc/meetings_cubit/meetings_cubit.dart';
 import '../../features/notification/bloc/notifications_cubit/notifications_cubit.dart';
+import '../../features/room/bloc/my_status_cubit/my_status_cubit.dart';
 import '../../features/room/bloc/room_cubit/room_cubit.dart';
+import '../../features/room/bloc/user_control_cubit/user_control_cubit.dart';
 import '../../generated/assets.dart';
 import '../../generated/l10n.dart';
 import '../../main.dart';
@@ -100,15 +102,11 @@ class _MyAppState extends State<MyApp> {
           builder: (_, child) {
             return MultiBlocProvider(
               providers: [
-                BlocProvider(
-                  create: (_) => sl<NotificationsCubit>()..getData(),
-                ),
-                BlocProvider(
-                  create: (_) => sl<MyCommitteesCubit>()..getData(),
-                ),
-                BlocProvider(
-                  create: (_) => sl<RoomCubit>(),
-                ),
+                BlocProvider(create: (_) => sl<NotificationsCubit>()..getData()),
+                BlocProvider(create: (_) => sl<MyCommitteesCubit>()..getData()),
+                BlocProvider(create: (_) => sl<RoomCubit>()),
+                BlocProvider(create: (_) => sl<MyStatusCubit>()),
+                BlocProvider(create: (_) => sl<UserControlCubit>()),
                 BlocProvider(
                   create: (_) {
                     return sl<MeetingsCubit>()

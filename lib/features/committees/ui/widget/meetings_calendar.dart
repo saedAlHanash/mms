@@ -108,7 +108,7 @@ class _MeetingCalenderWidgetState extends State<MeetingCalenderWidget> {
                 widget.onSelectDate?.call(_focusedDay);
                 _onDaySelected(_focusedDay, _focusedDay, state.events);
               },
-              listenWhen: (p, c) => c.statuses.done,
+              listenWhen: (p, c) => c.done,
               builder: (context, state) {
                 if (state.statuses.loading) {
                   return MyStyle.loadingWidget();

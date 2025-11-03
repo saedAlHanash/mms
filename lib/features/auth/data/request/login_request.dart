@@ -1,10 +1,12 @@
 class LoginRequest {
-  String? userName = 'maissama@gmail.com';
+  // String? userName = 'maissama@gmail.com';
+  String? userName = 'party1@gmail.com';
   String? password = 'P@ssw0rd2024';
   String? programKey;
 
   LoginRequest({
-    this.userName = 'maissama@gmail.com',
+    // this.userName = 'maissama@gmail.com',
+    this.userName = 'party1@gmail.com',
     this.password = 'P@ssw0rd2024',
     this.programKey,
   });

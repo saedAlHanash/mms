@@ -173,17 +173,38 @@ class PostUrl {
 
   static var polls = '';
 
-  static String addMessage(int id) {
-    return 'drivers/messages/$id/add';
-  }
+  static const rooms = 'Room/GetAll';
+  static const createRoom = 'Room/Add';
+  static const users = 'user/GetAll';
+  static const createUser = 'user/Add';
+  static const homes = 'home/GetAll';
+  static const createHome = 'home/Add';
 
-  static String increase(int id) {
-    return 'carts/products/$id/quantity/increase';
-  }
+  static const suspend = 'Index/Suspend';
 
-  static String decrease(int id) {
-    return 'carts/products/$id/quantity/decrease';
-  }
+  static const resume = 'Index/Resume';
+
+  static const suspendAll = 'Index/SuspendAll';
+
+  static const resumeAll = 'Index/ResumeAll';
+
+  static const allowScreenShare = 'Index/AllowScreenShare';
+
+  static const stopScreenShare = 'Index/StopScreenShare';
+
+  static const allowCamera = 'Index/AllowCamera';
+
+  static const stopCamera = 'Index/StopCamera';
+
+  static const allowAudio = 'Index/AllowAudio';
+
+  static const stopAudio = 'Index/StopAudio';
+
+  static const kick = 'Index/Kick';
+
+  static const sendMessage = 'Index/SendData';
+
+  static const getLatestState = 'Index/GetLatestState';
 }
 
 class PutUrl {
