@@ -1,7 +1,9 @@
+import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mms/core/api_manager/api_service.dart';
+import 'package:mms/core/extensions/extensions.dart';
 
 import 'package:mms/features/room/ui/widget/users/dynamic_user.dart';
 
@@ -28,6 +30,10 @@ class _VideoWidgetState extends State<VideoWidget> {
               child: state.selectedParticipant == null
                   ? NoVideoWidget()
                   : DynamicUser(participant: state.selectedParticipant!),
+            ),
+            Align(
+              alignment: AlignmentGeometry.bottomLeft,
+              child: Chip(label: DrawableText(text: state.result.localParticipant?.statusName ?? '')),
             ),
             if (state.participantTracksWithoutSelected.isNotEmpty)
               Align(

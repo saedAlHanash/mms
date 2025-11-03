@@ -1,3 +1,16 @@
 {
-  "token": ""
+  "room": "d747e704-a038-4a11-afbc-08de1ab1dade",
+  "identity": "a4d0105e-a26c-4cbd-88b3-08dc8aebbe56",
+  "date": "2025-11-03T14:21:02.8733495",
+  "state": {
+    "canSubscribe": true,
+    "canPublishData": true,
+    "canPublish": false,
+    "cameraMuted": false,
+    "microphoneMuted": false,
+    "screenShareMuted": false,
+    "screenShareAudioMuted": false,
+    "isBlocked": false
+  },
+  "id": "0e7519ed-fd94-41c8-59f2-08de1ae37098"
 }

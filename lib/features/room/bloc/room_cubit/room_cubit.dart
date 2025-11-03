@@ -223,7 +223,7 @@ class RoomCubit extends MCubit<RoomInitial> {
 
   void getCurrentState() {}
 
-  void disconnect() async {
+  void disconnect({bool block = false}) async {
     final result = await ctx!.showDisconnectDialog();
     try {
       if (result == true) await state.result.disconnect();

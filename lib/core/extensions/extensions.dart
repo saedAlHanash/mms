@@ -584,6 +584,14 @@ extension ParticipantH on Participant {
     return sid;
   }
 
+  String get statusName {
+    if (permissions.isSuspend) return 'معلق';
+    if (permissions.isSilence) return 'مستمع';
+    if (permissions.isAll) return 'متحدث';
+
+    return 'غير معروف';
+  }
+
   bool get isSuspend => permissions.isSuspend;
 }
 

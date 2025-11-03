@@ -71,6 +71,10 @@ class _LiveKitPageState extends State<LiveKitPage> {
             return BlocListener<MyStatusCubit, MyStatusInitial>(
               listenWhen: (p, c) => c.statuses.done,
               listener: (context, sState) {
+                if (sState.result.state.isBlock) {
+                  context.read<RoomCubit>().disconnect();
+                  return;
+                }
                 switch ((sState.result.state.canPublish, sState.result.state.canSubscribe)) {
                   //suspended
                   case (false, false):

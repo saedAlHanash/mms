@@ -41,6 +41,7 @@ class State {
     required this.microphoneMuted,
     required this.screenShareMuted,
     required this.screenShareAudioMuted,
+    required this.isBlock,
   });
 
   final bool canSubscribe;
@@ -50,6 +51,7 @@ class State {
   final bool microphoneMuted;
   final bool screenShareMuted;
   final bool screenShareAudioMuted;
+  final bool isBlock;
 
   factory State.fromJson(Map<String, dynamic> json) {
     return State(
@@ -60,6 +62,7 @@ class State {
       microphoneMuted: json["microphoneMuted"] ?? false,
       screenShareMuted: json["screenShareMuted"] ?? false,
       screenShareAudioMuted: json["screenShareAudioMuted"] ?? false,
+      isBlock: json["isBlock"] ?? false,
     );
   }
 
@@ -71,5 +74,6 @@ class State {
         "microphoneMuted": microphoneMuted,
         "screenShareMuted": screenShareMuted,
         "screenShareAudioMuted": screenShareAudioMuted,
+        "isBlock": isBlock,
       };
 }
