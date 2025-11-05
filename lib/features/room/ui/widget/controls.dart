@@ -170,33 +170,36 @@ class _ControlsWidgetState extends State<ControlsWidget> {
   Widget build(BuildContext context) {
     return BlocBuilder<RoomCubit, RoomInitial>(
       builder: (context, state) {
-        return Padding(
+        return Container(
           padding: const EdgeInsets.symmetric(
-            vertical: 15,
+            vertical: 5,
             horizontal: 15,
           ),
+          decoration: BoxDecoration(color: Colors.black12, borderRadius: BorderRadius.circular(12.0)),
           child: Center(
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                DynamicPopupMenu(
-                  items: NotesMessages.values.map(
-                    (e) {
-                      return PopupMenuItemModel(
-                        icon: e.icon,
-                        label: e.name,
-                        onTap: () {
-                          context.read<RoomCubit>().sendMessage(e.name);
-                        },
-                      );
-                    },
-                  ).toList(),
-                ),
-                IconButton(
-                  onPressed: () => _onFullScreen(),
-                  icon: const Icon(Icons.fullscreen),
-                  tooltip: 'enter full screen',
-                ),
+                if (!state.isSuspend)
+                  DynamicPopupMenu(
+                    items: NotesMessages.values.map(
+                      (e) {
+                        return PopupMenuItemModel(
+                          icon: e.icon,
+                          label: e.name,
+                          onTap: () {
+                            context.read<RoomCubit>().sendMessage(e.name);
+                          },
+                        );
+                      },
+                    ).toList(),
+                  ),
+                if (!state.isSuspend)
+                  IconButton(
+                    onPressed: () => _onFullScreen(),
+                    icon: const Icon(Icons.fullscreen),
+                    tooltip: 'enter full screen',
+                  ),
                 IconButton(
                   onPressed: _onTapDisconnect,
                   icon: const Icon(
@@ -205,70 +208,72 @@ class _ControlsWidgetState extends State<ControlsWidget> {
                   ),
                   tooltip: 'disconnect',
                 ),
-                if (!participant.permissions.canPublish) ...[
-                  MyButton(
-                    width: 0.5.sw,
-                    onTap: () async {
-                      context.read<RoomCubit>().raiseHand();
-                    },
-                    startIcon: state.loadingPermissions ? MyStyle.loadingWidget(size: 25.0, color: Colors.white) : null,
-                    endIcon: ImageMultiType(
-                      url: Icons.back_hand_outlined,
-                      color: Colors.white,
-                    ),
-                    text: 'Request to speak',
-                  ),
-                ] else ...[
-                  if (participant.isMicrophoneEnabled())
-                    IconButton(
-                      onPressed: _disableAudio,
-                      icon: const Icon(
-                        Icons.mic,
-                        color: Colors.green,
+                if (!state.isSuspend)
+                  if (!participant.permissions.canPublish) ...[
+                    MyButton(
+                      width: 0.5.sw,
+                      onTap: () async {
+                        context.read<RoomCubit>().raiseHand();
+                      },
+                      startIcon:
+                          state.loadingPermissions ? MyStyle.loadingWidget(size: 25.0, color: Colors.white) : null,
+                      endIcon: ImageMultiType(
+                        url: Icons.back_hand_outlined,
+                        color: Colors.white,
                       ),
-                      tooltip: 'mute audio',
-                    )
-                  else
-                    IconButton(
-                      onPressed: _enableAudio,
-                      icon: const Icon(
-                        Icons.mic_off,
+                      text: 'Request to speak',
+                    ),
+                  ] else ...[
+                    if (participant.isMicrophoneEnabled())
+                      IconButton(
+                        onPressed: _disableAudio,
+                        icon: const Icon(
+                          Icons.mic,
+                          color: Colors.green,
+                        ),
+                        tooltip: 'mute audio',
+                      )
+                    else
+                      IconButton(
+                        onPressed: _enableAudio,
+                        icon: const Icon(
+                          Icons.mic_off,
+                          color: Colors.red,
+                        ),
+                        tooltip: 'un-mute audio',
+                      ),
+                    if (participant.isCameraEnabled())
+                      IconButton(
+                        onPressed: _disableVideo,
+                        icon: const Icon(
+                          Icons.videocam,
+                          color: Colors.green,
+                        ),
+                        tooltip: 'mute video',
+                      )
+                    else
+                      IconButton(
+                        onPressed: _enableVideo,
+                        icon: const Icon(
+                          Icons.videocam_off,
+                          color: Colors.red,
+                        ),
+                        tooltip: 'un-mute video',
+                      ),
+                    if (participant.isScreenShareEnabled())
+                      IconButton(
+                        icon: const Icon(Icons.screen_share_sharp, color: Colors.green),
+                        onPressed: () => _disableScreenShare(),
+                        tooltip: 'unshare screen (experimental)',
+                      )
+                    else
+                      IconButton(
+                        icon: const Icon(Icons.stop_screen_share_sharp),
                         color: Colors.red,
+                        onPressed: () => _enableScreenShare(),
+                        tooltip: 'share screen (experimental)',
                       ),
-                      tooltip: 'un-mute audio',
-                    ),
-                  if (participant.isCameraEnabled())
-                    IconButton(
-                      onPressed: _disableVideo,
-                      icon: const Icon(
-                        Icons.videocam,
-                        color: Colors.green,
-                      ),
-                      tooltip: 'mute video',
-                    )
-                  else
-                    IconButton(
-                      onPressed: _enableVideo,
-                      icon: const Icon(
-                        Icons.videocam_off,
-                        color: Colors.red,
-                      ),
-                      tooltip: 'un-mute video',
-                    ),
-                  if (participant.isScreenShareEnabled())
-                    IconButton(
-                      icon: const Icon(Icons.screen_share_sharp, color: Colors.green),
-                      onPressed: () => _disableScreenShare(),
-                      tooltip: 'unshare screen (experimental)',
-                    )
-                  else
-                    IconButton(
-                      icon: const Icon(Icons.stop_screen_share_sharp),
-                      color: Colors.red,
-                      onPressed: () => _enableScreenShare(),
-                      tooltip: 'share screen (experimental)',
-                    ),
-                ],
+                  ],
               ],
             ),
           ),

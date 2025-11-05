@@ -142,10 +142,11 @@ class RoomCubit extends MCubit<RoomInitial> {
 
       // 🔹 عندما تتغير صلاحيات المشارك (مثل السماح بالنشر أو لا).
       ..on<ParticipantPermissionsUpdatedEvent>((e) {
-        if (!e.permissions.canPublish) {
-          emit(state.copyWith(loadingPermissions: false));
+        if (!(e.permissions.canPublish)) {
           state.result.localParticipant?.unpublishAllTracks();
         }
+
+        emit(state.copyWith(id: state.notifyIndex + 1, loadingPermissions: false));
       })
 
       // 🔹🔹 عندما يغيّر المشارك اسمه المعروض (display name).

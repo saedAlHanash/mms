@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mms/core/api_manager/api_service.dart';
 import 'package:mms/core/extensions/extensions.dart';
+import 'package:mms/core/strings/app_color_manager.dart';
+import 'package:mms/core/util/my_style.dart';
 
 import 'package:mms/features/room/ui/widget/users/dynamic_user.dart';
 
@@ -22,7 +24,23 @@ class _VideoWidgetState extends State<VideoWidget> {
   Widget build(BuildContext context) {
     return BlocBuilder<RoomCubit, RoomInitial>(
       builder: (context, state) {
-        loggerObject.w(state.participantTracks.length);
+        if (state.result.localParticipant?.isSuspend == true) {
+          return Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                DrawableText(
+                  padding: EdgeInsets.all(20.0),
+                  text:
+                      'Your connection has been suspended by the admin, but you are still connected. Please wait until you are allowed to resume.',
+                  textAlign: TextAlign.center,
+                  matchParent: true,
+                ),
+                MyStyle.loadingWidget(color: AppColorManager.mainColor)
+              ],
+            ),
+          );
+        }
         return Stack(
           children: [
             AspectRatio(

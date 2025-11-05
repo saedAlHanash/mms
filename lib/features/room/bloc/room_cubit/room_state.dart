@@ -74,6 +74,8 @@ class RoomInitial extends AbstractState<Room> {
         selectedParticipantId,
       ];
 
+  bool get isSuspend => result.localParticipant?.isSuspend == true;
+
   RoomInitial copyWith({
     CubitStatuses? statuses,
     Room? result,
