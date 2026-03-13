@@ -37,16 +37,6 @@ extension SplitByLength on String {
     return pieces;
   }
 
-  AttachmentType getLinkType({AttachmentType? type}) {
-    if (type == AttachmentType.video) {
-      if (contains('youtube')) {
-        return AttachmentType.youtube;
-      } else {
-        return AttachmentType.video;
-      }
-    }
-    return AttachmentType.image;
-  }
 
   bool get canSendToSearch {
     if (isEmpty) false;
@@ -116,10 +106,6 @@ extension SplitByLength on String {
 }
 
 extension StringHelper on String? {
-  bool get isBlank {
-    if (this == null) return true;
-    return this!.replaceAll(' ', '').isEmpty;
-  }
 
   String fixUrl({String? initialImage}) {
 
@@ -148,23 +134,6 @@ extension MaxInt on num {
   String get formatPrice => oCcy.format(this);
 }
 
-extension NeedUpdateEnumH on NeedUpdateEnum {
-  bool get loading => this == NeedUpdateEnum.withLoading;
-
-  bool get haveData =>
-      this == NeedUpdateEnum.no || this == NeedUpdateEnum.noLoading;
-
-  CubitStatuses get getState {
-    switch (this) {
-      case NeedUpdateEnum.no:
-        return CubitStatuses.done;
-      case NeedUpdateEnum.withLoading:
-        return CubitStatuses.loading;
-      case NeedUpdateEnum.noLoading:
-        return CubitStatuses.done;
-    }
-  }
-}
 
 extension HelperJson on Map<String, dynamic> {
   num getAsNum(String key) {
@@ -235,11 +204,6 @@ extension ResponseHelper on http.Response {
   }
 }
 
-extension CubitStatusesHelper on CubitStatuses {
-  bool get loading => this == CubitStatuses.loading;
-
-  bool get done => this == CubitStatuses.done;
-}
 
 extension FormatDuration on Duration {
   String get format =>

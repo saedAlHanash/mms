@@ -25,6 +25,13 @@ dependencies:
     git:
       url: https://github.com/saedAlHanash/image_multi_type
 
+  #  m_cubit:
+  #    git:
+  #      url: https://github.com/saedAlHanash/m_cubit
+
+  m_cubit:
+    path: ../../packages/m_cubit
+
 
   flutter_slidable: ^3.1.0
   flutter_switch:

@@ -10,7 +10,7 @@ import '../../../../core/app/app_provider.dart';
 import '../../../../core/app/app_widget.dart';
 import '../../../../core/error/error_manager.dart';
 import '../../../../core/strings/enum_manager.dart';
-import '../../../../core/util/abstraction.dart';
+import 'package:m_cubit/m_cubit.dart';
 import '../../../../core/util/pair_class.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../router/app_router.dart';

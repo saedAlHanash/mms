@@ -3,13 +3,8 @@ import 'package:flutter/material.dart';
 import '../../generated/l10n.dart';
 import 'app_color_manager.dart';
 
-enum CubitStatuses { init, loading, done, error }
 
-enum AttachmentType { image, youtube, video, d3 }
 
-enum PricingMatrixType { day, date }
-
-enum FilterItem { activity, group, country, city }
 
 enum StartPage { login, home, signupOtp, passwordOtp }
 
@@ -26,8 +21,6 @@ enum GenderEnum {
     }
   }
 }
-
-enum NeedUpdateEnum { no, withLoading, noLoading }
 
 enum UpdateProfileType { normal, confirmAddPhone }
 

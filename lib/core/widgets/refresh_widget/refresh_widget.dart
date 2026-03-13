@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:mms/core/strings/enum_manager.dart';
@@ -29,11 +30,9 @@ class _RefreshWidgetState extends State<RefreshWidget> {
 
   @override
   Widget build(BuildContext context) {
-
-
-    if (widget.statuses.done) {
+    if (widget.statuses == CubitStatuses.done) {
       _refreshController.refreshCompleted();
-    } else if (widget.statuses.loading) {
+    } else if (widget.statuses == CubitStatuses.loading) {
       if (!_refreshController.isRefresh) {
         Future(() => _refreshController.requestRefresh(
             needCallback: false, duration: Duration.zero, needMove: false));
