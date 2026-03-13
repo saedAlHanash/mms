@@ -7,7 +7,7 @@ import 'package:mms/core/widgets/my_card_widget.dart';
 
 class CardSlider extends StatelessWidget {
   const CardSlider({
-     super.key,
+    super.key,
     this.margin,
     this.stackChild,
     required this.images,
@@ -65,11 +65,11 @@ class CardSlider extends StatelessWidget {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Colors.black.withOpacity(0.01),
-                  Colors.black.withOpacity(0.01),
-                  Colors.black.withOpacity(0.1),
-                  Colors.black.withOpacity(0.2),
-                  Colors.black.withOpacity(0.4),
+                  Colors.black.withValues(alpha: 0.01),
+                  Colors.black.withValues(alpha: 0.01),
+                  Colors.black.withValues(alpha: 0.1),
+                  Colors.black.withValues(alpha: 0.2),
+                  Colors.black.withValues(alpha: 0.4),
                 ],
               ),
             ),
@@ -104,7 +104,7 @@ class CardSlider extends StatelessWidget {
 
 class CardImageSlider extends StatefulWidget {
   const CardImageSlider({
-     super.key,
+    super.key,
     this.margin,
     this.stackChild,
     required this.images,
@@ -143,7 +143,6 @@ class _CardImageSliderState extends State<CardImageSlider> {
     final key = GlobalKey<IndicatorSliderWidgetState>();
     widgets.add(
       CarouselSlider(
-        carouselController: controller,
         items: widget.images.map(
           (e) {
             return ImageMultiType(
@@ -180,11 +179,11 @@ class _CardImageSliderState extends State<CardImageSlider> {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Colors.black.withOpacity(0.01),
-                  Colors.black.withOpacity(0.01),
-                  Colors.black.withOpacity(0.1),
-                  Colors.black.withOpacity(0.2),
-                  Colors.black.withOpacity(0.4),
+                  Colors.black.withValues(alpha: 0.01),
+                  Colors.black.withValues(alpha: 0.01),
+                  Colors.black.withValues(alpha: 0.1),
+                  Colors.black.withValues(alpha: 0.2),
+                  Colors.black.withValues(alpha: 0.4),
                 ],
               ),
             ),
@@ -227,7 +226,7 @@ class _CardImageSliderState extends State<CardImageSlider> {
 
 class IndicatorSliderWidget extends StatefulWidget {
   const IndicatorSliderWidget({
-     super.key,
+    super.key,
     required this.length,
   });
 
@@ -264,7 +263,7 @@ class IndicatorSliderWidgetState extends State<IndicatorSliderWidget> {
             height: 7.spMin,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(200.0),
-              color: AppColorManager.mainColor.withOpacity(selected == i ? 1 : 0.3),
+              color: AppColorManager.mainColor.withValues(alpha: selected == i ? 1 : 0.3),
             ),
             duration: const Duration(milliseconds: 150),
           );

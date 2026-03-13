@@ -56,7 +56,6 @@ class PieChartSample3State extends State {
       switch (i) {
         case 0:
           return PieChartSectionData(
-
             color: AppColorManager.mainColor,
             value: 40,
             title: '40%',
@@ -149,7 +148,7 @@ class _Badge extends StatelessWidget {
         ),
         boxShadow: <BoxShadow>[
           BoxShadow(
-            color: Colors.black.withOpacity(.5),
+            color: Colors.black.withValues(alpha: .5),
             offset: const Offset(3, 3),
             blurRadius: 3,
           ),
@@ -173,32 +172,28 @@ class VotesPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBarWidget(titleText: S.of(context).vote),
       body: BlocListener<CreateVoteCubit, CreateVoteInitial>(
-        listenWhen: (p, c) => c.statuses.done,
+        listenWhen: (p, c) => c.done,
         listener: (context, state) {
-          context.read<MeetingCubit>().getMeeting(newData: true);
+          context.read<MeetingCubit>().getData(newData: true);
         },
         child: BlocBuilder<MeetingCubit, MeetingInitial>(
           builder: (context, state) {
-            final myPolls = state.result.polls
-              ..removeWhere((e) => e.status == PollStatus.pending);
+            final myPolls = state.result.polls..removeWhere((e) => e.status == PollStatus.pending);
 
             return RefreshWidget(
               onRefresh: () {
-                context.read<MeetingCubit>().getMeeting(newData: true);
+                context.read<MeetingCubit>().getData(newData: true);
               },
-              statuses: state.statuses,
+              isLoading: state.loading,
               child: (myPolls.isEmpty && state.result.pollResults.isEmpty)
                   ? const ImageMultiType(url: Assets.iconsNoVote)
                   : ListView.builder(
-                      itemCount:
-                          myPolls.length + state.result.pollResults.length,
+                      itemCount: myPolls.length + state.result.pollResults.length,
                       itemBuilder: (_, i) {
                         if ((myPolls.length - i) > 0) {
                           return PollWidget(poll: myPolls[i]);
                         } else {
-                          return PollResultWidget(
-                              pollResult:
-                                  state.result.pollResults[i - myPolls.length]);
+                          return PollResultWidget(pollResult: state.result.pollResults[i - myPolls.length]);
                         }
                       },
                     ),

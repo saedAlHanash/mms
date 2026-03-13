@@ -132,12 +132,13 @@ class _AgendaPageState extends State<AgendaPage> {
         showRootNode: true,
         expansionBehavior: ExpansionBehavior.scrollToLastChild,
         expansionIndicatorBuilder: (context, node) {
-          if (node.isRoot)
+          if (node.isRoot) {
             return PlusMinusIndicator(
               tree: node,
               alignment: Alignment.centerLeft,
               color: Colors.grey[700],
             );
+          }
 
           return ChevronIndicator.rightDown(
             tree: node,
@@ -161,7 +162,7 @@ class _AgendaPageState extends State<AgendaPage> {
                   title: DrawableText(
                     text: node.data!.title,
                     size: 18.0.sp,
-                    fontFamily: FontManager.cairoBold.name,
+                   fontWeight: FontWeight.bold,
                   ),
                   subtitle: Column(
                     children: [

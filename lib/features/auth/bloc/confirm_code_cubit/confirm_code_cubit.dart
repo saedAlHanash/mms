@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/extensions/extensions.dart';
-import 'package:mms/core/util/abstraction.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/api_manager/api_url.dart';
@@ -31,7 +31,8 @@ class ConfirmCodeCubit extends Cubit<ConfirmCodeInitial> {
   }
 
   Future<Pair<LoginResponse?, String?>> _confirmCodeApi() async {
-    final response = await APIService().callApi(type: ApiType.post,
+    final response = await APIService().callApi(
+      type: ApiType.post,
       url: PostUrl.confirmCode,
       body: state.request.toJson(),
     );

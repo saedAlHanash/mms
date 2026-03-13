@@ -1,11 +1,9 @@
 import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/api_manager/api_url.dart';
-import 'package:mms/core/api_manager/request_models/command.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/strings/enum_manager.dart';
-import 'package:m_cubit/m_cubit.dart';
 import '../../../../core/util/pair_class.dart';
 import '../../data/response/notification_response.dart';
 
@@ -13,14 +11,15 @@ part 'notifications_state.dart';
 
 class NotificationsCubit extends MCubit<NotificationsInitial> {
   NotificationsCubit() : super(NotificationsInitial.initial());
-
+  @override
+  get mState => state;
   @override
   String get nameCache => 'notifications';
 
   @override
   String get filter => (state.filterRequest?.getKey) ?? state.request ?? '';
 
-  Future<void> getNotifications({bool newData = false}) async {
+  Future<void> getData({bool newData = false}) async {
     getDataAbstract(
       fromJson: NotificationModel.fromJson,
       state: state,

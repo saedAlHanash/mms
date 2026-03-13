@@ -24,7 +24,7 @@ class TempList {
 
   Map<String, dynamic> toJson() {
     return {
-      'data': this.data,
+      'data': data,
     };
   }
 

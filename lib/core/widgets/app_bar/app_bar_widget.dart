@@ -9,7 +9,7 @@ import '../../strings/app_color_manager.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   const AppBarWidget({
-     super.key,
+    super.key,
     this.titleText,
     this.elevation,
     this.zeroHeight,
@@ -38,12 +38,11 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
               text: titleText ?? '',
               size: 28.0.spMin,
               fontWeight: FontWeight.bold,
-              fontFamily: FontManager.cairoBold.name,
             ),
         leading: Navigator.canPop(context) ? const BackBtnWidget() : null,
         actions: actions,
         elevation: elevation ?? 0.0,
-        shadowColor: AppColorManager.black.withOpacity(0.28),
+        shadowColor: AppColorManager.black.withValues(alpha: 0.28),
         iconTheme: const IconThemeData(color: AppColorManager.mainColor),
       ),
     );

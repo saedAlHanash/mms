@@ -34,7 +34,7 @@ class TopTitleWidget extends StatelessWidget {
     final textWidget = DrawableText(
       text: text,
       color: AppColorManager.grey,
-      fontFamily: FontManager.cairoBold.name,
+     fontWeight: FontWeight.bold,
       size: 18.0.spMin,
     );
     return MyCardWidget(

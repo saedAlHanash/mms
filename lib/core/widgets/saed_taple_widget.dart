@@ -107,7 +107,7 @@ class TitleWidget extends StatelessWidget {
                   textAlign: TextAlign.center,
                   text: e,
                   color: Colors.black,
-                  fontFamily: FontManager.cairoBold.name,
+                 fontWeight: FontWeight.bold,
                 )
               : title is Widget
                   ? title as Widget

@@ -1,4 +1,6 @@
 class GetUrl {
+  static const liveKit = 'lk/Get';
+  static const agora = 'forDelete/Get';
   static const temp = '';
   static const getHome = 'home';
 
@@ -102,6 +104,10 @@ class GetUrl {
 }
 
 class PostUrl {
+  static const liveKits = 'lk/GetAll';
+  static const createLiveKit = 'lk/Add';
+  static const agoras = 'forDelete/GetAll';
+  static const createAgora = 'forDelete/Add';
   static const votes = 'Poll/GetAll';
   static const addReview = 'reviews';
   static const loginUrl = 'Auth/Authenticate';
@@ -167,20 +173,43 @@ class PostUrl {
 
   static var polls = '';
 
-  static String addMessage(int id) {
-    return 'drivers/messages/$id/add';
-  }
+  static const rooms = 'Room/GetAll';
+  static const createRoom = 'Room/Add';
+  static const users = 'user/GetAll';
+  static const createUser = 'user/Add';
+  static const homes = 'home/GetAll';
+  static const createHome = 'home/Add';
 
-  static String increase(int id) {
-    return 'carts/products/$id/quantity/increase';
-  }
+  static const suspend = 'Index/Suspend';
 
-  static String decrease(int id) {
-    return 'carts/products/$id/quantity/decrease';
-  }
+  static const resume = 'Index/Resume';
+
+  static const suspendAll = 'Index/SuspendAll';
+
+  static const resumeAll = 'Index/ResumeAll';
+
+  static const allowScreenShare = 'Index/AllowScreenShare';
+
+  static const stopScreenShare = 'Index/StopScreenShare';
+
+  static const allowCamera = 'Index/AllowCamera';
+
+  static const stopCamera = 'Index/StopCamera';
+
+  static const allowAudio = 'Index/AllowAudio';
+
+  static const stopAudio = 'Index/StopAudio';
+
+  static const kick = 'Index/Kick';
+
+  static const sendMessage = 'Index/SendData';
+
+  static const getLatestState = 'Index/GetLatestState';
 }
 
 class PutUrl {
+  static const updateLiveKit = 'lk/Update';
+  static const updateAgora = 'forDelete/Update';
   static const updateName = 'update-name';
   static const updatePhone = 'update-phone';
   static const updateAddress = 'update-address';
@@ -193,6 +222,8 @@ class PutUrl {
 }
 
 class DeleteUrl {
+  static const deleteLiveKit = 'lk/Delete';
+  static const deleteAgora = 'forDelete/Delete';
   static const removeFavorite = 'favorites';
 
   static const removeFromCart = 'carts/products';
@@ -207,4 +238,4 @@ class DeleteUrl {
 }
 
 const additionalConst = '/api/v1/';
-const baseUrl = 'mms.coretech-mena.com';
+const baseUrl = 'mmsv2-be.coretech-mena.com';

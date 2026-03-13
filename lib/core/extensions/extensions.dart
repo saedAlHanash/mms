@@ -1,10 +1,16 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
+import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_multi_type/image_multi_type.dart';
 import 'package:intl/intl.dart';
+import 'package:livekit_client/livekit_client.dart' as lk;
+import 'package:livekit_client/livekit_client.dart';
+import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/api_manager/api_service.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:mms/features/committees/data/response/committees_response.dart';
@@ -14,6 +20,7 @@ import '../../features/members/data/response/member_response.dart';
 import '../../features/poll/data/response/poll_response.dart';
 import '../../generated/l10n.dart';
 import '../app/app_provider.dart';
+import '../app/app_widget.dart';
 import '../error/error_manager.dart';
 import '../strings/enum_manager.dart';
 import '../util/pair_class.dart';
@@ -37,6 +44,16 @@ extension SplitByLength on String {
     return pieces;
   }
 
+  AttachmentType getLinkType({AttachmentType? type}) {
+    if (type == AttachmentType.video) {
+      if (contains('youtube')) {
+        return AttachmentType.youtube;
+      } else {
+        return AttachmentType.video;
+      }
+    }
+    return AttachmentType.image;
+  }
 
   bool get canSendToSearch {
     if (isEmpty) false;
@@ -47,8 +64,7 @@ extension SplitByLength on String {
   int get numberOnly {
     final regex = RegExp(r'\d+');
 
-    final numbers =
-        regex.allMatches(this).map((match) => match.group(0)).join();
+    final numbers = regex.allMatches(this).map((match) => match.group(0)).join();
 
     try {
       return int.parse(numbers);
@@ -70,12 +86,10 @@ extension SplitByLength on String {
   String? checkPhoneNumber(BuildContext context, String phone) {
     if (phone.startsWith('00964') && phone.length > 11) return phone;
     if (phone.length < 10) {
-      NoteMessage.showSnakeBar(
-          context: context, message: S.of(context).wrongPhone);
+      NoteMessage.showSnakeBar(context: context, message: S.of(context).wrongPhone);
       return null;
     } else if (phone.startsWith("0") && phone.length < 11) {
-      NoteMessage.showSnakeBar(
-          context: context, message: S.of(context).wrongPhone);
+      NoteMessage.showSnakeBar(context: context, message: S.of(context).wrongPhone);
       return null;
     }
 
@@ -103,12 +117,112 @@ extension SplitByLength on String {
   num? get tryParseOrNull => num.tryParse(this);
 
   int? get tryParseOrNullInt => int.tryParse(this);
+
+  String? get validateEmpty {
+    if (isEmpty) {
+      return S().is_required;
+    } else {
+      return null;
+    }
+  }
+
+  String get decimalNumbersOnly {
+    final matches = RegExp(r'\d+([.,]\d+)?').allMatches(this);
+    return matches.map((m) => m.group(0)).join(' ');
+  }
+
+  String get toSnakeCase {
+    final regex = RegExp(r'(?<=[a-z])[A-Z]');
+    return replaceAllMapped(regex, (match) => '_${match.group(0)}').toLowerCase();
+  }
+
+  String get toSplitsSpaceCase {
+    final regex = RegExp(r'(?<=[a-z])[A-Z]');
+    return replaceAllMapped(regex, (match) => '_${match.group(0)}').toLowerCase().replaceAll('_', ' ');
+  }
+
+  String get toPascalCase {
+    final words = split('_');
+    return words.map((word) => word[0].toUpperCase() + word.substring(1)).join();
+  }
+
+  String get toCamelCase {
+    final words = split('_');
+    if (words.isEmpty) return '';
+    final capitalized = words.map((word) => word[0].toUpperCase() + word.substring(1)).join();
+    return capitalized[0].toLowerCase() + capitalized.substring(1);
+  }
+
+  Color get colorFromId {
+    final hash = hashCode;
+    final hue = (hash % 360).toDouble(); // 0 → 360
+    const saturation = 0.6; // تشبع متوسط
+    const lightness = 0.5; // سطوع متوسط
+
+    return HSLColor.fromAHSL(1.0, hue, saturation, lightness).toColor();
+  }
+
+  Widget get copySymbol {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        GestureDetector(
+          onTap: () {
+            Clipboard.setData(ClipboardData(text: this));
+            ScaffoldMessenger.of(ctx!).showSnackBar(
+              SnackBar(content: Text(S().done)),
+            );
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: Colors.white12,
+            ),
+            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 1.0).r,
+            margin: EdgeInsets.symmetric(vertical: 3.0).r,
+            child: DrawableText(
+              text: this,
+              maxLength: 4,
+              drawablePadding: 5.0.w,
+              drawableEnd: ImageMultiType(
+                url: Icons.copy,
+                height: 15.0.r,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Color get gradeColor {
+    final upperCaseGrade = toUpperCase();
+    if (upperCaseGrade.contains('A')) {
+      return Colors.green;
+    } else if (upperCaseGrade.contains('B')) {
+      return Colors.blue;
+    } else if (upperCaseGrade.contains('C')) {
+      return Colors.yellow;
+    } else if (upperCaseGrade.contains('D')) {
+      return Colors.orange;
+    } else if (upperCaseGrade.contains('F')) {
+      return Colors.red;
+    } else {
+      // Return a default color or throw an error for unknown grades
+      return Colors.grey; // Or throw ArgumentError('Invalid grade: $this');
+    }
+  }
+
+  String get firstCharacter {
+    if (isEmpty) {
+      return '';
+    }
+    return this[0];
+  }
 }
 
 extension StringHelper on String? {
-
   String fixUrl({String? initialImage}) {
-
     if (initialImage.isBlank) return initialImage ?? '';
 
     final type = ImageMultiType.initialType(fixAvatarImage(this));
@@ -133,7 +247,6 @@ extension MaxInt on num {
 
   String get formatPrice => oCcy.format(this);
 }
-
 
 extension HelperJson on Map<String, dynamic> {
   num getAsNum(String key) {
@@ -164,9 +277,9 @@ extension EnumHelper on Enum {
       case MembershipType.member:
         return Colors.white;
       case MembershipType.chair:
-        return Colors.green.withOpacity(0.3);
+        return Colors.green.withValues(alpha: 0.3);
       case MembershipType.secretary:
-        return AppColorManager.ampere.withOpacity(0.3);
+        return AppColorManager.ampere.withValues(alpha: 0.3);
       default:
         return Colors.white;
     }
@@ -199,11 +312,16 @@ extension ResponseHelper on http.Response {
   // Pair<T?, String?> getPairError<T>() {
   //   return Pair(null, ErrorManager.getApiError(this));
   // }
-  get getPairError {
+  Pair<Null, String> get getPairError {
     return Pair(null, ErrorManager.getApiError(this));
   }
 }
 
+extension CubitStatusesHelper on CubitStatuses {
+  bool get loading => this == CubitStatuses.loading;
+
+  bool get done => this == CubitStatuses.done;
+}
 
 extension FormatDuration on Duration {
   String get format =>
@@ -244,8 +362,7 @@ extension DateUtcHelper on DateTime {
     );
   }
 
-  DateTime initialFromDateTime(
-      {required DateTime date, required TimeOfDay time}) {
+  DateTime initialFromDateTime({required DateTime date, required TimeOfDay time}) {
     return DateTime(date.year, date.month, date.day, time.hour, time.minute);
   }
 
@@ -331,7 +448,6 @@ extension CommitteeHelper on Committee {
 
 extension MemberHelper on Member {
   bool get isMe {
-
     return id == AppProvider.getCurrentCommittee.member.id;
   }
 }
@@ -361,25 +477,21 @@ extension PoolH on Poll {
     return null;
   }
 
-    int get votersCount {
+  int get votersCount {
     final count = options.map((e) => e.voters.length).reduce((a, b) => a + b);
     return count;
   }
 }
+
 extension PollResultH on PollResult {
-
-
-
-    int get votersCount {
+  int get votersCount {
     final count = voteResults.map((e) => e.voteCount).reduce((a, b) => a + b);
     return count;
   }
 }
 
 extension OptionH on Option {
-  String? get voteId =>
-      voters.firstWhereOrNull((e) => e.partyId == AppProvider.getParty.id)?.id;
-
+  String? get voteId => voters.firstWhereOrNull((e) => e.partyId == AppProvider.getParty.id)?.id;
 }
 
 extension MeetingH on Meeting {
@@ -417,4 +529,122 @@ class FormatDateTime {
         '$minutes\n'
         '$seconds\n';
   }
+}
+
+extension ParticipantH on Participant {
+  RemoteParticipant get remoteParticipant => this as RemoteParticipant;
+
+  LocalParticipant get localParticipant => this as LocalParticipant;
+
+  MediaType get type => videoTrackPublications.any((e) => e.isScreenShare) ? MediaType.screen : MediaType.media;
+
+  RemoteTrackPublication<RemoteVideoTrack>? get remoteVideoPublication {
+    return remoteParticipant.videoTrackPublications.where((e) => e.source == type.videoSourceType).firstOrNull;
+  }
+
+  List<RemoteTrackPublication<RemoteVideoTrack>> get remoteVideoPublications {
+    return remoteParticipant.videoTrackPublications /*.where((e) => e.source == type.videoSourceType).toList()*/;
+  }
+
+  RemoteTrackPublication<RemoteAudioTrack>? get remoteAudioPublication =>
+      remoteParticipant.audioTrackPublications.where((e) => e.source == type.audioSourceType).firstOrNull;
+
+  LocalTrackPublication<LocalVideoTrack>? get localVideoPublication {
+    return localParticipant.videoTrackPublications.where((e) => e.source == type.videoSourceType).firstOrNull;
+  }
+
+  LocalTrackPublication<LocalAudioTrack>? get localAudioPublication =>
+      localParticipant.audioTrackPublications.where((e) => e.source == type.audioSourceType).firstOrNull;
+
+  String get image => attributes['imageUrl'].toString();
+
+  //
+  // LocalTrackPublication<LocalVideoTrack>? get videoPublication {
+  //   return remoteParticipant.videoTrackPublications.where((e) => e.source == type.videoSourceType).firstOrNull;
+  // }
+  //
+  // LocalTrackPublication<LocalAudioTrack>? get audioPublication =>
+  //     remoteParticipant.audioTrackPublications.where((e) => e.source == type.audioSourceType).firstOrNull;
+
+  VideoTrack? get activeVideoTrack =>
+      (this is LocalParticipant) ? localVideoPublication?.track : remoteVideoPublication?.track;
+
+  AudioTrack? get activeAudioTrack =>
+      (this is LocalParticipant) ? localAudioPublication?.track : remoteAudioPublication?.track;
+
+  bool get videoActive => activeVideoTrack != null && !activeVideoTrack!.muted;
+
+  bool get audioActive => activeAudioTrack != null && !activeAudioTrack!.muted;
+
+  LkUserType get userType => LkUserType.values[(attributes['lkUserType'] ?? 0).toString().tryParseOrZeroInt];
+
+  String get displayName {
+    if (name.isNotEmpty) return name;
+    if (identity.isNotEmpty) return identity;
+    return sid;
+  }
+
+  String get statusName {
+    if (permissions.isSuspend) return 'معلق';
+    if (permissions.isSilence) return 'مستمع';
+    if (permissions.isAll) return 'متحدث';
+
+    return 'غير معروف';
+  }
+
+  bool get isSuspend => permissions.isSuspend;
+}
+
+extension RemoteParticipantH on RemoteParticipant {
+  RemoteAudioTrack? get activeAudioTrack => audioTrackPublications.firstWhereOrNull((e) => e.enabled)?.track;
+
+  RemoteVideoTrack? get shareScreenTrack => videoTrackPublications.firstWhereOrNull((e) => e.isScreenShare)?.track;
+
+  RemoteVideoTrack? get cameraTrack => videoTrackPublications.firstWhereOrNull((e) => !e.isScreenShare)?.track;
+}
+
+extension LocalParticipantH on LocalParticipant {
+  LocalAudioTrack? get activeAudioTrack => audioTrackPublications.firstWhereOrNull((e) => !e.muted)?.track;
+
+  LocalVideoTrack? get shareScreenTrack => videoTrackPublications.firstWhereOrNull((e) => e.isScreenShare)?.track;
+
+  LocalVideoTrack? get cameraTrack => videoTrackPublications.firstWhereOrNull((e) => !e.isScreenShare)?.track;
+}
+
+extension ParticipantPermissionsH on ParticipantPermissions {
+  bool get isSuspend => !canSubscribe && !canPublish;
+
+  bool get isSilence => !canPublish && canSubscribe;
+
+  bool get isAll => canSubscribe && canPublish;
+
+  String get printFun {
+    return 'canSubscribe: $canSubscribe\n'
+        'canPublish: $canPublish\n'
+        'canPublishData: $canPublishData\n'
+        'canUpdateMetadata: $canUpdateMetadata\n'
+        'hidden: $hidden';
+  }
+}
+
+extension ConnectionQualityH on ConnectionQuality {
+  Widget get icon => ImageMultiType(
+        url: this == ConnectionQuality.poor ? Icons.wifi_off_outlined : Icons.wifi,
+        color: {
+          ConnectionQuality.excellent: Colors.green,
+          ConnectionQuality.good: Colors.orange,
+          ConnectionQuality.poor: Colors.red,
+        }[this],
+        height: 16.0.dg,
+      );
+}
+
+extension ConnectionStateH on lk.ConnectionState {
+  bool get isDisconnected => this == lk.ConnectionState.disconnected;
+
+  bool get isConnecting => this == lk.ConnectionState.connecting;
+
+  bool get isReconnecting => this == lk.ConnectionState.reconnecting;
+
+  bool get isConnected => this == lk.ConnectionState.connected;
 }

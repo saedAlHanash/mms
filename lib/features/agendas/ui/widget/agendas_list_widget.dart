@@ -45,7 +45,6 @@ class AgendaListWidget extends StatelessWidget {
               size: 20.0.sp,
               matchParent: true,
               fontWeight: FontWeight.bold,
-              fontFamily: FontManager.cairoBold.name,
               padding: const EdgeInsets.symmetric(horizontal: 15.0).w,
             )),
       ],
@@ -71,7 +70,7 @@ class AgendaWidget extends StatelessWidget {
         onTap: onTap,
         title: DrawableText(
           text: agenda.title,
-          fontFamily: FontManager.cairoBold.name,
+          fontWeight: FontWeight.bold,
         ),
         subtitle: DrawableText(text: agenda.description, color: Colors.grey),
         trailing: ImageMultiType(

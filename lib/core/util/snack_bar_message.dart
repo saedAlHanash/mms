@@ -8,13 +8,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 
 import '../../generated/l10n.dart';
+import '../app/app_widget.dart';
 import '../strings/app_color_manager.dart';
 import '../widgets/my_button.dart';
 import '../widgets/snake_bar_widget.dart';
 
 class NoteMessage {
-  static void showSuccessSnackBar(
-      {required String message, required BuildContext context}) {
+  static void showSuccessSnackBar({required String message, required BuildContext context}) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
@@ -26,8 +26,7 @@ class NoteMessage {
     );
   }
 
-  static void showErrorSnackBar(
-      {required String message, required BuildContext context}) {
+  static void showErrorSnackBar({required String message, required BuildContext context}) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
@@ -52,7 +51,7 @@ class NoteMessage {
     ScaffoldMessenger.of(context).showSnackBar(snack);
   }
 
-  static showBottomSheet(BuildContext context, Widget child) {
+  static void showBottomSheet(BuildContext context, Widget child) {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.white,
@@ -61,30 +60,23 @@ class NoteMessage {
     );
   }
 
-  static Future<bool> showBottomSheet1(
-      BuildContext context, Widget child) async {
+  static Future<bool> showBottomSheet1({required Widget child}) async {
     final result = await showModalBottomSheet(
       isScrollControlled: true,
-      context: context,
-      backgroundColor: Colors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadiusDirectional.only(
-          topEnd: Radius.circular(20.0.r),
-          topStart: Radius.circular(20.0.r),
-        ),
-      ),
+      context: ctx!,
+      backgroundColor: Colors.transparent,
+      // barrierColor: Colors.transparent,
       builder: (context) => child,
     );
 
     return result ?? false;
   }
 
-  static Future<bool> showConfirm(BuildContext context,
-      {required String text}) async {
+  static Future<bool> showConfirm(BuildContext context, {required String text}) async {
     // show the dialog
     final result = await showDialog(
       context: context,
-      barrierColor: Colors.black.withOpacity(0.3),
+      barrierColor: Colors.black.withValues(alpha: 0.3),
       builder: (BuildContext context) {
         return Dialog(
           surfaceTintColor: Colors.white,
@@ -105,7 +97,7 @@ class NoteMessage {
                 DrawableText(
                   text: text,
                   size: 22.0.spMin,
-                  fontFamily: FontManager.cairoBold.name,
+                  fontWeight: FontWeight.bold,
                   color: AppColorManager.mainColorDark,
                 ),
                 40.0.verticalSpace,
@@ -129,12 +121,11 @@ class NoteMessage {
     return (result ?? false);
   }
 
-  static Future<bool> showErrorDialog(BuildContext context,
-      {required String text, bool tryAgne = true}) async {
+  static Future<bool> showErrorDialog(BuildContext context, {required String text, bool tryAgne = false}) async {
     // show the dialog
     final result = await showDialog(
       context: context,
-      barrierColor: Colors.black.withOpacity(0.3),
+      barrierColor: Colors.black.withValues(alpha: 0.3),
       builder: (BuildContext context) {
         return Dialog(
           surfaceTintColor: Colors.white,
@@ -145,30 +136,33 @@ class NoteMessage {
           ),
           elevation: 10.0,
           clipBehavior: Clip.hardEdge,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              DrawableText(
-                text: 'Oops!',
-                size: 20.0.spMin,
-                padding: const EdgeInsets.symmetric(vertical: 15.0).h,
-                fontFamily: FontManager.cairoBold.name,
-                color: AppColorManager.textColor,
-              ),
-              const Divider(color: Colors.black),
-              DrawableText(
-                text: text,
-                textAlign: TextAlign.center,
-                size: 16.0.spMin,
-                padding: const EdgeInsets.symmetric(vertical: 20.0).h,
-                fontFamily: FontManager.cairoBold.name,
-                color: AppColorManager.textColor,
-              ),
-              const Divider(color: Colors.black),
-              TextButton(
-                  onPressed: () => Navigator.pop(context, true),
-                  child: DrawableText(text: tryAgne ? 'Try Again' : 'OK'))
-            ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                DrawableText(
+                  text: 'Oops!',
+                  size: 20.0.spMin,
+                  padding: const EdgeInsets.symmetric(vertical: 15.0).h,
+                  fontWeight: FontWeight.bold,
+                  color: AppColorManager.textColor,
+                ),
+                const Divider(color: Colors.black),
+                DrawableText(
+                  text: text,
+                  textAlign: TextAlign.center,
+                  size: 16.0.spMin,
+                  padding: const EdgeInsets.symmetric(vertical: 20.0).h,
+                  fontWeight: FontWeight.bold,
+                  color: AppColorManager.textColor,
+                ),
+                const Divider(color: Colors.black),
+                TextButton(
+                    onPressed: () => Navigator.pop(context, true),
+                    child: DrawableText(text: tryAgne ? 'Try Again' : 'OK'))
+              ],
+            ),
           ),
         );
       },
@@ -184,7 +178,7 @@ class NoteMessage {
     // show the dialog
     showDialog(
       context: context,
-      barrierColor: Colors.black.withOpacity(0.3),
+      barrierColor: Colors.black.withValues(alpha: 0.3),
       builder: (BuildContext context) {
         return Dialog(
           surfaceTintColor: Colors.white,
@@ -202,7 +196,7 @@ class NoteMessage {
                 text: 'Oops!',
                 size: 20.0.spMin,
                 padding: const EdgeInsets.symmetric(vertical: 15.0).h,
-                fontFamily: FontManager.cairoBold.name,
+                fontWeight: FontWeight.bold,
                 color: AppColorManager.textColor,
               ),
               const Divider(color: Colors.black),
@@ -211,13 +205,11 @@ class NoteMessage {
                 textAlign: TextAlign.center,
                 size: 16.0.spMin,
                 padding: const EdgeInsets.symmetric(vertical: 20.0).h,
-                fontFamily: FontManager.cairoBold.name,
+                fontWeight: FontWeight.bold,
                 color: AppColorManager.textColor,
               ),
               const Divider(color: Colors.black),
-              TextButton(
-                  onPressed: () => Navigator.pop(context, true),
-                  child: const DrawableText(text: 'OK'))
+              TextButton(onPressed: () => Navigator.pop(context, true), child: const DrawableText(text: 'OK'))
             ],
           ),
         );
@@ -225,12 +217,11 @@ class NoteMessage {
     );
   }
 
-  static void showMyDialog(BuildContext context,
-      {required Widget child, Function(dynamic v)? onCancel}) {
+  static void showMyDialog(BuildContext context, {required Widget child, Function(dynamic v)? onCancel}) {
     // show the dialog
     showDialog(
       context: context,
-      barrierColor: Colors.black.withOpacity(0.3),
+      barrierColor: Colors.black.withValues(alpha: 0.3),
       builder: (BuildContext context) {
         return BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
@@ -255,9 +246,11 @@ class NoteMessage {
     ).then((value) => onCancel?.call(value));
   }
 
-  static void showAwesomeError(
-      {required BuildContext context, required String message}) {
-    AwesomeDialog(
+  static Future<void> showAwesomeError({
+    required BuildContext context,
+    required String message,
+  }) async {
+    await AwesomeDialog(
       context: context,
       dialogType: DialogType.error,
       animType: AnimType.scale,
@@ -266,8 +259,7 @@ class NoteMessage {
     ).show();
   }
 
-  static showAwesomeDoneDialog(BuildContext context,
-      {required String message, Function()? onCancel}) async {
+  static Future<void> showAwesomeDoneDialog(BuildContext context, {required String message, Function()? onCancel}) async {
     await AwesomeDialog(
       context: context,
       dialogType: DialogType.success,
@@ -284,7 +276,7 @@ class NoteMessage {
     required int currentPage,
   }) async {
     // show the dialog
-    final controller = CarouselController();
+    final controller = CarouselSliderController();
     final result = await showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -302,7 +294,6 @@ class NoteMessage {
           child: SizedBox(
             height: 1.0.sh,
             child: CarouselSlider(
-              carouselController: controller,
               items: images.map(
                 (e) {
                   return ImageMultiType(
@@ -337,7 +328,7 @@ class NoteMessage {
     // show the dialog
     final result = await showDialog(
       context: context,
-      barrierColor: Colors.black.withOpacity(0.3),
+      barrierColor: Colors.black.withValues(alpha: 0.3),
       builder: (BuildContext context) {
         return BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
@@ -360,8 +351,7 @@ class NoteMessage {
                   clipBehavior: Clip.hardEdge,
                   decoration: BoxDecoration(
                     color: AppColorManager.f8,
-                    borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(20.0.r)),
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(20.0.r)),
                   ),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -380,7 +370,6 @@ class NoteMessage {
                         text: text,
                         size: 20.0.sp,
                         textAlign: TextAlign.center,
-                        fontFamily: FontManager.cairoSemiBold.name,
                         color: AppColorManager.mainColorLight,
                       ),
                     ],
@@ -396,11 +385,9 @@ class NoteMessage {
                           splashColor: Colors.transparent,
                           onTap: () => Navigator.pop(context, true),
                           child: DrawableText(
-                            padding:
-                                const EdgeInsets.symmetric(vertical: 23.0).r,
+                            padding: const EdgeInsets.symmetric(vertical: 23.0).r,
                             text: textButton,
                             color: AppColorManager.mainColorLight,
-                            fontFamily: FontManager.cairoSemiBold.name,
                             matchParent: true,
                           ),
                         ),
@@ -411,8 +398,7 @@ class NoteMessage {
                           splashColor: Colors.transparent,
                           onTap: () => Navigator.pop(context, false),
                           child: DrawableText(
-                            padding:
-                                const EdgeInsets.symmetric(vertical: 23.0).r,
+                            padding: const EdgeInsets.symmetric(vertical: 23.0).r,
                             color: Colors.grey,
                             text: S.of(context).cancel,
                             matchParent: true,
@@ -442,7 +428,7 @@ class NoteMessage {
     // show the dialog
     final result = await showDialog(
       context: context,
-      barrierColor: Colors.black.withOpacity(0.3),
+      barrierColor: Colors.black.withValues(alpha: 0.3),
       builder: (BuildContext context) {
         return BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),

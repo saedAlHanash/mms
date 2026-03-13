@@ -1,11 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/error/error_manager.dart';
 import '../../../../core/strings/enum_manager.dart';
-import 'package:m_cubit/m_cubit.dart';
 import '../../../../core/util/pair_class.dart';
 import '../../../../generated/l10n.dart';
 import '../../data/request/add_guest_request.dart';
@@ -18,7 +18,7 @@ class AddGuestCubit extends Cubit<AddGuestInitial> {
   Future<void> getAddGuest() async {
     emit(state.copyWith(statuses: CubitStatuses.loading));
 
-    final pair = await _getDataApi();
+    final pair = await _getData();
     if (pair.first == null) {
       emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));
       showErrorFromApi(state);
@@ -27,8 +27,9 @@ class AddGuestCubit extends Cubit<AddGuestInitial> {
     }
   }
 
-  Future<Pair<bool?, String?>> _getDataApi() async {
-    final response = await APIService().callApi(type: ApiType.post,
+  Future<Pair<bool?, String?>> _getData() async {
+    final response = await APIService().callApi(
+      type: ApiType.post,
       url: PostUrl.addGuest,
       body: state.request.toJson(),
     );

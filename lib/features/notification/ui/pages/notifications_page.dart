@@ -27,11 +27,11 @@ class _NotificationsPageState extends State<NotificationsPage> {
         body: BlocBuilder<NotificationsCubit, NotificationsInitial>(
           builder: (context, state) {
             return RefreshWidget(
-              statuses: state.statuses,
+              isLoading: state.loading,
               onRefresh: () async {
                 context
                     .read<NotificationsCubit>()
-                    .getNotifications(newData: true);
+                    .getData(newData: true);
               },
               child: ListView.builder(
                 shrinkWrap: true,

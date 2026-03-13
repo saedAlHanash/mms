@@ -2,12 +2,12 @@ import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/util/shared_preferences.dart';
 import 'package:mms/core/widgets/my_button.dart';
 import 'package:mms/core/widgets/my_text_form_widget.dart';
 
-import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/my_style.dart';
 import '../../../../core/widgets/app_bar/app_bar_widget.dart';
 import '../../../../generated/l10n.dart';
@@ -38,7 +38,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<ResetPasswordCubit, ResetPasswordInitial>(
-      listenWhen: (p, c) => c.statuses == CubitStatuses.done,
+      listenWhen: (p, c) => c.done,
       listener: (context, state) {
         Navigator.pushNamedAndRemoveUntil(
           context,
@@ -55,8 +55,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
           },
           child: DrawableText(
             size: 18.0.sp,
-            underLine: true,
-            fontFamily: FontManager.cairoBold.name,
+            textDecoration: TextDecoration.underline,
+            fontWeight: FontWeight.bold,
             text: '${S.of(context).login}.',
           ),
         ),

@@ -24,7 +24,7 @@ class _AddGuestPageState extends State<AddGuestPage> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<AddGuestCubit, AddGuestInitial>(
-      listenWhen: (p, c) => c.statuses.done,
+      listenWhen: (p, c) => c.done,
       listener: (context, state) {
         Navigator.pop(context, true);
       },

@@ -5,7 +5,7 @@
 // import 'package:flutter/material.dart';
 // import 'package:flutter/widgets.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
-//  
+//
 // import 'package:mms/core/strings/app_color_manager.dart';
 // import 'package:mms/generated/assets.dart';
 //
@@ -309,7 +309,7 @@
 //         ? CustomPaint(
 //             size: const Size(2, double.infinity),
 //             painter: DashedLineVerticalPainter(
-//                 AppColorManager.mainColor.withOpacity(0.3)),
+//                 AppColorManager.mainColor.withValues(alpha: 0.3)),
 //             child: SizedBox(
 //               width: 1.0,
 //               height: _isCurrent(index) ? 0.0 : 27.0.h,
@@ -339,7 +339,7 @@
 //       height: 24.0.spMin,
 //       color: _isCurrent(index)
 //           ? AppColorManager.mainColor
-//           : AppColorManager.mainColor.withOpacity(0.3),
+//           : AppColorManager.mainColor.withValues(alpha: 0.3),
 //     );
 //   }
 //

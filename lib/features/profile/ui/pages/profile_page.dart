@@ -25,8 +25,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   UpdateProfileCubit get updateCubit => context.read<UpdateProfileCubit>();
 
-  UpdateProfileInitial get updateState =>
-      context.read<UpdateProfileCubit>().state;
+  UpdateProfileInitial get updateState => context.read<UpdateProfileCubit>().state;
 
   final bDateController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -43,18 +42,18 @@ class _ProfilePageState extends State<ProfilePage> {
     return MultiBlocListener(
       listeners: [
         BlocListener<UpdateProfileCubit, UpdateProfileInitial>(
-          listenWhen: (p, c) => c.statuses.done,
+          listenWhen: (p, c) => c.done,
           listener: (context, state) {
-            context.read<LoggedPartyCubit>().getLoggedParty(newData: true);
+            context.read<LoggedPartyCubit>().getData(newData: true);
             Navigator.pop(context);
           },
         ),
         BlocListener<LoggedPartyCubit, LoggedPartyInitial>(
-          listenWhen: (p, c) => c.statuses.done,
+          listenWhen: (p, c) => c.done,
           listener: (context, state) => updateCubit.setParty(),
         ),
         BlocListener<FileCubit, FileInitial>(
-          listenWhen: (p, c) => c.statuses.done,
+          listenWhen: (p, c) => c.done,
           listener: (context, state) {
             updateState.request.personalPhoto = state.result.fileName;
             updateCubit.updateProfile();
@@ -77,8 +76,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         height: 150.0.r,
                         image: updateState.request.profileImageUrl.getImage,
                         onLoad: (bytes) {
-                          setState(() => updateState
-                              .request.profileImageUrl.fileBytes = bytes);
+                          setState(() => updateState.request.profileImageUrl.fileBytes = bytes);
                         },
                       );
                     }),
@@ -115,8 +113,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         selectedId: updateState.request.gender?.index,
                       ),
                       onChanged: (item) => updateCubit.setGender = item.item,
-                      hintText:
-                          '${S.of(context).choosing} ${S.of(context).gender}',
+                      hintText: '${S.of(context).choosing} ${S.of(context).gender}',
                     ),
                     20.0.verticalSpace,
 
@@ -129,8 +126,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       onTap: () async {
                         final datePicked = await showDatePicker(
                             context: context,
-                            initialDate:
-                                updateState.request.dob ?? DateTime(2000),
+                            initialDate: updateState.request.dob ?? DateTime(2000),
                             lastDate: DateTime.now(),
                             firstDate: DateTime(1900),
                             initialDatePickerMode: DatePickerMode.year,
@@ -139,8 +135,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         updateCubit.setBirthday = datePicked;
                         bDateController.text = datePicked.formatDate;
                       },
-                      iconWidgetLift:
-                          const ImageMultiType(url: Icons.date_range),
+                      iconWidgetLift: const ImageMultiType(url: Icons.date_range),
                     ),
                     //location
                     MyTextFormOutLineWidget(
@@ -152,21 +147,16 @@ class _ProfilePageState extends State<ProfilePage> {
 
                     BlocBuilder<FileCubit, FileInitial>(
                       builder: (context, fState) {
-                        return BlocBuilder<UpdateProfileCubit,
-                            UpdateProfileInitial>(
+                        return BlocBuilder<UpdateProfileCubit, UpdateProfileInitial>(
                           builder: (context, state) {
                             return MyButton(
-                              loading: state.statuses.loading ||
-                                  fState.statuses.loading,
+                              loading: state.statuses.loading || fState.statuses.loading,
                               text: S.of(context).update,
                               onTap: () {
                                 if (!_formKey.currentState!.validate()) return;
-                                if (updateState
-                                        .request.profileImageUrl.fileBytes !=
-                                    null) {
+                                if (updateState.request.profileImageUrl.fileBytes != null) {
                                   context.read<FileCubit>().uploadFile(
-                                        request:
-                                            updateState.request.profileImageUrl,
+                                        request: updateState.request.profileImageUrl,
                                       );
                                 } else {
                                   updateCubit.updateProfile();

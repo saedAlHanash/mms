@@ -1,6 +1,7 @@
 part of 'add_comment_cubit.dart';
 
 class AddCommentInitial extends AbstractState<bool> {
+  @override
   final AddCommentRequest request;
 
   // final bool addCommentParam;

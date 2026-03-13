@@ -1,8 +1,6 @@
-
 /// Base interface for positions.
 ///
 const int maxInt = 0x7fffffff;
-
 
 abstract class Positions {
   /// Set size of area items are need to place in
@@ -19,8 +17,7 @@ abstract class Positions {
 class ItemPosition {
   ItemPosition({
     required this.number,
-    @Deprecated('"position" is deprecated and will be removed after v2.0.0, use "x" and "y" instead')
-        double? position,
+    @Deprecated('"position" is deprecated and will be removed after v2.0.0, use "x" and "y" instead') double? position,
     required this.x,
     required this.y,
     required this.size,
@@ -30,8 +27,7 @@ class ItemPosition {
   final int number;
 
   /// Coordinate
-  @Deprecated(
-      '"position" is deprecated and will be removed after v2.0.0, use "x" and "y" instead')
+  @Deprecated('"position" is deprecated and will be removed after v2.0.0, use "x" and "y" instead')
   final double position;
 
   final double x;
@@ -56,12 +52,7 @@ class ItemPosition {
   }
 
   @override
-  int get hashCode =>
-      number.hashCode ^
-      position.hashCode ^
-      x.hashCode ^
-      y.hashCode ^
-      size.hashCode;
+  int get hashCode => number.hashCode ^ position.hashCode ^ x.hashCode ^ y.hashCode ^ size.hashCode;
 }
 
 /// InfoItemPosition consists coordinates, order and information about
@@ -69,14 +60,12 @@ class ItemPosition {
 class InfoItemPosition extends ItemPosition {
   InfoItemPosition({
     required super.number,
-    @Deprecated('"position" is deprecated and will be removed after v2.0.0, use "x" and "y" instead')
-        double? position,
+    @Deprecated('"position" is deprecated and will be removed after v2.0.0, use "x" and "y" instead') super.position,
     required this.amountAdditionalItems,
     required super.x,
     required super.y,
     required super.size,
-  })  : assert(amountAdditionalItems != 0),
-        super(position: position);
+  }) : assert(amountAdditionalItems != 0);
 
   InfoItemPosition.fromItemPosition({
     required this.amountAdditionalItems,
@@ -111,12 +100,7 @@ class InfoItemPosition extends ItemPosition {
 
   @override
   int get hashCode =>
-      number.hashCode ^
-      position.hashCode ^
-      amountAdditionalItems.hashCode ^
-      x.hashCode ^
-      y.hashCode ^
-      size.hashCode;
+      number.hashCode ^ position.hashCode ^ amountAdditionalItems.hashCode ^ x.hashCode ^ y.hashCode ^ size.hashCode;
 }
 
 /// Whether and how to align avatars horizontally.
@@ -136,8 +120,7 @@ class StackLaying {
   const StackLaying({
     required this.itemPositionNumberAtTop,
     this.infoItemAtTop = false,
-  }) : assert(itemPositionNumberAtTop >= 0,
-            'itemPositionNumberAtTop must be positive');
+  }) : assert(itemPositionNumberAtTop >= 0, 'itemPositionNumberAtTop must be positive');
   static const StackLaying first = StackLaying(
     itemPositionNumberAtTop: 0,
     infoItemAtTop: false,

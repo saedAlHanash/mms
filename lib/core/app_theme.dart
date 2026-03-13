@@ -9,16 +9,13 @@ const secondaryColor = AppColorManager.mainColorDark;
 final appTheme = ThemeData(
     appBarTheme: const AppBarTheme(
       backgroundColor: primaryColor,
-      systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarIconBrightness: Brightness.dark,
-        statusBarColor: AppColorManager.f9
-      ),
+      systemOverlayStyle:
+          SystemUiOverlayStyle(statusBarIconBrightness: Brightness.dark, statusBarColor: AppColorManager.f9),
       centerTitle: true,
     ),
     brightness: Brightness.light,
     primaryColor: primaryColor,
-    colorScheme: const ColorScheme.light(
-        primary: primaryColor, secondary: secondaryColor, background: Colors.white),
+    colorScheme: const ColorScheme.light(primary: primaryColor, secondary: secondaryColor, surface: Colors.white),
     progressIndicatorTheme: const ProgressIndicatorThemeData(color: primaryColor),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: primaryColor,
@@ -44,19 +41,18 @@ final appTheme = ThemeData(
       style: ButtonStyle(
         alignment: Alignment.center,
         padding: WidgetStatePropertyAll(EdgeInsets.all(50.0.r)),
-        backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) {
-            if (states.contains(MaterialState.pressed)) {
-              return AppColorManager.mainColor.withOpacity(0.8);
+        backgroundColor: WidgetStateProperty.resolveWith<Color?>(
+          (Set<WidgetState> states) {
+            if (states.contains(WidgetState.pressed)) {
+              return AppColorManager.mainColor.withValues(alpha: 0.8);
             }
             return AppColorManager.mainColor; // Use the component's default.
           },
         ),
         surfaceTintColor: const WidgetStatePropertyAll(AppColorManager.mainColor),
-        shape: const WidgetStatePropertyAll(
-            RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
-        overlayColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) => secondaryColor,
+        shape: const WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
+        overlayColor: WidgetStateProperty.resolveWith<Color?>(
+          (Set<WidgetState> states) => secondaryColor,
         ),
       ),
     ),
@@ -67,9 +63,8 @@ final appTheme = ThemeData(
       space: 40.0.h,
       thickness: 1.0.h,
     ),
-    iconButtonTheme: IconButtonThemeData(
-        style:
-            ButtonStyle(padding: WidgetStatePropertyAll(const EdgeInsets.all(2.0).r))),
+    iconButtonTheme:
+        IconButtonThemeData(style: ButtonStyle(padding: WidgetStatePropertyAll(const EdgeInsets.all(2.0).r))),
     checkboxTheme: const CheckboxThemeData(
       fillColor: WidgetStatePropertyAll(AppColorManager.mainColor),
     ),

@@ -33,14 +33,14 @@ class _LoginPageState extends State<LoginPage> {
     return MultiBlocListener(
       listeners: [
         BlocListener<LoginCubit, LoginInitial>(
-          listenWhen: (p, c) => c.statuses.done,
+          listenWhen: (p, c) => c.done,
           listener: (context, state) {
             Navigator.pushNamedAndRemoveUntil(
                 context, RouteName.home, (route) => false);
           },
         ),
         BlocListener<LoginSocialCubit, LoginSocialInitial>(
-          listenWhen: (p, c) => c.statuses.done,
+          listenWhen: (p, c) => c.done,
           listener: (context, state) {
             Navigator.pushNamedAndRemoveUntil(
                 context, RouteName.home, (route) => false);
@@ -126,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                 //     onPressed: () =>
                 //         Navigator.pushNamed(context, RouteName.signup),
                 //     child: DrawableText(
-                //       fontFamily: FontManager.cairoBold.name,
+                //      fontWeight: FontWeight.bold,
                 //       text: S.of(context).createNewAccount,
                 //       color: AppColorManager.mainColorLight,
                 //     ),

@@ -43,7 +43,7 @@ class DocumentsListWidget extends StatelessWidget {
                         text:
                             document.isPublished ? S.of(context).published : S.of(context).unpublished,
                         size: 14.0.sp,
-                        fontFamily: FontManager.cairoBold.name,
+                       fontWeight: FontWeight.bold,
                         drawablePadding: 5.0.w,
                         drawableStart: Container(
                           width: 10.0.r,

@@ -3,7 +3,7 @@ import 'package:pinput/pinput.dart';
 
 class PinCodeWidget extends StatelessWidget {
   const PinCodeWidget({
-     super.key,
+    super.key,
     this.onCompleted,
     this.onChange,
     this.validator,
@@ -19,7 +19,6 @@ class PinCodeWidget extends StatelessWidget {
         textDirection: TextDirection.ltr,
         child: Pinput(
           length: 6,
-          androidSmsAutofillMethod: AndroidSmsAutofillMethod.smsUserConsentApi,
           onCompleted: onCompleted,
           onChanged: onChange,
           validator: validator,

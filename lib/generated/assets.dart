@@ -2,6 +2,7 @@
 class Assets {
   Assets._();
 
+  static const String assetsConfig = 'assets/config.json';
   static const String fontsCairo = 'assets/fonts/cairo.ttf';
   static const String fontsCairoBold = 'assets/fonts/cairo_bold.ttf';
   static const String fontsCairoSemiBold = 'assets/fonts/cairo_semi_bold.ttf';
@@ -38,5 +39,4 @@ class Assets {
   static const String iconsUserName = 'assets/icons/user_name.svg';
   static const String imagesAvatar = 'assets/images/avatar.png';
   static const String imagesCoreTechLogo = 'assets/images/core_tech_logo.png';
-
 }

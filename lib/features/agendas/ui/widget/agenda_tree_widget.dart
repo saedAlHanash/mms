@@ -43,7 +43,7 @@ class AgendaTreeWidget extends StatelessWidget {
                 contentPadding: EdgeInsetsDirectional.only(start: 10.0.w),
                 title: DrawableText(
                   text: node.data!.title,
-                  fontFamily: FontManager.cairoBold.name,
+                 fontWeight: FontWeight.bold,
                 ),
                 subtitle: Column(
                   children: [

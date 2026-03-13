@@ -1,4 +1,3 @@
-import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
@@ -39,7 +38,7 @@ class _NewNavState extends State<NewNav> {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: AppColorManager.black.withOpacity(0.09),
+            color: AppColorManager.black.withValues(alpha: 0.09),
             blurRadius: 3.r,
             offset: const Offset(0, -2),
           )
@@ -47,12 +46,10 @@ class _NewNavState extends State<NewNav> {
       ),
       child: BottomNavigationBar(
         selectedLabelStyle: TextStyle(
-          fontFamily: FontManager.cairoSemiBold.name,
           fontSize: 12.0.sp,
           color: AppColorManager.black,
         ),
         unselectedLabelStyle: TextStyle(
-          fontFamily: FontManager.cairoSemiBold.name,
           fontSize: 12.0.sp,
           color: AppColorManager.black,
         ),
@@ -72,7 +69,6 @@ class _NewNavState extends State<NewNav> {
             ),
             label: '',
           ),
-
           BottomNavigationBarItem(
             icon: ImageMultiType(
               url: Icons.calendar_month,

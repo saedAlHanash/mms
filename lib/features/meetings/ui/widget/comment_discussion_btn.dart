@@ -12,7 +12,6 @@ import '../../../../core/strings/app_color_manager.dart';
 import '../../../../core/util/my_style.dart';
 import '../../../../core/widgets/my_text_form_widget.dart';
 import '../../../../generated/assets.dart';
-
 import '../../../agendas/bloc/add_comment_cubit/add_comment_cubit.dart';
 import '../../data/response/meetings_response.dart';
 
@@ -33,8 +32,7 @@ class _CommentDiscussionBtnState extends State<CommentDiscussionBtn> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<AddCommentCubit, AddCommentInitial>(
-      listenWhen: (p, c) =>
-          c.statuses.done && c.request.discussionId == widget.discussion.id,
+      listenWhen: (p, c) => c.done && c.request.discussionId == widget.discussion.id,
       listener: (context, state) {
         setState(() {
           widget.discussion.comments.add(state.getAddedDiscussionComment);
@@ -47,8 +45,7 @@ class _CommentDiscussionBtnState extends State<CommentDiscussionBtn> {
       },
       child: (!widget.discussion.haveMyComment && !addComment)
           ? BlocBuilder<AddCommentCubit, AddCommentInitial>(
-              buildWhen: (p, c) =>
-                  c.request.discussionId == widget.discussion.id,
+              buildWhen: (p, c) => c.request.discussionId == widget.discussion.id,
               builder: (context, state) {
                 if (state.statuses.loading) {
                   return SizedBox(
@@ -68,8 +65,7 @@ class _CommentDiscussionBtnState extends State<CommentDiscussionBtn> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            const DrawableText(
-                                text: 'Add Comment to this discussion'),
+                            const DrawableText(text: 'Add Comment to this discussion'),
                             10.0.verticalSpace,
                             MyTextFormOutLineWidget(
                               label: 'add Comment',

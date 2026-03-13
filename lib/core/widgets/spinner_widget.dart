@@ -42,7 +42,6 @@ class SpinnerWidget<T> extends StatefulWidget {
 }
 
 class SpinnerWidgetState<T> extends State<SpinnerWidget<T>> {
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -54,7 +53,6 @@ class SpinnerWidgetState<T> extends State<SpinnerWidget<T>> {
             size: 14.0.sp,
             matchParent: true,
             padding: const EdgeInsets.symmetric(horizontal: 12.0).r,
-            fontFamily: FontManager.cairo.name,
           ),
         DropdownButton2(
           items: widget.items.map(
@@ -70,8 +68,8 @@ class SpinnerWidgetState<T> extends State<SpinnerWidget<T>> {
                   color: (item.id != -1)
                       ? (item.enable)
                           ? Colors.black
-                          : AppColorManager.grey.withOpacity(0.7)
-                      : AppColorManager.grey.withOpacity(0.7),
+                          : AppColorManager.grey.withValues(alpha: 0.7)
+                      : AppColorManager.grey.withValues(alpha: 0.7),
                   drawableStart: item.icon,
                   drawablePadding: 15.0.w,
                 ),
@@ -88,14 +86,12 @@ class SpinnerWidgetState<T> extends State<SpinnerWidget<T>> {
                 )
               : widget.hint,
           onChanged: (value) {
-
             if (widget.onChanged != null) widget.onChanged!(value!);
             if (!(value!).enable) return;
 
             for (final e in widget.items) {
               e.isSelected = false;
               if (e.id == value.id) {
-
                 e.isSelected = true;
               }
             }

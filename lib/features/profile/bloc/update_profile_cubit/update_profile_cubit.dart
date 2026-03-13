@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/app/app_provider.dart';
 import 'package:mms/core/extensions/extensions.dart';
@@ -8,7 +9,6 @@ import 'package:mms/features/profile/data/request/update_profile_request.dart';
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/error/error_manager.dart';
 import '../../../../core/strings/enum_manager.dart';
-import 'package:m_cubit/m_cubit.dart';
 import '../../../../core/util/pair_class.dart';
 import '../../../../generated/l10n.dart';
 
@@ -16,7 +16,8 @@ part 'update_profile_state.dart';
 
 class UpdateProfileCubit extends MCubit<UpdateProfileInitial> {
   UpdateProfileCubit() : super(UpdateProfileInitial.initial());
-
+  @override
+  get mState => state;
   @override
   String get nameCache => 'updateProfile';
 
@@ -73,9 +74,7 @@ class UpdateProfileCubit extends MCubit<UpdateProfileInitial> {
   set serPersonalPhoto(String? val) => state.request.personalPhoto = val;
 
   String? get validateName {
-    if (state.request.firstName == null ||
-        state.request.lastName == null ||
-        state.request.middleName == null) {
+    if (state.request.firstName == null || state.request.lastName == null || state.request.middleName == null) {
       return S().nameEmpty;
     }
     return null;

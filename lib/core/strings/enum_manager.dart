@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:livekit_client/livekit_client.dart';
 
 import '../../generated/l10n.dart';
 import 'app_color_manager.dart';
 
+// enum CubitStatuses { init, loading, done, error }
 
+enum AttachmentType { image, youtube, video, d3 }
 
+enum PricingMatrixType { day, date }
+
+enum FilterItem { activity, group, country, city }
 
 enum StartPage { login, home, signupOtp, passwordOtp }
 
@@ -21,6 +27,8 @@ enum GenderEnum {
     }
   }
 }
+
+enum NeedUpdateEnum { no, withLoading, noLoading }
 
 enum UpdateProfileType { normal, confirmAddPhone }
 
@@ -78,47 +86,6 @@ enum MembershipType {
 
 enum DiscussionStatus { open, closed }
 
-enum FilterOperation {
-  equals('Equals'),
-  notEqual('NotEqual'),
-  contains('Contains'),
-  startsWith('StartsWith'),
-  endsWith('EndsWith'),
-  lessThan('LessThan'),
-  lessThanEqual('LessThanEqual'),
-  greaterThan('GreaterThan'),
-  greaterThanEqual('GreaterThanEqual');
-
-  const FilterOperation(this.realName);
-
-  final String realName;
-
-  static FilterOperation byName(String s) {
-    switch (s) {
-      case 'Equals':
-        return FilterOperation.equals;
-      case 'NotEqual':
-        return FilterOperation.notEqual;
-      case 'Contains':
-        return FilterOperation.contains;
-      case 'StartsWith':
-        return FilterOperation.startsWith;
-      case 'EndsWith':
-        return FilterOperation.endsWith;
-      case 'LessThan':
-        return FilterOperation.lessThan;
-      case 'LessThanEqual':
-        return FilterOperation.lessThanEqual;
-      case 'GreaterThan':
-        return FilterOperation.greaterThan;
-      case 'GreaterThanEqual':
-        return FilterOperation.greaterThanEqual;
-      default:
-        return FilterOperation.equals;
-    }
-  }
-}
-
 enum ApiType {
   get,
   post,
@@ -160,4 +127,138 @@ enum MeetingStatus {
   }
 
   final Color color;
+}
+
+enum MediaType {
+  media,
+  screen;
+
+  bool get isMedia => this == MediaType.media;
+
+  bool get isScreen => this == MediaType.screen;
+
+  IconData get icon {
+    return switch (this) { MediaType.media => Icons.videocam, MediaType.screen => Icons.monitor };
+  }
+
+  TrackSource get videoSourceType {
+    return switch (this) {
+      MediaType.media => TrackSource.camera,
+      MediaType.screen => TrackSource.screenShareVideo,
+    };
+  }
+
+  TrackSource get audioSourceType {
+    return switch (this) {
+      MediaType.media => TrackSource.microphone,
+      MediaType.screen => TrackSource.screenShareAudio,
+    };
+  }
+}
+
+enum LkUserType {
+  manager,
+  sharer,
+  user;
+
+  bool get isManager => this == LkUserType.manager;
+
+  bool get isSharer => this == LkUserType.sharer;
+
+  bool get isUser => this == LkUserType.user;
+}
+
+enum ManagerActions {
+  requestPermission,
+  requestToDisconnect,
+  message,
+  changeScreen;
+
+  IconData get icon {
+    return switch (this) {
+      ManagerActions.requestPermission => Icons.pan_tool_outlined,
+      ManagerActions.requestToDisconnect => Icons.exit_to_app,
+      ManagerActions.message => Icons.message,
+      ManagerActions.changeScreen => Icons.screen_share_outlined,
+    };
+  }
+}
+
+enum NotesMessages {
+  cannotHear,
+  cannotSee,
+  needHelp;
+
+  IconData get icon {
+    return switch (this) {
+      NotesMessages.cannotHear => Icons.hearing_disabled,
+      NotesMessages.cannotSee => Icons.visibility_off_outlined,
+      NotesMessages.needHelp => Icons.help_outline,
+    };
+  }
+
+  String get message {
+    switch (this) {
+      case NotesMessages.cannotHear:
+        return 'لا أسمع';
+      case NotesMessages.cannotSee:
+        return 'لا أرى الشاشة';
+      case NotesMessages.needHelp:
+        return 'أحتاج مساعدة';
+    }
+  }
+}
+
+enum PermissionType {
+  speak,
+  listen,
+  both;
+
+  Map<String, dynamic> revokePermissions(Participant participant) {
+    final Map<String, dynamic> map = switch (this) {
+      PermissionType.speak => {
+          "canSubscribe": participant.permissions.canSubscribe,
+          "canPublish": false,
+          //----------
+          "canPublishData": true,
+        },
+      PermissionType.listen => {
+          "canSubscribe": false,
+          "canPublish": participant.permissions.canPublish,
+          //----------
+          "canPublishData": true,
+        },
+      PermissionType.both => {
+          "canSubscribe": false,
+          "canPublish": false,
+          //----------
+          "canPublishData": true,
+        },
+    };
+    return map..addAll({'identity': participant.identity});
+  }
+
+  Map<String, dynamic> grantPermissions(Participant participant) {
+    final Map<String, dynamic> map = switch (this) {
+      PermissionType.speak => {
+          "canSubscribe": participant.permissions.canSubscribe,
+          "canPublish": true,
+          //----------
+          "canPublishData": true,
+        },
+      PermissionType.listen => {
+          "canSubscribe": true,
+          "canPublish": participant.permissions.canPublish,
+          //----------
+          "canPublishData": true,
+        },
+      PermissionType.both => {
+          "canSubscribe": true,
+          "canPublish": true,
+          //----------
+          "canPublishData": true,
+        },
+    };
+    return map..addAll({'identity': participant.identity});
+  }
 }

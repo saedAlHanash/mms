@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/extensions/extensions.dart';
-import 'package:mms/core/util/abstraction.dart';
 
 import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/api_manager/api_url.dart';
@@ -29,7 +29,8 @@ class OtpPasswordCubit extends Cubit<OtpPasswordInitial> {
   }
 
   Future<Pair<bool?, String?>> _confirmCodeApi() async {
-    final response = await APIService().callApi(type: ApiType.post,
+    final response = await APIService().callApi(
+      type: ApiType.post,
       url: PostUrl.otpPassword,
       body: state.request.toJson(),
     );
@@ -38,7 +39,7 @@ class OtpPasswordCubit extends Cubit<OtpPasswordInitial> {
       final pair = Pair(true, null);
       return pair;
     } else {
-        return response.getPairError;
+      return response.getPairError;
     }
   }
 

@@ -9,7 +9,6 @@ import '../../../../core/widgets/expansion/tree_widget.dart';
 import '../../../../core/widgets/my_card_widget.dart';
 import '../../../../generated/assets.dart';
 import '../../../../generated/l10n.dart';
-import '../../../agendas/ui/widget/comment_btn.dart';
 import '../../data/response/meetings_response.dart';
 import 'comment_discussion_btn.dart';
 
@@ -23,7 +22,7 @@ class DiscussionsTree extends StatelessWidget {
       builder: (node) {
         if (node.isRoot) {
           return MyCardWidget(
-            padding: const EdgeInsets.all( 30.0).r,
+            padding: const EdgeInsets.all(30.0).r,
             child: DrawableText(
               fontWeight: FontWeight.bold,
               size: 18.0.sp,
@@ -34,12 +33,12 @@ class DiscussionsTree extends StatelessWidget {
         }
         return MyCardWidget(
           margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 5.0).r,
-          padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 5.0).r,
+          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0).r,
           child: ListTile(
             contentPadding: EdgeInsetsDirectional.only(start: 10.0.w),
             title: DrawableText(
               text: node.data!.topic,
-              fontFamily: FontManager.cairoBold.name,
+              fontWeight: FontWeight.bold,
             ),
             subtitle: Column(
               children: [
@@ -52,15 +51,12 @@ class DiscussionsTree extends StatelessWidget {
                 if (node.data!.myComment != null) 10.0.verticalSpace,
                 if (node.data!.myComment != null)
                   DrawableText(
-                    text:
-                    '(${node.data!.myComment!.party.name})  ${node.data!.myComment!.text}',
+                    text: '(${node.data!.myComment!.party.name})  ${node.data!.myComment!.text}',
                     matchParent: true,
                     drawablePadding: 10.0.w,
                     drawableStart: ImageMultiType(
                       url: Assets.iconsComment,
-                      color: node.data!.myComment!.isMyComment
-                          ? AppColorManager.mainColor
-                          : Colors.black,
+                      color: node.data!.myComment!.isMyComment ? AppColorManager.mainColor : Colors.black,
                     ),
                   ),
               ],

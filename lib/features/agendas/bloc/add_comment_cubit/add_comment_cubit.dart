@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
@@ -6,7 +7,6 @@ import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/app/app_provider.dart';
 import '../../../../core/error/error_manager.dart';
 import '../../../../core/strings/enum_manager.dart';
-import 'package:m_cubit/m_cubit.dart';
 import '../../../../core/util/pair_class.dart';
 import '../../../meetings/data/response/meetings_response.dart';
 import '../../data/request/add_comment_request.dart';
@@ -20,7 +20,7 @@ class AddCommentCubit extends Cubit<AddCommentInitial> {
   Future<void> addComment() async {
     emit(state.copyWith(statuses: CubitStatuses.loading));
 
-    final pair = await _getDataApi();
+    final pair = await _getData();
     if (pair.first == null) {
       emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));
       showErrorFromApi(state);
@@ -29,12 +29,10 @@ class AddCommentCubit extends Cubit<AddCommentInitial> {
     }
   }
 
-  Future<Pair<bool?, String?>> _getDataApi() async {
+  Future<Pair<bool?, String?>> _getData() async {
     final response = await APIService().callApi(
       type: ApiType.post,
-      url: state.request.discussionId.isBlank
-          ? PostUrl.addComment
-          : PostUrl.addDiscussionComment,
+      url: state.request.discussionId.isBlank ? PostUrl.addComment : PostUrl.addDiscussionComment,
       body: state.request.toJson(),
     );
 

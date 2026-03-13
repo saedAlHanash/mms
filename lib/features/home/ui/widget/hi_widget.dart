@@ -36,7 +36,6 @@ class HiWidget extends StatelessWidget {
           ),
           title: DrawableText(
             text: S.of(context).welcomeBack,
-            fontFamily: FontManager.cairoSemiBold.name,
           ),
           subtitle: DrawableText(
             text: AppProvider.getParty.name,
@@ -73,8 +72,7 @@ class HiWidget extends StatelessWidget {
                             child: Text(
                               (state.result.length - state.numOfRead) > 9
                                   ? "+9"
-                                  : (state.result.length - state.numOfRead)
-                                      .toString(),
+                                  : (state.result.length - state.numOfRead).toString(),
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 8,

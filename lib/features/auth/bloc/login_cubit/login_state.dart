@@ -1,6 +1,7 @@
 part of 'login_cubit.dart';
 
 class LoginInitial extends AbstractState<LoginResponse> {
+  @override
   final LoginRequest request;
 
   const LoginInitial({

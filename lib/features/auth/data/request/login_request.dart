@@ -1,11 +1,15 @@
 class LoginRequest {
-  String? userName;
-  String? password;
+  // String? userName = 'maissama@gmail.com';
+  // String? userName = 'party1@gmail.com';
+  String? userName = 'abdMember2@gmail.com';
+  String? password = 'P@ssw0rd2024';
   String? programKey;
 
   LoginRequest({
-    this.userName,
-    this.password,
+    // this.userName = 'maissama@gmail.com',
+    // this.userName = 'party1@gmail.com',
+    this.userName = 'abdMember2@gmail.com',
+    this.password = 'P@ssw0rd2024',
     this.programKey,
   });
 
@@ -26,8 +30,7 @@ class LoginRequest {
       'identifire': userName,
       'password': password,
       'verification_code': programKey,
-      'programKey':
-          'c7V9hHLSBKKJAGdMakSA4DUdlF05Q4SK/y6OaUQwmh36Qgm/l7u9GPt6R5+rDlX65D8=',
+      'programKey': 'c7V9hHLSBKKJAGdMakSA4DUdlF05Q4SK/y6OaUQwmh36Qgm/l7u9GPt6R5+rDlX65D8=',
     };
   }
 }

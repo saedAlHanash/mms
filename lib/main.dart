@@ -1,13 +1,16 @@
 import 'dart:io';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:m_cubit/caching_service/caching_service.dart';
+import 'package:mms/core/error/error_manager.dart';
 import 'package:mms/services/app_info_service.dart';
-import 'package:mms/services/caching_service/caching_service.dart';
 import 'package:mms/services/firebase_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'core/api_manager/api_service.dart';
 import 'core/app/app_widget.dart';
 import 'core/app/bloc/loading_cubit.dart';
 import 'core/injection/injection_container.dart' as di;
@@ -22,9 +25,14 @@ void main() async {
     AppSharedPreference.init(value);
   });
 
-  await CachingService.initial();
+  await CachingService.initial(
+    onError: (second) => showErrorFromApi(second),
+    version: 1,
+    timeInterval: 60,
+  );
 
   await FirebaseService.initial();
+  requestPermissions();
 
   await AppInfoService.initial();
 
@@ -54,13 +62,27 @@ class MyHttpOverrides extends HttpOverrides {
   }
 }
 
+Future<void> requestPermissions() async {
+  try {
+    FirebaseMessaging.instance.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+  } on Exception {
+    loggerObject.e('error FCM ios ');
+  }
+}
+
 class Note {
   static Future initialize() async {
-    var androidInitialize =
-        const AndroidInitializationSettings('mipmap/ic_launcher');
+    var androidInitialize = const AndroidInitializationSettings('mipmap/ic_launcher');
     var iOSInitialize = const DarwinInitializationSettings();
-    var initializationsSettings =
-        InitializationSettings(android: androidInitialize, iOS: iOSInitialize);
+    var initializationsSettings = InitializationSettings(android: androidInitialize, iOS: iOSInitialize);
     await flutterLocalNotificationsPlugin.initialize(initializationsSettings);
   }
 
@@ -75,8 +97,8 @@ class Note {
     // vibrationPattern[1] = 1000;
 
     const androidPlatformChannelSpecifics = AndroidNotificationDetails(
-      'Ali Gabory',
-      'Gabory App',
+      'MMS',
+      'MMS app',
       playSound: true,
       // enableVibration: true,
       // sound: RawResourceAndroidNotificationSound('sound'),
@@ -90,7 +112,6 @@ class Note {
       iOS: DarwinNotificationDetails(),
     );
 
-    await flutterLocalNotificationsPlugin.show(
-        (DateTime.now().millisecondsSinceEpoch ~/ 1000), title, body, not);
+    await flutterLocalNotificationsPlugin.show((DateTime.now().millisecondsSinceEpoch ~/ 1000), title, body, not);
   }
 }
