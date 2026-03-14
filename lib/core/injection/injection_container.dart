@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../features/agendas/bloc/add_comment_cubit/add_comment_cubit.dart';
@@ -42,8 +41,6 @@ Future<void> init() async {
 
   //region Core
 
-  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(connectionChecker: sl()));
-  sl.registerLazySingleton(() => InternetConnectionChecker.instance);
   sl.registerLazySingleton(() => LoadingCubit());
   sl.registerLazySingleton(() => GlobalKey<NavigatorState>());
 

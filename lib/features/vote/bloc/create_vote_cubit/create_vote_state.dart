@@ -25,7 +25,7 @@ class CreateVoteInitial extends AbstractState<Vote> {
     result,
     error,
     if (request != null) request,
-    if (filterRequest != null) filterRequest!
+
   ];
 
   CreateVoteInitial copyWith({

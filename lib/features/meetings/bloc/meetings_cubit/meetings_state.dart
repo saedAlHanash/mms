@@ -3,9 +3,10 @@ part of 'meetings_cubit.dart';
 class MeetingsInitial extends AbstractState<List<Meeting>> {
   final Map<int, List<Meeting>> events;
 
+  final FilterRequest filterRequest;
   const MeetingsInitial({
     required super.result,
-    super.filterRequest,
+    required this.filterRequest,
     super.error,
     required this.events,
     super.statuses,
@@ -16,6 +17,7 @@ class MeetingsInitial extends AbstractState<List<Meeting>> {
       result: [],
       error: '',
       events: {},
+      filterRequest: FilterRequest(),
       statuses: CubitStatuses.init,
     );
   }
@@ -25,7 +27,7 @@ class MeetingsInitial extends AbstractState<List<Meeting>> {
         statuses,
         result,
         error,
-        if (filterRequest != null) filterRequest!,
+       filterRequest!,
         events,
       ];
 

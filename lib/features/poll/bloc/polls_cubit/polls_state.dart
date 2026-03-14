@@ -1,19 +1,20 @@
 part of 'polls_cubit.dart';
 
 class PollsInitial extends AbstractState<List<Poll>> {
+  final FilterRequest filterRequest;
   const PollsInitial({
     required super.result,
     super.error,
     super.request,
-    super.filterRequest,
+    required this.filterRequest,
     super.statuses,
   }); //
 
   factory PollsInitial.initial() {
-    return const PollsInitial(
+    return  PollsInitial(
       result: [],
       error: '',
-      filterRequest: null,
+      filterRequest: FilterRequest(),
       statuses: CubitStatuses.init,
     );
   }
@@ -24,7 +25,7 @@ class PollsInitial extends AbstractState<List<Poll>> {
         result,
         error,
         if (request != null) request,
-        if (filterRequest != null) filterRequest!
+        filterRequest!,
       ];
 
   PollsInitial copyWith({

@@ -28,7 +28,7 @@ class NotificationInitial extends AbstractState<NotificationModel> {
     result,
     error,
     if (request != null) request,
-    if (filterRequest != null) filterRequest!
+
   ];
 
   NotificationInitial copyWith({

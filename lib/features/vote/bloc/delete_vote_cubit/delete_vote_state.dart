@@ -23,7 +23,7 @@ class DeleteVoteInitial extends AbstractState<bool> {
     result,
     error,
     if (request != null) request,
-    if (filterRequest != null) filterRequest!
+
   ];
   DeleteVoteInitial copyWith({
     CubitStatuses? statuses,

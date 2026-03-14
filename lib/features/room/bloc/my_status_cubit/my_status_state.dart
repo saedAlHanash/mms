@@ -25,7 +25,6 @@ class MyStatusInitial extends AbstractState<MyStatus> {
         error,
         if (request != null) request,
         if (id != null) id,
-        if (filterRequest != null) filterRequest!,
       ];
 
   MyStatusInitial copyWith({

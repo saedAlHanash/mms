@@ -25,7 +25,7 @@ class CreatePollInitial extends AbstractState<Poll> {
     result,
     error,
     if (request != null) request,
-    if (filterRequest != null) filterRequest!
+
   ];
 
   CreatePollInitial copyWith({

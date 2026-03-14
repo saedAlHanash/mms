@@ -1,19 +1,21 @@
 part of 'votes_cubit.dart';
 
 class VotesInitial extends AbstractState<List<Vote>> {
+  final FilterRequest filterRequest;
+
   const VotesInitial({
     required super.result,
     super.error,
     super.request,
-    super.filterRequest,
+    required this.filterRequest,
     super.statuses,
   }); //
 
   factory VotesInitial.initial() {
-    return const VotesInitial(
+    return  VotesInitial(
       result: [],
       error: '',
-      filterRequest: null,
+      filterRequest: FilterRequest(),
       statuses: CubitStatuses.init,
     );
   }
@@ -24,7 +26,7 @@ class VotesInitial extends AbstractState<List<Vote>> {
         result,
         error,
         if (request != null) request,
-        if (filterRequest != null) filterRequest!
+        filterRequest!,
       ];
 
   VotesInitial copyWith({

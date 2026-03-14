@@ -4,13 +4,15 @@ class NotificationsInitial extends AbstractState<List<NotificationModel>> {
   final  int numOfRead;
   // final FilterRequest request;
   // final  bool notificationParam;
+  final FilterRequest filterRequest;
   const NotificationsInitial({
     required super.result,
     required this.numOfRead,
     super.error,
     super.request,
     // required this.notificationParam,
-    super.filterRequest,
+
+    required this.filterRequest,
     super.statuses,
   }); //
 
@@ -19,7 +21,8 @@ class NotificationsInitial extends AbstractState<List<NotificationModel>> {
       result: [],
       numOfRead: 0,
       error: '',
-      filterRequest: null,
+
+      filterRequest: FilterRequest(),
       // notificationParam: false,
       // request: FilterRequest(),
       statuses: CubitStatuses.init,
@@ -32,7 +35,8 @@ class NotificationsInitial extends AbstractState<List<NotificationModel>> {
         result,
         error,
         if (request != null) request,
-        if (filterRequest != null) filterRequest!
+
+    filterRequest!,
       ];
 
   NotificationsInitial copyWith({
@@ -40,6 +44,7 @@ class NotificationsInitial extends AbstractState<List<NotificationModel>> {
     List<NotificationModel>? result,
     int? numOfRead,
     String? error,
+
     FilterRequest? filterRequest,
     dynamic request,
   }) {
@@ -48,6 +53,7 @@ class NotificationsInitial extends AbstractState<List<NotificationModel>> {
       result: result ?? this.result,
       numOfRead: numOfRead ?? this.numOfRead,
       error: error ?? this.error,
+
       filterRequest: filterRequest ?? this.filterRequest,
       request: request ?? this.request,
       // notificationParam: notificationParam ?? this.notificationParam,

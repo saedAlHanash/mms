@@ -23,7 +23,6 @@ class DeletePollInitial extends AbstractState<bool> {
     result,
     error,
     if (request != null) request,
-    if (filterRequest != null) filterRequest!
   ];
   DeletePollInitial copyWith({
     CubitStatuses? statuses,

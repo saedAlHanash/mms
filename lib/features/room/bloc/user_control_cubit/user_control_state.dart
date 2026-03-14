@@ -30,7 +30,6 @@ class UserControlInitial extends AbstractState<String> {
         if (request != null) request,
         if (createUpdateRequest != null) createUpdateRequest,
         if (id != null) id,
-        if (filterRequest != null) filterRequest!,
       ];
 
   UserControlInitial copyWith({

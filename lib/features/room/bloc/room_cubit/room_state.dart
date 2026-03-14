@@ -64,7 +64,6 @@ class RoomInitial extends AbstractState<Room> {
         error,
         if (request != null) request,
         if (id != null) id,
-        if (filterRequest != null) filterRequest!,
         listener,
         url,
         token,
