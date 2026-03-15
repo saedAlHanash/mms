@@ -2063,6 +2063,16 @@ class S {
   String get connect {
     return Intl.message('Connect', name: 'connect', desc: '', args: []);
   }
+
+  /// `Your connection has been suspended by the admin, but you are still connected. Please wait until you are allowed to resume.`
+  String get yourConnectionHasBeenSuspendedByTheAdminButYou {
+    return Intl.message(
+      'Your connection has been suspended by the admin, but you are still connected. Please wait until you are allowed to resume.',
+      name: 'yourConnectionHasBeenSuspendedByTheAdminButYou',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

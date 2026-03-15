@@ -90,7 +90,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "confirm_address": MessageLookupByLibrary.simpleMessage("تأكيد العنوان"),
     "confirmation": MessageLookupByLibrary.simpleMessage("تأكيد"),
-    "connect": MessageLookupByLibrary.simpleMessage("Connect"),
+    "connect": MessageLookupByLibrary.simpleMessage("الاتصال"),
     "contact": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
     "continueSignUp": MessageLookupByLibrary.simpleMessage("استكمال التسجيل"),
     "continueTo": MessageLookupByLibrary.simpleMessage("متابعة"),
@@ -383,6 +383,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "wrongPhone": MessageLookupByLibrary.simpleMessage("رقم هاتف غير صحيح"),
     "yourAddress": MessageLookupByLibrary.simpleMessage("عنوانك"),
+    "yourConnectionHasBeenSuspendedByTheAdminButYou":
+        MessageLookupByLibrary.simpleMessage(
+          "تم تعليق اتصالك من قبل المسؤول، لكنك لا تزال متصلاً. يرجى الانتظار حتى يُسمح لك بالاستئناف.",
+        ),
     "yourEmail": MessageLookupByLibrary.simpleMessage("بريدك الإلكتروني"),
     "yourLocation": MessageLookupByLibrary.simpleMessage("موقعك"),
     "yourName": MessageLookupByLibrary.simpleMessage("اسمك"),

@@ -405,6 +405,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "wrongEmail": MessageLookupByLibrary.simpleMessage("Invalid email"),
     "wrongPhone": MessageLookupByLibrary.simpleMessage("Invalid phone number"),
     "yourAddress": MessageLookupByLibrary.simpleMessage("Your Address"),
+    "yourConnectionHasBeenSuspendedByTheAdminButYou":
+        MessageLookupByLibrary.simpleMessage(
+          "Your connection has been suspended by the admin, but you are still connected. Please wait until you are allowed to resume.",
+        ),
     "yourEmail": MessageLookupByLibrary.simpleMessage("Your Email"),
     "yourLocation": MessageLookupByLibrary.simpleMessage("Your Location"),
     "yourName": MessageLookupByLibrary.simpleMessage("Your Name"),

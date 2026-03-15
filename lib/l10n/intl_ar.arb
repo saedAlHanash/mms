@@ -266,5 +266,6 @@
   "build": "رقم الإصدار",
   "discussions": "نقاشات",
   "poweredByCoretech": "صمم بواسطة CORETECH",
-  "connect": "Connect"
+  "connect": "الاتصال",
+  "yourConnectionHasBeenSuspendedByTheAdminButYou": "تم تعليق اتصالك من قبل المسؤول، لكنك لا تزال متصلاً. يرجى الانتظار حتى يُسمح لك بالاستئناف."
 }

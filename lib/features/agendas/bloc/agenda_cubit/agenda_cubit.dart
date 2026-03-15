@@ -13,6 +13,7 @@ class AgendaCubit extends MCubit<AgendaInitial> {
   AgendaCubit() : super(AgendaInitial.initial());
   @override
   get mState => state;
+
   @override
   String get nameCache => 'agenda';
 

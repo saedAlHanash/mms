@@ -15,6 +15,7 @@ class AttendeeCubit extends MCubit<AttendeeInitial> {
 
   @override
   get mState => state;
+
   @override
   String get nameCache => 'temp';
 

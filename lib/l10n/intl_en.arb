@@ -272,5 +272,6 @@
   "build": "Build",
   "discussions": "Discussions",
   "poweredByCoretech": "Powered by CORETECH",
-  "connect": "Connect"
+  "connect": "Connect",
+  "yourConnectionHasBeenSuspendedByTheAdminButYou": "Your connection has been suspended by the admin, but you are still connected. Please wait until you are allowed to resume."
 }

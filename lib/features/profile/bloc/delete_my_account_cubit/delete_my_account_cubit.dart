@@ -17,7 +17,7 @@ part 'delete_my_account_state.dart';
 class DeleteMyAccountCubit extends Cubit<DeleteMyAccountInitial> {
   DeleteMyAccountCubit() : super(DeleteMyAccountInitial.initial());
 
-
+  // final network = sl<NetworkInfo>();
 
   Future<void> deleteMyAccount(BuildContext context) async {
     emit(state.copyWith(statuses: CubitStatuses.loading));
@@ -34,17 +34,12 @@ class DeleteMyAccountCubit extends Cubit<DeleteMyAccountInitial> {
   }
 
   Future<Pair<bool?, String?>> _deleteMyAccountApi() async {
+    final response = await APIService().callApi(type: ApiType.get, url: 'DeleteUrl.deleteMyAccount');
 
-      final response = await APIService().callApi(
-        type: ApiType.get,
-        url: 'DeleteUrl.deleteMyAccount',
-      );
-
-      if (response.statusCode.success) {
-        return Pair(true, null);
-      } else {
-        return Pair(null, ErrorManager.getApiError(response));
-      }
-
+    if (response.statusCode.success) {
+      return Pair(true, null);
+    } else {
+      return Pair(null, ErrorManager.getApiError(response));
+    }
   }
 }

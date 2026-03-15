@@ -11,6 +11,7 @@ import '../../../../core/api_manager/api_service.dart';
 import '../../../../core/app/app_widget.dart';
 import '../../../../core/strings/enum_manager.dart';
 import '../../../../main.dart';
+import '../../../../services/pip.dart';
 import '../../data/request/setting_message.dart';
 
 part 'room_state.dart';
@@ -37,109 +38,80 @@ class RoomCubit extends MCubit<RoomInitial> {
     state.listener
       //end call
       ..on<RoomDisconnectedEvent>((e) {
+        PipService.unSetup();
         emit(state.copyWith(id: state.notifyIndex + 1));
       })
       //re sort list users
-
       // 🔹🔹 أحداث عامة للمشاركين (Participant Events)
       // هذا الحدث عام، يُطلق عند حدوث أي تغيير يخص المشاركين (اتصال، نشر، إلغاء نشر...).
       ..on<ParticipantEvent>((e) {
         _sortParticipants();
       })
-
       // 🔹🔹 عندما ينشر المستخدم المحلي (أنت) مسار جديد مثل الميكروفون أو الكاميرا.
       ..on<LocalTrackPublishedEvent>((e) => _sortParticipants())
-
       // 🔹🔹 عندما يقوم المستخدم المحلي بإلغاء نشر أحد المسارات الخاصة به (مثلاً أوقف الكاميرا).
       ..on<LocalTrackUnpublishedEvent>((e) => _sortParticipants())
-
       //
       // 🔸 أحداث تتعلق بالـ Tracks (المسارات)
       //
-
       // 🔹 عندما ينشر أحد المشاركين (غيرك) مسارًا جديدًا (كاميرا، ميكروفون...).
       ..on<TrackPublishedEvent>((e) async {})
-
       // 🔹 عندما يقوم أحد المشاركين بإلغاء نشر أحد المسارات الخاصة به.
       ..on<TrackUnpublishedEvent>((e) => (e) {})
-
       // 🔹🔹 عندما يشترك تطبيقك في مسار جديد من مشارك آخر (أصبح بإمكانك رؤيته/سماعه).
       ..on<TrackSubscribedEvent>((e) => _sortParticipants())
-
       // 🔹 إذا فشل الاشتراك في مسار معين بسبب خطأ (صلاحيات، شبكة...).
       // ..on<TrackSubscriptionExceptionEvent>((e) => _sortParticipants())
-
       // 🔹🔹 عندما يتم إلغاء الاشتراك في مسار (بسبب مغادرة المشارك أو أمر يدوي).
       ..on<TrackUnsubscribedEvent>((e) => _sortParticipants())
-
       // 🔹 عندما يتم كتم (mute) أحد المسارات سواء كان محلي أو من مشارك آخر.
       ..on<TrackMutedEvent>((e) {})
-
       // 🔹 عندما يتم إلغاء الكتم (unmute) عن المسار.
       ..on<TrackUnmutedEvent>((e) async {
         // await SoundService.play(Assets.soundsNote);
       })
-
       // 🔹 عندما تتغير حالة تدفق البيانات لمسار معين (توقف مؤقت أو استئناف).
       // ..on<TrackStreamStateUpdatedEvent>((e) => _sortParticipants())
-
       // 🔹 عندما تتغير صلاحيات الاشتراك في المسار (هل يمكن الاشتراك به أم لا).
       ..on<TrackSubscriptionPermissionChangedEvent>((e) {})
-
       // 🔹 عندما يتم تحديث معالجة المسار (مثل فلتر الفيديو أو تحسين الجودة).
       // ..on<TrackProcessorUpdateEvent>((e) => _sortParticipants())
-
       //
       // 🔸 أحداث خاصة بالغرفة (Room Events)
       //
-
       // 🔹 عندما يتم الاتصال بالغرفة بنجاح.
       ..on<RoomConnectedEvent>((e) {})
-
       // 🔹 عندما تبدأ عملية إعادة الاتصال بعد انقطاع مفاجئ.
       ..on<RoomReconnectingEvent>((e) {})
-
       // 🔹 عندما تبدأ محاولة إعادة الاتصال فعليًا (محاولة أولى أو لاحقة).
       // ..on<RoomAttemptReconnectEvent>((e) => _sortParticipants())
-
       // 🔹 عندما تتم إعادة الاتصال بالغرفة بنجاح بعد انقطاع.
       ..on<RoomReconnectedEvent>((e) {})
-
       // 🔹 عندما يتم فصل الاتصال بالغرفة نهائيًا أو مغادرتها.
       ..on<RoomDisconnectedEvent>((e) {})
-
       // 🔹 عندما تتغير بيانات الغرفة (metadata) مثل الاسم أو الحالة.
       // ..on<RoomMetadataChangedEvent>((e) => _sortParticipants())
-
       // 🔹 عندما تتغير حالة التسجيل (Recording) للغرفة.
       // ..on<RoomRecordingStatusChanged>((e) => _sortParticipants())
-
       //
       // 🔸 أحداث خاصة بالمشاركين (Participants)
       //
-
       // 🔹 عندما تتغير الخصائص (Attributes) الخاصة بأحد المشاركين.
       // ..on<ParticipantAttributesChanged>((e) => _sortParticipants())
-
       // 🔹 عندما ينضم مشارك جديد إلى الغرفة.
       ..on<ParticipantConnectedEvent>((e) async {
         // await SoundService.play(Assets.soundsAcceptRequest);
       })
-
       // 🔹 عندما يغادر أحد المشاركين الغرفة أو يفقد الاتصال.
       ..on<ParticipantDisconnectedEvent>((e) async {
         // await SoundService.play(Assets.soundsDisconnectUser);
       })
-
       // 🔹 عندما يتم تحديث البيانات (metadata) الخاصة بأحد المشاركين.
       // ..on<ParticipantMetadataUpdatedEvent>((e) => _sortParticipants())
-
       // 🔹 عندما تتغير حالة المشارك (مثلاً من joining إلى active).
       // ..on<ParticipantStateUpdatedEvent>((e) => _sortParticipants())
-
       // 🔹 عندما تتغير جودة الاتصال لأحد المشاركين (ضعيفة، متوسطة، جيدة).
       // ..on<ParticipantConnectionQualityUpdatedEvent>((e) => _sortParticipants())
-
       // 🔹 عندما تتغير صلاحيات المشارك (مثل السماح بالنشر أو لا).
       ..on<ParticipantPermissionsUpdatedEvent>((e) {
         if (!(e.permissions.canPublish)) {
@@ -148,35 +120,31 @@ class RoomCubit extends MCubit<RoomInitial> {
 
         emit(state.copyWith(id: state.notifyIndex + 1, loadingPermissions: false));
       })
-
       // 🔹🔹 عندما يغيّر المشارك اسمه المعروض (display name).
       // ..on<ParticipantNameUpdatedEvent>((e) => _sortParticipants())
-
       // 🔹 عندما يتم استقبال بيانات (DataPacket) من أحد المشاركين (مثل رسالة أو إشارة تحكم).
-      ..on<DataReceivedEvent>(
-        (e) async {
-          try {
-            final message = SettingMessage.fromJson(jsonDecode(utf8.decode(e.data)));
-            loggerObject.w(message.toJson());
+      ..on<DataReceivedEvent>((e) async {
+        try {
+          final message = SettingMessage.fromJson(jsonDecode(utf8.decode(e.data)));
+          loggerObject.w(message.toJson());
 
-            if (!message.toUserType.isUser) return;
+          if (!message.toUserType.isUser) return;
 
-            if (message.toIdentity.isNotEmpty && message.toIdentity != state.result.localParticipant?.identity) return;
+          if (message.toIdentity.isNotEmpty && message.toIdentity != state.result.localParticipant?.identity) return;
 
-            switch (message.action) {
-              case ManagerActions.requestPermission:
-              case ManagerActions.requestToDisconnect:
-              case ManagerActions.changeScreen:
-              case ManagerActions.message:
-                emit(state.copyWith(loadingPermissions: false));
-                Note.showBigTextNotification(title: 'New message', body: message.message);
-                break;
-            }
-          } catch (err) {
-            loggerObject.i('Failed to decode: $err');
+          switch (message.action) {
+            case ManagerActions.requestPermission:
+            case ManagerActions.requestToDisconnect:
+            case ManagerActions.changeScreen:
+            case ManagerActions.message:
+              emit(state.copyWith(loadingPermissions: false));
+              Note.showBigTextNotification(title: 'New message', body: message.message);
+              break;
           }
-        },
-      );
+        } catch (err) {
+          loggerObject.i('Failed to decode: $err');
+        }
+      });
   }
 
   void _sortParticipants() {
@@ -199,8 +167,8 @@ class RoomCubit extends MCubit<RoomInitial> {
     final selectedTruck = state.selectedParticipantId.isNotEmpty
         ? null
         : list.isEmpty
-            ? null
-            : list.first.identity;
+        ? null
+        : list.first.identity;
 
     emit(state.copyWith(participantTracks: list, selectedParticipantId: selectedTruck, id: state.notifyIndex + 1));
   }
@@ -209,14 +177,12 @@ class RoomCubit extends MCubit<RoomInitial> {
     try {
       emit(state.copyWith(statuses: CubitStatuses.loading));
       await initial();
-      await state.result.connect(
-        state.url,
-        state.token,
-        fastConnectOptions: FastConnectOptions(),
-      );
+      await state.result.connect(state.url, state.token, fastConnectOptions: FastConnectOptions());
       state.result.connectionState;
       emit(state.copyWith(statuses: CubitStatuses.done));
+      PipService.setupPip();
     } catch (e) {
+      PipService.unSetup();
       emit(state.copyWith(statuses: CubitStatuses.error, error: e.toString()));
       showErrorFromApi(state);
     }
@@ -236,9 +202,7 @@ class RoomCubit extends MCubit<RoomInitial> {
   void setUrl(String url) => emit(state.copyWith(url: url));
 
   void setToken(String token) {
-    emit(
-      state.copyWith(token: token),
-    );
+    emit(state.copyWith(token: token));
   }
 
   void selectParticipant(String participantId) {
@@ -268,10 +232,7 @@ class RoomCubit extends MCubit<RoomInitial> {
             id: state.result.localParticipant?.identity ?? '',
             toUserType: LkUserType.manager,
             action: ManagerActions.requestPermission,
-            metadata: {
-              'name': state.result.localParticipant?.name,
-              'id': state.result.localParticipant?.identity,
-            },
+            metadata: {'name': state.result.localParticipant?.name, 'id': state.result.localParticipant?.identity},
           ),
         ),
       ),

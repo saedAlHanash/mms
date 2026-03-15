@@ -14,11 +14,13 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     this.elevation,
     this.zeroHeight,
     this.actions,
+    this.backBtn,
     this.title,
   });
 
   final String? titleText;
   final Widget? title;
+  final Widget? backBtn;
 
   final bool? zeroHeight;
   final double? elevation;
@@ -32,14 +34,15 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         backgroundColor: AppColorManager.whit,
         surfaceTintColor: Colors.white,
         toolbarHeight: (zeroHeight ?? false) ? 0 : 80.0.h,
-        title: title ??
+        title:
+            title ??
             DrawableText(
               textAlign: TextAlign.center,
               text: titleText ?? '',
               size: 28.0.spMin,
               fontWeight: FontWeight.bold,
             ),
-        leading: Navigator.canPop(context) ? const BackBtnWidget() : null,
+        leading: backBtn ?? (Navigator.canPop(context) ? const BackBtnWidget() : null),
         actions: actions,
         elevation: elevation ?? 0.0,
         shadowColor: AppColorManager.black.withValues(alpha: 0.28),

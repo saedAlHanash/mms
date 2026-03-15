@@ -54,20 +54,20 @@ class _LiveKitPageState extends State<LiveKitPage> {
           "roomAdmin": false,
           "roomCreate": true,
           "roomJoin": true,
-          "roomList": false
+          "roomList": false,
         },
         "attributes": {
           "type": "2",
           // "imageUrl": ""
-        }
+        },
       },
     );
     final token = r.jsonBodyPure['token'];
     AppSharedPreference.cashTokenVC(token);
     controller.text = token;
-    context
-        .read<MyStatusCubit>()
-        .fetchMyStatus(context.read<RoomCubit>().state.result.localParticipant?.identity ?? '');
+    context.read<MyStatusCubit>().fetchMyStatus(
+      context.read<RoomCubit>().state.result.localParticipant?.identity ?? '',
+    );
   }
 
   void showFullScreenDialog() {
@@ -91,9 +91,9 @@ class _LiveKitPageState extends State<LiveKitPage> {
       ..setUrl(result.onlineMeetingUrl);
 
     await context.read<RoomCubit>().connect();
-    context
-        .read<MyStatusCubit>()
-        .fetchMyStatus(context.read<RoomCubit>().state.result.localParticipant?.identity ?? '');
+    context.read<MyStatusCubit>().fetchMyStatus(
+      context.read<RoomCubit>().state.result.localParticipant?.identity ?? '',
+    );
   }
 
   @override
@@ -154,14 +154,14 @@ class _LiveKitPageState extends State<LiveKitPage> {
                                 // ),
                                 10.0.verticalSpace,
                                 MyButton(
-                                  onTap: () {
+                                  onTap: () async {
                                     _connect(mState.result);
                                   },
                                   loading: state.loading,
                                   text: S.of(context).connect,
-                                )
+                                ),
                               ] else
-                                Expanded(child: VideoWidget()),
+                                Expanded(child: VideoCallWidget()),
                               if (state.result.localParticipant != null && state.result.connectionState.isConnected)
                                 ControlsWidget(
                                   state.result,

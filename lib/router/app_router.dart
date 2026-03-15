@@ -234,9 +234,10 @@ Route<dynamic> routes(RouteSettings settings) {
 
         final providers = [
           BlocProvider(
-              create: (context) => sl<MeetingsCubit>()
-                ..setFilterRequest(request)
-                ..getData()),
+            create: (context) => sl<MeetingsCubit>()
+              ..setFilterRequest(request)
+              ..getData(),
+          ),
         ];
         return MaterialPageRoute(
           builder: (_) {

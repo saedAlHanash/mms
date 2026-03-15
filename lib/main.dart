@@ -83,7 +83,7 @@ class Note {
     var androidInitialize = const AndroidInitializationSettings('mipmap/ic_launcher');
     var iOSInitialize = const DarwinInitializationSettings();
     var initializationsSettings = InitializationSettings(android: androidInitialize, iOS: iOSInitialize);
-    await flutterLocalNotificationsPlugin.initialize(initializationsSettings);
+    await flutterLocalNotificationsPlugin.initialize(settings: initializationsSettings);
   }
 
   static Future showBigTextNotification({
@@ -112,6 +112,11 @@ class Note {
       iOS: DarwinNotificationDetails(),
     );
 
-    await flutterLocalNotificationsPlugin.show((DateTime.now().millisecondsSinceEpoch ~/ 1000), title, body, not);
+    await flutterLocalNotificationsPlugin.show(
+      id: (DateTime.now().millisecondsSinceEpoch ~/ 1000),
+      title: title,
+      body: body,
+      notificationDetails: not,
+    );
   }
 }

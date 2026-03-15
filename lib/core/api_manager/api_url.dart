@@ -1,4 +1,5 @@
 class GetUrl {
+  static const meetingRating = 'rating/Get';
   static const liveKit = 'lk/Get';
   static const agora = 'forDelete/Get';
   static const temp = '';
@@ -104,6 +105,8 @@ class GetUrl {
 }
 
 class PostUrl {
+  static const meetingRatings = 'rating/GetAll';
+  static const createMeetingRating = 'rating/Add';
   static const liveKits = 'lk/GetAll';
   static const createLiveKit = 'lk/Add';
   static const agoras = 'forDelete/GetAll';
@@ -208,6 +211,7 @@ class PostUrl {
 }
 
 class PutUrl {
+  static const updateMeetingRating = 'rating/Update';
   static const updateLiveKit = 'lk/Update';
   static const updateAgora = 'forDelete/Update';
   static const updateName = 'update-name';
@@ -222,6 +226,7 @@ class PutUrl {
 }
 
 class DeleteUrl {
+  static const deleteMeetingRating = 'rating/Delete';
   static const deleteLiveKit = 'lk/Delete';
   static const deleteAgora = 'forDelete/Delete';
   static const removeFavorite = 'favorites';
