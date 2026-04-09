@@ -71,30 +71,35 @@ class _ProfilePageState extends State<ProfilePage> {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    StatefulBuilder(builder: (context, setState) {
-                      return ItemImageCreate(
-                        height: 150.0.r,
-                        image: updateState.request.profileImageUrl.getImage,
-                        onLoad: (bytes) {
-                          setState(() => updateState.request.profileImageUrl.fileBytes = bytes);
-                        },
-                      );
-                    }),
+                    StatefulBuilder(
+                      builder: (context, setState) {
+                        return ItemImageCreate(
+                          height: 150.0.r,
+                          image: updateState.request.profileImageUrl.getImage,
+                          onLoad: (bytes) {
+                            setState(() => updateState.request.profileImageUrl.fileBytes = bytes);
+                          },
+                        );
+                      },
+                    ),
                     20.0.verticalSpace,
                     //name
                     MyTextFormOutLineWidget(
+                      enable: false,
                       validator: (p0) => updateCubit.validateName,
                       initialValue: updateState.request.firstName,
                       label: S.of(context).firstName,
                       onChanged: (val) => updateCubit.setFirstName = val,
                     ),
                     MyTextFormOutLineWidget(
+                      enable: false,
                       validator: (p0) => updateCubit.validateName,
                       initialValue: updateState.request.lastName,
                       label: S.of(context).lastName,
                       onChanged: (val) => updateCubit.setLastName = val,
                     ),
                     MyTextFormOutLineWidget(
+                      enable: false,
                       validator: (p0) => updateCubit.validateName,
                       initialValue: updateState.request.middleName,
                       label: S.of(context).middleName,
@@ -102,6 +107,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
 
                     MyTextFormOutLineWidget(
+                      enable: false,
                       validator: (p0) => updateCubit.validateEmail,
                       initialValue: updateState.request.email,
                       label: S.of(context).email,
@@ -119,18 +125,20 @@ class _ProfilePageState extends State<ProfilePage> {
 
                     //birthdate
                     MyTextFormOutLineWidget(
+                      enable: false,
                       validator: (p0) => updateCubit.validateBirthday,
                       controller: bDateController,
-                      enable: false,
                       label: S.of(context).birthday,
                       onTap: () async {
+                        return;
                         final datePicked = await showDatePicker(
-                            context: context,
-                            initialDate: updateState.request.dob ?? DateTime(2000),
-                            lastDate: DateTime.now(),
-                            firstDate: DateTime(1900),
-                            initialDatePickerMode: DatePickerMode.year,
-                            initialEntryMode: DatePickerEntryMode.calendarOnly);
+                          context: context,
+                          initialDate: updateState.request.dob ?? DateTime(2000),
+                          lastDate: DateTime.now(),
+                          firstDate: DateTime(1900),
+                          initialDatePickerMode: DatePickerMode.year,
+                          initialEntryMode: DatePickerEntryMode.calendarOnly,
+                        );
                         if (datePicked == null) return;
                         updateCubit.setBirthday = datePicked;
                         bDateController.text = datePicked.formatDate;
@@ -139,34 +147,35 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     //location
                     MyTextFormOutLineWidget(
+                      enable: false,
                       validator: (p0) => updateCubit.validateLocation,
                       initialValue: updateState.request.address,
                       label: S.of(context).location,
                       onChanged: (val) => updateCubit.setAddress = val,
                     ),
 
-                    BlocBuilder<FileCubit, FileInitial>(
-                      builder: (context, fState) {
-                        return BlocBuilder<UpdateProfileCubit, UpdateProfileInitial>(
-                          builder: (context, state) {
-                            return MyButton(
-                              loading: state.statuses.loading || fState.statuses.loading,
-                              text: S.of(context).update,
-                              onTap: () {
-                                if (!_formKey.currentState!.validate()) return;
-                                if (updateState.request.profileImageUrl.fileBytes != null) {
-                                  context.read<FileCubit>().uploadFile(
-                                        request: updateState.request.profileImageUrl,
-                                      );
-                                } else {
-                                  updateCubit.updateProfile();
-                                }
-                              },
-                            );
-                          },
-                        );
-                      },
-                    ),
+                    // BlocBuilder<FileCubit, FileInitial>(
+                    //   builder: (context, fState) {
+                    //     return BlocBuilder<UpdateProfileCubit, UpdateProfileInitial>(
+                    //       builder: (context, state) {
+                    //         return MyButton(
+                    //           loading: state.statuses.loading || fState.statuses.loading,
+                    //           text: S.of(context).update,
+                    //           onTap: () {
+                    //             if (!_formKey.currentState!.validate()) return;
+                    //             if (updateState.request.profileImageUrl.fileBytes != null) {
+                    //               context.read<FileCubit>().uploadFile(
+                    //                     request: updateState.request.profileImageUrl,
+                    //                   );
+                    //             } else {
+                    //               updateCubit.updateProfile();
+                    //             }
+                    //           },
+                    //         );
+                    //       },
+                    //     );
+                    //   },
+                    // ),
                     40.0.verticalSpace,
                   ],
                 );

@@ -18,6 +18,7 @@ class SpinnerWidget<T> extends StatefulWidget {
     this.customButton,
     this.width,
     this.dropdownWidth,
+    this.sendFirstItem,
     this.expanded,
     this.isOverButton,
     this.decoration,
@@ -31,7 +32,7 @@ class SpinnerWidget<T> extends StatefulWidget {
   final Function(SpinnerItem spinnerItem)? onChanged;
   final double? width;
   final double? dropdownWidth;
-
+  final bool? sendFirstItem;
   final bool? expanded;
   final bool? isOverButton;
   final BoxDecoration? decoration;
@@ -41,16 +42,6 @@ class SpinnerWidget<T> extends StatefulWidget {
 }
 
 class SpinnerWidgetState<T> extends State<SpinnerWidget<T>> {
-  final valueListenable = ValueNotifier<SpinnerItem?>(null);
-
-  @override
-  void initState() {
-    if (widget.items.any((element) => element.isSelected)) {
-      valueListenable.value = widget.items.firstWhereOrNull((e) => e.isSelected);
-    }
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -66,7 +57,7 @@ class SpinnerWidgetState<T> extends State<SpinnerWidget<T>> {
         DropdownButton2(
           items: widget.items.map(
             (item) {
-              return DropdownItem(
+              return DropdownMenuItem(
                 value: item,
                 child: DrawableText(
                   selectable: false,
@@ -85,9 +76,7 @@ class SpinnerWidgetState<T> extends State<SpinnerWidget<T>> {
               );
             },
           ).toList(),
-
-          valueListenable: valueListenable,
-          // value: widget.items.firstWhereOrNull((e) => e.isSelected),
+          value: widget.items.firstWhereOrNull((e) => e.isSelected),
           hint: (widget.hintText != null)
               ? DrawableText(
                   text: widget.hintText!,
@@ -159,6 +148,7 @@ class SpinnerOutlineTitle extends StatelessWidget {
     this.customButton,
     this.width,
     this.dropdownWidth,
+    this.sendFirstItem,
     this.expanded,
     this.decoration,
     this.label = '',
@@ -170,6 +160,7 @@ class SpinnerOutlineTitle extends StatelessWidget {
   final Function(SpinnerItem spinnerItem)? onChanged;
   final double? width;
   final double? dropdownWidth;
+  final bool? sendFirstItem;
   final bool? expanded;
   final BoxDecoration? decoration;
   final String label;
@@ -194,6 +185,7 @@ class SpinnerOutlineTitle extends StatelessWidget {
           customButton: customButton,
           width: width,
           dropdownWidth: dropdownWidth,
+          sendFirstItem: sendFirstItem,
           expanded: expanded,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12.0.r),

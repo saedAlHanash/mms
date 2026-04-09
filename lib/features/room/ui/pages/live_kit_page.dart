@@ -36,39 +36,39 @@ class LiveKitPage extends StatefulWidget {
 class _LiveKitPageState extends State<LiveKitPage> {
   var controller = TextEditingController(text: AppSharedPreference.getTokenVC);
 
-  Future<void> getToken() async {
-    final dId = await getDeviceIdAsync();
-    final r = await APIService().callApi(
-      url: 'GetJoinToken',
-      type: ApiType.post,
-      hostName: 'coretik-be.coretech-mena.com',
-      additional: '/api/v1/Index/',
-      body: {
-        "identity": "$dId",
-        "name": "${dId}user",
-        "videoGrants": {
-          "canPublish": false,
-          "canPublishData": true,
-          "canSubscribe": true,
-          "room": "s1",
-          "roomAdmin": false,
-          "roomCreate": true,
-          "roomJoin": true,
-          "roomList": false,
-        },
-        "attributes": {
-          "type": "2",
-          // "imageUrl": ""
-        },
-      },
-    );
-    final token = r.jsonBodyPure['token'];
-    AppSharedPreference.cashTokenVC(token);
-    controller.text = token;
-    context.read<MyStatusCubit>().fetchMyStatus(
-      context.read<RoomCubit>().state.result.localParticipant?.identity ?? '',
-    );
-  }
+  // Future<void> getToken() async {
+  //   final dId = await getDeviceIdAsync();
+  //   final r = await APIService().callApi(
+  //     url: 'GetJoinToken',
+  //     type: ApiType.post,
+  //     hostName: 'coretik-be.coretech-mena.com',
+  //     additional: '/api/v1/Index/',
+  //     body: {
+  //       "identity": "$dId",
+  //       "name": "${dId}user",
+  //       "videoGrants": {
+  //         "canPublish": false,
+  //         "canPublishData": true,
+  //         "canSubscribe": true,
+  //         "room": "s1",
+  //         "roomAdmin": false,
+  //         "roomCreate": true,
+  //         "roomJoin": true,
+  //         "roomList": false,
+  //       },
+  //       "attributes": {
+  //         "type": "2",
+  //         // "imageUrl": ""
+  //       },
+  //     },
+  //   );
+  //   final token = r.jsonBodyPure['token'];
+  //   AppSharedPreference.cashTokenVC(token);
+  //   controller.text = token;
+  //   context.read<MyStatusCubit>().fetchMyStatus(
+  //     context.read<RoomCubit>().state.result.localParticipant?.identity ?? '',
+  //   );
+  // }
 
   void showFullScreenDialog() {
     showGeneralDialog(
@@ -86,6 +86,10 @@ class _LiveKitPageState extends State<LiveKitPage> {
   }
 
   Future<void> _connect(Meeting result) async {
+    loggerObject.w('''
+    attendeeOnlineToken: ${result.attendeeOnlineToken}
+onlineMeetingUrl: ${result.onlineMeetingUrl}
+    ''');
     context.read<RoomCubit>()
       ..setToken(result.attendeeOnlineToken)
       ..setUrl(result.onlineMeetingUrl);

@@ -1,121 +1,181 @@
 {
-  "user": {
-    "email": "mms@coretech.com",
-    "firstName": "MMS",
-    "lastName": "Admin",
-    "imageUrl": null,
-    "phoneNumber": null,
-    "phoneNumberCode": null,
-    "isActive": true,
-    "fullName": "MMS Admin",
-    "staffId": null,
-    "customerId": null,
-    "roles": null,
-    "isProgramAdmin": false,
-    "id": "dd032004-75ba-44ec-2e97-08de8e384ba9"
-  },
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImRkMDMyMDA0LTc1YmEtNDRlYy0yZTk3LTA4ZGU4ZTM4NGJhOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6Im1tc0Bjb3JldGVjaC5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA5LzA5L2lkZW50aXR5L2NsYWltcy9hY3RvciI6IkNsaWVudCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL3NpZCI6IjRlNTQ0NDI5LTEzYjgtNGIyYS04YTgzLTRlNWRlOWJkNDgzZiIsIm5iZiI6MTc3NTcyNzQ4NiwiZXhwIjoxNzc1OTQzNDg2LCJpc3MiOiJsb2NhbGhvc3QiLCJhdWQiOiJsb2NhbGhvc3QifQ.hWplcOtZ1hoV221ngXAj8cA3La0gUxj7rrZvD187vIU",
-  "claims": [
+  "hasRequestAbsence": false,
+  "hasDelegatedParty": false,
+  "attendeeOnlineToken": null,
+  "attendeesList": [
     {
-      "code": "menu",
-      "parentId": null,
-      "name": "menu",
-      "description": "-",
-      "children": [
-        {
-          "code": "dashboard",
-          "parentId": "cef08975-230c-493e-2f1e-08de8e384b8a",
-          "name": "dashboard",
-          "description": "dashboard",
-          "children": [],
-          "id": "19df8b8e-e71d-47d7-2f1f-08de8e384b8a"
-        },
-        {
-          "code": "parties",
-          "parentId": "cef08975-230c-493e-2f1e-08de8e384b8a",
-          "name": "parties",
-          "description": "parties",
-          "children": [],
-          "id": "9075e72a-4e5b-4303-2f20-08de8e384b8a"
-        },
-        {
-          "code": "committees",
-          "parentId": "cef08975-230c-493e-2f1e-08de8e384b8a",
-          "name": "committees",
-          "description": "committees",
-          "children": [],
-          "id": "5be88818-c539-4b44-2f21-08de8e384b8a"
-        },
-        {
-          "code": "meetings",
-          "parentId": "cef08975-230c-493e-2f1e-08de8e384b8a",
-          "name": "meetings",
-          "description": "-",
-          "children": [],
-          "id": "ed57d6e3-6b30-4cc7-2f22-08de8e384b8a"
-        },
-        {
-          "code": "Work-Units",
-          "parentId": "cef08975-230c-493e-2f1e-08de8e384b8a",
-          "name": "Work-Units",
-          "description": "Work-Units",
-          "children": [],
-          "id": "b6b4a717-4f78-4980-2f23-08de8e384b8a"
-        },
-        {
-          "code": "holidays",
-          "parentId": "cef08975-230c-493e-2f1e-08de8e384b8a",
-          "name": "holidays",
-          "description": "holidays",
-          "children": [],
-          "id": "ac5003f5-4c06-4b08-2f24-08de8e384b8a"
-        },
-        {
-          "code": "custom-properties",
-          "parentId": "cef08975-230c-493e-2f1e-08de8e384b8a",
-          "name": "custom-properties",
-          "description": "-",
-          "children": [],
-          "id": "38184d9f-5e78-4069-2f25-08de8e384b8a"
-        },
-        {
-          "code": "settings",
-          "parentId": "cef08975-230c-493e-2f1e-08de8e384b8a",
-          "name": "settings",
-          "description": "settings",
-          "children": [],
-          "id": "d8e74b1f-f186-4e95-2f26-08de8e384b8a"
-        },
-        {
-          "code": "buildings",
-          "parentId": "cef08975-230c-493e-2f1e-08de8e384b8a",
-          "name": "buildings",
-          "description": "-",
-          "children": [],
-          "id": "cdbd26dd-b889-43ac-2f2a-08de8e384b8a"
-        },
-        {
-          "code": "loggings",
-          "parentId": "cef08975-230c-493e-2f1e-08de8e384b8a",
-          "name": "loggings",
-          "description": "loggings",
-          "children": [],
-          "id": "42516c28-d950-4bd4-2f2b-08de8e384b8a"
-        },
-        {
-          "code": "permission",
-          "parentId": "cef08975-230c-493e-2f1e-08de8e384b8a",
-          "name": "permission",
-          "description": "permission",
-          "children": [],
-          "id": "657bbe55-43e8-4b3f-2f2c-08de8e384b8a"
-        }
-      ],
-      "id": "cef08975-230c-493e-2f1e-08de8e384b8a"
+      "attendanceDate": "2026-03-30T10:43:34.1864281",
+      "hasAttended": true,
+      "partyId": "3ba22e7f-5af1-4ee0-8bec-08de8e3ecc86",
+      "fullName": "maissam balawny",
+      "personalPhoto": null,
+      "locationType": null,
+      "isDelegator": null,
+      "attendanceDelegations": [],
+      "id": "8679a318-7ce4-44ab-eca8-08de8e49312b"
+    },
+    {
+      "attendanceDate": "2026-03-30T10:43:34.219888",
+      "hasAttended": true,
+      "partyId": "e415ec1d-70e3-4bba-8bed-08de8e3ecc86",
+      "fullName": "abd member",
+      "personalPhoto": null,
+      "locationType": null,
+      "isDelegator": null,
+      "attendanceDelegations": [],
+      "id": "d76ebdc0-30d8-4178-eca9-08de8e49312b"
+    },
+    {
+      "attendanceDate": "2026-03-30T10:43:34.2200076",
+      "hasAttended": true,
+      "partyId": "6797e6f1-9c2a-4ac4-31ab-08de8e46c784",
+      "fullName": "خالد  الأكرم",
+      "personalPhoto": null,
+      "locationType": null,
+      "isDelegator": null,
+      "attendanceDelegations": [],
+      "id": "d52c7514-c980-40c3-ecaa-08de8e49312b"
+    },
+    {
+      "attendanceDate": "2026-03-30T10:43:34.2200599",
+      "hasAttended": true,
+      "partyId": "16f4ca88-5a8e-4085-31ad-08de8e46c784",
+      "fullName": "سعيد الحنش",
+      "personalPhoto": null,
+      "locationType": null,
+      "isDelegator": null,
+      "attendanceDelegations": [],
+      "id": "917ae049-9898-4632-ecab-08de8e49312b"
     }
   ],
-  "roles": [
-    "Admin"
+  "guestsList": [],
+  "discussions": [],
+  "documents": [],
+  "agendaItems": [
+    {
+      "title": "Agenda Items",
+      "fromDate": "2026-04-01T13:31:00",
+      "toDate": "2026-04-01T14:30:00",
+      "meetingId": "1ac34331-464d-47fe-9ff5-08de8e4930d5",
+      "agendaItemStatus": 0,
+      "parentId": null,
+      "isAssigned": false,
+      "level": 0,
+      "comments": [],
+      "childrenItems": [
+        {
+          "title": "افتتاح الاجتماع والترحيب",
+          "fromDate": "2026-03-30T10:44:00",
+          "toDate": "2026-03-30T11:44:00",
+          "meetingId": "1ac34331-464d-47fe-9ff5-08de8e4930d5",
+          "agendaItemStatus": 0,
+          "parentId": "7515a235-f44a-4c26-5173-08de8e4930dc",
+          "isAssigned": false,
+          "level": 0,
+          "comments": [
+            {
+              "text": "وجود اعضاء اللجنة",
+              "date": "2026-03-30T11:03:29.2666593",
+              "partyId": "e415ec1d-70e3-4bba-8bed-08de8e3ecc86",
+              "party": {
+                "firstName": "abd",
+                "middleName": null,
+                "lastName": "member",
+                "personalPhoto": null,
+                "id": "e415ec1d-70e3-4bba-8bed-08de8e3ecc86"
+              },
+              "agendaItemId": "e9355a70-1398-4cf9-5174-08de8e4930dc",
+              "id": "06525765-5b55-4ead-cd22-08de8e4bf97e"
+            }
+          ],
+          "childrenItems": [],
+          "agendaItemMembers": [],
+          "id": "e9355a70-1398-4cf9-5174-08de8e4930dc"
+        },
+        {
+          "title": "مراجعة الأداء الفردي للموظفين",
+          "fromDate": "2026-03-30T11:00:00",
+          "toDate": "2026-03-30T11:15:00",
+          "meetingId": "1ac34331-464d-47fe-9ff5-08de8e4930d5",
+          "agendaItemStatus": 0,
+          "parentId": "7515a235-f44a-4c26-5173-08de8e4930dc",
+          "isAssigned": false,
+          "level": 0,
+          "comments": [],
+          "childrenItems": [],
+          "agendaItemMembers": [],
+          "id": "293549ba-eaab-47a1-5175-08de8e4930dc"
+        },
+        {
+          "title": "تقييم نقاط القوة والضعف لكل موظف",
+          "fromDate": "2026-03-30T11:30:00",
+          "toDate": "2026-03-30T11:45:00",
+          "meetingId": "1ac34331-464d-47fe-9ff5-08de8e4930d5",
+          "agendaItemStatus": 0,
+          "parentId": "7515a235-f44a-4c26-5173-08de8e4930dc",
+          "isAssigned": false,
+          "level": 0,
+          "comments": [],
+          "childrenItems": [],
+          "agendaItemMembers": [],
+          "id": "171bb70c-0eb0-4685-5176-08de8e4930dc"
+        },
+        {
+          "title": "تقييم نقاط القوة والضعف لكل موظف",
+          "fromDate": "2026-03-30T11:30:00",
+          "toDate": "2026-03-30T11:45:00",
+          "meetingId": "1ac34331-464d-47fe-9ff5-08de8e4930d5",
+          "agendaItemStatus": 0,
+          "parentId": "7515a235-f44a-4c26-5173-08de8e4930dc",
+          "isAssigned": false,
+          "level": 0,
+          "comments": [],
+          "childrenItems": [],
+          "agendaItemMembers": [],
+          "id": "1d759cd0-54ba-4c60-5177-08de8e4930dc"
+        }
+      ],
+      "agendaItemMembers": [],
+      "id": "7515a235-f44a-4c26-5173-08de8e4930dc"
+    }
   ],
-  "passwordHasChanged": false
+  "location": null,
+  "absenceRequests": [],
+  "guestSuggestions": [],
+  "decisions": [],
+  "polls": [],
+  "minutes": null,
+  "pollResults": [],
+  "title": "اجتماع قسم الموارد البشرية",
+  "meetingPlace": "البرامكة قاعة رضا سعيد - بناء رقم 1 - القاعة الرئيسية",
+  "fromDate": "2026-04-01T13:31:00",
+  "toDate": "2026-04-01T14:30:00",
+  "scheduledDate": null,
+  "status": 1,
+  "committeeId": "888522b6-b135-47ec-0b6a-08de8e404c70",
+  "committeeName": null,
+  "periodicMeetingId": null,
+  "hallId": "35080b3e-e52c-4eec-b82a-08de8e48045f",
+  "hall": {
+    "name": "القاعة الرئيسية",
+    "capacity": 100,
+    "buildingId": "59515de4-838e-422b-40f5-08de8e41498b",
+    "building": {
+      "name": "بناء رقم 1",
+      "address": "البرامكة قاعة رضا سعيد",
+      "id": "59515de4-838e-422b-40f5-08de8e41498b"
+    },
+    "hallEquipment": [],
+    "id": "35080b3e-e52c-4eec-b82a-08de8e48045f"
+  },
+  "code": "EPC-1",
+  "onlineMeetingUrl": null,
+  "onlineMeetingToken": null,
+  "onlineMeetingCode": null,
+  "fromDateHijri": "13 شوال 1447",
+  "toDateHijri": "13 شوال 1447",
+  "scheduledDateHijri": null,
+  "isAgendaPublished": false,
+  "hasOnlineMeeting": false,
+  "id": "1ac34331-464d-47fe-9ff5-08de8e4930d5"
 }

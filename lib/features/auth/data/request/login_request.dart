@@ -1,14 +1,16 @@
 class LoginRequest {
-  // String? userName = 'maissama@gmail.com';
+  // String? userName = 'maissam@gmail.com';
+  String? userName = 'abd-member@gmail.com';
   // String? userName = 'party1@gmail.com';
-  String? userName = 'mms@coretech.com';
+  // String? userName = 'mms@coretech.com';"email": "maissam@gmail.com",
+  //     "password": "P@ssw0rd2026",
   String? password = 'P@ssw0rd2026';
   String? programKey;
 
   LoginRequest({
-    // this.userName = 'maissama@gmail.com',
+    this.userName = 'abd-member@gmail.com',
     // this.userName = 'party1@gmail.com',
-    this.userName = 'mms@coretech.com',
+    // this.userName = 'mms@coretech.com',
     this.password = 'P@ssw0rd2026',
     this.programKey,
   });
