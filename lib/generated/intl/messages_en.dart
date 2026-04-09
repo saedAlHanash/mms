@@ -209,6 +209,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "home": MessageLookupByLibrary.simpleMessage("Home"),
     "homeAddress": MessageLookupByLibrary.simpleMessage("Home Address"),
     "hours": MessageLookupByLibrary.simpleMessage("Hours"),
+    "iAmNotCurrentlyAMemberOfAnyCommittees":
+        MessageLookupByLibrary.simpleMessage(
+          "I am not currently a member of any committees.",
+        ),
     "identityImage": MessageLookupByLibrary.simpleMessage("Identity Image"),
     "isSuccess": MessageLookupByLibrary.simpleMessage("Success!"),
     "is_required": MessageLookupByLibrary.simpleMessage("Required"),

@@ -91,7 +91,7 @@ class GetUrl {
 
   static const goal = '';
 
-  static const loggedParty = 'Party/GetLoggedParty';
+  static const loggedParty = 'Staff/GetLoggedParty';
 
   static const meeting = 'Meeting/GetDetails';
 
@@ -113,7 +113,7 @@ class PostUrl {
   static const createAgora = 'forDelete/Add';
   static const votes = 'Poll/GetAll';
   static const addReview = 'reviews';
-  static const loginUrl = 'Auth/Authenticate';
+  static const loginUrl = 'Auth/Login';
   static const signup = 'auth/register';
 
   static const forgetPassword = 'auth/forget-password';
@@ -243,4 +243,4 @@ class DeleteUrl {
 }
 
 const additionalConst = '/api/v1/';
-const baseUrl = 'mmsv2-be.coretech-mena.com';
+const baseUrl = 'mmsv3-be.coretech-mena.com';

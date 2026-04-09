@@ -2073,6 +2073,16 @@ class S {
       args: [],
     );
   }
+
+  /// `I am not currently a member of any committees.`
+  String get iAmNotCurrentlyAMemberOfAnyCommittees {
+    return Intl.message(
+      'I am not currently a member of any committees.',
+      name: 'iAmNotCurrentlyAMemberOfAnyCommittees',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

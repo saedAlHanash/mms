@@ -18,7 +18,6 @@ class SpinnerWidget<T> extends StatefulWidget {
     this.customButton,
     this.width,
     this.dropdownWidth,
-    this.sendFirstItem,
     this.expanded,
     this.isOverButton,
     this.decoration,
@@ -32,7 +31,7 @@ class SpinnerWidget<T> extends StatefulWidget {
   final Function(SpinnerItem spinnerItem)? onChanged;
   final double? width;
   final double? dropdownWidth;
-  final bool? sendFirstItem;
+
   final bool? expanded;
   final bool? isOverButton;
   final BoxDecoration? decoration;
@@ -42,6 +41,16 @@ class SpinnerWidget<T> extends StatefulWidget {
 }
 
 class SpinnerWidgetState<T> extends State<SpinnerWidget<T>> {
+  final valueListenable = ValueNotifier<SpinnerItem?>(null);
+
+  @override
+  void initState() {
+    if (widget.items.any((element) => element.isSelected)) {
+      valueListenable.value = widget.items.firstWhereOrNull((e) => e.isSelected);
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -57,7 +66,7 @@ class SpinnerWidgetState<T> extends State<SpinnerWidget<T>> {
         DropdownButton2(
           items: widget.items.map(
             (item) {
-              return DropdownMenuItem(
+              return DropdownItem(
                 value: item,
                 child: DrawableText(
                   selectable: false,
@@ -67,8 +76,8 @@ class SpinnerWidgetState<T> extends State<SpinnerWidget<T>> {
                       : EdgeInsets.only(left: 10.0.w),
                   color: (item.id != -1)
                       ? (item.enable)
-                          ? Colors.black
-                          : AppColorManager.grey.withValues(alpha: 0.7)
+                            ? Colors.black
+                            : AppColorManager.grey.withValues(alpha: 0.7)
                       : AppColorManager.grey.withValues(alpha: 0.7),
                   drawableStart: item.icon,
                   drawablePadding: 15.0.w,
@@ -76,7 +85,9 @@ class SpinnerWidgetState<T> extends State<SpinnerWidget<T>> {
               );
             },
           ).toList(),
-          value: widget.items.firstWhereOrNull((e) => e.isSelected),
+
+          valueListenable: valueListenable,
+          // value: widget.items.firstWhereOrNull((e) => e.isSelected),
           hint: (widget.hintText != null)
               ? DrawableText(
                   text: widget.hintText!,
@@ -100,7 +111,8 @@ class SpinnerWidgetState<T> extends State<SpinnerWidget<T>> {
           buttonStyleData: ButtonStyleData(
             width: widget.width ?? 0.9.sw,
             height: 51.0.h,
-            decoration: widget.decoration ??
+            decoration:
+                widget.decoration ??
                 BoxDecoration(
                   color: AppColorManager.f9,
                   borderRadius: BorderRadius.all(Radius.circular(10.0.r)),
@@ -147,7 +159,6 @@ class SpinnerOutlineTitle extends StatelessWidget {
     this.customButton,
     this.width,
     this.dropdownWidth,
-    this.sendFirstItem,
     this.expanded,
     this.decoration,
     this.label = '',
@@ -159,7 +170,6 @@ class SpinnerOutlineTitle extends StatelessWidget {
   final Function(SpinnerItem spinnerItem)? onChanged;
   final double? width;
   final double? dropdownWidth;
-  final bool? sendFirstItem;
   final bool? expanded;
   final BoxDecoration? decoration;
   final String label;
@@ -184,13 +194,12 @@ class SpinnerOutlineTitle extends StatelessWidget {
           customButton: customButton,
           width: width,
           dropdownWidth: dropdownWidth,
-          sendFirstItem: sendFirstItem,
           expanded: expanded,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12.0.r),
             border: Border.all(color: AppColorManager.grey, width: 1.0.r),
           ),
-        )
+        ),
       ],
     );
   }
@@ -213,7 +222,7 @@ class SpinnerItem {
   dynamic item;
   Widget? icon;
 
-//<editor-fold desc="Data Methods">
+  //<editor-fold desc="Data Methods">
 
   SpinnerItem copyWith({
     String? name,
@@ -251,5 +260,5 @@ class SpinnerItem {
     );
   }
 
-//</editor-fold>
+  //</editor-fold>
 }

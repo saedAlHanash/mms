@@ -194,6 +194,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
     "homeAddress": MessageLookupByLibrary.simpleMessage("عنوان المنزل"),
     "hours": MessageLookupByLibrary.simpleMessage("ساعات"),
+    "iAmNotCurrentlyAMemberOfAnyCommittees":
+        MessageLookupByLibrary.simpleMessage("لا توجد لجان منضم لها حالياً"),
     "identityImage": MessageLookupByLibrary.simpleMessage("صورة الهوية"),
     "isSuccess": MessageLookupByLibrary.simpleMessage("نجح!"),
     "is_required": MessageLookupByLibrary.simpleMessage("مطلوب"),

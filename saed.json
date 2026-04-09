@@ -1,16 +1,121 @@
 {
-  "room": "d747e704-a038-4a11-afbc-08de1ab1dade",
-  "identity": "a4d0105e-a26c-4cbd-88b3-08dc8aebbe56",
-  "date": "2025-11-03T14:21:02.8733495",
-  "state": {
-    "canSubscribe": true,
-    "canPublishData": true,
-    "canPublish": false,
-    "cameraMuted": false,
-    "microphoneMuted": false,
-    "screenShareMuted": false,
-    "screenShareAudioMuted": false,
-    "isBlocked": false
+  "user": {
+    "email": "mms@coretech.com",
+    "firstName": "MMS",
+    "lastName": "Admin",
+    "imageUrl": null,
+    "phoneNumber": null,
+    "phoneNumberCode": null,
+    "isActive": true,
+    "fullName": "MMS Admin",
+    "staffId": null,
+    "customerId": null,
+    "roles": null,
+    "isProgramAdmin": false,
+    "id": "dd032004-75ba-44ec-2e97-08de8e384ba9"
   },
-  "id": "0e7519ed-fd94-41c8-59f2-08de1ae37098"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImRkMDMyMDA0LTc1YmEtNDRlYy0yZTk3LTA4ZGU4ZTM4NGJhOSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6Im1tc0Bjb3JldGVjaC5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA5LzA5L2lkZW50aXR5L2NsYWltcy9hY3RvciI6IkNsaWVudCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL3NpZCI6IjRlNTQ0NDI5LTEzYjgtNGIyYS04YTgzLTRlNWRlOWJkNDgzZiIsIm5iZiI6MTc3NTcyNzQ4NiwiZXhwIjoxNzc1OTQzNDg2LCJpc3MiOiJsb2NhbGhvc3QiLCJhdWQiOiJsb2NhbGhvc3QifQ.hWplcOtZ1hoV221ngXAj8cA3La0gUxj7rrZvD187vIU",
+  "claims": [
+    {
+      "code": "menu",
+      "parentId": null,
+      "name": "menu",
+      "description": "-",
+      "children": [
+        {
+          "code": "dashboard",
+          "parentId": "cef08975-230c-493e-2f1e-08de8e384b8a",
+          "name": "dashboard",
+          "description": "dashboard",
+          "children": [],
+          "id": "19df8b8e-e71d-47d7-2f1f-08de8e384b8a"
+        },
+        {
+          "code": "parties",
+          "parentId": "cef08975-230c-493e-2f1e-08de8e384b8a",
+          "name": "parties",
+          "description": "parties",
+          "children": [],
+          "id": "9075e72a-4e5b-4303-2f20-08de8e384b8a"
+        },
+        {
+          "code": "committees",
+          "parentId": "cef08975-230c-493e-2f1e-08de8e384b8a",
+          "name": "committees",
+          "description": "committees",
+          "children": [],
+          "id": "5be88818-c539-4b44-2f21-08de8e384b8a"
+        },
+        {
+          "code": "meetings",
+          "parentId": "cef08975-230c-493e-2f1e-08de8e384b8a",
+          "name": "meetings",
+          "description": "-",
+          "children": [],
+          "id": "ed57d6e3-6b30-4cc7-2f22-08de8e384b8a"
+        },
+        {
+          "code": "Work-Units",
+          "parentId": "cef08975-230c-493e-2f1e-08de8e384b8a",
+          "name": "Work-Units",
+          "description": "Work-Units",
+          "children": [],
+          "id": "b6b4a717-4f78-4980-2f23-08de8e384b8a"
+        },
+        {
+          "code": "holidays",
+          "parentId": "cef08975-230c-493e-2f1e-08de8e384b8a",
+          "name": "holidays",
+          "description": "holidays",
+          "children": [],
+          "id": "ac5003f5-4c06-4b08-2f24-08de8e384b8a"
+        },
+        {
+          "code": "custom-properties",
+          "parentId": "cef08975-230c-493e-2f1e-08de8e384b8a",
+          "name": "custom-properties",
+          "description": "-",
+          "children": [],
+          "id": "38184d9f-5e78-4069-2f25-08de8e384b8a"
+        },
+        {
+          "code": "settings",
+          "parentId": "cef08975-230c-493e-2f1e-08de8e384b8a",
+          "name": "settings",
+          "description": "settings",
+          "children": [],
+          "id": "d8e74b1f-f186-4e95-2f26-08de8e384b8a"
+        },
+        {
+          "code": "buildings",
+          "parentId": "cef08975-230c-493e-2f1e-08de8e384b8a",
+          "name": "buildings",
+          "description": "-",
+          "children": [],
+          "id": "cdbd26dd-b889-43ac-2f2a-08de8e384b8a"
+        },
+        {
+          "code": "loggings",
+          "parentId": "cef08975-230c-493e-2f1e-08de8e384b8a",
+          "name": "loggings",
+          "description": "loggings",
+          "children": [],
+          "id": "42516c28-d950-4bd4-2f2b-08de8e384b8a"
+        },
+        {
+          "code": "permission",
+          "parentId": "cef08975-230c-493e-2f1e-08de8e384b8a",
+          "name": "permission",
+          "description": "permission",
+          "children": [],
+          "id": "657bbe55-43e8-4b3f-2f2c-08de8e384b8a"
+        }
+      ],
+      "id": "cef08975-230c-493e-2f1e-08de8e384b8a"
+    }
+  ],
+  "roles": [
+    "Admin"
+  ],
+  "passwordHasChanged": false
 }

@@ -1,15 +1,15 @@
 class LoginRequest {
   // String? userName = 'maissama@gmail.com';
   // String? userName = 'party1@gmail.com';
-  String? userName = 'abdMember2@gmail.com';
-  String? password = 'P@ssw0rd2024';
+  String? userName = 'mms@coretech.com';
+  String? password = 'P@ssw0rd2026';
   String? programKey;
 
   LoginRequest({
     // this.userName = 'maissama@gmail.com',
     // this.userName = 'party1@gmail.com',
-    this.userName = 'abdMember2@gmail.com',
-    this.password = 'P@ssw0rd2024',
+    this.userName = 'mms@coretech.com',
+    this.password = 'P@ssw0rd2026',
     this.programKey,
   });
 
@@ -27,7 +27,7 @@ class LoginRequest {
 
   Map<String, dynamic> toJson() {
     return {
-      'identifire': userName,
+      'email': userName,
       'password': password,
       'verification_code': programKey,
       'programKey': 'c7V9hHLSBKKJAGdMakSA4DUdlF05Q4SK/y6OaUQwmh36Qgm/l7u9GPt6R5+rDlX65D8=',

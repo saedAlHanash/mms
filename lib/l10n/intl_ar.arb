@@ -267,5 +267,6 @@
   "discussions": "نقاشات",
   "poweredByCoretech": "صمم بواسطة CORETECH",
   "connect": "الاتصال",
-  "yourConnectionHasBeenSuspendedByTheAdminButYou": "تم تعليق اتصالك من قبل المسؤول، لكنك لا تزال متصلاً. يرجى الانتظار حتى يُسمح لك بالاستئناف."
+  "yourConnectionHasBeenSuspendedByTheAdminButYou": "تم تعليق اتصالك من قبل المسؤول، لكنك لا تزال متصلاً. يرجى الانتظار حتى يُسمح لك بالاستئناف.",
+  "iAmNotCurrentlyAMemberOfAnyCommittees": "لا توجد لجان منضم لها حالياً"
 }

@@ -9,7 +9,7 @@ class LoginResponse {
     required this.expiresIn,
     required this.user,
     required this.twoStepsRequired,
-    required this.claims,
+    // required this.claims,
   });
 
   final String tokenType;
@@ -17,28 +17,27 @@ class LoginResponse {
   final num expiresIn;
   final User user;
   final bool twoStepsRequired;
-  final Claims claims;
-
+  // final Claims claims;
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) {
     return LoginResponse(
       tokenType: json["tokenType"] ?? "",
-      accessToken: json["accessToken"] ?? "",
+      accessToken: json["token"] ?? "",
       expiresIn: json["expiresIn"] ?? 0,
       user: User.fromJson(json["user"] ?? {}),
       twoStepsRequired: json["twoStepsRequired"] ?? false,
-      claims: Claims.fromJson(json["claims"] ?? {}),
+      // claims: Claims.fromJson(json["claims"] ?? {}),
     );
   }
 
   Map<String, dynamic> toJson() => {
-        "tokenType": tokenType,
-        "accessToken": accessToken,
-        "expiresIn": expiresIn,
-        "user": user.toJson(),
-        "twoStepsRequired": twoStepsRequired,
-        "claims": claims.toJson(),
-      };
+    "tokenType": tokenType,
+    "token": accessToken,
+    "expiresIn": expiresIn,
+    "user": user.toJson(),
+    "twoStepsRequired": twoStepsRequired,
+    // "claims": claims.toJson(),
+  };
 }
 
 class Claims {
@@ -58,31 +57,21 @@ class Claims {
 
   factory Claims.fromJson(Map<String, dynamic> json) {
     return Claims(
-      items: json["items"] == null
-          ? []
-          : List<dynamic>.from(json["items"]!.map((x) => x)),
-      pages: json["pages"] == null
-          ? []
-          : List<dynamic>.from(json["pages"]!.map((x) => x)),
-      modules: json["modules"] == null
-          ? []
-          : List<dynamic>.from(json["modules"]!.map((x) => x)),
-      blocks: json["blocks"] == null
-          ? []
-          : List<String>.from(json["blocks"]!.map((x) => x)),
-      operations: json["operations"] == null
-          ? []
-          : List<String>.from(json["operations"]!.map((x) => x)),
+      items: json["items"] == null ? [] : List<dynamic>.from(json["items"]!.map((x) => x)),
+      pages: json["pages"] == null ? [] : List<dynamic>.from(json["pages"]!.map((x) => x)),
+      modules: json["modules"] == null ? [] : List<dynamic>.from(json["modules"]!.map((x) => x)),
+      blocks: json["blocks"] == null ? [] : List<String>.from(json["blocks"]!.map((x) => x)),
+      operations: json["operations"] == null ? [] : List<String>.from(json["operations"]!.map((x) => x)),
     );
   }
 
   Map<String, dynamic> toJson() => {
-        "items": items.map((x) => x).toList(),
-        "pages": pages.map((x) => x).toList(),
-        "modules": modules.map((x) => x).toList(),
-        "blocks": blocks.map((x) => x).toList(),
-        "operations": operations.map((x) => x).toList(),
-      };
+    "items": items.map((x) => x).toList(),
+    "pages": pages.map((x) => x).toList(),
+    "modules": modules.map((x) => x).toList(),
+    "blocks": blocks.map((x) => x).toList(),
+    "operations": operations.map((x) => x).toList(),
+  };
 }
 
 class User {
@@ -126,7 +115,7 @@ class User {
       firstName: json["firstName"] ?? "",
       middleName: json["middleName"] ?? "",
       lastName: json["lastName"] ?? "",
-      imageUrl: json["imageUrl"].toString().fixUrl(initialImage:Assets.imagesAvatar),
+      imageUrl: json["imageUrl"].toString().fixUrl(initialImage: Assets.imagesAvatar),
       workPhoneNumber: json["workPhoneNumber"] ?? "",
       phoneNumber: json["phoneNumber"] ?? "",
       phoneNumberCode: json["phoneNumberCode"] ?? "",
@@ -137,18 +126,18 @@ class User {
   }
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "email": email,
-        "userName": userName,
-        "firstName": firstName,
-        "middleName": middleName,
-        "lastName": lastName,
-        "imageUrl": imageUrl,
-        "workPhoneNumber": workPhoneNumber,
-        "phoneNumber": phoneNumber,
-        "phoneNumberCode": phoneNumberCode,
-        "attribute": attribute,
-        "status": status,
-        "customerId": customerId,
-      };
+    "id": id,
+    "email": email,
+    "userName": userName,
+    "firstName": firstName,
+    "middleName": middleName,
+    "lastName": lastName,
+    "imageUrl": imageUrl,
+    "workPhoneNumber": workPhoneNumber,
+    "phoneNumber": phoneNumber,
+    "phoneNumberCode": phoneNumberCode,
+    "attribute": attribute,
+    "status": status,
+    "customerId": customerId,
+  };
 }
