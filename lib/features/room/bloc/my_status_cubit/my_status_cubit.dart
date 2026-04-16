@@ -34,7 +34,7 @@ class MyStatusCubit extends MCubit<MyStatusInitial> {
       },
     );
     if (response.statusCode.success) {
-      final data = MyStatus.fromJson(json.decode(response.body));
+      final data = MyStatus.fromJson(response.jsonBody);
       emit(state.copyWith(statuses: CubitStatuses.done, result: data));
     } else {
       emit(
