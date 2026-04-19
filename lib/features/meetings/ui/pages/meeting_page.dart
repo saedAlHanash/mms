@@ -16,6 +16,7 @@ import 'package:mms/features/committees/ui/widget/drawer_btn_widget.dart';
 import 'package:mms/features/meetings/ui/widget/discussions_tree.dart';
 import 'package:mms/services/pip.dart';
 
+import '../../../../core/strings/enum_manager.dart';
 import '../../../../core/util/my_style.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../router/app_router.dart';
@@ -73,7 +74,6 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
       ],
       child: BlocBuilder<RoomCubit, RoomInitial>(
         builder: (context, state) {
-          loggerObject.w('PipService.isSetUp: ${PipService.isSetUp}');
           return PopScope(
             canPop: !PipService.isSetUp,
             onPopInvokedWithResult: (didPop, result) {
@@ -216,7 +216,8 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
                                   ],
                                 ),
                               ),
-                              Align(alignment: Alignment.bottomCenter, child: _VideoCall()),
+                              if (state.result.status == MeetingStatus.running)
+                                Align(alignment: Alignment.bottomCenter, child: _VideoCall()),
                             ],
                           ),
                         );
