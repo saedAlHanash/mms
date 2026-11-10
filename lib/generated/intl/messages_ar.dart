@@ -85,6 +85,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "back": MessageLookupByLibrary.simpleMessage("عودة"),
     "backToLogin": MessageLookupByLibrary.simpleMessage("العودة لتسجيل الدخول"),
+    "basicInfo": MessageLookupByLibrary.simpleMessage("البيانات الأساسية"),
     "birthday": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
     "build": MessageLookupByLibrary.simpleMessage("رقم الإصدار"),
     "buildNumber": MessageLookupByLibrary.simpleMessage("رقم الإصدار"),
@@ -106,6 +107,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "changePass": MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
     "changePassword": MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
     "changePhone": MessageLookupByLibrary.simpleMessage("تغيير رقم الهاتف"),
+    "changePhoto": MessageLookupByLibrary.simpleMessage("تغيير الصورة الشخصية"),
     "choosing": MessageLookupByLibrary.simpleMessage("اختر"),
     "city": MessageLookupByLibrary.simpleMessage("المدينة"),
     "clickToUpdate": MessageLookupByLibrary.simpleMessage("انقر للتعديل"),
@@ -357,6 +359,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "noMeetingsThisDayHint": MessageLookupByLibrary.simpleMessage(
       "الأيام التي فيها اجتماعات معلّمة بنقطة بنفسجية.",
     ),
+    "noNotifications": MessageLookupByLibrary.simpleMessage("لا توجد إشعارات"),
+    "noNotificationsDescription": MessageLookupByLibrary.simpleMessage(
+      "ستظهر هنا الإشعارات فور وصولها. اسحب للأسفل للتحديث.",
+    ),
     "noVotesForMeeting": MessageLookupByLibrary.simpleMessage(
       "لا توجد تصويتات لهذا الاجتماع",
     ),
@@ -427,6 +433,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "rated": MessageLookupByLibrary.simpleMessage("تم التقييم"),
     "rePassword": MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
+    "readOnly": MessageLookupByLibrary.simpleMessage("للقراءة فقط"),
     "ready": MessageLookupByLibrary.simpleMessage("جاهز"),
     "readyToDeliver": MessageLookupByLibrary.simpleMessage("جاهز للتسليم"),
     "receiverPhone": MessageLookupByLibrary.simpleMessage("هاتف المستلم"),
@@ -548,6 +555,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "خطأ في البريد الإلكتروني",
     ),
     "wrongPhone": MessageLookupByLibrary.simpleMessage("رقم هاتف غير صحيح"),
+    "yesterday": MessageLookupByLibrary.simpleMessage("أمس"),
     "you": MessageLookupByLibrary.simpleMessage("أنت"),
     "yourAddress": MessageLookupByLibrary.simpleMessage("عنوانك"),
     "yourComment": MessageLookupByLibrary.simpleMessage("تعليقك"),

@@ -2802,6 +2802,56 @@ class S {
   String get voteUnit {
     return Intl.message('votes', name: 'voteUnit', desc: '', args: []);
   }
+
+  /// `Change profile photo`
+  String get changePhoto {
+    return Intl.message(
+      'Change profile photo',
+      name: 'changePhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Basic information`
+  String get basicInfo {
+    return Intl.message(
+      'Basic information',
+      name: 'basicInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Read only`
+  String get readOnly {
+    return Intl.message('Read only', name: 'readOnly', desc: '', args: []);
+  }
+
+  /// `Yesterday`
+  String get yesterday {
+    return Intl.message('Yesterday', name: 'yesterday', desc: '', args: []);
+  }
+
+  /// `No notifications`
+  String get noNotifications {
+    return Intl.message(
+      'No notifications',
+      name: 'noNotifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notifications will appear here as they arrive. Pull down to refresh.`
+  String get noNotificationsDescription {
+    return Intl.message(
+      'Notifications will appear here as they arrive. Pull down to refresh.',
+      name: 'noNotificationsDescription',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

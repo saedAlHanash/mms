@@ -91,6 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "back": MessageLookupByLibrary.simpleMessage("Back"),
     "backToLogin": MessageLookupByLibrary.simpleMessage("Back to login"),
+    "basicInfo": MessageLookupByLibrary.simpleMessage("Basic information"),
     "birthday": MessageLookupByLibrary.simpleMessage("birthday"),
     "build": MessageLookupByLibrary.simpleMessage("Build"),
     "buildNumber": MessageLookupByLibrary.simpleMessage("Build Number"),
@@ -110,6 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "changePass": MessageLookupByLibrary.simpleMessage("Change Password"),
     "changePassword": MessageLookupByLibrary.simpleMessage("Change Password"),
     "changePhone": MessageLookupByLibrary.simpleMessage("Change Phone Number"),
+    "changePhoto": MessageLookupByLibrary.simpleMessage("Change profile photo"),
     "choosing": MessageLookupByLibrary.simpleMessage("Choosing"),
     "city": MessageLookupByLibrary.simpleMessage("City"),
     "clickToUpdate": MessageLookupByLibrary.simpleMessage("Click To Update"),
@@ -381,6 +383,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "noMeetingsThisDayHint": MessageLookupByLibrary.simpleMessage(
       "Days with meetings are marked with a purple dot.",
     ),
+    "noNotifications": MessageLookupByLibrary.simpleMessage("No notifications"),
+    "noNotificationsDescription": MessageLookupByLibrary.simpleMessage(
+      "Notifications will appear here as they arrive. Pull down to refresh.",
+    ),
     "noVotesForMeeting": MessageLookupByLibrary.simpleMessage(
       "No votes for this meeting",
     ),
@@ -453,6 +459,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "rated": MessageLookupByLibrary.simpleMessage("Rated"),
     "rePassword": MessageLookupByLibrary.simpleMessage("Confirm Password"),
+    "readOnly": MessageLookupByLibrary.simpleMessage("Read only"),
     "ready": MessageLookupByLibrary.simpleMessage("Ready"),
     "readyToDeliver": MessageLookupByLibrary.simpleMessage("Ready To Deliver"),
     "receiverPhone": MessageLookupByLibrary.simpleMessage("receiverPhone"),
@@ -579,6 +586,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "wrongEmail": MessageLookupByLibrary.simpleMessage("Invalid email"),
     "wrongPhone": MessageLookupByLibrary.simpleMessage("Invalid phone number"),
+    "yesterday": MessageLookupByLibrary.simpleMessage("Yesterday"),
     "you": MessageLookupByLibrary.simpleMessage("You"),
     "yourAddress": MessageLookupByLibrary.simpleMessage("Your Address"),
     "yourComment": MessageLookupByLibrary.simpleMessage("Your comment"),

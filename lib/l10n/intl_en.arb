@@ -362,5 +362,11 @@
   "votingEnded": "Voting ended",
   "noVotesForMeeting": "No votes for this meeting",
   "noVotesForMeetingDescription": "Polls will appear here when opened, and their results once published.",
-  "voteUnit": "votes"
+  "voteUnit": "votes",
+  "changePhoto": "Change profile photo",
+  "basicInfo": "Basic information",
+  "readOnly": "Read only",
+  "yesterday": "Yesterday",
+  "noNotifications": "No notifications",
+  "noNotificationsDescription": "Notifications will appear here as they arrive. Pull down to refresh."
 }

@@ -359,5 +359,11 @@
   "votingEnded": "انتهى التصويت",
   "noVotesForMeeting": "لا توجد تصويتات لهذا الاجتماع",
   "noVotesForMeetingDescription": "ستظهر هنا الاستطلاعات عند فتحها، ونتائجها بعد نشرها.",
-  "voteUnit": "صوتاً"
+  "voteUnit": "صوتاً",
+  "changePhoto": "تغيير الصورة الشخصية",
+  "basicInfo": "البيانات الأساسية",
+  "readOnly": "للقراءة فقط",
+  "yesterday": "أمس",
+  "noNotifications": "لا توجد إشعارات",
+  "noNotificationsDescription": "ستظهر هنا الإشعارات فور وصولها. اسحب للأسفل للتحديث."
 }
