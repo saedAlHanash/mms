@@ -353,5 +353,14 @@
   "fromLabel": "From",
   "toLabel": "To",
   "itemsCount": "{count, plural, =0{No items} =1{1 item} other{{count} items}}",
-  "discussionsCount": "{count, plural, =0{No discussions} =1{1 discussion} other{{count} discussions}}"
+  "discussionsCount": "{count, plural, =0{No discussions} =1{1 discussion} other{{count} discussions}}",
+  "votesTitle": "Votes",
+  "polls": "Polls",
+  "publishedResults": "Published results",
+  "yourVote": "Your vote",
+  "voteRecorded": "Your vote is recorded",
+  "votingEnded": "Voting ended",
+  "noVotesForMeeting": "No votes for this meeting",
+  "noVotesForMeetingDescription": "Polls will appear here when opened, and their results once published.",
+  "voteUnit": "votes"
 }

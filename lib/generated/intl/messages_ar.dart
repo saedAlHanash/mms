@@ -357,6 +357,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "noMeetingsThisDayHint": MessageLookupByLibrary.simpleMessage(
       "الأيام التي فيها اجتماعات معلّمة بنقطة بنفسجية.",
     ),
+    "noVotesForMeeting": MessageLookupByLibrary.simpleMessage(
+      "لا توجد تصويتات لهذا الاجتماع",
+    ),
+    "noVotesForMeetingDescription": MessageLookupByLibrary.simpleMessage(
+      "ستظهر هنا الاستطلاعات عند فتحها، ونتائجها بعد نشرها.",
+    ),
     "noVotesPending": MessageLookupByLibrary.simpleMessage(
       "لا تصويتات بانتظارك",
     ),
@@ -404,6 +410,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "policy": MessageLookupByLibrary.simpleMessage("سياسة الاستخدام والخصوصية"),
     "policyJust": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
+    "polls": MessageLookupByLibrary.simpleMessage("الاستطلاعات"),
     "postponed": MessageLookupByLibrary.simpleMessage("مؤجلة"),
     "poweredByCoretech": MessageLookupByLibrary.simpleMessage(
       "صمم بواسطة CORETECH",
@@ -415,6 +422,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
     "profileImage": MessageLookupByLibrary.simpleMessage("صورة شخصية"),
     "published": MessageLookupByLibrary.simpleMessage("منشورة"),
+    "publishedResults": MessageLookupByLibrary.simpleMessage(
+      "النتائج المنشورة",
+    ),
     "rated": MessageLookupByLibrary.simpleMessage("تم التقييم"),
     "rePassword": MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
     "ready": MessageLookupByLibrary.simpleMessage("جاهز"),
@@ -520,9 +530,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "verify": MessageLookupByLibrary.simpleMessage("التحقق"),
     "version": MessageLookupByLibrary.simpleMessage("الإصدار"),
     "viewProfile": MessageLookupByLibrary.simpleMessage("عرض الملف الشخصي"),
+    "vote": MessageLookupByLibrary.simpleMessage("تصويت"),
+    "voteRecorded": MessageLookupByLibrary.simpleMessage("تم تسجيل صوتك"),
+    "voteUnit": MessageLookupByLibrary.simpleMessage("صوتاً"),
     "voters": MessageLookupByLibrary.simpleMessage("الناخبون"),
     "votes": MessageLookupByLibrary.simpleMessage("الأصوات"),
     "votesPending": m10,
+    "votesTitle": MessageLookupByLibrary.simpleMessage("التصويتات"),
+    "votingEnded": MessageLookupByLibrary.simpleMessage("انتهى التصويت"),
     "welcomeBack": MessageLookupByLibrary.simpleMessage("أهلا بعودتك!"),
     "wishList": MessageLookupByLibrary.simpleMessage("قائمة أماني"),
     "wishlist": MessageLookupByLibrary.simpleMessage("قائمة الرغبات"),
@@ -546,5 +561,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "yourName": MessageLookupByLibrary.simpleMessage("اسمك"),
     "yourOrder": MessageLookupByLibrary.simpleMessage("طلبك"),
     "yourPhone": MessageLookupByLibrary.simpleMessage("رقم هاتفك"),
+    "yourVote": MessageLookupByLibrary.simpleMessage("صوتك"),
   };
 }

@@ -349,5 +349,15 @@
   "fromLabel": "من",
   "toLabel": "إلى",
   "itemsCount": "{count, plural, =0{لا بنود} =1{بند واحد} =2{بندان} few{{count} بنود} many{{count} بنداً} other{{count} بند}}",
-  "discussionsCount": "{count, plural, =0{لا نقاشات} =1{نقاش واحد} =2{نقاشان} few{{count} نقاشات} many{{count} نقاشاً} other{{count} نقاش}}"
+  "discussionsCount": "{count, plural, =0{لا نقاشات} =1{نقاش واحد} =2{نقاشان} few{{count} نقاشات} many{{count} نقاشاً} other{{count} نقاش}}",
+  "vote": "تصويت",
+  "votesTitle": "التصويتات",
+  "polls": "الاستطلاعات",
+  "publishedResults": "النتائج المنشورة",
+  "yourVote": "صوتك",
+  "voteRecorded": "تم تسجيل صوتك",
+  "votingEnded": "انتهى التصويت",
+  "noVotesForMeeting": "لا توجد تصويتات لهذا الاجتماع",
+  "noVotesForMeetingDescription": "ستظهر هنا الاستطلاعات عند فتحها، ونتائجها بعد نشرها.",
+  "voteUnit": "صوتاً"
 }

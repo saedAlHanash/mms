@@ -351,7 +351,7 @@ class _VotesCard extends StatelessWidget {
                   mainAxisSize: .min,
                   children: [
                     DrawableText(
-                      text: S.of(context).votes,
+                      text: S.of(context).votesTitle,
                       size: 16.0.sp,
                       fontWeight: .w700,
                       color: AppColorManager.neutral900,

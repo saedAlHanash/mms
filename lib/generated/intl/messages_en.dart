@@ -381,6 +381,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "noMeetingsThisDayHint": MessageLookupByLibrary.simpleMessage(
       "Days with meetings are marked with a purple dot.",
     ),
+    "noVotesForMeeting": MessageLookupByLibrary.simpleMessage(
+      "No votes for this meeting",
+    ),
+    "noVotesForMeetingDescription": MessageLookupByLibrary.simpleMessage(
+      "Polls will appear here when opened, and their results once published.",
+    ),
     "noVotesPending": MessageLookupByLibrary.simpleMessage(
       "No votes awaiting you",
     ),
@@ -430,6 +436,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Terms of Use and Privacy Policy",
     ),
     "policyJust": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+    "polls": MessageLookupByLibrary.simpleMessage("Polls"),
     "postponed": MessageLookupByLibrary.simpleMessage("Postponed"),
     "poweredByCoretech": MessageLookupByLibrary.simpleMessage(
       "Powered by CORETECH",
@@ -441,6 +448,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "profileImage": MessageLookupByLibrary.simpleMessage("Profile Image"),
     "published": MessageLookupByLibrary.simpleMessage("Published"),
+    "publishedResults": MessageLookupByLibrary.simpleMessage(
+      "Published results",
+    ),
     "rated": MessageLookupByLibrary.simpleMessage("Rated"),
     "rePassword": MessageLookupByLibrary.simpleMessage("Confirm Password"),
     "ready": MessageLookupByLibrary.simpleMessage("Ready"),
@@ -552,9 +562,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "version": MessageLookupByLibrary.simpleMessage("Version"),
     "viewProfile": MessageLookupByLibrary.simpleMessage("View profile"),
     "vote": MessageLookupByLibrary.simpleMessage("Vote"),
+    "voteRecorded": MessageLookupByLibrary.simpleMessage(
+      "Your vote is recorded",
+    ),
+    "voteUnit": MessageLookupByLibrary.simpleMessage("votes"),
     "voters": MessageLookupByLibrary.simpleMessage("Voters"),
     "votes": MessageLookupByLibrary.simpleMessage("Votes"),
     "votesPending": m10,
+    "votesTitle": MessageLookupByLibrary.simpleMessage("Votes"),
+    "votingEnded": MessageLookupByLibrary.simpleMessage("Voting ended"),
     "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back!"),
     "wishList": MessageLookupByLibrary.simpleMessage("WishList"),
     "wishlist": MessageLookupByLibrary.simpleMessage("Wishlist"),
@@ -576,5 +592,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "yourName": MessageLookupByLibrary.simpleMessage("Your Name"),
     "yourOrder": MessageLookupByLibrary.simpleMessage("Your Order"),
     "yourPhone": MessageLookupByLibrary.simpleMessage("Your Phone"),
+    "yourVote": MessageLookupByLibrary.simpleMessage("Your vote"),
   };
 }

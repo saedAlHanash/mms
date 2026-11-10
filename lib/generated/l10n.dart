@@ -2732,6 +2732,76 @@ class S {
       args: [count],
     );
   }
+
+  /// `Votes`
+  String get votesTitle {
+    return Intl.message('Votes', name: 'votesTitle', desc: '', args: []);
+  }
+
+  /// `Polls`
+  String get polls {
+    return Intl.message('Polls', name: 'polls', desc: '', args: []);
+  }
+
+  /// `Published results`
+  String get publishedResults {
+    return Intl.message(
+      'Published results',
+      name: 'publishedResults',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your vote`
+  String get yourVote {
+    return Intl.message('Your vote', name: 'yourVote', desc: '', args: []);
+  }
+
+  /// `Your vote is recorded`
+  String get voteRecorded {
+    return Intl.message(
+      'Your vote is recorded',
+      name: 'voteRecorded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Voting ended`
+  String get votingEnded {
+    return Intl.message(
+      'Voting ended',
+      name: 'votingEnded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No votes for this meeting`
+  String get noVotesForMeeting {
+    return Intl.message(
+      'No votes for this meeting',
+      name: 'noVotesForMeeting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Polls will appear here when opened, and their results once published.`
+  String get noVotesForMeetingDescription {
+    return Intl.message(
+      'Polls will appear here when opened, and their results once published.',
+      name: 'noVotesForMeetingDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `votes`
+  String get voteUnit {
+    return Intl.message('votes', name: 'voteUnit', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
