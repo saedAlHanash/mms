@@ -45,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "archived": MessageLookupByLibrary.simpleMessage("Published"),
     "at": MessageLookupByLibrary.simpleMessage("At"),
     "back": MessageLookupByLibrary.simpleMessage("Back"),
+    "backToLogin": MessageLookupByLibrary.simpleMessage("Back to login"),
     "birthday": MessageLookupByLibrary.simpleMessage("birthday"),
     "build": MessageLookupByLibrary.simpleMessage("Build"),
     "buildNumber": MessageLookupByLibrary.simpleMessage("Build Number"),
@@ -193,6 +194,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "flash_deal": MessageLookupByLibrary.simpleMessage("Flash Deal"),
     "follow": MessageLookupByLibrary.simpleMessage("Follow"),
     "forgetPassword": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
+    "forgetPasswordSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Enter the phone number registered to your account.",
+    ),
+    "forgetPasswordTitle": MessageLookupByLibrary.simpleMessage(
+      "Recover your password",
+    ),
     "freeLesson": MessageLookupByLibrary.simpleMessage("Free lessons"),
     "freeSummary": MessageLookupByLibrary.simpleMessage("Free Summary"),
     "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
@@ -222,6 +229,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lesson": MessageLookupByLibrary.simpleMessage("Lesson"),
     "location": MessageLookupByLibrary.simpleMessage("Location"),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
+    "loginSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Enter your account details to access your committees and meetings.",
+    ),
     "logout": MessageLookupByLibrary.simpleMessage("Logout"),
     "mail": MessageLookupByLibrary.simpleMessage("Mail"),
     "max": MessageLookupByLibrary.simpleMessage("Max"),
@@ -247,6 +257,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Please Log In to continue ",
     ),
     "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
+    "newPasswordTitle": MessageLookupByLibrary.simpleMessage("New password"),
     "new_arrival": MessageLookupByLibrary.simpleMessage("New Arrival"),
     "new_check_email": MessageLookupByLibrary.simpleMessage(
       "New Check Your Email For\nConfirmation Link",
@@ -332,6 +343,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Requests for absence",
     ),
     "resend": MessageLookupByLibrary.simpleMessage("Resend"),
+    "resendCode": MessageLookupByLibrary.simpleMessage("Resend code"),
     "reset_password": MessageLookupByLibrary.simpleMessage("Reset Password"),
     "returned": MessageLookupByLibrary.simpleMessage("Returned"),
     "reviewOrder": MessageLookupByLibrary.simpleMessage("Review Order"),

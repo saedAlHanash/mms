@@ -41,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "ar": MessageLookupByLibrary.simpleMessage("عربي"),
     "at": MessageLookupByLibrary.simpleMessage("عند"),
     "back": MessageLookupByLibrary.simpleMessage("عودة"),
+    "backToLogin": MessageLookupByLibrary.simpleMessage("العودة لتسجيل الدخول"),
     "birthday": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
     "build": MessageLookupByLibrary.simpleMessage("رقم الإصدار"),
     "buildNumber": MessageLookupByLibrary.simpleMessage("رقم الإصدار"),
@@ -178,6 +179,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "flash_deal": MessageLookupByLibrary.simpleMessage("العروض السريعة"),
     "follow": MessageLookupByLibrary.simpleMessage("متابعة"),
     "forgetPassword": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
+    "forgetPasswordSubtitle": MessageLookupByLibrary.simpleMessage(
+      "أدخل رقم الجوال المسجّل بحسابك.",
+    ),
+    "forgetPasswordTitle": MessageLookupByLibrary.simpleMessage(
+      "استعادة كلمة المرور",
+    ),
     "freeLesson": MessageLookupByLibrary.simpleMessage("دروس مقترحة"),
     "freeSummary": MessageLookupByLibrary.simpleMessage(
       "الملازم والكتب المجانية",
@@ -205,6 +212,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lesson": MessageLookupByLibrary.simpleMessage("درس"),
     "location": MessageLookupByLibrary.simpleMessage("الموقع"),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+    "loginSubtitle": MessageLookupByLibrary.simpleMessage(
+      "أدخل بيانات حسابك للوصول إلى لجانك واجتماعاتك.",
+    ),
     "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
     "mail": MessageLookupByLibrary.simpleMessage("ذكر"),
     "max": MessageLookupByLibrary.simpleMessage("الأقصى"),
@@ -229,6 +239,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "للمتابعة يرجى تسجيل الدخول",
     ),
     "newPassword": MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
+    "newPasswordTitle": MessageLookupByLibrary.simpleMessage("كلمة مرور جديدة"),
     "new_arrival": MessageLookupByLibrary.simpleMessage("وصول جديد"),
     "new_check_email": MessageLookupByLibrary.simpleMessage(
       "تحقق من بريدك الإلكتروني للحصول على رابط التأكيد",
@@ -303,6 +314,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "أتذكر كلمة المرور",
     ),
     "resend": MessageLookupByLibrary.simpleMessage("إعادة الإرسال"),
+    "resendCode": MessageLookupByLibrary.simpleMessage("إعادة إرسال الرمز"),
     "reset_password": MessageLookupByLibrary.simpleMessage(
       "إعادة تعيين كلمة المرور",
     ),

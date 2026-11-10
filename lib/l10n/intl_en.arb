@@ -279,5 +279,11 @@
   "myComment": "My comment",
   "statusOpen": "Open",
   "statusClosed": "Closed",
-  "statusPending": "Pending"
+  "statusPending": "Pending",
+  "loginSubtitle": "Enter your account details to access your committees and meetings.",
+  "forgetPasswordTitle": "Recover your password",
+  "forgetPasswordSubtitle": "Enter the phone number registered to your account.",
+  "newPasswordTitle": "New password",
+  "backToLogin": "Back to login",
+  "resendCode": "Resend code"
 }

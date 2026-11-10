@@ -5,17 +5,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
+import 'package:mms/core/util/shared_preferences.dart';
 import 'package:mms/core/util/snack_bar_message.dart';
+import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
 import 'package:mms/core/widgets/my_button.dart';
-
-import '../../../../core/util/my_style.dart';
-import '../../../../core/util/shared_preferences.dart';
-import '../../../../core/widgets/app_bar/app_bar_widget.dart';
-import '../../../../core/widgets/verification_code_widget.dart';
-import '../../../../generated/l10n.dart';
-import '../../../../router/app_router.dart';
-import '../../bloc/confirm_code_cubit/confirm_code_cubit.dart';
-import '../../bloc/resend_code_cubit/resend_code_cubit.dart';
+import 'package:mms/core/widgets/verification_code_widget.dart';
+import 'package:mms/features/auth/bloc/confirm_code_cubit/confirm_code_cubit.dart';
+import 'package:mms/features/auth/bloc/resend_code_cubit/resend_code_cubit.dart';
+import 'package:mms/features/auth/ui/widget/auth_layout.dart';
+import 'package:mms/generated/l10n.dart';
+import 'package:mms/router/app_router.dart';
 
 class ConfirmCodePage extends StatefulWidget {
   const ConfirmCodePage({super.key});
@@ -60,97 +59,84 @@ class _ConfirmCodePageState extends State<ConfirmCodePage> {
       ],
       child: Scaffold(
         appBar: AppBarWidget(titleText: S.of(context).confirmCode),
-        body: Padding(
-          padding: MyStyle.authPagesPadding,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Container(
-                width: 1.0.sw,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0.r),
-                    color: AppColorManager.f1,
-                    border: Border.all(color: AppColorManager.mainColorLight)),
-                padding: const EdgeInsets.all(12.0).r,
-                child: DrawableText(
-                  text: S.of(context).doneSendCode,
-                  size: 14.0.sp,
+        body: AuthPageLayout(
+          topPadding: 16,
+          content: [
+            AuthInfoBox(text: S.of(context).doneSendCode, success: true),
+            32.0.verticalSpace,
+            AuthHeader(
+              title: S.of(context).enterOTP,
+              subtitleWidget: DrawableText(
+                text: S.of(context).doneSendSms,
+                size: 15.0.sp,
+                color: AppColorManager.neutral700,
+                matchParent: true,
+                drawablePadding: 4.0.w,
+                drawableEnd: Directionality(
+                  textDirection: .ltr,
+                  child: DrawableText(
+                    text: AppSharedPreference.getPhone,
+                    size: 15.0.sp,
+                    fontWeight: .w700,
+                    color: AppColorManager.neutral900,
+                  ),
                 ),
               ),
-              DrawableText(
-                text: S.of(context).enterOTP,
-                size: 24.0.sp,
-                fontWeight: FontWeight.bold,
+            ),
+            32.0.verticalSpace,
+            Form(
+              key: _formKey,
+              child: PinCodeWidget(
+                onChange: (p0) => confirmCodeCubit.setCode = p0,
+                validator: (p0) => confirmCodeCubit.validateCode,
               ),
-              DrawableText(
-                text: '${S.of(context).doneSendSms} ${AppSharedPreference.getPhone}',
-                size: 14.0.sp,
-              ),
-              Form(
-                key: _formKey,
-                child: PinCodeWidget(
-                  onChange: (p0) => confirmCodeCubit.setCode = p0,
-                  validator: (p0) => confirmCodeCubit.validateCode,
-                ),
-              ),
-              BlocBuilder<ConfirmCodeCubit, ConfirmCodeInitial>(
-                builder: (context, state) {
-                  if (state.statuses.loading) {
-                    return MyStyle.loadingWidget();
-                  }
-                  return MyButton(
-                    text: S.of(context).verify,
-                    onTap: () {
-                      if (AppSharedPreference.getPhone.isEmpty) {
-                        Navigator.pushReplacementNamed(context, RouteName.login);
-                        return;
-                      }
-                      if (!_formKey.currentState!.validate()) return;
-                      confirmCodeCubit.confirmCode();
-                    },
-                  );
-                },
-              ),
-              BlocBuilder<ResendCodeCubit, ResendCodeInitial>(
-                builder: (context, state) {
-                  if (state.statuses.loading) {
-                    return MyStyle.loadingWidget();
-                  }
-                  return Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppColorManager.mainColor),
-                      borderRadius: BorderRadius.circular(8.0.r),
-                    ),
-                    child: MyButton(
-                      text: S.of(context).resend,
-                      color: AppColorManager.whit,
-                      textColor: AppColorManager.mainColor,
-                      onTap: () {
-                        if (AppSharedPreference.getPhone.isEmpty) {
-                          Navigator.pushReplacementNamed(context, RouteName.login);
-                          return;
-                        }
-                        resendCodeCubit.resendCode();
-                      },
-                    ),
-                  );
-                },
-              ),
-              TextButton(
-                onPressed: () {
-                  AppSharedPreference.removePhone().then((value) {
-                    Navigator.pushNamed(context, RouteName.login);
-                  });
-                },
-                child: DrawableText(
-                  size: 18.0.sp,
-                  fontWeight: FontWeight.bold,
-                  text: '${S.of(context).alreadyHaveAnAccount}.',
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
+          bottom: [
+            BlocBuilder<ConfirmCodeCubit, ConfirmCodeInitial>(
+              builder: (context, state) {
+                return MyButton(
+                  text: S.of(context).verify,
+                  loading: state.statuses.loading,
+                  onTap: () {
+                    if (AppSharedPreference.getPhone.isEmpty) {
+                      Navigator.pushReplacementNamed(context, RouteName.login);
+                      return;
+                    }
+                    if (!_formKey.currentState!.validate()) return;
+                    confirmCodeCubit.confirmCode();
+                  },
+                );
+              },
+            ),
+            12.0.verticalSpace,
+            BlocBuilder<ResendCodeCubit, ResendCodeInitial>(
+              builder: (context, state) {
+                return MyButton(
+                  text: S.of(context).resendCode,
+                  variant: .outline,
+                  loading: state.statuses.loading,
+                  onTap: () {
+                    if (AppSharedPreference.getPhone.isEmpty) {
+                      Navigator.pushReplacementNamed(context, RouteName.login);
+                      return;
+                    }
+                    resendCodeCubit.resendCode();
+                  },
+                );
+              },
+            ),
+            16.0.verticalSpace,
+            AuthLink(
+              leading: S.of(context).alreadyHaveAnAccount,
+              text: S.of(context).login,
+              onTap: () {
+                AppSharedPreference.removePhone().then((value) {
+                  if (context.mounted) Navigator.pushNamed(context, RouteName.login);
+                });
+              },
+            ),
+          ],
         ),
       ),
     );

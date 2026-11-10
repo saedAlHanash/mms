@@ -2108,6 +2108,61 @@ class S {
   String get statusPending {
     return Intl.message('Pending', name: 'statusPending', desc: '', args: []);
   }
+
+  /// `Enter your account details to access your committees and meetings.`
+  String get loginSubtitle {
+    return Intl.message(
+      'Enter your account details to access your committees and meetings.',
+      name: 'loginSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recover your password`
+  String get forgetPasswordTitle {
+    return Intl.message(
+      'Recover your password',
+      name: 'forgetPasswordTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the phone number registered to your account.`
+  String get forgetPasswordSubtitle {
+    return Intl.message(
+      'Enter the phone number registered to your account.',
+      name: 'forgetPasswordSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New password`
+  String get newPasswordTitle {
+    return Intl.message(
+      'New password',
+      name: 'newPasswordTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back to login`
+  String get backToLogin {
+    return Intl.message(
+      'Back to login',
+      name: 'backToLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend code`
+  String get resendCode {
+    return Intl.message('Resend code', name: 'resendCode', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

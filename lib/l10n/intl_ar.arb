@@ -273,5 +273,11 @@
   "myComment": "تعليقي",
   "statusOpen": "مفتوح",
   "statusClosed": "مغلق",
-  "statusPending": "قيد الانتظار"
+  "statusPending": "قيد الانتظار",
+  "loginSubtitle": "أدخل بيانات حسابك للوصول إلى لجانك واجتماعاتك.",
+  "forgetPasswordTitle": "استعادة كلمة المرور",
+  "forgetPasswordSubtitle": "أدخل رقم الجوال المسجّل بحسابك.",
+  "newPasswordTitle": "كلمة مرور جديدة",
+  "backToLogin": "العودة لتسجيل الدخول",
+  "resendCode": "إعادة إرسال الرمز"
 }
