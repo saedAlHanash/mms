@@ -1,25 +1,61 @@
 import 'package:flutter/material.dart';
 
 class AppColorManager {
-  static const mainColor = Color(0xFF8431A7);
-  static const mainColorDark = Color(0xFF8324AB);
-  static const mainColorLight = Color(0xFF8940A8);
-  static const textColor = Color(0xFF606060);
+  //region design tokens (redesign)
+  static const primary50 = Color(0xFFF6EEFA);
+  static const primary100 = Color(0xFFEBDAF3);
+  static const primary200 = Color(0xFFD6B5E6);
+  static const primary300 = Color(0xFFBC88D4);
+  static const primary400 = Color(0xFF9A4FBB);
+  static const primary500 = Color(0xFF8431A7);
+  static const primary600 = Color(0xFF6E2690);
+  static const primary700 = Color(0xFF591E75);
+  static const primary800 = Color(0xFF44175A);
+  static const primary900 = Color(0xFF2E0F3D);
+
+  static const neutral0 = Color(0xFFFFFFFF);
+  static const neutral25 = Color(0xFFFAF9FB);
+  static const neutral50 = Color(0xFFF4F2F6);
+  static const neutral100 = Color(0xFFEAE7EE);
+  static const neutral200 = Color(0xFFD9D5DF);
+  static const neutral300 = Color(0xFFB9B3C2);
+  static const neutral500 = Color(0xFF6F6878);
+  static const neutral700 = Color(0xFF3F3947);
+  static const neutral900 = Color(0xFF1D1922);
+
+  static const success = Color(0xFF1F8A3B);
+  static const successSoft = Color(0xFFE3F6E6);
+  static const successText = Color(0xFF1A6E27);
+  static const warning = Color(0xFFB26B00);
+  static const warningSoft = Color(0xFFFFF4D6);
+  static const warningText = Color(0xFF8A5A00);
+  static const danger = Color(0xFFC62828);
+  static const dangerSoft = Color(0xFFFCE8E8);
+  static const dangerText = Color(0xFFB42323);
+  static const info = Color(0xFF2449C4);
+  static const infoSoft = Color(0xFFE6EDFE);
+  //endregion
+
+  //region legacy names (aliases to the new tokens)
+  static const mainColor = primary500;
+  static const mainColorDark = primary600;
+  static const mainColorLight = primary700;
+  static const textColor = neutral700;
   static const black = Color(0xFF000000);
   static const ampere = Color(0xFFFFC107);
-  static const grey = Color(0xFF848484);
+  static const grey = neutral500;
   static const lightGray = Color(0xFFFBFBFB);
   static const lightGrayAb = Color(0xFFABABAB);
   static const lightGrayEd = Color(0xFFEDEDED);
-  static const offWhit = Color(0xFFD9D9D9);
+  static const offWhit = neutral200;
   static const whit = Color(0xFFFFFFFF);
-  static const red = Color(0xFFC60000);
+  static const red = danger;
   static const redPrice = Color(0xFF910202);
   static const cardColor = Color(0xFFEFEFEF);
   static const blue = Color(0xFF0D479E);
   static const c8f = Color(0xFF8F7752);
 
-  static const dividerColor = Color(0xFFCFCFCF);
+  static const dividerColor = neutral100;
   static const f1 = Color(0xFFf1f1f1);
   static const f9 = Color(0xFFf9f9f9);
   static const f8f9 = Color(0xFFF8F9FA);
@@ -27,13 +63,14 @@ class AppColorManager {
   static const e4 = Color(0xFF4E5053);
   static const ac = Color(0xFFACACAC);
   static const ee = Color(0xFFEEEEEE);
-  static const d9 = Color(0xFFD9D9D9);
+  static const d9 = neutral200;
 
   static const fc = Color(0xFFFCFCFC);
   static const c50 = Color(0xFF505050);
   static const c6e = Color(0xFF6E6E6E);
 
   static const f8 = Color(0xFFF8F8F8);
+  //endregion
 
   static Color getColor(int i) {
     switch (i) {
@@ -68,6 +105,19 @@ class AppColorManager {
         return Color(0xffbaa2ff);
     }
     return f8f9;
+  }
+
+  /// Same palette as [getPollColor], but picks well-separated shades
+  /// according to how many options exist (2 → 0,4 · 3 → 0,3,5 · 4 → 0,2,3,5).
+  static Color getPollColorSpread(int i, int count) {
+    const spreads = <int, List<int>>{
+      2: [0, 4],
+      3: [0, 3, 5],
+      4: [0, 2, 3, 5],
+    };
+    final indexes = spreads[count];
+    if (indexes == null || i < 0 || i >= indexes.length) return getPollColor(i);
+    return getPollColor(indexes[i]);
   }
 }
 

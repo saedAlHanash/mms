@@ -14,16 +14,16 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.9
+  cupertino_icons: ^2.0.0
 
-  drawable_text: ^1.0.0
+  drawable_text: ^1.0.2
 
   m_cubit:
 #    path: ../../packages/m_cubit
     git:
       url: https://github.com/saedAlHanash/m_cubit
 
-  image_multi_type: ^1.0.2
+  image_multi_type: ^1.0.6
 
   native_plugin:
     path: ./packages/native_plugin
@@ -34,29 +34,29 @@ dependencies:
   #  android_power_manager: ^1.0.0
   group_button: ^5.3.4
   flutter_bloc: ^9.1.1
-  equatable: ^2.0.8
-  get_it: ^9.2.1
+#  equatable: ^3.0.0
+  get_it: ^9.3.0
   http: ^1.6.0
 #  bottom_navy_bar:
   #  flutter_keyboard_visibility: ^6.0.0
-  shared_preferences: ^2.5.5
+  shared_preferences: ^2.5.6
   flutter_screenutil: ^5.9.3
-  pinput: ^6.0.2
+  pinput: ^7.0.0
   carousel_slider: ^5.1.2
   #  flutter_rating_bar: ^4.0.1
-  image_picker: ^1.2.1
-  url_launcher: ^6.3.2
-  logger: ^2.7.0
-  dropdown_button2: ^2.3.9
-  firebase_core: ^4.6.0
-  firebase_messaging: ^16.1.3
+  image_picker: ^1.2.4
+  url_launcher: ^6.3.3
+  logger: ^2.8.0
+  dropdown_button2: ^3.1.0
+  firebase_core: ^5.1.0
+  firebase_messaging: ^17.0.1
   #  geolocator: ^14.0.2
   intl: ^0.20.2
   collection: ^1.19.1
   #  path_provider:
   #  path:
   flutter_local_notifications: ^21.0.0
-  package_info_plus: ^9.0.1
+  package_info_plus: ^10.2.2
   #  flutter_async_autocomplete: ^0.1.1
   #  multi_select_flutter: ^4.1.3
   #  percent_indicator: ^4.2.5
@@ -68,22 +68,23 @@ dependencies:
   hive_flutter: ^1.1.0
   #  geocoding: ^4.0.0
 #  agora_rtc_engine: ^6.5.3
-  permission_handler: ^12.0.1
+  permission_handler: ^13.0.2
   path_provider: ^2.1.5
   table_calendar: ^3.2.0
   crypto:
-  fl_chart: ^1.2.0
+  fl_chart: ^1.3.0
   pull_to_refresh: ^2.0.0
-  livekit_client: ^2.7.0
+  livekit_client: ^2.13.2
   flutter_background: ^1.3.1
   device_info_plus:
-  pip: ^0.0.3
+  pip: ^0.0.4
 #  permission_handler:
   #  flutter_polls: ^0.1.6
   animated_tree_view: ^2.3.0
 
 dependency_overrides:
   awesome_dialog: 3.2.1
+  dropdown_button2: ^2.3.9
 
 dev_dependencies:
   flutter_lints: ^6.0.0
@@ -101,12 +102,11 @@ flutter:
     - family: cairo
       fonts:
         - asset: assets/fonts/cairo.ttf
-    - family: cairoBold
-      fonts:
-        - asset: assets/fonts/cairo_bold.ttf
-    - family: cairoSemiBold
-      fonts:
+          weight: 400
         - asset: assets/fonts/cairo_semi_bold.ttf
+          weight: 600
+        - asset: assets/fonts/cairo_bold.ttf
+          weight: 700
 
 flutter_intl:
   enabled: true

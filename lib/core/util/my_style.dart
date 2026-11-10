@@ -14,9 +14,61 @@ class MyStyle {
 //region margin/padding
   static final cardPadding = EdgeInsets.symmetric(horizontal: 18.w, vertical: 15.h);
 
-  static final pagePadding = const EdgeInsets.symmetric(horizontal: 20, vertical: 8).r;
+  static final pagePadding = EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h);
 
 //endregion
+
+  //region redesign tokens
+
+  //region spacing
+  static final double space4 = 4.0.r;
+  static final double space8 = 8.0.r;
+  static final double space12 = 12.0.r;
+  static final double space16 = 16.0.r;
+  static final double space20 = 20.0.r;
+  static final double space24 = 24.0.r;
+  static final double space32 = 32.0.r;
+  static final double space40 = 40.0.r;
+  //endregion
+
+  //region radius
+  static final double radiusSm = 8.0.r;
+  static final double radiusMd = 12.0.r;
+  static final double radiusLg = 16.0.r;
+  static final double radiusXl = 24.0.r;
+  static const double radiusPill = 999.0;
+  //endregion
+
+  //region shadows
+  static const elevation1 = [
+    BoxShadow(color: Color(0x0F1D1922), blurRadius: 2, offset: Offset(0, 1)),
+    BoxShadow(color: Color(0x0F1D1922), blurRadius: 8, offset: Offset(0, 2)),
+  ];
+
+  static const elevation2 = [
+    BoxShadow(color: Color(0x1F1D1922), blurRadius: 24, offset: Offset(0, 8)),
+  ];
+  //endregion
+
+  //region text styles (font size / line height / weight)
+  static TextStyle _text(double size, double lineHeight, FontWeight weight) => TextStyle(
+        fontSize: size.sp,
+        height: lineHeight / size,
+        fontWeight: weight,
+      );
+
+  static final headlineLg = _text(24, 36, FontWeight.w700);
+  static final headlineMd = _text(20, 32, FontWeight.w700);
+  static final appBarTitle = _text(18, 26, FontWeight.w700);
+  static final title = _text(17, 28, FontWeight.w600);
+  static final bodyLg = _text(16, 26, FontWeight.w400);
+  static final bodyMd = _text(14, 22, FontWeight.w400);
+  static final label = _text(14, 20, FontWeight.w600);
+  static final caption = _text(12, 18, FontWeight.w500);
+  static final button = _text(16, 24, FontWeight.w700);
+  //endregion
+
+  //endregion
 
   static const underLineStyle = TextStyle(fontStyle: FontStyle.italic, decoration: TextDecoration.underline);
 
@@ -114,7 +166,7 @@ class MyStyle {
     width: 2.0.spMin,
   );
 
-  static final authPagesPadding = const EdgeInsets.only(left: 40.0, right: 40.0, bottom: 30.0).r;
+  static final authPagesPadding = EdgeInsets.only(left: 24.w, right: 24.w, bottom: 32.h);
 
   static final productGridDelegate =
       SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisExtent: 250.0.h);

@@ -81,8 +81,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       // designSize: const Size(375, 812*3),
-      designSize: Size(MediaQuery.of(context).size.width * (MediaQuery.of(context).size.shortestSide < 600 ? 1.3 : 1),
-          MediaQuery.of(context).size.height),
+      // Scale factor 1: the redesign values are real px measured on a 390-wide screen.
+      designSize: Size(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height),
       // designSize: const Size(14440, 972),
       minTextAdapt: true,
       // splitScreenMode: true,
