@@ -2299,6 +2299,223 @@ class S {
       args: [],
     );
   }
+
+  /// `Members`
+  String get members {
+    return Intl.message('Members', name: 'members', desc: '', args: []);
+  }
+
+  /// `Meetings`
+  String get meetings {
+    return Intl.message('Meetings', name: 'meetings', desc: '', args: []);
+  }
+
+  /// `Your membership`
+  String get yourMembership {
+    return Intl.message(
+      'Your membership',
+      name: 'yourMembership',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Formation date`
+  String get formationDate {
+    return Intl.message(
+      'Formation date',
+      name: 'formationDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Committee meetings`
+  String get committeeMeetings {
+    return Intl.message(
+      'Committee meetings',
+      name: 'committeeMeetings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Committee calendar`
+  String get committeeCalendar {
+    return Intl.message(
+      'Committee calendar',
+      name: 'committeeCalendar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Committee description`
+  String get committeeDescription {
+    return Intl.message(
+      'Committee description',
+      name: 'committeeDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Committee statement`
+  String get committeeStatement {
+    return Intl.message(
+      'Committee statement',
+      name: 'committeeStatement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No description is recorded for this committee.`
+  String get noCommitteeDescription {
+    return Intl.message(
+      'No description is recorded for this committee.',
+      name: 'noCommitteeDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No statement is recorded for this committee.`
+  String get noCommitteeStatement {
+    return Intl.message(
+      'No statement is recorded for this committee.',
+      name: 'noCommitteeStatement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show more`
+  String get showMore {
+    return Intl.message('Show more', name: 'showMore', desc: '', args: []);
+  }
+
+  /// `Show less`
+  String get showLess {
+    return Intl.message('Show less', name: 'showLess', desc: '', args: []);
+  }
+
+  /// `{count, plural, =0{No documents} =1{1 document} other{{count} documents}}`
+  String documentsCount(num count) {
+    return Intl.plural(
+      count,
+      zero: 'No documents',
+      one: '1 document',
+      other: '$count documents',
+      name: 'documentsCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count, plural, =0{No goals} =1{1 goal} other{{count} goals}}`
+  String goalsCount(num count) {
+    return Intl.plural(
+      count,
+      zero: 'No goals',
+      one: '1 goal',
+      other: '$count goals',
+      name: 'goalsCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count, plural, =0{No tasks} =1{1 task} other{{count} tasks}}`
+  String tasksCount(num count) {
+    return Intl.plural(
+      count,
+      zero: 'No tasks',
+      one: '1 task',
+      other: '$count tasks',
+      name: 'tasksCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count, plural, =0{No members} =1{1 member} other{{count} members}}`
+  String membersCount(num count) {
+    return Intl.plural(
+      count,
+      zero: 'No members',
+      one: '1 member',
+      other: '$count members',
+      name: 'membersCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Start date`
+  String get startDate {
+    return Intl.message('Start date', name: 'startDate', desc: '', args: []);
+  }
+
+  /// `Due date`
+  String get dueDate {
+    return Intl.message('Due date', name: 'dueDate', desc: '', args: []);
+  }
+
+  /// `You`
+  String get you {
+    return Intl.message('You', name: 'you', desc: '', args: []);
+  }
+
+  /// `Close`
+  String get close {
+    return Intl.message('Close', name: 'close', desc: '', args: []);
+  }
+
+  /// `Download`
+  String get download {
+    return Intl.message('Download', name: 'download', desc: '', args: []);
+  }
+
+  /// `No documents yet`
+  String get noDocumentsYet {
+    return Intl.message(
+      'No documents yet',
+      name: 'noDocumentsYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Committee documents will appear here once added.`
+  String get noDocumentsYetDescription {
+    return Intl.message(
+      'Committee documents will appear here once added.',
+      name: 'noDocumentsYetDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No goals set yet`
+  String get noGoalsYet {
+    return Intl.message(
+      'No goals set yet',
+      name: 'noGoalsYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Committee goals and tasks will appear here once added.`
+  String get noGoalsYetDescription {
+    return Intl.message(
+      'Committee goals and tasks will appear here once added.',
+      name: 'noGoalsYetDescription',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

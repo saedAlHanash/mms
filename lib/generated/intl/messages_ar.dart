@@ -24,7 +24,19 @@ class MessageLookup extends MessageLookupByLibrary {
       "${Intl.plural(count, zero: 'لا لجان', one: 'لجنة واحدة', two: 'لجنتان', few: '${count} لجان', many: '${count} لجنة', other: '${count} لجنة')}";
 
   static String m1(count) =>
+      "${Intl.plural(count, zero: 'لا وثائق', one: 'وثيقة واحدة', two: 'وثيقتان', few: '${count} وثائق', many: '${count} وثيقة', other: '${count} وثيقة')}";
+
+  static String m2(count) =>
+      "${Intl.plural(count, zero: 'لا أهداف', one: 'هدف واحد', two: 'هدفان', few: '${count} أهداف', many: '${count} هدفاً', other: '${count} هدف')}";
+
+  static String m3(count) =>
       "${Intl.plural(count, zero: 'لا اجتماعات', one: 'اجتماع واحد', two: 'اجتماعان', few: '${count} اجتماعات', many: '${count} اجتماعاً', other: '${count} اجتماع')}";
+
+  static String m4(count) =>
+      "${Intl.plural(count, zero: 'لا أعضاء', one: 'عضو واحد', two: 'عضوان', few: '${count} أعضاء', many: '${count} عضواً', other: '${count} عضو')}";
+
+  static String m5(count) =>
+      "${Intl.plural(count, zero: 'لا مهام', one: 'مهمة واحدة', two: 'مهمتان', few: '${count} مهام', many: '${count} مهمة', other: '${count} مهمة')}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -72,12 +84,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "choosing": MessageLookupByLibrary.simpleMessage("اختر"),
     "city": MessageLookupByLibrary.simpleMessage("المدينة"),
     "clickToUpdate": MessageLookupByLibrary.simpleMessage("انقر للتعديل"),
+    "close": MessageLookupByLibrary.simpleMessage("إغلاق"),
     "codeSentToEmail": MessageLookupByLibrary.simpleMessage(
       "تم إرسال رمز التأكيد إلى البريد الإلكتروني: ",
     ),
     "code_invalid": MessageLookupByLibrary.simpleMessage("هذا الكود غير صالح"),
     "color": MessageLookupByLibrary.simpleMessage("اللون"),
     "colors": MessageLookupByLibrary.simpleMessage("الألوان"),
+    "committeeCalendar": MessageLookupByLibrary.simpleMessage("تقويم اللجنة"),
+    "committeeDescription": MessageLookupByLibrary.simpleMessage("وصف اللجنة"),
+    "committeeMeetings": MessageLookupByLibrary.simpleMessage(
+      "اجتماعات اللجنة",
+    ),
+    "committeeStatement": MessageLookupByLibrary.simpleMessage("بيان اللجنة"),
     "committeesCount": m0,
     "completed": MessageLookupByLibrary.simpleMessage("منتهي"),
     "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
@@ -124,6 +143,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "لا تمتلك حساب؟",
     ),
     "documents": MessageLookupByLibrary.simpleMessage("المستندات"),
+    "documentsCount": m1,
     "dollar": MessageLookupByLibrary.simpleMessage("دولار"),
     "done": MessageLookupByLibrary.simpleMessage("تم"),
     "doneCanceled": MessageLookupByLibrary.simpleMessage("تم إلغاؤه"),
@@ -146,7 +166,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "done_resend_code": MessageLookupByLibrary.simpleMessage(
       "تم إعادة الإرسال",
     ),
+    "download": MessageLookupByLibrary.simpleMessage("تنزيل"),
     "downloadFile": MessageLookupByLibrary.simpleMessage("تحميل الملف"),
+    "dueDate": MessageLookupByLibrary.simpleMessage("تاريخ الاستحقاق"),
     "ePayment": MessageLookupByLibrary.simpleMessage("دفع إلكتروني"),
     "editProfile": MessageLookupByLibrary.simpleMessage("تعديل الصفحة الشخصية"),
     "editVote": MessageLookupByLibrary.simpleMessage("تعديل التصويت"),
@@ -192,6 +214,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "forgetPasswordTitle": MessageLookupByLibrary.simpleMessage(
       "استعادة كلمة المرور",
     ),
+    "formationDate": MessageLookupByLibrary.simpleMessage("تاريخ التشكيل"),
     "freeLesson": MessageLookupByLibrary.simpleMessage("دروس مقترحة"),
     "freeSummary": MessageLookupByLibrary.simpleMessage(
       "الملازم والكتب المجانية",
@@ -199,6 +222,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "fullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
     "gender": MessageLookupByLibrary.simpleMessage("الجنس"),
     "goals": MessageLookupByLibrary.simpleMessage("الأهداف"),
+    "goalsCount": m2,
     "governor": MessageLookupByLibrary.simpleMessage("المحافظة"),
     "guest": MessageLookupByLibrary.simpleMessage("ضيف"),
     "haveBeenCreated": MessageLookupByLibrary.simpleMessage("تم إنشاء حسابك"),
@@ -231,8 +255,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "logoutQuestion": MessageLookupByLibrary.simpleMessage("تسجيل الخروج؟"),
     "mail": MessageLookupByLibrary.simpleMessage("ذكر"),
     "max": MessageLookupByLibrary.simpleMessage("الأقصى"),
-    "meetingsCount": m1,
+    "meetings": MessageLookupByLibrary.simpleMessage("الاجتماعات"),
+    "meetingsCount": m3,
     "member": MessageLookupByLibrary.simpleMessage("عضو"),
+    "members": MessageLookupByLibrary.simpleMessage("الأعضاء"),
+    "membersCount": m4,
     "middleName": MessageLookupByLibrary.simpleMessage("الاسم الأوسط"),
     "min": MessageLookupByLibrary.simpleMessage("دقيقة"),
     "minutes": MessageLookupByLibrary.simpleMessage("دقائق"),
@@ -262,8 +289,22 @@ class MessageLookup extends MessageLookupByLibrary {
       "تحقق من بريدك الإلكتروني للحصول على رابط التأكيد",
     ),
     "next": MessageLookupByLibrary.simpleMessage("التالي"),
+    "noCommitteeDescription": MessageLookupByLibrary.simpleMessage(
+      "لا يوجد وصف مسجّل لهذه اللجنة.",
+    ),
+    "noCommitteeStatement": MessageLookupByLibrary.simpleMessage(
+      "لا يوجد بيان مسجّل لهذه اللجنة.",
+    ),
     "noCommitteesDescription": MessageLookupByLibrary.simpleMessage(
       "ستظهر هنا اللجان فور إضافتك إليها. اسحب الشاشة للأسفل للتحديث.",
+    ),
+    "noDocumentsYet": MessageLookupByLibrary.simpleMessage("لا توجد وثائق بعد"),
+    "noDocumentsYetDescription": MessageLookupByLibrary.simpleMessage(
+      "ستظهر هنا وثائق اللجنة عند إضافتها.",
+    ),
+    "noGoalsYet": MessageLookupByLibrary.simpleMessage("لم تُحدَّد أهداف بعد"),
+    "noGoalsYetDescription": MessageLookupByLibrary.simpleMessage(
+      "ستظهر هنا أهداف اللجنة ومهامها عند إضافتها.",
     ),
     "noInternet": MessageLookupByLibrary.simpleMessage(
       "يرجى التحقق من اتصالك بالإنترنت",
@@ -369,6 +410,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "sgnIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول."),
     "share": MessageLookupByLibrary.simpleMessage("مشاركة"),
     "shipping": MessageLookupByLibrary.simpleMessage("مشحون"),
+    "showLess": MessageLookupByLibrary.simpleMessage("عرض أقل"),
+    "showMore": MessageLookupByLibrary.simpleMessage("عرض المزيد"),
     "showPassword": MessageLookupByLibrary.simpleMessage("إظهار"),
     "signInToContinue": MessageLookupByLibrary.simpleMessage(
       "يجب عليك إضافة بياناتك الخاصة لتسهيل التواصل معك",
@@ -381,6 +424,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "signUp": MessageLookupByLibrary.simpleMessage("الاشتراك"),
     "sizes": MessageLookupByLibrary.simpleMessage("الأحجام"),
+    "startDate": MessageLookupByLibrary.simpleMessage("تاريخ البدء"),
     "statement": MessageLookupByLibrary.simpleMessage("بيان"),
     "statusClosed": MessageLookupByLibrary.simpleMessage("مغلق"),
     "statusOpen": MessageLookupByLibrary.simpleMessage("مفتوح"),
@@ -409,6 +453,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "summaries": MessageLookupByLibrary.simpleMessage("الملازم"),
     "support": MessageLookupByLibrary.simpleMessage("الدعم"),
     "tasks": MessageLookupByLibrary.simpleMessage("المهام"),
+    "tasksCount": m5,
     "teachingStaff": MessageLookupByLibrary.simpleMessage("الكادر التدريسي"),
     "termsAndConditions": MessageLookupByLibrary.simpleMessage(
       "الشروط والأحكام",
@@ -434,6 +479,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "خطأ في البريد الإلكتروني",
     ),
     "wrongPhone": MessageLookupByLibrary.simpleMessage("رقم هاتف غير صحيح"),
+    "you": MessageLookupByLibrary.simpleMessage("أنت"),
     "yourAddress": MessageLookupByLibrary.simpleMessage("عنوانك"),
     "yourConnectionHasBeenSuspendedByTheAdminButYou":
         MessageLookupByLibrary.simpleMessage(
@@ -441,6 +487,7 @@ class MessageLookup extends MessageLookupByLibrary {
         ),
     "yourEmail": MessageLookupByLibrary.simpleMessage("بريدك الإلكتروني"),
     "yourLocation": MessageLookupByLibrary.simpleMessage("موقعك"),
+    "yourMembership": MessageLookupByLibrary.simpleMessage("عضويتك"),
     "yourName": MessageLookupByLibrary.simpleMessage("اسمك"),
     "yourOrder": MessageLookupByLibrary.simpleMessage("طلبك"),
     "yourPhone": MessageLookupByLibrary.simpleMessage("رقم هاتفك"),

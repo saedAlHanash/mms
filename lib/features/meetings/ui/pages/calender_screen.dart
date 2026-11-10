@@ -1,6 +1,7 @@
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mms/core/app/app_provider.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
 import 'package:mms/core/widgets/empty_state_widget.dart';
@@ -45,10 +46,35 @@ class CalenderMeetingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final committeeName = AppProvider.getCurrentCommittee.name;
+
     return Scaffold(
-      appBar: const AppBarWidget(titleText: 'Meetings'),
-      body: MeetingCalenderWidget(
-        builder: (ctx, list, widget) => MeetingsDayList(list: list),
+      appBar: AppBarWidget(
+        title: Column(
+          crossAxisAlignment: .start,
+          mainAxisSize: .min,
+          children: [
+            DrawableText(
+              text: S.of(context).committeeMeetings,
+              size: 18.0.sp,
+              fontWeight: .w700,
+              color: AppColorManager.neutral900,
+            ),
+            if (committeeName.isNotEmpty)
+              DrawableText(
+                text: committeeName,
+                size: 12.0.sp,
+                color: AppColorManager.neutral500,
+                maxLines: 1,
+              ),
+          ],
+        ),
+      ),
+      body: Padding(
+        padding: EdgeInsets.only(top: 12.0.h),
+        child: MeetingCalenderWidget(
+          builder: (ctx, list, widget) => MeetingsDayList(list: list, showCommittee: false),
+        ),
       ),
     );
   }
