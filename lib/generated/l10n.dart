@@ -2083,6 +2083,31 @@ class S {
       args: [],
     );
   }
+
+  /// `OK`
+  String get ok {
+    return Intl.message('OK', name: 'ok', desc: '', args: []);
+  }
+
+  /// `My comment`
+  String get myComment {
+    return Intl.message('My comment', name: 'myComment', desc: '', args: []);
+  }
+
+  /// `Open`
+  String get statusOpen {
+    return Intl.message('Open', name: 'statusOpen', desc: '', args: []);
+  }
+
+  /// `Closed`
+  String get statusClosed {
+    return Intl.message('Closed', name: 'statusClosed', desc: '', args: []);
+  }
+
+  /// `Pending`
+  String get statusPending {
+    return Intl.message('Pending', name: 'statusPending', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

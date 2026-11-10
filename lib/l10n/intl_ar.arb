@@ -268,5 +268,10 @@
   "poweredByCoretech": "صمم بواسطة CORETECH",
   "connect": "الاتصال",
   "yourConnectionHasBeenSuspendedByTheAdminButYou": "تم تعليق اتصالك من قبل المسؤول، لكنك لا تزال متصلاً. يرجى الانتظار حتى يُسمح لك بالاستئناف.",
-  "iAmNotCurrentlyAMemberOfAnyCommittees": "لا توجد لجان منضم لها حالياً"
+  "iAmNotCurrentlyAMemberOfAnyCommittees": "لا توجد لجان منضم لها حالياً",
+  "ok": "حسناً",
+  "myComment": "تعليقي",
+  "statusOpen": "مفتوح",
+  "statusClosed": "مغلق",
+  "statusPending": "قيد الانتظار"
 }

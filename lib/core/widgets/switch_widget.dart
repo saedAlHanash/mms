@@ -28,12 +28,11 @@ class _SwitchWidgetState extends State<SwitchWidget> {
   Widget build(BuildContext context) {
     return Switch(
       value: val,
-      inactiveThumbColor: Colors.white,
-      inactiveTrackColor: AppColorManager.lightGrayAb,
-      trackOutlineColor: WidgetStatePropertyAll(
-          val ? Colors.green : AppColorManager.lightGrayAb),
-      activeThumbColor: Colors.white,
-      activeTrackColor: Colors.green,
+      inactiveThumbColor: AppColorManager.neutral0,
+      inactiveTrackColor: AppColorManager.neutral200,
+      trackOutlineColor: WidgetStatePropertyAll(val ? AppColorManager.primary500 : AppColorManager.neutral200),
+      activeThumbColor: AppColorManager.neutral0,
+      activeTrackColor: AppColorManager.primary500,
       onChanged: (value) {
         val = value;
         setState(() => widget.onChange.call(value));

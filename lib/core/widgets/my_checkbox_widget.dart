@@ -2,11 +2,9 @@ import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:group_button/group_button.dart';
-import 'package:image_multi_type/image_multi_type.dart';
 import 'package:mms/core/widgets/spinner_widget.dart';
 
-import '../../generated/assets.dart';
-import '../strings/app_color_manager.dart';
+import 'package:mms/core/strings/app_color_manager.dart';
 
 class MyCheckboxWidget extends StatefulWidget {
   const MyCheckboxWidget({
@@ -55,16 +53,10 @@ class _MyCheckboxWidgetState extends State<MyCheckboxWidget> {
                 text: value.name ?? '',
                 maxLines: 1,
                 matchParent: true,
-                color: selected
-                    ? AppColorManager.mainColor
-                    : AppColorManager.textColor,
-                size: 16.0.spMin,
-                drawablePadding: 5.0.w,
-                drawableStart: ImageMultiType(
-                  url: selected
-                      ? Assets.iconsRadioSelected
-                      : Assets.iconsRadioNotSelect,
-                ),
+                color: selected ? AppColorManager.primary700 : AppColorManager.neutral700,
+                size: 16.0.sp,
+                drawablePadding: 10.0.w,
+                drawableStart: _RadioDot(selected: selected),
               ),
             );
           },
@@ -74,6 +66,30 @@ class _MyCheckboxWidgetState extends State<MyCheckboxWidget> {
         mainGroupAlignment: MainGroupAlignment.start,
       ),
       isRadio: widget.isRadio ?? false,
+    );
+  }
+}
+
+/// 20px radio: selected = filled `primary500` ring with white center,
+/// unselected = 2px `neutral500` ring.
+class _RadioDot extends StatelessWidget {
+  const _RadioDot({required this.selected});
+
+  final bool selected;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 20.0.r,
+      height: 20.0.r,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: AppColorManager.neutral0,
+        border: Border.all(
+          color: selected ? AppColorManager.primary500 : AppColorManager.neutral500,
+          width: selected ? 6.0.r : 2.0.r,
+        ),
+      ),
     );
   }
 }

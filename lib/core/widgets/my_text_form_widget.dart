@@ -2,9 +2,11 @@ import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
+import 'package:mms/core/strings/app_color_manager.dart';
 
-import '../strings/app_color_manager.dart';
-
+/// Outlined text field with the label **above** the field (redesign).
+///
+/// The public API is unchanged; only the look changed.
 class MyTextFormOutLineWidget extends StatefulWidget {
   const MyTextFormOutLineWidget({
     super.key,
@@ -62,114 +64,172 @@ class MyTextFormOutLineWidget extends StatefulWidget {
 }
 
 class _MyTextFormOutLineWidgetState extends State<MyTextFormOutLineWidget> {
-  FocusNode? focusNode;
+  final _focusNode = FocusNode();
+  late bool _obscure = widget.obscureText;
+  bool _hasFocus = false;
+  String? _errorText;
+
+  bool get _enabled => widget.enable ?? true;
 
   @override
   void initState() {
-    if (widget.onChangedFocus != null) {
-      focusNode = FocusNode()
-        ..addListener(() {
-          widget.onChangedFocus!.call(focusNode!.hasFocus);
-        });
-    }
-
+    _focusNode.addListener(_onFocusChanged);
     super.initState();
   }
 
   @override
-  Widget build(BuildContext context) {
-    final padding = widget.innerPadding ?? const EdgeInsets.symmetric(horizontal: 20.0).w;
+  void dispose() {
+    _focusNode
+      ..removeListener(_onFocusChanged)
+      ..dispose();
+    super.dispose();
+  }
 
-    bool obscureText = widget.obscureText;
-    Widget? suffixIcon;
-    Widget? eye;
-    VoidCallback? onChangeObscure;
+  void _onFocusChanged() {
+    widget.onChangedFocus?.call(_focusNode.hasFocus);
+    if (mounted) setState(() => _hasFocus = _focusNode.hasFocus);
+  }
 
-    if (widget.iconWidget != null) {
-      suffixIcon = widget.iconWidget!;
-    } else if (widget.icon != null) {
-      suffixIcon = Padding(
-        padding: const EdgeInsets.all(15.0).r,
-        child: ImageMultiType(url: widget.icon!),
-      );
-    }
-
-    if (obscureText) {
-      eye = StatefulBuilder(builder: (context, state) {
-        return IconButton(
-            splashRadius: 0.01,
-            onPressed: () {
-              state(() => obscureText = !obscureText);
-              if (onChangeObscure != null) onChangeObscure!();
-            },
-            icon: Icon(obscureText ? Icons.visibility : Icons.visibility_off));
+  /// Runs the original validator and mirrors its message below the field.
+  String? _validate(String? value) {
+    final error = widget.validator?.call(value);
+    if (error != _errorText) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) setState(() => _errorText = error);
       });
     }
+    return error;
+  }
 
-    final border = OutlineInputBorder(
-      borderSide: const BorderSide(color: AppColorManager.f9),
-      borderRadius: BorderRadius.circular(10.0.r),
-    );
-
-    final errorBorder = OutlineInputBorder(
-      borderSide: BorderSide(
-        color: AppColorManager.red,
-        width: 1.0.spMin,
-      ),
-      borderRadius: BorderRadius.circular(10.0.r),
-    );
-
-    final inputDecoration = InputDecoration(
-      contentPadding: padding,
-      errorBorder: errorBorder,
-      border: border,
-      focusedBorder: border,
-      enabledBorder: border,
-      helperText: widget.helperText,
-      helperStyle: const TextStyle(color: Colors.grey),
-      fillColor: AppColorManager.f9,
-      label: DrawableText(
-        text: widget.label,
-        color: AppColorManager.grey,
-        size: 16.0.spMin,
-      ),
-      counter: const SizedBox(),
-      hintText: widget.hint,
-      hintStyle: TextStyle(
-        color: AppColorManager.grey,
-        fontSize: 14.0.sp,
-      ),
-      filled: true,
-      labelStyle: TextStyle(color: widget.color),
-      prefixIcon: widget.iconWidget ?? suffixIcon,
-      suffixIcon: widget.iconWidgetLift ?? eye,
-    );
-
-    final textStyle = TextStyle(
-      fontSize: 16.0.spMin,
-      color: AppColorManager.black,
-    );
-
-    return StatefulBuilder(builder: (context, state) {
-      onChangeObscure = () => state(() {});
-      return TextFormField(
-        autofillHints: widget.autofillHints,
-        onTap: () => widget.onTap?.call(),
-        validator: widget.validator,
-        decoration: inputDecoration,
-        maxLines: widget.maxLines,
-        readOnly: !(widget.enable ?? true),
-        initialValue: widget.initialValue,
-        obscureText: obscureText,
-        textAlign: widget.textAlign,
-        onChanged: widget.onChanged,
-        style: textStyle,
-        focusNode: focusNode,
-        textDirection: widget.textDirection,
-        maxLength: widget.maxLength,
-        controller: widget.controller,
-        keyboardType: widget.keyBordType,
+  OutlineInputBorder _border(Color color, double width) => OutlineInputBorder(
+        borderSide: BorderSide(color: color, width: width),
+        borderRadius: BorderRadius.circular(8.0.r),
       );
-    });
+
+  @override
+  Widget build(BuildContext context) {
+    final hasError = _errorText != null && _errorText!.isNotEmpty;
+    final focused = _hasFocus && _enabled;
+    final iconColor = focused ? AppColorManager.primary500 : AppColorManager.neutral500;
+
+    Widget? prefix = widget.iconWidget;
+    if (prefix == null && widget.icon != null) {
+      prefix = Padding(
+        padding: EdgeInsetsDirectional.only(start: 14.0.w, end: 10.0.w),
+        child: ImageMultiType(
+          url: widget.icon,
+          width: 20.0.r,
+          height: 20.0.r,
+          color: iconColor,
+        ),
+      );
+    }
+
+    Widget? suffix = widget.iconWidgetLift;
+    if (suffix == null && widget.obscureText) {
+      suffix = IconButton(
+        onPressed: () => setState(() => _obscure = !_obscure),
+        icon: ImageMultiType(
+          url: _obscure ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+          width: 20.0.r,
+          height: 20.0.r,
+          color: iconColor,
+        ),
+      );
+    }
+
+    final decoration = InputDecoration(
+      isDense: true,
+      contentPadding: widget.innerPadding ?? EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 13.0.h),
+      filled: true,
+      fillColor: _enabled ? AppColorManager.neutral0 : AppColorManager.neutral25,
+      hintText: widget.hint,
+      hintStyle: TextStyle(color: AppColorManager.neutral500, fontSize: 16.0.sp),
+      helperText: (widget.helperText ?? '').isEmpty ? null : widget.helperText,
+      helperStyle: TextStyle(color: AppColorManager.neutral500, fontSize: 13.0.sp),
+      // The message is drawn below the field (icon + text), so hide the default one.
+      errorStyle: const TextStyle(fontSize: 0, height: 0),
+      counter: const SizedBox(),
+      prefixIcon: prefix,
+      prefixIconConstraints: BoxConstraints(minWidth: 44.0.w, minHeight: 44.0.h),
+      suffixIcon: suffix,
+      suffixIconConstraints: BoxConstraints(minWidth: 44.0.w, minHeight: 44.0.h),
+      border: _border(AppColorManager.neutral200, 1),
+      enabledBorder: _border(AppColorManager.neutral200, 1),
+      focusedBorder: _border(_enabled ? AppColorManager.primary500 : AppColorManager.neutral200, _enabled ? 2 : 1),
+      errorBorder: _border(AppColorManager.danger, 1),
+      focusedErrorBorder: _border(AppColorManager.danger, 2),
+      disabledBorder: _border(AppColorManager.neutral100, 1),
+    );
+
+    final field = TextFormField(
+      autofillHints: widget.autofillHints,
+      onTap: () => widget.onTap?.call(),
+      validator: widget.validator == null ? null : _validate,
+      decoration: decoration,
+      maxLines: widget.maxLines,
+      readOnly: !_enabled,
+      initialValue: widget.initialValue,
+      obscureText: _obscure,
+      textAlign: widget.textAlign,
+      onChanged: widget.onChanged,
+      style: TextStyle(
+        fontSize: 16.0.sp,
+        height: 26 / 16,
+        color: _enabled ? AppColorManager.neutral900 : AppColorManager.neutral700,
+      ),
+      cursorColor: AppColorManager.primary500,
+      focusNode: _focusNode,
+      textDirection: widget.textDirection,
+      maxLength: widget.maxLength,
+      controller: widget.controller,
+      keyboardType: widget.keyBordType,
+    );
+
+    return Padding(
+      padding: EdgeInsets.only(bottom: 4.0.h),
+      child: Column(
+        mainAxisSize: .min,
+        crossAxisAlignment: .stretch,
+        children: [
+          if (widget.label.isNotEmpty) ...[
+            DrawableText(
+              text: widget.label,
+              size: 14.0.sp,
+              fontWeight: .w600,
+              color: focused ? AppColorManager.primary700 : AppColorManager.neutral700,
+            ),
+            6.0.verticalSpace,
+          ],
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 150),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.0.r),
+              boxShadow: [
+                if (focused && !hasError)
+                  BoxShadow(color: AppColorManager.primary100, spreadRadius: 4.0.r),
+              ],
+            ),
+            child: field,
+          ),
+          if (hasError) ...[
+            6.0.verticalSpace,
+            DrawableText(
+              text: _errorText!,
+              size: 13.0.sp,
+              color: AppColorManager.dangerText,
+              matchParent: true,
+              drawablePadding: 6.0.w,
+              drawableStart: ImageMultiType(
+                url: Icons.error_outline,
+                width: 16.0.r,
+                height: 16.0.r,
+                color: AppColorManager.dangerText,
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
   }
 }

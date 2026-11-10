@@ -1,54 +1,31 @@
 import 'dart:ui';
 
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 
-import '../../generated/l10n.dart';
-import '../app/app_widget.dart';
-import '../strings/app_color_manager.dart';
-import '../widgets/my_button.dart';
-import '../widgets/snake_bar_widget.dart';
+import 'package:mms/generated/l10n.dart';
+import 'package:mms/core/app/app_widget.dart';
+import 'package:mms/core/strings/app_color_manager.dart';
+import 'package:mms/core/widgets/my_button.dart';
+import 'package:mms/core/widgets/snake_bar_widget.dart';
 
 class NoteMessage {
   static void showSuccessSnackBar({required String message, required BuildContext context}) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          message,
-          style: const TextStyle(color: Colors.white),
-        ),
-        backgroundColor: Colors.green,
-      ),
-    );
+    ScaffoldMessenger.of(context).showSnackBar(SnakeBarWidget.snackBar(text: message, isSuccess: true));
   }
 
   static void showErrorSnackBar({required String message, required BuildContext context}) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          message,
-          style: const TextStyle(color: Colors.white),
-        ),
-        backgroundColor: Colors.redAccent,
-      ),
-    );
+    ScaffoldMessenger.of(context).showSnackBar(SnakeBarWidget.snackBar(text: message));
   }
 
   static void showSnakeBar({
     required String? message,
     required BuildContext context,
   }) {
-    final snack = SnackBar(
-      elevation: 0.0,
-      backgroundColor: Colors.transparent,
-      content: SnakeBarWidget(text: message ?? ''),
-    );
-
-    ScaffoldMessenger.of(context).showSnackBar(snack);
+    ScaffoldMessenger.of(context).showSnackBar(SnakeBarWidget.snackBar(text: message ?? ''));
   }
 
   static void showBottomSheet(BuildContext context, Widget child) {
@@ -231,7 +208,7 @@ class NoteMessage {
             alignment: Alignment.center,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
-                Radius.circular(20.0.r),
+                Radius.circular(16.0.r),
               ),
             ),
             insetPadding: const EdgeInsets.all(20.0).r,
@@ -246,28 +223,97 @@ class NoteMessage {
     ).then((value) => onCancel?.call(value));
   }
 
+  /// Error dialog (name kept for existing callers; no longer uses AwesomeDialog).
+  /// A "no internet" message (482) gets the neutral icon.
   static Future<void> showAwesomeError({
     required BuildContext context,
     required String message,
   }) async {
-    await AwesomeDialog(
-      context: context,
-      dialogType: DialogType.error,
-      animType: AnimType.scale,
+    final noInternet = message.contains(S.of(context).noInternet);
+    await _showStatusDialog(
+      context,
+      icon: noInternet ? Icons.wifi_off_rounded : Icons.error_outline_rounded,
+      circleColor: noInternet ? AppColorManager.neutral50 : AppColorManager.dangerSoft,
+      iconColor: noInternet ? AppColorManager.neutral700 : AppColorManager.danger,
       title: S.of(context).oops,
-      desc: message,
-    ).show();
+      message: message,
+      buttonText: S.of(context).ok,
+    );
   }
 
+  /// Success dialog (name kept for existing callers; no longer uses AwesomeDialog).
   static Future<void> showAwesomeDoneDialog(BuildContext context, {required String message, Function()? onCancel}) async {
-    await AwesomeDialog(
-      context: context,
-      dialogType: DialogType.success,
-      animType: AnimType.scale,
+    await _showStatusDialog(
+      context,
+      icon: Icons.check_rounded,
+      circleColor: AppColorManager.successSoft,
+      iconColor: AppColorManager.success,
       title: S.of(context).done,
-      desc: message,
-      onDismissCallback: (type) => onCancel?.call(),
-    ).show();
+      message: message,
+      buttonText: S.of(context).ok,
+    );
+    onCancel?.call();
+  }
+
+  /// Centered dialog: 56 circle + title 18/700 + message 15/24 + full-width button.
+  static Future<void> _showStatusDialog(
+    BuildContext context, {
+    required IconData icon,
+    required Color circleColor,
+    required Color iconColor,
+    required String title,
+    required String message,
+    required String buttonText,
+  }) {
+    return showDialog(
+      context: context,
+      barrierColor: AppColorManager.neutral900.withValues(alpha: 0.4),
+      builder: (context) {
+        return Dialog(
+          backgroundColor: AppColorManager.neutral0,
+          surfaceTintColor: AppColorManager.neutral0,
+          insetPadding: EdgeInsets.symmetric(horizontal: 24.0.w),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0.r)),
+          child: Padding(
+            padding: EdgeInsets.all(24.0.r),
+            child: Column(
+              mainAxisSize: .min,
+              children: [
+                Container(
+                  width: 56.0.r,
+                  height: 56.0.r,
+                  alignment: .center,
+                  decoration: BoxDecoration(shape: BoxShape.circle, color: circleColor),
+                  child: ImageMultiType(url: icon, width: 28.0.r, height: 28.0.r, color: iconColor),
+                ),
+                12.0.verticalSpace,
+                DrawableText(
+                  text: title,
+                  size: 18.0.sp,
+                  fontWeight: .w700,
+                  color: AppColorManager.neutral900,
+                  textAlign: .center,
+                ),
+                8.0.verticalSpace,
+                DrawableText(
+                  text: message,
+                  size: 15.0.sp,
+                  color: AppColorManager.neutral700,
+                  textAlign: .center,
+                ),
+                24.0.verticalSpace,
+                MyButton(
+                  width: double.infinity,
+                  size: .dialog,
+                  text: buttonText,
+                  onTap: () => Navigator.pop(context),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 
   static Future<bool> showImageDialog(
@@ -318,95 +364,90 @@ class NoteMessage {
     return (result ?? false);
   }
 
+  /// Confirmation dialog: 48 circle + title + optional [description] +
+  /// "Cancel" (outline) then the action. [destructive] = red action
+  /// (only for logout / ending a call).
   static Future<void> showCheckDialog(
     BuildContext context, {
     required String text,
     required String textButton,
     required dynamic image,
     Function()? onConfirm,
+    String? description,
+    bool destructive = false,
   }) async {
-    // show the dialog
     final result = await showDialog(
       context: context,
-      barrierColor: Colors.black.withValues(alpha: 0.3),
+      barrierColor: AppColorManager.neutral900.withValues(alpha: 0.4),
       builder: (BuildContext context) {
-        return BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
-          child: Dialog(
-            surfaceTintColor: Colors.white,
-            alignment: Alignment.center,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(20.0.r),
-              ),
-            ),
-            elevation: 10.0,
-            clipBehavior: Clip.hardEdge,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  width: 1.0.sw,
-                  padding: const EdgeInsets.all(15.0).r,
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
-                    color: AppColorManager.f8,
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(20.0.r)),
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      50.0.verticalSpace,
-                      image is Widget
-                          ? image
-                          : ImageMultiType(
-                              url: image,
-                              height: 60.0.r,
-                              width: 60.0.r,
-                              color: AppColorManager.mainColor,
-                            ),
-                      20.0.verticalSpace,
-                      DrawableText(
-                        text: text,
-                        size: 20.0.sp,
-                        textAlign: TextAlign.center,
-                        color: AppColorManager.mainColorLight,
-                      ),
-                    ],
-                  ),
+        final Widget leading = image is Widget
+            ? image
+            : Container(
+                width: 48.0.r,
+                height: 48.0.r,
+                alignment: .center,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: destructive ? AppColorManager.dangerSoft : AppColorManager.primary50,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40.0).r,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 3,
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          onTap: () => Navigator.pop(context, true),
-                          child: DrawableText(
-                            padding: const EdgeInsets.symmetric(vertical: 23.0).r,
-                            text: textButton,
-                            color: AppColorManager.mainColorLight,
-                            matchParent: true,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          onTap: () => Navigator.pop(context, false),
-                          child: DrawableText(
-                            padding: const EdgeInsets.symmetric(vertical: 23.0).r,
-                            color: Colors.grey,
-                            text: S.of(context).cancel,
-                            matchParent: true,
-                          ),
-                        ),
-                      ),
-                    ],
+                child: ImageMultiType(
+                  url: image,
+                  height: 24.0.r,
+                  width: 24.0.r,
+                  color: destructive ? AppColorManager.danger : AppColorManager.primary500,
+                ),
+              );
+
+        return Dialog(
+          backgroundColor: AppColorManager.neutral0,
+          surfaceTintColor: AppColorManager.neutral0,
+          insetPadding: EdgeInsets.symmetric(horizontal: 24.0.w),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0.r)),
+          child: Padding(
+            padding: EdgeInsets.all(24.0.r),
+            child: Column(
+              mainAxisSize: .min,
+              crossAxisAlignment: .start,
+              children: [
+                leading,
+                14.0.verticalSpace,
+                DrawableText(
+                  text: text,
+                  size: 18.0.sp,
+                  fontWeight: .w700,
+                  color: AppColorManager.neutral900,
+                ),
+                if ((description ?? '').isNotEmpty) ...[
+                  6.0.verticalSpace,
+                  DrawableText(
+                    text: description!,
+                    size: 15.0.sp,
+                    color: AppColorManager.neutral700,
                   ),
+                ],
+                24.0.verticalSpace,
+                Row(
+                  children: [
+                    Expanded(
+                      child: MyButton(
+                        size: .dialog,
+                        width: double.infinity,
+                        variant: .outline,
+                        text: S.of(context).cancel,
+                        onTap: () => Navigator.pop(context, false),
+                      ),
+                    ),
+                    8.0.horizontalSpace,
+                    Expanded(
+                      child: MyButton(
+                        size: .dialog,
+                        width: double.infinity,
+                        variant: destructive ? .danger : .primary,
+                        text: textButton,
+                        onTap: () => Navigator.pop(context, true),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -437,7 +478,7 @@ class NoteMessage {
             alignment: Alignment.center,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
-                Radius.circular(20.0.r),
+                Radius.circular(16.0.r),
               ),
             ),
             elevation: 10.0,

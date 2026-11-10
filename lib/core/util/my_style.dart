@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_multi_type/image_multi_type.dart';
 
 import '../app/app_provider.dart';
 import '../strings/app_color_manager.dart';
@@ -177,12 +178,21 @@ class BackBtnWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () => Navigator.pop(context),
-      icon: Icon(
-        /* Platform.isAndroid ? Icons.arrow_back :*/
-        Icons.arrow_back_ios,
-        color: AppColorManager.black,
+    // 44×44 touch area; the chevron mirrors automatically in RTL.
+    return Center(
+      child: SizedBox(
+        width: 44.0.r,
+        height: 44.0.r,
+        child: IconButton(
+          padding: EdgeInsets.zero,
+          onPressed: () => Navigator.pop(context),
+          icon: ImageMultiType(
+            url: Icons.arrow_back_ios_new,
+            width: 22.0.r,
+            height: 22.0.r,
+            color: AppColorManager.neutral900,
+          ),
+        ),
       ),
     );
   }
