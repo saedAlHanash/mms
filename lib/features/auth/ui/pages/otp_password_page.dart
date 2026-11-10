@@ -25,6 +25,13 @@ class OtpPasswordPage extends StatefulWidget {
   State<OtpPasswordPage> createState() => _OtpPasswordPageState();
 }
 
+/// Keeps the first 4 and last 3 characters, masks the rest with "•".
+String _maskPhone(String phone) {
+  if (phone.length <= 7) return phone;
+  final hidden = phone.substring(4, phone.length - 3).replaceAll(RegExp(r'\d'), '•');
+  return '${phone.substring(0, 4)}$hidden${phone.substring(phone.length - 3)}';
+}
+
 class _OtpPasswordPageState extends State<OtpPasswordPage> {
   late final OtpPasswordCubit confirmCodeCubit;
   late final ResendCodeCubit resendCodeCubit;
@@ -62,6 +69,23 @@ class _OtpPasswordPageState extends State<OtpPasswordPage> {
             AuthHeader(
               icon: Icons.sms_outlined,
               title: S.of(context).enterOTP,
+              subtitleWidget: AppProvider.getPhoneCached.isEmpty
+                  ? null
+                  : DrawableText(
+                      text: S.of(context).otpSentTo,
+                      size: 15.0.sp,
+                      color: AppColorManager.neutral700,
+                      drawablePadding: 4.0.w,
+                      drawableEnd: Directionality(
+                        textDirection: .ltr,
+                        child: DrawableText(
+                          text: _maskPhone(AppProvider.getPhoneCached),
+                          size: 15.0.sp,
+                          fontWeight: .w700,
+                          color: AppColorManager.neutral900,
+                        ),
+                      ),
+                    ),
             ),
             32.0.verticalSpace,
             Form(

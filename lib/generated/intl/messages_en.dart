@@ -20,6 +20,12 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(count) =>
+      "${Intl.plural(count, zero: 'No committees', one: '1 committee', other: '${count} committees')}";
+
+  static String m1(count) =>
+      "${Intl.plural(count, zero: 'No meetings', one: '1 meeting', other: '${count} meetings')}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "about": MessageLookupByLibrary.simpleMessage("About"),
@@ -76,6 +82,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "color": MessageLookupByLibrary.simpleMessage("Color"),
     "colors": MessageLookupByLibrary.simpleMessage("Colors"),
+    "committeesCount": m0,
     "company": MessageLookupByLibrary.simpleMessage("Company"),
     "completed": MessageLookupByLibrary.simpleMessage("Completed"),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
@@ -210,9 +217,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "haveBeenCreated": MessageLookupByLibrary.simpleMessage(
       "Your Account Had Been Created",
     ),
+    "help": MessageLookupByLibrary.simpleMessage("Help"),
     "helperPhoneText": MessageLookupByLibrary.simpleMessage(
       "start with 07 and 11 digit",
     ),
+    "hidePassword": MessageLookupByLibrary.simpleMessage("Hide"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
     "homeAddress": MessageLookupByLibrary.simpleMessage("Home Address"),
     "hours": MessageLookupByLibrary.simpleMessage("Hours"),
@@ -233,9 +242,14 @@ class MessageLookup extends MessageLookupByLibrary {
       "Enter your account details to access your committees and meetings.",
     ),
     "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+    "logoutDescription": MessageLookupByLibrary.simpleMessage(
+      "You will need to enter your details again to sign in.",
+    ),
+    "logoutQuestion": MessageLookupByLibrary.simpleMessage("Log out?"),
     "mail": MessageLookupByLibrary.simpleMessage("Mail"),
     "max": MessageLookupByLibrary.simpleMessage("Max"),
     "meeting": MessageLookupByLibrary.simpleMessage("Meeting"),
+    "meetingsCount": m1,
     "member": MessageLookupByLibrary.simpleMessage("Member"),
     "middleName": MessageLookupByLibrary.simpleMessage("Middle Name"),
     "min": MessageLookupByLibrary.simpleMessage("Min"),
@@ -247,6 +261,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "myOrders": MessageLookupByLibrary.simpleMessage("My Orders"),
     "name": MessageLookupByLibrary.simpleMessage("name"),
     "nameEmpty": MessageLookupByLibrary.simpleMessage("Name field is required"),
+    "navCalendar": MessageLookupByLibrary.simpleMessage("Calendar"),
+    "navCommittees": MessageLookupByLibrary.simpleMessage("My committees"),
+    "navSettings": MessageLookupByLibrary.simpleMessage("Settings"),
     "need11": MessageLookupByLibrary.simpleMessage(
       "The Phone Number Is 11 Digits",
     ),
@@ -263,8 +280,17 @@ class MessageLookup extends MessageLookupByLibrary {
       "New Check Your Email For\nConfirmation Link",
     ),
     "next": MessageLookupByLibrary.simpleMessage("Next"),
+    "noCommitteesDescription": MessageLookupByLibrary.simpleMessage(
+      "Your committees will appear here once you are added. Pull down to refresh.",
+    ),
     "noInternet": MessageLookupByLibrary.simpleMessage(
       "Please check your internet connection",
+    ),
+    "noMeetingsThisDay": MessageLookupByLibrary.simpleMessage(
+      "No meetings on this day",
+    ),
+    "noMeetingsThisDayHint": MessageLookupByLibrary.simpleMessage(
+      "Days with meetings are marked with a purple dot.",
     ),
     "notYet": MessageLookupByLibrary.simpleMessage("Not Yet"),
     "notification": MessageLookupByLibrary.simpleMessage("Notifications"),
@@ -275,6 +301,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "oops": MessageLookupByLibrary.simpleMessage("Oops!"),
     "order_summary": MessageLookupByLibrary.simpleMessage("Order summary"),
     "other": MessageLookupByLibrary.simpleMessage("Other"),
+    "otpSentTo": MessageLookupByLibrary.simpleMessage(
+      "We sent the code by SMS to",
+    ),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "passwordEmpty": MessageLookupByLibrary.simpleMessage(
       "Password field is required",
@@ -289,7 +318,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "paymentMethod": MessageLookupByLibrary.simpleMessage("Payment Method"),
     "payment_summary": MessageLookupByLibrary.simpleMessage("Payment Summary"),
     "pending": MessageLookupByLibrary.simpleMessage("Pending"),
-    "phoneCall": MessageLookupByLibrary.simpleMessage("Phone Call"),
+    "phoneCall": MessageLookupByLibrary.simpleMessage("Phone call"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
     "phoneNumberCanNotBeChange": MessageLookupByLibrary.simpleMessage(
       "Phone number cannot be changed",
@@ -313,6 +342,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "poweredByCoretech": MessageLookupByLibrary.simpleMessage(
       "Powered by CORETECH",
     ),
+    "preferences": MessageLookupByLibrary.simpleMessage("Preferences"),
     "price": MessageLookupByLibrary.simpleMessage("Price"),
     "processing": MessageLookupByLibrary.simpleMessage("Processing"),
     "product": MessageLookupByLibrary.simpleMessage("Product"),
@@ -366,6 +396,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "sgnIn": MessageLookupByLibrary.simpleMessage("Sign In."),
     "share": MessageLookupByLibrary.simpleMessage("Share"),
     "shipping": MessageLookupByLibrary.simpleMessage("Shipping"),
+    "showPassword": MessageLookupByLibrary.simpleMessage("Show"),
     "signInToContinue": MessageLookupByLibrary.simpleMessage(
       "يجب عليك إضافة بياناتك الخاصة لتسهيل التواصل معك",
     ),
@@ -407,6 +438,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "termsAndConditions": MessageLookupByLibrary.simpleMessage(
       "Terms And Conditions",
     ),
+    "today": MessageLookupByLibrary.simpleMessage("Today"),
     "trackingOrder": MessageLookupByLibrary.simpleMessage("Tracking Order"),
     "unFollow": MessageLookupByLibrary.simpleMessage("Un Follow"),
     "unpublished": MessageLookupByLibrary.simpleMessage("UnPublished"),
@@ -417,6 +449,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "userName": MessageLookupByLibrary.simpleMessage("Username"),
     "verify": MessageLookupByLibrary.simpleMessage("verify"),
     "version": MessageLookupByLibrary.simpleMessage("Version"),
+    "viewProfile": MessageLookupByLibrary.simpleMessage("View profile"),
     "vote": MessageLookupByLibrary.simpleMessage("Vote"),
     "voters": MessageLookupByLibrary.simpleMessage("Voters"),
     "votes": MessageLookupByLibrary.simpleMessage("Votes"),

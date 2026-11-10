@@ -2,24 +2,26 @@ import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:image_multi_type/circle_image_widget.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 import 'package:mms/core/app/app_provider.dart';
-import 'package:mms/core/extensions/extensions.dart';
+import 'package:mms/core/app/app_widget.dart';
 import 'package:mms/core/helper/launcher_helper.dart';
+import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:mms/core/util/shared_preferences.dart';
+import 'package:mms/core/util/snack_bar_message.dart';
 import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
+import 'package:mms/core/widgets/icon_tile.dart';
+import 'package:mms/core/widgets/initials_avatar.dart';
+import 'package:mms/core/widgets/small_widgets.dart';
+import 'package:mms/core/widgets/switch_widget.dart';
+import 'package:mms/features/auth/bloc/get_me_cubit/get_me_cubit.dart';
+import 'package:mms/features/home/ui/widget/bottom_nav_widget.dart';
+import 'package:mms/generated/assets.dart';
+import 'package:mms/generated/l10n.dart';
 import 'package:mms/router/app_router.dart';
+import 'package:mms/services/app_info_service.dart';
 
-import '../../../../../core/strings/app_color_manager.dart';
-import '../../../../../core/widgets/switch_widget.dart';
-import '../../../../../generated/assets.dart';
-import '../../../../../generated/l10n.dart';
-import '../../../../core/app/app_widget.dart';
-import '../../../../core/util/snack_bar_message.dart';
-import '../../../../services/app_info_service.dart';
-import '../../../auth/bloc/get_me_cubit/get_me_cubit.dart';
-
+/// Home "Settings" tab.
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
 
@@ -28,131 +30,170 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
+  void _openLanguage() async {
+    final value = await AppBottomSheet.show<int>(context, child: const LanWidget());
+    if (value == null || !mounted) return;
+    Future.delayed(
+      const Duration(microseconds: 500),
+      () {
+        if (mounted) MyApp.setLocale(context, value == 0 ? 'en' : 'ar');
+      },
+    );
+  }
+
+  void _logout() {
+    NoteMessage.showCheckDialog(
+      context,
+      text: S.of(context).logoutQuestion,
+      description: S.of(context).logoutDescription,
+      textButton: S.of(context).logout,
+      image: Icons.logout_rounded,
+      destructive: true,
+      onConfirm: () => AppProvider.logout(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final party = AppProvider.getParty;
+    final isArabic = AppSharedPreference.getLocal == 'ar';
 
     return BlocListener<LoggedPartyCubit, LoggedPartyInitial>(
       listenWhen: (p, c) => c.done,
-      listener: (context, state) {
-        setState(() {});
-      },
+      listener: (context, state) => setState(() {}),
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColorManager.neutral25,
         appBar: const AppBarWidget(zeroHeight: true),
-        body: Column(
+        body: ListView(
+          padding: EdgeInsets.fromLTRB(16.0.w, 0, 16.0.w, homeNavBarSpace),
           children: [
-            20.0.verticalSpace,
-            CircleImageWidget(
-              url: AppProvider.getParty.personalPhoto,
-              size: 100.0.r,
+            Container(
+              height: 64.0.h,
+              alignment: AlignmentDirectional.centerStart,
+              padding: EdgeInsets.symmetric(horizontal: 4.0.w),
+              child: DrawableText(
+                text: S.of(context).navSettings,
+                size: 22.0.sp,
+                fontWeight: .w700,
+                color: AppColorManager.neutral900,
+              ),
             ),
-            5.0.verticalSpace,
-            DrawableText(text: AppProvider.getParty.name),
-            40.0.verticalSpace,
-            Expanded(
-              child: Container(
-                height: 1.0.sh,
-                width: 1.0.sw,
-                margin: const EdgeInsets.symmetric(horizontal: 20.0).r,
-                decoration: BoxDecoration(
-                  color: AppColorManager.f9,
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(30.0.r),
-                  ),
-                ),
-                child: SingleChildScrollView(
-                  child: Column(
+            // User card → Profile.
+            _MenuCard(
+              child: InkWell(
+                onTap: () => Navigator.pushNamed(context, RouteName.profile),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 14.0.h),
+                  child: Row(
                     children: [
-                      10.0.verticalSpace,
-                      const ImageMultiType(url: Assets.iconsNotch),
-                      30.0.verticalSpace,
-                      ItemMenu(
-                        onTap: () {
-                          Navigator.pushNamed(context, RouteName.profile);
-                        },
-                        name: S.of(context).profile,
-                        subTitle: S.of(context).profile,
-                        image: Assets.iconsProfile,
-                      ),
-                      ItemMenu(
-                        onTap: () {},
-                        name: S.of(context).notification,
-                        subTitle: S.of(context).subTitleNotification,
-                        image: Assets.iconsNotifications,
-                        trailing: SwitchWidget(
-                          initialVal: AppSharedPreference.getNotificationState,
-                          onChange: (p0) {
-                            AppSharedPreference.cashNotificationState(p0);
-                          },
+                      AppAvatar(url: party.personalPhoto, name: party.name, size: 60),
+                      14.0.horizontalSpace,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: .start,
+                          mainAxisSize: .min,
+                          children: [
+                            DrawableText(
+                              text: party.name,
+                              size: 18.0.sp,
+                              fontWeight: .w700,
+                              color: AppColorManager.neutral900,
+                              maxLines: 1,
+                            ),
+                            DrawableText(
+                              text: S.of(context).viewProfile,
+                              size: 13.0.sp,
+                              fontWeight: .w600,
+                              color: AppColorManager.primary600,
+                            ),
+                          ],
                         ),
-                        withD: false,
                       ),
-                      30.0.verticalSpace,
-                      ItemMenu(
-                        onTap: () {
-                          LauncherHelper.callPhone(phone: '+966500641544');
-                        },
-                        name: S.of(context).support,
-                        subTitle: S.of(context).subTitleSupport,
-                        image: Assets.iconsSupport,
-                      ),
-                      ItemMenu(
-                        onTap: () {
-                          LauncherHelper.openPage(
-                              'https://dart-quicktype.netlify.app/');
-                        },
-                        name: S.of(context).policy,
-                        subTitle: S.of(context).subTitlePolicy,
-                        image: Assets.iconsPolicy,
-                      ),
-                      ItemMenu(
-                        onTap: () {
-                          NoteMessage.showCheckDialog(
-                            context,
-                            text: S.of(context).logout,
-                            textButton: S.of(context).logout,
-                            image: Assets.iconsLogout,
-                            onConfirm: () {
-                              AppProvider.logout();
-                            },
-                          );
-                        },
-                        name: S.of(context).logout,
-                        subTitle: S.of(context).logout,
-                        image: Assets.iconsLogout,
-                      ),
-                      ItemMenu(
-                        onTap: () {
-                          NoteMessage.showMyDialog(
-                            context,
-                            child: const LanWidget(),
-                            onCancel: (v) {
-                              if (v == null) return;
-                              Future.delayed(
-                                const Duration(microseconds: 500),
-                                () => MyApp.setLocale(
-                                    context, v == 0 ? 'en' : 'ar'),
-                              );
-                            },
-                          );
-                        },
-                        name: S.of(context).changeLanguage,
-                        subTitle: S.of(context).subTitleDeleteAccount,
-                        image: Assets.iconsLanguge,
-                        withD: false,
-                      ),
-                      ItemMenu(
-                        onTap: () {},
-                        name: S.of(context).poweredByCoretech,
-                        image:  Assets.imagesCoreTechLogo,
-                        subTitle: AppInfoService.fullVersionName,
-                        withD: false,
-                      ),
-                      20.0.verticalSpace,
+                      const _Chevron(),
                     ],
                   ),
                 ),
               ),
+            ),
+            16.0.verticalSpace,
+            _MenuGroup(
+              title: S.of(context).preferences,
+              rows: [
+                _MenuRow(
+                  icon: Icons.notifications_none_rounded,
+                  title: S.of(context).notification,
+                  trailing: SwitchWidget(
+                    initialVal: AppSharedPreference.getNotificationState,
+                    onChange: (p0) => AppSharedPreference.cashNotificationState(p0),
+                  ),
+                ),
+                _MenuRow(
+                  icon: Icons.language_rounded,
+                  title: S.of(context).language,
+                  onTap: _openLanguage,
+                  trailing: DrawableText(
+                    text: isArabic ? 'العربية' : 'English',
+                    size: 14.0.sp,
+                    color: AppColorManager.neutral500,
+                    drawablePadding: 6.0.w,
+                    drawableEnd: const _Chevron(),
+                  ),
+                ),
+              ],
+            ),
+            16.0.verticalSpace,
+            _MenuGroup(
+              title: S.of(context).help,
+              rows: [
+                _MenuRow(
+                  icon: Icons.headset_mic_outlined,
+                  title: S.of(context).support,
+                  subtitle: S.of(context).phoneCall,
+                  onTap: () => LauncherHelper.callPhone(phone: '+966500641544'),
+                  trailing: const _Chevron(),
+                ),
+                _MenuRow(
+                  icon: Icons.privacy_tip_outlined,
+                  title: S.of(context).policy,
+                  onTap: () => LauncherHelper.openPage('https://dart-quicktype.netlify.app/'),
+                  trailing: ImageMultiType(
+                    url: Icons.open_in_new_rounded,
+                    width: 18.0.r,
+                    height: 18.0.r,
+                    color: AppColorManager.neutral500,
+                  ),
+                ),
+              ],
+            ),
+            16.0.verticalSpace,
+            _MenuCard(
+              child: _MenuRow(
+                icon: Icons.logout_rounded,
+                iconTone: .danger,
+                title: S.of(context).logout,
+                titleColor: AppColorManager.dangerText,
+                onTap: _logout,
+              ),
+            ),
+            20.0.verticalSpace,
+            Column(
+              children: [
+                ImageMultiType(url: Assets.imagesCoreTechLogo, height: 24.0.h),
+                4.0.verticalSpace,
+                DrawableText(
+                  text: S.of(context).poweredByCoretech,
+                  size: 12.0.sp,
+                  color: AppColorManager.neutral500,
+                ),
+                Directionality(
+                  textDirection: .ltr,
+                  child: DrawableText(
+                    text: AppInfoService.fullVersionName,
+                    size: 12.0.sp,
+                    color: AppColorManager.neutral500,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -161,208 +202,218 @@ class _MenuScreenState extends State<MenuScreen> {
   }
 }
 
-class ItemMenu extends StatelessWidget {
-  const ItemMenu({
-    super.key,
-    required this.name,
-    required this.subTitle,
-    this.image,
-    this.trailing,
-    this.withD = true,
-    this.onTap,
-  });
+/// White card, radius 16, `neutral100` border.
+class _MenuCard extends StatelessWidget {
+  const _MenuCard({required this.child});
 
-  final String name;
-
-  final String subTitle;
-
-  final dynamic image;
-  final Function()? onTap;
-  final Widget? trailing;
-  final bool withD;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 15.0).w,
-      padding: const EdgeInsets.symmetric(vertical: 5.0).r,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5.0.r),
-        color: Colors.white,
+    return Material(
+      color: AppColorManager.neutral0,
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
+        side: const BorderSide(color: AppColorManager.neutral100),
+        borderRadius: BorderRadius.circular(16.0.r),
       ),
-      child: Column(
-        children: [
-          ListTile(
-            onTap: () => onTap?.call(),
-            leading: image == null
-                ? null
-                : image is Widget
-                    ? image
-                    : ImageMultiType(
-                        height: 55.0.r,
-                        width: 55.0.r,
-                        url: image,
-                      ),
-            title: DrawableText(
-              text: name,
-              size: 18.0.sp,
-             fontWeight: FontWeight.bold,
-            ),
-            subtitle: DrawableText(
-              text: subTitle,
-              color: Colors.grey,
-            ),
-            trailing: trailing,
+      child: child,
+    );
+  }
+}
+
+/// Group title (13/700 `neutral500`) above a card of rows separated by dividers.
+class _MenuGroup extends StatelessWidget {
+  const _MenuGroup({required this.title, required this.rows});
+
+  final String title;
+  final List<Widget> rows;
+
+  @override
+  Widget build(BuildContext context) {
+    final children = <Widget>[];
+    for (var i = 0; i < rows.length; i++) {
+      if (i > 0) {
+        children.add(Padding(
+          padding: EdgeInsetsDirectional.only(start: 62.0.w),
+          child: const Divider(height: 1, color: AppColorManager.neutral50),
+        ));
+      }
+      children.add(rows[i]);
+    }
+
+    return Column(
+      crossAxisAlignment: .stretch,
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+          child: DrawableText(
+            text: title,
+            size: 13.0.sp,
+            fontWeight: .w700,
+            color: AppColorManager.neutral500,
           ),
-          if (withD)
-            Divider(
-              height: 0,
-              color: AppColorManager.cardColor,
-              endIndent: 20.0.w,
-              indent: 20.0.w,
+        ),
+        6.0.verticalSpace,
+        _MenuCard(child: Column(children: children)),
+      ],
+    );
+  }
+}
+
+/// 56px row: 36 icon tile + title (+ subtitle) + trailing.
+class _MenuRow extends StatelessWidget {
+  const _MenuRow({
+    required this.icon,
+    required this.title,
+    this.subtitle,
+    this.trailing,
+    this.onTap,
+    this.iconTone = .primary,
+    this.titleColor = AppColorManager.neutral900,
+  });
+
+  final IconData icon;
+  final String title;
+  final String? subtitle;
+  final Widget? trailing;
+  final VoidCallback? onTap;
+  final IconTileTone iconTone;
+  final Color titleColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        constraints: BoxConstraints(minHeight: 56.0.h),
+        padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 6.0.h),
+        child: Row(
+          children: [
+            IconTile(icon: icon, size: 36, iconSize: 20, tone: iconTone),
+            12.0.horizontalSpace,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: .start,
+                mainAxisSize: .min,
+                children: [
+                  DrawableText(
+                    text: title,
+                    size: 16.0.sp,
+                    fontWeight: .w600,
+                    color: titleColor,
+                  ),
+                  if (subtitle != null)
+                    DrawableText(
+                      text: subtitle!,
+                      size: 12.0.sp,
+                      color: AppColorManager.neutral500,
+                    ),
+                ],
+              ),
             ),
-        ],
+            if (trailing != null) trailing!,
+          ],
+        ),
       ),
     );
   }
 }
 
-class LanWidget extends StatefulWidget {
-  const LanWidget({super.key});
-
-  @override
-  State<LanWidget> createState() => _LanWidgetState();
-}
-
-class _LanWidgetState extends State<LanWidget> {
-  var select = 0;
-
-  @override
-  void initState() {
-    select = AppSharedPreference.getLocal != 'ar' ? 0 : 1;
-    super.initState();
-  }
+class _Chevron extends StatelessWidget {
+  const _Chevron();
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(20.0.r),
+    return ImageMultiType(
+      url: Icons.chevron_right_rounded,
+      width: 20.0.r,
+      height: 20.0.r,
+      color: AppColorManager.neutral500,
+    );
+  }
+}
+
+/// Language picker shown in an [AppBottomSheet]. Pops 0 (en) or 1 (ar).
+class LanWidget extends StatelessWidget {
+  const LanWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final current = AppSharedPreference.getLocal != 'ar' ? 0 : 1;
+
+    Widget option({required int value, required String badge, required String name}) {
+      final selected = current == value;
+      return Material(
+        color: selected ? AppColorManager.primary50 : AppColorManager.neutral0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0.r),
+          side: BorderSide(
+            color: selected ? AppColorManager.primary500 : AppColorManager.neutral200,
+            width: selected ? 2 : 1,
+          ),
         ),
-        color: Colors.white,
-      ),
-      width: 300.0.w,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          DrawableText(
-            color: const Color(0xFF333333),
-            size: 18.0.sp,
-            padding: const EdgeInsets.symmetric(vertical: 30.0).h,
-           fontWeight: FontWeight.bold,
-            text: S.of(context).language,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  setState(() => select = 0);
-                  Navigator.pop(context, select);
-                },
-                child: Container(
-                  height: 130.0.r,
-                  width: 120.0.r,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(12.0.r),
+          onTap: () => Navigator.pop(context, value),
+          child: Container(
+            constraints: BoxConstraints(minHeight: 64.0.h),
+            padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 10.0.h),
+            child: Row(
+              children: [
+                Container(
+                  width: 44.0.r,
+                  height: 44.0.r,
+                  alignment: .center,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0.r),
-                    border: select == 0
-                        ? null
-                        : Border.all(color: const Color(0xFFE8F3F1)),
-                    color: select == 0
-                        ? AppColorManager.mainColorDark
-                        : Colors.white,
+                    shape: BoxShape.circle,
+                    color: selected ? AppColorManager.primary500 : AppColorManager.neutral50,
                   ),
-                  alignment: Alignment.center,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        height: 70.0.r,
-                        width: 70.0.r,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.white,
-                        ),
-                        child: DrawableText(
-                          text: 'EN',
-                          size: 20.0.sp,
-                         fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      6.0.verticalSpace,
-                      DrawableText(
-                        text: 'English',
-                        color: select == 0
-                            ? AppColorManager.whit
-                            : const Color(0xFF333333),
-                      ),
-                    ],
+                  child: DrawableText(
+                    text: badge,
+                    size: 16.0.sp,
+                    fontWeight: .w700,
+                    color: selected ? AppColorManager.neutral0 : AppColorManager.neutral700,
                   ),
                 ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  setState(() => select = 1);
-                  Navigator.pop(context, select);
-                },
-                child: Container(
-                  height: 130.0.r,
-                  width: 120.0.r,
-                  decoration: BoxDecoration(
-                    border: select == 1
-                        ? null
-                        : Border.all(color: const Color(0xFFE8F3F1)),
-                    borderRadius: BorderRadius.circular(20.0.r),
-                    color: select != 0
-                        ? AppColorManager.mainColorDark
-                        : Colors.white,
-                  ),
-                  alignment: Alignment.center,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        height: 70.0.r,
-                        width: 70.0.r,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColorManager.lightGray,
-                        ),
-                        child: DrawableText(
-                          text: 'ع',
-                          size: 20.0.sp,
-                         fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      DrawableText(
-                        text: 'العربية',
-                        color: select == 1
-                            ? AppColorManager.whit
-                            : const Color(0xFF333333),
-                      ),
-                    ],
+                12.0.horizontalSpace,
+                Expanded(
+                  child: DrawableText(
+                    text: name,
+                    size: 16.0.sp,
+                    fontWeight: .w700,
+                    color: AppColorManager.neutral900,
                   ),
                 ),
-              ),
-            ],
+                if (selected)
+                  ImageMultiType(
+                    url: Icons.check_circle_rounded,
+                    width: 22.0.r,
+                    height: 22.0.r,
+                    color: AppColorManager.primary500,
+                  ),
+              ],
+            ),
           ),
-          32.0.verticalSpace,
-        ],
-      ),
+        ),
+      );
+    }
+
+    return Column(
+      crossAxisAlignment: .stretch,
+      mainAxisSize: .min,
+      children: [
+        DrawableText(
+          text: S.of(context).language,
+          size: 18.0.sp,
+          fontWeight: .w700,
+          color: AppColorManager.neutral900,
+        ),
+        12.0.verticalSpace,
+        option(value: 1, badge: 'ع', name: 'العربية'),
+        12.0.verticalSpace,
+        option(value: 0, badge: 'EN', name: 'English'),
+      ],
     );
   }
 }

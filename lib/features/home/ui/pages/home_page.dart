@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/widgets/app_bar/app_bar_widget.dart';
-import '../../../committees/ui/pages/committee_screen.dart';
-import '../../../meetings/ui/pages/calender_screen.dart';
-import '../widget/bottom_nav_widget.dart';
-import '../widget/menu_screen.dart';
+import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
+import 'package:mms/features/committees/ui/pages/committee_screen.dart';
+import 'package:mms/features/home/ui/widget/bottom_nav_widget.dart';
+import 'package:mms/features/home/ui/widget/menu_screen.dart';
+import 'package:mms/features/meetings/ui/pages/calender_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -41,6 +40,8 @@ class _HomePageState extends State<HomePage> {
         }
       },
       child: Scaffold(
+        // The floating nav bar sits over the tabs; each tab adds bottom padding.
+        extendBody: true,
         bottomNavigationBar: NewNav(
           onChange: (index) {
             pageIndex = index;

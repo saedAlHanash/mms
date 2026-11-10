@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 import 'package:mms/core/extensions/extensions.dart';
+import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
 import 'package:mms/core/widgets/my_button.dart';
 import 'package:mms/core/widgets/my_text_form_widget.dart';
@@ -98,20 +99,19 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
               ),
-              // TextButton(
-              //   onPressed: () {
-              //     Navigator.pushNamed(
-              //       context,
-              //       RouteName.forgetPassword,
-              //       arguments: loginCubit.state.request.phone,
-              //     );
-              //   },
-              //   child: DrawableText(
-              //     text: S.of(context).forgetPassword,
-              //     matchParent: true,
-              //     color: AppColorManager.mainColorLight,
-              //   ),
-              // ),
+              Align(
+                alignment: AlignmentDirectional.centerEnd,
+                child: TextButton(
+                  onPressed: () => Navigator.pushNamed(context, RouteName.forgetPassword),
+                  style: TextButton.styleFrom(minimumSize: Size(44.0.w, 44.0.h)),
+                  child: DrawableText(
+                    text: S.of(context).forgetPassword,
+                    size: 14.0.sp,
+                    fontWeight: .w600,
+                    color: AppColorManager.primary600,
+                  ),
+                ),
+              ),
             ],
             bottom: [
               BlocBuilder<LoginCubit, LoginInitial>(

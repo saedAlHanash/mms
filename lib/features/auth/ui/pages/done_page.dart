@@ -56,7 +56,7 @@ class DonePage extends StatelessWidget {
                 ),
               ),
               MyButton(
-                text: S.of(context).done,
+                text: S.of(context).login,
                 onTap: () {
                   Navigator.pushNamedAndRemoveUntil(context, RouteName.login, (route) => false);
                 },

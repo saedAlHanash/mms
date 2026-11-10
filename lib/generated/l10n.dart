@@ -584,9 +584,9 @@ class S {
     );
   }
 
-  /// `Phone Call`
+  /// `Phone call`
   String get phoneCall {
-    return Intl.message('Phone Call', name: 'phoneCall', desc: '', args: []);
+    return Intl.message('Phone call', name: 'phoneCall', desc: '', args: []);
   }
 
   /// `Phone SMS`
@@ -2162,6 +2162,142 @@ class S {
   /// `Resend code`
   String get resendCode {
     return Intl.message('Resend code', name: 'resendCode', desc: '', args: []);
+  }
+
+  /// `Show`
+  String get showPassword {
+    return Intl.message('Show', name: 'showPassword', desc: '', args: []);
+  }
+
+  /// `Hide`
+  String get hidePassword {
+    return Intl.message('Hide', name: 'hidePassword', desc: '', args: []);
+  }
+
+  /// `We sent the code by SMS to`
+  String get otpSentTo {
+    return Intl.message(
+      'We sent the code by SMS to',
+      name: 'otpSentTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My committees`
+  String get navCommittees {
+    return Intl.message(
+      'My committees',
+      name: 'navCommittees',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Calendar`
+  String get navCalendar {
+    return Intl.message('Calendar', name: 'navCalendar', desc: '', args: []);
+  }
+
+  /// `Settings`
+  String get navSettings {
+    return Intl.message('Settings', name: 'navSettings', desc: '', args: []);
+  }
+
+  /// `{count, plural, =0{No committees} =1{1 committee} other{{count} committees}}`
+  String committeesCount(num count) {
+    return Intl.plural(
+      count,
+      zero: 'No committees',
+      one: '1 committee',
+      other: '$count committees',
+      name: 'committeesCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Your committees will appear here once you are added. Pull down to refresh.`
+  String get noCommitteesDescription {
+    return Intl.message(
+      'Your committees will appear here once you are added. Pull down to refresh.',
+      name: 'noCommitteesDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Today`
+  String get today {
+    return Intl.message('Today', name: 'today', desc: '', args: []);
+  }
+
+  /// `{count, plural, =0{No meetings} =1{1 meeting} other{{count} meetings}}`
+  String meetingsCount(num count) {
+    return Intl.plural(
+      count,
+      zero: 'No meetings',
+      one: '1 meeting',
+      other: '$count meetings',
+      name: 'meetingsCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `No meetings on this day`
+  String get noMeetingsThisDay {
+    return Intl.message(
+      'No meetings on this day',
+      name: 'noMeetingsThisDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Days with meetings are marked with a purple dot.`
+  String get noMeetingsThisDayHint {
+    return Intl.message(
+      'Days with meetings are marked with a purple dot.',
+      name: 'noMeetingsThisDayHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preferences`
+  String get preferences {
+    return Intl.message('Preferences', name: 'preferences', desc: '', args: []);
+  }
+
+  /// `Help`
+  String get help {
+    return Intl.message('Help', name: 'help', desc: '', args: []);
+  }
+
+  /// `View profile`
+  String get viewProfile {
+    return Intl.message(
+      'View profile',
+      name: 'viewProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log out?`
+  String get logoutQuestion {
+    return Intl.message('Log out?', name: 'logoutQuestion', desc: '', args: []);
+  }
+
+  /// `You will need to enter your details again to sign in.`
+  String get logoutDescription {
+    return Intl.message(
+      'You will need to enter your details again to sign in.',
+      name: 'logoutDescription',
+      desc: '',
+      args: [],
+    );
   }
 }
 

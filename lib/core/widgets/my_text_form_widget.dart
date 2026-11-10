@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
+import 'package:mms/generated/l10n.dart';
 
 /// Outlined text field with the label **above** the field (redesign).
 ///
@@ -127,13 +128,17 @@ class _MyTextFormOutLineWidgetState extends State<MyTextFormOutLineWidget> {
 
     Widget? suffix = widget.iconWidgetLift;
     if (suffix == null && widget.obscureText) {
-      suffix = IconButton(
+      suffix = TextButton(
         onPressed: () => setState(() => _obscure = !_obscure),
-        icon: ImageMultiType(
-          url: _obscure ? Icons.visibility_outlined : Icons.visibility_off_outlined,
-          width: 20.0.r,
-          height: 20.0.r,
-          color: iconColor,
+        style: TextButton.styleFrom(
+          minimumSize: Size(44.0.w, 44.0.h),
+          padding: EdgeInsets.symmetric(horizontal: 12.0.w),
+        ),
+        child: DrawableText(
+          text: _obscure ? S.of(context).showPassword : S.of(context).hidePassword,
+          size: 13.0.sp,
+          fontWeight: .w600,
+          color: AppColorManager.primary600,
         ),
       );
     }

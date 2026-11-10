@@ -20,6 +20,12 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
+  static String m0(count) =>
+      "${Intl.plural(count, zero: 'لا لجان', one: 'لجنة واحدة', two: 'لجنتان', few: '${count} لجان', many: '${count} لجنة', other: '${count} لجنة')}";
+
+  static String m1(count) =>
+      "${Intl.plural(count, zero: 'لا اجتماعات', one: 'اجتماع واحد', two: 'اجتماعان', few: '${count} اجتماعات', many: '${count} اجتماعاً', other: '${count} اجتماع')}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "about": MessageLookupByLibrary.simpleMessage("من نحن"),
@@ -72,6 +78,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "code_invalid": MessageLookupByLibrary.simpleMessage("هذا الكود غير صالح"),
     "color": MessageLookupByLibrary.simpleMessage("اللون"),
     "colors": MessageLookupByLibrary.simpleMessage("الألوان"),
+    "committeesCount": m0,
     "completed": MessageLookupByLibrary.simpleMessage("منتهي"),
     "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
     "confirmAddress": MessageLookupByLibrary.simpleMessage("تأكيد العنوان"),
@@ -195,9 +202,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "governor": MessageLookupByLibrary.simpleMessage("المحافظة"),
     "guest": MessageLookupByLibrary.simpleMessage("ضيف"),
     "haveBeenCreated": MessageLookupByLibrary.simpleMessage("تم إنشاء حسابك"),
+    "help": MessageLookupByLibrary.simpleMessage("المساعدة"),
     "helperPhoneText": MessageLookupByLibrary.simpleMessage(
       "يبدأ ب 07 ويحتوي 11 رَقَم",
     ),
+    "hidePassword": MessageLookupByLibrary.simpleMessage("إخفاء"),
     "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
     "homeAddress": MessageLookupByLibrary.simpleMessage("عنوان المنزل"),
     "hours": MessageLookupByLibrary.simpleMessage("ساعات"),
@@ -216,8 +225,13 @@ class MessageLookup extends MessageLookupByLibrary {
       "أدخل بيانات حسابك للوصول إلى لجانك واجتماعاتك.",
     ),
     "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+    "logoutDescription": MessageLookupByLibrary.simpleMessage(
+      "ستحتاج لإدخال بياناتك مرة أخرى للدخول.",
+    ),
+    "logoutQuestion": MessageLookupByLibrary.simpleMessage("تسجيل الخروج؟"),
     "mail": MessageLookupByLibrary.simpleMessage("ذكر"),
     "max": MessageLookupByLibrary.simpleMessage("الأقصى"),
+    "meetingsCount": m1,
     "member": MessageLookupByLibrary.simpleMessage("عضو"),
     "middleName": MessageLookupByLibrary.simpleMessage("الاسم الأوسط"),
     "min": MessageLookupByLibrary.simpleMessage("دقيقة"),
@@ -229,6 +243,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "myOrders": MessageLookupByLibrary.simpleMessage("طلباتي"),
     "name": MessageLookupByLibrary.simpleMessage("الاسم"),
     "nameEmpty": MessageLookupByLibrary.simpleMessage("حقل الاسم مطلوب"),
+    "navCalendar": MessageLookupByLibrary.simpleMessage("التقويم"),
+    "navCommittees": MessageLookupByLibrary.simpleMessage("لجاني"),
+    "navSettings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
     "need11": MessageLookupByLibrary.simpleMessage(
       "يجب أن يكون رقم الهاتف مكونًا من 11 رقمًا",
     ),
@@ -245,8 +262,17 @@ class MessageLookup extends MessageLookupByLibrary {
       "تحقق من بريدك الإلكتروني للحصول على رابط التأكيد",
     ),
     "next": MessageLookupByLibrary.simpleMessage("التالي"),
+    "noCommitteesDescription": MessageLookupByLibrary.simpleMessage(
+      "ستظهر هنا اللجان فور إضافتك إليها. اسحب الشاشة للأسفل للتحديث.",
+    ),
     "noInternet": MessageLookupByLibrary.simpleMessage(
       "يرجى التحقق من اتصالك بالإنترنت",
+    ),
+    "noMeetingsThisDay": MessageLookupByLibrary.simpleMessage(
+      "لا اجتماعات في هذا اليوم",
+    ),
+    "noMeetingsThisDayHint": MessageLookupByLibrary.simpleMessage(
+      "الأيام التي فيها اجتماعات معلّمة بنقطة بنفسجية.",
     ),
     "notYet": MessageLookupByLibrary.simpleMessage("ليس بعد"),
     "notification": MessageLookupByLibrary.simpleMessage("الإشعارات"),
@@ -257,6 +283,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "oops": MessageLookupByLibrary.simpleMessage("حدث خطأ ما!"),
     "order_summary": MessageLookupByLibrary.simpleMessage("ملخص الطلب"),
     "other": MessageLookupByLibrary.simpleMessage("آخر"),
+    "otpSentTo": MessageLookupByLibrary.simpleMessage(
+      "أرسلنا الرمز برسالة نصية إلى",
+    ),
     "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
     "passwordEmpty": MessageLookupByLibrary.simpleMessage(
       "حقل كلمة المرور مطلوب",
@@ -271,7 +300,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "paymentMethod": MessageLookupByLibrary.simpleMessage("طريقة الدفع"),
     "payment_summary": MessageLookupByLibrary.simpleMessage("ملخص الدفع"),
     "pending": MessageLookupByLibrary.simpleMessage("معلقة"),
-    "phoneCall": MessageLookupByLibrary.simpleMessage("مكالمة هاتفية"),
+    "phoneCall": MessageLookupByLibrary.simpleMessage("اتصال هاتفي"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
     "phoneNumberCanNotBeChange": MessageLookupByLibrary.simpleMessage(
       "لا يمكن تغيير رقم الهاتف",
@@ -293,6 +322,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "poweredByCoretech": MessageLookupByLibrary.simpleMessage(
       "صمم بواسطة CORETECH",
     ),
+    "preferences": MessageLookupByLibrary.simpleMessage("التفضيلات"),
     "price": MessageLookupByLibrary.simpleMessage("السعر"),
     "processing": MessageLookupByLibrary.simpleMessage("معالجة"),
     "product": MessageLookupByLibrary.simpleMessage("منتج"),
@@ -339,6 +369,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "sgnIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول."),
     "share": MessageLookupByLibrary.simpleMessage("مشاركة"),
     "shipping": MessageLookupByLibrary.simpleMessage("مشحون"),
+    "showPassword": MessageLookupByLibrary.simpleMessage("إظهار"),
     "signInToContinue": MessageLookupByLibrary.simpleMessage(
       "يجب عليك إضافة بياناتك الخاصة لتسهيل التواصل معك",
     ),
@@ -382,6 +413,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "termsAndConditions": MessageLookupByLibrary.simpleMessage(
       "الشروط والأحكام",
     ),
+    "today": MessageLookupByLibrary.simpleMessage("اليوم"),
     "trackingOrder": MessageLookupByLibrary.simpleMessage("تتبع الطلب"),
     "unFollow": MessageLookupByLibrary.simpleMessage("إلغاء متابعة"),
     "unpublished": MessageLookupByLibrary.simpleMessage("غير منشور"),
@@ -392,6 +424,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "userName": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
     "verify": MessageLookupByLibrary.simpleMessage("التحقق"),
     "version": MessageLookupByLibrary.simpleMessage("الإصدار"),
+    "viewProfile": MessageLookupByLibrary.simpleMessage("عرض الملف الشخصي"),
     "voters": MessageLookupByLibrary.simpleMessage("الناخبون"),
     "votes": MessageLookupByLibrary.simpleMessage("الأصوات"),
     "welcomeBack": MessageLookupByLibrary.simpleMessage("أهلا بعودتك!"),

@@ -230,6 +230,8 @@ class NoteMessage {
     required String message,
   }) async {
     final noInternet = message.contains(S.of(context).noInternet);
+    // The status code (e.g. "\n 500") is not shown to the user.
+    message = message.replaceFirst(RegExp(r'\s+\d{3}\s*$'), '').trim();
     await _showStatusDialog(
       context,
       icon: noInternet ? Icons.wifi_off_rounded : Icons.error_outline_rounded,
