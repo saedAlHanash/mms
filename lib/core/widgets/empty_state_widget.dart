@@ -15,7 +15,8 @@ class EmptyStateWidget extends StatelessWidget {
     required this.title,
     this.description,
     this.action,
-  }) : _inline = false;
+  })  : _inline = false,
+        _card = false;
 
   const EmptyStateWidget.inline({
     super.key,
@@ -23,7 +24,18 @@ class EmptyStateWidget extends StatelessWidget {
     required this.title,
     this.description,
   })  : action = null,
-        _inline = true;
+        _inline = true,
+        _card = false;
+
+  /// Dashed card with a centered 56 circle, title and description.
+  const EmptyStateWidget.card({
+    super.key,
+    required this.icon,
+    required this.title,
+    this.description,
+  })  : action = null,
+        _inline = false,
+        _card = true;
 
   /// Anything [ImageMultiType] accepts (IconData, asset path…).
   final dynamic icon;
@@ -31,9 +43,47 @@ class EmptyStateWidget extends StatelessWidget {
   final String? description;
   final Widget? action;
   final bool _inline;
+  final bool _card;
 
   @override
-  Widget build(BuildContext context) => _inline ? _buildInline() : _buildLarge();
+  Widget build(BuildContext context) {
+    if (_card) return _buildCard();
+    return _inline ? _buildInline() : _buildLarge();
+  }
+
+  Widget _buildCard() {
+    return DashedBorder(
+      color: AppColorManager.neutral200,
+      radius: 12.0.r,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 24.0.h),
+        child: Column(
+          mainAxisSize: .min,
+          crossAxisAlignment: .stretch,
+          children: [
+            Center(child: _circle(56, 26)),
+            10.0.verticalSpace,
+            DrawableText(
+              text: title,
+              size: 16.0.sp,
+              fontWeight: .w700,
+              color: AppColorManager.neutral900,
+              textAlign: .center,
+            ),
+            if ((description ?? '').isNotEmpty) ...[
+              4.0.verticalSpace,
+              DrawableText(
+                text: description!,
+                size: 13.0.sp,
+                color: AppColorManager.neutral500,
+                textAlign: .center,
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
 
   Widget _circle(double size, double iconSize) => Container(
         width: size.r,

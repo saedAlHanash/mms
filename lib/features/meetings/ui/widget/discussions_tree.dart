@@ -1,67 +1,96 @@
-import 'package:animated_tree_view/tree_view/tree_node.dart';
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:image_multi_type/image_multi_type.dart';
+import 'package:mms/core/extensions/extensions.dart';
+import 'package:mms/core/strings/app_color_manager.dart';
+import 'package:mms/core/widgets/small_widgets.dart';
+import 'package:mms/core/widgets/status_chip.dart';
+import 'package:mms/features/agendas/bloc/add_comment_cubit/add_comment_cubit.dart';
+import 'package:mms/features/meetings/data/response/meetings_response.dart';
+import 'package:mms/features/meetings/ui/widget/comment_discussion_btn.dart';
 
-import '../../../../core/strings/app_color_manager.dart';
-import '../../../../core/widgets/expansion/tree_widget.dart';
-import '../../../../core/widgets/my_card_widget.dart';
-import '../../../../generated/assets.dart';
-import '../../../../generated/l10n.dart';
-import '../../data/response/meetings_response.dart';
-import 'comment_discussion_btn.dart';
-
+/// Meeting discussions in one card: topic, status + date, my comment.
 class DiscussionsTree extends StatelessWidget {
-  const DiscussionsTree({super.key, required this.treeNode});
-  final TreeNode<Discussion> treeNode;
+  const DiscussionsTree({super.key, required this.discussions});
+
+  final List<Discussion> discussions;
+
   @override
   Widget build(BuildContext context) {
-    return TreeWidget<Discussion>(
-      treeNode: treeNode,
-      builder: (node) {
-        if (node.isRoot) {
-          return MyCardWidget(
-            padding: const EdgeInsets.all(30.0).r,
-            child: DrawableText(
-              fontWeight: FontWeight.bold,
-              size: 18.0.sp,
-              text: '${S.of(context).discussions} (${node.length})',
-              matchParent: true,
-            ),
-          );
-        }
-        return MyCardWidget(
-          margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 5.0).r,
-          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0).r,
-          child: ListTile(
-            contentPadding: EdgeInsetsDirectional.only(start: 10.0.w),
-            title: DrawableText(
-              text: node.data!.topic,
-              fontWeight: FontWeight.bold,
-            ),
-            subtitle: Column(
-              children: [
-                5.0.verticalSpace,
-                DrawableText(
-                  text: node.data!.meetingId,
-                  color: Colors.grey,
-                  matchParent: true,
-                ),
-                if (node.data!.myComment != null) 10.0.verticalSpace,
-                if (node.data!.myComment != null)
-                  DrawableText(
-                    text: '(${node.data!.myComment!.party.name})  ${node.data!.myComment!.text}',
-                    matchParent: true,
-                    drawablePadding: 10.0.w,
-                    drawableStart: ImageMultiType(
-                      url: Assets.iconsComment,
-                      color: node.data!.myComment!.isMyComment ? AppColorManager.mainColor : Colors.black,
+    final children = <Widget>[];
+    for (var i = 0; i < discussions.length; i++) {
+      if (i > 0) children.add(const Divider(height: 1, color: AppColorManager.neutral50));
+      children.add(_DiscussionRow(discussion: discussions[i]));
+    }
+
+    return Container(
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        color: AppColorManager.neutral0,
+        border: Border.all(color: AppColorManager.neutral100),
+        borderRadius: BorderRadius.circular(12.0.r),
+      ),
+      child: Column(children: children),
+    );
+  }
+}
+
+class _DiscussionRow extends StatelessWidget {
+  const _DiscussionRow({required this.discussion});
+
+  final Discussion discussion;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AddCommentCubit, AddCommentInitial>(
+      buildWhen: (p, c) => c.done && c.request.discussionId == discussion.id,
+      builder: (context, _) {
+        final myComment = discussion.myComment;
+
+        return Padding(
+          padding: EdgeInsets.all(14.0.r),
+          child: Row(
+            crossAxisAlignment: .start,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: .start,
+                  children: [
+                    DrawableText(
+                      text: discussion.topic,
+                      size: 15.0.sp,
+                      fontWeight: .w600,
+                      color: AppColorManager.neutral900,
+                      matchParent: true,
                     ),
-                  ),
-              ],
-            ),
-            trailing: CommentDiscussionBtn(discussion: node.data!),
+                    6.0.verticalSpace,
+                    Row(
+                      children: [
+                        StatusChip.discussion(discussion.status),
+                        if (discussion.date != null) ...[
+                          8.0.horizontalSpace,
+                          Directionality(
+                            textDirection: .ltr,
+                            child: DrawableText(
+                              text: discussion.date!.formatDate,
+                              size: 13.0.sp,
+                              color: AppColorManager.neutral500,
+                            ),
+                          ),
+                        ],
+                      ],
+                    ),
+                    if (myComment != null) ...[
+                      8.0.verticalSpace,
+                      CommentBubble(text: myComment.text),
+                    ],
+                  ],
+                ),
+              ),
+              8.0.horizontalSpace,
+              CommentDiscussionBtn(discussion: discussion),
+            ],
           ),
         );
       },

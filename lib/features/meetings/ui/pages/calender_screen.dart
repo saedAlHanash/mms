@@ -102,7 +102,7 @@ class MeetingsDayList extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.fromLTRB(20.0.w, 6.0.h, 20.0.w, bottom),
           children: [
-            EmptyStateWidget.inline(
+            EmptyStateWidget.card(
               icon: Icons.event_busy_outlined,
               title: S.of(context).noMeetingsThisDay,
               description: S.of(context).noMeetingsThisDayHint,

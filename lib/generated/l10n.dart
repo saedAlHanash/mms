@@ -2516,6 +2516,222 @@ class S {
       args: [],
     );
   }
+
+  /// `Attendees & guests`
+  String get attendeesAndGuests {
+    return Intl.message(
+      'Attendees & guests',
+      name: 'attendeesAndGuests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Attendees`
+  String get attendees {
+    return Intl.message('Attendees', name: 'attendees', desc: '', args: []);
+  }
+
+  /// `Guests`
+  String get guests {
+    return Intl.message('Guests', name: 'guests', desc: '', args: []);
+  }
+
+  /// `Suggested`
+  String get suggested {
+    return Intl.message('Suggested', name: 'suggested', desc: '', args: []);
+  }
+
+  /// `Add comment`
+  String get addComment {
+    return Intl.message('Add comment', name: 'addComment', desc: '', args: []);
+  }
+
+  /// `Your comment`
+  String get yourComment {
+    return Intl.message(
+      'Your comment',
+      name: 'yourComment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Write your comment here…`
+  String get writeYourComment {
+    return Intl.message(
+      'Write your comment here…',
+      name: 'writeYourComment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Agenda item`
+  String get agendaItem {
+    return Intl.message('Agenda item', name: 'agendaItem', desc: '', args: []);
+  }
+
+  /// `Discussion`
+  String get discussion {
+    return Intl.message('Discussion', name: 'discussion', desc: '', args: []);
+  }
+
+  /// `One comment per item, and it can't be edited after sending.`
+  String get commentHint {
+    return Intl.message(
+      'One comment per item, and it can\'t be edited after sending.',
+      name: 'commentHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show sub-items ({count})`
+  String showSubItems(Object count) {
+    return Intl.message(
+      'Show sub-items ($count)',
+      name: 'showSubItems',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Hide sub-items ({count})`
+  String hideSubItems(Object count) {
+    return Intl.message(
+      'Hide sub-items ($count)',
+      name: 'hideSubItems',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count} awaiting your vote`
+  String votesPending(Object count) {
+    return Intl.message(
+      '$count awaiting your vote',
+      name: 'votesPending',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `No votes awaiting you`
+  String get noVotesPending {
+    return Intl.message(
+      'No votes awaiting you',
+      name: 'noVotesPending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The agenda hasn't been added yet`
+  String get noAgendaYet {
+    return Intl.message(
+      'The agenda hasn\'t been added yet',
+      name: 'noAgendaYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Items will appear here once added, and you can comment on each one.`
+  String get noAgendaYetDescription {
+    return Intl.message(
+      'Items will appear here once added, and you can comment on each one.',
+      name: 'noAgendaYetDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Suggested guest for`
+  String get suggestedFor {
+    return Intl.message(
+      'Suggested guest for',
+      name: 'suggestedFor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Attendance recorded`
+  String get attendanceRecorded {
+    return Intl.message(
+      'Attendance recorded',
+      name: 'attendanceRecorded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Attendance not recorded`
+  String get attendanceNotRecorded {
+    return Intl.message(
+      'Attendance not recorded',
+      name: 'attendanceNotRecorded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send suggestion`
+  String get sendSuggestion {
+    return Intl.message(
+      'Send suggestion',
+      name: 'sendSuggestion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All fields are required. The guest appears under "Suggested guests" after sending.`
+  String get addGuestHint {
+    return Intl.message(
+      'All fields are required. The guest appears under "Suggested guests" after sending.',
+      name: 'addGuestHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `From`
+  String get fromLabel {
+    return Intl.message('From', name: 'fromLabel', desc: '', args: []);
+  }
+
+  /// `To`
+  String get toLabel {
+    return Intl.message('To', name: 'toLabel', desc: '', args: []);
+  }
+
+  /// `{count, plural, =0{No items} =1{1 item} other{{count} items}}`
+  String itemsCount(num count) {
+    return Intl.plural(
+      count,
+      zero: 'No items',
+      one: '1 item',
+      other: '$count items',
+      name: 'itemsCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count, plural, =0{No discussions} =1{1 discussion} other{{count} discussions}}`
+  String discussionsCount(num count) {
+    return Intl.plural(
+      count,
+      zero: 'No discussions',
+      one: '1 discussion',
+      other: '$count discussions',
+      name: 'discussionsCount',
+      desc: '',
+      args: [count],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

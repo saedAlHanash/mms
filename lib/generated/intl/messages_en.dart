@@ -24,34 +24,51 @@ class MessageLookup extends MessageLookupByLibrary {
       "${Intl.plural(count, zero: 'No committees', one: '1 committee', other: '${count} committees')}";
 
   static String m1(count) =>
-      "${Intl.plural(count, zero: 'No documents', one: '1 document', other: '${count} documents')}";
+      "${Intl.plural(count, zero: 'No discussions', one: '1 discussion', other: '${count} discussions')}";
 
   static String m2(count) =>
-      "${Intl.plural(count, zero: 'No goals', one: '1 goal', other: '${count} goals')}";
+      "${Intl.plural(count, zero: 'No documents', one: '1 document', other: '${count} documents')}";
 
   static String m3(count) =>
-      "${Intl.plural(count, zero: 'No meetings', one: '1 meeting', other: '${count} meetings')}";
+      "${Intl.plural(count, zero: 'No goals', one: '1 goal', other: '${count} goals')}";
 
-  static String m4(count) =>
-      "${Intl.plural(count, zero: 'No members', one: '1 member', other: '${count} members')}";
+  static String m4(count) => "Hide sub-items (${count})";
 
   static String m5(count) =>
+      "${Intl.plural(count, zero: 'No items', one: '1 item', other: '${count} items')}";
+
+  static String m6(count) =>
+      "${Intl.plural(count, zero: 'No meetings', one: '1 meeting', other: '${count} meetings')}";
+
+  static String m7(count) =>
+      "${Intl.plural(count, zero: 'No members', one: '1 member', other: '${count} members')}";
+
+  static String m8(count) => "Show sub-items (${count})";
+
+  static String m9(count) =>
       "${Intl.plural(count, zero: 'No tasks', one: '1 task', other: '${count} tasks')}";
+
+  static String m10(count) => "${count} awaiting your vote";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "about": MessageLookupByLibrary.simpleMessage("About"),
     "aboutUs": MessageLookupByLibrary.simpleMessage("About Us"),
     "accountCreated": MessageLookupByLibrary.simpleMessage("Account Created!"),
+    "addComment": MessageLookupByLibrary.simpleMessage("Add comment"),
     "addCorectData": MessageLookupByLibrary.simpleMessage(
       "يجب عليك إدخال بياناتك الصحيحة لتجنب المشاكل والأخطاء",
     ),
     "addGuest": MessageLookupByLibrary.simpleMessage("Add guest"),
+    "addGuestHint": MessageLookupByLibrary.simpleMessage(
+      "All fields are required. The guest appears under \"Suggested guests\" after sending.",
+    ),
     "addReview": MessageLookupByLibrary.simpleMessage("Add Review"),
     "add_to_cart": MessageLookupByLibrary.simpleMessage("Add To Cart"),
     "additional_service": MessageLookupByLibrary.simpleMessage(
       "Additional service",
     ),
+    "agendaItem": MessageLookupByLibrary.simpleMessage("Agenda item"),
     "agendas": MessageLookupByLibrary.simpleMessage("Agendas"),
     "alreadyHaveAnAccount": MessageLookupByLibrary.simpleMessage(
       "Already Have An Account?",
@@ -62,6 +79,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "ar": MessageLookupByLibrary.simpleMessage("Arabic"),
     "archived": MessageLookupByLibrary.simpleMessage("Published"),
     "at": MessageLookupByLibrary.simpleMessage("At"),
+    "attendanceNotRecorded": MessageLookupByLibrary.simpleMessage(
+      "Attendance not recorded",
+    ),
+    "attendanceRecorded": MessageLookupByLibrary.simpleMessage(
+      "Attendance recorded",
+    ),
+    "attendees": MessageLookupByLibrary.simpleMessage("Attendees"),
+    "attendeesAndGuests": MessageLookupByLibrary.simpleMessage(
+      "Attendees & guests",
+    ),
     "back": MessageLookupByLibrary.simpleMessage("Back"),
     "backToLogin": MessageLookupByLibrary.simpleMessage("Back to login"),
     "birthday": MessageLookupByLibrary.simpleMessage("birthday"),
@@ -95,6 +122,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "color": MessageLookupByLibrary.simpleMessage("Color"),
     "colors": MessageLookupByLibrary.simpleMessage("Colors"),
+    "commentHint": MessageLookupByLibrary.simpleMessage(
+      "One comment per item, and it can\'t be edited after sending.",
+    ),
     "committeeCalendar": MessageLookupByLibrary.simpleMessage(
       "Committee calendar",
     ),
@@ -151,12 +181,14 @@ class MessageLookup extends MessageLookupByLibrary {
       "Didn\'t Receive The OTP?",
     ),
     "dinar": MessageLookupByLibrary.simpleMessage("Dinar"),
+    "discussion": MessageLookupByLibrary.simpleMessage("Discussion"),
     "discussions": MessageLookupByLibrary.simpleMessage("Discussions"),
+    "discussionsCount": m1,
     "doNotHaveAnAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t Have An Account?",
     ),
     "documents": MessageLookupByLibrary.simpleMessage("Documents"),
-    "documentsCount": m1,
+    "documentsCount": m2,
     "dollar": MessageLookupByLibrary.simpleMessage("Dollar"),
     "done": MessageLookupByLibrary.simpleMessage("Done"),
     "doneCanceled": MessageLookupByLibrary.simpleMessage("Order Canceled"),
@@ -238,12 +270,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "formationDate": MessageLookupByLibrary.simpleMessage("Formation date"),
     "freeLesson": MessageLookupByLibrary.simpleMessage("Free lessons"),
     "freeSummary": MessageLookupByLibrary.simpleMessage("Free Summary"),
+    "fromLabel": MessageLookupByLibrary.simpleMessage("From"),
     "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
     "gender": MessageLookupByLibrary.simpleMessage("Gender"),
     "goals": MessageLookupByLibrary.simpleMessage("Goals"),
-    "goalsCount": m2,
+    "goalsCount": m3,
     "governor": MessageLookupByLibrary.simpleMessage("governor"),
     "guest": MessageLookupByLibrary.simpleMessage("Guest"),
+    "guests": MessageLookupByLibrary.simpleMessage("Guests"),
     "haveBeenCreated": MessageLookupByLibrary.simpleMessage(
       "Your Account Had Been Created",
     ),
@@ -252,6 +286,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "start with 07 and 11 digit",
     ),
     "hidePassword": MessageLookupByLibrary.simpleMessage("Hide"),
+    "hideSubItems": m4,
     "home": MessageLookupByLibrary.simpleMessage("Home"),
     "homeAddress": MessageLookupByLibrary.simpleMessage("Home Address"),
     "hours": MessageLookupByLibrary.simpleMessage("Hours"),
@@ -262,6 +297,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "identityImage": MessageLookupByLibrary.simpleMessage("Identity Image"),
     "isSuccess": MessageLookupByLibrary.simpleMessage("Success!"),
     "is_required": MessageLookupByLibrary.simpleMessage("Required"),
+    "itemsCount": m5,
     "ku": MessageLookupByLibrary.simpleMessage("Kurdish"),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "lastName": MessageLookupByLibrary.simpleMessage("Last name"),
@@ -280,10 +316,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "max": MessageLookupByLibrary.simpleMessage("Max"),
     "meeting": MessageLookupByLibrary.simpleMessage("Meeting"),
     "meetings": MessageLookupByLibrary.simpleMessage("Meetings"),
-    "meetingsCount": m3,
+    "meetingsCount": m6,
     "member": MessageLookupByLibrary.simpleMessage("Member"),
     "members": MessageLookupByLibrary.simpleMessage("Members"),
-    "membersCount": m4,
+    "membersCount": m7,
     "middleName": MessageLookupByLibrary.simpleMessage("Middle Name"),
     "min": MessageLookupByLibrary.simpleMessage("Min"),
     "minutes": MessageLookupByLibrary.simpleMessage("Minutes"),
@@ -313,6 +349,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "New Check Your Email For\nConfirmation Link",
     ),
     "next": MessageLookupByLibrary.simpleMessage("Next"),
+    "noAgendaYet": MessageLookupByLibrary.simpleMessage(
+      "The agenda hasn\'t been added yet",
+    ),
+    "noAgendaYetDescription": MessageLookupByLibrary.simpleMessage(
+      "Items will appear here once added, and you can comment on each one.",
+    ),
     "noCommitteeDescription": MessageLookupByLibrary.simpleMessage(
       "No description is recorded for this committee.",
     ),
@@ -338,6 +380,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "noMeetingsThisDayHint": MessageLookupByLibrary.simpleMessage(
       "Days with meetings are marked with a purple dot.",
+    ),
+    "noVotesPending": MessageLookupByLibrary.simpleMessage(
+      "No votes awaiting you",
     ),
     "notYet": MessageLookupByLibrary.simpleMessage("Not Yet"),
     "notification": MessageLookupByLibrary.simpleMessage("Notifications"),
@@ -436,6 +481,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "see_all": MessageLookupByLibrary.simpleMessage("See All"),
     "selectFromMap": MessageLookupByLibrary.simpleMessage("From Map"),
     "selectGovernor": MessageLookupByLibrary.simpleMessage("Select Governor"),
+    "sendSuggestion": MessageLookupByLibrary.simpleMessage("Send suggestion"),
     "setReview": MessageLookupByLibrary.simpleMessage(
       "Please Send Your Rating For The Product",
     ),
@@ -446,6 +492,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "showLess": MessageLookupByLibrary.simpleMessage("Show less"),
     "showMore": MessageLookupByLibrary.simpleMessage("Show more"),
     "showPassword": MessageLookupByLibrary.simpleMessage("Show"),
+    "showSubItems": m8,
     "signInToContinue": MessageLookupByLibrary.simpleMessage(
       "يجب عليك إضافة بياناتك الخاصة لتسهيل التواصل معك",
     ),
@@ -478,17 +525,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "subTitleSupport": MessageLookupByLibrary.simpleMessage("Our support "),
     "subtotal": MessageLookupByLibrary.simpleMessage("Subtotal"),
     "successfully": MessageLookupByLibrary.simpleMessage("Successfully."),
+    "suggested": MessageLookupByLibrary.simpleMessage("Suggested"),
+    "suggestedFor": MessageLookupByLibrary.simpleMessage("Suggested guest for"),
     "suggestedGuest": MessageLookupByLibrary.simpleMessage("Suggested Guest"),
     "suggestedGuests": MessageLookupByLibrary.simpleMessage("Suggested Guests"),
     "suggestingGuest": MessageLookupByLibrary.simpleMessage("Suggesting Guest"),
     "summaries": MessageLookupByLibrary.simpleMessage("Summaries"),
     "support": MessageLookupByLibrary.simpleMessage("Support"),
     "tasks": MessageLookupByLibrary.simpleMessage("tasks"),
-    "tasksCount": m5,
+    "tasksCount": m9,
     "teachingStaff": MessageLookupByLibrary.simpleMessage("Teaching staff"),
     "termsAndConditions": MessageLookupByLibrary.simpleMessage(
       "Terms And Conditions",
     ),
+    "toLabel": MessageLookupByLibrary.simpleMessage("To"),
     "today": MessageLookupByLibrary.simpleMessage("Today"),
     "trackingOrder": MessageLookupByLibrary.simpleMessage("Tracking Order"),
     "unFollow": MessageLookupByLibrary.simpleMessage("Un Follow"),
@@ -504,13 +554,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "vote": MessageLookupByLibrary.simpleMessage("Vote"),
     "voters": MessageLookupByLibrary.simpleMessage("Voters"),
     "votes": MessageLookupByLibrary.simpleMessage("Votes"),
+    "votesPending": m10,
     "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back!"),
     "wishList": MessageLookupByLibrary.simpleMessage("WishList"),
     "wishlist": MessageLookupByLibrary.simpleMessage("Wishlist"),
+    "writeYourComment": MessageLookupByLibrary.simpleMessage(
+      "Write your comment here…",
+    ),
     "wrongEmail": MessageLookupByLibrary.simpleMessage("Invalid email"),
     "wrongPhone": MessageLookupByLibrary.simpleMessage("Invalid phone number"),
     "you": MessageLookupByLibrary.simpleMessage("You"),
     "yourAddress": MessageLookupByLibrary.simpleMessage("Your Address"),
+    "yourComment": MessageLookupByLibrary.simpleMessage("Your comment"),
     "yourConnectionHasBeenSuspendedByTheAdminButYou":
         MessageLookupByLibrary.simpleMessage(
           "Your connection has been suspended by the admin, but you are still connected. Please wait until you are allowed to resume.",

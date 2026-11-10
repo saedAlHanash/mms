@@ -1,20 +1,14 @@
-import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:image_multi_type/image_multi_type.dart';
 import 'package:mms/core/extensions/extensions.dart';
-import 'package:mms/core/util/snack_bar_message.dart';
-import 'package:mms/core/widgets/my_button.dart';
+import 'package:mms/features/agendas/bloc/add_comment_cubit/add_comment_cubit.dart';
+import 'package:mms/features/agendas/ui/widget/comment_sheet.dart';
 import 'package:mms/features/meetings/bloc/meeting_cubit/meeting_cubit.dart';
+import 'package:mms/features/meetings/data/response/meetings_response.dart';
+import 'package:mms/generated/l10n.dart';
 
-import '../../../../core/strings/app_color_manager.dart';
-import '../../../../core/util/my_style.dart';
-import '../../../../core/widgets/my_text_form_widget.dart';
-import '../../../../generated/assets.dart';
-import '../../../agendas/bloc/add_comment_cubit/add_comment_cubit.dart';
-import '../../data/response/meetings_response.dart';
-
+/// "Add comment" button for a discussion. Hidden when I already commented.
 class CommentDiscussionBtn extends StatefulWidget {
   const CommentDiscussionBtn({super.key, required this.discussion});
 
@@ -47,57 +41,17 @@ class _CommentDiscussionBtnState extends State<CommentDiscussionBtn> {
           ? BlocBuilder<AddCommentCubit, AddCommentInitial>(
               buildWhen: (p, c) => c.request.discussionId == widget.discussion.id,
               builder: (context, state) {
-                if (state.statuses.loading) {
-                  return SizedBox(
-                    height: 24.0.r,
-                    width: 24.0.r,
-                    child: MyStyle.loadingWidget(),
-                  );
-                }
-                return InkWell(
+                return AddCommentButton(
+                  loading: state.statuses.loading && state.request.discussionId == widget.discussion.id,
                   onTap: () {
                     cubit.setDiscussionId = widget.discussion.id;
-                    NoteMessage.showBlurDialog(
+                    CommentSheet.show(
                       context,
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0).r,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const DrawableText(text: 'Add Comment to this discussion'),
-                            10.0.verticalSpace,
-                            MyTextFormOutLineWidget(
-                              label: 'add Comment',
-                              onChanged: (p0) {
-                                cubit.setText = p0;
-                              },
-                            ),
-                            MyButton(
-                              onTap: () {
-                                cubit.addComment();
-                                Navigator.pop(context);
-                              },
-                              width: 0.3.sw,
-                              text: 'Add',
-                            ),
-                          ],
-                        ),
-                      ),
+                      cubit: cubit,
+                      contextLabel: S.of(context).discussion,
+                      title: widget.discussion.topic,
                     );
                   },
-                  child: Container(
-                    height: 40.0.r,
-                    width: 40.0.r,
-                    padding: const EdgeInsets.all(10.0).r,
-                    decoration: BoxDecoration(
-                      color: AppColorManager.mainColor,
-                      borderRadius: BorderRadius.circular(12.0.r),
-                    ),
-                    child: const ImageMultiType(
-                      url: Assets.iconsComment,
-                    ),
-                  ),
                 );
               },
             )

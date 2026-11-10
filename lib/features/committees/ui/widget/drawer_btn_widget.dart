@@ -3,9 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 import 'package:mms/core/app/app_provider.dart';
 import 'package:mms/core/util/my_style.dart';
+import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
 import 'package:mms/generated/assets.dart';
+import 'package:mms/generated/l10n.dart';
 
-import '../../../../core/strings/app_color_manager.dart';
 
 class DrawerMemberBtnWidget extends StatefulWidget {
   const DrawerMemberBtnWidget({super.key});
@@ -42,21 +43,11 @@ class ActionBarMemberWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Scaffold.of(context).openEndDrawer();
-      },
-      child: Container(
-        padding: const EdgeInsets.all(12.0).r,
-        margin: const EdgeInsets.symmetric(horizontal: 20.0).r,
-        decoration: const BoxDecoration(
-          shape: BoxShape.circle,
-          color: AppColorManager.mainColor,
-        ),
-        child: const ImageMultiType(
-          url: Assets.iconsMembers,
-        ),
-      ),
+    // 44×44 square, `primary50` / `primary500` (AppBar action style).
+    return AppBarActionButton(
+      icon: Assets.iconsMembers,
+      tooltip: S.of(context).attendeesAndGuests,
+      onTap: () => Scaffold.of(context).openEndDrawer(),
     );
   }
 }
