@@ -49,6 +49,11 @@ class MyStyle {
   static const elevation2 = [
     BoxShadow(color: Color(0x1F1D1922), blurRadius: 24, offset: Offset(0, 8)),
   ];
+
+  /// Upward shadow for bottom-anchored panels.
+  static const elevationTop = [
+    BoxShadow(color: Color(0x2E1D1922), blurRadius: 24, offset: Offset(0, -8)),
+  ];
   //endregion
 
   //region text styles (font size / line height / weight)

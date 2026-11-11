@@ -1,5 +1,7 @@
+import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 import 'package:livekit_client/livekit_client.dart';
@@ -144,8 +146,15 @@ onlineMeetingUrl: ${result.onlineMeetingUrl}
                           constraints: BoxConstraints(minHeight: 0.2.sh, maxHeight: 0.4.sh, minWidth: 1.0.sw),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: .stretch,
                             children: [
                               if (state.result.connectionState.isDisconnected) ...[
+                                DrawableText(
+                                  text: S.of(context).joinOnlineHint,
+                                  size: 14.0.sp,
+                                  color: AppColorManager.neutral700,
+                                  matchParent: true,
+                                ),
                                 // MyTextFormOutLineWidget(
                                 //   label: 'Token',
                                 //   controller: controller,
@@ -156,17 +165,25 @@ onlineMeetingUrl: ${result.onlineMeetingUrl}
                                 //     icon: ImageMultiType(url: Icons.generating_tokens),
                                 //   ),
                                 // ),
-                                10.0.verticalSpace,
+                                12.0.verticalSpace,
                                 MyButton(
+                                  width: double.infinity,
                                   onTap: () async {
                                     _connect(mState.result);
                                   },
                                   loading: state.loading,
+                                  startIcon: ImageMultiType(
+                                    url: Icons.videocam_outlined,
+                                    width: 20.0.r,
+                                    height: 20.0.r,
+                                    color: AppColorManager.neutral0,
+                                  ),
                                   text: S.of(context).connect,
                                 ),
                               ] else
                                 Expanded(child: VideoCallWidget()),
-                              if (state.result.localParticipant != null && state.result.connectionState.isConnected)
+                              if (state.result.localParticipant != null && state.result.connectionState.isConnected) ...[
+                                12.0.verticalSpace,
                                 ControlsWidget(
                                   state.result,
                                   state.result.localParticipant!,
@@ -174,6 +191,7 @@ onlineMeetingUrl: ${result.onlineMeetingUrl}
                                     showFullScreenDialog();
                                   },
                                 ),
+                              ],
                             ],
                           ),
                         ),

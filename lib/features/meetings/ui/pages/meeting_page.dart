@@ -172,40 +172,184 @@ class _VideoCall extends StatefulWidget {
 class _VideoCallState extends State<_VideoCall> {
   bool isOpen = false;
 
+  /// Status pill of the online panel, derived from the room state only.
+  (String, Color, Color) _status(BuildContext context, RoomInitial room) {
+    final local = room.result.localParticipant;
+    if (!room.result.connectionState.isConnected || local == null) {
+      return (S.of(context).notConnected, PollStatus.closed.colors.bg, AppColorManager.neutral700);
+    }
+    if (local.permissions.isSuspend) {
+      return (S.of(context).suspended, AppColorManager.warningSoft, AppColorManager.warningText);
+    }
+    if (!local.permissions.canPublish) {
+      return (S.of(context).listenOnly, AppColorManager.warningSoft, AppColorManager.warningText);
+    }
+    return (S.of(context).connected, AppColorManager.successSoft, AppColorManager.successText);
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MeetingCubit, MeetingInitial>(
       builder: (context, state) {
-        return Container(
-          color: Colors.white,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              InkWell(
-                onTap: () {
-                  setState(() {
-                    isOpen = !isOpen;
-                  });
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(12.0)).r,
-                    color: AppColorManager.cardColor,
-                  ),
-                  child: DrawableText(
-                    padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 3.0).r,
-                    text: 'Online Meeting',
-                    matchParent: true,
-                    drawableEnd: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Icon(isOpen ? Icons.keyboard_arrow_down : Icons.keyboard_arrow_up),
-                    ),
+        final from = state.result.fromDate;
+
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (!isOpen)
+              // Collapsed: dark "meeting is live" bar.
+              Container(
+                padding: EdgeInsets.fromLTRB(20.0.w, 14.0.h, 20.0.w, 20.0.h),
+                decoration: BoxDecoration(
+                  color: AppColorManager.primary900,
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(20.0.r)),
+                  boxShadow: MyStyle.elevationTop,
+                ),
+                child: SafeArea(
+                  top: false,
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 44.0.r,
+                        height: 44.0.r,
+                        alignment: .center,
+                        decoration: BoxDecoration(
+                          color: AppColorManager.primary800,
+                          borderRadius: BorderRadius.circular(12.0.r),
+                        ),
+                        child: Container(
+                          width: 10.0.r,
+                          height: 10.0.r,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: MeetingStatus.running.colors.dot,
+                            boxShadow: [
+                              BoxShadow(
+                                color: MeetingStatus.running.colors.dot.withValues(alpha: 0.3),
+                                spreadRadius: 4.0.r,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      12.0.horizontalSpace,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: .start,
+                          mainAxisSize: .min,
+                          children: [
+                            DrawableText(
+                              text: S.of(context).meetingRunningNow,
+                              size: 15.0.sp,
+                              fontWeight: .w700,
+                              color: AppColorManager.neutral0,
+                            ),
+                            if (from != null)
+                              Row(
+                                children: [
+                                  DrawableText(
+                                    text: S.of(context).startedAt,
+                                    size: 12.0.sp,
+                                    color: AppColorManager.primary200,
+                                  ),
+                                  4.0.horizontalSpace,
+                                  Directionality(
+                                    textDirection: .ltr,
+                                    child: DrawableText(
+                                      text: from.formatTime,
+                                      size: 12.0.sp,
+                                      color: AppColorManager.primary200,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                          ],
+                        ),
+                      ),
+                      Material(
+                        color: AppColorManager.neutral0,
+                        borderRadius: BorderRadius.circular(8.0.r),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(8.0.r),
+                          onTap: () => setState(() => isOpen = true),
+                          child: Container(
+                            height: 44.0.r,
+                            padding: EdgeInsets.symmetric(horizontal: 18.0.w),
+                            alignment: .center,
+                            child: DrawableText(
+                              text: S.of(context).join,
+                              size: 15.0.sp,
+                              fontWeight: .w700,
+                              color: AppColorManager.primary700,
+                              drawablePadding: 8.0.w,
+                              drawableStart: ImageMultiType(
+                                url: Icons.videocam_outlined,
+                                width: 18.0.r,
+                                height: 18.0.r,
+                                color: AppColorManager.primary700,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
+              )
+            else
+              // Open: header with status pill and collapse button.
+              Container(
+                padding: EdgeInsets.fromLTRB(20.0.w, 8.0.h, 20.0.w, 0),
+                decoration: BoxDecoration(
+                  color: AppColorManager.neutral0,
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(20.0.r)),
+                  boxShadow: MyStyle.elevationTop,
+                ),
+                child: BlocBuilder<RoomCubit, RoomInitial>(
+                  builder: (context, room) {
+                    final (label, bg, fg) = _status(context, room);
+                    return Row(
+                      children: [
+                        Expanded(
+                          child: DrawableText(
+                            text: S.of(context).onlineMeeting,
+                            size: 16.0.sp,
+                            fontWeight: .w700,
+                            color: AppColorManager.neutral900,
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+                          decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(999)),
+                          child: DrawableText(text: label, size: 12.0.sp, fontWeight: .w600, color: fg),
+                        ),
+                        IconButton(
+                          tooltip: S.of(context).collapse,
+                          constraints: BoxConstraints(minWidth: 44.0.r, minHeight: 44.0.r),
+                          onPressed: () => setState(() => isOpen = false),
+                          icon: ImageMultiType(
+                            url: Icons.keyboard_arrow_down_rounded,
+                            width: 24.0.r,
+                            height: 24.0.r,
+                            color: AppColorManager.neutral700,
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                ),
               ),
-              LiveKitPage(isOpen: isOpen, link: state.result.onlineMeetingUrl, token: state.result.onlineMeetingToken),
-            ],
-          ),
+            // The LiveKit panel stays mounted (same as before) and shows itself when open.
+            Container(
+              color: AppColorManager.neutral0,
+              padding: isOpen ? EdgeInsets.fromLTRB(20.0.w, 4.0.h, 20.0.w, 20.0.h) : EdgeInsets.zero,
+              child: LiveKitPage(
+                isOpen: isOpen,
+                link: state.result.onlineMeetingUrl,
+                token: state.result.onlineMeetingToken,
+              ),
+            ),
+          ],
         );
       },
     );

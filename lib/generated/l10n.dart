@@ -2852,6 +2852,191 @@ class S {
       args: [],
     );
   }
+
+  /// `Online meeting`
+  String get onlineMeeting {
+    return Intl.message(
+      'Online meeting',
+      name: 'onlineMeeting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The meeting is live now`
+  String get meetingRunningNow {
+    return Intl.message(
+      'The meeting is live now',
+      name: 'meetingRunningNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Join`
+  String get join {
+    return Intl.message('Join', name: 'join', desc: '', args: []);
+  }
+
+  /// `Connected`
+  String get connected {
+    return Intl.message('Connected', name: 'connected', desc: '', args: []);
+  }
+
+  /// `Not connected`
+  String get notConnected {
+    return Intl.message(
+      'Not connected',
+      name: 'notConnected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Listen only`
+  String get listenOnly {
+    return Intl.message('Listen only', name: 'listenOnly', desc: '', args: []);
+  }
+
+  /// `Suspended`
+  String get suspended {
+    return Intl.message('Suspended', name: 'suspended', desc: '', args: []);
+  }
+
+  /// `Request to speak`
+  String get requestToSpeak {
+    return Intl.message(
+      'Request to speak',
+      name: 'requestToSpeak',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request sent to the host`
+  String get requestSent {
+    return Intl.message(
+      'Request sent to the host',
+      name: 'requestSent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `End call`
+  String get endCall {
+    return Intl.message('End call', name: 'endCall', desc: '', args: []);
+  }
+
+  /// `End the call?`
+  String get endCallConfirm {
+    return Intl.message(
+      'End the call?',
+      name: 'endCallConfirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You will leave the online meeting and stay on the meeting page.`
+  String get endCallConfirmDescription {
+    return Intl.message(
+      'You will leave the online meeting and stay on the meeting page.',
+      name: 'endCallConfirmDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Started at`
+  String get startedAt {
+    return Intl.message('Started at', name: 'startedAt', desc: '', args: []);
+  }
+
+  /// `Join with audio and video here while the meeting page stays in front of you.`
+  String get joinOnlineHint {
+    return Intl.message(
+      'Join with audio and video here while the meeting page stays in front of you.',
+      name: 'joinOnlineHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your connection is paused`
+  String get connectionSuspendedTitle {
+    return Intl.message(
+      'Your connection is paused',
+      name: 'connectionSuspendedTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Collapse`
+  String get collapse {
+    return Intl.message('Collapse', name: 'collapse', desc: '', args: []);
+  }
+
+  /// `Mute microphone`
+  String get muteMic {
+    return Intl.message('Mute microphone', name: 'muteMic', desc: '', args: []);
+  }
+
+  /// `Unmute microphone`
+  String get unmuteMic {
+    return Intl.message(
+      'Unmute microphone',
+      name: 'unmuteMic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Turn camera on`
+  String get cameraOn {
+    return Intl.message('Turn camera on', name: 'cameraOn', desc: '', args: []);
+  }
+
+  /// `Turn camera off`
+  String get cameraOff {
+    return Intl.message(
+      'Turn camera off',
+      name: 'cameraOff',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share screen`
+  String get shareScreen {
+    return Intl.message(
+      'Share screen',
+      name: 'shareScreen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Stop sharing`
+  String get stopShare {
+    return Intl.message('Stop sharing', name: 'stopShare', desc: '', args: []);
+  }
+
+  /// `Full screen`
+  String get fullscreen {
+    return Intl.message('Full screen', name: 'fullscreen', desc: '', args: []);
+  }
+
+  /// `Quick message to the host`
+  String get quickMessage {
+    return Intl.message(
+      'Quick message to the host',
+      name: 'quickMessage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

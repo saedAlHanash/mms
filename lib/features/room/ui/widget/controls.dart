@@ -11,13 +11,15 @@ import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 import 'package:livekit_client/livekit_client.dart' as client;
 import 'package:livekit_client/livekit_client.dart';
+import 'package:drawable_text/drawable_text.dart';
+import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/core/util/snack_bar_message.dart';
+import 'package:mms/generated/l10n.dart';
 import 'package:mms/core/util/exts.dart';
-import 'package:mms/core/widgets/my_button.dart';
 import 'package:mms/features/room/bloc/room_cubit/room_cubit.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../../../core/util/my_style.dart';
 import '../../../../core/widgets/menu_widget.dart';
 import '../../../../main.dart';
 import '../../data/request/setting_message.dart';
@@ -162,120 +164,222 @@ class _ControlsWidgetState extends State<ControlsWidget> {
   }
 
   void _onTapDisconnect() async {
-    final result = await context.showDisconnectDialog();
-    if (result == true) await widget.room.disconnect();
+    // Same outcome as before: disconnect only after confirmation.
+    await NoteMessage.showCheckDialog(
+      context,
+      text: S.of(context).endCallConfirm,
+      description: S.of(context).endCallConfirmDescription,
+      textButton: S.of(context).endCall,
+      image: Icons.call_end_rounded,
+      destructive: true,
+      onConfirm: () => widget.room.disconnect(),
+    );
+  }
+
+  /// Requested to speak in this session (display only).
+  bool _requestSent = false;
+
+  /// 44x44 control: white when on, `dangerSoft` when off, `danger` for end.
+  Widget _control({
+    required IconData icon,
+    required String tooltip,
+    required VoidCallback onPressed,
+    Color background = AppColorManager.neutral0,
+    Color foreground = AppColorManager.neutral900,
+  }) {
+    return Tooltip(
+      message: tooltip,
+      child: Material(
+        color: background,
+        borderRadius: BorderRadius.circular(10.0.r),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(10.0.r),
+          onTap: onPressed,
+          child: SizedBox(
+            width: 44.0.r,
+            height: 44.0.r,
+            child: Center(
+              child: ImageMultiType(url: icon, width: 20.0.r, height: 20.0.r, color: foreground),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _offControl({required IconData icon, required String tooltip, required VoidCallback onPressed}) {
+    return _control(
+      icon: icon,
+      tooltip: tooltip,
+      onPressed: onPressed,
+      background: AppColorManager.dangerSoft,
+      foreground: AppColorManager.dangerText,
+    );
+  }
+
+  Widget _wideButton({
+    required String text,
+    required Color background,
+    required Color foreground,
+    required VoidCallback onPressed,
+    Widget? icon,
+  }) {
+    return Material(
+      color: background,
+      borderRadius: BorderRadius.circular(10.0.r),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(10.0.r),
+        onTap: onPressed,
+        child: SizedBox(
+          height: 44.0.r,
+          child: Center(
+            child: DrawableText(
+              text: text,
+              size: 15.0.sp,
+              fontWeight: .w700,
+              color: foreground,
+              maxLines: 1,
+              drawablePadding: 8.0.w,
+              drawableStart: icon,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RoomCubit, RoomInitial>(
       builder: (context, state) {
-        return Container(
-          padding: const EdgeInsets.symmetric(
-            vertical: 5,
-            horizontal: 15,
+        final children = <Widget>[];
+
+        final messages = Container(
+          width: 44.0.r,
+          height: 44.0.r,
+          decoration: BoxDecoration(
+            color: AppColorManager.neutral0,
+            borderRadius: BorderRadius.circular(10.0.r),
           ),
-          decoration: BoxDecoration(color: Colors.black12, borderRadius: BorderRadius.circular(12.0)),
-          child: Center(
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (!state.isSuspend)
-                  DynamicPopupMenu(
-                    items: NotesMessages.values.map(
-                      (e) {
-                        return PopupMenuItemModel(
-                          icon: e.icon,
-                          label: e.name,
-                          onTap: () {
-                            context.read<RoomCubit>().sendMessage(e.name);
-                          },
-                        );
-                      },
-                    ).toList(),
-                  ),
-                if (!state.isSuspend)
-                  IconButton(
-                    onPressed: () => _onFullScreen(),
-                    icon: const Icon(Icons.fullscreen),
-                    tooltip: 'enter full screen',
-                  ),
-                IconButton(
-                  onPressed: _onTapDisconnect,
-                  icon: const Icon(
-                    Icons.call_end,
-                    color: Colors.red,
-                  ),
-                  tooltip: 'disconnect',
-                ),
-                if (!state.isSuspend)
-                  if (!participant.permissions.canPublish) ...[
-                    MyButton(
-                      width: 0.5.sw,
-                      onTap: () async {
-                        context.read<RoomCubit>().raiseHand();
-                      },
-                      startIcon:
-                          state.loadingPermissions ? MyStyle.loadingWidget(size: 25.0, color: Colors.white) : null,
-                      endIcon: ImageMultiType(
-                        url: Icons.back_hand_outlined,
-                        color: Colors.white,
-                      ),
-                      text: 'Request to speak',
-                    ),
-                  ] else ...[
-                    if (participant.isMicrophoneEnabled())
-                      IconButton(
-                        onPressed: _disableAudio,
-                        icon: const Icon(
-                          Icons.mic,
-                          color: Colors.green,
-                        ),
-                        tooltip: 'mute audio',
-                      )
-                    else
-                      IconButton(
-                        onPressed: _enableAudio,
-                        icon: const Icon(
-                          Icons.mic_off,
-                          color: Colors.red,
-                        ),
-                        tooltip: 'un-mute audio',
-                      ),
-                    if (participant.isCameraEnabled())
-                      IconButton(
-                        onPressed: _disableVideo,
-                        icon: const Icon(
-                          Icons.videocam,
-                          color: Colors.green,
-                        ),
-                        tooltip: 'mute video',
-                      )
-                    else
-                      IconButton(
-                        onPressed: _enableVideo,
-                        icon: const Icon(
-                          Icons.videocam_off,
-                          color: Colors.red,
-                        ),
-                        tooltip: 'un-mute video',
-                      ),
-                    if (participant.isScreenShareEnabled())
-                      IconButton(
-                        icon: const Icon(Icons.screen_share_sharp, color: Colors.green),
-                        onPressed: () => _disableScreenShare(),
-                        tooltip: 'unshare screen (experimental)',
-                      )
-                    else
-                      IconButton(
-                        icon: const Icon(Icons.stop_screen_share_sharp),
-                        color: Colors.red,
-                        onPressed: () => _enableScreenShare(),
-                        tooltip: 'share screen (experimental)',
-                      ),
-                  ],
-              ],
+          child: Tooltip(
+            message: S.of(context).quickMessage,
+            child: DynamicPopupMenu(
+              icon: Icons.chat_bubble_outline_rounded,
+              items: NotesMessages.values.map(
+                (e) {
+                  return PopupMenuItemModel(
+                    icon: e.icon,
+                    label: e.name,
+                    onTap: () {
+                      context.read<RoomCubit>().sendMessage(e.name);
+                    },
+                  );
+                },
+              ).toList(),
             ),
+          ),
+        );
+
+        final fullscreen = _control(
+          icon: Icons.fullscreen_rounded,
+          tooltip: S.of(context).fullscreen,
+          onPressed: _onFullScreen,
+        );
+
+        final end = _control(
+          icon: Icons.call_end_rounded,
+          tooltip: S.of(context).endCall,
+          onPressed: _onTapDisconnect,
+          background: AppColorManager.danger,
+          foreground: AppColorManager.neutral0,
+        );
+
+        if (state.isSuspend) {
+          // Suspended: only one wide "End call" button.
+          children.add(
+            Expanded(
+              child: _wideButton(
+                text: S.of(context).endCall,
+                background: AppColorManager.danger,
+                foreground: AppColorManager.neutral0,
+                onPressed: _onTapDisconnect,
+              ),
+            ),
+          );
+        } else if (!participant.permissions.canPublish) {
+          // Listen only: messages, fullscreen, request to speak, end.
+          children.addAll([
+            messages,
+            fullscreen,
+            Expanded(
+              child: _wideButton(
+                text: _requestSent ? S.of(context).requestSent : S.of(context).requestToSpeak,
+                background: _requestSent ? AppColorManager.primary100 : AppColorManager.primary500,
+                foreground: _requestSent ? AppColorManager.primary700 : AppColorManager.neutral0,
+                icon: state.loadingPermissions
+                    ? SizedBox(
+                        width: 18.0.r,
+                        height: 18.0.r,
+                        child: const CircularProgressIndicator(strokeWidth: 2, color: AppColorManager.neutral0),
+                      )
+                    : ImageMultiType(
+                        url: Icons.back_hand_outlined,
+                        width: 18.0.r,
+                        height: 18.0.r,
+                        color: _requestSent ? AppColorManager.primary700 : AppColorManager.neutral0,
+                      ),
+                onPressed: () async {
+                  context.read<RoomCubit>().raiseHand();
+                  setState(() => _requestSent = true);
+                },
+              ),
+            ),
+            end,
+          ]);
+        } else {
+          // Can publish: mic, camera, screen share, messages, fullscreen, end.
+          children.addAll([
+            if (participant.isMicrophoneEnabled())
+              _control(icon: Icons.mic_none_rounded, tooltip: S.of(context).muteMic, onPressed: _disableAudio)
+            else
+              _offControl(icon: Icons.mic_off_rounded, tooltip: S.of(context).unmuteMic, onPressed: _enableAudio),
+            if (participant.isCameraEnabled())
+              _control(icon: Icons.videocam_outlined, tooltip: S.of(context).cameraOff, onPressed: _disableVideo)
+            else
+              _offControl(icon: Icons.videocam_off_outlined, tooltip: S.of(context).cameraOn, onPressed: _enableVideo),
+            if (participant.isScreenShareEnabled())
+              _control(
+                icon: Icons.screen_share_outlined,
+                tooltip: S.of(context).stopShare,
+                onPressed: () => _disableScreenShare(),
+              )
+            else
+              _offControl(
+                icon: Icons.stop_screen_share_outlined,
+                tooltip: S.of(context).shareScreen,
+                onPressed: () => _enableScreenShare(),
+              ),
+            messages,
+            fullscreen,
+            end,
+          ]);
+        }
+
+        final spaced = <Widget>[];
+        for (var i = 0; i < children.length; i++) {
+          if (i > 0) spaced.add(8.0.horizontalSpace);
+          spaced.add(children[i]);
+        }
+
+        return Container(
+          padding: EdgeInsets.all(6.0.r),
+          decoration: BoxDecoration(
+            color: AppColorManager.neutral50,
+            borderRadius: BorderRadius.circular(12.0.r),
+          ),
+          child: Row(
+            mainAxisAlignment: .center,
+            children: spaced,
           ),
         );
       },

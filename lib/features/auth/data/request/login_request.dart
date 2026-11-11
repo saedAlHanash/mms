@@ -1,6 +1,6 @@
 class LoginRequest {
   // String? userName = 'maissam@gmail.com';
-  String? userName = 'abd-member@gmail.com';
+  String? userName = 'member1@gmail.com';
   // String? userName = 'party1@gmail.com';
   // String? userName = 'mms@coretech.com';"email": "maissam@gmail.com",
   //     "password": "P@ssw0rd2026",
@@ -8,7 +8,7 @@ class LoginRequest {
   String? programKey;
 
   LoginRequest({
-    this.userName = 'abd-member@gmail.com',
+    this.userName = 'member1@gmail.com',
     // this.userName = 'party1@gmail.com',
     // this.userName = 'mms@coretech.com',
     this.password = 'P@ssw0rd2026',
