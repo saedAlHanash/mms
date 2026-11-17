@@ -10,11 +10,11 @@ import 'package:mms/services/app_info_service.dart';
 import 'package:mms/services/firebase_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'core/api_manager/api_service.dart';
-import 'core/app/app_widget.dart';
-import 'core/app/bloc/loading_cubit.dart';
-import 'core/injection/injection_container.dart' as di;
-import 'core/util/shared_preferences.dart';
+import 'package:mms/core/api_manager/api_service.dart';
+import 'package:mms/core/app/app_widget.dart';
+import 'package:mms/core/app/bloc/loading_cubit.dart';
+import 'package:mms/core/injection/injection_container.dart' as di;
+import 'package:mms/core/util/shared_preferences.dart';
 
 final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 

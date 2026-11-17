@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import '../../../../core/strings/enum_manager.dart';
+import 'package:mms/core/strings/enum_manager.dart';
 
 class SettingMessage {
   SettingMessage({

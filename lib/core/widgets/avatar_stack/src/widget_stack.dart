@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'positions/positions.dart';
+import 'package:mms/core/widgets/avatar_stack/src/positions/positions.dart';
 
 typedef InfoWidgetBuilder = Widget Function(int surplus);
 

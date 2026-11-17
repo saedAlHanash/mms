@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:livekit_client/livekit_client.dart';
 
-import '../../generated/l10n.dart';
-import 'app_color_manager.dart';
+import 'package:mms/generated/l10n.dart';
+import 'package:mms/core/strings/app_color_manager.dart';
 
 // enum CubitStatuses { init, loading, done, error }
 
@@ -133,13 +133,30 @@ enum MembershipType {
   bool get isMember => this != chair && this != secretary;
 }
 
-enum DiscussionStatus { open, closed }
+/// Same order as the backend (`0` Pending, `1` Open, `2` Closed).
+enum DiscussionStatus { pending, open, closed }
 
 extension DiscussionStatusColors on DiscussionStatus {
   StatusColors get colors => switch (this) {
+        DiscussionStatus.pending => MeetingStatus.planned.colors,
         DiscussionStatus.open => MeetingStatus.running.colors,
         DiscussionStatus.closed => MeetingStatus.archived.colors,
       };
+}
+
+/// Meeting hub events (`SocketEvents` on the backend, sent as their index).
+enum SocketEvents {
+  agendaItemStatusUpdated,
+  pollStatusUpdated,
+  pollPublished,
+  decisionPublished,
+  discussionStatusUpdated;
+
+  /// Unknown numbers return null so newer backend events are ignored.
+  static SocketEvents? fromIndex(int? index) {
+    if (index == null || index < 0 || index >= values.length) return null;
+    return values[index];
+  }
 }
 
 enum ApiType {
@@ -274,6 +291,13 @@ enum NotesMessages {
       NotesMessages.needHelp => Icons.help_outline,
     };
   }
+
+  /// Localized label shown in the quick-message menu.
+  String get label => switch (this) {
+        NotesMessages.cannotHear => S().noteCannotHear,
+        NotesMessages.cannotSee => S().noteCannotSee,
+        NotesMessages.needHelp => S().noteNeedHelp,
+      };
 
   String get message {
     switch (this) {

@@ -6,9 +6,9 @@ import 'package:image_multi_type/circle_image_widget.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 import 'package:mms/core/widgets/my_text_form_widget.dart';
 
-import '../../../../core/util/pick_image_helper.dart';
-import '../../generated/l10n.dart';
-import '../strings/app_color_manager.dart';
+import 'package:mms/core/util/pick_image_helper.dart';
+import 'package:mms/generated/l10n.dart';
+import 'package:mms/core/strings/app_color_manager.dart';
 
 class ItemImageCreate extends StatelessWidget {
   const ItemImageCreate({

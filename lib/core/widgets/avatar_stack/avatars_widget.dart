@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mms/core/widgets/avatar_stack/src/avatar_stack.dart';
 
-import '../../../generated/assets.dart';
+import 'package:mms/generated/assets.dart';
 
 class AvatarsWidget extends StatelessWidget {
   const AvatarsWidget({super.key, required this.avatars});

@@ -2,10 +2,11 @@ import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
-import '../../../../core/api_manager/api_service.dart';
-import '../../../../core/strings/enum_manager.dart';
-import '../../../../core/util/pair_class.dart';
-import '../../data/response/notification_response.dart';
+import 'package:mms/core/api_manager/api_service.dart';
+import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/core/util/pair_class.dart';
+import 'package:mms/core/util/shared_preferences.dart';
+import 'package:mms/features/notification/data/response/notification_response.dart';
 
 part 'notifications_state.dart';
 
@@ -42,9 +43,15 @@ class NotificationsCubit extends MCubit<NotificationsInitial> {
     }
   }
 
-//
-// Future<void> setCount() async {
-//   await AppSharedPreference.setNotificationsRead(state.result.length);
-//   emit(state.copyWith(numOfRead: state.result.length));
-// }
+  //region UI Methods
+
+  /// Marks every loaded notification as seen (clears the unread badge).
+  Future<void> markAllAsRead() async {
+    final ids = {...state.readIds, ...state.result.map((e) => e.id)};
+    if (ids.length == state.readIds.length) return;
+    emit(state.copyWith(readIds: ids));
+    await AppSharedPreference.cashReadNotifications(ids);
+  }
+
+  //endregion
 }

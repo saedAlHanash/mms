@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:mms/core/app/app_provider.dart';
 
-import '../../../members/data/response/member_response.dart';
+import 'package:mms/features/members/data/response/member_response.dart';
 
 class Agenda {
   Agenda({

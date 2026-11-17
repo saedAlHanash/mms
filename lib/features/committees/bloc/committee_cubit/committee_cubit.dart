@@ -4,10 +4,10 @@ import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/features/goals/data/response/goals_response.dart';
 
-import '../../../../core/api_manager/api_service.dart';
-import '../../../../core/strings/enum_manager.dart';
-import '../../../../core/util/pair_class.dart';
-import '../../data/response/committees_response.dart';
+import 'package:mms/core/api_manager/api_service.dart';
+import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/core/util/pair_class.dart';
+import 'package:mms/features/committees/data/response/committees_response.dart';
 
 part 'committee_state.dart';
 

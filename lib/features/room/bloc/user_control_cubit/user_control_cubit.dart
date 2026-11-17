@@ -2,11 +2,11 @@ import 'package:livekit_client/livekit_client.dart';
 import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
-import '../../../../core/api_manager/api_service.dart';
-import '../../../../core/api_manager/api_url.dart';
-import '../../../../core/strings/enum_manager.dart';
-import '../../data/request/change_track_request.dart';
-import '../../data/request/update_participant_request.dart';
+import 'package:mms/core/api_manager/api_service.dart';
+import 'package:mms/core/api_manager/api_url.dart';
+import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/features/room/data/request/change_track_request.dart';
+import 'package:mms/features/room/data/request/update_participant_request.dart';
 
 part 'user_control_state.dart';
 

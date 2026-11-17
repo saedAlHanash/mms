@@ -1,4 +1,4 @@
-import '../../../../core/app/app_provider.dart';
+import 'package:mms/core/app/app_provider.dart';
 
 class ResetPasswordRequest {
   ResetPasswordRequest({

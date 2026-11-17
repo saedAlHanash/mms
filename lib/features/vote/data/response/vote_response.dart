@@ -1,4 +1,4 @@
-import '../../../members/data/response/member_response.dart';
+import 'package:mms/features/members/data/response/member_response.dart';
 
 class Votes {
   Votes({

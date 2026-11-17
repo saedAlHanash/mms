@@ -45,31 +45,15 @@ class AppColorManager {
   static const ampere = Color(0xFFFFC107);
   static const grey = neutral500;
   static const lightGray = Color(0xFFFBFBFB);
-  static const lightGrayAb = Color(0xFFABABAB);
-  static const lightGrayEd = Color(0xFFEDEDED);
   static const offWhit = neutral200;
   static const whit = Color(0xFFFFFFFF);
   static const red = danger;
-  static const redPrice = Color(0xFF910202);
   static const cardColor = Color(0xFFEFEFEF);
-  static const blue = Color(0xFF0D479E);
-  static const c8f = Color(0xFF8F7752);
 
-  static const dividerColor = neutral100;
-  static const f1 = Color(0xFFf1f1f1);
   static const f9 = Color(0xFFf9f9f9);
   static const f8f9 = Color(0xFFF8F9FA);
-  static const f6 = Color(0xFFf6f6f6);
-  static const e4 = Color(0xFF4E5053);
-  static const ac = Color(0xFFACACAC);
-  static const ee = Color(0xFFEEEEEE);
-  static const d9 = neutral200;
 
-  static const fc = Color(0xFFFCFCFC);
-  static const c50 = Color(0xFF505050);
-  static const c6e = Color(0xFF6E6E6E);
 
-  static const f8 = Color(0xFFF8F8F8);
   //endregion
 
   static Color getColor(int i) {

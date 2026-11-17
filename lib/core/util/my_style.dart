@@ -2,16 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 
-import '../app/app_provider.dart';
-import '../strings/app_color_manager.dart';
+import 'package:mms/core/app/app_provider.dart';
+import 'package:mms/core/strings/app_color_manager.dart';
 
 class MyStyle {
-  //region number style
-
-  static final double cardRadios = 0.0.r;
-
-  //endregion
-
 //region margin/padding
   static final cardPadding = EdgeInsets.symmetric(horizontal: 18.w, vertical: 15.h);
 
@@ -76,63 +70,9 @@ class MyStyle {
 
   //endregion
 
-  static const underLineStyle = TextStyle(fontStyle: FontStyle.italic, decoration: TextDecoration.underline);
-
-  static var drawerShape = ShapeDecoration(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
-      color: AppColorManager.mainColor.withValues(alpha: 0.9));
-
-  static var normalShadow = [
-    BoxShadow(color: AppColorManager.grey.withValues(alpha: 0.6), blurRadius: 15, offset: const Offset(0, 5))
-  ];
-
-  static var lightShadow = [
-    BoxShadow(color: AppColorManager.grey.withValues(alpha: 0.5), blurRadius: 5, offset: const Offset(0, 2))
-  ];
-
-  static var allShadow = [
-    BoxShadow(
-      color: AppColorManager.grey.withValues(alpha: 0.5),
-      blurRadius: 10,
-    )
-  ];
-  static var allShadowDark = [
-    BoxShadow(
-      color: AppColorManager.grey.withValues(alpha: 0.6),
-      blurRadius: 10.spMin,
-    )
-  ];
-
-  static final formBorder = OutlineInputBorder(
-      borderSide: BorderSide(
-        color: AppColorManager.offWhit.withValues(alpha: 0.27),
-      ),
-      borderRadius: BorderRadius.circular(10.0.r));
-
-  static final hintStyle = TextStyle(
-    fontSize: 18.0.spMin,
-    color: AppColorManager.grey.withValues(alpha: 0.6),
-  );
-  static final textFormTextStyle = TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 18.0.spMin,
-    color: Colors.black87,
-  );
-
   static var roundBox = BoxDecoration(
     color: AppColorManager.cardColor,
     borderRadius: BorderRadius.circular(8.0.r),
-  );
-
-  static var roundBoxGray = BoxDecoration(
-    color: AppColorManager.offWhit,
-    borderRadius: BorderRadius.circular(6.0.r),
-  );
-
-  static var roundBox12 = BoxDecoration(
-    color: AppColorManager.whit,
-    borderRadius: BorderRadius.circular(12.0.r),
-    boxShadow: MyStyle.allShadowDark,
   );
 
   static BoxDecoration get directionalDecoration => BoxDecoration(
@@ -156,26 +96,7 @@ class MyStyle {
     return size == null ? p : SizedBox(width: size, height: size, child: p);
   }
 
-  static var outlineBorder = BoxDecoration(
-    border: Border.all(color: Colors.green),
-    borderRadius: BorderRadius.circular(12.0.r),
-    color: AppColorManager.lightGray,
-  );
-
-  static var lightShadowMainColor = [
-    BoxShadow(color: AppColorManager.mainColor.withValues(alpha: 0.2), blurRadius: 5, offset: const Offset(0, 2))
-  ];
-
-  static final appBorderAll = Border.all(
-    strokeAlign: BorderSide.strokeAlignOutside,
-    color: AppColorManager.mainColor,
-    width: 2.0.spMin,
-  );
-
   static final authPagesPadding = EdgeInsets.only(left: 24.w, right: 24.w, bottom: 32.h);
-
-  static final productGridDelegate =
-      SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisExtent: 250.0.h);
 }
 
 class BackBtnWidget extends StatelessWidget {
@@ -190,7 +111,7 @@ class BackBtnWidget extends StatelessWidget {
         height: 44.0.r,
         child: IconButton(
           padding: EdgeInsets.zero,
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => Navigator.maybePop(context),
           icon: ImageMultiType(
             url: Icons.arrow_back_ios_new,
             width: 22.0.r,

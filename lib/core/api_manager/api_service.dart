@@ -5,10 +5,10 @@ import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 
-import '../strings/enum_manager.dart';
-import '../util/shared_preferences.dart';
-import 'helpers_api/helper_api_service.dart';
-import 'helpers_api/log_api.dart';
+import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/core/util/shared_preferences.dart';
+import 'package:mms/core/api_manager/helpers_api/helper_api_service.dart';
+import 'package:mms/core/api_manager/helpers_api/log_api.dart';
 
 var loggerObject = Logger(
   printer: PrettyPrinter(

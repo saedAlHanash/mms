@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:mms/features/members/data/response/member_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../features/auth/data/response/login_response.dart';
-import '../strings/enum_manager.dart';
+import 'package:mms/features/auth/data/response/login_response.dart';
+import 'package:mms/core/strings/enum_manager.dart';
 
 class AppSharedPreference {
   static const _token = '1';
@@ -16,6 +16,7 @@ class AppSharedPreference {
   static const _user = '6';
   static const _notifications = '7';
   static const _party = '8';
+  static const _readNotifications = 'readNotifications';
 
   static late SharedPreferences _prefs;
 
@@ -79,6 +80,13 @@ class AppSharedPreference {
   static Future<void> clear() async => await _prefs.clear();
 
   static Future<void> logout() async => await _prefs.clear();
+
+  /// Ids of the notifications the user has already seen.
+  static Set<String> get getReadNotifications => (_prefs.getStringList(_readNotifications) ?? []).toSet();
+
+  static Future<void> cashReadNotifications(Set<String> ids) async {
+    await _prefs.setStringList(_readNotifications, ids.toList());
+  }
 
   static Future<void> cashLocal(String langCode) async {
     await _prefs.setString(_lang, langCode);

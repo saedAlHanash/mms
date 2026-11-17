@@ -1,0 +1,55 @@
+import 'package:go_router/go_router.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_multi_type/image_multi_type.dart';
+import 'package:m_cubit/command.dart';
+import 'package:mms/generated/assets.dart';
+import 'package:mms/router/go_router.dart';
+
+import 'package:mms/core/app/app_provider.dart';
+import 'package:mms/core/util/my_style.dart';
+import 'package:mms/features/committees/bloc/committee_cubit/committee_cubit.dart';
+
+class DrawerMeetingsBtnWidget extends StatelessWidget {
+  const DrawerMeetingsBtnWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned.directional(
+      end: 0,
+      textDirection: AppProvider.getDirection,
+      top: 130.0.h,
+      width: 80.0.w,
+      height: 45.0.h,
+      child: InkWell(
+        onTap: () {
+          context.pushNamed(
+            RouteName.calenderMeetings,
+            extra: FilterRequest(
+              filters: {
+                "committeeId": Filter(
+                  name: 'committeeId',
+                  val: context.read<CommitteeCubit>().state.uuid,
+                ),
+                // "status": Filter(
+                //   name: 'status',
+                //   val: MeetingStatus.planned.index.toString(),
+                // ),
+              },
+            ),
+          );
+        },
+        child: Container(
+          padding: const EdgeInsets.all(10.0).r,
+          decoration: MyStyle.directionalDecoration,
+          child: const ImageMultiType(
+            url: Assets.iconsCalendar,
+          ),
+        ),
+      ),
+    );
+  }
+}

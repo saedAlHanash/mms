@@ -18,3 +18,8 @@ formatter:
 
   # Preserve existing trailing commas where possible
   trailing_commas: preserve
+analyzer:
+  exclude:
+    - build/**
+    - android/**
+    - ios/**

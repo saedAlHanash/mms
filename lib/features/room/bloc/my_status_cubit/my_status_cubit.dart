@@ -7,10 +7,10 @@ import 'package:mms/core/error/error_manager.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/features/room/bloc/room_cubit/room_cubit.dart';
 
-import '../../../../core/api_manager/api_service.dart';
-import '../../../../core/app/app_widget.dart';
-import '../../../../core/strings/enum_manager.dart';
-import '../../data/response/my_status.dart';
+import 'package:mms/core/api_manager/api_service.dart';
+import 'package:mms/core/app/app_widget.dart';
+import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/features/room/data/response/my_status.dart';
 
 part 'my_status_state.dart';
 

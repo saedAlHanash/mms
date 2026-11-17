@@ -2,11 +2,11 @@ import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
-import '../../../../core/api_manager/api_service.dart';
-import '../../../../core/error/error_manager.dart';
-import '../../../../core/strings/enum_manager.dart';
-import '../../../../core/util/pair_class.dart';
-import '../../data/response/goals_response.dart';
+import 'package:mms/core/api_manager/api_service.dart';
+import 'package:mms/core/error/error_manager.dart';
+import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/core/util/pair_class.dart';
+import 'package:mms/features/goals/data/response/goals_response.dart';
 
 part 'goals_state.dart';
 

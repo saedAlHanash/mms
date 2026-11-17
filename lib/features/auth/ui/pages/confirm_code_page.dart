@@ -1,3 +1,4 @@
+import 'package:go_router/go_router.dart';
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,9 +13,9 @@ import 'package:mms/core/widgets/my_button.dart';
 import 'package:mms/core/widgets/verification_code_widget.dart';
 import 'package:mms/features/auth/bloc/confirm_code_cubit/confirm_code_cubit.dart';
 import 'package:mms/features/auth/bloc/resend_code_cubit/resend_code_cubit.dart';
-import 'package:mms/features/auth/ui/widget/auth_layout.dart';
+import 'package:mms/features/auth/ui/widgets/auth_layout.dart';
 import 'package:mms/generated/l10n.dart';
-import 'package:mms/router/app_router.dart';
+import 'package:mms/router/go_router.dart';
 
 class ConfirmCodePage extends StatefulWidget {
   const ConfirmCodePage({super.key});
@@ -43,11 +44,7 @@ class _ConfirmCodePageState extends State<ConfirmCodePage> {
         BlocListener<ConfirmCodeCubit, ConfirmCodeInitial>(
           listenWhen: (p, current) => current.statuses == CubitStatuses.done,
           listener: (context, state) {
-            Navigator.pushNamedAndRemoveUntil(
-              context,
-              RouteName.donePage,
-              (route) => false,
-            );
+            context.goNamed(RouteName.donePage);
           },
         ),
         BlocListener<ResendCodeCubit, ResendCodeInitial>(
@@ -100,7 +97,7 @@ class _ConfirmCodePageState extends State<ConfirmCodePage> {
                   loading: state.statuses.loading,
                   onTap: () {
                     if (AppSharedPreference.getPhone.isEmpty) {
-                      Navigator.pushReplacementNamed(context, RouteName.login);
+                      context.pushReplacementNamed(RouteName.login);
                       return;
                     }
                     if (!_formKey.currentState!.validate()) return;
@@ -118,7 +115,7 @@ class _ConfirmCodePageState extends State<ConfirmCodePage> {
                   loading: state.statuses.loading,
                   onTap: () {
                     if (AppSharedPreference.getPhone.isEmpty) {
-                      Navigator.pushReplacementNamed(context, RouteName.login);
+                      context.pushReplacementNamed(RouteName.login);
                       return;
                     }
                     resendCodeCubit.resendCode();
@@ -132,7 +129,7 @@ class _ConfirmCodePageState extends State<ConfirmCodePage> {
               text: S.of(context).login,
               onTap: () {
                 AppSharedPreference.removePhone().then((value) {
-                  if (context.mounted) Navigator.pushNamed(context, RouteName.login);
+                  if (context.mounted) context.pushNamed(RouteName.login);
                 });
               },
             ),

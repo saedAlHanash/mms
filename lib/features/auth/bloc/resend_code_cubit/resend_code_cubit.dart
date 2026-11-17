@@ -3,11 +3,11 @@ import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/util/shared_preferences.dart';
 
-import '../../../../core/api_manager/api_service.dart';
-import '../../../../core/api_manager/api_url.dart';
-import '../../../../core/error/error_manager.dart';
-import '../../../../core/strings/enum_manager.dart';
-import '../../../../core/util/pair_class.dart';
+import 'package:mms/core/api_manager/api_service.dart';
+import 'package:mms/core/api_manager/api_url.dart';
+import 'package:mms/core/error/error_manager.dart';
+import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/core/util/pair_class.dart';
 
 part 'resend_code_state.dart';
 

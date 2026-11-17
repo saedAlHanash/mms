@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-import '../core/api_manager/api_service.dart';
+import 'package:mms/core/api_manager/api_service.dart';
 
 PackageInfo? _appData;
 

@@ -5,10 +5,10 @@ import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/strings/enum_manager.dart';
 
-import '../../../../core/api_manager/api_service.dart';
-import '../../../../core/app/app_provider.dart';
-import '../../../../core/util/pair_class.dart';
-import '../../../../core/util/snack_bar_message.dart';
+import 'package:mms/core/api_manager/api_service.dart';
+import 'package:mms/core/app/app_provider.dart';
+import 'package:mms/core/util/pair_class.dart';
+import 'package:mms/core/util/snack_bar_message.dart';
 
 part 'delete_account_state.dart';
 

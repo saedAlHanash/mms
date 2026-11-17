@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/strings/app_color_manager.dart';
-import 'circle_indicator.dart';
+import 'package:mms/core/strings/app_color_manager.dart';
+import 'package:mms/core/widgets/tab_widget/circle_indicator.dart';
 
 class MyTabWidget extends StatelessWidget {
   const MyTabWidget({

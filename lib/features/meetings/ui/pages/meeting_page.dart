@@ -1,3 +1,4 @@
+import 'package:go_router/go_router.dart';
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,21 +14,23 @@ import 'package:mms/core/widgets/refresh_widget/refresh_widget.dart';
 import 'package:mms/core/widgets/small_widgets.dart';
 import 'package:mms/core/widgets/status_chip.dart';
 import 'package:mms/features/meetings/data/response/meetings_response.dart';
-import 'package:mms/features/agendas/ui/widget/agenda_tree_widget.dart';
-import 'package:mms/features/attendees/ui/widget/attendees_list_widget.dart';
-import 'package:mms/features/committees/ui/widget/drawer_btn_widget.dart';
-import 'package:mms/features/meetings/ui/widget/discussions_tree.dart';
+import 'package:mms/features/agendas/ui/widgets/agenda_tree_widget.dart';
+import 'package:mms/features/attendees/ui/widgets/attendees_list_widget.dart';
+import 'package:mms/features/committees/ui/widgets/drawer_btn_widget.dart';
+import 'package:mms/features/meetings/ui/widgets/discussions_tree.dart';
+import 'package:mms/core/widgets/in_app_notification.dart';
+import 'package:mms/features/meeting_hub/bloc/meeting_hub_cubit/meeting_hub_cubit.dart';
+import 'package:mms/features/meeting_hub/ui/widgets/hub_widgets.dart';
 import 'package:mms/services/pip.dart';
 
-import '../../../../core/strings/enum_manager.dart';
-import '../../../../core/util/my_style.dart';
-import '../../../../generated/l10n.dart';
-import '../../../../router/app_router.dart';
-import '../../../room/bloc/room_cubit/room_cubit.dart';
-import '../../../room/ui/pages/live_kit_page.dart';
-import '../../../room/ui/widget/video_widget.dart';
-import '../../bloc/add_absence_cubit/add_absence_cubit.dart';
-import '../../bloc/meeting_cubit/meeting_cubit.dart';
+import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/core/util/my_style.dart';
+import 'package:mms/generated/l10n.dart';
+import 'package:mms/router/go_router.dart';
+import 'package:mms/features/room/bloc/room_cubit/room_cubit.dart';
+import 'package:mms/features/room/ui/pages/live_kit_page.dart';
+import 'package:mms/features/meetings/bloc/add_absence_cubit/add_absence_cubit.dart';
+import 'package:mms/features/meetings/bloc/meeting_cubit/meeting_cubit.dart';
 
 class MeetingPage extends StatefulWidget {
   const MeetingPage({super.key});
@@ -37,16 +40,33 @@ class MeetingPage extends StatefulWidget {
 }
 
 class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
+  MeetingCubit get _meetingCubit => context.read<MeetingCubit>();
+
+  MeetingHubCubit get _hubCubit => context.read<MeetingHubCubit>();
+
   @override
   void initState() {
     WidgetsBinding.instance.addObserver(this);
-    PipService.initial();
     super.initState();
+    PipService.init();
+    // The call may already be connected when the page opens (the room is app-wide).
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _syncPip(context.read<RoomCubit>().state);
+    });
+  }
+
+  /// PiP is armed only while this page is open and the online call is connected.
+  Future<void> _syncPip(RoomInitial room) async {
+    final shouldArm = room.result.connectionState.isConnected;
+    if (shouldArm == PipService.isArmed) return;
+    shouldArm ? await PipService.arm() : await PipService.disarm();
+    if (mounted) setState(() {}); // back-button behaviour depends on it
   }
 
   @override
   void dispose() {
-    PipService.dispose();
+    InAppNotification.hide();
+    PipService.disarm();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
@@ -54,7 +74,16 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
   @override
   Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
     super.didChangeAppLifecycleState(state);
-    PipService.didChangeAppLifecycleState(state).then((value) => setState(() {}));
+    switch (state) {
+      case .paused:
+        // Keep live updates while the call can run in PiP; otherwise the OS
+        // would drop the socket anyway, so close it and resync on resume.
+        if (!PipService.isArmed) await _hubCubit.pause();
+      case .resumed:
+        await _hubCubit.resume();
+      default:
+        break;
+    }
   }
 
   @override
@@ -73,22 +102,36 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
             context.read<MeetingCubit>().getData(newData: true);
           },
         ),
-        BlocListener<RoomCubit, RoomInitial>(listenWhen: (p, c) => c.done, listener: (context, state) {}),
+        // Arm / disarm PiP with the online call.
+        BlocListener<RoomCubit, RoomInitial>(listener: (context, state) => _syncPip(state)),
+        // Live update received: apply it and show an in-app banner.
+        BlocListener<MeetingHubCubit, MeetingHubInitial>(
+          listenWhen: (p, c) => p.messageId != c.messageId && c.lastMessage != null,
+          listener: (context, state) {
+            _meetingCubit.applyHubMessage(state.lastMessage!);
+            showHubNotification(context, state.lastMessage!);
+          },
+        ),
+        // Reconnected / resumed: refetch what was missed.
+        BlocListener<MeetingHubCubit, MeetingHubInitial>(
+          listenWhen: (p, c) => p.resyncId != c.resyncId,
+          listener: (context, state) => _meetingCubit.getData(newData: true),
+        ),
       ],
       child: BlocBuilder<RoomCubit, RoomInitial>(
         builder: (context, state) {
           return PopScope(
-            canPop: !PipService.isSetUp,
-            onPopInvokedWithResult: (didPop, result) {
-              if (!didPop) PipService.start();
+            // During a call, back minimises the meeting into PiP instead of leaving it.
+            canPop: !PipService.canEnter,
+            onPopInvokedWithResult: (didPop, result) async {
+              if (didPop) return;
+              final entered = await PipService.enter();
+              if (!entered && context.mounted) Navigator.of(context).pop(result);
             },
-            child: PipService.isPipActive
-                ? Scaffold(body: const VideoRemoteWidget())
-                : Scaffold(
+            child: Scaffold(
                     appBar: AppBarWidget(
                       titleText: S.of(context).meeting,
-                      backBtn: PipService.isSetUp ? 0.0.verticalSpace : const BackBtnWidget(),
-                      actions: const [ActionBarMemberWidget()],
+                      actions: const [HubStatusChip(), ActionBarMemberWidget()],
                     ),
                     endDrawer: Drawer(
                       width: 320.0.w,
@@ -468,7 +511,7 @@ class _VotesCard extends StatelessWidget {
       ),
       child: InkWell(
         borderRadius: BorderRadius.circular(12.0.r),
-        onTap: () => Navigator.pushNamed(context, RouteName.votes, arguments: context.read<MeetingCubit>()),
+        onTap: () => context.pushNamed(RouteName.votes, extra: context.read<MeetingCubit>()),
         child: Padding(
           padding: EdgeInsets.all(14.0.r),
           child: Row(

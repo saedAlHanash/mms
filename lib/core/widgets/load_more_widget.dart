@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:m_cubit/m_cubit.dart';
 
-import '../util/my_style.dart';
-import 'my_button.dart';
+import 'package:mms/core/util/my_style.dart';
+import 'package:mms/core/widgets/my_button.dart';
 
 class LoadMoreWidget extends StatelessWidget {
   const LoadMoreWidget({

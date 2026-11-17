@@ -5,11 +5,11 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/app/app_provider.dart';
 
-import '../core/api_manager/api_service.dart';
-import '../core/strings/enum_manager.dart';
-import '../core/util/shared_preferences.dart';
-import '../firebase_options.dart';
-import '../main.dart';
+import 'package:mms/core/api_manager/api_service.dart';
+import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/core/util/shared_preferences.dart';
+import 'package:mms/firebase_options.dart';
+import 'package:mms/main.dart';
 
 class FirebaseService {
   static Future<void> initial() async {

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/api_manager/api_url.dart';
@@ -6,16 +5,14 @@ import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/util/shared_preferences.dart';
 import 'package:mms/features/auth/data/request/login_request.dart';
 
-import '../../../../core/api_manager/api_service.dart';
-import '../../../../core/app/app_provider.dart';
-import '../../../../core/app/app_widget.dart';
-import '../../../../core/error/error_manager.dart';
-import '../../../../core/strings/enum_manager.dart';
-import '../../../../core/util/pair_class.dart';
-import '../../../../generated/l10n.dart';
-import '../../../../router/app_router.dart';
-import '../../../members/data/response/member_response.dart';
-import '../../data/response/login_response.dart';
+import 'package:mms/core/api_manager/api_service.dart';
+import 'package:mms/core/app/app_provider.dart';
+import 'package:mms/core/error/error_manager.dart';
+import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/core/util/pair_class.dart';
+import 'package:mms/generated/l10n.dart';
+import 'package:mms/features/members/data/response/member_response.dart';
+import 'package:mms/features/auth/data/response/login_response.dart';
 
 part 'login_state.dart';
 
@@ -55,9 +52,6 @@ class LoginCubit extends Cubit<LoginInitial> {
       final error = response.getPairError as Pair<LoginResponse?, String?>;
       if (error.second?.contains('not verified') ?? false) {
         AppSharedPreference.cashPhone(state.request.userName);
-        if (ctx != null) {
-          Navigator.pushNamedAndRemoveUntil(ctx!, RouteName.confirmCode, (route) => false);
-        }
       }
       return error;
     }

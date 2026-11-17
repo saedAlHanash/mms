@@ -1,13 +1,13 @@
 import 'package:collection/collection.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
-import '../../../../core/app/app_provider.dart';
-import '../../../../core/strings/enum_manager.dart';
-import '../../../../generated/assets.dart';
-import '../../../agendas/data/response/agendas_response.dart';
-import '../../../attendees/data/response/attendee_response.dart';
-import '../../../members/data/response/member_response.dart';
-import '../../../poll/data/response/poll_response.dart';
+import 'package:mms/core/app/app_provider.dart';
+import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/generated/assets.dart';
+import 'package:mms/features/agendas/data/response/agendas_response.dart';
+import 'package:mms/features/attendees/data/response/attendee_response.dart';
+import 'package:mms/features/members/data/response/member_response.dart';
+import 'package:mms/features/poll/data/response/poll_response.dart';
 
 class MeetingsResponse {
   MeetingsResponse({
@@ -83,6 +83,43 @@ class Meeting {
   final List<Task> tasks;
   final Minutes minutes;
   final List<PollResult> pollResults;
+
+  /// Copy used to apply live (SignalR) updates without a refetch.
+  Meeting copyWith({
+    List<Discussion>? discussions,
+    List<Decision>? decisions,
+    List<Poll>? polls,
+    List<PollResult>? pollResults,
+  }) {
+    return Meeting(
+      id: id,
+      title: title,
+      meetingPlace: meetingPlace,
+      hasRequestAbsence: hasRequestAbsence,
+      fromDate: fromDate,
+      toDate: toDate,
+      scheduledDate: scheduledDate,
+      status: status,
+      committeeId: committeeId,
+      committeeName: committeeName,
+      attendeesList: attendeesList,
+      guestsList: guestsList,
+      discussions: discussions ?? this.discussions,
+      documents: documents,
+      agendaItems: agendaItems,
+      location: location,
+      onlineMeetingUrl: onlineMeetingUrl,
+      onlineMeetingToken: onlineMeetingToken,
+      attendeeOnlineToken: attendeeOnlineToken,
+      absenceRequests: absenceRequests,
+      guestSuggestions: guestSuggestions,
+      decisions: decisions ?? this.decisions,
+      polls: polls ?? this.polls,
+      tasks: tasks,
+      minutes: minutes,
+      pollResults: pollResults ?? this.pollResults,
+    );
+  }
 
   factory Meeting.fromJson(Map<String, dynamic> json) {
     return Meeting(

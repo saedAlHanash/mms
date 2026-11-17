@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
 import 'package:mms/features/committees/ui/pages/committee_screen.dart';
-import 'package:mms/features/home/ui/widget/bottom_nav_widget.dart';
-import 'package:mms/features/home/ui/widget/menu_screen.dart';
+import 'package:mms/features/home/ui/widgets/bottom_nav_widget.dart';
+import 'package:mms/features/home/ui/widgets/menu_screen.dart';
 import 'package:mms/features/meetings/ui/pages/calender_screen.dart';
 
 class HomePage extends StatefulWidget {

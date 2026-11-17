@@ -2,8 +2,8 @@ import 'package:mms/core/api_manager/api_service.dart';
 import 'package:mms/core/app/app_provider.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
-import '../../../../core/strings/enum_manager.dart';
-import '../../../../generated/assets.dart';
+import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/generated/assets.dart';
 
 class UpdatePartyRequest {
   UpdatePartyRequest({

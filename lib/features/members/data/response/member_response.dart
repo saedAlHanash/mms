@@ -1,7 +1,7 @@
 import 'package:mms/core/extensions/extensions.dart';
 
-import '../../../../core/strings/enum_manager.dart';
-import '../../../../generated/assets.dart';
+import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/generated/assets.dart';
 
 class Member {
   Member({

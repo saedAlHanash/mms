@@ -1,6 +1,6 @@
 import 'package:mms/core/extensions/extensions.dart';
 
-import '../../../../generated/assets.dart';
+import 'package:mms/generated/assets.dart';
 
 class LoginResponse {
   LoginResponse({

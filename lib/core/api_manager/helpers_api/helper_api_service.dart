@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:http/http.dart' as http;
 
-import '../../strings/enum_manager.dart';
-import '../api_url.dart';
-import 'log_api.dart';
+import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/core/api_manager/api_url.dart';
+import 'package:mms/core/api_manager/helpers_api/log_api.dart';
 
 DateTime? serverDateTime;
 

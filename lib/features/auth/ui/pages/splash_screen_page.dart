@@ -1,3 +1,4 @@
+import 'package:go_router/go_router.dart';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -6,10 +7,10 @@ import 'package:image_multi_type/image_multi_type.dart';
 
 import 'package:mms/core/strings/app_color_manager.dart';
 
-import '../../../../core/app/app_provider.dart';
-import '../../../../core/strings/enum_manager.dart';
-import '../../../../generated/assets.dart';
-import '../../../../router/app_router.dart';
+import 'package:mms/core/app/app_provider.dart';
+import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/generated/assets.dart';
+import 'package:mms/router/go_router.dart';
 
 class SplashScreenPage extends StatefulWidget {
   const SplashScreenPage({super.key});
@@ -26,14 +27,14 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
       () {
         switch (getStartPage) {
           case StartPage.login:
-            Navigator.pushReplacementNamed(context, RouteName.login);
+            context.goNamed(RouteName.login);
             break;
           case StartPage.home:
-            Navigator.pushReplacementNamed(context, RouteName.home);
+            context.goNamed(RouteName.home);
             break;
           case StartPage.signupOtp:
           case StartPage.passwordOtp:
-            Navigator.pushReplacementNamed(context, RouteName.confirmCode);
+            context.goNamed(RouteName.confirmCode);
             break;
         }
       },

@@ -1,3 +1,4 @@
+import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,9 +8,9 @@ import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
 import 'package:mms/core/widgets/my_button.dart';
 import 'package:mms/core/widgets/my_text_form_widget.dart';
 import 'package:mms/features/auth/bloc/reset_password_cubit/reset_password_cubit.dart';
-import 'package:mms/features/auth/ui/widget/auth_layout.dart';
+import 'package:mms/features/auth/ui/widgets/auth_layout.dart';
 import 'package:mms/generated/l10n.dart';
-import 'package:mms/router/app_router.dart';
+import 'package:mms/router/go_router.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   const ResetPasswordPage({super.key});
@@ -37,11 +38,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
     return BlocListener<ResetPasswordCubit, ResetPasswordInitial>(
       listenWhen: (p, c) => c.done,
       listener: (context, state) {
-        Navigator.pushNamedAndRemoveUntil(
-          context,
-          RouteName.donePage,
-          (route) => false,
-        );
+        context.goNamed(RouteName.donePage);
       },
       child: Scaffold(
         appBar: AppBarWidget(titleText: S.of(context).reset_password),
@@ -92,7 +89,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                 text: S.of(context).backToLogin,
                 onTap: () {
                   AppSharedPreference.removePhone();
-                  Navigator.pushNamed(context, RouteName.login);
+                  context.pushNamed(RouteName.login);
                 },
               ),
             ],

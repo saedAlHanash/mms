@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/app/app_widget.dart';
-import '../../bloc/room_cubit/room_cubit.dart';
+import 'package:mms/core/app/app_widget.dart';
+import 'package:mms/features/room/bloc/room_cubit/room_cubit.dart';
 
 class UpdateParticipantRequest {
   UpdateParticipantRequest({

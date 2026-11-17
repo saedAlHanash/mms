@@ -34,6 +34,7 @@ class StatusChip extends StatelessWidget {
           key: key,
           colors: status.colors,
           label: switch (status) {
+            .pending => S().statusPending,
             .open => S().statusOpen,
             .closed => S().statusClosed,
           },

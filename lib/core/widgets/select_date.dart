@@ -1,3 +1,4 @@
+import 'package:image_multi_type/image_multi_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -39,9 +40,10 @@ class SelectSingeDateScrollWidget extends StatelessWidget {
         // );
         if (datePicked != null) onSelect?.call(datePicked);
       },
-      icon: Icon(
-        Icons.date_range,
-        size: 30.0.r,
+      icon: ImageMultiType(
+        url: Icons.date_range,
+        width: 30.0.r,
+        height: 30.0.r,
       ),
     );
   }

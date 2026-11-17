@@ -1,8 +1,8 @@
 import 'package:collection/collection.dart';
 
-import '../../../documents/data/response/documents_response.dart';
-import '../../../goals/data/response/goals_response.dart';
-import '../../../members/data/response/member_response.dart';
+import 'package:mms/features/documents/data/response/documents_response.dart';
+import 'package:mms/features/goals/data/response/goals_response.dart';
+import 'package:mms/features/members/data/response/member_response.dart';
 
 class CommitteesResponse {
   CommitteesResponse({

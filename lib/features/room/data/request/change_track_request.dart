@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mms/features/room/bloc/room_cubit/room_cubit.dart';
 
-import '../../../../core/app/app_widget.dart';
+import 'package:mms/core/app/app_widget.dart';
 
 class ChangeTrackRequest {
   ChangeTrackRequest({

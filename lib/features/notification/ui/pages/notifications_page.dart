@@ -10,7 +10,7 @@ import 'package:mms/core/widgets/refresh_widget/refresh_widget.dart';
 import 'package:mms/core/widgets/small_widgets.dart';
 import 'package:mms/features/notification/bloc/notifications_cubit/notifications_cubit.dart';
 import 'package:mms/features/notification/data/response/notification_response.dart';
-import 'package:mms/features/notification/ui/widget/notification_widget.dart';
+import 'package:mms/features/notification/ui/widgets/notification_widget.dart';
 import 'package:mms/generated/l10n.dart';
 
 class NotificationsPage extends StatefulWidget {
@@ -21,6 +21,13 @@ class NotificationsPage extends StatefulWidget {
 }
 
 class _NotificationsPageState extends State<NotificationsPage> {
+  @override
+  void initState() {
+    super.initState();
+    // Opening the page means the user has seen the current notifications.
+    context.read<NotificationsCubit>().markAllAsRead();
+  }
+
   /// "Today" / "Yesterday" / yyyy/MM/dd — grouping is display-only.
   String _dayLabel(BuildContext context, DateTime? date) {
     if (date == null) return '';
@@ -66,7 +73,10 @@ class _NotificationsPageState extends State<NotificationsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(titleText: S.of(context).notifications),
-      body: BlocBuilder<NotificationsCubit, NotificationsInitial>(
+      body: BlocConsumer<NotificationsCubit, NotificationsInitial>(
+        // New notifications loaded while this page is open are seen too.
+        listenWhen: (p, c) => c.done && c.result != p.result,
+        listener: (context, state) => context.read<NotificationsCubit>().markAllAsRead(),
         builder: (context, state) {
           final list = state.result;
 

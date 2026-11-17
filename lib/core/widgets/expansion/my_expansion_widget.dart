@@ -1,8 +1,8 @@
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 
-import 'item_expansion.dart';
-import 'my_expansion_panal.dart';
+import 'package:mms/core/widgets/expansion/item_expansion.dart';
+import 'package:mms/core/widgets/expansion/my_expansion_panal.dart';
 
 class MyExpansionWidget extends StatefulWidget {
   const MyExpansionWidget({

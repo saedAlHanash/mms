@@ -24,8 +24,8 @@ import 'package:http/http.dart';
 import 'package:logger/logger.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
-import '../../strings/enum_manager.dart';
-import '../api_service.dart';
+import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/core/api_manager/api_service.dart';
 
 void saedsaed() {
   var loggerObjectApi = Logger(

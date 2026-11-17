@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 
-import '../util/my_style.dart';
+import 'package:mms/core/util/my_style.dart';
 
 class PopupMenuItemModel {
   final dynamic label;

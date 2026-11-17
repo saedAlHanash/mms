@@ -15,17 +15,17 @@ import 'package:mms/core/api_manager/api_service.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:mms/features/committees/data/response/committees_response.dart';
 
-import '../../features/meetings/data/response/meetings_response.dart';
-import '../../features/members/data/response/member_response.dart';
-import '../../features/poll/data/response/poll_response.dart';
-import '../../generated/l10n.dart';
-import '../app/app_provider.dart';
-import '../app/app_widget.dart';
-import '../error/error_manager.dart';
-import '../strings/enum_manager.dart';
-import '../util/pair_class.dart';
-import '../util/snack_bar_message.dart';
-import '../widgets/spinner_widget.dart';
+import 'package:mms/features/meetings/data/response/meetings_response.dart';
+import 'package:mms/features/members/data/response/member_response.dart';
+import 'package:mms/features/poll/data/response/poll_response.dart';
+import 'package:mms/generated/l10n.dart';
+import 'package:mms/core/app/app_provider.dart';
+import 'package:mms/core/app/app_widget.dart';
+import 'package:mms/core/error/error_manager.dart';
+import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/core/util/pair_class.dart';
+import 'package:mms/core/util/snack_bar_message.dart';
+import 'package:mms/core/widgets/spinner_widget.dart';
 
 extension SplitByLength on String {
   List<String> splitByLength1(int length, {bool ignoreEmpty = false}) {
@@ -170,7 +170,7 @@ extension SplitByLength on String {
           onTap: () {
             Clipboard.setData(ClipboardData(text: this));
             ScaffoldMessenger.of(ctx!).showSnackBar(
-              SnackBar(content: Text(S().done)),
+              SnackBar(content: DrawableText(text: S().done)),
             );
           },
           child: Container(

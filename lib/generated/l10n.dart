@@ -3037,6 +3037,281 @@ class S {
       args: [],
     );
   }
+
+  /// `You are not signed in`
+  String get notLoggedIn {
+    return Intl.message(
+      'You are not signed in',
+      name: 'notLoggedIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Server error`
+  String get serverError {
+    return Intl.message(
+      'Server error',
+      name: 'serverError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Screen sharing`
+  String get screenSharingTitle {
+    return Intl.message(
+      'Screen sharing',
+      name: 'screenSharingTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MMS is sharing the screen.`
+  String get screenSharingText {
+    return Intl.message(
+      'MMS is sharing the screen.',
+      name: 'screenSharingText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Screen sharing isn't supported on mobile web`
+  String get screenShareNotSupported {
+    return Intl.message(
+      'Screen sharing isn\'t supported on mobile web',
+      name: 'screenShareNotSupported',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I can't hear`
+  String get noteCannotHear {
+    return Intl.message(
+      'I can\'t hear',
+      name: 'noteCannotHear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I can't see the screen`
+  String get noteCannotSee {
+    return Intl.message(
+      'I can\'t see the screen',
+      name: 'noteCannotSee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I need help`
+  String get noteNeedHelp {
+    return Intl.message(
+      'I need help',
+      name: 'noteNeedHelp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Live`
+  String get liveConnected {
+    return Intl.message('Live', name: 'liveConnected', desc: '', args: []);
+  }
+
+  /// `Connecting…`
+  String get liveConnecting {
+    return Intl.message(
+      'Connecting…',
+      name: 'liveConnecting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reconnecting…`
+  String get liveReconnecting {
+    return Intl.message(
+      'Reconnecting…',
+      name: 'liveReconnecting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Offline`
+  String get liveDisconnected {
+    return Intl.message(
+      'Offline',
+      name: 'liveDisconnected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Live updates are off. Tap to reconnect.`
+  String get liveTapToRetry {
+    return Intl.message(
+      'Live updates are off. Tap to reconnect.',
+      name: 'liveTapToRetry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Live updates`
+  String get liveUpdates {
+    return Intl.message(
+      'Live updates',
+      name: 'liveUpdates',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Agenda updated`
+  String get hubAgendaUpdated {
+    return Intl.message(
+      'Agenda updated',
+      name: 'hubAgendaUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `“{title}”: {status}`
+  String hubAgendaUpdatedBody(Object title, Object status) {
+    return Intl.message(
+      '“$title”: $status',
+      name: 'hubAgendaUpdatedBody',
+      desc: '',
+      args: [title, status],
+    );
+  }
+
+  /// `Pending`
+  String get agendaStatusPending {
+    return Intl.message(
+      'Pending',
+      name: 'agendaStatusPending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `In progress`
+  String get agendaStatusActive {
+    return Intl.message(
+      'In progress',
+      name: 'agendaStatusActive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Concluded`
+  String get agendaStatusConcluded {
+    return Intl.message(
+      'Concluded',
+      name: 'agendaStatusConcluded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delayed`
+  String get agendaStatusDelayed {
+    return Intl.message(
+      'Delayed',
+      name: 'agendaStatusDelayed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A vote was opened`
+  String get hubPollOpened {
+    return Intl.message(
+      'A vote was opened',
+      name: 'hubPollOpened',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A vote was closed`
+  String get hubPollClosed {
+    return Intl.message(
+      'A vote was closed',
+      name: 'hubPollClosed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A vote was updated`
+  String get hubPollUpdated {
+    return Intl.message(
+      'A vote was updated',
+      name: 'hubPollUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vote results published`
+  String get hubPollPublished {
+    return Intl.message(
+      'Vote results published',
+      name: 'hubPollPublished',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A decision was published`
+  String get hubDecisionPublished {
+    return Intl.message(
+      'A decision was published',
+      name: 'hubDecisionPublished',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A discussion was opened`
+  String get hubDiscussionOpened {
+    return Intl.message(
+      'A discussion was opened',
+      name: 'hubDiscussionOpened',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A discussion was closed`
+  String get hubDiscussionClosed {
+    return Intl.message(
+      'A discussion was closed',
+      name: 'hubDiscussionClosed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A discussion was updated`
+  String get hubDiscussionUpdated {
+    return Intl.message(
+      'A discussion was updated',
+      name: 'hubDiscussionUpdated',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

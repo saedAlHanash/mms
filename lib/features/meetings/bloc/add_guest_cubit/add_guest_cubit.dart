@@ -3,12 +3,12 @@ import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
-import '../../../../core/api_manager/api_service.dart';
-import '../../../../core/error/error_manager.dart';
-import '../../../../core/strings/enum_manager.dart';
-import '../../../../core/util/pair_class.dart';
-import '../../../../generated/l10n.dart';
-import '../../data/request/add_guest_request.dart';
+import 'package:mms/core/api_manager/api_service.dart';
+import 'package:mms/core/error/error_manager.dart';
+import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/core/util/pair_class.dart';
+import 'package:mms/generated/l10n.dart';
+import 'package:mms/features/meetings/data/request/add_guest_request.dart';
 
 part 'add_guest_state.dart';
 

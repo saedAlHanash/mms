@@ -4,18 +4,18 @@ import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/app/app_provider.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
-import '../../generated/l10n.dart';
-import '../app/app_widget.dart';
-import '../util/snack_bar_message.dart';
+import 'package:mms/generated/l10n.dart';
+import 'package:mms/core/app/app_widget.dart';
+import 'package:mms/core/util/snack_bar_message.dart';
 
 class ErrorManager {
   static String getApiError(Response response) {
     switch (response.statusCode) {
       case 401:
         AppProvider.logout();
-        return 'المستخدم الحالي لم يسجل الدخول';
+        return S().notLoggedIn;
       case 503:
-        return 'Server error:  ${response.statusCode}';
+        return '${S().serverError} ${response.statusCode}';
       case 481:
         return '${response.body} ${response.statusCode}';
       case 482:

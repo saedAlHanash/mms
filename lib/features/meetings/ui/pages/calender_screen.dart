@@ -5,10 +5,10 @@ import 'package:mms/core/app/app_provider.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
 import 'package:mms/core/widgets/empty_state_widget.dart';
-import 'package:mms/features/committees/ui/widget/meetings_calendar.dart';
-import 'package:mms/features/home/ui/widget/bottom_nav_widget.dart';
+import 'package:mms/features/committees/ui/widgets/meetings_calendar.dart';
+import 'package:mms/features/home/ui/widgets/bottom_nav_widget.dart';
 import 'package:mms/features/meetings/data/response/meetings_response.dart';
-import 'package:mms/features/meetings/ui/widget/meeting_item.dart';
+import 'package:mms/features/meetings/ui/widgets/meeting_item.dart';
 import 'package:mms/generated/l10n.dart';
 
 /// Home "Calendar" tab.

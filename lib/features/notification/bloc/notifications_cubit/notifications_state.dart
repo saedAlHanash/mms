@@ -1,13 +1,14 @@
 part of 'notifications_cubit.dart';
 
 class NotificationsInitial extends AbstractState<List<NotificationModel>> {
-  final  int numOfRead;
+  /// Ids of notifications already seen (persisted), used for the unread badge.
+  final Set<String> readIds;
   // final FilterRequest request;
   // final  bool notificationParam;
   final FilterRequest filterRequest;
   const NotificationsInitial({
     required super.result,
-    required this.numOfRead,
+    required this.readIds,
     super.error,
     super.request,
     // required this.notificationParam,
@@ -19,7 +20,7 @@ class NotificationsInitial extends AbstractState<List<NotificationModel>> {
   factory NotificationsInitial.initial() {
     return  NotificationsInitial(
       result: [],
-      numOfRead: 0,
+      readIds: AppSharedPreference.getReadNotifications,
       error: '',
 
       filterRequest: FilterRequest(),
@@ -35,6 +36,7 @@ class NotificationsInitial extends AbstractState<List<NotificationModel>> {
         result,
         error,
         if (request != null) request,
+        readIds,
 
     filterRequest!,
       ];
@@ -42,7 +44,7 @@ class NotificationsInitial extends AbstractState<List<NotificationModel>> {
   NotificationsInitial copyWith({
     CubitStatuses? statuses,
     List<NotificationModel>? result,
-    int? numOfRead,
+    Set<String>? readIds,
     String? error,
 
     FilterRequest? filterRequest,
@@ -51,7 +53,7 @@ class NotificationsInitial extends AbstractState<List<NotificationModel>> {
     return NotificationsInitial(
       statuses: statuses ?? this.statuses,
       result: result ?? this.result,
-      numOfRead: numOfRead ?? this.numOfRead,
+      readIds: readIds ?? this.readIds,
       error: error ?? this.error,
 
       filterRequest: filterRequest ?? this.filterRequest,
@@ -59,4 +61,7 @@ class NotificationsInitial extends AbstractState<List<NotificationModel>> {
       // notificationParam: notificationParam ?? this.notificationParam,
     );
   }
+
+  /// Notifications not seen yet.
+  int get unreadCount => result.where((e) => !readIds.contains(e.id)).length;
 }

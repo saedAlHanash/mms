@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:image_multi_type/circle_image_widget.dart';
 
-import 'positions/positions.dart';
-import 'positions/restricted_positions.dart';
-import 'widget_stack.dart';
+import 'package:mms/core/widgets/avatar_stack/src/positions/positions.dart';
+import 'package:mms/core/widgets/avatar_stack/src/positions/restricted_positions.dart';
+import 'package:mms/core/widgets/avatar_stack/src/widget_stack.dart';
 
 /// Draws avatar stack which is presented by [ImageProvider].
 ///

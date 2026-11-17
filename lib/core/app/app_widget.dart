@@ -1,3 +1,4 @@
+import 'package:mms/features/room/ui/widgets/pip_view.dart';
 import 'package:drawable_text/drawable_text.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/gestures.dart';
@@ -9,20 +10,20 @@ import 'package:image_multi_type/image_multi_type.dart';
 import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/app/app_provider.dart';
 
-import '../../features/auth/bloc/get_me_cubit/get_me_cubit.dart';
-import '../../features/committees/bloc/my_committees_cubit/my_committees_cubit.dart';
-import '../../features/meetings/bloc/meetings_cubit/meetings_cubit.dart';
-import '../../features/notification/bloc/notifications_cubit/notifications_cubit.dart';
-import '../../features/room/bloc/my_status_cubit/my_status_cubit.dart';
-import '../../features/room/bloc/room_cubit/room_cubit.dart';
-import '../../features/room/bloc/user_control_cubit/user_control_cubit.dart';
-import '../../generated/assets.dart';
-import '../../generated/l10n.dart';
-import '../../main.dart';
-import '../../router/app_router.dart';
-import '../app_theme.dart';
-import '../injection/injection_container.dart';
-import '../util/shared_preferences.dart';
+import 'package:mms/features/auth/bloc/get_me_cubit/get_me_cubit.dart';
+import 'package:mms/features/committees/bloc/my_committees_cubit/my_committees_cubit.dart';
+import 'package:mms/features/meetings/bloc/meetings_cubit/meetings_cubit.dart';
+import 'package:mms/features/notification/bloc/notifications_cubit/notifications_cubit.dart';
+import 'package:mms/features/room/bloc/my_status_cubit/my_status_cubit.dart';
+import 'package:mms/features/room/bloc/room_cubit/room_cubit.dart';
+import 'package:mms/features/room/bloc/user_control_cubit/user_control_cubit.dart';
+import 'package:mms/generated/assets.dart';
+import 'package:mms/generated/l10n.dart';
+import 'package:mms/main.dart';
+import 'package:mms/router/go_router.dart';
+import 'package:mms/core/app_theme.dart';
+import 'package:mms/core/injection/injection_container.dart';
+import 'package:mms/core/util/shared_preferences.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -89,8 +90,8 @@ class _MyAppState extends State<MyApp> {
       builder: (context, child) {
         DrawableText.initial(selectable: false);
 
-        return MaterialApp(
-          navigatorKey: sl<GlobalKey<NavigatorState>>(),
+        return MaterialApp.router(
+          routerConfig: goRouter,
           locale: Locale.fromSubtags(languageCode: AppSharedPreference.getLocal),
           localizationsDelegates: const [
             S.delegate,
@@ -141,7 +142,8 @@ class _MyAppState extends State<MyApp> {
                 },
                 child: MediaQuery(
                   data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.0)),
-                  child: child!,
+                  // In PiP only the call video is shown; the app stays mounted underneath.
+                  child: PipHost(child: child!),
                 ),
               ),
             );
@@ -149,7 +151,6 @@ class _MyAppState extends State<MyApp> {
           scrollBehavior: MyCustomScrollBehavior(),
           debugShowCheckedModeBanner: false,
           theme: appTheme,
-          onGenerateRoute: routes,
         );
       },
     );

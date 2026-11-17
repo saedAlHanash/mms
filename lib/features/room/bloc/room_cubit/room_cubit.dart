@@ -7,12 +7,11 @@ import 'package:mms/core/error/error_manager.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/util/exts.dart';
 
-import '../../../../core/api_manager/api_service.dart';
-import '../../../../core/app/app_widget.dart';
-import '../../../../core/strings/enum_manager.dart';
-import '../../../../main.dart';
-import '../../../../services/pip.dart';
-import '../../data/request/setting_message.dart';
+import 'package:mms/core/api_manager/api_service.dart';
+import 'package:mms/core/app/app_widget.dart';
+import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/main.dart';
+import 'package:mms/features/room/data/request/setting_message.dart';
 
 part 'room_state.dart';
 
@@ -38,7 +37,6 @@ class RoomCubit extends MCubit<RoomInitial> {
     state.listener
       //end call
       ..on<RoomDisconnectedEvent>((e) {
-        PipService.unSetup();
         emit(state.copyWith(id: state.notifyIndex + 1));
       })
       //re sort list users
@@ -180,9 +178,7 @@ class RoomCubit extends MCubit<RoomInitial> {
       await state.result.connect(state.url, state.token, fastConnectOptions: FastConnectOptions());
       state.result.connectionState;
       emit(state.copyWith(statuses: CubitStatuses.done));
-      PipService.setupPip();
     } catch (e) {
-      PipService.unSetup();
       emit(state.copyWith(statuses: CubitStatuses.error, error: e.toString()));
       showErrorFromApi(state);
     }

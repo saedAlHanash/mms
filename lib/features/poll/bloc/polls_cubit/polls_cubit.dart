@@ -2,10 +2,10 @@ import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
-import '../../../../core/api_manager/api_service.dart';
-import '../../../../core/strings/enum_manager.dart';
-import '../../../../core/util/pair_class.dart';
-import '../../data/response/poll_response.dart';
+import 'package:mms/core/api_manager/api_service.dart';
+import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/core/util/pair_class.dart';
+import 'package:mms/features/poll/data/response/poll_response.dart';
 
 part 'polls_state.dart';
 

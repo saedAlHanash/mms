@@ -1,5 +1,8 @@
 package com.coretech.mms
 
-import io.flutter.embedding.android.FlutterActivity
+import org.opentraa.pip.PipActivity
 
-class MainActivity: FlutterActivity()
+// PipActivity (a FlutterActivity) forwards onUserLeaveHint and
+// onPictureInPictureModeChanged to the pip plugin: auto-enter on Android 8-11
+// and reliable PiP state updates on every version.
+class MainActivity : PipActivity()

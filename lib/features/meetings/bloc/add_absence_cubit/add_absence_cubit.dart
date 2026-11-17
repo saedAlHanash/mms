@@ -3,11 +3,11 @@ import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
-import '../../../../core/api_manager/api_service.dart';
-import '../../../../core/app/app_provider.dart';
-import '../../../../core/error/error_manager.dart';
-import '../../../../core/strings/enum_manager.dart';
-import '../../../../core/util/pair_class.dart';
+import 'package:mms/core/api_manager/api_service.dart';
+import 'package:mms/core/app/app_provider.dart';
+import 'package:mms/core/error/error_manager.dart';
+import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/core/util/pair_class.dart';
 
 part 'add_absence_state.dart';
 

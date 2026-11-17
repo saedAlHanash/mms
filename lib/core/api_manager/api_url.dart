@@ -242,5 +242,12 @@ class DeleteUrl {
   static var deletePoll = '';
 }
 
+/// CoreTech SignalR hub (meeting live updates). No auth header is sent.
+class HubUrl {
+  static const meetingHub = 'https://signalr.coretech-mena.com/hub/';
+  static const joinTopic = 'JoinTopic';
+  static const receiveMessage = 'ReceiveMessage';
+}
+
 const additionalConst = '/api/v1/';
 const baseUrl = 'mmsv3-be.coretech-mena.com';

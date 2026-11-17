@@ -6,9 +6,9 @@ import 'package:image_multi_type/image_multi_type.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
 import 'package:mms/features/agendas/data/response/agendas_response.dart';
-import 'package:mms/features/agendas/ui/widget/comment_btn.dart';
+import 'package:mms/features/agendas/ui/widgets/comment_btn.dart';
 
-import '../../../../generated/assets.dart';
+import 'package:mms/generated/assets.dart';
 
 //
 // final tree = TreeNode<Agenda>.root(data: Agenda())

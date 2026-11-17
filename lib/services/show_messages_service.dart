@@ -1,6 +1,6 @@
 import 'package:mms/core/util/snack_bar_message.dart';
 
-import '../core/app/app_widget.dart';
+import 'package:mms/core/app/app_widget.dart';
 
 class ShowMessagesService {
   static void showErrorSnackBarServise(String message) {

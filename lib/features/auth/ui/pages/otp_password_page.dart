@@ -1,3 +1,4 @@
+import 'package:go_router/go_router.dart';
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,9 +15,9 @@ import 'package:mms/core/widgets/my_button.dart';
 import 'package:mms/core/widgets/verification_code_widget.dart';
 import 'package:mms/features/auth/bloc/otp_password_cubit/otp_password_cubit.dart';
 import 'package:mms/features/auth/bloc/resend_code_cubit/resend_code_cubit.dart';
-import 'package:mms/features/auth/ui/widget/auth_layout.dart';
+import 'package:mms/features/auth/ui/widgets/auth_layout.dart';
 import 'package:mms/generated/l10n.dart';
-import 'package:mms/router/app_router.dart';
+import 'package:mms/router/go_router.dart';
 
 class OtpPasswordPage extends StatefulWidget {
   const OtpPasswordPage({super.key});
@@ -52,7 +53,7 @@ class _OtpPasswordPageState extends State<OtpPasswordPage> {
         BlocListener<OtpPasswordCubit, OtpPasswordInitial>(
           listenWhen: (p, current) => current.statuses == CubitStatuses.done,
           listener: (context, state) {
-            Navigator.pushNamedAndRemoveUntil(context, RouteName.resetPasswordPage, (route) => false);
+            context.goNamed(RouteName.resetPasswordPage);
           },
         ),
         BlocListener<ResendCodeCubit, ResendCodeInitial>(
@@ -130,7 +131,7 @@ class _OtpPasswordPageState extends State<OtpPasswordPage> {
                   loading: state.statuses.loading,
                   onTap: () {
                     if (AppProvider.getPhoneCached.isEmpty) {
-                      Navigator.pushReplacementNamed(context, RouteName.login);
+                      context.pushReplacementNamed(RouteName.login);
                       return;
                     }
                     if (!_formKey.currentState!.validate()) return;
@@ -144,7 +145,7 @@ class _OtpPasswordPageState extends State<OtpPasswordPage> {
               text: S.of(context).backToLogin,
               onTap: () {
                 AppSharedPreference.removePhone();
-                Navigator.pushNamed(context, RouteName.login);
+                context.pushNamed(RouteName.login);
               },
             ),
           ],

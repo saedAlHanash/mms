@@ -1,3 +1,4 @@
+import 'package:go_router/go_router.dart';
 import 'dart:typed_data';
 
 import 'package:drawable_text/drawable_text.dart';
@@ -45,7 +46,7 @@ class _ProfilePageState extends State<ProfilePage> {
           listenWhen: (p, c) => c.done,
           listener: (context, state) {
             context.read<LoggedPartyCubit>().getData(newData: true);
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         BlocListener<LoggedPartyCubit, LoggedPartyInitial>(

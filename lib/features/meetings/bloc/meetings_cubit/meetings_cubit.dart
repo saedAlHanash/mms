@@ -4,11 +4,11 @@ import 'package:mms/core/api_manager/api_url.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/features/committees/bloc/my_committees_cubit/my_committees_cubit.dart';
 
-import '../../../../core/api_manager/api_service.dart';
-import '../../../../core/app/app_widget.dart';
-import '../../../../core/strings/enum_manager.dart';
-import '../../../../core/util/pair_class.dart';
-import '../../data/response/meetings_response.dart';
+import 'package:mms/core/api_manager/api_service.dart';
+import 'package:mms/core/app/app_widget.dart';
+import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/core/util/pair_class.dart';
+import 'package:mms/features/meetings/data/response/meetings_response.dart';
 
 part 'meetings_state.dart';
 

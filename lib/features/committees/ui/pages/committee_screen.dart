@@ -1,3 +1,4 @@
+import 'package:go_router/go_router.dart';
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,10 +11,10 @@ import 'package:mms/core/widgets/refresh_widget/refresh_widget.dart';
 import 'package:mms/core/widgets/small_widgets.dart';
 import 'package:mms/features/committees/bloc/my_committees_cubit/my_committees_cubit.dart';
 import 'package:mms/features/committees/data/response/committees_response.dart';
-import 'package:mms/features/home/ui/widget/bottom_nav_widget.dart';
-import 'package:mms/features/home/ui/widget/hi_widget.dart';
+import 'package:mms/features/home/ui/widgets/bottom_nav_widget.dart';
+import 'package:mms/features/home/ui/widgets/hi_widget.dart';
 import 'package:mms/generated/l10n.dart';
-import 'package:mms/router/app_router.dart';
+import 'package:mms/router/go_router.dart';
 
 class CommitteeScreen extends StatelessWidget {
   const CommitteeScreen({super.key});
@@ -127,7 +128,7 @@ class _CommitteeCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12.0.r),
         onTap: () {
           AppProvider.setCommittee = item;
-          Navigator.pushNamed(context, RouteName.committeePage, arguments: item.id);
+          context.pushNamed(RouteName.committeePage, queryParameters: {RouteParam.id: item.id});
         },
         child: Ink(
           padding: EdgeInsets.all(14.0.r),

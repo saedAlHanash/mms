@@ -1,4 +1,4 @@
-import '../../../../core/strings/enum_manager.dart';
+import 'package:mms/core/strings/enum_manager.dart';
 
 class Polls {
   Polls({

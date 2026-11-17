@@ -3,7 +3,7 @@ import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'my_card_widget.dart';
+import 'package:mms/core/widgets/my_card_widget.dart';
 
 class SaedTableWidget extends StatelessWidget {
   const SaedTableWidget({

@@ -2,15 +2,15 @@ import 'package:bloc/bloc.dart';
 import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
-import '../../../../core/api_manager/api_service.dart';
-import '../../../../core/api_manager/api_url.dart';
-import '../../../../core/error/error_manager.dart';
-import '../../../../core/strings/enum_manager.dart';
-import '../../../../core/util/pair_class.dart';
-import '../../../../core/util/shared_preferences.dart';
-import '../../../../generated/l10n.dart';
-import '../../data/request/login_request.dart';
-import '../../data/response/login_response.dart';
+import 'package:mms/core/api_manager/api_service.dart';
+import 'package:mms/core/api_manager/api_url.dart';
+import 'package:mms/core/error/error_manager.dart';
+import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/core/util/pair_class.dart';
+import 'package:mms/core/util/shared_preferences.dart';
+import 'package:mms/generated/l10n.dart';
+import 'package:mms/features/auth/data/request/login_request.dart';
+import 'package:mms/features/auth/data/response/login_response.dart';
 
 part 'confirm_code_state.dart';
 

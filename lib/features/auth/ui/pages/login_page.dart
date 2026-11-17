@@ -1,9 +1,11 @@
+import 'package:go_router/go_router.dart';
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
+import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
@@ -11,10 +13,10 @@ import 'package:mms/core/widgets/my_button.dart';
 import 'package:mms/core/widgets/my_text_form_widget.dart';
 import 'package:mms/features/auth/bloc/login_cubit/login_cubit.dart';
 import 'package:mms/features/auth/bloc/login_social_cubit/login_social_cubit.dart';
-import 'package:mms/features/auth/ui/widget/auth_layout.dart';
+import 'package:mms/features/auth/ui/widgets/auth_layout.dart';
 import 'package:mms/generated/assets.dart';
 import 'package:mms/generated/l10n.dart';
-import 'package:mms/router/app_router.dart';
+import 'package:mms/router/go_router.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -41,13 +43,18 @@ class _LoginPageState extends State<LoginPage> {
         BlocListener<LoginCubit, LoginInitial>(
           listenWhen: (p, c) => c.done,
           listener: (context, state) {
-            Navigator.pushNamedAndRemoveUntil(context, RouteName.home, (route) => false);
+            context.goNamed(RouteName.home);
           },
+        ),
+        // Account not verified yet: continue with the confirmation code.
+        BlocListener<LoginCubit, LoginInitial>(
+          listenWhen: (p, c) => c.statuses == CubitStatuses.error && c.error.contains('not verified'),
+          listener: (context, state) => context.goNamed(RouteName.confirmCode),
         ),
         BlocListener<LoginSocialCubit, LoginSocialInitial>(
           listenWhen: (p, c) => c.done,
           listener: (context, state) {
-            Navigator.pushNamedAndRemoveUntil(context, RouteName.home, (route) => false);
+            context.goNamed(RouteName.home);
           },
         ),
       ],
@@ -102,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
               Align(
                 alignment: AlignmentDirectional.centerEnd,
                 child: TextButton(
-                  onPressed: () => Navigator.pushNamed(context, RouteName.forgetPassword),
+                  onPressed: () => context.pushNamed(RouteName.forgetPassword),
                   style: TextButton.styleFrom(minimumSize: Size(44.0.w, 44.0.h)),
                   child: DrawableText(
                     text: S.of(context).forgetPassword,

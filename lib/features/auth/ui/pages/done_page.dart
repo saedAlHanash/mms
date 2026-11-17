@@ -1,3 +1,4 @@
+import 'package:go_router/go_router.dart';
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,7 +7,7 @@ import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:mms/core/util/my_style.dart';
 import 'package:mms/core/widgets/my_button.dart';
 import 'package:mms/generated/l10n.dart';
-import 'package:mms/router/app_router.dart';
+import 'package:mms/router/go_router.dart';
 
 class DonePage extends StatelessWidget {
   const DonePage({super.key});
@@ -58,7 +59,7 @@ class DonePage extends StatelessWidget {
               MyButton(
                 text: S.of(context).login,
                 onTap: () {
-                  Navigator.pushNamedAndRemoveUntil(context, RouteName.login, (route) => false);
+                  context.goNamed(RouteName.login);
                 },
               ),
             ],

@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'positions.dart';
+import 'package:mms/core/widgets/avatar_stack/src/positions/positions.dart';
 
 /// Defines coordinates of common items and an information item.
 /// The height of elements is defined by _height of the area.

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:mms/features/committees/data/response/committees_response.dart';
 import 'package:mms/features/members/data/response/member_response.dart';
 
-import '../../features/auth/data/response/login_response.dart';
-import '../../features/meetings/data/response/meetings_response.dart';
-import '../../generated/l10n.dart';
-import '../../router/app_router.dart';
-import '../strings/enum_manager.dart';
-import '../util/shared_preferences.dart';
-import '../util/snack_bar_message.dart';
-import 'app_widget.dart';
+import 'package:mms/features/auth/data/response/login_response.dart';
+import 'package:mms/features/meetings/data/response/meetings_response.dart';
+import 'package:mms/generated/l10n.dart';
+import 'package:mms/router/go_router.dart';
+import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/core/util/shared_preferences.dart';
+import 'package:mms/core/util/snack_bar_message.dart';
+import 'package:mms/core/app/app_widget.dart';
 
 class AppProvider {
   static var _currentCommittee = Committee.fromJson({});
@@ -46,7 +46,7 @@ class AppProvider {
           textButton: S.of(ctx!).login,
           image: Icons.login,
           onConfirm: () {
-            Navigator.pushNamed(ctx!, RouteName.login);
+            goRouter.pushNamed(RouteName.login);
           },
         );
       }
@@ -73,8 +73,7 @@ class AppProvider {
   static Future<void> logout() async {
     await AppSharedPreference.logout();
     if (ctx != null) {
-      Navigator.pushNamedAndRemoveUntil(
-          ctx!, RouteName.splash, (route) => false);
+      goRouter.goNamed(RouteName.splash);
     }
   }
 

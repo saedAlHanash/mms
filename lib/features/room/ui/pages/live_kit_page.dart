@@ -15,14 +15,14 @@ import 'package:mms/core/widgets/my_text_form_widget.dart';
 import 'package:mms/features/meetings/data/response/meetings_response.dart';
 import 'package:mms/features/room/bloc/user_control_cubit/user_control_cubit.dart';
 
-import '../../../../generated/l10n.dart';
-import '../../../../services/app_info_service.dart';
-import '../../../meetings/bloc/meeting_cubit/meeting_cubit.dart';
-import '../../../room/bloc/room_cubit/room_cubit.dart';
-import '../../bloc/my_status_cubit/my_status_cubit.dart';
-import '../widget/controls.dart';
-import '../widget/users/dynamic_user.dart';
-import '../widget/video_widget.dart';
+import 'package:mms/generated/l10n.dart';
+import 'package:mms/services/app_info_service.dart';
+import 'package:mms/features/meetings/bloc/meeting_cubit/meeting_cubit.dart';
+import 'package:mms/features/room/bloc/room_cubit/room_cubit.dart';
+import 'package:mms/features/room/bloc/my_status_cubit/my_status_cubit.dart';
+import 'package:mms/features/room/ui/widgets/controls.dart';
+import 'package:mms/features/room/ui/widgets/users/dynamic_user.dart';
+import 'package:mms/features/room/ui/widgets/video_widget.dart';
 
 class LiveKitPage extends StatefulWidget {
   const LiveKitPage({super.key, required this.isOpen, required this.link, required this.token});
@@ -213,7 +213,7 @@ class _Temp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColorManager.black,
       body: SafeArea(
         child: SizedBox(
           height: 1.0.sh,

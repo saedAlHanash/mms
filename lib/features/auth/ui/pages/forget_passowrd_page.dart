@@ -1,3 +1,4 @@
+import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,10 +6,10 @@ import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
 import 'package:mms/core/widgets/my_button.dart';
 import 'package:mms/core/widgets/my_text_form_widget.dart';
 import 'package:mms/features/auth/bloc/forget_password_cubit/forget_password_cubit.dart';
-import 'package:mms/features/auth/ui/widget/auth_layout.dart';
+import 'package:mms/features/auth/ui/widgets/auth_layout.dart';
 import 'package:mms/generated/assets.dart';
 import 'package:mms/generated/l10n.dart';
-import 'package:mms/router/app_router.dart';
+import 'package:mms/router/go_router.dart';
 
 class ForgetPasswordPage extends StatefulWidget {
   const ForgetPasswordPage({super.key, this.phone});
@@ -39,7 +40,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
     return BlocListener<ForgetPasswordCubit, ForgetPasswordInitial>(
       listenWhen: (p, c) => c.done,
       listener: (context, state) {
-        Navigator.pushNamedAndRemoveUntil(context, RouteName.otpPassword, (route) => false);
+        context.goNamed(RouteName.otpPassword);
       },
       child: Scaffold(
         appBar: AppBarWidget(titleText: S.of(context).forgetPassword),
@@ -75,7 +76,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
             AuthLink(
               leading: S.of(context).rememberPassword,
               text: S.of(context).login,
-              onTap: () => Navigator.pushReplacementNamed(context, RouteName.login),
+              onTap: () => context.pushReplacementNamed(RouteName.login),
             ),
           ],
         ),

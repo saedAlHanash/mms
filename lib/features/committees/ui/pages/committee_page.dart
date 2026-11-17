@@ -1,3 +1,4 @@
+import 'package:go_router/go_router.dart';
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,11 +12,11 @@ import 'package:mms/core/widgets/icon_tile.dart';
 import 'package:mms/core/widgets/refresh_widget/refresh_widget.dart';
 import 'package:mms/core/widgets/small_widgets.dart';
 import 'package:mms/features/committees/bloc/committee_cubit/committee_cubit.dart';
-import 'package:mms/features/documents/ui/widget/documents_list_widget.dart';
-import 'package:mms/features/goals/ui/widget/goals_list_widget.dart';
-import 'package:mms/features/members/ui/widget/members_list_widget.dart';
+import 'package:mms/features/documents/ui/widgets/documents_list_widget.dart';
+import 'package:mms/features/goals/ui/widgets/goals_list_widget.dart';
+import 'package:mms/features/members/ui/widgets/members_list_widget.dart';
 import 'package:mms/generated/l10n.dart';
-import 'package:mms/router/app_router.dart';
+import 'package:mms/router/go_router.dart';
 
 class CommitteePage extends StatelessWidget {
   const CommitteePage({super.key});
@@ -128,10 +129,9 @@ class CommitteePage extends StatelessWidget {
                               title: S.of(context).meetings,
                               subtitle: S.of(context).committeeCalendar,
                               onTap: () {
-                                Navigator.pushNamed(
-                                  context,
+                                context.pushNamed(
                                   RouteName.calenderMeetings,
-                                  arguments: FilterRequest(
+                                  extra: FilterRequest(
                                     filters: {
                                       "committeeId": Filter(
                                         name: 'committeeId',
