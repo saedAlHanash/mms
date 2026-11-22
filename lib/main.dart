@@ -8,6 +8,7 @@ import 'package:m_cubit/caching_service/caching_service.dart';
 import 'package:mms/core/error/error_manager.dart';
 import 'package:mms/services/app_info_service.dart';
 import 'package:mms/services/firebase_service.dart';
+import 'package:mms/services/notification_open_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:mms/core/api_manager/api_service.dart';
@@ -39,6 +40,8 @@ void main() async {
   await Note.initialize();
 
   await di.init();
+
+  await NotificationOpenService.init();
 
   HttpOverrides.global = MyHttpOverrides();
 
@@ -83,14 +86,17 @@ class Note {
     var androidInitialize = const AndroidInitializationSettings('mipmap/ic_launcher');
     var iOSInitialize = const DarwinInitializationSettings();
     var initializationsSettings = InitializationSettings(android: androidInitialize, iOS: iOSInitialize);
-    await flutterLocalNotificationsPlugin.initialize(settings: initializationsSettings);
+    await flutterLocalNotificationsPlugin.initialize(
+      settings: initializationsSettings,
+      onDidReceiveNotificationResponse: NotificationOpenService.onLocalTap,
+    );
   }
 
   static Future showBigTextNotification({
     var id = 0,
     required String title,
     required String body,
-    var payload,
+    String? payload,
   }) async {
     // var vibrationPattern = Int64List(2);
     // vibrationPattern[0] = 1000;
@@ -117,6 +123,7 @@ class Note {
       title: title,
       body: body,
       notificationDetails: not,
+      payload: payload,
     );
   }
 }

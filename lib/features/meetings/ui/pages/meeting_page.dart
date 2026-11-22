@@ -21,6 +21,8 @@ import 'package:mms/features/meetings/ui/widgets/discussions_tree.dart';
 import 'package:mms/core/widgets/in_app_notification.dart';
 import 'package:mms/features/meeting_hub/bloc/meeting_hub_cubit/meeting_hub_cubit.dart';
 import 'package:mms/features/meeting_hub/ui/widgets/hub_widgets.dart';
+import 'package:mms/features/meeting_live/bloc/meeting_live_cubit/meeting_live_cubit.dart';
+import 'package:mms/features/meeting_live/ui/widgets/meeting_live_panel.dart';
 import 'package:mms/services/pip.dart';
 
 import 'package:mms/core/strings/enum_manager.dart';
@@ -43,6 +45,13 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
   MeetingCubit get _meetingCubit => context.read<MeetingCubit>();
 
   MeetingHubCubit get _hubCubit => context.read<MeetingHubCubit>();
+
+  MeetingLiveCubit get _liveCubit => context.read<MeetingLiveCubit>();
+
+  /// The live state is followed only while the meeting is running.
+  void _syncLive(Meeting meeting) {
+    meeting.status == MeetingStatus.running ? _liveCubit.start(meeting.id) : _liveCubit.stop();
+  }
 
   @override
   void initState() {
@@ -94,6 +103,7 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
           listenWhen: (p, c) => c.done,
           listener: (context, state) {
             AppProvider.setMeeting = state.result;
+            _syncLive(state.result);
           },
         ),
         BlocListener<AddAbsenceCubit, AddAbsenceInitial>(
@@ -108,14 +118,22 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
         BlocListener<MeetingHubCubit, MeetingHubInitial>(
           listenWhen: (p, c) => p.messageId != c.messageId && c.lastMessage != null,
           listener: (context, state) {
-            _meetingCubit.applyHubMessage(state.lastMessage!);
-            showHubNotification(context, state.lastMessage!);
+            final message = state.lastMessage!;
+            if (message.event == SocketEvents.liveStateUpdated) {
+              _liveCubit.onLiveUpdated();
+              return;
+            }
+            _meetingCubit.applyHubMessage(message);
+            showHubNotification(context, message);
           },
         ),
         // Reconnected / resumed: refetch what was missed.
         BlocListener<MeetingHubCubit, MeetingHubInitial>(
           listenWhen: (p, c) => p.resyncId != c.resyncId,
-          listener: (context, state) => _meetingCubit.getData(newData: true),
+          listener: (context, state) {
+            _meetingCubit.getData(newData: true);
+            _liveCubit.getData();
+          },
         ),
       ],
       child: BlocBuilder<RoomCubit, RoomInitial>(
@@ -166,6 +184,10 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
                                       ),
                                       children: [
                                         _MeetingInfoCard(meeting: item),
+                                        if (isRunning) ...[
+                                          16.0.verticalSpace,
+                                          const MeetingLivePanel(),
+                                        ],
                                         // const AbsentWidget(),
                                         24.0.verticalSpace,
                                         _VotesCard(pending: item.countPollsNotVotes),

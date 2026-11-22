@@ -11,7 +11,9 @@ import 'package:mms/core/widgets/dashed_border.dart';
 import 'package:mms/core/widgets/initials_avatar.dart';
 import 'package:mms/core/widgets/my_button.dart';
 import 'package:mms/features/attendees/data/response/attendee_response.dart';
+import 'package:mms/core/util/snack_bar_message.dart';
 import 'package:mms/features/meetings/bloc/meeting_cubit/meeting_cubit.dart';
+import 'package:mms/features/meetings/bloc/my_guest_suggestions_cubit/my_guest_suggestions_cubit.dart';
 import 'package:mms/features/meetings/data/response/meetings_response.dart';
 import 'package:mms/generated/l10n.dart';
 import 'package:mms/router/go_router.dart';
@@ -92,6 +94,7 @@ class AttendeesListWidget extends StatelessWidget {
                 context.pushNamed<bool>(RouteName.addGuest).then((value) {
                   if (value is bool && value && context.mounted) {
                     context.read<MeetingCubit>().getData(newData: true);
+                    context.read<MyGuestSuggestionsCubit>().getData();
                   }
                 });
               },
@@ -188,7 +191,9 @@ class _AttendeeRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final recorded = item.hasAttended && item.attendanceDate != null;
+    // The check-in time when there is one, else the recorded attendance time.
+    final time = item.checkedInAt ?? item.attendanceDate;
+    final recorded = item.hasAttended && time != null;
 
     final Widget subtitle = recorded
         ? Row(
@@ -211,7 +216,7 @@ class _AttendeeRow extends StatelessWidget {
               Directionality(
                 textDirection: .ltr,
                 child: DrawableText(
-                  text: item.attendanceDate!.formatTime,
+                  text: time.formatTime,
                   size: 13.0.sp,
                   fontWeight: .w600,
                   color: AppColorManager.successText,
@@ -268,7 +273,43 @@ class _GuestRow extends StatelessWidget {
         child: DrawableText(text: guest.phone, size: 13.0.sp, color: AppColorManager.neutral500),
       ),
       trailing: suggested
-          ? DashedBorder(
+          ? BlocBuilder<MyGuestSuggestionsCubit, MyGuestSuggestionsInitial>(
+              builder: (context, state) {
+                // My own suggestion: withdraw instead of the "suggested" pill.
+                final mine = context.read<MyGuestSuggestionsCubit>().mineFor(guest);
+                if (mine != null) {
+                  return MyButton(
+                    variant: .dangerSoft,
+                    size: .medium,
+                    width: 88.0.w,
+                    loading: state.deletingId == mine.id,
+                    text: S.of(context).withdraw,
+                    onTap: () => _withdraw(context, mine.id),
+                  );
+                }
+                return _suggestedPill(context);
+              },
+            )
+          : null,
+    );
+  }
+
+  Future<void> _withdraw(BuildContext context, String id) async {
+    await NoteMessage.showCheckDialog(
+      context,
+      text: S.of(context).withdrawSuggestionConfirm,
+      textButton: S.of(context).withdraw,
+      image: Icons.person_remove_outlined,
+      destructive: true,
+      onConfirm: () async {
+        final done = await context.read<MyGuestSuggestionsCubit>().delete(id);
+        if (done && context.mounted) context.read<MeetingCubit>().getData(newData: true);
+      },
+    );
+  }
+
+  Widget _suggestedPill(BuildContext context) {
+    return DashedBorder(
               color: AppColorManager.neutral300,
               radius: 999,
               child: Padding(
@@ -280,9 +321,7 @@ class _GuestRow extends StatelessWidget {
                   color: AppColorManager.neutral700,
                 ),
               ),
-            )
-          : null,
-    );
+            );
   }
 }
 

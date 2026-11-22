@@ -41,7 +41,8 @@ class FirebaseService {
       }
 
       if (title.isEmpty && body.isEmpty) return;
-      Note.showBigTextNotification(title: title, body: body);
+      // Tapping it opens the meeting (see NotificationOpenService).
+      Note.showBigTextNotification(title: title, body: body, payload: pushMeetingId(message.data));
     });
   }
 
@@ -126,7 +127,13 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
     body = model.notification.body;
   }
   if (title.isEmpty && body.isEmpty) return;
-  Note.showBigTextNotification(title: title, body: body);
+  Note.showBigTextNotification(title: title, body: body, payload: pushMeetingId(message.data));
+}
+
+/// `MeetingId` of a push, read at the top level or inside `data`.
+String pushMeetingId(Map<String, dynamic> data) {
+  final top = (_valueOf(data, 'meetingId') ?? '').toString();
+  return top.isNotEmpty ? top : FirebaseNotificationModel.fromJson(data).data.meetingId;
 }
 
 class FirebaseNotificationModel {

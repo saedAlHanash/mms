@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mms/services/notification_open_service.dart';
 import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
 import 'package:mms/features/committees/ui/pages/committee_screen.dart';
 import 'package:mms/features/home/ui/widgets/bottom_nav_widget.dart';
@@ -19,6 +20,8 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _pageController = PageController();
+    // A notification tapped before the app was open waits for the home page.
+    WidgetsBinding.instance.addPostFrameCallback((_) => NotificationOpenService.openPending());
   }
 
   @override

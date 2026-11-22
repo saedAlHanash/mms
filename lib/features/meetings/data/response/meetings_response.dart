@@ -297,6 +297,8 @@ class Decision {
     required this.meetingId,
     required this.statement,
     required this.date,
+    required this.number,
+    required this.year,
   });
 
   final String id;
@@ -304,12 +306,21 @@ class Decision {
   final String statement;
   final DateTime? date;
 
+  /// Register number and year, null until the decision is published.
+  final int? number;
+  final int? year;
+
+  /// "3/2026", or empty before publishing.
+  String get numberLabel => number == null || year == null ? '' : '$number/$year';
+
   factory Decision.fromJson(Map<String, dynamic> json) {
     return Decision(
       id: json["id"] ?? "",
       meetingId: json["meetingId"] ?? "",
       statement: json["statement"] ?? "",
       date: DateTime.tryParse(json["date"] ?? ""),
+      number: int.tryParse(json["number"]?.toString() ?? ""),
+      year: int.tryParse(json["year"]?.toString() ?? ""),
     );
   }
 
@@ -318,6 +329,8 @@ class Decision {
         "meetingId": meetingId,
         "statement": statement,
         "date": date?.toIso8601String(),
+        "number": number,
+        "year": year,
       };
 }
 

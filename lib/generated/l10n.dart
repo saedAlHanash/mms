@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -4019,6 +4018,186 @@ class S {
     return Intl.message(
       'Why do you object or abstain?',
       name: 'voteReasonHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passed`
+  String get pollOutcomePassed {
+    return Intl.message(
+      'Passed',
+      name: 'pollOutcomePassed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rejected`
+  String get pollOutcomeRejected {
+    return Intl.message(
+      'Rejected',
+      name: 'pollOutcomeRejected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tied`
+  String get pollOutcomeTied {
+    return Intl.message('Tied', name: 'pollOutcomeTied', desc: '', args: []);
+  }
+
+  /// `decided by the chair`
+  String get decidedByChair {
+    return Intl.message(
+      'decided by the chair',
+      name: 'decidedByChair',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Withdraw`
+  String get withdraw {
+    return Intl.message('Withdraw', name: 'withdraw', desc: '', args: []);
+  }
+
+  /// `Withdraw this guest suggestion?`
+  String get withdrawSuggestionConfirm {
+    return Intl.message(
+      'Withdraw this guest suggestion?',
+      name: 'withdrawSuggestionConfirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Live now`
+  String get liveNow {
+    return Intl.message('Live now', name: 'liveNow', desc: '', args: []);
+  }
+
+  /// `Quorum met: {present} of {required}`
+  String quorumMet(Object present, Object required) {
+    return Intl.message(
+      'Quorum met: $present of $required',
+      name: 'quorumMet',
+      desc: '',
+      args: [present, required],
+    );
+  }
+
+  /// `No quorum: {present} of {required}`
+  String quorumNotMet(Object present, Object required) {
+    return Intl.message(
+      'No quorum: $present of $required',
+      name: 'quorumNotMet',
+      desc: '',
+      args: [present, required],
+    );
+  }
+
+  /// `No agenda item on screen`
+  String get liveNoItem {
+    return Intl.message(
+      'No agenda item on screen',
+      name: 'liveNoItem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `On screen`
+  String get liveCurrentItem {
+    return Intl.message(
+      'On screen',
+      name: 'liveCurrentItem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Paused`
+  String get livePaused {
+    return Intl.message('Paused', name: 'livePaused', desc: '', args: []);
+  }
+
+  /// `Nobody has the floor`
+  String get liveNobodySpeaking {
+    return Intl.message(
+      'Nobody has the floor',
+      name: 'liveNobodySpeaking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Speaking`
+  String get liveSpeaking {
+    return Intl.message('Speaking', name: 'liveSpeaking', desc: '', args: []);
+  }
+
+  /// `Waiting ({count})`
+  String liveQueue(Object count) {
+    return Intl.message(
+      'Waiting ($count)',
+      name: 'liveQueue',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Point of order`
+  String get pointOfOrder {
+    return Intl.message(
+      'Point of order',
+      name: 'pointOfOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have the floor`
+  String get liveYourTurn {
+    return Intl.message(
+      'You have the floor',
+      name: 'liveYourTurn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are number {place} in the queue`
+  String liveYourPlace(Object place) {
+    return Intl.message(
+      'You are number $place in the queue',
+      name: 'liveYourPlace',
+      desc: '',
+      args: [place],
+    );
+  }
+
+  /// `Your request was sent`
+  String get liveRequestSent {
+    return Intl.message(
+      'Your request was sent',
+      name: 'liveRequestSent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Withdraw`
+  String get liveWithdraw {
+    return Intl.message('Withdraw', name: 'liveWithdraw', desc: '', args: []);
+  }
+
+  /// `Ask to speak`
+  String get liveAskToSpeak {
+    return Intl.message(
+      'Ask to speak',
+      name: 'liveAskToSpeak',
       desc: '',
       args: [],
     );

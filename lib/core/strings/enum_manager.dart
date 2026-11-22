@@ -340,6 +340,49 @@ enum MeetingMode {
       };
 }
 
+/// Kind of floor request (`SpeakerRequestKind`): a point of order goes first.
+enum SpeakerRequestKind { normal, pointOfOrder }
+
+/// State of a floor request (`SpeakerRequestState`).
+enum SpeakerRequestState { waiting, speaking, done, withdrawn, skipped }
+
+/// Result of a for/against poll under the committee's voting rule (`PollOutcome`).
+enum PollOutcome {
+  passed,
+  rejected,
+  tied;
+
+  static PollOutcome? fromIndex(Object? index) {
+    final i = int.tryParse(index?.toString() ?? '');
+    if (i == null || i < 0 || i >= values.length) return null;
+    return values[i];
+  }
+
+  String get label => switch (this) {
+        PollOutcome.passed => S().pollOutcomePassed,
+        PollOutcome.rejected => S().pollOutcomeRejected,
+        PollOutcome.tied => S().pollOutcomeTied,
+      };
+
+  StatusColors get colors => switch (this) {
+        PollOutcome.passed => const StatusColors(
+            dot: AppColorManager.success,
+            bg: AppColorManager.successSoft,
+            fg: AppColorManager.successText,
+          ),
+        PollOutcome.rejected => const StatusColors(
+            dot: AppColorManager.danger,
+            bg: AppColorManager.dangerSoft,
+            fg: AppColorManager.dangerText,
+          ),
+        PollOutcome.tied => const StatusColors(
+            dot: AppColorManager.warning,
+            bg: AppColorManager.warningSoft,
+            fg: AppColorManager.warningText,
+          ),
+      };
+}
+
 /// What a poll option stands for (`VoteOptionKind`, sent as its index).
 enum VoteOptionKind {
   other,

@@ -27,10 +27,12 @@ import 'package:mms/features/committees/ui/pages/committee_page.dart';
 import 'package:mms/features/files/bloc/upload_file_cubit/upload_file_cubit.dart';
 import 'package:mms/features/home/ui/pages/home_page.dart';
 import 'package:mms/features/meeting_hub/bloc/meeting_hub_cubit/meeting_hub_cubit.dart';
+import 'package:mms/features/meeting_live/bloc/meeting_live_cubit/meeting_live_cubit.dart';
 import 'package:mms/features/meetings/bloc/add_absence_cubit/add_absence_cubit.dart';
 import 'package:mms/features/meetings/bloc/add_guest_cubit/add_guest_cubit.dart';
 import 'package:mms/features/meetings/bloc/meeting_cubit/meeting_cubit.dart';
 import 'package:mms/features/meetings/bloc/meetings_cubit/meetings_cubit.dart';
+import 'package:mms/features/meetings/bloc/my_guest_suggestions_cubit/my_guest_suggestions_cubit.dart';
 import 'package:mms/features/meetings/ui/pages/add_guest_page.dart';
 import 'package:mms/features/meetings/ui/pages/calender_screen.dart';
 import 'package:mms/features/meetings/ui/pages/meeting_page.dart';
@@ -176,6 +178,12 @@ final goRouter = GoRouter(
           ),
           BlocProvider(create: (_) => sl<AddAbsenceCubit>()),
           BlocProvider(create: (_) => sl<AddCommentCubit>()),
+          BlocProvider(
+            create: (_) =>
+                sl<MyGuestSuggestionsCubit>()..getData(meetingId: state.uri.queryParameters[RouteParam.id] ?? ''),
+          ),
+          // Live screen state; started by the page while the meeting is running.
+          BlocProvider(create: (_) => sl<MeetingLiveCubit>()),
           // Live updates (SignalR) for this meeting; closed with the route.
           BlocProvider(
             create: (_) => sl<MeetingHubCubit>()

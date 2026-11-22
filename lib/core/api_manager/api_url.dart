@@ -97,6 +97,10 @@ class GetUrl {
 
   static const noticePreferences = 'Party/GetMyNoticePreferences';
 
+  static const guestSuggestions = 'Meeting/GetGuestSuggestions';
+
+  static const liveState = 'MeetingLive/GetState';
+
   static const agenda = '';
 
   static const agendas = '';
@@ -159,6 +163,10 @@ class PostUrl {
   static const meetings = 'Meeting/GetAll';
 
   static const addGuest = 'Meeting/AddGuestSuggestion';
+
+  static const requestFloor = 'MeetingLive/RequestFloor';
+
+  static const withdrawFloor = 'MeetingLive/WithdrawFloor';
 
   static const addAbsence = 'AbsenceRequest/Add';
 
@@ -229,6 +237,7 @@ class PutUrl {
 }
 
 class DeleteUrl {
+  static const guestSuggestion = 'Meeting/DeleteGuestSuggestion';
   static const deleteMeetingRating = 'rating/Delete';
   static const deleteLiveKit = 'lk/Delete';
   static const deleteAgora = 'forDelete/Delete';

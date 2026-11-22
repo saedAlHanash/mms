@@ -80,7 +80,15 @@ void showHubNotification(BuildContext context, HubMessage message) {
         Icons.how_to_vote_outlined,
       ),
     .pollPublished => (s.hubPollPublished, text('topic'), Icons.pie_chart_outline_rounded),
-    .decisionPublished => (s.hubDecisionPublished, text('statement'), Icons.gavel_rounded),
+    .decisionPublished => (
+        s.hubDecisionPublished,
+        // "3/2026 · statement" once the decision has its register number.
+        [
+          if (text('number').isNotEmpty && text('year').isNotEmpty) '${text('number')}/${text('year')}',
+          text('statement'),
+        ].where((e) => e.isNotEmpty).join(' · '),
+        Icons.gavel_rounded,
+      ),
     .discussionStatusUpdated => (
         switch (number('status')) {
           1 => s.hubDiscussionOpened,

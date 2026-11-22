@@ -327,11 +327,27 @@ class PollResultWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: .stretch,
         children: [
-          DrawableText(
-            text: pollResult.topic,
-            size: 16.0.sp,
-            fontWeight: .w700,
-            color: AppColorManager.neutral900,
+          Row(
+            crossAxisAlignment: .start,
+            children: [
+              Expanded(
+                child: DrawableText(
+                  text: pollResult.topic,
+                  size: 16.0.sp,
+                  fontWeight: .w700,
+                  color: AppColorManager.neutral900,
+                ),
+              ),
+              if (pollResult.outcome?.outcome case final outcome?) ...[
+                8.0.horizontalSpace,
+                StatusChip(
+                  colors: outcome.colors,
+                  label: pollResult.outcome!.decidedByChair
+                      ? '${outcome.label} · ${S.of(context).decidedByChair}'
+                      : outcome.label,
+                ),
+              ],
+            ],
           ),
           12.0.verticalSpace,
           Row(

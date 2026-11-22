@@ -7,6 +7,7 @@ class Attendee {
     required this.hasAttended,
     required this.partyId,
     required this.fullName,
+    required this.checkedInAt,
   });
 
   final String id;
@@ -15,6 +16,9 @@ class Attendee {
   final String partyId;
   final String fullName;
 
+  /// QR check-in (or online join) time; null without a check-in.
+  final DateTime? checkedInAt;
+
   factory Attendee.fromJson(Map<String, dynamic> json) {
     return Attendee(
       id: json["id"] ?? "",
@@ -22,6 +26,7 @@ class Attendee {
       hasAttended: json["hasAttended"] ?? false,
       partyId: json["partyId"] ?? "",
       fullName:json["fullName"] ??'',
+      checkedInAt: DateTime.tryParse(json["checkedInAt"] ?? ""),
     );
   }
 
@@ -31,5 +36,6 @@ class Attendee {
         "hasAttended": hasAttended,
         "partyId": partyId,
         "fullName": fullName,
+        "checkedInAt": checkedInAt?.toIso8601String(),
       };
 }

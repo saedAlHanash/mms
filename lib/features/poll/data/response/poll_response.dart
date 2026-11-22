@@ -73,6 +73,7 @@ class PollResult {
     required this.isResultPublished,
     required this.totalVotes,
     required this.voteResults,
+    required this.outcome,
   });
 
   final String id;
@@ -80,6 +81,9 @@ class PollResult {
   final bool isResultPublished;
   final num totalVotes;
   final List<VoteResult> voteResults;
+
+  /// Null for polls that aren't for/against, or from an older backend.
+  final PollOutcomeResult? outcome;
 
   factory PollResult.fromJson(Map<String, dynamic> json) {
     return PollResult(
@@ -91,6 +95,7 @@ class PollResult {
           ? []
           : List<VoteResult>.from(
               json["voteResults"]!.map((x) => VoteResult.fromJson(x))),
+      outcome: json["outcome"] is Map ? PollOutcomeResult.fromJson(json["outcome"]) : null,
     );
   }
 
@@ -100,7 +105,29 @@ class PollResult {
         "isResultPublished": isResultPublished,
         "totalVotes": totalVotes,
         "voteResults": voteResults.map((x) => x.toJson()).toList(),
+        "outcome": outcome?.toJson(),
       };
+}
+
+/// `PollOutcomeDto`: the result worked out with the committee's voting rule.
+class PollOutcomeResult {
+  PollOutcomeResult({required this.outcome, required this.decidedByChair, required this.json});
+
+  final PollOutcome? outcome;
+  final bool decidedByChair;
+
+  /// The rest (majority, counts, required) kept as sent.
+  final Map<String, dynamic> json;
+
+  factory PollOutcomeResult.fromJson(Map<String, dynamic> json) {
+    return PollOutcomeResult(
+      outcome: PollOutcome.fromIndex(json["outcome"]),
+      decidedByChair: json["decidedByChair"] ?? false,
+      json: json,
+    );
+  }
+
+  Map<String, dynamic> toJson() => json;
 }
 
 class VoteResult {
