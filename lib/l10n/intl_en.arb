@@ -489,5 +489,7 @@
   "meetingModeInPerson": "In person",
   "meetingModeOnline": "Online",
   "meetingModeHybrid": "Hybrid (in person and online)",
-  "hijriDate": "Hijri"
+  "hijriDate": "Hijri",
+  "voteReason": "Reason",
+  "voteReasonHint": "Why do you object or abstain?"
 }

@@ -9,6 +9,7 @@ import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
 import 'package:mms/core/strings/enum_manager.dart';
 import 'package:mms/core/widgets/my_button.dart';
+import 'package:mms/core/widgets/my_text_form_widget.dart';
 import 'package:mms/core/widgets/status_chip.dart';
 import 'package:mms/features/poll/data/response/poll_response.dart';
 import 'package:mms/features/vote/bloc/create_vote_cubit/create_vote_cubit.dart';
@@ -60,6 +61,13 @@ class _PollWidgetState extends State<PollWidget> {
     super.initState();
   }
 
+  /// A new choice to object or abstain (the recorded vote isn't edited here).
+  bool _showReason(String? selectedId) {
+    final option = widget.poll.options.firstWhereOrNull((e) => e.id == selectedId);
+    if (option == null || !option.kind.asksReason) return false;
+    return request.pollOptionId != null && request.pollOptionId != widget.poll.meOptionVote?.id;
+  }
+
   /// Safe count (no `reduce` on an empty list).
   int get _votersCount => widget.poll.options.fold(0, (sum, e) => sum + e.voters.length);
 
@@ -98,7 +106,23 @@ class _PollWidgetState extends State<PollWidget> {
               selected: poll.options[i].id == selectedId,
               isMyVote: poll.options[i].id == myOption?.id,
               enabled: enable,
-              onTap: () => setState(() => request.pollOptionId = poll.options[i].id),
+              onTap: () => setState(() {
+                request.pollOptionId = poll.options[i].id;
+                if (!poll.options[i].kind.asksReason) request.reason = null;
+              }),
+            ),
+          ],
+          // Objecting or abstaining: the server may require a reason (Rules:VoteReasons).
+          if (enable && _showReason(selectedId)) ...[
+            12.0.verticalSpace,
+            MyTextFormOutLineWidget(
+              key: ValueKey('reason-$selectedId'),
+              label: S.of(context).voteReason,
+              hint: S.of(context).voteReasonHint,
+              maxLines: 3,
+              maxLength: 500,
+              initialValue: request.reason,
+              onChanged: (value) => request.reason = value,
             ),
           ],
           12.0.verticalSpace,

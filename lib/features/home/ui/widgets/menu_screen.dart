@@ -17,6 +17,8 @@ import 'package:mms/core/widgets/small_widgets.dart';
 import 'package:mms/core/widgets/switch_widget.dart';
 import 'package:mms/features/auth/bloc/get_me_cubit/get_me_cubit.dart';
 import 'package:mms/features/home/ui/widgets/bottom_nav_widget.dart';
+import 'package:mms/features/notice_preferences/bloc/notice_preferences_cubit/notice_preferences_cubit.dart';
+
 import 'package:mms/generated/assets.dart';
 import 'package:mms/generated/l10n.dart';
 import 'package:mms/router/go_router.dart';
@@ -123,9 +125,19 @@ class _MenuScreenState extends State<MenuScreen> {
                 _MenuRow(
                   icon: Icons.notifications_none_rounded,
                   title: S.of(context).notification,
-                  trailing: SwitchWidget(
-                    initialVal: AppSharedPreference.getNotificationState,
-                    onChange: (p0) => AppSharedPreference.cashNotificationState(p0),
+                  // Push on/off for all notice groups, saved on the server.
+                  trailing: BlocBuilder<NoticePreferencesCubit, NoticePreferencesInitial>(
+                    builder: (context, state) {
+                      final value = state.result.groups.isEmpty
+                          ? AppSharedPreference.getNotificationState
+                          : state.result.allPush;
+                      return SwitchWidget(
+                        // A failed save rebuilds the switch with the saved value.
+                        key: ValueKey('$value-${state.statuses}'),
+                        initialVal: value,
+                        onChange: (push) => context.read<NoticePreferencesCubit>().setPush(push),
+                      );
+                    },
                   ),
                 ),
                 _MenuRow(

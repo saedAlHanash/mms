@@ -489,5 +489,7 @@
   "meetingModeInPerson": "حضوري",
   "meetingModeOnline": "عن بُعد",
   "meetingModeHybrid": "هجين (حضوري وعن بُعد)",
-  "hijriDate": "هجري"
+  "hijriDate": "هجري",
+  "voteReason": "السبب",
+  "voteReasonHint": "ما سبب الرفض أو الامتناع؟"
 }

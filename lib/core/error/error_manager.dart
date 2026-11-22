@@ -26,8 +26,11 @@ class ErrorManager {
       case 500:
       default:
         final errorBody = ErrorBody.fromJson(response.jsonBody);
-        // Backend errors come as keys (e.g. `user_suspended`); show their translation.
-        return '${ApiErrorKeys.translate(errorBody.message)}\n ${response.statusCode}';
+        // Backend errors come as keys (e.g. `user_suspended`); show their translation,
+        // plus the validator messages of a `validation_error` when there are any.
+        final details = errorBody.extensions?.errors.map(ApiErrorKeys.translate).join('\n') ?? '';
+        final message = ApiErrorKeys.translate(errorBody.message);
+        return '${details.isEmpty ? message : '$message\n$details'}\n ${response.statusCode}';
     }
   }
 }
@@ -67,15 +70,26 @@ class ErrorBody {
 }
 
 class Extensions {
-  Extensions({required this.traceId});
+  Extensions({required this.traceId, required this.errors});
 
   final String traceId;
 
+  /// Validator messages (`Rules:Validation`), flattened from a list or a field map.
+  final List<String> errors;
+
   factory Extensions.fromJson(Map<String, dynamic> json) {
-    return Extensions(traceId: json["traceId"] ?? "");
+    return Extensions(traceId: json["traceId"] ?? "", errors: _flatten(json["errors"]));
   }
 
-  Map<String, dynamic> toJson() => {"traceId": traceId};
+  static List<String> _flatten(Object? value) => switch (value) {
+        null => <String>[],
+        final String text => text.trim().isEmpty ? <String>[] : [text.trim()],
+        final List list => list.expand(_flatten).toList(),
+        final Map map => map.values.expand(_flatten).toList(),
+        _ => [value.toString()],
+      };
+
+  Map<String, dynamic> toJson() => {"traceId": traceId, "errors": errors};
 }
 
 final shownErrorDialog = <AbstractState>[];

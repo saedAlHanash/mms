@@ -864,6 +864,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "version": MessageLookupByLibrary.simpleMessage("Version"),
     "viewProfile": MessageLookupByLibrary.simpleMessage("View profile"),
     "vote": MessageLookupByLibrary.simpleMessage("Vote"),
+    "voteReason": MessageLookupByLibrary.simpleMessage("Reason"),
+    "voteReasonHint": MessageLookupByLibrary.simpleMessage(
+      "Why do you object or abstain?",
+    ),
     "voteRecorded": MessageLookupByLibrary.simpleMessage(
       "Your vote is recorded",
     ),

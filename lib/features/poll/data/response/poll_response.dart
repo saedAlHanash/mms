@@ -134,11 +134,13 @@ class Option {
     required this.id,
     required this.option,
     required this.voters,
+    required this.kind,
   });
 
   final String id;
   final String option;
   final List<Voter> voters;
+  final VoteOptionKind kind;
 
 
   factory Option.fromJson(Map<String, dynamic> json) {
@@ -148,6 +150,7 @@ class Option {
       voters: json["voters"] == null
           ? []
           : List<Voter>.from(json["voters"]!.map((x) => Voter.fromJson(x))),
+      kind: VoteOptionKind.fromIndex(json["kind"]),
     );
   }
 
@@ -155,6 +158,7 @@ class Option {
         "id": id,
         "option": option,
         "voters": voters.map((x) => x.toJson()).toList(),
+        "kind": kind.index,
       };
 }
 

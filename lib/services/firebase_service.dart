@@ -40,6 +40,7 @@ class FirebaseService {
         body = model.notification.body;
       }
 
+      if (title.isEmpty && body.isEmpty) return;
       Note.showBigTextNotification(title: title, body: body);
     });
   }
@@ -124,6 +125,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
     title = model.notification.title;
     body = model.notification.body;
   }
+  if (title.isEmpty && body.isEmpty) return;
   Note.showBigTextNotification(title: title, body: body);
 }
 
@@ -138,11 +140,15 @@ class FirebaseNotificationModel {
   final String type;
   final Data data;
 
+  /// Never throws: `notification` and `data` may be JSON strings, maps or missing,
+  /// and keys may be PascalCase or camelCase (the push format isn't fixed).
   factory FirebaseNotificationModel.fromJson(Map<String, dynamic> json) {
+    final notification = _decodeMap(_valueOf(json, 'notification'));
     return FirebaseNotificationModel(
-      notification: Notification.fromJson(jsonDecode(json["notification"] ?? {})),
-      type: json["Type"] ?? "",
-      data: Data.fromJson(jsonDecode(json["data"] ?? {})),
+      // Data-only pushes may put the title and body at the top level.
+      notification: Notification.fromJson(notification.isEmpty ? json : notification),
+      type: (_valueOf(json, 'type') ?? '').toString(),
+      data: Data(payload: _decodeMap(_valueOf(json, 'data'))),
     );
   }
 
@@ -153,22 +159,32 @@ class FirebaseNotificationModel {
       };
 }
 
-class Data {
-  Data({
-    required this.data,
-  });
-
-  final dynamic data;
-
-  factory Data.fromJson(Map<String, dynamic> json) {
-    return Data(
-      data: json["data"],
-    );
+/// [key] looked up without case (`MeetingId`, `meetingId`).
+Object? _valueOf(Map json, String key) {
+  final lower = key.toLowerCase();
+  for (final entry in json.entries) {
+    if (entry.key.toString().toLowerCase() == lower) return entry.value;
   }
+  return null;
+}
 
-  Map<String, dynamic> toJson() => {
-        "data": data,
-      };
+Map<String, dynamic> _decodeMap(Object? value) {
+  try {
+    final decoded = value is String && value.trim().isNotEmpty ? jsonDecode(value) : value;
+    if (decoded is Map) return decoded.map((k, v) => MapEntry(k.toString(), v));
+  } catch (_) {}
+  return {};
+}
+
+/// The push `data` payload, e.g. `{MeetingId}`, `{minuteId, MeetingId}`, `{MeetingTaskId, MeetingId}`.
+class Data {
+  Data({required this.payload});
+
+  final Map<String, dynamic> payload;
+
+  String get meetingId => (_valueOf(payload, 'meetingId') ?? '').toString();
+
+  Map<String, dynamic> toJson() => payload;
 }
 
 class Notification {
@@ -184,9 +200,9 @@ class Notification {
 
   factory Notification.fromJson(Map<String, dynamic> json) {
     return Notification(
-      title: json["Title"] ?? "",
-      body: json["Body"] ?? "",
-      sound: json["Sound"] ?? "",
+      title: (_valueOf(json, 'title') ?? '').toString(),
+      body: (_valueOf(json, 'body') ?? '').toString(),
+      sound: (_valueOf(json, 'sound') ?? '').toString(),
     );
   }
 

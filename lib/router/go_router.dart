@@ -34,6 +34,7 @@ import 'package:mms/features/meetings/bloc/meetings_cubit/meetings_cubit.dart';
 import 'package:mms/features/meetings/ui/pages/add_guest_page.dart';
 import 'package:mms/features/meetings/ui/pages/calender_screen.dart';
 import 'package:mms/features/meetings/ui/pages/meeting_page.dart';
+import 'package:mms/features/notice_preferences/bloc/notice_preferences_cubit/notice_preferences_cubit.dart';
 import 'package:mms/features/notification/ui/pages/notifications_page.dart';
 import 'package:mms/features/profile/bloc/update_profile_cubit/update_profile_cubit.dart';
 import 'package:mms/features/profile/ui/pages/profile_page.dart';
@@ -129,7 +130,13 @@ final goRouter = GoRouter(
     //endregion
 
     //region home & settings
-    _route(RouteName.home, (_, _) => const HomePage()),
+    _route(
+      RouteName.home,
+      (_, _) => BlocProvider(
+        create: (_) => sl<NoticePreferencesCubit>()..getData(),
+        child: const HomePage(),
+      ),
+    ),
     _route(
       RouteName.profile,
       (_, _) => MultiBlocProvider(

@@ -4008,6 +4008,21 @@ class S {
   String get hijriDate {
     return Intl.message('Hijri', name: 'hijriDate', desc: '', args: []);
   }
+
+  /// `Reason`
+  String get voteReason {
+    return Intl.message('Reason', name: 'voteReason', desc: '', args: []);
+  }
+
+  /// `Why do you object or abstain?`
+  String get voteReasonHint {
+    return Intl.message(
+      'Why do you object or abstain?',
+      name: 'voteReasonHint',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

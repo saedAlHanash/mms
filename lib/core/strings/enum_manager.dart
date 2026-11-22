@@ -340,6 +340,23 @@ enum MeetingMode {
       };
 }
 
+/// What a poll option stands for (`VoteOptionKind`, sent as its index).
+enum VoteOptionKind {
+  other,
+  inFavor,
+  against,
+  abstain;
+
+  static VoteOptionKind fromIndex(Object? index) {
+    final i = int.tryParse(index?.toString() ?? '');
+    if (i == null || i < 0 || i >= values.length) return other;
+    return values[i];
+  }
+
+  /// Objecting or abstaining can need a reason (`Rules:VoteReasons`).
+  bool get asksReason => this == against || this == abstain;
+}
+
 enum PermissionType {
   speak,
   listen,

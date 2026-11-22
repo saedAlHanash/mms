@@ -820,6 +820,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "version": MessageLookupByLibrary.simpleMessage("الإصدار"),
     "viewProfile": MessageLookupByLibrary.simpleMessage("عرض الملف الشخصي"),
     "vote": MessageLookupByLibrary.simpleMessage("تصويت"),
+    "voteReason": MessageLookupByLibrary.simpleMessage("السبب"),
+    "voteReasonHint": MessageLookupByLibrary.simpleMessage(
+      "ما سبب الرفض أو الامتناع؟",
+    ),
     "voteRecorded": MessageLookupByLibrary.simpleMessage("تم تسجيل صوتك"),
     "voteUnit": MessageLookupByLibrary.simpleMessage("صوتاً"),
     "voters": MessageLookupByLibrary.simpleMessage("الناخبون"),

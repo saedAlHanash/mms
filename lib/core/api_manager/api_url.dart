@@ -95,6 +95,8 @@ class GetUrl {
 
   static const meeting = 'Meeting/GetDetails';
 
+  static const noticePreferences = 'Party/GetMyNoticePreferences';
+
   static const agenda = '';
 
   static const agendas = '';
@@ -211,6 +213,7 @@ class PostUrl {
 }
 
 class PutUrl {
+  static const updateNoticePreferences = 'Party/UpdateMyNoticePreferences';
   static const updateMeetingRating = 'rating/Update';
   static const updateLiveKit = 'lk/Update';
   static const updateAgora = 'forDelete/Update';

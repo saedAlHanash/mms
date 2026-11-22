@@ -20,6 +20,7 @@ import 'package:mms/features/meetings/bloc/add_absence_cubit/add_absence_cubit.d
 import 'package:mms/features/meetings/bloc/add_guest_cubit/add_guest_cubit.dart';
 import 'package:mms/features/meetings/bloc/meeting_cubit/meeting_cubit.dart';
 import 'package:mms/features/meetings/bloc/meetings_cubit/meetings_cubit.dart';
+import 'package:mms/features/notice_preferences/bloc/notice_preferences_cubit/notice_preferences_cubit.dart';
 import 'package:mms/features/notification/bloc/notifications_cubit/notifications_cubit.dart';
 import 'package:mms/features/profile/bloc/update_profile_cubit/update_profile_cubit.dart';
 import 'package:mms/features/room/bloc/my_status_cubit/my_status_cubit.dart';
@@ -119,6 +120,7 @@ Future<void> init() async {
 
   //region notifications
   sl.registerFactory(() => NotificationsCubit());
+  sl.registerFactory(() => NoticePreferencesCubit());
   //endregion
 
   //! External
