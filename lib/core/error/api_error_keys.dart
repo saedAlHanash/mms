@@ -1,0 +1,81 @@
+import 'package:mms/generated/l10n.dart';
+
+/// Backend error keys (`message` of the error body) and their translations.
+///
+/// The API sends snake_case keys such as `check_in_code_invalid`; the app shows
+/// the translated text, and falls back to the raw message for unknown keys.
+class ApiErrorKeys {
+  ApiErrorKeys._();
+
+  static final Map<String, String Function()> _messages = {
+    'committee_already_has_a_chair': () => S().errCommitteeAlreadyHasAChair,
+    'committee_already_has_a_secretary': () => S().errCommitteeAlreadyHasASecretary,
+    'you_can_not_change_poll_type_after_voting': () => S().errYouCanNotChangePollTypeAfterVoting,
+    'poll_is_not_open': () => S().errPollIsNotOpen,
+    'option_is_not_in_poll': () => S().errOptionIsNotInPoll,
+    'already_voted': () => S().errAlreadyVoted,
+    'meeting_status_change_not_allowed': () => S().errMeetingStatusChangeNotAllowed,
+    'hall_is_booked': () => S().errHallIsBooked,
+    'hall_capacity_exceeded': () => S().errHallCapacityExceeded,
+    'meeting_on_weekend': () => S().errMeetingOnWeekend,
+    'meeting_on_holiday': () => S().errMeetingOnHoliday,
+    'committee_is_inactive': () => S().errCommitteeIsInactive,
+    'notice_language_not_supported': () => S().errNoticeLanguageNotSupported,
+    'notice_group_unknown': () => S().errNoticeGroupUnknown,
+    'agenda_requests_closed': () => S().errAgendaRequestsClosed,
+    'agenda_request_not_pending': () => S().errAgendaRequestNotPending,
+    'agenda_request_title_required': () => S().errAgendaRequestTitleRequired,
+    'reason_required': () => S().errReasonRequired,
+    'quorum_rule_invalid': () => S().errQuorumRuleInvalid,
+    'voting_rule_invalid': () => S().errVotingRuleInvalid,
+    'vote_reason_required': () => S().errVoteReasonRequired,
+    'vote_reason_too_long': () => S().errVoteReasonTooLong,
+    'interest_declared': () => S().errInterestDeclared,
+    'interest_already_declared': () => S().errInterestAlreadyDeclared,
+    'interest_note_too_long': () => S().errInterestNoteTooLong,
+    'check_in_closed': () => S().errCheckInClosed,
+    'check_in_code_invalid': () => S().errCheckInCodeInvalid,
+    'check_in_not_invited': () => S().errCheckInNotInvited,
+    'check_in_too_many_tries': () => S().errCheckInTooManyTries,
+    'meeting_not_online': () => S().errMeetingNotOnline,
+    'decision_link_invalid': () => S().errDecisionLinkInvalid,
+    'reservation_reason_required': () => S().errReservationReasonRequired,
+    'reservation_reason_too_long': () => S().errReservationReasonTooLong,
+    'minute_rejection_reason_required': () => S().errMinuteRejectionReasonRequired,
+    'minute_reason_too_long': () => S().errMinuteReasonTooLong,
+    'minute_approval_closed': () => S().errMinuteApprovalClosed,
+    'minute_chair_approves_last': () => S().errMinuteChairApprovesLast,
+    'minute_approvals_pending': () => S().errMinuteApprovalsPending,
+    'minute_already_final': () => S().errMinuteAlreadyFinal,
+    'circulation_title_required': () => S().errCirculationTitleRequired,
+    'circulation_title_too_long': () => S().errCirculationTitleTooLong,
+    'circulation_statement_required': () => S().errCirculationStatementRequired,
+    'circulation_deadline_past': () => S().errCirculationDeadlinePast,
+    'circulation_not_draft': () => S().errCirculationNotDraft,
+    'circulation_not_open': () => S().errCirculationNotOpen,
+    'circulation_no_voters': () => S().errCirculationNoVoters,
+    'circulation_choice_invalid': () => S().errCirculationChoiceInvalid,
+    'circulation_reason_too_long': () => S().errCirculationReasonTooLong,
+    'compliance_rule_invalid': () => S().errComplianceRuleInvalid,
+    'task_decision_invalid': () => S().errTaskDecisionInvalid,
+    'task_reassign_invalid': () => S().errTaskReassignInvalid,
+    'report_year_invalid': () => S().errReportYearInvalid,
+    'user_suspended': () => S().errUserSuspended,
+    'party_suspend_invalid': () => S().errPartySuspendInvalid,
+    'lifecycle_invalid': () => S().errLifecycleInvalid,
+    'delegation_invalid': () => S().errDelegationInvalid,
+    'subcommittee_invalid': () => S().errSubcommitteeInvalid,
+    'recommendation_invalid': () => S().errRecommendationInvalid,
+    'periodic_template_invalid': () => S().errPeriodicTemplateInvalid,
+    'hall_service_invalid': () => S().errHallServiceInvalid,
+    'live_invalid': () => S().errLiveInvalid,
+    'speaker_invalid': () => S().errSpeakerInvalid,
+    'you_do_not_have_permission': () => S().errYouDoNotHavePermission,
+    'unauthorized_user': () => S().errUnauthorizedUser,
+    'not_found': () => S().errNotFound,
+    'validation_error': () => S().errValidationError,
+  };
+
+  /// The translated text of [message], or [message] itself when it isn't a known key.
+  static String translate(String message) => _messages[message.trim()]?.call() ?? message;
+}

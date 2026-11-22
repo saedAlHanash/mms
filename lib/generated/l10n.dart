@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -3311,6 +3312,701 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `This committee already has a chair.`
+  String get errCommitteeAlreadyHasAChair {
+    return Intl.message(
+      'This committee already has a chair.',
+      name: 'errCommitteeAlreadyHasAChair',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This committee already has a secretary.`
+  String get errCommitteeAlreadyHasASecretary {
+    return Intl.message(
+      'This committee already has a secretary.',
+      name: 'errCommitteeAlreadyHasASecretary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The vote type can't be changed once votes have been cast.`
+  String get errYouCanNotChangePollTypeAfterVoting {
+    return Intl.message(
+      'The vote type can\'t be changed once votes have been cast.',
+      name: 'errYouCanNotChangePollTypeAfterVoting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Voting is only possible while the poll is open.`
+  String get errPollIsNotOpen {
+    return Intl.message(
+      'Voting is only possible while the poll is open.',
+      name: 'errPollIsNotOpen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This option doesn't belong to this poll.`
+  String get errOptionIsNotInPoll {
+    return Intl.message(
+      'This option doesn\'t belong to this poll.',
+      name: 'errOptionIsNotInPoll',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A vote has already been recorded for this person on this poll.`
+  String get errAlreadyVoted {
+    return Intl.message(
+      'A vote has already been recorded for this person on this poll.',
+      name: 'errAlreadyVoted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The meeting can't move from its current status to that one.`
+  String get errMeetingStatusChangeNotAllowed {
+    return Intl.message(
+      'The meeting can\'t move from its current status to that one.',
+      name: 'errMeetingStatusChangeNotAllowed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The hall is booked for another meeting at that time.`
+  String get errHallIsBooked {
+    return Intl.message(
+      'The hall is booked for another meeting at that time.',
+      name: 'errHallIsBooked',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The hall can't seat all the committee's members.`
+  String get errHallCapacityExceeded {
+    return Intl.message(
+      'The hall can\'t seat all the committee\'s members.',
+      name: 'errHallCapacityExceeded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A meeting can't be held on a weekend day.`
+  String get errMeetingOnWeekend {
+    return Intl.message(
+      'A meeting can\'t be held on a weekend day.',
+      name: 'errMeetingOnWeekend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A meeting can't be held during a holiday.`
+  String get errMeetingOnHoliday {
+    return Intl.message(
+      'A meeting can\'t be held during a holiday.',
+      name: 'errMeetingOnHoliday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The committee is inactive, so it takes no new meetings.`
+  String get errCommitteeIsInactive {
+    return Intl.message(
+      'The committee is inactive, so it takes no new meetings.',
+      name: 'errCommitteeIsInactive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose Arabic or English for your notifications.`
+  String get errNoticeLanguageNotSupported {
+    return Intl.message(
+      'Choose Arabic or English for your notifications.',
+      name: 'errNoticeLanguageNotSupported',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unknown kind of notification.`
+  String get errNoticeGroupUnknown {
+    return Intl.message(
+      'Unknown kind of notification.',
+      name: 'errNoticeGroupUnknown',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Proposals are closed: the agenda is published or the meeting has started.`
+  String get errAgendaRequestsClosed {
+    return Intl.message(
+      'Proposals are closed: the agenda is published or the meeting has started.',
+      name: 'errAgendaRequestsClosed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This proposal has already been answered.`
+  String get errAgendaRequestNotPending {
+    return Intl.message(
+      'This proposal has already been answered.',
+      name: 'errAgendaRequestNotPending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter a title for the proposal.`
+  String get errAgendaRequestTitleRequired {
+    return Intl.message(
+      'Enter a title for the proposal.',
+      name: 'errAgendaRequestTitleRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter a reason.`
+  String get errReasonRequired {
+    return Intl.message(
+      'Enter a reason.',
+      name: 'errReasonRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter a number of at least 1 (a percentage up to 100).`
+  String get errQuorumRuleInvalid {
+    return Intl.message(
+      'Enter a number of at least 1 (a percentage up to 100).',
+      name: 'errQuorumRuleInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose a valid majority.`
+  String get errVotingRuleInvalid {
+    return Intl.message(
+      'Choose a valid majority.',
+      name: 'errVotingRuleInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Give a reason for objecting or abstaining.`
+  String get errVoteReasonRequired {
+    return Intl.message(
+      'Give a reason for objecting or abstaining.',
+      name: 'errVoteReasonRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The reason is too long (500 characters at most).`
+  String get errVoteReasonTooLong {
+    return Intl.message(
+      'The reason is too long (500 characters at most).',
+      name: 'errVoteReasonTooLong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This voter declared an interest in the item and can't vote on it.`
+  String get errInterestDeclared {
+    return Intl.message(
+      'This voter declared an interest in the item and can\'t vote on it.',
+      name: 'errInterestDeclared',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An interest in this item is already declared.`
+  String get errInterestAlreadyDeclared {
+    return Intl.message(
+      'An interest in this item is already declared.',
+      name: 'errInterestAlreadyDeclared',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The note is too long (500 characters at most).`
+  String get errInterestNoteTooLong {
+    return Intl.message(
+      'The note is too long (500 characters at most).',
+      name: 'errInterestNoteTooLong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check-in is open only while the meeting is scheduled or running.`
+  String get errCheckInClosed {
+    return Intl.message(
+      'Check-in is open only while the meeting is scheduled or running.',
+      name: 'errCheckInClosed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The code is wrong or has expired. Scan it again.`
+  String get errCheckInCodeInvalid {
+    return Intl.message(
+      'The code is wrong or has expired. Scan it again.',
+      name: 'errCheckInCodeInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You aren't invited to this meeting.`
+  String get errCheckInNotInvited {
+    return Intl.message(
+      'You aren\'t invited to this meeting.',
+      name: 'errCheckInNotInvited',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Too many wrong codes. Try again in a few minutes.`
+  String get errCheckInTooManyTries {
+    return Intl.message(
+      'Too many wrong codes. Try again in a few minutes.',
+      name: 'errCheckInTooManyTries',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This meeting has no online room.`
+  String get errMeetingNotOnline {
+    return Intl.message(
+      'This meeting has no online room.',
+      name: 'errMeetingNotOnline',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The earlier decision must be a published decision of the same committee.`
+  String get errDecisionLinkInvalid {
+    return Intl.message(
+      'The earlier decision must be a published decision of the same committee.',
+      name: 'errDecisionLinkInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Give a reason for the reservation.`
+  String get errReservationReasonRequired {
+    return Intl.message(
+      'Give a reason for the reservation.',
+      name: 'errReservationReasonRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The reason can be at most 500 characters.`
+  String get errReservationReasonTooLong {
+    return Intl.message(
+      'The reason can be at most 500 characters.',
+      name: 'errReservationReasonTooLong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Give a reason for rejecting the minutes.`
+  String get errMinuteRejectionReasonRequired {
+    return Intl.message(
+      'Give a reason for rejecting the minutes.',
+      name: 'errMinuteRejectionReasonRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The reason can be at most 500 characters.`
+  String get errMinuteReasonTooLong {
+    return Intl.message(
+      'The reason can be at most 500 characters.',
+      name: 'errMinuteReasonTooLong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The deadline for answering has passed.`
+  String get errMinuteApprovalClosed {
+    return Intl.message(
+      'The deadline for answering has passed.',
+      name: 'errMinuteApprovalClosed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The chair approves after the other members.`
+  String get errMinuteChairApprovesLast {
+    return Intl.message(
+      'The chair approves after the other members.',
+      name: 'errMinuteChairApprovesLast',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The minutes can't be confirmed until the approval path is complete.`
+  String get errMinuteApprovalsPending {
+    return Intl.message(
+      'The minutes can\'t be confirmed until the approval path is complete.',
+      name: 'errMinuteApprovalsPending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The minutes are already confirmed.`
+  String get errMinuteAlreadyFinal {
+    return Intl.message(
+      'The minutes are already confirmed.',
+      name: 'errMinuteAlreadyFinal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter a title.`
+  String get errCirculationTitleRequired {
+    return Intl.message(
+      'Enter a title.',
+      name: 'errCirculationTitleRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The title can be at most 300 characters.`
+  String get errCirculationTitleTooLong {
+    return Intl.message(
+      'The title can be at most 300 characters.',
+      name: 'errCirculationTitleTooLong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the decision text.`
+  String get errCirculationStatementRequired {
+    return Intl.message(
+      'Enter the decision text.',
+      name: 'errCirculationStatementRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The deadline must be in the future.`
+  String get errCirculationDeadlinePast {
+    return Intl.message(
+      'The deadline must be in the future.',
+      name: 'errCirculationDeadlinePast',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Only a draft can be changed, deleted or sent for votes.`
+  String get errCirculationNotDraft {
+    return Intl.message(
+      'Only a draft can be changed, deleted or sent for votes.',
+      name: 'errCirculationNotDraft',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Voting on this decision is closed.`
+  String get errCirculationNotOpen {
+    return Intl.message(
+      'Voting on this decision is closed.',
+      name: 'errCirculationNotOpen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The committee has no members to vote.`
+  String get errCirculationNoVoters {
+    return Intl.message(
+      'The committee has no members to vote.',
+      name: 'errCirculationNoVoters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose approve, reject or abstain.`
+  String get errCirculationChoiceInvalid {
+    return Intl.message(
+      'Choose approve, reject or abstain.',
+      name: 'errCirculationChoiceInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The reason can be at most 500 characters.`
+  String get errCirculationReasonTooLong {
+    return Intl.message(
+      'The reason can be at most 500 characters.',
+      name: 'errCirculationReasonTooLong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Each limit must be a whole number from 1 (warning from 0).`
+  String get errComplianceRuleInvalid {
+    return Intl.message(
+      'Each limit must be a whole number from 1 (warning from 0).',
+      name: 'errComplianceRuleInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The decision must belong to the same committee as the task.`
+  String get errTaskDecisionInvalid {
+    return Intl.message(
+      'The decision must belong to the same committee as the task.',
+      name: 'errTaskDecisionInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pick tasks assigned to this member, and another member of the committee to move them to.`
+  String get errTaskReassignInvalid {
+    return Intl.message(
+      'Pick tasks assigned to this member, and another member of the committee to move them to.',
+      name: 'errTaskReassignInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The year must be between 1900 and 3000.`
+  String get errReportYearInvalid {
+    return Intl.message(
+      'The year must be between 1900 and 3000.',
+      name: 'errReportYearInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This account is deactivated. Contact the system administrator.`
+  String get errUserSuspended {
+    return Intl.message(
+      'This account is deactivated. Contact the system administrator.',
+      name: 'errUserSuspended',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This person can't be deactivated or reactivated now (it may be your own account, or already in that state).`
+  String get errPartySuspendInvalid {
+    return Intl.message(
+      'This person can\'t be deactivated or reactivated now (it may be your own account, or already in that state).',
+      name: 'errPartySuspendInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check the dates: a term can't end before it starts, and a temporary committee needs an end date.`
+  String get errLifecycleInvalid {
+    return Intl.message(
+      'Check the dates: a term can\'t end before it starts, and a temporary committee needs an end date.',
+      name: 'errLifecycleInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This delegation isn't possible: check the role, the member, the dates (up to a year, ending in the future), the scopes, and that it doesn't overlap another.`
+  String get errDelegationInvalid {
+    return Intl.message(
+      'This delegation isn\'t possible: check the role, the member, the dates (up to a year, ending in the future), the scopes, and that it doesn\'t overlap another.',
+      name: 'errDelegationInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This committee can't be placed there: it would be under itself, or the structure would be deeper than 5 levels.`
+  String get errSubcommitteeInvalid {
+    return Intl.message(
+      'This committee can\'t be placed there: it would be under itself, or the structure would be deeper than 5 levels.',
+      name: 'errSubcommitteeInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The recommendation can't be saved: the committee has no parent or is inactive, the text is missing or too long, or it was already answered.`
+  String get errRecommendationInvalid {
+    return Intl.message(
+      'The recommendation can\'t be saved: the committee has no parent or is inactive, the text is missing or too long, or it was already answered.',
+      name: 'errRecommendationInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The template can't be saved: 1 to 12 meetings ahead, at most 30 items, each with a title up to 500 characters and up to 600 minutes.`
+  String get errPeriodicTemplateInvalid {
+    return Intl.message(
+      'The template can\'t be saved: 1 to 12 meetings ahead, at most 30 items, each with a title up to 500 characters and up to 600 minutes.',
+      name: 'errPeriodicTemplateInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The request can't be saved: the meeting has no hall or is over, the equipment or quantity is wrong, details are missing or too long, or the request is already closed.`
+  String get errHallServiceInvalid {
+    return Intl.message(
+      'The request can\'t be saved: the meeting has no hall or is over, the equipment or quantity is wrong, details are missing or too long, or the request is already closed.',
+      name: 'errHallServiceInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This can't be done now: the meeting isn't in progress, the item belongs to another meeting, or the length is outside 1 second to 8 hours.`
+  String get errLiveInvalid {
+    return Intl.message(
+      'This can\'t be done now: the meeting isn\'t in progress, the item belongs to another meeting, or the length is outside 1 second to 8 hours.',
+      name: 'errLiveInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This step on the speaker queue doesn't apply now (the meeting isn't in progress, you have already asked, nobody is waiting, or the limit is over an hour).`
+  String get errSpeakerInvalid {
+    return Intl.message(
+      'This step on the speaker queue doesn\'t apply now (the meeting isn\'t in progress, you have already asked, nobody is waiting, or the limit is over an hour).',
+      name: 'errSpeakerInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don't have permission to do this.`
+  String get errYouDoNotHavePermission {
+    return Intl.message(
+      'You don\'t have permission to do this.',
+      name: 'errYouDoNotHavePermission',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You aren't authorized to do this.`
+  String get errUnauthorizedUser {
+    return Intl.message(
+      'You aren\'t authorized to do this.',
+      name: 'errUnauthorizedUser',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The item wasn't found.`
+  String get errNotFound {
+    return Intl.message(
+      'The item wasn\'t found.',
+      name: 'errNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Some of the data isn't valid.`
+  String get errValidationError {
+    return Intl.message(
+      'Some of the data isn\'t valid.',
+      name: 'errValidationError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `In person`
+  String get meetingModeInPerson {
+    return Intl.message(
+      'In person',
+      name: 'meetingModeInPerson',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Online`
+  String get meetingModeOnline {
+    return Intl.message(
+      'Online',
+      name: 'meetingModeOnline',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hybrid (in person and online)`
+  String get meetingModeHybrid {
+    return Intl.message(
+      'Hybrid (in person and online)',
+      name: 'meetingModeHybrid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hijri`
+  String get hijriDate {
+    return Intl.message('Hijri', name: 'hijriDate', desc: '', args: []);
   }
 }
 

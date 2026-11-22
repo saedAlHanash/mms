@@ -150,7 +150,10 @@ enum SocketEvents {
   pollStatusUpdated,
   pollPublished,
   decisionPublished,
-  discussionStatusUpdated;
+  discussionStatusUpdated,
+
+  /// Live screen state changed (`{meetingId, part}`, part: item / timer / speakers).
+  liveStateUpdated;
 
   /// Unknown numbers return null so newer backend events are ignored.
   static SocketEvents? fromIndex(int? index) {
@@ -309,6 +312,32 @@ enum NotesMessages {
         return 'أحتاج مساعدة';
     }
   }
+}
+
+/// How a meeting is held (`MeetingMode` on the backend, sent as its index).
+enum MeetingMode {
+  inPerson,
+  online,
+  hybrid;
+
+  /// Null for a missing or unknown value (older meetings have no mode).
+  static MeetingMode? fromIndex(Object? index) {
+    final i = int.tryParse(index?.toString() ?? '');
+    if (i == null || i < 0 || i >= values.length) return null;
+    return values[i];
+  }
+
+  String get label => switch (this) {
+        MeetingMode.inPerson => S().meetingModeInPerson,
+        MeetingMode.online => S().meetingModeOnline,
+        MeetingMode.hybrid => S().meetingModeHybrid,
+      };
+
+  IconData get icon => switch (this) {
+        MeetingMode.inPerson => Icons.groups_outlined,
+        MeetingMode.online => Icons.videocam_outlined,
+        MeetingMode.hybrid => Icons.devices_outlined,
+      };
 }
 
 enum PermissionType {

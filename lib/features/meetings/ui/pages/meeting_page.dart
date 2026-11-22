@@ -485,6 +485,14 @@ class _MeetingInfoCard extends StatelessWidget {
             6.0.verticalSpace,
             _dayRow(context, Icons.event_available_outlined, to, prefix: S.of(context).toLabel, withTime: true),
           ],
+          if (meeting.hijriDate.isNotEmpty) ...[
+            6.0.verticalSpace,
+            _row(Icons.event_note_outlined, _text('${S.of(context).hijriDate}: ${meeting.hijriDate}')),
+          ],
+          if (meeting.mode case final mode?) ...[
+            6.0.verticalSpace,
+            _row(mode.icon, _text(mode.label)),
+          ],
           if (meeting.meetingPlace.isNotEmpty) ...[
             6.0.verticalSpace,
             _row(Icons.place_outlined, _text(meeting.meetingPlace)),

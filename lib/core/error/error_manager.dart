@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:http/http.dart';
 import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/app/app_provider.dart';
+import 'package:mms/core/error/api_error_keys.dart';
 import 'package:mms/core/extensions/extensions.dart';
 
 import 'package:mms/generated/l10n.dart';
@@ -25,7 +26,8 @@ class ErrorManager {
       case 500:
       default:
         final errorBody = ErrorBody.fromJson(response.jsonBody);
-        return '${errorBody.message}\n ${response.statusCode}';
+        // Backend errors come as keys (e.g. `user_suspended`); show their translation.
+        return '${ApiErrorKeys.translate(errorBody.message)}\n ${response.statusCode}';
     }
   }
 }

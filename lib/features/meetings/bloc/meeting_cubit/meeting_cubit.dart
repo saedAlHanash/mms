@@ -91,6 +91,9 @@ class MeetingCubit extends MCubit<MeetingInitial> {
     switch (message.event) {
       case null:
         return;
+      case .liveStateUpdated:
+        // For the live screen (MeetingLive/GetState), which the app doesn't show yet.
+        return;
       case .agendaItemStatusUpdated:
         // The payload's nested lists are incomplete: reload the meeting (agenda included).
         await getData(newData: true);

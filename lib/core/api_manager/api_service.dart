@@ -37,6 +37,8 @@ class APIService {
         'Content-Type': 'application/json',
         'Accept': 'Application/json',
         'lang': AppSharedPreference.getLocal,
+        // The API (and UpdateDeviceToken's notice language) reads this header.
+        'Accept-Language': AppSharedPreference.getLocal,
         'Authorization': 'Bearer ${AppSharedPreference.getToken}',
       };
 

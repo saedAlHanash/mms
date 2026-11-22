@@ -271,6 +271,205 @@ class MessageLookup extends MessageLookupByLibrary {
     "enter_new_password_and_confirm": MessageLookupByLibrary.simpleMessage(
       "Enter New Password And Confirm.",
     ),
+    "errAgendaRequestNotPending": MessageLookupByLibrary.simpleMessage(
+      "This proposal has already been answered.",
+    ),
+    "errAgendaRequestTitleRequired": MessageLookupByLibrary.simpleMessage(
+      "Enter a title for the proposal.",
+    ),
+    "errAgendaRequestsClosed": MessageLookupByLibrary.simpleMessage(
+      "Proposals are closed: the agenda is published or the meeting has started.",
+    ),
+    "errAlreadyVoted": MessageLookupByLibrary.simpleMessage(
+      "A vote has already been recorded for this person on this poll.",
+    ),
+    "errCheckInClosed": MessageLookupByLibrary.simpleMessage(
+      "Check-in is open only while the meeting is scheduled or running.",
+    ),
+    "errCheckInCodeInvalid": MessageLookupByLibrary.simpleMessage(
+      "The code is wrong or has expired. Scan it again.",
+    ),
+    "errCheckInNotInvited": MessageLookupByLibrary.simpleMessage(
+      "You aren\'t invited to this meeting.",
+    ),
+    "errCheckInTooManyTries": MessageLookupByLibrary.simpleMessage(
+      "Too many wrong codes. Try again in a few minutes.",
+    ),
+    "errCirculationChoiceInvalid": MessageLookupByLibrary.simpleMessage(
+      "Choose approve, reject or abstain.",
+    ),
+    "errCirculationDeadlinePast": MessageLookupByLibrary.simpleMessage(
+      "The deadline must be in the future.",
+    ),
+    "errCirculationNoVoters": MessageLookupByLibrary.simpleMessage(
+      "The committee has no members to vote.",
+    ),
+    "errCirculationNotDraft": MessageLookupByLibrary.simpleMessage(
+      "Only a draft can be changed, deleted or sent for votes.",
+    ),
+    "errCirculationNotOpen": MessageLookupByLibrary.simpleMessage(
+      "Voting on this decision is closed.",
+    ),
+    "errCirculationReasonTooLong": MessageLookupByLibrary.simpleMessage(
+      "The reason can be at most 500 characters.",
+    ),
+    "errCirculationStatementRequired": MessageLookupByLibrary.simpleMessage(
+      "Enter the decision text.",
+    ),
+    "errCirculationTitleRequired": MessageLookupByLibrary.simpleMessage(
+      "Enter a title.",
+    ),
+    "errCirculationTitleTooLong": MessageLookupByLibrary.simpleMessage(
+      "The title can be at most 300 characters.",
+    ),
+    "errCommitteeAlreadyHasAChair": MessageLookupByLibrary.simpleMessage(
+      "This committee already has a chair.",
+    ),
+    "errCommitteeAlreadyHasASecretary": MessageLookupByLibrary.simpleMessage(
+      "This committee already has a secretary.",
+    ),
+    "errCommitteeIsInactive": MessageLookupByLibrary.simpleMessage(
+      "The committee is inactive, so it takes no new meetings.",
+    ),
+    "errComplianceRuleInvalid": MessageLookupByLibrary.simpleMessage(
+      "Each limit must be a whole number from 1 (warning from 0).",
+    ),
+    "errDecisionLinkInvalid": MessageLookupByLibrary.simpleMessage(
+      "The earlier decision must be a published decision of the same committee.",
+    ),
+    "errDelegationInvalid": MessageLookupByLibrary.simpleMessage(
+      "This delegation isn\'t possible: check the role, the member, the dates (up to a year, ending in the future), the scopes, and that it doesn\'t overlap another.",
+    ),
+    "errHallCapacityExceeded": MessageLookupByLibrary.simpleMessage(
+      "The hall can\'t seat all the committee\'s members.",
+    ),
+    "errHallIsBooked": MessageLookupByLibrary.simpleMessage(
+      "The hall is booked for another meeting at that time.",
+    ),
+    "errHallServiceInvalid": MessageLookupByLibrary.simpleMessage(
+      "The request can\'t be saved: the meeting has no hall or is over, the equipment or quantity is wrong, details are missing or too long, or the request is already closed.",
+    ),
+    "errInterestAlreadyDeclared": MessageLookupByLibrary.simpleMessage(
+      "An interest in this item is already declared.",
+    ),
+    "errInterestDeclared": MessageLookupByLibrary.simpleMessage(
+      "This voter declared an interest in the item and can\'t vote on it.",
+    ),
+    "errInterestNoteTooLong": MessageLookupByLibrary.simpleMessage(
+      "The note is too long (500 characters at most).",
+    ),
+    "errLifecycleInvalid": MessageLookupByLibrary.simpleMessage(
+      "Check the dates: a term can\'t end before it starts, and a temporary committee needs an end date.",
+    ),
+    "errLiveInvalid": MessageLookupByLibrary.simpleMessage(
+      "This can\'t be done now: the meeting isn\'t in progress, the item belongs to another meeting, or the length is outside 1 second to 8 hours.",
+    ),
+    "errMeetingNotOnline": MessageLookupByLibrary.simpleMessage(
+      "This meeting has no online room.",
+    ),
+    "errMeetingOnHoliday": MessageLookupByLibrary.simpleMessage(
+      "A meeting can\'t be held during a holiday.",
+    ),
+    "errMeetingOnWeekend": MessageLookupByLibrary.simpleMessage(
+      "A meeting can\'t be held on a weekend day.",
+    ),
+    "errMeetingStatusChangeNotAllowed": MessageLookupByLibrary.simpleMessage(
+      "The meeting can\'t move from its current status to that one.",
+    ),
+    "errMinuteAlreadyFinal": MessageLookupByLibrary.simpleMessage(
+      "The minutes are already confirmed.",
+    ),
+    "errMinuteApprovalClosed": MessageLookupByLibrary.simpleMessage(
+      "The deadline for answering has passed.",
+    ),
+    "errMinuteApprovalsPending": MessageLookupByLibrary.simpleMessage(
+      "The minutes can\'t be confirmed until the approval path is complete.",
+    ),
+    "errMinuteChairApprovesLast": MessageLookupByLibrary.simpleMessage(
+      "The chair approves after the other members.",
+    ),
+    "errMinuteReasonTooLong": MessageLookupByLibrary.simpleMessage(
+      "The reason can be at most 500 characters.",
+    ),
+    "errMinuteRejectionReasonRequired": MessageLookupByLibrary.simpleMessage(
+      "Give a reason for rejecting the minutes.",
+    ),
+    "errNotFound": MessageLookupByLibrary.simpleMessage(
+      "The item wasn\'t found.",
+    ),
+    "errNoticeGroupUnknown": MessageLookupByLibrary.simpleMessage(
+      "Unknown kind of notification.",
+    ),
+    "errNoticeLanguageNotSupported": MessageLookupByLibrary.simpleMessage(
+      "Choose Arabic or English for your notifications.",
+    ),
+    "errOptionIsNotInPoll": MessageLookupByLibrary.simpleMessage(
+      "This option doesn\'t belong to this poll.",
+    ),
+    "errPartySuspendInvalid": MessageLookupByLibrary.simpleMessage(
+      "This person can\'t be deactivated or reactivated now (it may be your own account, or already in that state).",
+    ),
+    "errPeriodicTemplateInvalid": MessageLookupByLibrary.simpleMessage(
+      "The template can\'t be saved: 1 to 12 meetings ahead, at most 30 items, each with a title up to 500 characters and up to 600 minutes.",
+    ),
+    "errPollIsNotOpen": MessageLookupByLibrary.simpleMessage(
+      "Voting is only possible while the poll is open.",
+    ),
+    "errQuorumRuleInvalid": MessageLookupByLibrary.simpleMessage(
+      "Enter a number of at least 1 (a percentage up to 100).",
+    ),
+    "errReasonRequired": MessageLookupByLibrary.simpleMessage(
+      "Enter a reason.",
+    ),
+    "errRecommendationInvalid": MessageLookupByLibrary.simpleMessage(
+      "The recommendation can\'t be saved: the committee has no parent or is inactive, the text is missing or too long, or it was already answered.",
+    ),
+    "errReportYearInvalid": MessageLookupByLibrary.simpleMessage(
+      "The year must be between 1900 and 3000.",
+    ),
+    "errReservationReasonRequired": MessageLookupByLibrary.simpleMessage(
+      "Give a reason for the reservation.",
+    ),
+    "errReservationReasonTooLong": MessageLookupByLibrary.simpleMessage(
+      "The reason can be at most 500 characters.",
+    ),
+    "errSpeakerInvalid": MessageLookupByLibrary.simpleMessage(
+      "This step on the speaker queue doesn\'t apply now (the meeting isn\'t in progress, you have already asked, nobody is waiting, or the limit is over an hour).",
+    ),
+    "errSubcommitteeInvalid": MessageLookupByLibrary.simpleMessage(
+      "This committee can\'t be placed there: it would be under itself, or the structure would be deeper than 5 levels.",
+    ),
+    "errTaskDecisionInvalid": MessageLookupByLibrary.simpleMessage(
+      "The decision must belong to the same committee as the task.",
+    ),
+    "errTaskReassignInvalid": MessageLookupByLibrary.simpleMessage(
+      "Pick tasks assigned to this member, and another member of the committee to move them to.",
+    ),
+    "errUnauthorizedUser": MessageLookupByLibrary.simpleMessage(
+      "You aren\'t authorized to do this.",
+    ),
+    "errUserSuspended": MessageLookupByLibrary.simpleMessage(
+      "This account is deactivated. Contact the system administrator.",
+    ),
+    "errValidationError": MessageLookupByLibrary.simpleMessage(
+      "Some of the data isn\'t valid.",
+    ),
+    "errVoteReasonRequired": MessageLookupByLibrary.simpleMessage(
+      "Give a reason for objecting or abstaining.",
+    ),
+    "errVoteReasonTooLong": MessageLookupByLibrary.simpleMessage(
+      "The reason is too long (500 characters at most).",
+    ),
+    "errVotingRuleInvalid": MessageLookupByLibrary.simpleMessage(
+      "Choose a valid majority.",
+    ),
+    "errYouCanNotChangePollTypeAfterVoting":
+        MessageLookupByLibrary.simpleMessage(
+          "The vote type can\'t be changed once votes have been cast.",
+        ),
+    "errYouDoNotHavePermission": MessageLookupByLibrary.simpleMessage(
+      "You don\'t have permission to do this.",
+    ),
     "estimatedFor": MessageLookupByLibrary.simpleMessage("Estimated For"),
     "expiration": MessageLookupByLibrary.simpleMessage("Expiration"),
     "faq": MessageLookupByLibrary.simpleMessage("F.A.q"),
@@ -308,6 +507,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "hidePassword": MessageLookupByLibrary.simpleMessage("Hide"),
     "hideSubItems": m4,
+    "hijriDate": MessageLookupByLibrary.simpleMessage("Hijri"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
     "homeAddress": MessageLookupByLibrary.simpleMessage("Home Address"),
     "hours": MessageLookupByLibrary.simpleMessage("Hours"),
@@ -371,6 +571,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "mail": MessageLookupByLibrary.simpleMessage("Mail"),
     "max": MessageLookupByLibrary.simpleMessage("Max"),
     "meeting": MessageLookupByLibrary.simpleMessage("Meeting"),
+    "meetingModeHybrid": MessageLookupByLibrary.simpleMessage(
+      "Hybrid (in person and online)",
+    ),
+    "meetingModeInPerson": MessageLookupByLibrary.simpleMessage("In person"),
+    "meetingModeOnline": MessageLookupByLibrary.simpleMessage("Online"),
     "meetingRunningNow": MessageLookupByLibrary.simpleMessage(
       "The meeting is live now",
     ),

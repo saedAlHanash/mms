@@ -251,6 +251,201 @@ class MessageLookup extends MessageLookupByLibrary {
     "enter_new_password_and_confirm": MessageLookupByLibrary.simpleMessage(
       "أدخل كلمة السر مع التأكيد",
     ),
+    "errAgendaRequestNotPending": MessageLookupByLibrary.simpleMessage(
+      "تمت الإجابة على هذا الاقتراح بالفعل.",
+    ),
+    "errAgendaRequestTitleRequired": MessageLookupByLibrary.simpleMessage(
+      "أدخل عنوانًا للاقتراح.",
+    ),
+    "errAgendaRequestsClosed": MessageLookupByLibrary.simpleMessage(
+      "المقترحات مغلقة: نُشر جدول الأعمال أو بدأ الاجتماع.",
+    ),
+    "errAlreadyVoted": MessageLookupByLibrary.simpleMessage(
+      "تم تسجيل صوت لهذا الشخص في هذا التصويت بالفعل.",
+    ),
+    "errCheckInClosed": MessageLookupByLibrary.simpleMessage(
+      "تسجيل الحضور متاح فقط والاجتماع مجدول أو جارٍ.",
+    ),
+    "errCheckInCodeInvalid": MessageLookupByLibrary.simpleMessage(
+      "الرمز غير صحيح أو منتهي الصلاحية. امسحه مرة أخرى.",
+    ),
+    "errCheckInNotInvited": MessageLookupByLibrary.simpleMessage(
+      "لست مدعوًا إلى هذا الاجتماع.",
+    ),
+    "errCheckInTooManyTries": MessageLookupByLibrary.simpleMessage(
+      "محاولات خاطئة كثيرة. حاول مرة أخرى بعد دقائق.",
+    ),
+    "errCirculationChoiceInvalid": MessageLookupByLibrary.simpleMessage(
+      "اختر موافق أو غير موافق أو ممتنع.",
+    ),
+    "errCirculationDeadlinePast": MessageLookupByLibrary.simpleMessage(
+      "يجب أن يكون موعد الإغلاق في المستقبل.",
+    ),
+    "errCirculationNoVoters": MessageLookupByLibrary.simpleMessage(
+      "لا يوجد في اللجنة أعضاء للتصويت.",
+    ),
+    "errCirculationNotDraft": MessageLookupByLibrary.simpleMessage(
+      "لا يمكن تعديل القرار أو حذفه أو طرحه إلا وهو مسودة.",
+    ),
+    "errCirculationNotOpen": MessageLookupByLibrary.simpleMessage(
+      "التصويت على هذا القرار مغلق.",
+    ),
+    "errCirculationReasonTooLong": MessageLookupByLibrary.simpleMessage(
+      "يجب ألا يتجاوز السبب 500 حرف.",
+    ),
+    "errCirculationStatementRequired": MessageLookupByLibrary.simpleMessage(
+      "أدخل نص القرار.",
+    ),
+    "errCirculationTitleRequired": MessageLookupByLibrary.simpleMessage(
+      "أدخل العنوان.",
+    ),
+    "errCirculationTitleTooLong": MessageLookupByLibrary.simpleMessage(
+      "يجب ألا يتجاوز العنوان 300 حرف.",
+    ),
+    "errCommitteeAlreadyHasAChair": MessageLookupByLibrary.simpleMessage(
+      "يوجد رئيس لهذه اللجنة بالفعل.",
+    ),
+    "errCommitteeAlreadyHasASecretary": MessageLookupByLibrary.simpleMessage(
+      "يوجد أمين سر لهذه اللجنة بالفعل.",
+    ),
+    "errCommitteeIsInactive": MessageLookupByLibrary.simpleMessage(
+      "اللجنة غير مفعلة، لذلك لا يمكن إضافة اجتماعات جديدة لها.",
+    ),
+    "errComplianceRuleInvalid": MessageLookupByLibrary.simpleMessage(
+      "يجب أن يكون كل حد عددًا صحيحًا من 1 (والتنبيه من 0).",
+    ),
+    "errDecisionLinkInvalid": MessageLookupByLibrary.simpleMessage(
+      "يجب أن يكون القرار السابق قرارًا منشورًا للجنة نفسها.",
+    ),
+    "errDelegationInvalid": MessageLookupByLibrary.simpleMessage(
+      "لا يمكن إنشاء هذا التفويض: تحقق من الصفة والعضو والتواريخ (حتى سنة وتنتهي في المستقبل) والصلاحيات، وألا يتداخل مع تفويض آخر.",
+    ),
+    "errHallCapacityExceeded": MessageLookupByLibrary.simpleMessage(
+      "القاعة لا تتسع لجميع أعضاء اللجنة.",
+    ),
+    "errHallIsBooked": MessageLookupByLibrary.simpleMessage(
+      "القاعة محجوزة لاجتماع آخر في هذا الوقت.",
+    ),
+    "errHallServiceInvalid": MessageLookupByLibrary.simpleMessage(
+      "تعذّر حفظ الطلب: ليس للاجتماع قاعة أو انتهى، أو التجهيز أو الكمية غير صحيحة، أو التفاصيل مفقودة أو طويلة، أو الطلب مغلق.",
+    ),
+    "errInterestAlreadyDeclared": MessageLookupByLibrary.simpleMessage(
+      "سبق الإفصاح عن تعارض مصالح في هذا البند.",
+    ),
+    "errInterestDeclared": MessageLookupByLibrary.simpleMessage(
+      "أفصح هذا المصوّت عن تعارض مصالح في البند، فلا يمكنه التصويت عليه.",
+    ),
+    "errInterestNoteTooLong": MessageLookupByLibrary.simpleMessage(
+      "الملاحظة طويلة جدًا (500 حرف كحد أقصى).",
+    ),
+    "errLifecycleInvalid": MessageLookupByLibrary.simpleMessage(
+      "تحقق من التواريخ: لا يمكن أن تنتهي المدة قبل بدايتها، واللجنة المؤقتة تحتاج إلى تاريخ انتهاء.",
+    ),
+    "errLiveInvalid": MessageLookupByLibrary.simpleMessage(
+      "لا يمكن تنفيذ ذلك الآن: الاجتماع غير منعقد، أو البند يتبع اجتماعاً آخر، أو المدة خارج النطاق من ثانية واحدة إلى 8 ساعات.",
+    ),
+    "errMeetingNotOnline": MessageLookupByLibrary.simpleMessage(
+      "لا توجد غرفة افتراضية لهذا الاجتماع.",
+    ),
+    "errMeetingOnHoliday": MessageLookupByLibrary.simpleMessage(
+      "لا يمكن عقد الاجتماع خلال عطلة رسمية.",
+    ),
+    "errMeetingOnWeekend": MessageLookupByLibrary.simpleMessage(
+      "لا يمكن عقد الاجتماع في يوم عطلة نهاية الأسبوع.",
+    ),
+    "errMeetingStatusChangeNotAllowed": MessageLookupByLibrary.simpleMessage(
+      "لا يمكن نقل الاجتماع من حالته الحالية إلى هذه الحالة.",
+    ),
+    "errMinuteAlreadyFinal": MessageLookupByLibrary.simpleMessage(
+      "المحضر معتمد بالفعل.",
+    ),
+    "errMinuteApprovalClosed": MessageLookupByLibrary.simpleMessage(
+      "انتهى موعد الرد على المحضر.",
+    ),
+    "errMinuteApprovalsPending": MessageLookupByLibrary.simpleMessage(
+      "لا يمكن اعتماد المحضر نهائيًا قبل اكتمال مسار الاعتماد.",
+    ),
+    "errMinuteChairApprovesLast": MessageLookupByLibrary.simpleMessage(
+      "يعتمد الرئيس المحضر بعد بقية الأعضاء.",
+    ),
+    "errMinuteReasonTooLong": MessageLookupByLibrary.simpleMessage(
+      "يجب ألا يتجاوز السبب 500 حرف.",
+    ),
+    "errMinuteRejectionReasonRequired": MessageLookupByLibrary.simpleMessage(
+      "اذكر سبب رفض المحضر.",
+    ),
+    "errNotFound": MessageLookupByLibrary.simpleMessage("العنصر غير موجود."),
+    "errNoticeGroupUnknown": MessageLookupByLibrary.simpleMessage(
+      "نوع إشعار غير معروف.",
+    ),
+    "errNoticeLanguageNotSupported": MessageLookupByLibrary.simpleMessage(
+      "اختر العربية أو الإنجليزية لإشعاراتك.",
+    ),
+    "errOptionIsNotInPoll": MessageLookupByLibrary.simpleMessage(
+      "هذا الخيار لا ينتمي إلى هذا التصويت.",
+    ),
+    "errPartySuspendInvalid": MessageLookupByLibrary.simpleMessage(
+      "لا يمكن إلغاء تفعيل هذا الشخص أو إعادة تفعيله الآن (قد يكون حسابك أنت، أو في هذه الحالة مسبقًا).",
+    ),
+    "errPeriodicTemplateInvalid": MessageLookupByLibrary.simpleMessage(
+      "تعذّر حفظ القالب: من 1 إلى 12 اجتماعًا مسبقًا، و30 بندًا على الأكثر، لكل بند عنوان حتى 500 حرف ومدة حتى 600 دقيقة.",
+    ),
+    "errPollIsNotOpen": MessageLookupByLibrary.simpleMessage(
+      "التصويت متاح فقط أثناء فتح التصويت.",
+    ),
+    "errQuorumRuleInvalid": MessageLookupByLibrary.simpleMessage(
+      "أدخل رقمًا لا يقل عن 1 (والنسبة لا تتجاوز 100).",
+    ),
+    "errReasonRequired": MessageLookupByLibrary.simpleMessage("أدخل السبب."),
+    "errRecommendationInvalid": MessageLookupByLibrary.simpleMessage(
+      "تعذّر حفظ التوصية: ليس للجنة لجنة أم أو أنها غير نشطة، أو النص مفقود أو طويل جدًا، أو سبق الرد عليها.",
+    ),
+    "errReportYearInvalid": MessageLookupByLibrary.simpleMessage(
+      "يجب أن تكون السنة بين 1900 و3000.",
+    ),
+    "errReservationReasonRequired": MessageLookupByLibrary.simpleMessage(
+      "اذكر سبب التحفظ.",
+    ),
+    "errReservationReasonTooLong": MessageLookupByLibrary.simpleMessage(
+      "يجب ألا يتجاوز السبب 500 حرف.",
+    ),
+    "errSpeakerInvalid": MessageLookupByLibrary.simpleMessage(
+      "لا تنطبق هذه الخطوة على قائمة المتحدثين الآن (الاجتماع غير منعقد، أو سبق أن طلبت الكلمة، أو لا أحد في الانتظار، أو الحد يتجاوز ساعة).",
+    ),
+    "errSubcommitteeInvalid": MessageLookupByLibrary.simpleMessage(
+      "لا يمكن وضع اللجنة هنا: ستكون تحت نفسها، أو سيتجاوز الهيكل 5 مستويات.",
+    ),
+    "errTaskDecisionInvalid": MessageLookupByLibrary.simpleMessage(
+      "يجب أن يكون القرار من اللجنة نفسها التي تتبعها المهمة.",
+    ),
+    "errTaskReassignInvalid": MessageLookupByLibrary.simpleMessage(
+      "اختر مهام مسندة إلى هذا العضو، وعضوًا آخر في اللجنة لنقلها إليه.",
+    ),
+    "errUnauthorizedUser": MessageLookupByLibrary.simpleMessage(
+      "غير مصرّح لك بتنفيذ هذا الإجراء.",
+    ),
+    "errUserSuspended": MessageLookupByLibrary.simpleMessage(
+      "هذا الحساب غير مفعّل. تواصل مع مسؤول النظام.",
+    ),
+    "errValidationError": MessageLookupByLibrary.simpleMessage(
+      "بعض البيانات غير صحيحة.",
+    ),
+    "errVoteReasonRequired": MessageLookupByLibrary.simpleMessage(
+      "اذكر سبب الرفض أو الامتناع.",
+    ),
+    "errVoteReasonTooLong": MessageLookupByLibrary.simpleMessage(
+      "السبب طويل جدًا (500 حرف كحد أقصى).",
+    ),
+    "errVotingRuleInvalid": MessageLookupByLibrary.simpleMessage(
+      "اختر أغلبية صحيحة.",
+    ),
+    "errYouCanNotChangePollTypeAfterVoting":
+        MessageLookupByLibrary.simpleMessage(
+          "لا يمكن تغيير نوع التصويت بعد الإدلاء بالأصوات.",
+        ),
+    "errYouDoNotHavePermission": MessageLookupByLibrary.simpleMessage(
+      "ليس لديك صلاحية لتنفيذ هذا الإجراء.",
+    ),
     "estimatedFor": MessageLookupByLibrary.simpleMessage("الوقت المتوقع"),
     "expiration": MessageLookupByLibrary.simpleMessage("انتهاء الصلاحية"),
     "faq": MessageLookupByLibrary.simpleMessage("الأسئلة الشائعة"),
@@ -288,6 +483,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "hidePassword": MessageLookupByLibrary.simpleMessage("إخفاء"),
     "hideSubItems": m4,
+    "hijriDate": MessageLookupByLibrary.simpleMessage("هجري"),
     "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
     "homeAddress": MessageLookupByLibrary.simpleMessage("عنوان المنزل"),
     "hours": MessageLookupByLibrary.simpleMessage("ساعات"),
@@ -345,6 +541,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "mail": MessageLookupByLibrary.simpleMessage("ذكر"),
     "max": MessageLookupByLibrary.simpleMessage("الأقصى"),
     "meeting": MessageLookupByLibrary.simpleMessage("الاجتماع"),
+    "meetingModeHybrid": MessageLookupByLibrary.simpleMessage(
+      "هجين (حضوري وعن بُعد)",
+    ),
+    "meetingModeInPerson": MessageLookupByLibrary.simpleMessage("حضوري"),
+    "meetingModeOnline": MessageLookupByLibrary.simpleMessage("عن بُعد"),
     "meetingRunningNow": MessageLookupByLibrary.simpleMessage(
       "الاجتماع جارٍ الآن",
     ),

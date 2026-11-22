@@ -57,7 +57,8 @@ void showHubNotification(BuildContext context, HubMessage message) {
   int number(String key) => int.tryParse((data[key] ?? '').toString()) ?? -1;
 
   final (String title, String body, IconData icon) = switch (message.event) {
-    null => ('', '', Icons.notifications_none_rounded),
+    // Live state changes often (timer ticks): no banner for it.
+    null || .liveStateUpdated => ('', '', Icons.notifications_none_rounded),
     .agendaItemStatusUpdated => (
         s.hubAgendaUpdated,
         s.hubAgendaUpdatedBody(text('title'), switch (number('agendaItemStatus')) {

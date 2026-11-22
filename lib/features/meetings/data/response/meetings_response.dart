@@ -55,6 +55,9 @@ class Meeting {
     required this.tasks,
     required this.minutes,
     required this.pollResults,
+    required this.mode,
+    required this.hijriDate,
+    required this.callerMembershipType,
   });
 
   final String id;
@@ -83,6 +86,16 @@ class Meeting {
   final List<Task> tasks;
   final Minutes minutes;
   final List<PollResult> pollResults;
+
+  /// In person / online / hybrid; null when the meeting has none.
+  final MeetingMode? mode;
+
+  /// Umm al-Qura date (`dd/MM/yyyy`), empty without a date.
+  final String hijriDate;
+
+  /// The signed-in person's role in this meeting's committee (a delegated role
+  /// included); an outside invitee gets [MembershipType.member]; null when none.
+  final MembershipType? callerMembershipType;
 
   /// Copy used to apply live (SignalR) updates without a refetch.
   Meeting copyWith({
@@ -118,6 +131,9 @@ class Meeting {
       tasks: tasks,
       minutes: minutes,
       pollResults: pollResults ?? this.pollResults,
+      mode: mode,
+      hijriDate: hijriDate,
+      callerMembershipType: callerMembershipType,
     );
   }
 
@@ -162,7 +178,16 @@ class Meeting {
       pollResults: json["pollResults"] == null
           ? []
           : List<PollResult>.from(json["pollResults"]!.map((x) => PollResult.fromJson(x))),
+      mode: MeetingMode.fromIndex(json["mode"]),
+      hijriDate: json["hijriDate"] ?? "",
+      callerMembershipType: _membershipType(json["callerMembershipType"]),
     );
+  }
+
+  static MembershipType? _membershipType(Object? index) {
+    final i = int.tryParse(index?.toString() ?? '');
+    if (i == null || i < 0 || i >= MembershipType.values.length) return null;
+    return MembershipType.values[i];
   }
 
   Map<String, dynamic> toJson() => {
@@ -192,6 +217,9 @@ class Meeting {
         "tasks": tasks.map((x) => x.toJson()).toList(),
         "minutes": minutes.toJson(),
         "pollResults": pollResults.map((x) => x.toJson()).toList(),
+        "mode": mode?.index,
+        "hijriDate": hijriDate,
+        "callerMembershipType": callerMembershipType?.index,
       };
 }
 
