@@ -101,6 +101,10 @@ class GetUrl {
 
   static const liveState = 'MeetingLive/GetState';
 
+  static const quorumForMeeting = 'Quorum/GetForMeeting';
+
+  static const checkInCode = 'CheckIn/GetCode';
+
   static const interestsByMeeting = 'Interest/GetByMeeting';
 
   static const agendaRequestsByMeeting = 'AgendaItemRequest/GetByMeeting';
@@ -175,6 +179,20 @@ class PostUrl {
   static const requestFloor = 'MeetingLive/RequestFloor';
 
   static const withdrawFloor = 'MeetingLive/WithdrawFloor';
+
+  static const liveSetCurrentItem = 'MeetingLive/SetCurrentItem';
+
+  static const liveSetTimer = 'MeetingLive/SetTimer';
+
+  static const liveNextSpeaker = 'MeetingLive/NextSpeaker';
+
+  static const liveGiveFloor = 'MeetingLive/GiveFloor';
+
+  static const liveEndSpeaker = 'MeetingLive/EndSpeaker';
+
+  static const liveSkipSpeaker = 'MeetingLive/SkipSpeaker';
+
+  static const liveSetSpeakerLimit = 'MeetingLive/SetSpeakerLimit';
 
   static const checkInScan = 'CheckIn/Scan';
 

@@ -5037,6 +5037,331 @@ class S {
   String get all {
     return Intl.message('All', name: 'all', desc: '', args: []);
   }
+
+  /// `Quorum`
+  String get quorumTitle {
+    return Intl.message('Quorum', name: 'quorumTitle', desc: '', args: []);
+  }
+
+  /// `Met`
+  String get quorumStatusMet {
+    return Intl.message('Met', name: 'quorumStatusMet', desc: '', args: []);
+  }
+
+  /// `Not met`
+  String get quorumStatusNotMet {
+    return Intl.message(
+      'Not met',
+      name: 'quorumStatusNotMet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{present} present of {required} required`
+  String quorumPresentOfRequired(Object present, Object required) {
+    return Intl.message(
+      '$present present of $required required',
+      name: 'quorumPresentOfRequired',
+      desc: '',
+      args: [present, required],
+    );
+  }
+
+  /// `{hall} in the hall · {remote} remote`
+  String quorumSplit(Object hall, Object remote) {
+    return Intl.message(
+      '$hall in the hall · $remote remote',
+      name: 'quorumSplit',
+      desc: '',
+      args: [hall, remote],
+    );
+  }
+
+  /// `Includes {count} by proxy`
+  String quorumProxies(Object count) {
+    return Intl.message(
+      'Includes $count by proxy',
+      name: 'quorumProxies',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `The chair has to attend for the quorum to count.`
+  String get quorumChairRequired {
+    return Intl.message(
+      'The chair has to attend for the quorum to count.',
+      name: 'quorumChairRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recorded when the meeting started, at {time}`
+  String quorumRecordedAt(Object time) {
+    return Intl.message(
+      'Recorded when the meeting started, at $time',
+      name: 'quorumRecordedAt',
+      desc: '',
+      args: [time],
+    );
+  }
+
+  /// `Needs {value} members`
+  String quorumRuleCount(Object value) {
+    return Intl.message(
+      'Needs $value members',
+      name: 'quorumRuleCount',
+      desc: '',
+      args: [value],
+    );
+  }
+
+  /// `Needs {value}% of {base} members`
+  String quorumRulePercent(Object value, Object base) {
+    return Intl.message(
+      'Needs $value% of $base members',
+      name: 'quorumRulePercent',
+      desc: '',
+      args: [value, base],
+    );
+  }
+
+  /// `Controls`
+  String get liveControls {
+    return Intl.message('Controls', name: 'liveControls', desc: '', args: []);
+  }
+
+  /// `Start`
+  String get liveStart {
+    return Intl.message('Start', name: 'liveStart', desc: '', args: []);
+  }
+
+  /// `Pause`
+  String get livePause {
+    return Intl.message('Pause', name: 'livePause', desc: '', args: []);
+  }
+
+  /// `Reset`
+  String get liveReset {
+    return Intl.message('Reset', name: 'liveReset', desc: '', args: []);
+  }
+
+  /// `Reset this item's timer?`
+  String get liveResetTitle {
+    return Intl.message(
+      'Reset this item\'s timer?',
+      name: 'liveResetTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The time spent so far will be cleared.`
+  String get liveResetDescription {
+    return Intl.message(
+      'The time spent so far will be cleared.',
+      name: 'liveResetDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Take off a minute`
+  String get liveMinusMinute {
+    return Intl.message(
+      'Take off a minute',
+      name: 'liveMinusMinute',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add a minute`
+  String get livePlusMinute {
+    return Intl.message(
+      'Add a minute',
+      name: 'livePlusMinute',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change item`
+  String get liveChangeItem {
+    return Intl.message(
+      'Change item',
+      name: 'liveChangeItem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Put an item on screen`
+  String get livePickItem {
+    return Intl.message(
+      'Put an item on screen',
+      name: 'livePickItem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Item on screen`
+  String get livePickItemTitle {
+    return Intl.message(
+      'Item on screen',
+      name: 'livePickItemTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clear the screen`
+  String get liveClearScreen {
+    return Intl.message(
+      'Clear the screen',
+      name: 'liveClearScreen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next speaker`
+  String get liveNextSpeaker {
+    return Intl.message(
+      'Next speaker',
+      name: 'liveNextSpeaker',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `End turn`
+  String get liveEndSpeaker {
+    return Intl.message('End turn', name: 'liveEndSpeaker', desc: '', args: []);
+  }
+
+  /// `Give the floor`
+  String get liveGiveFloor {
+    return Intl.message(
+      'Give the floor',
+      name: 'liveGiveFloor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skip`
+  String get liveSkip {
+    return Intl.message('Skip', name: 'liveSkip', desc: '', args: []);
+  }
+
+  /// `Time per speaker: {time}`
+  String liveSpeakerLimit(Object time) {
+    return Intl.message(
+      'Time per speaker: $time',
+      name: 'liveSpeakerLimit',
+      desc: '',
+      args: [time],
+    );
+  }
+
+  /// `Time per speaker`
+  String get liveSpeakerLimitTitle {
+    return Intl.message(
+      'Time per speaker',
+      name: 'liveSpeakerLimitTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Applies to the next speakers.`
+  String get liveSpeakerLimitHint {
+    return Intl.message(
+      'Applies to the next speakers.',
+      name: 'liveSpeakerLimitHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No limit`
+  String get liveNoLimit {
+    return Intl.message('No limit', name: 'liveNoLimit', desc: '', args: []);
+  }
+
+  /// `{count} min`
+  String liveMinutes(Object count) {
+    return Intl.message(
+      '$count min',
+      name: 'liveMinutes',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Hall QR`
+  String get checkInCodeTitle {
+    return Intl.message(
+      'Hall QR',
+      name: 'checkInCodeTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Attendees scan this code with the app to check in.`
+  String get checkInCodeHint {
+    return Intl.message(
+      'Attendees scan this code with the app to check in.',
+      name: 'checkInCodeHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New code in {seconds} s`
+  String checkInCodeNext(Object seconds) {
+    return Intl.message(
+      'New code in $seconds s',
+      name: 'checkInCodeNext',
+      desc: '',
+      args: [seconds],
+    );
+  }
+
+  /// `The code isn't available`
+  String get checkInCodeUnavailable {
+    return Intl.message(
+      'The code isn\'t available',
+      name: 'checkInCodeUnavailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show the hall QR`
+  String get checkInCodeShow {
+    return Intl.message(
+      'Show the hall QR',
+      name: 'checkInCodeShow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Display it on a tablet at the door for check-in.`
+  String get checkInCodeShowHint {
+    return Intl.message(
+      'Display it on a tablet at the door for check-in.',
+      name: 'checkInCodeShowHint',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

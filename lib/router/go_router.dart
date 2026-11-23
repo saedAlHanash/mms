@@ -1,3 +1,6 @@
+import 'package:mms/features/quorum/bloc/quorum_cubit/quorum_cubit.dart';
+import 'package:mms/features/check_in/bloc/check_in_code_cubit/check_in_code_cubit.dart';
+import 'package:mms/features/check_in/ui/pages/check_in_code_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -72,6 +75,7 @@ class RouteName {
   static const votes = '/votes';
   static const notifications = '/notifications';
   static const checkIn = '/check-in';
+  static const checkInCode = '/check-in-code';
   static const circulations = '/circulations';
   static const circulation = '/circulation';
   static const fullScreen = '/full-screen';
@@ -228,6 +232,8 @@ final goRouter = GoRouter(
           ),
           // Live screen state; started by the page while the meeting is running.
           BlocProvider(create: (_) => sl<MeetingLiveCubit>()),
+          // Quorum outside the live panel; fetched by the page with the meeting.
+          BlocProvider(create: (_) => sl<QuorumCubit>()),
           // Live updates (SignalR) for this meeting; closed with the route.
           BlocProvider(
             create: (_) => sl<MeetingHubCubit>()
@@ -245,6 +251,13 @@ final goRouter = GoRouter(
       (_, state) => BlocProvider(
         create: (_) => sl<CheckInCubit>(),
         child: CheckInPage(meetingId: state.uri.queryParameters[RouteParam.id] ?? ''),
+      ),
+    ),
+    _route(
+      RouteName.checkInCode,
+      (_, state) => BlocProvider(
+        create: (_) => sl<CheckInCodeCubit>()..start(state.uri.queryParameters[RouteParam.id] ?? ''),
+        child: const CheckInCodePage(),
       ),
     ),
     _route(

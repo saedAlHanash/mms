@@ -27,6 +27,9 @@ import 'package:mms/features/interest/bloc/meeting_interests_cubit/meeting_inter
 import 'package:mms/features/meeting_live/bloc/meeting_live_cubit/meeting_live_cubit.dart';
 import 'package:mms/features/meeting_live/ui/widgets/meeting_live_panel.dart';
 import 'package:mms/features/check_in/ui/widgets/check_in_card.dart';
+import 'package:mms/features/check_in/ui/widgets/check_in_code_entry.dart';
+import 'package:mms/features/quorum/bloc/quorum_cubit/quorum_cubit.dart';
+import 'package:mms/features/quorum/ui/widgets/quorum_card.dart';
 import 'package:mms/services/pip.dart';
 
 import 'package:mms/core/strings/enum_manager.dart';
@@ -55,6 +58,8 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
   /// The live state is followed only while the meeting is running.
   void _syncLive(Meeting meeting) {
     meeting.status == MeetingStatus.running ? _liveCubit.start(meeting.id) : _liveCubit.stop();
+    // Outside the live panel, refresh the quorum with every reload (attendance may have changed).
+    if (QuorumCard.showsFor(meeting)) context.read<QuorumCubit>().getData(meetingId: meeting.id);
   }
 
   @override
@@ -194,6 +199,11 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
                                           16.0.verticalSpace,
                                           CheckInCard(meeting: item),
                                         ],
+                                        if (CheckInCodeEntry.showsFor(item)) ...[
+                                          16.0.verticalSpace,
+                                          CheckInCodeEntry(meeting: item),
+                                        ],
+                                        if (QuorumCard.showsFor(item)) QuorumCard(meeting: item),
                                         if (isRunning) ...[
                                           16.0.verticalSpace,
                                           const MeetingLivePanel(),

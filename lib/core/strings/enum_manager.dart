@@ -343,6 +343,9 @@ enum MeetingMode {
 /// Kind of floor request (`SpeakerRequestKind`): a point of order goes first.
 enum SpeakerRequestKind { normal, pointOfOrder }
 
+/// `LiveTimerAction` (chair / secretary timer controls).
+enum LiveTimerAction { start, pause, reset, addTime, setLength }
+
 /// State of a floor request (`SpeakerRequestState`).
 enum SpeakerRequestState { waiting, speaking, done, withdrawn, skipped }
 

@@ -96,6 +96,44 @@ class MeetingLiveCubit extends Cubit<MeetingLiveInitial> {
     await _send(PostUrl.withdrawFloor, SpeakerIdRequest(id: id).toJson());
   }
 
+  // Chair / secretary controls (`canControl`).
+
+  /// Puts [agendaItemId] on screen, or clears it with null.
+  Future<void> setCurrentItem(String? agendaItemId) => _send(
+        PostUrl.liveSetCurrentItem,
+        SetCurrentItemRequest(meetingId: state.meetingId, agendaItemId: agendaItemId).toJson(),
+      );
+
+  /// Timer of the item on screen. Start also pauses any other running item.
+  Future<void> setTimer(LiveTimerAction action, {int seconds = 0}) async {
+    final id = state.result.currentItem?.id;
+    if (id == null) return;
+    await _send(
+      PostUrl.liveSetTimer,
+      SetTimerRequest(agendaItemId: id, action: action, seconds: seconds).toJson(),
+    );
+  }
+
+  /// Ends the current speaker and gives the floor to the first waiting.
+  Future<void> nextSpeaker() =>
+      _send(PostUrl.liveNextSpeaker, MeetingIdRequest(meetingId: state.meetingId).toJson());
+
+  Future<void> endSpeaker() =>
+      _send(PostUrl.liveEndSpeaker, MeetingIdRequest(meetingId: state.meetingId).toJson());
+
+  /// Out of turn.
+  Future<void> giveFloor(String requestId) =>
+      _send(PostUrl.liveGiveFloor, SpeakerIdRequest(id: requestId).toJson());
+
+  Future<void> skipSpeaker(String requestId) =>
+      _send(PostUrl.liveSkipSpeaker, SpeakerIdRequest(id: requestId).toJson());
+
+  /// 0 means no limit.
+  Future<void> setSpeakerLimit(int seconds) => _send(
+        PostUrl.liveSetSpeakerLimit,
+        SetSpeakerLimitRequest(meetingId: state.meetingId, seconds: seconds.clamp(0, 3600)).toJson(),
+      );
+
   Future<void> _send(String url, Map<String, dynamic> body) async {
     if (state.sending) return;
     emit(state.copyWith(sending: true));

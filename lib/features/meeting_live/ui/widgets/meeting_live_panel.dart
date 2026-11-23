@@ -15,6 +15,8 @@ import 'package:mms/core/widgets/status_chip.dart';
 import 'package:mms/features/meeting_live/bloc/meeting_live_cubit/meeting_live_cubit.dart';
 import 'package:mms/features/meeting_live/data/response/meeting_live_response.dart';
 import 'package:mms/features/meeting_live/ui/widgets/live_clock.dart';
+import 'package:mms/features/meeting_live/ui/widgets/live_controls.dart';
+import 'package:mms/features/quorum/data/response/quorum_response.dart';
 import 'package:mms/generated/l10n.dart';
 
 /// "Live" card of a running meeting: the item on screen with its clock, who is
@@ -54,15 +56,17 @@ class MeetingLivePanel extends StatelessWidget {
           child: Column(
             crossAxisAlignment: .stretch,
             children: [
-              _Header(quorum: live.quorum),
+              _Header(quorum: live.quorum, canControl: live.canControl),
               14.0.verticalSpace,
               _CurrentItem(item: live.currentItem, since: state.fetchedAt),
+              if (live.canControl) LiveItemControls(live: live, sending: state.sending),
               const _Divider(),
               _Speaking(speaker: live.speaking, since: state.fetchedAt),
               if (live.waiting.isNotEmpty) ...[
                 const _Divider(),
-                _Queue(waiting: live.waiting),
+                _Queue(waiting: live.waiting, canControl: live.canControl, sending: state.sending),
               ],
+              if (live.canControl) LiveSpeakerControls(live: live, sending: state.sending),
               16.0.verticalSpace,
               _FloorActions(live: live, sending: state.sending),
             ],
@@ -98,9 +102,10 @@ class _Label extends StatelessWidget {
 
 /// "Live now" + quorum chip.
 class _Header extends StatelessWidget {
-  const _Header({required this.quorum});
+  const _Header({required this.quorum, required this.canControl});
 
   final MeetingQuorum? quorum;
+  final bool canControl;
 
   @override
   Widget build(BuildContext context) {
@@ -114,6 +119,10 @@ class _Header extends StatelessWidget {
             glow: true,
           ),
         ),
+        if (canControl) ...[
+          StatusChip(colors: MembershipType.chair.badge, label: S.of(context).liveControls),
+          6.0.horizontalSpace,
+        ],
         if (q != null && q.hasRule)
           StatusChip(
             colors: q.met ? PollOutcome.passed.colors : PollOutcome.tied.colors,
@@ -230,9 +239,11 @@ class _Speaking extends StatelessWidget {
 
 /// Waiting requests: points of order first (the server orders them).
 class _Queue extends StatelessWidget {
-  const _Queue({required this.waiting});
+  const _Queue({required this.waiting, required this.canControl, required this.sending});
 
   final List<LiveSpeaker> waiting;
+  final bool canControl;
+  final bool sending;
 
   @override
   Widget build(BuildContext context) {
@@ -269,6 +280,10 @@ class _Queue extends StatelessWidget {
                 ),
                 if (waiting[i].isPointOfOrder)
                   StatusChip(colors: PollOutcome.tied.colors, label: S.of(context).pointOfOrder),
+                if (canControl) ...[
+                  8.0.horizontalSpace,
+                  LiveQueueActions(request: waiting[i], sending: sending),
+                ],
               ],
             ),
           ),

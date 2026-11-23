@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:mms/core/strings/enum_manager.dart';
+import 'package:mms/features/quorum/data/response/quorum_response.dart';
 
 int _int(Object? v) => int.tryParse(v?.toString() ?? '') ?? 0;
 
@@ -30,7 +31,7 @@ class MeetingLiveState {
   /// Server clock at the time of the answer.
   final DateTime? serverNow;
 
-  /// Chair / secretary controls (not in the app yet).
+  /// Show the chair / secretary controls.
   final bool canControl;
 
   final LiveItem? currentItem;
@@ -159,33 +160,6 @@ class LiveSpeaker {
       state: SpeakerRequestState.values.elementAtOrNull(_int(json['state'])) ?? SpeakerRequestState.waiting,
       limitSeconds: _int(json['limitSeconds']),
       remainingSeconds: _intOrNull(json['remainingSeconds']),
-    );
-  }
-}
-
-/// `MeetingQuorumDto` (live figures only).
-class MeetingQuorum {
-  MeetingQuorum({
-    required this.hasRule,
-    required this.required,
-    required this.present,
-    required this.presentRemote,
-    required this.met,
-  });
-
-  final bool hasRule;
-  final int required;
-  final int present;
-  final int presentRemote;
-  final bool met;
-
-  factory MeetingQuorum.fromJson(Map<String, dynamic> json) {
-    return MeetingQuorum(
-      hasRule: json['hasRule'] ?? false,
-      required: _int(json['required']),
-      present: _int(json['present']),
-      presentRemote: _int(json['presentRemote']),
-      met: json['met'] ?? false,
     );
   }
 }

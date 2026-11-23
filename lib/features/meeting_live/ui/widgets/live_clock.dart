@@ -65,15 +65,7 @@ class _LiveClockState extends State<LiveClock> {
     return widget.countUp ? widget.seconds + passed : widget.seconds - passed;
   }
 
-  static String format(int seconds) {
-    final value = seconds.abs();
-    final h = value ~/ 3600;
-    final m = (value % 3600) ~/ 60;
-    final s = value % 60;
-    String two(int n) => n.toString().padLeft(2, '0');
-    final text = h > 0 ? '$h:${two(m)}:${two(s)}' : '${two(m)}:${two(s)}';
-    return seconds < 0 ? '-$text' : text;
-  }
+  static String format(int seconds) => LiveClockFormat.format(seconds);
 
   @override
   Widget build(BuildContext context) {
@@ -87,5 +79,18 @@ class _LiveClockState extends State<LiveClock> {
         color: value < 0 ? AppColorManager.danger : widget.color,
       ),
     );
+  }
+}
+
+/// `mm:ss` (or `h:mm:ss`), with a minus sign when over time.
+abstract final class LiveClockFormat {
+  static String format(int seconds) {
+    final value = seconds.abs();
+    final h = value ~/ 3600;
+    final m = (value % 3600) ~/ 60;
+    final s = value % 60;
+    String two(int n) => n.toString().padLeft(2, '0');
+    final text = h > 0 ? '$h:${two(m)}:${two(s)}' : '${two(m)}:${two(s)}';
+    return seconds < 0 ? '-$text' : text;
   }
 }
