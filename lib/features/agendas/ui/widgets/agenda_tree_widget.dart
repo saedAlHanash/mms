@@ -10,14 +10,18 @@ import 'package:mms/features/agendas/bloc/add_comment_cubit/add_comment_cubit.da
 import 'package:mms/features/agendas/data/response/agendas_response.dart';
 import 'package:mms/features/agendas/ui/widgets/comment_btn.dart';
 import 'package:mms/features/agendas/ui/widgets/comment_sheet.dart';
+import 'package:mms/features/interest/ui/widgets/interest_widgets.dart';
 import 'package:mms/generated/l10n.dart';
 
 /// Meeting agenda: all items in one card, sub-items nested under their parent
 /// with "2.1" numbering, collapsible.
 class AgendaTreeWidget extends StatelessWidget {
-  const AgendaTreeWidget({super.key, required this.agendas});
+  const AgendaTreeWidget({super.key, required this.agendas, this.canDeclareInterest = true});
 
   final List<Agenda> agendas;
+
+  /// Shows "Declare an interest" on each item (off on archived and canceled meetings).
+  final bool canDeclareInterest;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +36,7 @@ class AgendaTreeWidget extends StatelessWidget {
     final children = <Widget>[];
     for (var i = 0; i < agendas.length; i++) {
       if (i > 0) children.add(const Divider(height: 1, color: AppColorManager.neutral50));
-      children.add(_AgendaItem(agenda: agendas[i], number: '${i + 1}'));
+      children.add(_AgendaItem(agenda: agendas[i], number: '${i + 1}', canDeclareInterest: canDeclareInterest));
     }
 
     return Container(
@@ -49,10 +53,11 @@ class AgendaTreeWidget extends StatelessWidget {
 
 /// Top-level agenda item (number box) with its nested sub-items.
 class _AgendaItem extends StatefulWidget {
-  const _AgendaItem({required this.agenda, required this.number});
+  const _AgendaItem({required this.agenda, required this.number, required this.canDeclareInterest});
 
   final Agenda agenda;
   final String number;
+  final bool canDeclareInterest;
 
   @override
   State<_AgendaItem> createState() => _AgendaItemState();
@@ -76,6 +81,7 @@ class _AgendaItemState extends State<_AgendaItem> {
             number: widget.number,
             leading: AgendaNumberBox(number: widget.number),
             titleSize: 15,
+            canDeclareInterest: widget.canDeclareInterest,
             extra: subItems.isEmpty
                 ? null
                 : TextButton.icon(
@@ -112,7 +118,11 @@ class _AgendaItemState extends State<_AgendaItem> {
               child: _open
                   ? Padding(
                       padding: EdgeInsets.only(top: 4.0.h),
-                      child: _SubItems(items: subItems, parentNumber: widget.number),
+                      child: _SubItems(
+                        items: subItems,
+                        parentNumber: widget.number,
+                        canDeclareInterest: widget.canDeclareInterest,
+                      ),
                     )
                   : const SizedBox(width: double.infinity),
             ),
@@ -124,10 +134,11 @@ class _AgendaItemState extends State<_AgendaItem> {
 
 /// Sub-items with a 2px start line, aligned with the parent's text.
 class _SubItems extends StatelessWidget {
-  const _SubItems({required this.items, required this.parentNumber});
+  const _SubItems({required this.items, required this.parentNumber, required this.canDeclareInterest});
 
   final List<Agenda> items;
   final String parentNumber;
+  final bool canDeclareInterest;
 
   @override
   Widget build(BuildContext context) {
@@ -143,7 +154,11 @@ class _SubItems extends StatelessWidget {
           children: [
             for (var i = 0; i < items.length; i++) ...[
               if (i > 0) 12.0.verticalSpace,
-              _SubItem(agenda: items[i], number: '$parentNumber.${i + 1}'),
+              _SubItem(
+                agenda: items[i],
+                number: '$parentNumber.${i + 1}',
+                canDeclareInterest: canDeclareInterest,
+              ),
             ],
           ],
         ),
@@ -153,10 +168,11 @@ class _SubItems extends StatelessWidget {
 }
 
 class _SubItem extends StatelessWidget {
-  const _SubItem({required this.agenda, required this.number});
+  const _SubItem({required this.agenda, required this.number, required this.canDeclareInterest});
 
   final Agenda agenda;
   final String number;
+  final bool canDeclareInterest;
 
   @override
   Widget build(BuildContext context) {
@@ -167,6 +183,7 @@ class _SubItem extends StatelessWidget {
           agenda: agenda,
           number: number,
           titleSize: 14,
+          canDeclareInterest: canDeclareInterest,
           leading: Directionality(
             textDirection: .ltr,
             child: DrawableText(
@@ -179,7 +196,7 @@ class _SubItem extends StatelessWidget {
         ),
         if (agenda.childrenItems.isNotEmpty) ...[
           8.0.verticalSpace,
-          _SubItems(items: agenda.childrenItems, parentNumber: number),
+          _SubItems(items: agenda.childrenItems, parentNumber: number, canDeclareInterest: canDeclareInterest),
         ],
       ],
     );
@@ -194,6 +211,7 @@ class _AgendaRow extends StatelessWidget {
     required this.number,
     required this.leading,
     required this.titleSize,
+    required this.canDeclareInterest,
     this.extra,
   });
 
@@ -201,6 +219,7 @@ class _AgendaRow extends StatelessWidget {
   final String number;
   final Widget leading;
   final double titleSize;
+  final bool canDeclareInterest;
   final Widget? extra;
 
   @override
@@ -239,6 +258,7 @@ class _AgendaRow extends StatelessWidget {
                     8.0.verticalSpace,
                     CommentBubble(text: myComment.text),
                   ],
+                  InterestAction(agenda: agenda, number: number, canDeclare: canDeclareInterest),
                   ?extra,
                 ],
               ),

@@ -21,8 +21,12 @@ import 'package:mms/features/meetings/ui/widgets/discussions_tree.dart';
 import 'package:mms/core/widgets/in_app_notification.dart';
 import 'package:mms/features/meeting_hub/bloc/meeting_hub_cubit/meeting_hub_cubit.dart';
 import 'package:mms/features/meeting_hub/ui/widgets/hub_widgets.dart';
+import 'package:mms/features/agenda_request/bloc/my_agenda_requests_cubit/my_agenda_requests_cubit.dart';
+import 'package:mms/features/agenda_request/ui/widgets/agenda_requests_section.dart';
+import 'package:mms/features/interest/bloc/meeting_interests_cubit/meeting_interests_cubit.dart';
 import 'package:mms/features/meeting_live/bloc/meeting_live_cubit/meeting_live_cubit.dart';
 import 'package:mms/features/meeting_live/ui/widgets/meeting_live_panel.dart';
+import 'package:mms/features/check_in/ui/widgets/check_in_card.dart';
 import 'package:mms/services/pip.dart';
 
 import 'package:mms/core/strings/enum_manager.dart';
@@ -133,6 +137,8 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
           listener: (context, state) {
             _meetingCubit.getData(newData: true);
             _liveCubit.getData();
+            context.read<MeetingInterestsCubit>().getData();
+            context.read<MyAgendaRequestsCubit>().getData();
           },
         ),
       ],
@@ -149,7 +155,7 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
             child: Scaffold(
                     appBar: AppBarWidget(
                       titleText: S.of(context).meeting,
-                      actions: const [HubStatusChip(), ActionBarMemberWidget()],
+                      actions: const [ ActionBarMemberWidget()],
                     ),
                     endDrawer: Drawer(
                       width: 320.0.w,
@@ -184,6 +190,10 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
                                       ),
                                       children: [
                                         _MeetingInfoCard(meeting: item),
+                                        if (CheckInCard.showsFor(item)) ...[
+                                          16.0.verticalSpace,
+                                          CheckInCard(meeting: item),
+                                        ],
                                         if (isRunning) ...[
                                           16.0.verticalSpace,
                                           const MeetingLivePanel(),
@@ -199,7 +209,12 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
                                               : S.of(context).itemsCount(item.agendaItems.length),
                                         ),
                                         10.0.verticalSpace,
-                                        AgendaTreeWidget(agendas: item.agendaItems),
+                                        AgendaTreeWidget(
+                                          agendas: item.agendaItems,
+                                          canDeclareInterest: item.status != MeetingStatus.archived &&
+                                              item.status != MeetingStatus.canceled,
+                                        ),
+                                        AgendaRequestsSection(meeting: item),
                                         if (item.discussions.isNotEmpty) ...[
                                           24.0.verticalSpace,
                                           SectionHeader(

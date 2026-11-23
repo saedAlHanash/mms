@@ -49,18 +49,20 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m10(count) =>
       "${Intl.plural(count, zero: 'No members', one: '1 member', other: '${count} members')}";
 
-  static String m11(present, required) =>
-      "Quorum met: ${present} of ${required}";
+  static String m11(count) => "My proposals (${count})";
 
   static String m12(present, required) =>
+      "Quorum met: ${present} of ${required}";
+
+  static String m13(present, required) =>
       "No quorum: ${present} of ${required}";
 
-  static String m13(count) => "Show sub-items (${count})";
+  static String m14(count) => "Show sub-items (${count})";
 
-  static String m14(count) =>
+  static String m15(count) =>
       "${Intl.plural(count, zero: 'No tasks', one: '1 task', other: '${count} tasks')}";
 
-  static String m15(count) => "${count} awaiting your vote";
+  static String m16(count) => "${count} awaiting your vote";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -81,6 +83,17 @@ class MessageLookup extends MessageLookupByLibrary {
       "Additional service",
     ),
     "agendaItem": MessageLookupByLibrary.simpleMessage("Agenda item"),
+    "agendaProposals": MessageLookupByLibrary.simpleMessage("Agenda proposals"),
+    "agendaProposalsClosed": MessageLookupByLibrary.simpleMessage(
+      "Proposals are closed for this meeting.",
+    ),
+    "agendaProposalsHint": MessageLookupByLibrary.simpleMessage(
+      "Suggest an item before the agenda is published.",
+    ),
+    "agendaRequestAccepted": MessageLookupByLibrary.simpleMessage("Accepted"),
+    "agendaRequestClosed": MessageLookupByLibrary.simpleMessage("Closed"),
+    "agendaRequestPending": MessageLookupByLibrary.simpleMessage("Pending"),
+    "agendaRequestRejected": MessageLookupByLibrary.simpleMessage("Rejected"),
     "agendaStatusActive": MessageLookupByLibrary.simpleMessage("In progress"),
     "agendaStatusConcluded": MessageLookupByLibrary.simpleMessage("Concluded"),
     "agendaStatusDelayed": MessageLookupByLibrary.simpleMessage("Delayed"),
@@ -95,6 +108,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "ar": MessageLookupByLibrary.simpleMessage("Arabic"),
     "archived": MessageLookupByLibrary.simpleMessage("Published"),
     "at": MessageLookupByLibrary.simpleMessage("At"),
+    "attachFileOptional": MessageLookupByLibrary.simpleMessage(
+      "Attach a file (optional)",
+    ),
+    "attachmentLimit": MessageLookupByLibrary.simpleMessage("Up to 10 MB"),
+    "attachmentTooLarge": MessageLookupByLibrary.simpleMessage(
+      "The file is larger than 10 MB.",
+    ),
     "attendanceNotRecorded": MessageLookupByLibrary.simpleMessage(
       "Attendance not recorded",
     ),
@@ -113,6 +133,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "buildNumber": MessageLookupByLibrary.simpleMessage("Build Number"),
     "cameraOff": MessageLookupByLibrary.simpleMessage("Turn camera off"),
     "cameraOn": MessageLookupByLibrary.simpleMessage("Turn camera on"),
+    "cameraPermissionDenied": MessageLookupByLibrary.simpleMessage(
+      "Allow camera access in the settings to scan, or type the code below.",
+    ),
+    "cameraUnavailable": MessageLookupByLibrary.simpleMessage(
+      "The camera isn\'t available. Type the code below.",
+    ),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "canceled": MessageLookupByLibrary.simpleMessage("Canceled"),
     "card_name": MessageLookupByLibrary.simpleMessage("Card Name"),
@@ -130,6 +156,29 @@ class MessageLookup extends MessageLookupByLibrary {
     "changePassword": MessageLookupByLibrary.simpleMessage("Change Password"),
     "changePhone": MessageLookupByLibrary.simpleMessage("Change Phone Number"),
     "changePhoto": MessageLookupByLibrary.simpleMessage("Change profile photo"),
+    "checkIn": MessageLookupByLibrary.simpleMessage("Check in"),
+    "checkInAlready": MessageLookupByLibrary.simpleMessage(
+      "You were already checked in",
+    ),
+    "checkInAt": MessageLookupByLibrary.simpleMessage("at"),
+    "checkInCardHint": MessageLookupByLibrary.simpleMessage(
+      "Record your arrival with the QR code at the hall door.",
+    ),
+    "checkInCardTitle": MessageLookupByLibrary.simpleMessage("Hall check-in"),
+    "checkInDone": MessageLookupByLibrary.simpleMessage("You\'re checked in"),
+    "checkInInHall": MessageLookupByLibrary.simpleMessage("in the hall"),
+    "checkInOnline": MessageLookupByLibrary.simpleMessage("online"),
+    "checkInOtherMeeting": MessageLookupByLibrary.simpleMessage(
+      "This code is for another meeting.",
+    ),
+    "checkInScanButton": MessageLookupByLibrary.simpleMessage("Scan the code"),
+    "checkInScanHint": MessageLookupByLibrary.simpleMessage(
+      "Point the camera at the QR code at the hall door.",
+    ),
+    "checkInTypeCode": MessageLookupByLibrary.simpleMessage(
+      "Type the six-digit code shown under the QR",
+    ),
+    "checkedInAt": MessageLookupByLibrary.simpleMessage("Checked in at"),
     "choosing": MessageLookupByLibrary.simpleMessage("Choosing"),
     "city": MessageLookupByLibrary.simpleMessage("City"),
     "clickToUpdate": MessageLookupByLibrary.simpleMessage("Click To Update"),
@@ -200,6 +249,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "days": MessageLookupByLibrary.simpleMessage("Days"),
     "decidedByChair": MessageLookupByLibrary.simpleMessage(
       "decided by the chair",
+    ),
+    "declare": MessageLookupByLibrary.simpleMessage("Declare"),
+    "declareInterest": MessageLookupByLibrary.simpleMessage(
+      "Declare an interest",
+    ),
+    "declareInterestHint": MessageLookupByLibrary.simpleMessage(
+      "You will be left out of this item\'s quorum and majority, and you may not be able to vote on its polls.",
     ),
     "deleteAccount": MessageLookupByLibrary.simpleMessage("Delete Account"),
     "deliveryDate": MessageLookupByLibrary.simpleMessage("Delivery Date"),
@@ -551,6 +607,15 @@ class MessageLookup extends MessageLookupByLibrary {
           "I am not currently a member of any committees.",
         ),
     "identityImage": MessageLookupByLibrary.simpleMessage("Identity Image"),
+    "interestDeclared": MessageLookupByLibrary.simpleMessage(
+      "You declared an interest in this item",
+    ),
+    "interestNoteHint": MessageLookupByLibrary.simpleMessage(
+      "Briefly describe the interest",
+    ),
+    "interestNoteOptional": MessageLookupByLibrary.simpleMessage(
+      "Note (optional)",
+    ),
     "isSuccess": MessageLookupByLibrary.simpleMessage("Success!"),
     "is_required": MessageLookupByLibrary.simpleMessage("Required"),
     "itemsCount": m6,
@@ -624,6 +689,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "myLocation": MessageLookupByLibrary.simpleMessage("My Location"),
     "myOrder": MessageLookupByLibrary.simpleMessage("My Orders"),
     "myOrders": MessageLookupByLibrary.simpleMessage("My Orders"),
+    "myProposals": m11,
     "name": MessageLookupByLibrary.simpleMessage("name"),
     "nameEmpty": MessageLookupByLibrary.simpleMessage("Name field is required"),
     "navCalendar": MessageLookupByLibrary.simpleMessage("Calendar"),
@@ -707,6 +773,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "ok": MessageLookupByLibrary.simpleMessage("OK"),
     "onlineMeeting": MessageLookupByLibrary.simpleMessage("Online meeting"),
     "oops": MessageLookupByLibrary.simpleMessage("Oops!"),
+    "or": MessageLookupByLibrary.simpleMessage("or"),
     "order_summary": MessageLookupByLibrary.simpleMessage("Order summary"),
     "other": MessageLookupByLibrary.simpleMessage("Other"),
     "otpSentTo": MessageLookupByLibrary.simpleMessage(
@@ -761,6 +828,23 @@ class MessageLookup extends MessageLookupByLibrary {
     "product": MessageLookupByLibrary.simpleMessage("Product"),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "profileImage": MessageLookupByLibrary.simpleMessage("Profile Image"),
+    "proposalNoteHint": MessageLookupByLibrary.simpleMessage(
+      "Background, why it matters…",
+    ),
+    "proposalNoteOptional": MessageLookupByLibrary.simpleMessage(
+      "Details (optional)",
+    ),
+    "proposalSent": MessageLookupByLibrary.simpleMessage(
+      "Your proposal was sent",
+    ),
+    "proposalTitle": MessageLookupByLibrary.simpleMessage("Item title"),
+    "proposalTitleHint": MessageLookupByLibrary.simpleMessage(
+      "What should be discussed?",
+    ),
+    "proposeItem": MessageLookupByLibrary.simpleMessage("Propose an item"),
+    "proposeItemHint": MessageLookupByLibrary.simpleMessage(
+      "The secretary reviews it and may add it to the agenda.",
+    ),
     "published": MessageLookupByLibrary.simpleMessage("Published"),
     "publishedResults": MessageLookupByLibrary.simpleMessage(
       "Published results",
@@ -768,8 +852,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "quickMessage": MessageLookupByLibrary.simpleMessage(
       "Quick message to the host",
     ),
-    "quorumMet": m11,
-    "quorumNotMet": m12,
+    "quorumMet": m12,
+    "quorumNotMet": m13,
     "rated": MessageLookupByLibrary.simpleMessage("Rated"),
     "rePassword": MessageLookupByLibrary.simpleMessage("Confirm Password"),
     "readOnly": MessageLookupByLibrary.simpleMessage("Read only"),
@@ -784,6 +868,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Registered Before",
     ),
     "rejected": MessageLookupByLibrary.simpleMessage("Rejected"),
+    "rejectionReason": MessageLookupByLibrary.simpleMessage("Reason"),
     "related_products": MessageLookupByLibrary.simpleMessage(
       "Related Products",
     ),
@@ -791,6 +876,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "rememberPassword": MessageLookupByLibrary.simpleMessage(
       "Remember Password",
     ),
+    "removeAttachment": MessageLookupByLibrary.simpleMessage("Remove the file"),
     "requestAbsence": MessageLookupByLibrary.simpleMessage(
       "Requests for absence",
     ),
@@ -824,6 +910,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "see_all": MessageLookupByLibrary.simpleMessage("See All"),
     "selectFromMap": MessageLookupByLibrary.simpleMessage("From Map"),
     "selectGovernor": MessageLookupByLibrary.simpleMessage("Select Governor"),
+    "sendProposal": MessageLookupByLibrary.simpleMessage("Send proposal"),
     "sendSuggestion": MessageLookupByLibrary.simpleMessage("Send suggestion"),
     "serverError": MessageLookupByLibrary.simpleMessage("Server error"),
     "setReview": MessageLookupByLibrary.simpleMessage(
@@ -837,7 +924,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "showLess": MessageLookupByLibrary.simpleMessage("Show less"),
     "showMore": MessageLookupByLibrary.simpleMessage("Show more"),
     "showPassword": MessageLookupByLibrary.simpleMessage("Show"),
-    "showSubItems": m13,
+    "showSubItems": m14,
     "signInToContinue": MessageLookupByLibrary.simpleMessage(
       "يجب عليك إضافة بياناتك الخاصة لتسهيل التواصل معك",
     ),
@@ -881,7 +968,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "support": MessageLookupByLibrary.simpleMessage("Support"),
     "suspended": MessageLookupByLibrary.simpleMessage("Suspended"),
     "tasks": MessageLookupByLibrary.simpleMessage("tasks"),
-    "tasksCount": m14,
+    "tasksCount": m15,
     "teachingStaff": MessageLookupByLibrary.simpleMessage("Teaching staff"),
     "termsAndConditions": MessageLookupByLibrary.simpleMessage(
       "Terms And Conditions",
@@ -911,13 +998,26 @@ class MessageLookup extends MessageLookupByLibrary {
     "voteUnit": MessageLookupByLibrary.simpleMessage("votes"),
     "voters": MessageLookupByLibrary.simpleMessage("Voters"),
     "votes": MessageLookupByLibrary.simpleMessage("Votes"),
-    "votesPending": m15,
+    "votesPending": m16,
     "votesTitle": MessageLookupByLibrary.simpleMessage("Votes"),
     "votingEnded": MessageLookupByLibrary.simpleMessage("Voting ended"),
     "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back!"),
     "wishList": MessageLookupByLibrary.simpleMessage("WishList"),
     "wishlist": MessageLookupByLibrary.simpleMessage("Wishlist"),
     "withdraw": MessageLookupByLibrary.simpleMessage("Withdraw"),
+    "withdrawInterest": MessageLookupByLibrary.simpleMessage(
+      "Withdraw disclosure",
+    ),
+    "withdrawInterestDescription": MessageLookupByLibrary.simpleMessage(
+      "You will count again in this item\'s quorum and voting.",
+    ),
+    "withdrawInterestTitle": MessageLookupByLibrary.simpleMessage(
+      "Withdraw your disclosure?",
+    ),
+    "withdrawProposal": MessageLookupByLibrary.simpleMessage("Withdraw"),
+    "withdrawProposalTitle": MessageLookupByLibrary.simpleMessage(
+      "Withdraw this proposal?",
+    ),
     "withdrawSuggestionConfirm": MessageLookupByLibrary.simpleMessage(
       "Withdraw this guest suggestion?",
     ),

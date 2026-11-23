@@ -109,7 +109,7 @@ class APIService {
       final multipartFile = http.MultipartFile.fromBytes(
         uploadFile!.nameField,
         uploadFile.fileBytes!,
-        filename: '${getRandomString(10)}.jpg',
+        filename: uploadFile.fileName ?? '${getRandomString(10)}.jpg',
       );
 
       request.files.add(multipartFile);
@@ -138,8 +138,12 @@ class UploadFile {
   String? initialImage;
   String? assetImage;
 
+  /// Sent as the part's file name; a random `.jpg` name when null (images).
+  String? fileName;
+
   UploadFile({
     this.fileBytes,
+    this.fileName,
     this.initialImage,
     this.nameField = 'File',
     this.assetImage = '',

@@ -347,6 +347,50 @@ enum SpeakerRequestKind { normal, pointOfOrder }
 enum SpeakerRequestState { waiting, speaking, done, withdrawn, skipped }
 
 /// Result of a for/against poll under the committee's voting rule (`PollOutcome`).
+/// Status of an agenda item proposal (`AgendaItemRequestStatus`).
+enum AgendaRequestStatus {
+  pending,
+  accepted,
+  rejected,
+  closed;
+
+  static AgendaRequestStatus fromIndex(Object? index) {
+    final i = int.tryParse(index?.toString() ?? '');
+    if (i == null || i < 0 || i >= values.length) return pending;
+    return values[i];
+  }
+
+  String get label => switch (this) {
+        AgendaRequestStatus.pending => S().agendaRequestPending,
+        AgendaRequestStatus.accepted => S().agendaRequestAccepted,
+        AgendaRequestStatus.rejected => S().agendaRequestRejected,
+        AgendaRequestStatus.closed => S().agendaRequestClosed,
+      };
+
+  StatusColors get colors => switch (this) {
+        AgendaRequestStatus.pending => const StatusColors(
+            dot: AppColorManager.warning,
+            bg: AppColorManager.warningSoft,
+            fg: AppColorManager.warningText,
+          ),
+        AgendaRequestStatus.accepted => const StatusColors(
+            dot: AppColorManager.success,
+            bg: AppColorManager.successSoft,
+            fg: AppColorManager.successText,
+          ),
+        AgendaRequestStatus.rejected => const StatusColors(
+            dot: AppColorManager.danger,
+            bg: AppColorManager.dangerSoft,
+            fg: AppColorManager.dangerText,
+          ),
+        AgendaRequestStatus.closed => const StatusColors(
+            dot: AppColorManager.neutral500,
+            bg: AppColorManager.neutral50,
+            fg: AppColorManager.neutral700,
+          ),
+      };
+}
+
 enum PollOutcome {
   passed,
   rejected,

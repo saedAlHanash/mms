@@ -49,18 +49,20 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m10(count) =>
       "${Intl.plural(count, zero: 'لا أعضاء', one: 'عضو واحد', two: 'عضوان', few: '${count} أعضاء', many: '${count} عضواً', other: '${count} عضو')}";
 
-  static String m11(present, required) =>
-      "النصاب مكتمل: ${present} من ${required}";
+  static String m11(count) => "اقتراحاتي (${count})";
 
   static String m12(present, required) =>
+      "النصاب مكتمل: ${present} من ${required}";
+
+  static String m13(present, required) =>
       "النصاب غير مكتمل: ${present} من ${required}";
 
-  static String m13(count) => "عرض البنود الفرعية (${count})";
+  static String m14(count) => "عرض البنود الفرعية (${count})";
 
-  static String m14(count) =>
+  static String m15(count) =>
       "${Intl.plural(count, zero: 'لا مهام', one: 'مهمة واحدة', two: 'مهمتان', few: '${count} مهام', many: '${count} مهمة', other: '${count} مهمة')}";
 
-  static String m15(count) => "${count} بانتظار تصويتك";
+  static String m16(count) => "${count} بانتظار تصويتك";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -79,6 +81,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "add_to_cart": MessageLookupByLibrary.simpleMessage("أضف للسلة"),
     "additional_service": MessageLookupByLibrary.simpleMessage("خدمة إضافية"),
     "agendaItem": MessageLookupByLibrary.simpleMessage("بند جدول الأعمال"),
+    "agendaProposals": MessageLookupByLibrary.simpleMessage("اقتراح بنود"),
+    "agendaProposalsClosed": MessageLookupByLibrary.simpleMessage(
+      "المقترحات مغلقة لهذا الاجتماع.",
+    ),
+    "agendaProposalsHint": MessageLookupByLibrary.simpleMessage(
+      "اقترح بنداً قبل نشر جدول الأعمال.",
+    ),
+    "agendaRequestAccepted": MessageLookupByLibrary.simpleMessage("مقبول"),
+    "agendaRequestClosed": MessageLookupByLibrary.simpleMessage("مغلق"),
+    "agendaRequestPending": MessageLookupByLibrary.simpleMessage(
+      "بانتظار الرد",
+    ),
+    "agendaRequestRejected": MessageLookupByLibrary.simpleMessage("مرفوض"),
     "agendaStatusActive": MessageLookupByLibrary.simpleMessage("جارٍ الآن"),
     "agendaStatusConcluded": MessageLookupByLibrary.simpleMessage("منتهٍ"),
     "agendaStatusDelayed": MessageLookupByLibrary.simpleMessage("مؤجّل"),
@@ -93,6 +108,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "ar": MessageLookupByLibrary.simpleMessage("عربي"),
     "archived": MessageLookupByLibrary.simpleMessage("مؤرشف"),
     "at": MessageLookupByLibrary.simpleMessage("عند"),
+    "attachFileOptional": MessageLookupByLibrary.simpleMessage(
+      "إرفاق ملف (اختياري)",
+    ),
+    "attachmentLimit": MessageLookupByLibrary.simpleMessage("حتى 10 ميغابايت"),
+    "attachmentTooLarge": MessageLookupByLibrary.simpleMessage(
+      "حجم الملف أكبر من 10 ميغابايت.",
+    ),
     "attendanceNotRecorded": MessageLookupByLibrary.simpleMessage(
       "لم يُسجَّل الحضور",
     ),
@@ -109,6 +131,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "buildNumber": MessageLookupByLibrary.simpleMessage("رقم الإصدار"),
     "cameraOff": MessageLookupByLibrary.simpleMessage("إيقاف الكاميرا"),
     "cameraOn": MessageLookupByLibrary.simpleMessage("تشغيل الكاميرا"),
+    "cameraPermissionDenied": MessageLookupByLibrary.simpleMessage(
+      "اسمح بالوصول إلى الكاميرا من الإعدادات للمسح، أو أدخل الرمز في الأسفل.",
+    ),
+    "cameraUnavailable": MessageLookupByLibrary.simpleMessage(
+      "الكاميرا غير متاحة. أدخل الرمز في الأسفل.",
+    ),
     "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
     "canceled": MessageLookupByLibrary.simpleMessage("ملغي"),
     "card_name": MessageLookupByLibrary.simpleMessage("اسم البطاقة"),
@@ -128,6 +156,31 @@ class MessageLookup extends MessageLookupByLibrary {
     "changePassword": MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
     "changePhone": MessageLookupByLibrary.simpleMessage("تغيير رقم الهاتف"),
     "changePhoto": MessageLookupByLibrary.simpleMessage("تغيير الصورة الشخصية"),
+    "checkIn": MessageLookupByLibrary.simpleMessage("تسجيل الحضور"),
+    "checkInAlready": MessageLookupByLibrary.simpleMessage(
+      "حضورك مسجّل مسبقاً",
+    ),
+    "checkInAt": MessageLookupByLibrary.simpleMessage("الساعة"),
+    "checkInCardHint": MessageLookupByLibrary.simpleMessage(
+      "سجّل وصولك برمز QR الموجود عند باب القاعة.",
+    ),
+    "checkInCardTitle": MessageLookupByLibrary.simpleMessage(
+      "تسجيل الحضور في القاعة",
+    ),
+    "checkInDone": MessageLookupByLibrary.simpleMessage("سُجّل حضورك"),
+    "checkInInHall": MessageLookupByLibrary.simpleMessage("في القاعة"),
+    "checkInOnline": MessageLookupByLibrary.simpleMessage("عن بُعد"),
+    "checkInOtherMeeting": MessageLookupByLibrary.simpleMessage(
+      "هذا الرمز لاجتماع آخر.",
+    ),
+    "checkInScanButton": MessageLookupByLibrary.simpleMessage("امسح الرمز"),
+    "checkInScanHint": MessageLookupByLibrary.simpleMessage(
+      "وجّه الكاميرا نحو رمز QR عند باب القاعة.",
+    ),
+    "checkInTypeCode": MessageLookupByLibrary.simpleMessage(
+      "اكتب الرمز المكوّن من ستة أرقام الظاهر أسفل رمز QR",
+    ),
+    "checkedInAt": MessageLookupByLibrary.simpleMessage("سُجّل حضورك الساعة"),
     "choosing": MessageLookupByLibrary.simpleMessage("اختر"),
     "city": MessageLookupByLibrary.simpleMessage("المدينة"),
     "clickToUpdate": MessageLookupByLibrary.simpleMessage("انقر للتعديل"),
@@ -189,6 +242,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "cvc": MessageLookupByLibrary.simpleMessage("الرقم السري"),
     "days": MessageLookupByLibrary.simpleMessage("أيام"),
     "decidedByChair": MessageLookupByLibrary.simpleMessage("بصوت الرئيس"),
+    "declare": MessageLookupByLibrary.simpleMessage("إفصاح"),
+    "declareInterest": MessageLookupByLibrary.simpleMessage(
+      "الإفصاح عن تعارض مصالح",
+    ),
+    "declareInterestHint": MessageLookupByLibrary.simpleMessage(
+      "لن تُحتسب في نصاب هذا البند ولا في أغلبيته، وقد لا يمكنك التصويت على تصويتاته.",
+    ),
     "deleteAccount": MessageLookupByLibrary.simpleMessage("حذف الحساب"),
     "deliveryDate": MessageLookupByLibrary.simpleMessage("تاريخ التسليم "),
     "description": MessageLookupByLibrary.simpleMessage("الوصف"),
@@ -517,6 +577,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "iAmNotCurrentlyAMemberOfAnyCommittees":
         MessageLookupByLibrary.simpleMessage("لا توجد لجان منضم لها حالياً"),
     "identityImage": MessageLookupByLibrary.simpleMessage("صورة الهوية"),
+    "interestDeclared": MessageLookupByLibrary.simpleMessage(
+      "أفصحت عن تعارض مصالح في هذا البند",
+    ),
+    "interestNoteHint": MessageLookupByLibrary.simpleMessage(
+      "صف التعارض باختصار",
+    ),
+    "interestNoteOptional": MessageLookupByLibrary.simpleMessage(
+      "ملاحظة (اختيارية)",
+    ),
     "isSuccess": MessageLookupByLibrary.simpleMessage("نجح!"),
     "is_required": MessageLookupByLibrary.simpleMessage("مطلوب"),
     "itemsCount": m6,
@@ -588,6 +657,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "myLocation": MessageLookupByLibrary.simpleMessage("موقعي الحالي"),
     "myOrder": MessageLookupByLibrary.simpleMessage("طلباتي"),
     "myOrders": MessageLookupByLibrary.simpleMessage("طلباتي"),
+    "myProposals": m11,
     "name": MessageLookupByLibrary.simpleMessage("الاسم"),
     "nameEmpty": MessageLookupByLibrary.simpleMessage("حقل الاسم مطلوب"),
     "navCalendar": MessageLookupByLibrary.simpleMessage("التقويم"),
@@ -669,6 +739,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "ok": MessageLookupByLibrary.simpleMessage("حسناً"),
     "onlineMeeting": MessageLookupByLibrary.simpleMessage("الاجتماع الأونلاين"),
     "oops": MessageLookupByLibrary.simpleMessage("حدث خطأ ما!"),
+    "or": MessageLookupByLibrary.simpleMessage("أو"),
     "order_summary": MessageLookupByLibrary.simpleMessage("ملخص الطلب"),
     "other": MessageLookupByLibrary.simpleMessage("آخر"),
     "otpSentTo": MessageLookupByLibrary.simpleMessage(
@@ -721,13 +792,28 @@ class MessageLookup extends MessageLookupByLibrary {
     "product": MessageLookupByLibrary.simpleMessage("منتج"),
     "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
     "profileImage": MessageLookupByLibrary.simpleMessage("صورة شخصية"),
+    "proposalNoteHint": MessageLookupByLibrary.simpleMessage(
+      "الخلفية وسبب الأهمية…",
+    ),
+    "proposalNoteOptional": MessageLookupByLibrary.simpleMessage(
+      "تفاصيل (اختيارية)",
+    ),
+    "proposalSent": MessageLookupByLibrary.simpleMessage("أُرسل اقتراحك"),
+    "proposalTitle": MessageLookupByLibrary.simpleMessage("عنوان البند"),
+    "proposalTitleHint": MessageLookupByLibrary.simpleMessage(
+      "ما الذي تريد مناقشته؟",
+    ),
+    "proposeItem": MessageLookupByLibrary.simpleMessage("اقتراح بند"),
+    "proposeItemHint": MessageLookupByLibrary.simpleMessage(
+      "يراجعه أمين السر وقد يضيفه إلى جدول الأعمال.",
+    ),
     "published": MessageLookupByLibrary.simpleMessage("منشورة"),
     "publishedResults": MessageLookupByLibrary.simpleMessage(
       "النتائج المنشورة",
     ),
     "quickMessage": MessageLookupByLibrary.simpleMessage("رسالة سريعة للمدير"),
-    "quorumMet": m11,
-    "quorumNotMet": m12,
+    "quorumMet": m12,
+    "quorumNotMet": m13,
     "rated": MessageLookupByLibrary.simpleMessage("تم التقييم"),
     "rePassword": MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
     "readOnly": MessageLookupByLibrary.simpleMessage("للقراءة فقط"),
@@ -738,11 +824,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "registeredBefore": MessageLookupByLibrary.simpleMessage("مسجل سابقًا"),
     "registered_before": MessageLookupByLibrary.simpleMessage("مسجل سابقًا"),
     "rejected": MessageLookupByLibrary.simpleMessage("مرفوضة"),
+    "rejectionReason": MessageLookupByLibrary.simpleMessage("السبب"),
     "related_products": MessageLookupByLibrary.simpleMessage("منتجات ذات صلة"),
     "rememberMe": MessageLookupByLibrary.simpleMessage("تذكرني"),
     "rememberPassword": MessageLookupByLibrary.simpleMessage(
       "أتذكر كلمة المرور",
     ),
+    "removeAttachment": MessageLookupByLibrary.simpleMessage("إزالة الملف"),
     "requestAbsence": MessageLookupByLibrary.simpleMessage("طلبات الغياب"),
     "requestSent": MessageLookupByLibrary.simpleMessage("أُرسل الطلب للمدير"),
     "requestToSpeak": MessageLookupByLibrary.simpleMessage("طلب الكلام"),
@@ -772,6 +860,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "see_all": MessageLookupByLibrary.simpleMessage("عرض الكل"),
     "selectFromMap": MessageLookupByLibrary.simpleMessage("من الخريطة"),
     "selectGovernor": MessageLookupByLibrary.simpleMessage("اختر المحافظة"),
+    "sendProposal": MessageLookupByLibrary.simpleMessage("إرسال الاقتراح"),
     "sendSuggestion": MessageLookupByLibrary.simpleMessage("إرسال الاقتراح"),
     "serverError": MessageLookupByLibrary.simpleMessage("خطأ في الخادم"),
     "setReview": MessageLookupByLibrary.simpleMessage(
@@ -785,7 +874,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "showLess": MessageLookupByLibrary.simpleMessage("عرض أقل"),
     "showMore": MessageLookupByLibrary.simpleMessage("عرض المزيد"),
     "showPassword": MessageLookupByLibrary.simpleMessage("إظهار"),
-    "showSubItems": m13,
+    "showSubItems": m14,
     "signInToContinue": MessageLookupByLibrary.simpleMessage(
       "يجب عليك إضافة بياناتك الخاصة لتسهيل التواصل معك",
     ),
@@ -831,7 +920,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "support": MessageLookupByLibrary.simpleMessage("الدعم"),
     "suspended": MessageLookupByLibrary.simpleMessage("معلّق"),
     "tasks": MessageLookupByLibrary.simpleMessage("المهام"),
-    "tasksCount": m14,
+    "tasksCount": m15,
     "teachingStaff": MessageLookupByLibrary.simpleMessage("الكادر التدريسي"),
     "termsAndConditions": MessageLookupByLibrary.simpleMessage(
       "الشروط والأحكام",
@@ -859,13 +948,24 @@ class MessageLookup extends MessageLookupByLibrary {
     "voteUnit": MessageLookupByLibrary.simpleMessage("صوتاً"),
     "voters": MessageLookupByLibrary.simpleMessage("الناخبون"),
     "votes": MessageLookupByLibrary.simpleMessage("الأصوات"),
-    "votesPending": m15,
+    "votesPending": m16,
     "votesTitle": MessageLookupByLibrary.simpleMessage("التصويتات"),
     "votingEnded": MessageLookupByLibrary.simpleMessage("انتهى التصويت"),
     "welcomeBack": MessageLookupByLibrary.simpleMessage("أهلا بعودتك!"),
     "wishList": MessageLookupByLibrary.simpleMessage("قائمة أماني"),
     "wishlist": MessageLookupByLibrary.simpleMessage("قائمة الرغبات"),
     "withdraw": MessageLookupByLibrary.simpleMessage("سحب"),
+    "withdrawInterest": MessageLookupByLibrary.simpleMessage("سحب الإفصاح"),
+    "withdrawInterestDescription": MessageLookupByLibrary.simpleMessage(
+      "ستُحتسب مجدداً في نصاب هذا البند والتصويت عليه.",
+    ),
+    "withdrawInterestTitle": MessageLookupByLibrary.simpleMessage(
+      "سحب الإفصاح؟",
+    ),
+    "withdrawProposal": MessageLookupByLibrary.simpleMessage("سحب"),
+    "withdrawProposalTitle": MessageLookupByLibrary.simpleMessage(
+      "سحب هذا الاقتراح؟",
+    ),
     "withdrawSuggestionConfirm": MessageLookupByLibrary.simpleMessage(
       "سحب اقتراح هذا الضيف؟",
     ),

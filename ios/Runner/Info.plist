@@ -27,7 +27,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-		<string>App required access to your camera to late you add profile or Identity Card picture</string>
+		<string>The camera is used to take your profile picture and to scan the meeting check-in QR code.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>App required access to your Photo Library to late you add profile or Identity Card picture</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

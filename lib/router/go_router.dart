@@ -22,11 +22,15 @@ import 'package:mms/features/auth/ui/pages/login_page.dart';
 import 'package:mms/features/auth/ui/pages/otp_password_page.dart';
 import 'package:mms/features/auth/ui/pages/reset_password_page.dart';
 import 'package:mms/features/auth/ui/pages/splash_screen_page.dart';
+import 'package:mms/features/check_in/bloc/check_in_cubit/check_in_cubit.dart';
+import 'package:mms/features/check_in/ui/pages/check_in_page.dart';
 import 'package:mms/features/committees/bloc/committee_cubit/committee_cubit.dart';
 import 'package:mms/features/committees/ui/pages/committee_page.dart';
 import 'package:mms/features/files/bloc/upload_file_cubit/upload_file_cubit.dart';
 import 'package:mms/features/home/ui/pages/home_page.dart';
 import 'package:mms/features/meeting_hub/bloc/meeting_hub_cubit/meeting_hub_cubit.dart';
+import 'package:mms/features/agenda_request/bloc/my_agenda_requests_cubit/my_agenda_requests_cubit.dart';
+import 'package:mms/features/interest/bloc/meeting_interests_cubit/meeting_interests_cubit.dart';
 import 'package:mms/features/meeting_live/bloc/meeting_live_cubit/meeting_live_cubit.dart';
 import 'package:mms/features/meetings/bloc/add_absence_cubit/add_absence_cubit.dart';
 import 'package:mms/features/meetings/bloc/add_guest_cubit/add_guest_cubit.dart';
@@ -63,6 +67,7 @@ class RouteName {
   static const agenda = '/agenda';
   static const votes = '/votes';
   static const notifications = '/notifications';
+  static const checkIn = '/check-in';
   static const fullScreen = '/full-screen';
 }
 
@@ -182,6 +187,16 @@ final goRouter = GoRouter(
             create: (_) =>
                 sl<MyGuestSuggestionsCubit>()..getData(meetingId: state.uri.queryParameters[RouteParam.id] ?? ''),
           ),
+          // My agenda item proposals.
+          BlocProvider(
+            create: (_) =>
+                sl<MyAgendaRequestsCubit>()..getData(meetingId: state.uri.queryParameters[RouteParam.id] ?? ''),
+          ),
+          // Conflict-of-interest disclosures on the agenda items.
+          BlocProvider(
+            create: (_) =>
+                sl<MeetingInterestsCubit>()..getData(meetingId: state.uri.queryParameters[RouteParam.id] ?? ''),
+          ),
           // Live screen state; started by the page while the meeting is running.
           BlocProvider(create: (_) => sl<MeetingLiveCubit>()),
           // Live updates (SignalR) for this meeting; closed with the route.
@@ -194,6 +209,13 @@ final goRouter = GoRouter(
           ),
         ],
         child: const MeetingPage(),
+      ),
+    ),
+    _route(
+      RouteName.checkIn,
+      (_, state) => BlocProvider(
+        create: (_) => sl<CheckInCubit>(),
+        child: CheckInPage(meetingId: state.uri.queryParameters[RouteParam.id] ?? ''),
       ),
     ),
     _route(

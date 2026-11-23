@@ -101,6 +101,10 @@ class GetUrl {
 
   static const liveState = 'MeetingLive/GetState';
 
+  static const interestsByMeeting = 'Interest/GetByMeeting';
+
+  static const agendaRequestsByMeeting = 'AgendaItemRequest/GetByMeeting';
+
   static const agenda = '';
 
   static const agendas = '';
@@ -167,6 +171,14 @@ class PostUrl {
   static const requestFloor = 'MeetingLive/RequestFloor';
 
   static const withdrawFloor = 'MeetingLive/WithdrawFloor';
+
+  static const checkInScan = 'CheckIn/Scan';
+
+  static const joinOnline = 'CheckIn/JoinOnline';
+
+  static const declareInterest = 'Interest/Declare';
+
+  static const addAgendaRequest = 'AgendaItemRequest/Add';
 
   static const addAbsence = 'AbsenceRequest/Add';
 
@@ -238,6 +250,10 @@ class PutUrl {
 
 class DeleteUrl {
   static const guestSuggestion = 'Meeting/DeleteGuestSuggestion';
+
+  static const withdrawInterest = 'Interest/Withdraw';
+
+  static const agendaRequest = 'AgendaItemRequest/Delete';
   static const deleteMeetingRating = 'rating/Delete';
   static const deleteLiveKit = 'lk/Delete';
   static const deleteAgora = 'forDelete/Delete';

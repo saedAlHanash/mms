@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +14,7 @@ import 'package:mms/core/util/my_style.dart';
 import 'package:mms/core/util/shared_preferences.dart';
 import 'package:mms/core/widgets/my_button.dart';
 import 'package:mms/core/widgets/my_text_form_widget.dart';
+import 'package:mms/features/check_in/bloc/check_in_cubit/check_in_cubit.dart';
 import 'package:mms/features/meetings/data/response/meetings_response.dart';
 import 'package:mms/features/room/bloc/user_control_cubit/user_control_cubit.dart';
 
@@ -88,6 +91,11 @@ class _LiveKitPageState extends State<LiveKitPage> {
   }
 
   Future<void> _connect(Meeting result) async {
+    // Records the remote arrival, like the web (online / hybrid meetings only).
+    if (result.mode == MeetingMode.online || result.mode == MeetingMode.hybrid) {
+      unawaited(CheckInCubit.joinOnline(result.id));
+    }
+
     loggerObject.w('''
     attendeeOnlineToken: ${result.attendeeOnlineToken}
 onlineMeetingUrl: ${result.onlineMeetingUrl}

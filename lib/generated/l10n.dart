@@ -4202,6 +4202,456 @@ class S {
       args: [],
     );
   }
+
+  /// `Check in`
+  String get checkIn {
+    return Intl.message('Check in', name: 'checkIn', desc: '', args: []);
+  }
+
+  /// `Point the camera at the QR code at the hall door.`
+  String get checkInScanHint {
+    return Intl.message(
+      'Point the camera at the QR code at the hall door.',
+      name: 'checkInScanHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type the six-digit code shown under the QR`
+  String get checkInTypeCode {
+    return Intl.message(
+      'Type the six-digit code shown under the QR',
+      name: 'checkInTypeCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This code is for another meeting.`
+  String get checkInOtherMeeting {
+    return Intl.message(
+      'This code is for another meeting.',
+      name: 'checkInOtherMeeting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Allow camera access in the settings to scan, or type the code below.`
+  String get cameraPermissionDenied {
+    return Intl.message(
+      'Allow camera access in the settings to scan, or type the code below.',
+      name: 'cameraPermissionDenied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The camera isn't available. Type the code below.`
+  String get cameraUnavailable {
+    return Intl.message(
+      'The camera isn\'t available. Type the code below.',
+      name: 'cameraUnavailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You're checked in`
+  String get checkInDone {
+    return Intl.message(
+      'You\'re checked in',
+      name: 'checkInDone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You were already checked in`
+  String get checkInAlready {
+    return Intl.message(
+      'You were already checked in',
+      name: 'checkInAlready',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `at`
+  String get checkInAt {
+    return Intl.message('at', name: 'checkInAt', desc: '', args: []);
+  }
+
+  /// `in the hall`
+  String get checkInInHall {
+    return Intl.message(
+      'in the hall',
+      name: 'checkInInHall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `online`
+  String get checkInOnline {
+    return Intl.message('online', name: 'checkInOnline', desc: '', args: []);
+  }
+
+  /// `Record your arrival with the QR code at the hall door.`
+  String get checkInCardHint {
+    return Intl.message(
+      'Record your arrival with the QR code at the hall door.',
+      name: 'checkInCardHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Checked in at`
+  String get checkedInAt {
+    return Intl.message(
+      'Checked in at',
+      name: 'checkedInAt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hall check-in`
+  String get checkInCardTitle {
+    return Intl.message(
+      'Hall check-in',
+      name: 'checkInCardTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan the code`
+  String get checkInScanButton {
+    return Intl.message(
+      'Scan the code',
+      name: 'checkInScanButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `or`
+  String get or {
+    return Intl.message('or', name: 'or', desc: '', args: []);
+  }
+
+  /// `Declare an interest`
+  String get declareInterest {
+    return Intl.message(
+      'Declare an interest',
+      name: 'declareInterest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Declare`
+  String get declare {
+    return Intl.message('Declare', name: 'declare', desc: '', args: []);
+  }
+
+  /// `You will be left out of this item's quorum and majority, and you may not be able to vote on its polls.`
+  String get declareInterestHint {
+    return Intl.message(
+      'You will be left out of this item\'s quorum and majority, and you may not be able to vote on its polls.',
+      name: 'declareInterestHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Note (optional)`
+  String get interestNoteOptional {
+    return Intl.message(
+      'Note (optional)',
+      name: 'interestNoteOptional',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Briefly describe the interest`
+  String get interestNoteHint {
+    return Intl.message(
+      'Briefly describe the interest',
+      name: 'interestNoteHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You declared an interest in this item`
+  String get interestDeclared {
+    return Intl.message(
+      'You declared an interest in this item',
+      name: 'interestDeclared',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Withdraw disclosure`
+  String get withdrawInterest {
+    return Intl.message(
+      'Withdraw disclosure',
+      name: 'withdrawInterest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Withdraw your disclosure?`
+  String get withdrawInterestTitle {
+    return Intl.message(
+      'Withdraw your disclosure?',
+      name: 'withdrawInterestTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You will count again in this item's quorum and voting.`
+  String get withdrawInterestDescription {
+    return Intl.message(
+      'You will count again in this item\'s quorum and voting.',
+      name: 'withdrawInterestDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pending`
+  String get agendaRequestPending {
+    return Intl.message(
+      'Pending',
+      name: 'agendaRequestPending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accepted`
+  String get agendaRequestAccepted {
+    return Intl.message(
+      'Accepted',
+      name: 'agendaRequestAccepted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rejected`
+  String get agendaRequestRejected {
+    return Intl.message(
+      'Rejected',
+      name: 'agendaRequestRejected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Closed`
+  String get agendaRequestClosed {
+    return Intl.message(
+      'Closed',
+      name: 'agendaRequestClosed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Agenda proposals`
+  String get agendaProposals {
+    return Intl.message(
+      'Agenda proposals',
+      name: 'agendaProposals',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Suggest an item before the agenda is published.`
+  String get agendaProposalsHint {
+    return Intl.message(
+      'Suggest an item before the agenda is published.',
+      name: 'agendaProposalsHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Proposals are closed for this meeting.`
+  String get agendaProposalsClosed {
+    return Intl.message(
+      'Proposals are closed for this meeting.',
+      name: 'agendaProposalsClosed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Propose an item`
+  String get proposeItem {
+    return Intl.message(
+      'Propose an item',
+      name: 'proposeItem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The secretary reviews it and may add it to the agenda.`
+  String get proposeItemHint {
+    return Intl.message(
+      'The secretary reviews it and may add it to the agenda.',
+      name: 'proposeItemHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My proposals ({count})`
+  String myProposals(Object count) {
+    return Intl.message(
+      'My proposals ($count)',
+      name: 'myProposals',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Withdraw`
+  String get withdrawProposal {
+    return Intl.message(
+      'Withdraw',
+      name: 'withdrawProposal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Withdraw this proposal?`
+  String get withdrawProposalTitle {
+    return Intl.message(
+      'Withdraw this proposal?',
+      name: 'withdrawProposalTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reason`
+  String get rejectionReason {
+    return Intl.message('Reason', name: 'rejectionReason', desc: '', args: []);
+  }
+
+  /// `Item title`
+  String get proposalTitle {
+    return Intl.message(
+      'Item title',
+      name: 'proposalTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What should be discussed?`
+  String get proposalTitleHint {
+    return Intl.message(
+      'What should be discussed?',
+      name: 'proposalTitleHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Details (optional)`
+  String get proposalNoteOptional {
+    return Intl.message(
+      'Details (optional)',
+      name: 'proposalNoteOptional',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Background, why it matters…`
+  String get proposalNoteHint {
+    return Intl.message(
+      'Background, why it matters…',
+      name: 'proposalNoteHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Attach a file (optional)`
+  String get attachFileOptional {
+    return Intl.message(
+      'Attach a file (optional)',
+      name: 'attachFileOptional',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Up to 10 MB`
+  String get attachmentLimit {
+    return Intl.message(
+      'Up to 10 MB',
+      name: 'attachmentLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The file is larger than 10 MB.`
+  String get attachmentTooLarge {
+    return Intl.message(
+      'The file is larger than 10 MB.',
+      name: 'attachmentTooLarge',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove the file`
+  String get removeAttachment {
+    return Intl.message(
+      'Remove the file',
+      name: 'removeAttachment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send proposal`
+  String get sendProposal {
+    return Intl.message(
+      'Send proposal',
+      name: 'sendProposal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your proposal was sent`
+  String get proposalSent {
+    return Intl.message(
+      'Your proposal was sent',
+      name: 'proposalSent',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
