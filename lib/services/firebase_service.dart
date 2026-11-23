@@ -42,7 +42,7 @@ class FirebaseService {
 
       if (title.isEmpty && body.isEmpty) return;
       // Tapping it opens the meeting (see NotificationOpenService).
-      Note.showBigTextNotification(title: title, body: body, payload: pushMeetingId(message.data));
+      Note.showBigTextNotification(title: title, body: body, payload: pushTarget(message.data));
     });
   }
 
@@ -127,7 +127,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
     body = model.notification.body;
   }
   if (title.isEmpty && body.isEmpty) return;
-  Note.showBigTextNotification(title: title, body: body, payload: pushMeetingId(message.data));
+  Note.showBigTextNotification(title: title, body: body, payload: pushTarget(message.data));
 }
 
 /// `MeetingId` of a push, read at the top level or inside `data`.
@@ -135,6 +135,21 @@ String pushMeetingId(Map<String, dynamic> data) {
   final top = (_valueOf(data, 'meetingId') ?? '').toString();
   return top.isNotEmpty ? top : FirebaseNotificationModel.fromJson(data).data.meetingId;
 }
+
+/// `CirculationId` of a push, read at the top level or inside `data`.
+String pushCirculationId(Map<String, dynamic> data) {
+  final top = (_valueOf(data, 'circulationId') ?? '').toString();
+  return top.isNotEmpty ? top : FirebaseNotificationModel.fromJson(data).data.circulationId;
+}
+
+/// What tapping the push opens, kept as the local notification payload:
+/// `circulation:<id>`, or the meeting id.
+String pushTarget(Map<String, dynamic> data) {
+  final circulationId = pushCirculationId(data);
+  return circulationId.isNotEmpty ? '$circulationTargetPrefix$circulationId' : pushMeetingId(data);
+}
+
+const circulationTargetPrefix = 'circulation:';
 
 class FirebaseNotificationModel {
   FirebaseNotificationModel({
@@ -190,6 +205,8 @@ class Data {
   final Map<String, dynamic> payload;
 
   String get meetingId => (_valueOf(payload, 'meetingId') ?? '').toString();
+
+  String get circulationId => (_valueOf(payload, 'circulationId') ?? '').toString();
 
   Map<String, dynamic> toJson() => payload;
 }

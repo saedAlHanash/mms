@@ -4652,6 +4652,391 @@ class S {
       args: [],
     );
   }
+
+  /// `Draft`
+  String get circulationDraft {
+    return Intl.message('Draft', name: 'circulationDraft', desc: '', args: []);
+  }
+
+  /// `Open`
+  String get circulationOpen {
+    return Intl.message('Open', name: 'circulationOpen', desc: '', args: []);
+  }
+
+  /// `Closed`
+  String get circulationClosed {
+    return Intl.message(
+      'Closed',
+      name: 'circulationClosed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Withdrawn`
+  String get circulationWithdrawn {
+    return Intl.message(
+      'Withdrawn',
+      name: 'circulationWithdrawn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Approve`
+  String get circulationApprove {
+    return Intl.message(
+      'Approve',
+      name: 'circulationApprove',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reject`
+  String get circulationReject {
+    return Intl.message(
+      'Reject',
+      name: 'circulationReject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Abstain`
+  String get circulationAbstain {
+    return Intl.message(
+      'Abstain',
+      name: 'circulationAbstain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Approved`
+  String get circulationApproved {
+    return Intl.message(
+      'Approved',
+      name: 'circulationApproved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rejected`
+  String get circulationRejected {
+    return Intl.message(
+      'Rejected',
+      name: 'circulationRejected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Decisions by circulation`
+  String get circulations {
+    return Intl.message(
+      'Decisions by circulation',
+      name: 'circulations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vote on decisions without a meeting`
+  String get circulationsSubtitle {
+    return Intl.message(
+      'Vote on decisions without a meeting',
+      name: 'circulationsSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{count} awaiting your vote`
+  String circulationsAwaiting(Object count) {
+    return Intl.message(
+      '$count awaiting your vote',
+      name: 'circulationsAwaiting',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Decision by circulation`
+  String get circulation {
+    return Intl.message(
+      'Decision by circulation',
+      name: 'circulation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No decisions by circulation`
+  String get noCirculations {
+    return Intl.message(
+      'No decisions by circulation',
+      name: 'noCirculations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Decisions the secretary sends for votes will appear here.`
+  String get noCirculationsDescription {
+    return Intl.message(
+      'Decisions the secretary sends for votes will appear here.',
+      name: 'noCirculationsDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This decision couldn't be loaded`
+  String get circulationNotFound {
+    return Intl.message(
+      'This decision couldn\'t be loaded',
+      name: 'circulationNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Closes in {days}d {hours}h`
+  String closesInDaysHours(Object days, Object hours) {
+    return Intl.message(
+      'Closes in ${days}d ${hours}h',
+      name: 'closesInDaysHours',
+      desc: '',
+      args: [days, hours],
+    );
+  }
+
+  /// `Closes in {hours}h {minutes}m`
+  String closesInHoursMinutes(Object hours, Object minutes) {
+    return Intl.message(
+      'Closes in ${hours}h ${minutes}m',
+      name: 'closesInHoursMinutes',
+      desc: '',
+      args: [hours, minutes],
+    );
+  }
+
+  /// `Closes in {minutes}m`
+  String closesInMinutes(Object minutes) {
+    return Intl.message(
+      'Closes in ${minutes}m',
+      name: 'closesInMinutes',
+      desc: '',
+      args: [minutes],
+    );
+  }
+
+  /// `Deadline passed`
+  String get deadlinePassed {
+    return Intl.message(
+      'Deadline passed',
+      name: 'deadlinePassed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No deadline`
+  String get noDeadline {
+    return Intl.message('No deadline', name: 'noDeadline', desc: '', args: []);
+  }
+
+  /// `Deadline`
+  String get deadline {
+    return Intl.message('Deadline', name: 'deadline', desc: '', args: []);
+  }
+
+  /// `Closed`
+  String get closedAt {
+    return Intl.message('Closed', name: 'closedAt', desc: '', args: []);
+  }
+
+  /// `{voted} of {total} voted`
+  String votesCount(Object voted, Object total) {
+    return Intl.message(
+      '$voted of $total voted',
+      name: 'votesCount',
+      desc: '',
+      args: [voted, total],
+    );
+  }
+
+  /// `Awaiting your vote`
+  String get awaitingYourVote {
+    return Intl.message(
+      'Awaiting your vote',
+      name: 'awaitingYourVote',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your vote: {choice}`
+  String yourVoteIs(Object choice) {
+    return Intl.message(
+      'Your vote: $choice',
+      name: 'yourVoteIs',
+      desc: '',
+      args: [choice],
+    );
+  }
+
+  /// `Approval`
+  String get approvalWeight {
+    return Intl.message('Approval', name: 'approvalWeight', desc: '', args: []);
+  }
+
+  /// `Approved when approvals pass half of all voters' weight. Abstaining and not voting count against.`
+  String get approvalNeedsHalf {
+    return Intl.message(
+      'Approved when approvals pass half of all voters\' weight. Abstaining and not voting count against.',
+      name: 'approvalNeedsHalf',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not voted`
+  String get notVotedYet {
+    return Intl.message('Not voted', name: 'notVotedYet', desc: '', args: []);
+  }
+
+  /// `Not voted yet ({count})`
+  String notVotedYetCount(Object count) {
+    return Intl.message(
+      'Not voted yet ($count)',
+      name: 'notVotedYetCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Result`
+  String get circulationResult {
+    return Intl.message(
+      'Result',
+      name: 'circulationResult',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tally so far`
+  String get tallySoFar {
+    return Intl.message('Tally so far', name: 'tallySoFar', desc: '', args: []);
+  }
+
+  /// `Decision text`
+  String get decisionText {
+    return Intl.message(
+      'Decision text',
+      name: 'decisionText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Attachment`
+  String get attachment {
+    return Intl.message('Attachment', name: 'attachment', desc: '', args: []);
+  }
+
+  /// `You voted {choice}. You can change it until it closes.`
+  String youVotedCanChange(Object choice) {
+    return Intl.message(
+      'You voted $choice. You can change it until it closes.',
+      name: 'youVotedCanChange',
+      desc: '',
+      args: [choice],
+    );
+  }
+
+  /// `Reason (optional)`
+  String get reasonOptional {
+    return Intl.message(
+      'Reason (optional)',
+      name: 'reasonOptional',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add a short reason for your vote`
+  String get circulationReasonHint {
+    return Intl.message(
+      'Add a short reason for your vote',
+      name: 'circulationReasonHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit vote`
+  String get submitVote {
+    return Intl.message('Submit vote', name: 'submitVote', desc: '', args: []);
+  }
+
+  /// `Change vote`
+  String get changeVote {
+    return Intl.message('Change vote', name: 'changeVote', desc: '', args: []);
+  }
+
+  /// `Your vote was saved`
+  String get circulationVoteSaved {
+    return Intl.message(
+      'Your vote was saved',
+      name: 'circulationVoteSaved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are not a voter on this decision.`
+  String get notACirculationVoter {
+    return Intl.message(
+      'You are not a voter on this decision.',
+      name: 'notACirculationVoter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The deadline has passed; voting is closed.`
+  String get circulationVotingClosed {
+    return Intl.message(
+      'The deadline has passed; voting is closed.',
+      name: 'circulationVotingClosed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Votes ({count})`
+  String circulationVotes(Object count) {
+    return Intl.message(
+      'Votes ($count)',
+      name: 'circulationVotes',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Try again`
+  String get retry {
+    return Intl.message('Try again', name: 'retry', desc: '', args: []);
+  }
+
+  /// `All`
+  String get all {
+    return Intl.message('All', name: 'all', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

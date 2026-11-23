@@ -347,6 +347,110 @@ enum SpeakerRequestKind { normal, pointOfOrder }
 enum SpeakerRequestState { waiting, speaking, done, withdrawn, skipped }
 
 /// Result of a for/against poll under the committee's voting rule (`PollOutcome`).
+/// Status of a decision by circulation (`CirculationStatus`).
+enum CirculationStatus {
+  draft,
+  open,
+  closed,
+  withdrawn;
+
+  static CirculationStatus fromIndex(Object? index) {
+    final i = int.tryParse(index?.toString() ?? '');
+    if (i == null || i < 0 || i >= values.length) return draft;
+    return values[i];
+  }
+
+  String get label => switch (this) {
+        CirculationStatus.draft => S().circulationDraft,
+        CirculationStatus.open => S().circulationOpen,
+        CirculationStatus.closed => S().circulationClosed,
+        CirculationStatus.withdrawn => S().circulationWithdrawn,
+      };
+
+  StatusColors get colors => switch (this) {
+        CirculationStatus.open => const StatusColors(
+            dot: AppColorManager.primary500,
+            bg: AppColorManager.primary50,
+            fg: AppColorManager.primary700,
+          ),
+        CirculationStatus.closed => const StatusColors(
+            dot: AppColorManager.neutral700,
+            bg: AppColorManager.neutral100,
+            fg: AppColorManager.neutral900,
+          ),
+        CirculationStatus.draft || CirculationStatus.withdrawn => const StatusColors(
+            dot: AppColorManager.neutral500,
+            bg: AppColorManager.neutral50,
+            fg: AppColorManager.neutral700,
+          ),
+      };
+}
+
+/// A voter's answer to a circulation (`CirculationChoice`).
+enum CirculationChoice {
+  approve,
+  reject,
+  abstain;
+
+  static CirculationChoice? fromIndex(Object? index) {
+    final i = int.tryParse(index?.toString() ?? '');
+    if (i == null || i < 0 || i >= values.length) return null;
+    return values[i];
+  }
+
+  String get label => switch (this) {
+        CirculationChoice.approve => S().circulationApprove,
+        CirculationChoice.reject => S().circulationReject,
+        CirculationChoice.abstain => S().circulationAbstain,
+      };
+
+  IconData get icon => switch (this) {
+        CirculationChoice.approve => Icons.thumb_up_alt_outlined,
+        CirculationChoice.reject => Icons.thumb_down_alt_outlined,
+        CirculationChoice.abstain => Icons.remove_circle_outline_rounded,
+      };
+
+  StatusColors get colors => switch (this) {
+        CirculationChoice.approve => const StatusColors(
+            dot: AppColorManager.success,
+            bg: AppColorManager.successSoft,
+            fg: AppColorManager.successText,
+          ),
+        CirculationChoice.reject => const StatusColors(
+            dot: AppColorManager.danger,
+            bg: AppColorManager.dangerSoft,
+            fg: AppColorManager.dangerText,
+          ),
+        CirculationChoice.abstain => const StatusColors(
+            dot: AppColorManager.neutral500,
+            bg: AppColorManager.neutral50,
+            fg: AppColorManager.neutral700,
+          ),
+      };
+}
+
+/// Result of a closed circulation (`CirculationOutcome`).
+enum CirculationOutcome {
+  approved,
+  rejected;
+
+  static CirculationOutcome? fromIndex(Object? index) {
+    final i = int.tryParse(index?.toString() ?? '');
+    if (i == null || i < 0 || i >= values.length) return null;
+    return values[i];
+  }
+
+  String get label => switch (this) {
+        CirculationOutcome.approved => S().circulationApproved,
+        CirculationOutcome.rejected => S().circulationRejected,
+      };
+
+  StatusColors get colors => switch (this) {
+        CirculationOutcome.approved => PollOutcome.passed.colors,
+        CirculationOutcome.rejected => PollOutcome.rejected.colors,
+      };
+}
+
 /// Status of an agenda item proposal (`AgendaItemRequestStatus`).
 enum AgendaRequestStatus {
   pending,

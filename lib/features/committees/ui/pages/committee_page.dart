@@ -11,6 +11,7 @@ import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
 import 'package:mms/core/widgets/icon_tile.dart';
 import 'package:mms/core/widgets/refresh_widget/refresh_widget.dart';
 import 'package:mms/core/widgets/small_widgets.dart';
+import 'package:mms/features/circulation/bloc/circulations_cubit/circulations_cubit.dart';
 import 'package:mms/features/committees/bloc/committee_cubit/committee_cubit.dart';
 import 'package:mms/features/documents/ui/widgets/documents_list_widget.dart';
 import 'package:mms/features/goals/ui/widgets/goals_list_widget.dart';
@@ -145,6 +146,28 @@ class CommitteePage extends StatelessWidget {
                           ),
                         ],
                       ),
+                      12.0.verticalSpace,
+                      BlocBuilder<CirculationsCubit, CirculationsInitial>(
+                        builder: (context, circulations) {
+                          final awaiting = circulations.awaitingMyVote;
+                          return _ActionCard(
+                            icon: Icons.how_to_vote_outlined,
+                            title: S.of(context).circulations,
+                            subtitle: awaiting > 0
+                                ? S.of(context).circulationsAwaiting(awaiting)
+                                : S.of(context).circulationsSubtitle,
+                            badge: awaiting,
+                            onTap: () async {
+                              final cubit = context.read<CirculationsCubit>();
+                              await context.pushNamed(
+                                RouteName.circulations,
+                                queryParameters: {RouteParam.id: context.read<CommitteeCubit>().state.uuid},
+                              );
+                              cubit.getData();
+                            },
+                          );
+                        },
+                      ),
                       24.0.verticalSpace,
                       // Description + statement.
                       Container(
@@ -221,12 +244,16 @@ class _ActionCard extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.onTap,
+    this.badge = 0,
   });
 
   final IconData icon;
   final String title;
   final String subtitle;
   final VoidCallback onTap;
+
+  /// Count shown at the end (hidden at 0).
+  final int badge;
 
   @override
   Widget build(BuildContext context) {
@@ -267,6 +294,23 @@ class _ActionCard extends StatelessWidget {
                   ],
                 ),
               ),
+              if (badge > 0)
+                Container(
+                  constraints: BoxConstraints(minWidth: 24.0.r),
+                  height: 24.0.r,
+                  padding: EdgeInsets.symmetric(horizontal: 7.0.w),
+                  alignment: .center,
+                  decoration: BoxDecoration(
+                    color: AppColorManager.primary500,
+                    borderRadius: BorderRadius.circular(999),
+                  ),
+                  child: DrawableText(
+                    text: '$badge',
+                    size: 12.0.sp,
+                    fontWeight: .w700,
+                    color: AppColorManager.neutral0,
+                  ),
+                ),
             ],
           ),
         ),

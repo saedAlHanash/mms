@@ -22,6 +22,8 @@ import 'package:mms/features/meetings/bloc/meeting_cubit/meeting_cubit.dart';
 import 'package:mms/features/meetings/bloc/meetings_cubit/meetings_cubit.dart';
 import 'package:mms/features/check_in/bloc/check_in_cubit/check_in_cubit.dart';
 import 'package:mms/features/agenda_request/bloc/my_agenda_requests_cubit/my_agenda_requests_cubit.dart';
+import 'package:mms/features/circulation/bloc/circulation_cubit/circulation_cubit.dart';
+import 'package:mms/features/circulation/bloc/circulations_cubit/circulations_cubit.dart';
 import 'package:mms/features/interest/bloc/meeting_interests_cubit/meeting_interests_cubit.dart';
 import 'package:mms/features/meeting_live/bloc/meeting_live_cubit/meeting_live_cubit.dart';
 import 'package:mms/features/meetings/bloc/my_guest_suggestions_cubit/my_guest_suggestions_cubit.dart';
@@ -130,6 +132,8 @@ Future<void> init() async {
   sl.registerFactory(() => MeetingLiveCubit());
   sl.registerFactory(() => MeetingInterestsCubit());
   sl.registerFactory(() => MyAgendaRequestsCubit());
+  sl.registerFactory(() => CirculationsCubit());
+  sl.registerFactory(() => CirculationCubit());
   sl.registerFactory(() => CheckInCubit());
   //endregion
 

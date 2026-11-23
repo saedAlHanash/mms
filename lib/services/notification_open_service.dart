@@ -5,10 +5,10 @@ import 'package:mms/main.dart';
 import 'package:mms/router/go_router.dart';
 import 'package:mms/services/firebase_service.dart';
 
-/// Opens the meeting a notification is about when the user taps it.
+/// Opens what a notification is about when the user taps it.
 ///
 /// Push `data` carries `MeetingId` for meeting, minutes, mention and task
-/// notices. Taps that arrive before the home page is up (cold start) wait in
+/// notices, and `CirculationId` for circulation notices (see [pushTarget]). Taps that arrive before the home page is up (cold start) wait in
 /// [_pending] until [openPending] is called from the home page.
 class NotificationOpenService {
   NotificationOpenService._();
@@ -29,7 +29,7 @@ class NotificationOpenService {
     }
   }
 
-  /// `payload` of a local notification is the meeting id.
+  /// `payload` of a local notification is [pushTarget].
   static void onLocalTap(NotificationResponse? response) => _open(response?.payload ?? '');
 
   /// Called by the home page once it's shown.
@@ -40,14 +40,19 @@ class NotificationOpenService {
     if (id != null) _open(id);
   }
 
-  static void _openFromData(Map<String, dynamic> data) => _open(pushMeetingId(data));
+  static void _openFromData(Map<String, dynamic> data) => _open(pushTarget(data));
 
-  static void _open(String meetingId) {
-    if (meetingId.isEmpty || AppProvider.isNotLogin) return;
+  static void _open(String target) {
+    if (target.isEmpty || AppProvider.isNotLogin) return;
     if (!_homeReady) {
-      _pending = meetingId;
+      _pending = target;
       return;
     }
-    goRouter.pushNamed(RouteName.meeting, queryParameters: {RouteParam.id: meetingId});
+    if (target.startsWith(circulationTargetPrefix)) {
+      final id = target.substring(circulationTargetPrefix.length);
+      goRouter.pushNamed(RouteName.circulation, queryParameters: {RouteParam.id: id});
+      return;
+    }
+    goRouter.pushNamed(RouteName.meeting, queryParameters: {RouteParam.id: target});
   }
 }

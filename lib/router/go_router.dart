@@ -30,6 +30,10 @@ import 'package:mms/features/files/bloc/upload_file_cubit/upload_file_cubit.dart
 import 'package:mms/features/home/ui/pages/home_page.dart';
 import 'package:mms/features/meeting_hub/bloc/meeting_hub_cubit/meeting_hub_cubit.dart';
 import 'package:mms/features/agenda_request/bloc/my_agenda_requests_cubit/my_agenda_requests_cubit.dart';
+import 'package:mms/features/circulation/bloc/circulation_cubit/circulation_cubit.dart';
+import 'package:mms/features/circulation/bloc/circulations_cubit/circulations_cubit.dart';
+import 'package:mms/features/circulation/ui/pages/circulation_page.dart';
+import 'package:mms/features/circulation/ui/pages/circulations_page.dart';
 import 'package:mms/features/interest/bloc/meeting_interests_cubit/meeting_interests_cubit.dart';
 import 'package:mms/features/meeting_live/bloc/meeting_live_cubit/meeting_live_cubit.dart';
 import 'package:mms/features/meetings/bloc/add_absence_cubit/add_absence_cubit.dart';
@@ -68,6 +72,8 @@ class RouteName {
   static const votes = '/votes';
   static const notifications = '/notifications';
   static const checkIn = '/check-in';
+  static const circulations = '/circulations';
+  static const circulation = '/circulation';
   static const fullScreen = '/full-screen';
 }
 
@@ -166,9 +172,32 @@ final goRouter = GoRouter(
     //region committee
     _route(
       RouteName.committeePage,
-      (_, state) => BlocProvider(
-        create: (_) => sl<CommitteeCubit>()..getData(uuid: state.uri.queryParameters[RouteParam.id] ?? ''),
+      (_, state) => MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (_) => sl<CommitteeCubit>()..getData(uuid: state.uri.queryParameters[RouteParam.id] ?? ''),
+          ),
+          // For the "awaiting your vote" badge on the circulations entry.
+          BlocProvider(
+            create: (_) =>
+                sl<CirculationsCubit>()..getData(committeeId: state.uri.queryParameters[RouteParam.id] ?? ''),
+          ),
+        ],
         child: const CommitteePage(),
+      ),
+    ),
+    _route(
+      RouteName.circulations,
+      (_, state) => BlocProvider(
+        create: (_) => sl<CirculationsCubit>()..getData(committeeId: state.uri.queryParameters[RouteParam.id] ?? ''),
+        child: const CirculationsPage(),
+      ),
+    ),
+    _route(
+      RouteName.circulation,
+      (_, state) => BlocProvider(
+        create: (_) => sl<CirculationCubit>()..getData(id: state.uri.queryParameters[RouteParam.id] ?? ''),
+        child: const CirculationPage(),
       ),
     ),
     //endregion

@@ -105,6 +105,10 @@ class GetUrl {
 
   static const agendaRequestsByMeeting = 'AgendaItemRequest/GetByMeeting';
 
+  static const circulation = 'Circulation/Get';
+
+  static const fileById = 'FileManager/Get';
+
   static const agenda = '';
 
   static const agendas = '';
@@ -179,6 +183,10 @@ class PostUrl {
   static const declareInterest = 'Interest/Declare';
 
   static const addAgendaRequest = 'AgendaItemRequest/Add';
+
+  static const circulationList = 'Circulation/GetList';
+
+  static const circulationVote = 'Circulation/Vote';
 
   static const addAbsence = 'AbsenceRequest/Add';
 
