@@ -146,10 +146,23 @@ String pushCirculationId(Map<String, dynamic> data) {
 /// `circulation:<id>`, or the meeting id.
 String pushTarget(Map<String, dynamic> data) {
   final circulationId = pushCirculationId(data);
-  return circulationId.isNotEmpty ? '$circulationTargetPrefix$circulationId' : pushMeetingId(data);
+  if (circulationId.isNotEmpty) return '$circulationTargetPrefix$circulationId';
+  final meetingId = pushMeetingId(data);
+  if (meetingId.isNotEmpty) return meetingId;
+  // Role delegation notices carry `{CommitteeId, DelegationId}`.
+  final committeeId = pushCommitteeId(data);
+  return committeeId.isNotEmpty ? '$committeeTargetPrefix$committeeId' : '';
+}
+
+/// `CommitteeId` of a push, read at the top level or inside `data`.
+String pushCommitteeId(Map<String, dynamic> data) {
+  final top = (_valueOf(data, 'committeeId') ?? '').toString();
+  return top.isNotEmpty ? top : FirebaseNotificationModel.fromJson(data).data.committeeId;
 }
 
 const circulationTargetPrefix = 'circulation:';
+
+const committeeTargetPrefix = 'committee:';
 
 class FirebaseNotificationModel {
   FirebaseNotificationModel({
@@ -207,6 +220,8 @@ class Data {
   String get meetingId => (_valueOf(payload, 'meetingId') ?? '').toString();
 
   String get circulationId => (_valueOf(payload, 'circulationId') ?? '').toString();
+
+  String get committeeId => (_valueOf(payload, 'committeeId') ?? '').toString();
 
   Map<String, dynamic> toJson() => payload;
 }

@@ -343,6 +343,88 @@ enum MeetingMode {
 /// Kind of floor request (`SpeakerRequestKind`): a point of order goes first.
 enum SpeakerRequestKind { normal, pointOfOrder }
 
+/// State of a role delegation (`DelegationDto.state`, sent as a string).
+enum DelegationState {
+  upcoming,
+  active,
+  ended,
+  revoked;
+
+  static DelegationState fromName(Object? name) {
+    final value = name?.toString().toLowerCase() ?? '';
+    return values.firstWhere((e) => e.name == value, orElse: () => ended);
+  }
+
+  /// Sort order: active, upcoming, then the past.
+  int get order => switch (this) {
+        DelegationState.active => 0,
+        DelegationState.upcoming => 1,
+        DelegationState.ended => 2,
+        DelegationState.revoked => 3,
+      };
+
+  String get label => switch (this) {
+        DelegationState.upcoming => S().delegationUpcoming,
+        DelegationState.active => S().delegationActive,
+        DelegationState.ended => S().delegationEnded,
+        DelegationState.revoked => S().delegationRevokedState,
+      };
+
+  StatusColors get colors => switch (this) {
+        DelegationState.active => const StatusColors(
+            dot: AppColorManager.success,
+            bg: AppColorManager.successSoft,
+            fg: AppColorManager.successText,
+          ),
+        DelegationState.upcoming => const StatusColors(
+            dot: AppColorManager.primary500,
+            bg: AppColorManager.primary50,
+            fg: AppColorManager.primary700,
+          ),
+        DelegationState.ended => const StatusColors(
+            dot: AppColorManager.neutral500,
+            bg: AppColorManager.neutral50,
+            fg: AppColorManager.neutral700,
+          ),
+        DelegationState.revoked => const StatusColors(
+            dot: AppColorManager.danger,
+            bg: AppColorManager.dangerSoft,
+            fg: AppColorManager.dangerText,
+          ),
+      };
+}
+
+/// Areas a delegation covers (`DelegationScope` flags, added together; 127 is all).
+enum DelegationScope {
+  meetings(1),
+  minutes(2),
+  decisions(4),
+  members(8),
+  tasks(16),
+  rules(32),
+  reports(64);
+
+  const DelegationScope(this.flag);
+
+  final int flag;
+
+  static const allMask = 127;
+
+  static List<DelegationScope> fromMask(int mask) => values.where((e) => mask & e.flag != 0).toList();
+
+  static int toMask(Iterable<DelegationScope> scopes) => scopes.fold(0, (sum, e) => sum | e.flag);
+
+  String get label => switch (this) {
+        DelegationScope.meetings => S().scopeMeetings,
+        DelegationScope.minutes => S().scopeMinutes,
+        DelegationScope.decisions => S().scopeDecisions,
+        DelegationScope.members => S().scopeMembers,
+        DelegationScope.tasks => S().scopeTasks,
+        DelegationScope.rules => S().scopeRules,
+        DelegationScope.reports => S().scopeReports,
+      };
+}
+
 /// `LiveTimerAction` (chair / secretary timer controls).
 enum LiveTimerAction { start, pause, reset, addTime, setLength }
 

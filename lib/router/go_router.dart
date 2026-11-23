@@ -1,3 +1,4 @@
+import 'package:mms/features/delegation/bloc/delegations_cubit/delegations_cubit.dart';
 import 'package:mms/features/quorum/bloc/quorum_cubit/quorum_cubit.dart';
 import 'package:mms/features/check_in/bloc/check_in_code_cubit/check_in_code_cubit.dart';
 import 'package:mms/features/check_in/ui/pages/check_in_code_page.dart';
@@ -185,6 +186,11 @@ final goRouter = GoRouter(
           BlocProvider(
             create: (_) =>
                 sl<CirculationsCubit>()..getData(committeeId: state.uri.queryParameters[RouteParam.id] ?? ''),
+          ),
+          // Role delegations and the "acting as" banner.
+          BlocProvider(
+            create: (_) =>
+                sl<DelegationsCubit>()..getData(committeeId: state.uri.queryParameters[RouteParam.id] ?? ''),
           ),
         ],
         child: const CommitteePage(),

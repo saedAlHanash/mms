@@ -103,6 +103,8 @@ class GetUrl {
 
   static const quorumForMeeting = 'Quorum/GetForMeeting';
 
+  static const delegations = 'Delegation/GetList';
+
   static const checkInCode = 'CheckIn/GetCode';
 
   static const interestsByMeeting = 'Interest/GetByMeeting';
@@ -206,6 +208,8 @@ class PostUrl {
 
   static const circulationVote = 'Circulation/Vote';
 
+  static const addDelegation = 'Delegation/Add';
+
   static const addAbsence = 'AbsenceRequest/Add';
 
   static const addComment = 'AgendaItemComment/Add';
@@ -260,6 +264,7 @@ class PostUrl {
 
 class PutUrl {
   static const updateNoticePreferences = 'Party/UpdateMyNoticePreferences';
+  static const revokeDelegation = 'Delegation/Revoke';
   static const updateMeetingRating = 'rating/Update';
   static const updateLiveKit = 'lk/Update';
   static const updateAgora = 'forDelete/Update';

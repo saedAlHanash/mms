@@ -53,6 +53,11 @@ class NotificationOpenService {
       goRouter.pushNamed(RouteName.circulation, queryParameters: {RouteParam.id: id});
       return;
     }
+    if (target.startsWith(committeeTargetPrefix)) {
+      final id = target.substring(committeeTargetPrefix.length);
+      goRouter.pushNamed(RouteName.committeePage, queryParameters: {RouteParam.id: id});
+      return;
+    }
     goRouter.pushNamed(RouteName.meeting, queryParameters: {RouteParam.id: target});
   }
 }

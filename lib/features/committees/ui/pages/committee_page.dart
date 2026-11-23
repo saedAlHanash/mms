@@ -13,6 +13,8 @@ import 'package:mms/core/widgets/refresh_widget/refresh_widget.dart';
 import 'package:mms/core/widgets/small_widgets.dart';
 import 'package:mms/features/circulation/bloc/circulations_cubit/circulations_cubit.dart';
 import 'package:mms/features/committees/bloc/committee_cubit/committee_cubit.dart';
+import 'package:mms/features/delegation/bloc/delegations_cubit/delegations_cubit.dart';
+import 'package:mms/features/delegation/ui/widgets/delegation_widgets.dart';
 import 'package:mms/features/documents/ui/widgets/documents_list_widget.dart';
 import 'package:mms/features/goals/ui/widgets/goals_list_widget.dart';
 import 'package:mms/features/members/ui/widgets/members_list_widget.dart';
@@ -54,12 +56,16 @@ class CommitteePage extends StatelessWidget {
 
           return RefreshWidget(
             isLoading: state.loading,
-            onRefresh: () => context.read<CommitteeCubit>().getData(newData: true),
+            onRefresh: () {
+              context.read<DelegationsCubit>().getData();
+              return context.read<CommitteeCubit>().getData(newData: true);
+            },
             child: showSkeleton
                 ? const _CommitteeSkeleton()
                 : ListView(
                     padding: EdgeInsets.fromLTRB(20.0.w, 16.0.h, 20.0.w, 32.0.h),
                     children: [
+                      const ActingAsBanner(),
                       // Membership + formation date.
                       Wrap(
                         spacing: 12.0.w,
@@ -168,6 +174,7 @@ class CommitteePage extends StatelessWidget {
                           );
                         },
                       ),
+                      DelegationsSection(committee: item),
                       24.0.verticalSpace,
                       // Description + statement.
                       Container(

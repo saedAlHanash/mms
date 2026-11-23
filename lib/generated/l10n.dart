@@ -5362,6 +5362,311 @@ class S {
       args: [],
     );
   }
+
+  /// `Delegations`
+  String get delegations {
+    return Intl.message('Delegations', name: 'delegations', desc: '', args: []);
+  }
+
+  /// `No delegations`
+  String get noDelegations {
+    return Intl.message(
+      'No delegations',
+      name: 'noDelegations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hand your role to another member for a period, for example before travelling.`
+  String get noDelegationsDescription {
+    return Intl.message(
+      'Hand your role to another member for a period, for example before travelling.',
+      name: 'noDelegationsDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add delegation`
+  String get addDelegation {
+    return Intl.message(
+      'Add delegation',
+      name: 'addDelegation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You keep your role meanwhile. The member acts for you only in the areas you choose.`
+  String get addDelegationHint {
+    return Intl.message(
+      'You keep your role meanwhile. The member acts for you only in the areas you choose.',
+      name: 'addDelegationHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Role`
+  String get delegationRole {
+    return Intl.message('Role', name: 'delegationRole', desc: '', args: []);
+  }
+
+  /// `Delegate to`
+  String get delegateTo {
+    return Intl.message('Delegate to', name: 'delegateTo', desc: '', args: []);
+  }
+
+  /// `There are no other members in this committee.`
+  String get noDelegationCandidates {
+    return Intl.message(
+      'There are no other members in this committee.',
+      name: 'noDelegationCandidates',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Areas`
+  String get delegationScopes {
+    return Intl.message('Areas', name: 'delegationScopes', desc: '', args: []);
+  }
+
+  /// `Select all`
+  String get selectAll {
+    return Intl.message('Select all', name: 'selectAll', desc: '', args: []);
+  }
+
+  /// `Clear all`
+  String get clearAll {
+    return Intl.message('Clear all', name: 'clearAll', desc: '', args: []);
+  }
+
+  /// `Period`
+  String get delegationPeriod {
+    return Intl.message('Period', name: 'delegationPeriod', desc: '', args: []);
+  }
+
+  /// `Starts`
+  String get delegationStarts {
+    return Intl.message('Starts', name: 'delegationStarts', desc: '', args: []);
+  }
+
+  /// `Ends`
+  String get delegationEnds {
+    return Intl.message('Ends', name: 'delegationEnds', desc: '', args: []);
+  }
+
+  /// `Up to a year. It ends at the end of the last day.`
+  String get delegationPeriodHint {
+    return Intl.message(
+      'Up to a year. It ends at the end of the last day.',
+      name: 'delegationPeriodHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reason (optional)`
+  String get delegationReasonOptional {
+    return Intl.message(
+      'Reason (optional)',
+      name: 'delegationReasonOptional',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `For example: travelling for a conference`
+  String get delegationReasonHint {
+    return Intl.message(
+      'For example: travelling for a conference',
+      name: 'delegationReasonHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delegate`
+  String get delegateAction {
+    return Intl.message('Delegate', name: 'delegateAction', desc: '', args: []);
+  }
+
+  /// `The delegation was added`
+  String get delegationAdded {
+    return Intl.message(
+      'The delegation was added',
+      name: 'delegationAdded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `From {from} to {to}`
+  String delegationFromTo(Object from, Object to) {
+    return Intl.message(
+      'From $from to $to',
+      name: 'delegationFromTo',
+      desc: '',
+      args: [from, to],
+    );
+  }
+
+  /// `All areas`
+  String get delegationAllScopes {
+    return Intl.message(
+      'All areas',
+      name: 'delegationAllScopes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upcoming`
+  String get delegationUpcoming {
+    return Intl.message(
+      'Upcoming',
+      name: 'delegationUpcoming',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Active`
+  String get delegationActive {
+    return Intl.message('Active', name: 'delegationActive', desc: '', args: []);
+  }
+
+  /// `Ended`
+  String get delegationEnded {
+    return Intl.message('Ended', name: 'delegationEnded', desc: '', args: []);
+  }
+
+  /// `Revoked`
+  String get delegationRevokedState {
+    return Intl.message(
+      'Revoked',
+      name: 'delegationRevokedState',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Revoke`
+  String get revokeDelegation {
+    return Intl.message('Revoke', name: 'revokeDelegation', desc: '', args: []);
+  }
+
+  /// `Revoke this delegation?`
+  String get revokeDelegationTitle {
+    return Intl.message(
+      'Revoke this delegation?',
+      name: 'revokeDelegationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{name} will stop acting for you right away.`
+  String revokeDelegationFromMe(Object name) {
+    return Intl.message(
+      '$name will stop acting for you right away.',
+      name: 'revokeDelegationFromMe',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `You will stop acting in this role right away.`
+  String get revokeDelegationToMe {
+    return Intl.message(
+      'You will stop acting in this role right away.',
+      name: 'revokeDelegationToMe',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The delegation was revoked`
+  String get delegationRevoked {
+    return Intl.message(
+      'The delegation was revoked',
+      name: 'delegationRevoked',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are acting as {role}`
+  String actingAs(Object role) {
+    return Intl.message(
+      'You are acting as $role',
+      name: 'actingAs',
+      desc: '',
+      args: [role],
+    );
+  }
+
+  /// `You are acting as {role} until {date}`
+  String actingAsUntil(Object role, Object date) {
+    return Intl.message(
+      'You are acting as $role until $date',
+      name: 'actingAsUntil',
+      desc: '',
+      args: [role, date],
+    );
+  }
+
+  /// `Delegated by {name}`
+  String delegatedBy(Object name) {
+    return Intl.message(
+      'Delegated by $name',
+      name: 'delegatedBy',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Meetings`
+  String get scopeMeetings {
+    return Intl.message('Meetings', name: 'scopeMeetings', desc: '', args: []);
+  }
+
+  /// `Minutes`
+  String get scopeMinutes {
+    return Intl.message('Minutes', name: 'scopeMinutes', desc: '', args: []);
+  }
+
+  /// `Decisions`
+  String get scopeDecisions {
+    return Intl.message(
+      'Decisions',
+      name: 'scopeDecisions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Members`
+  String get scopeMembers {
+    return Intl.message('Members', name: 'scopeMembers', desc: '', args: []);
+  }
+
+  /// `Tasks`
+  String get scopeTasks {
+    return Intl.message('Tasks', name: 'scopeTasks', desc: '', args: []);
+  }
+
+  /// `Rules`
+  String get scopeRules {
+    return Intl.message('Rules', name: 'scopeRules', desc: '', args: []);
+  }
+
+  /// `Reports`
+  String get scopeReports {
+    return Intl.message('Reports', name: 'scopeReports', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
