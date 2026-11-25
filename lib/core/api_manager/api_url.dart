@@ -109,6 +109,10 @@ class GetUrl {
 
   static const workloadTasks = 'Workload/GetTasks';
 
+  static const committeeTree = 'SubCommittee/GetTree';
+
+  static const recommendations = 'SubCommittee/GetRecommendations';
+
   static const checkInCode = 'CheckIn/GetCode';
 
   static const interestsByMeeting = 'Interest/GetByMeeting';
@@ -214,6 +218,8 @@ class PostUrl {
 
   static const addDelegation = 'Delegation/Add';
 
+  static const raiseRecommendation = 'SubCommittee/Raise';
+
   static const addAbsence = 'AbsenceRequest/Add';
 
   static const addComment = 'AgendaItemComment/Add';
@@ -271,6 +277,8 @@ class PutUrl {
   static const revokeDelegation = 'Delegation/Revoke';
   static const acceptAgendaRequest = 'AgendaItemRequest/Accept';
   static const rejectAgendaRequest = 'AgendaItemRequest/Reject';
+  static const respondRecommendation = 'SubCommittee/Respond';
+  static const withdrawRecommendation = 'SubCommittee/Withdraw';
   static const updateMeetingRating = 'rating/Update';
   static const updateLiveKit = 'lk/Update';
   static const updateAgora = 'forDelete/Update';

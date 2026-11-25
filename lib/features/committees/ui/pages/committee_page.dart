@@ -7,6 +7,7 @@ import 'package:image_multi_type/image_multi_type.dart';
 import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
+import 'package:mms/core/strings/enum_manager.dart';
 import 'package:mms/core/widgets/app_bar/app_bar_widget.dart';
 import 'package:mms/core/widgets/icon_tile.dart';
 import 'package:mms/core/widgets/refresh_widget/refresh_widget.dart';
@@ -175,14 +176,40 @@ class CommitteePage extends StatelessWidget {
                         },
                       ),
                       12.0.verticalSpace,
-                      _ActionCard(
-                        icon: Icons.assignment_ind_outlined,
-                        title: S.of(context).workload,
-                        subtitle: S.of(context).workloadSubtitle,
-                        onTap: () => context.pushNamed(
-                          RouteName.workload,
-                          queryParameters: {RouteParam.id: item.id},
-                        ),
+                      BlocBuilder<DelegationsCubit, DelegationsInitial>(
+                        builder: (context, delegations) {
+                          // Leads, and a delegate with the Decisions scope, answer recommendations.
+                          final acting = delegations.actingAs;
+                          final isLead = !item.member.membershipType.isMember ||
+                              (acting != null && acting.scopes & DelegationScope.decisions.flag != 0);
+                          return Row(
+                            children: [
+                              Expanded(
+                                child: _ActionCard(
+                                  icon: Icons.assignment_ind_outlined,
+                                  title: S.of(context).workload,
+                                  subtitle: S.of(context).workloadSubtitle,
+                                  onTap: () => context.pushNamed(
+                                    RouteName.workload,
+                                    queryParameters: {RouteParam.id: item.id},
+                                  ),
+                                ),
+                              ),
+                              12.0.horizontalSpace,
+                              Expanded(
+                                child: _ActionCard(
+                                  icon: Icons.recommend_outlined,
+                                  title: S.of(context).recommendations,
+                                  subtitle: S.of(context).recommendationsSubtitle,
+                                  onTap: () => context.pushNamed(
+                                    RouteName.recommendations,
+                                    queryParameters: {RouteParam.id: item.id, 'lead': isLead ? '1' : '0'},
+                                  ),
+                                ),
+                              ),
+                            ],
+                          );
+                        },
                       ),
                       DelegationsSection(committee: item),
                       24.0.verticalSpace,

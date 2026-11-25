@@ -469,6 +469,50 @@ enum MeetingTaskStatus {
       };
 }
 
+/// `RecommendationState` of a sub-committee recommendation.
+enum RecommendationState {
+  pending,
+  approved,
+  rejected,
+  withdrawn;
+
+  static RecommendationState fromIndex(Object? index) {
+    final i = int.tryParse(index?.toString() ?? '');
+    if (i == null || i < 0 || i >= values.length) return pending;
+    return values[i];
+  }
+
+  String get label => switch (this) {
+        RecommendationState.pending => S().recommendationPending,
+        RecommendationState.approved => S().recommendationApproved,
+        RecommendationState.rejected => S().recommendationRejected,
+        RecommendationState.withdrawn => S().recommendationWithdrawn,
+      };
+
+  StatusColors get colors => switch (this) {
+        RecommendationState.pending => const StatusColors(
+            dot: AppColorManager.warning,
+            bg: AppColorManager.warningSoft,
+            fg: AppColorManager.warningText,
+          ),
+        RecommendationState.approved => const StatusColors(
+            dot: AppColorManager.success,
+            bg: AppColorManager.successSoft,
+            fg: AppColorManager.successText,
+          ),
+        RecommendationState.rejected => const StatusColors(
+            dot: AppColorManager.danger,
+            bg: AppColorManager.dangerSoft,
+            fg: AppColorManager.dangerText,
+          ),
+        RecommendationState.withdrawn => const StatusColors(
+            dot: AppColorManager.neutral500,
+            bg: AppColorManager.neutral50,
+            fg: AppColorManager.neutral700,
+          ),
+      };
+}
+
 /// `LiveTimerAction` (chair / secretary timer controls).
 enum LiveTimerAction { start, pause, reset, addTime, setLength }
 

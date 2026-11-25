@@ -5928,6 +5928,276 @@ class S {
   String get taskCompleted {
     return Intl.message('Completed', name: 'taskCompleted', desc: '', args: []);
   }
+
+  /// `Recommendations`
+  String get recommendations {
+    return Intl.message(
+      'Recommendations',
+      name: 'recommendations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sub-committees`
+  String get recommendationsSubtitle {
+    return Intl.message(
+      'Sub-committees',
+      name: 'recommendationsSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Raise a recommendation`
+  String get raiseRecommendation {
+    return Intl.message(
+      'Raise a recommendation',
+      name: 'raiseRecommendation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No recommendations`
+  String get noRecommendations {
+    return Intl.message(
+      'No recommendations',
+      name: 'noRecommendations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recommendations raised to or from this committee will show here.`
+  String get noRecommendationsDescription {
+    return Intl.message(
+      'Recommendations raised to or from this committee will show here.',
+      name: 'noRecommendationsDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This committee has no parent or sub-committees.`
+  String get noSubCommittees {
+    return Intl.message(
+      'This committee has no parent or sub-committees.',
+      name: 'noSubCommittees',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `From sub-committees`
+  String get recommendationsReceived {
+    return Intl.message(
+      'From sub-committees',
+      name: 'recommendationsReceived',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Raised by this committee`
+  String get recommendationsSent {
+    return Intl.message(
+      'Raised by this committee',
+      name: 'recommendationsSent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Parent committee`
+  String get parentCommittee {
+    return Intl.message(
+      'Parent committee',
+      name: 'parentCommittee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sub-committees ({count})`
+  String subCommitteesCount(Object count) {
+    return Intl.message(
+      'Sub-committees ($count)',
+      name: 'subCommitteesCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `From {name}`
+  String fromCommittee(Object name) {
+    return Intl.message(
+      'From $name',
+      name: 'fromCommittee',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `To {name}`
+  String toCommittee(Object name) {
+    return Intl.message(
+      'To $name',
+      name: 'toCommittee',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Raised by {name}`
+  String raisedBy(Object name) {
+    return Intl.message(
+      'Raised by $name',
+      name: 'raisedBy',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Answered by {name}`
+  String respondedBy(Object name) {
+    return Intl.message(
+      'Answered by $name',
+      name: 'respondedBy',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Approve`
+  String get approve {
+    return Intl.message('Approve', name: 'approve', desc: '', args: []);
+  }
+
+  /// `Withdraw this recommendation?`
+  String get withdrawRecommendationTitle {
+    return Intl.message(
+      'Withdraw this recommendation?',
+      name: 'withdrawRecommendationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Approve this recommendation?`
+  String get approveRecommendationTitle {
+    return Intl.message(
+      'Approve this recommendation?',
+      name: 'approveRecommendationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reject this recommendation?`
+  String get rejectRecommendationTitle {
+    return Intl.message(
+      'Reject this recommendation?',
+      name: 'rejectRecommendationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A note for the sub-committee (optional)`
+  String get responseNoteHint {
+    return Intl.message(
+      'A note for the sub-committee (optional)',
+      name: 'responseNoteHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your answer was sent`
+  String get responseSent {
+    return Intl.message(
+      'Your answer was sent',
+      name: 'responseSent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The recommendation was raised`
+  String get recommendationRaised {
+    return Intl.message(
+      'The recommendation was raised',
+      name: 'recommendationRaised',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Title`
+  String get recommendationTitleHint {
+    return Intl.message(
+      'Title',
+      name: 'recommendationTitleHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Details (optional)`
+  String get recommendationBodyHint {
+    return Intl.message(
+      'Details (optional)',
+      name: 'recommendationBodyHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Raise`
+  String get raise {
+    return Intl.message('Raise', name: 'raise', desc: '', args: []);
+  }
+
+  /// `Pending`
+  String get recommendationPending {
+    return Intl.message(
+      'Pending',
+      name: 'recommendationPending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Approved`
+  String get recommendationApproved {
+    return Intl.message(
+      'Approved',
+      name: 'recommendationApproved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rejected`
+  String get recommendationRejected {
+    return Intl.message(
+      'Rejected',
+      name: 'recommendationRejected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Withdrawn`
+  String get recommendationWithdrawn {
+    return Intl.message(
+      'Withdrawn',
+      name: 'recommendationWithdrawn',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
