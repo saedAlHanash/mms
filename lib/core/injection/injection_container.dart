@@ -1,6 +1,7 @@
 import 'package:mms/features/agenda_request/bloc/review_agenda_requests_cubit/review_agenda_requests_cubit.dart';
 import 'package:mms/features/workload/bloc/workload_cubit/workload_cubit.dart';
 import 'package:mms/features/sub_committee/bloc/recommendations_cubit/recommendations_cubit.dart';
+import 'package:mms/features/hall_service/bloc/hall_services_cubit/hall_services_cubit.dart';
 import 'package:mms/features/delegation/bloc/delegations_cubit/delegations_cubit.dart';
 import 'package:mms/features/quorum/bloc/quorum_cubit/quorum_cubit.dart';
 import 'package:mms/features/check_in/bloc/check_in_code_cubit/check_in_code_cubit.dart';
@@ -141,6 +142,7 @@ Future<void> init() async {
   sl.registerFactory(() => ReviewAgendaRequestsCubit());
   sl.registerFactory(() => WorkloadCubit());
   sl.registerFactory(() => RecommendationsCubit());
+  sl.registerFactory(() => HallServicesCubit());
   sl.registerFactory(() => CheckInCodeCubit());
   sl.registerFactory(() => MeetingInterestsCubit());
   sl.registerFactory(() => MyAgendaRequestsCubit());

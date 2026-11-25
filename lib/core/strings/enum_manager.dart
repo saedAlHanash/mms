@@ -513,6 +513,82 @@ enum RecommendationState {
       };
 }
 
+/// `HallServiceKind`.
+enum HallServiceKind {
+  equipment,
+  hospitality,
+  other;
+
+  static HallServiceKind fromIndex(Object? index) {
+    final i = int.tryParse(index?.toString() ?? '');
+    if (i == null || i < 0 || i >= values.length) return other;
+    return values[i];
+  }
+
+  String get label => switch (this) {
+        HallServiceKind.equipment => S().serviceEquipment,
+        HallServiceKind.hospitality => S().serviceHospitality,
+        HallServiceKind.other => S().serviceOther,
+      };
+
+  IconData get icon => switch (this) {
+        HallServiceKind.equipment => Icons.videocam_outlined,
+        HallServiceKind.hospitality => Icons.local_cafe_outlined,
+        HallServiceKind.other => Icons.miscellaneous_services_outlined,
+      };
+}
+
+/// `HallServiceState`.
+enum HallServiceState {
+  requested,
+  confirmed,
+  rejected,
+  delivered,
+  cancelled;
+
+  static HallServiceState fromIndex(Object? index) {
+    final i = int.tryParse(index?.toString() ?? '');
+    if (i == null || i < 0 || i >= values.length) return requested;
+    return values[i];
+  }
+
+  String get label => switch (this) {
+        HallServiceState.requested => S().serviceRequestedState,
+        HallServiceState.confirmed => S().serviceConfirmed,
+        HallServiceState.rejected => S().serviceRejected,
+        HallServiceState.delivered => S().serviceDelivered,
+        HallServiceState.cancelled => S().serviceCancelled,
+      };
+
+  StatusColors get colors => switch (this) {
+        HallServiceState.requested => const StatusColors(
+            dot: AppColorManager.warning,
+            bg: AppColorManager.warningSoft,
+            fg: AppColorManager.warningText,
+          ),
+        HallServiceState.confirmed => const StatusColors(
+            dot: AppColorManager.primary500,
+            bg: AppColorManager.primary50,
+            fg: AppColorManager.primary700,
+          ),
+        HallServiceState.rejected => const StatusColors(
+            dot: AppColorManager.danger,
+            bg: AppColorManager.dangerSoft,
+            fg: AppColorManager.dangerText,
+          ),
+        HallServiceState.delivered => const StatusColors(
+            dot: AppColorManager.success,
+            bg: AppColorManager.successSoft,
+            fg: AppColorManager.successText,
+          ),
+        HallServiceState.cancelled => const StatusColors(
+            dot: AppColorManager.neutral500,
+            bg: AppColorManager.neutral50,
+            fg: AppColorManager.neutral700,
+          ),
+      };
+}
+
 /// `LiveTimerAction` (chair / secretary timer controls).
 enum LiveTimerAction { start, pause, reset, addTime, setLength }
 

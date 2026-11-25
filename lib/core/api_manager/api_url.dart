@@ -113,6 +113,8 @@ class GetUrl {
 
   static const recommendations = 'SubCommittee/GetRecommendations';
 
+  static const hallServices = 'HallServiceRequest/GetList';
+
   static const checkInCode = 'CheckIn/GetCode';
 
   static const interestsByMeeting = 'Interest/GetByMeeting';
@@ -220,6 +222,8 @@ class PostUrl {
 
   static const raiseRecommendation = 'SubCommittee/Raise';
 
+  static const addHallService = 'HallServiceRequest/Add';
+
   static const addAbsence = 'AbsenceRequest/Add';
 
   static const addComment = 'AgendaItemComment/Add';
@@ -279,6 +283,7 @@ class PutUrl {
   static const rejectAgendaRequest = 'AgendaItemRequest/Reject';
   static const respondRecommendation = 'SubCommittee/Respond';
   static const withdrawRecommendation = 'SubCommittee/Withdraw';
+  static const cancelHallService = 'HallServiceRequest/Cancel';
   static const updateMeetingRating = 'rating/Update';
   static const updateLiveKit = 'lk/Update';
   static const updateAgora = 'forDelete/Update';

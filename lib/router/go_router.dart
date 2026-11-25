@@ -1,6 +1,7 @@
 import 'package:mms/features/agenda_request/bloc/review_agenda_requests_cubit/review_agenda_requests_cubit.dart';
 import 'package:mms/features/workload/bloc/workload_cubit/workload_cubit.dart';
 import 'package:mms/features/sub_committee/bloc/recommendations_cubit/recommendations_cubit.dart';
+import 'package:mms/features/hall_service/bloc/hall_services_cubit/hall_services_cubit.dart';
 import 'package:mms/features/workload/ui/pages/workload_page.dart';
 import 'package:mms/features/sub_committee/ui/pages/recommendations_page.dart';
 import 'package:mms/features/delegation/bloc/delegations_cubit/delegations_cubit.dart';
@@ -262,8 +263,9 @@ final goRouter = GoRouter(
           BlocProvider(create: (_) => sl<MeetingLiveCubit>()),
           // Quorum outside the live panel; fetched by the page with the meeting.
           BlocProvider(create: (_) => sl<QuorumCubit>()),
-          // Secretary only: everyone's proposals (fetched by the page).
+          // Secretary only: everyone's proposals and hall services (fetched by the page).
           BlocProvider(create: (_) => sl<ReviewAgendaRequestsCubit>()),
+          BlocProvider(create: (_) => sl<HallServicesCubit>()),
           // Live updates (SignalR) for this meeting; closed with the route.
           BlocProvider(
             create: (_) => sl<MeetingHubCubit>()

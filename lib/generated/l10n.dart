@@ -6198,6 +6198,211 @@ class S {
       args: [],
     );
   }
+
+  /// `Hall services`
+  String get hallServices {
+    return Intl.message(
+      'Hall services',
+      name: 'hallServices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ask facilities for hospitality or another service.`
+  String get hallServicesHint {
+    return Intl.message(
+      'Ask facilities for hospitality or another service.',
+      name: 'hallServicesHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request a service`
+  String get requestService {
+    return Intl.message(
+      'Request a service',
+      name: 'requestService',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Facilities will confirm or reply here.`
+  String get requestServiceHint {
+    return Intl.message(
+      'Facilities will confirm or reply here.',
+      name: 'requestServiceHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{name} × {count}`
+  String equipmentQuantity(Object name, Object count) {
+    return Intl.message(
+      '$name × $count',
+      name: 'equipmentQuantity',
+      desc: '',
+      args: [name, count],
+    );
+  }
+
+  /// `Hospitality for {count}`
+  String hospitalityFor(Object count) {
+    return Intl.message(
+      'Hospitality for $count',
+      name: 'hospitalityFor',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Cancel request`
+  String get cancelRequest {
+    return Intl.message(
+      'Cancel request',
+      name: 'cancelRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel this request?`
+  String get cancelServiceTitle {
+    return Intl.message(
+      'Cancel this request?',
+      name: 'cancelServiceTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The request was sent`
+  String get serviceRequested {
+    return Intl.message(
+      'The request was sent',
+      name: 'serviceRequested',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number of people`
+  String get numberOfPeople {
+    return Intl.message(
+      'Number of people',
+      name: 'numberOfPeople',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `For example: coffee and water at 10:00`
+  String get hospitalityDetailsHint {
+    return Intl.message(
+      'For example: coffee and water at 10:00',
+      name: 'hospitalityDetailsHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What do you need?`
+  String get serviceDetailsHint {
+    return Intl.message(
+      'What do you need?',
+      name: 'serviceDetailsHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send request`
+  String get sendRequest {
+    return Intl.message(
+      'Send request',
+      name: 'sendRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Equipment`
+  String get serviceEquipment {
+    return Intl.message(
+      'Equipment',
+      name: 'serviceEquipment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hospitality`
+  String get serviceHospitality {
+    return Intl.message(
+      'Hospitality',
+      name: 'serviceHospitality',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Other`
+  String get serviceOther {
+    return Intl.message('Other', name: 'serviceOther', desc: '', args: []);
+  }
+
+  /// `Requested`
+  String get serviceRequestedState {
+    return Intl.message(
+      'Requested',
+      name: 'serviceRequestedState',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirmed`
+  String get serviceConfirmed {
+    return Intl.message(
+      'Confirmed',
+      name: 'serviceConfirmed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rejected`
+  String get serviceRejected {
+    return Intl.message(
+      'Rejected',
+      name: 'serviceRejected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delivered`
+  String get serviceDelivered {
+    return Intl.message(
+      'Delivered',
+      name: 'serviceDelivered',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancelled`
+  String get serviceCancelled {
+    return Intl.message(
+      'Cancelled',
+      name: 'serviceCancelled',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

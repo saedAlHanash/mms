@@ -32,6 +32,8 @@ import 'package:mms/features/quorum/bloc/quorum_cubit/quorum_cubit.dart';
 import 'package:mms/features/quorum/ui/widgets/quorum_card.dart';
 import 'package:mms/features/agenda_request/bloc/review_agenda_requests_cubit/review_agenda_requests_cubit.dart';
 import 'package:mms/features/agenda_request/ui/widgets/review_requests_section.dart';
+import 'package:mms/features/hall_service/bloc/hall_services_cubit/hall_services_cubit.dart';
+import 'package:mms/features/hall_service/ui/widgets/hall_services_section.dart';
 import 'package:mms/services/pip.dart';
 
 import 'package:mms/core/strings/enum_manager.dart';
@@ -66,6 +68,7 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
     if (ReviewRequestsSection.showsFor(meeting)) {
       context.read<ReviewAgendaRequestsCubit>().getData(meetingId: meeting.id);
     }
+    if (HallServicesSection.showsFor(meeting)) context.read<HallServicesCubit>().getData(meetingId: meeting.id);
   }
 
   @override
@@ -232,6 +235,7 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
                                         ),
                                         AgendaRequestsSection(meeting: item),
                                         if (ReviewRequestsSection.showsFor(item)) ReviewRequestsSection(meeting: item),
+                                        if (HallServicesSection.showsFor(item)) HallServicesSection(meeting: item),
                                         if (item.discussions.isNotEmpty) ...[
                                           24.0.verticalSpace,
                                           SectionHeader(
