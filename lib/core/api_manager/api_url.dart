@@ -265,6 +265,8 @@ class PostUrl {
 class PutUrl {
   static const updateNoticePreferences = 'Party/UpdateMyNoticePreferences';
   static const revokeDelegation = 'Delegation/Revoke';
+  static const acceptAgendaRequest = 'AgendaItemRequest/Accept';
+  static const rejectAgendaRequest = 'AgendaItemRequest/Reject';
   static const updateMeetingRating = 'rating/Update';
   static const updateLiveKit = 'lk/Update';
   static const updateAgora = 'forDelete/Update';

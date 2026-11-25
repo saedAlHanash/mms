@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -5666,6 +5667,116 @@ class S {
   /// `Reports`
   String get scopeReports {
     return Intl.message('Reports', name: 'scopeReports', desc: '', args: []);
+  }
+
+  /// `Members' proposals`
+  String get reviewProposals {
+    return Intl.message(
+      'Members\' proposals',
+      name: 'reviewProposals',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reject with a reason, or accept once the item is on the agenda.`
+  String get reviewProposalsHint {
+    return Intl.message(
+      'Reject with a reason, or accept once the item is on the agenda.',
+      name: 'reviewProposalsHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{count} pending`
+  String pendingCount(Object count) {
+    return Intl.message(
+      '$count pending',
+      name: 'pendingCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Reject`
+  String get reject {
+    return Intl.message('Reject', name: 'reject', desc: '', args: []);
+  }
+
+  /// `Reject this proposal?`
+  String get rejectProposalTitle {
+    return Intl.message(
+      'Reject this proposal?',
+      name: 'rejectProposalTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tell the member why`
+  String get rejectProposalHint {
+    return Intl.message(
+      'Tell the member why',
+      name: 'rejectProposalHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The proposal was rejected`
+  String get proposalRejected {
+    return Intl.message(
+      'The proposal was rejected',
+      name: 'proposalRejected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accept`
+  String get acceptProposal {
+    return Intl.message('Accept', name: 'acceptProposal', desc: '', args: []);
+  }
+
+  /// `Add the item to the agenda on the web first, then accept the proposal here.`
+  String get acceptNeedsAgendaItem {
+    return Intl.message(
+      'Add the item to the agenda on the web first, then accept the proposal here.',
+      name: 'acceptNeedsAgendaItem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The proposal was accepted`
+  String get proposalAccepted {
+    return Intl.message(
+      'The proposal was accepted',
+      name: 'proposalAccepted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Which agenda item is it?`
+  String get acceptProposalTitle {
+    return Intl.message(
+      'Which agenda item is it?',
+      name: 'acceptProposalTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose the item you added for this proposal.`
+  String get acceptProposalHint {
+    return Intl.message(
+      'Choose the item you added for this proposal.',
+      name: 'acceptProposalHint',
+      desc: '',
+      args: [],
+    );
   }
 }
 

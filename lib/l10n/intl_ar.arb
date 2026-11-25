@@ -682,5 +682,17 @@
   "scopeMembers": "الأعضاء",
   "scopeTasks": "المهام",
   "scopeRules": "القواعد",
-  "scopeReports": "التقارير"
+  "scopeReports": "التقارير",
+  "reviewProposals": "اقتراحات الأعضاء",
+  "reviewProposalsHint": "ارفض مع ذكر السبب، أو اقبل بعد إضافة البند إلى جدول الأعمال.",
+  "pendingCount": "{count} بانتظار الرد",
+  "reject": "رفض",
+  "rejectProposalTitle": "رفض هذا الاقتراح؟",
+  "rejectProposalHint": "اكتب للعضو سبب الرفض",
+  "proposalRejected": "تم رفض الاقتراح",
+  "acceptProposal": "قبول",
+  "acceptNeedsAgendaItem": "أضف البند إلى جدول الأعمال من الويب أولاً، ثم اقبل الاقتراح من هنا.",
+  "proposalAccepted": "تم قبول الاقتراح",
+  "acceptProposalTitle": "ما البند المقابل في جدول الأعمال؟",
+  "acceptProposalHint": "اختر البند الذي أضفته لهذا الاقتراح."
 }

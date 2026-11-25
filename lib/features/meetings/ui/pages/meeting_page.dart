@@ -30,6 +30,8 @@ import 'package:mms/features/check_in/ui/widgets/check_in_card.dart';
 import 'package:mms/features/check_in/ui/widgets/check_in_code_entry.dart';
 import 'package:mms/features/quorum/bloc/quorum_cubit/quorum_cubit.dart';
 import 'package:mms/features/quorum/ui/widgets/quorum_card.dart';
+import 'package:mms/features/agenda_request/bloc/review_agenda_requests_cubit/review_agenda_requests_cubit.dart';
+import 'package:mms/features/agenda_request/ui/widgets/review_requests_section.dart';
 import 'package:mms/services/pip.dart';
 
 import 'package:mms/core/strings/enum_manager.dart';
@@ -60,6 +62,10 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
     meeting.status == MeetingStatus.running ? _liveCubit.start(meeting.id) : _liveCubit.stop();
     // Outside the live panel, refresh the quorum with every reload (attendance may have changed).
     if (QuorumCard.showsFor(meeting)) context.read<QuorumCubit>().getData(meetingId: meeting.id);
+    // Secretary tools.
+    if (ReviewRequestsSection.showsFor(meeting)) {
+      context.read<ReviewAgendaRequestsCubit>().getData(meetingId: meeting.id);
+    }
   }
 
   @override
@@ -225,6 +231,7 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
                                               item.status != MeetingStatus.canceled,
                                         ),
                                         AgendaRequestsSection(meeting: item),
+                                        if (ReviewRequestsSection.showsFor(item)) ReviewRequestsSection(meeting: item),
                                         if (item.discussions.isNotEmpty) ...[
                                           24.0.verticalSpace,
                                           SectionHeader(

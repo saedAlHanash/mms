@@ -1,3 +1,4 @@
+import 'package:mms/features/agenda_request/bloc/review_agenda_requests_cubit/review_agenda_requests_cubit.dart';
 import 'package:mms/features/delegation/bloc/delegations_cubit/delegations_cubit.dart';
 import 'package:mms/features/quorum/bloc/quorum_cubit/quorum_cubit.dart';
 import 'package:mms/features/check_in/bloc/check_in_code_cubit/check_in_code_cubit.dart';
@@ -240,6 +241,8 @@ final goRouter = GoRouter(
           BlocProvider(create: (_) => sl<MeetingLiveCubit>()),
           // Quorum outside the live panel; fetched by the page with the meeting.
           BlocProvider(create: (_) => sl<QuorumCubit>()),
+          // Secretary only: everyone's proposals (fetched by the page).
+          BlocProvider(create: (_) => sl<ReviewAgendaRequestsCubit>()),
           // Live updates (SignalR) for this meeting; closed with the route.
           BlocProvider(
             create: (_) => sl<MeetingHubCubit>()

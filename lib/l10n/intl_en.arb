@@ -682,5 +682,17 @@
   "scopeMembers": "Members",
   "scopeTasks": "Tasks",
   "scopeRules": "Rules",
-  "scopeReports": "Reports"
+  "scopeReports": "Reports",
+  "reviewProposals": "Members' proposals",
+  "reviewProposalsHint": "Reject with a reason, or accept once the item is on the agenda.",
+  "pendingCount": "{count} pending",
+  "reject": "Reject",
+  "rejectProposalTitle": "Reject this proposal?",
+  "rejectProposalHint": "Tell the member why",
+  "proposalRejected": "The proposal was rejected",
+  "acceptProposal": "Accept",
+  "acceptNeedsAgendaItem": "Add the item to the agenda on the web first, then accept the proposal here.",
+  "proposalAccepted": "The proposal was accepted",
+  "acceptProposalTitle": "Which agenda item is it?",
+  "acceptProposalHint": "Choose the item you added for this proposal."
 }
