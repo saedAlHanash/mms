@@ -5778,6 +5778,156 @@ class S {
       args: [],
     );
   }
+
+  /// `Workload`
+  String get workload {
+    return Intl.message('Workload', name: 'workload', desc: '', args: []);
+  }
+
+  /// `Tasks per member`
+  String get workloadSubtitle {
+    return Intl.message(
+      'Tasks per member',
+      name: 'workloadSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The workload isn't available`
+  String get workloadUnavailable {
+    return Intl.message(
+      'The workload isn\'t available',
+      name: 'workloadUnavailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No tasks yet`
+  String get noWorkload {
+    return Intl.message('No tasks yet', name: 'noWorkload', desc: '', args: []);
+  }
+
+  /// `Published tasks assigned in this committee will show here.`
+  String get noWorkloadDescription {
+    return Intl.message(
+      'Published tasks assigned in this committee will show here.',
+      name: 'noWorkloadDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Open`
+  String get workloadOpen {
+    return Intl.message('Open', name: 'workloadOpen', desc: '', args: []);
+  }
+
+  /// `Overdue`
+  String get workloadOverdue {
+    return Intl.message('Overdue', name: 'workloadOverdue', desc: '', args: []);
+  }
+
+  /// `Unassigned`
+  String get workloadUnassigned {
+    return Intl.message(
+      'Unassigned',
+      name: 'workloadUnassigned',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{count} open`
+  String workloadOpenCount(Object count) {
+    return Intl.message(
+      '$count open',
+      name: 'workloadOpenCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count} overdue`
+  String workloadOverdueCount(Object count) {
+    return Intl.message(
+      '$count overdue',
+      name: 'workloadOverdueCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count} due this week`
+  String workloadDueSoonCount(Object count) {
+    return Intl.message(
+      '$count due this week',
+      name: 'workloadDueSoonCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count} done this year`
+  String workloadDoneCount(Object count) {
+    return Intl.message(
+      '$count done this year',
+      name: 'workloadDoneCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `My tasks`
+  String get myTasks {
+    return Intl.message('My tasks', name: 'myTasks', desc: '', args: []);
+  }
+
+  /// `{name}'s tasks`
+  String tasksOf(Object name) {
+    return Intl.message(
+      '$name\'s tasks',
+      name: 'tasksOf',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `No tasks`
+  String get noTasks {
+    return Intl.message('No tasks', name: 'noTasks', desc: '', args: []);
+  }
+
+  /// `Due {date}`
+  String dueOn(Object date) {
+    return Intl.message('Due $date', name: 'dueOn', desc: '', args: [date]);
+  }
+
+  /// `On hold`
+  String get taskOnHold {
+    return Intl.message('On hold', name: 'taskOnHold', desc: '', args: []);
+  }
+
+  /// `In progress`
+  String get taskInProgress {
+    return Intl.message(
+      'In progress',
+      name: 'taskInProgress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancelled`
+  String get taskCancelled {
+    return Intl.message('Cancelled', name: 'taskCancelled', desc: '', args: []);
+  }
+
+  /// `Completed`
+  String get taskCompleted {
+    return Intl.message('Completed', name: 'taskCompleted', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

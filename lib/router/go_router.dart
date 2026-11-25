@@ -1,4 +1,6 @@
 import 'package:mms/features/agenda_request/bloc/review_agenda_requests_cubit/review_agenda_requests_cubit.dart';
+import 'package:mms/features/workload/bloc/workload_cubit/workload_cubit.dart';
+import 'package:mms/features/workload/ui/pages/workload_page.dart';
 import 'package:mms/features/delegation/bloc/delegations_cubit/delegations_cubit.dart';
 import 'package:mms/features/quorum/bloc/quorum_cubit/quorum_cubit.dart';
 import 'package:mms/features/check_in/bloc/check_in_code_cubit/check_in_code_cubit.dart';
@@ -78,6 +80,7 @@ class RouteName {
   static const notifications = '/notifications';
   static const checkIn = '/check-in';
   static const checkInCode = '/check-in-code';
+  static const workload = '/workload';
   static const circulations = '/circulations';
   static const circulation = '/circulation';
   static const fullScreen = '/full-screen';
@@ -195,6 +198,13 @@ final goRouter = GoRouter(
           ),
         ],
         child: const CommitteePage(),
+      ),
+    ),
+    _route(
+      RouteName.workload,
+      (_, state) => BlocProvider(
+        create: (_) => sl<WorkloadCubit>()..getData(committeeId: state.uri.queryParameters[RouteParam.id] ?? ''),
+        child: const WorkloadPage(),
       ),
     ),
     _route(

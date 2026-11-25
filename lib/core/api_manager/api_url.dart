@@ -105,6 +105,10 @@ class GetUrl {
 
   static const delegations = 'Delegation/GetList';
 
+  static const workload = 'Workload/Get';
+
+  static const workloadTasks = 'Workload/GetTasks';
+
   static const checkInCode = 'CheckIn/GetCode';
 
   static const interestsByMeeting = 'Interest/GetByMeeting';

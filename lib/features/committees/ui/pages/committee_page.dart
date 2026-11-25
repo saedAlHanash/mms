@@ -174,6 +174,16 @@ class CommitteePage extends StatelessWidget {
                           );
                         },
                       ),
+                      12.0.verticalSpace,
+                      _ActionCard(
+                        icon: Icons.assignment_ind_outlined,
+                        title: S.of(context).workload,
+                        subtitle: S.of(context).workloadSubtitle,
+                        onTap: () => context.pushNamed(
+                          RouteName.workload,
+                          queryParameters: {RouteParam.id: item.id},
+                        ),
+                      ),
                       DelegationsSection(committee: item),
                       24.0.verticalSpace,
                       // Description + statement.

@@ -425,6 +425,50 @@ enum DelegationScope {
       };
 }
 
+/// `MeetingTaskStatus`.
+enum MeetingTaskStatus {
+  onHold,
+  inProgress,
+  cancelled,
+  completed;
+
+  static MeetingTaskStatus fromIndex(Object? index) {
+    final i = int.tryParse(index?.toString() ?? '');
+    if (i == null || i < 0 || i >= values.length) return onHold;
+    return values[i];
+  }
+
+  String get label => switch (this) {
+        MeetingTaskStatus.onHold => S().taskOnHold,
+        MeetingTaskStatus.inProgress => S().taskInProgress,
+        MeetingTaskStatus.cancelled => S().taskCancelled,
+        MeetingTaskStatus.completed => S().taskCompleted,
+      };
+
+  StatusColors get colors => switch (this) {
+        MeetingTaskStatus.onHold => const StatusColors(
+            dot: AppColorManager.warning,
+            bg: AppColorManager.warningSoft,
+            fg: AppColorManager.warningText,
+          ),
+        MeetingTaskStatus.inProgress => const StatusColors(
+            dot: AppColorManager.primary500,
+            bg: AppColorManager.primary50,
+            fg: AppColorManager.primary700,
+          ),
+        MeetingTaskStatus.cancelled => const StatusColors(
+            dot: AppColorManager.neutral500,
+            bg: AppColorManager.neutral50,
+            fg: AppColorManager.neutral700,
+          ),
+        MeetingTaskStatus.completed => const StatusColors(
+            dot: AppColorManager.success,
+            bg: AppColorManager.successSoft,
+            fg: AppColorManager.successText,
+          ),
+      };
+}
+
 /// `LiveTimerAction` (chair / secretary timer controls).
 enum LiveTimerAction { start, pause, reset, addTime, setLength }
 
