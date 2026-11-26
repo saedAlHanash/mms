@@ -298,6 +298,10 @@ class PutUrl {
   static var updatePoll = '';
 }
 
+class PatchUrl {
+  static const updateAbsenceStatus = 'AbsenceRequest/UpdateStatus';
+}
+
 class DeleteUrl {
   static const guestSuggestion = 'Meeting/DeleteGuestSuggestion';
 

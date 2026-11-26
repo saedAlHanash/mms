@@ -144,6 +144,19 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "about": MessageLookupByLibrary.simpleMessage("من نحن"),
     "aboutUs": MessageLookupByLibrary.simpleMessage("معلومات عنا"),
+    "absenceAccepted": MessageLookupByLibrary.simpleMessage("تم قبول الاعتذار"),
+    "absenceAcceptedState": MessageLookupByLibrary.simpleMessage("معتذر"),
+    "absencePending": MessageLookupByLibrary.simpleMessage("بانتظار الرد"),
+    "absenceRejected": MessageLookupByLibrary.simpleMessage("تم رفض الاعتذار"),
+    "absenceRejectedState": MessageLookupByLibrary.simpleMessage("مرفوض"),
+    "absenceRequests": MessageLookupByLibrary.simpleMessage("طلبات الاعتذار"),
+    "absenceRequestsHint": MessageLookupByLibrary.simpleMessage(
+      "الأعضاء الذين طلبوا الاعتذار عن هذا الاجتماع.",
+    ),
+    "acceptAbsence": MessageLookupByLibrary.simpleMessage("قبول"),
+    "acceptAbsenceTitle": MessageLookupByLibrary.simpleMessage(
+      "قبول طلب الاعتذار؟",
+    ),
     "acceptNeedsAgendaItem": MessageLookupByLibrary.simpleMessage(
       "أضف البند إلى جدول الأعمال من الويب أولاً، ثم اقبل الاقتراح من هنا.",
     ),
@@ -1127,6 +1140,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "registeredBefore": MessageLookupByLibrary.simpleMessage("مسجل سابقًا"),
     "registered_before": MessageLookupByLibrary.simpleMessage("مسجل سابقًا"),
     "reject": MessageLookupByLibrary.simpleMessage("رفض"),
+    "rejectAbsenceTitle": MessageLookupByLibrary.simpleMessage(
+      "رفض طلب الاعتذار؟",
+    ),
     "rejectProposalHint": MessageLookupByLibrary.simpleMessage(
       "اكتب للعضو سبب الرفض",
     ),

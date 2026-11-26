@@ -144,6 +144,23 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "about": MessageLookupByLibrary.simpleMessage("About"),
     "aboutUs": MessageLookupByLibrary.simpleMessage("About Us"),
+    "absenceAccepted": MessageLookupByLibrary.simpleMessage(
+      "The absence was accepted",
+    ),
+    "absenceAcceptedState": MessageLookupByLibrary.simpleMessage("Excused"),
+    "absencePending": MessageLookupByLibrary.simpleMessage("Pending"),
+    "absenceRejected": MessageLookupByLibrary.simpleMessage(
+      "The absence was rejected",
+    ),
+    "absenceRejectedState": MessageLookupByLibrary.simpleMessage("Rejected"),
+    "absenceRequests": MessageLookupByLibrary.simpleMessage("Absence requests"),
+    "absenceRequestsHint": MessageLookupByLibrary.simpleMessage(
+      "Members who asked to be excused from this meeting.",
+    ),
+    "acceptAbsence": MessageLookupByLibrary.simpleMessage("Accept"),
+    "acceptAbsenceTitle": MessageLookupByLibrary.simpleMessage(
+      "Accept this absence request?",
+    ),
     "acceptNeedsAgendaItem": MessageLookupByLibrary.simpleMessage(
       "Add the item to the agenda on the web first, then accept the proposal here.",
     ),
@@ -1189,6 +1206,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Registered Before",
     ),
     "reject": MessageLookupByLibrary.simpleMessage("Reject"),
+    "rejectAbsenceTitle": MessageLookupByLibrary.simpleMessage(
+      "Reject this absence request?",
+    ),
     "rejectProposalHint": MessageLookupByLibrary.simpleMessage(
       "Tell the member why",
     ),

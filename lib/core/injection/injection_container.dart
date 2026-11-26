@@ -1,3 +1,4 @@
+import 'package:mms/features/absence/bloc/absence_review_cubit/absence_review_cubit.dart';
 import 'package:mms/features/agenda_request/bloc/review_agenda_requests_cubit/review_agenda_requests_cubit.dart';
 import 'package:mms/features/workload/bloc/workload_cubit/workload_cubit.dart';
 import 'package:mms/features/sub_committee/bloc/recommendations_cubit/recommendations_cubit.dart';
@@ -139,6 +140,7 @@ Future<void> init() async {
   sl.registerFactory(() => MeetingLiveCubit());
   sl.registerFactory(() => QuorumCubit());
   sl.registerFactory(() => DelegationsCubit());
+  sl.registerFactory(() => AbsenceReviewCubit());
   sl.registerFactory(() => ReviewAgendaRequestsCubit());
   sl.registerFactory(() => WorkloadCubit());
   sl.registerFactory(() => RecommendationsCubit());

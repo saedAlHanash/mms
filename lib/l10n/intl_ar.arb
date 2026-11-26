@@ -763,5 +763,15 @@
   "serviceConfirmed": "مؤكَّد",
   "serviceRejected": "مرفوض",
   "serviceDelivered": "تم التنفيذ",
-  "serviceCancelled": "ملغى"
+  "serviceCancelled": "ملغى",
+  "absenceRequests": "طلبات الاعتذار",
+  "absenceRequestsHint": "الأعضاء الذين طلبوا الاعتذار عن هذا الاجتماع.",
+  "acceptAbsence": "قبول",
+  "acceptAbsenceTitle": "قبول طلب الاعتذار؟",
+  "rejectAbsenceTitle": "رفض طلب الاعتذار؟",
+  "absenceAccepted": "تم قبول الاعتذار",
+  "absenceRejected": "تم رفض الاعتذار",
+  "absencePending": "بانتظار الرد",
+  "absenceAcceptedState": "معتذر",
+  "absenceRejectedState": "مرفوض"
 }

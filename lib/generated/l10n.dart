@@ -6403,6 +6403,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Absence requests`
+  String get absenceRequests {
+    return Intl.message(
+      'Absence requests',
+      name: 'absenceRequests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Members who asked to be excused from this meeting.`
+  String get absenceRequestsHint {
+    return Intl.message(
+      'Members who asked to be excused from this meeting.',
+      name: 'absenceRequestsHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accept`
+  String get acceptAbsence {
+    return Intl.message('Accept', name: 'acceptAbsence', desc: '', args: []);
+  }
+
+  /// `Accept this absence request?`
+  String get acceptAbsenceTitle {
+    return Intl.message(
+      'Accept this absence request?',
+      name: 'acceptAbsenceTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reject this absence request?`
+  String get rejectAbsenceTitle {
+    return Intl.message(
+      'Reject this absence request?',
+      name: 'rejectAbsenceTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The absence was accepted`
+  String get absenceAccepted {
+    return Intl.message(
+      'The absence was accepted',
+      name: 'absenceAccepted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The absence was rejected`
+  String get absenceRejected {
+    return Intl.message(
+      'The absence was rejected',
+      name: 'absenceRejected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pending`
+  String get absencePending {
+    return Intl.message('Pending', name: 'absencePending', desc: '', args: []);
+  }
+
+  /// `Excused`
+  String get absenceAcceptedState {
+    return Intl.message(
+      'Excused',
+      name: 'absenceAcceptedState',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rejected`
+  String get absenceRejectedState {
+    return Intl.message(
+      'Rejected',
+      name: 'absenceRejectedState',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

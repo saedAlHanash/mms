@@ -230,6 +230,7 @@ class AbsenceRequest {
     required this.meetingId,
     required this.status,
     required this.date,
+    this.reason = '',
   });
 
   final String id;
@@ -237,6 +238,14 @@ class AbsenceRequest {
   final String meetingId;
   final num status;
   final DateTime? date;
+  final String reason;
+
+  AbsenceStatus get absenceStatus => AbsenceStatus.fromIndex(status);
+
+  String get name => [party?.firstName, party?.middleName, party?.lastName]
+      .whereType<String>()
+      .where((e) => e.trim().isNotEmpty)
+      .join(' ');
 
   factory AbsenceRequest.fromJson(Map<String, dynamic> json) {
     return AbsenceRequest(
@@ -245,6 +254,7 @@ class AbsenceRequest {
       meetingId: json["meetingId"] ?? "",
       status: json["status"] ?? 0,
       date: DateTime.tryParse(json["date"] ?? ""),
+      reason: json["reason"] ?? "",
     );
   }
 
@@ -254,6 +264,7 @@ class AbsenceRequest {
         "meetingId": meetingId,
         "status": status,
         "date": date?.toIso8601String(),
+        "reason": reason,
       };
 }
 

@@ -1,3 +1,4 @@
+import 'package:mms/features/absence/bloc/absence_review_cubit/absence_review_cubit.dart';
 import 'package:mms/features/agenda_request/bloc/review_agenda_requests_cubit/review_agenda_requests_cubit.dart';
 import 'package:mms/features/workload/bloc/workload_cubit/workload_cubit.dart';
 import 'package:mms/features/sub_committee/bloc/recommendations_cubit/recommendations_cubit.dart';
@@ -266,6 +267,8 @@ final goRouter = GoRouter(
           // Secretary only: everyone's proposals and hall services (fetched by the page).
           BlocProvider(create: (_) => sl<ReviewAgendaRequestsCubit>()),
           BlocProvider(create: (_) => sl<HallServicesCubit>()),
+          // Chair only: answering absence requests.
+          BlocProvider(create: (_) => sl<AbsenceReviewCubit>()),
           // Live updates (SignalR) for this meeting; closed with the route.
           BlocProvider(
             create: (_) => sl<MeetingHubCubit>()

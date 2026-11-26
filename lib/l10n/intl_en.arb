@@ -763,5 +763,15 @@
   "serviceConfirmed": "Confirmed",
   "serviceRejected": "Rejected",
   "serviceDelivered": "Delivered",
-  "serviceCancelled": "Cancelled"
+  "serviceCancelled": "Cancelled",
+  "absenceRequests": "Absence requests",
+  "absenceRequestsHint": "Members who asked to be excused from this meeting.",
+  "acceptAbsence": "Accept",
+  "acceptAbsenceTitle": "Accept this absence request?",
+  "rejectAbsenceTitle": "Reject this absence request?",
+  "absenceAccepted": "The absence was accepted",
+  "absenceRejected": "The absence was rejected",
+  "absencePending": "Pending",
+  "absenceAcceptedState": "Excused",
+  "absenceRejectedState": "Rejected"
 }

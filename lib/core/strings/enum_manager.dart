@@ -708,6 +708,43 @@ enum CirculationOutcome {
 }
 
 /// Status of an agenda item proposal (`AgendaItemRequestStatus`).
+/// `AbsenceRequestStatus`.
+enum AbsenceStatus {
+  pending,
+  accepted,
+  rejected;
+
+  static AbsenceStatus fromIndex(Object? index) {
+    final i = int.tryParse(index?.toString() ?? '');
+    if (i == null || i < 0 || i >= values.length) return pending;
+    return values[i];
+  }
+
+  String get label => switch (this) {
+        AbsenceStatus.pending => S().absencePending,
+        AbsenceStatus.accepted => S().absenceAcceptedState,
+        AbsenceStatus.rejected => S().absenceRejectedState,
+      };
+
+  StatusColors get colors => switch (this) {
+        AbsenceStatus.pending => const StatusColors(
+            dot: AppColorManager.warning,
+            bg: AppColorManager.warningSoft,
+            fg: AppColorManager.warningText,
+          ),
+        AbsenceStatus.accepted => const StatusColors(
+            dot: AppColorManager.success,
+            bg: AppColorManager.successSoft,
+            fg: AppColorManager.successText,
+          ),
+        AbsenceStatus.rejected => const StatusColors(
+            dot: AppColorManager.danger,
+            bg: AppColorManager.dangerSoft,
+            fg: AppColorManager.dangerText,
+          ),
+      };
+}
+
 enum AgendaRequestStatus {
   pending,
   accepted,

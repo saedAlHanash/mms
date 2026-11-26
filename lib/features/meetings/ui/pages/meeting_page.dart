@@ -34,6 +34,7 @@ import 'package:mms/features/agenda_request/bloc/review_agenda_requests_cubit/re
 import 'package:mms/features/agenda_request/ui/widgets/review_requests_section.dart';
 import 'package:mms/features/hall_service/bloc/hall_services_cubit/hall_services_cubit.dart';
 import 'package:mms/features/hall_service/ui/widgets/hall_services_section.dart';
+import 'package:mms/features/absence/ui/widgets/absence_requests_section.dart';
 import 'package:mms/services/pip.dart';
 
 import 'package:mms/core/strings/enum_manager.dart';
@@ -234,6 +235,7 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
                                               item.status != MeetingStatus.canceled,
                                         ),
                                         AgendaRequestsSection(meeting: item),
+                                        if (AbsenceRequestsSection.showsFor(item)) AbsenceRequestsSection(meeting: item),
                                         if (ReviewRequestsSection.showsFor(item)) ReviewRequestsSection(meeting: item),
                                         if (HallServicesSection.showsFor(item)) HallServicesSection(meeting: item),
                                         if (item.discussions.isNotEmpty) ...[
