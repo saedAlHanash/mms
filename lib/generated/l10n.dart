@@ -6942,6 +6942,46 @@ class S {
   String get meetingsShort {
     return Intl.message('Short', name: 'meetingsShort', desc: '', args: []);
   }
+
+  /// `Remove from the queue`
+  String get liveRemoveFromQueue {
+    return Intl.message(
+      'Remove from the queue',
+      name: 'liveRemoveFromQueue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Their turn is passed over and recorded as skipped.`
+  String get liveSkipHint {
+    return Intl.message(
+      'Their turn is passed over and recorded as skipped.',
+      name: 'liveSkipHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Withdraw their request`
+  String get liveWithdrawFor {
+    return Intl.message(
+      'Withdraw their request',
+      name: 'liveWithdrawFor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `As if they withdrew it themselves, for example when they leave.`
+  String get liveWithdrawForHint {
+    return Intl.message(
+      'As if they withdrew it themselves, for example when they leave.',
+      name: 'liveWithdrawForHint',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

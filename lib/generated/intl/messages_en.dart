@@ -922,6 +922,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "livePlusMinute": MessageLookupByLibrary.simpleMessage("Add a minute"),
     "liveQueue": m26,
     "liveReconnecting": MessageLookupByLibrary.simpleMessage("Reconnecting…"),
+    "liveRemoveFromQueue": MessageLookupByLibrary.simpleMessage(
+      "Remove from the queue",
+    ),
     "liveRequestSent": MessageLookupByLibrary.simpleMessage(
       "Your request was sent",
     ),
@@ -933,6 +936,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Reset this item\'s timer?",
     ),
     "liveSkip": MessageLookupByLibrary.simpleMessage("Skip"),
+    "liveSkipHint": MessageLookupByLibrary.simpleMessage(
+      "Their turn is passed over and recorded as skipped.",
+    ),
     "liveSpeakerLimit": m27,
     "liveSpeakerLimitHint": MessageLookupByLibrary.simpleMessage(
       "Applies to the next speakers.",
@@ -947,6 +953,12 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "liveUpdates": MessageLookupByLibrary.simpleMessage("Live updates"),
     "liveWithdraw": MessageLookupByLibrary.simpleMessage("Withdraw"),
+    "liveWithdrawFor": MessageLookupByLibrary.simpleMessage(
+      "Withdraw their request",
+    ),
+    "liveWithdrawForHint": MessageLookupByLibrary.simpleMessage(
+      "As if they withdrew it themselves, for example when they leave.",
+    ),
     "liveYourPlace": m28,
     "liveYourTurn": MessageLookupByLibrary.simpleMessage("You have the floor"),
     "location": MessageLookupByLibrary.simpleMessage("Location"),

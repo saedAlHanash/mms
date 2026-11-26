@@ -399,11 +399,57 @@ class LiveQueueActions extends StatelessWidget {
         6.0.horizontalSpace,
         LiveIconButton(
           icon: Icons.close_rounded,
-          tooltip: S.of(context).liveSkip,
+          tooltip: S.of(context).liveRemoveFromQueue,
           danger: true,
-          onTap: sending ? null : () => cubit.skipSpeaker(request.id),
+          onTap: sending ? null : () => _remove(context, cubit),
         ),
       ],
     );
+  }
+
+  /// Skip (their turn is passed over) or withdraw the request for them.
+  Future<void> _remove(BuildContext context, MeetingLiveCubit cubit) async {
+    final s = S.of(context);
+    final skip = await AppBottomSheet.show<bool>(
+      context,
+      child: Column(
+        mainAxisSize: .min,
+        crossAxisAlignment: .stretch,
+        children: [
+          DrawableText(
+            text: s.liveRemoveFromQueue,
+            size: 17.0.sp,
+            fontWeight: .w700,
+            color: AppColorManager.neutral900,
+          ),
+          4.0.verticalSpace,
+          DrawableText(text: request.name, size: 13.0.sp, color: AppColorManager.neutral500),
+          16.0.verticalSpace,
+          Builder(
+            builder: (context) => MyButton(
+              variant: .tonal,
+              size: .medium,
+              text: s.liveSkip,
+              onTap: () => Navigator.pop(context, true),
+            ),
+          ),
+          8.0.verticalSpace,
+          DrawableText(text: s.liveSkipHint, size: 12.0.sp, color: AppColorManager.neutral500),
+          16.0.verticalSpace,
+          Builder(
+            builder: (context) => MyButton(
+              variant: .dangerSoft,
+              size: .medium,
+              text: s.liveWithdrawFor,
+              onTap: () => Navigator.pop(context, false),
+            ),
+          ),
+          8.0.verticalSpace,
+          DrawableText(text: s.liveWithdrawForHint, size: 12.0.sp, color: AppColorManager.neutral500),
+        ],
+      ),
+    );
+    if (skip == null) return;
+    skip ? await cubit.skipSpeaker(request.id) : await cubit.withdrawFor(request.id);
   }
 }

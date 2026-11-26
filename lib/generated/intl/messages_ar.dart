@@ -878,6 +878,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "liveReconnecting": MessageLookupByLibrary.simpleMessage(
       "جارٍ إعادة الاتصال…",
     ),
+    "liveRemoveFromQueue": MessageLookupByLibrary.simpleMessage(
+      "إزالة من قائمة الانتظار",
+    ),
     "liveRequestSent": MessageLookupByLibrary.simpleMessage("أُرسل طلبك"),
     "liveReset": MessageLookupByLibrary.simpleMessage("إعادة ضبط"),
     "liveResetDescription": MessageLookupByLibrary.simpleMessage(
@@ -887,6 +890,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "إعادة ضبط مؤقّت هذا البند؟",
     ),
     "liveSkip": MessageLookupByLibrary.simpleMessage("تخطّي"),
+    "liveSkipHint": MessageLookupByLibrary.simpleMessage(
+      "يُتجاوز دوره ويُسجَّل الطلب كمتخطّى.",
+    ),
     "liveSpeakerLimit": m27,
     "liveSpeakerLimitHint": MessageLookupByLibrary.simpleMessage(
       "يُطبّق على المتحدثين القادمين.",
@@ -901,6 +907,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "liveUpdates": MessageLookupByLibrary.simpleMessage("التحديثات المباشرة"),
     "liveWithdraw": MessageLookupByLibrary.simpleMessage("سحب الطلب"),
+    "liveWithdrawFor": MessageLookupByLibrary.simpleMessage("سحب طلبه"),
+    "liveWithdrawForHint": MessageLookupByLibrary.simpleMessage(
+      "كأنه سحبه بنفسه، مثلاً عند مغادرته.",
+    ),
     "liveYourPlace": m28,
     "liveYourTurn": MessageLookupByLibrary.simpleMessage("الكلمة لك الآن"),
     "location": MessageLookupByLibrary.simpleMessage("الموقع"),

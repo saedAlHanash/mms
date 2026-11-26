@@ -128,6 +128,10 @@ class MeetingLiveCubit extends Cubit<MeetingLiveInitial> {
   Future<void> skipSpeaker(String requestId) =>
       _send(PostUrl.liveSkipSpeaker, SpeakerIdRequest(id: requestId).toJson());
 
+  /// Withdraws someone's waiting request on their behalf (the lead may).
+  Future<void> withdrawFor(String requestId) =>
+      _send(PostUrl.withdrawFloor, SpeakerIdRequest(id: requestId).toJson());
+
   /// 0 means no limit.
   Future<void> setSpeakerLimit(int seconds) => _send(
         PostUrl.liveSetSpeakerLimit,

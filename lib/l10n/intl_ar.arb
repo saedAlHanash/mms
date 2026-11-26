@@ -824,5 +824,9 @@
   "complianceReached": "تجاوز الحد",
   "meetingsOnTrack": "على المسار",
   "meetingsBehind": "متأخر",
-  "meetingsShort": "دون الحد"
+  "meetingsShort": "دون الحد",
+  "liveRemoveFromQueue": "إزالة من قائمة الانتظار",
+  "liveSkipHint": "يُتجاوز دوره ويُسجَّل الطلب كمتخطّى.",
+  "liveWithdrawFor": "سحب طلبه",
+  "liveWithdrawForHint": "كأنه سحبه بنفسه، مثلاً عند مغادرته."
 }
