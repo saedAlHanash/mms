@@ -7007,6 +7007,111 @@ class S {
       args: [],
     );
   }
+
+  /// `Decisions`
+  String get decisions {
+    return Intl.message('Decisions', name: 'decisions', desc: '', args: []);
+  }
+
+  /// `{count} decisions`
+  String decisionsCount(Object count) {
+    return Intl.message(
+      '$count decisions',
+      name: 'decisionsCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count} reservations`
+  String reservationsCount(Object count) {
+    return Intl.message(
+      '$count reservations',
+      name: 'reservationsCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Reserve`
+  String get reserveOnDecision {
+    return Intl.message(
+      'Reserve',
+      name: 'reserveOnDecision',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reserve on this decision?`
+  String get reserveTitle {
+    return Intl.message(
+      'Reserve on this decision?',
+      name: 'reserveTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Why do you reserve?`
+  String get reserveHint {
+    return Intl.message(
+      'Why do you reserve?',
+      name: 'reserveHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your reservation was recorded`
+  String get reservationSent {
+    return Intl.message(
+      'Your reservation was recorded',
+      name: 'reservationSent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your reservation`
+  String get yourReservation {
+    return Intl.message(
+      'Your reservation',
+      name: 'yourReservation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Withdraw`
+  String get withdrawReservation {
+    return Intl.message(
+      'Withdraw',
+      name: 'withdrawReservation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Withdraw your reservation?`
+  String get withdrawReservationTitle {
+    return Intl.message(
+      'Withdraw your reservation?',
+      name: 'withdrawReservationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your reservation was withdrawn`
+  String get reservationWithdrawn {
+    return Intl.message(
+      'Your reservation was withdrawn',
+      name: 'reservationWithdrawn',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

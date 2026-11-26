@@ -236,6 +236,8 @@ class PostUrl {
 
   static const attendeeOnlineToken = 'Meeting/GetAttendeeOnlineMeetingToken';
 
+  static const reserveDecision = 'Decision/ReserveDecision';
+
   static const raiseRecommendation = 'SubCommittee/Raise';
 
   static const addHallService = 'HallServiceRequest/Add';
@@ -324,6 +326,7 @@ class DeleteUrl {
   static const withdrawInterest = 'Interest/Withdraw';
 
   static const agendaRequest = 'AgendaItemRequest/Delete';
+  static const withdrawReservation = 'Decision/WithdrawReservation';
   static const deleteMeetingRating = 'rating/Delete';
   static const deleteLiveKit = 'lk/Delete';
   static const deleteAgora = 'forDelete/Delete';

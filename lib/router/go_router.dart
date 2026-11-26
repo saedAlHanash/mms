@@ -1,3 +1,4 @@
+import 'package:mms/features/decision/bloc/decision_reservation_cubit/decision_reservation_cubit.dart';
 import 'package:mms/features/compliance/bloc/compliance_cubit/compliance_cubit.dart';
 import 'package:mms/features/compliance/ui/pages/compliance_page.dart';
 import 'package:mms/features/minutes/bloc/minutes_cubit/minutes_cubit.dart';
@@ -282,6 +283,8 @@ final goRouter = GoRouter(
           BlocProvider(create: (_) => sl<AbsenceReviewCubit>()),
           // Minutes approval (fetched by the page with the meeting).
           BlocProvider(create: (_) => sl<MinutesCubit>()),
+          // Reserving on a decision (members).
+          BlocProvider(create: (_) => sl<DecisionReservationCubit>()),
           // Live updates (SignalR) for this meeting; closed with the route.
           BlocProvider(
             create: (_) => sl<MeetingHubCubit>()

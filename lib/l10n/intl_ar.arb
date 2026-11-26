@@ -831,5 +831,16 @@
   "liveWithdrawForHint": "كأنه سحبه بنفسه، مثلاً عند مغادرته.",
   "inHall": "{count} في القاعة",
   "quantity": "الكمية",
-  "equipmentDetailsHint": "ملاحظات (اختياري)"
+  "equipmentDetailsHint": "ملاحظات (اختياري)",
+  "decisions": "القرارات",
+  "decisionsCount": "{count} قرارات",
+  "reservationsCount": "{count} تحفظات",
+  "reserveOnDecision": "تحفّظ",
+  "reserveTitle": "التحفّظ على هذا القرار؟",
+  "reserveHint": "ما سبب تحفّظك؟",
+  "reservationSent": "تم تسجيل تحفّظك",
+  "yourReservation": "تحفّظك",
+  "withdrawReservation": "سحب التحفّظ",
+  "withdrawReservationTitle": "سحب تحفّظك؟",
+  "reservationWithdrawn": "تم سحب تحفّظك"
 }

@@ -326,12 +326,25 @@ class Decision {
     required this.date,
     required this.number,
     required this.year,
+    this.isPublished = true,
+    this.agendaItemId = '',
+    this.reservations = const [],
   });
 
   final String id;
   final String meetingId;
   final String statement;
   final DateTime? date;
+
+  /// Unpublished decisions reach only the chair and the secretary.
+  final bool isPublished;
+  final String agendaItemId;
+
+  /// Members who reserved on the decision, with their reasons.
+  final List<DecisionReservation> reservations;
+
+  DecisionReservation? get myReservation =>
+      reservations.firstWhereOrNull((e) => e.partyId == AppProvider.getParty.id);
 
   /// Register number and year, null until the decision is published.
   final int? number;
@@ -348,6 +361,14 @@ class Decision {
       date: DateTime.tryParse(json["date"] ?? ""),
       number: int.tryParse(json["number"]?.toString() ?? ""),
       year: int.tryParse(json["year"]?.toString() ?? ""),
+      isPublished: json["isPublished"] ?? true,
+      agendaItemId: json["agendaItemId"]?.toString() ?? "",
+      reservations: json["decisionReservations"] is List
+          ? (json["decisionReservations"] as List)
+              .whereType<Map<String, dynamic>>()
+              .map(DecisionReservation.fromJson)
+              .toList()
+          : const [],
     );
   }
 
@@ -358,6 +379,40 @@ class Decision {
         "date": date?.toIso8601String(),
         "number": number,
         "year": year,
+        "isPublished": isPublished,
+        "agendaItemId": agendaItemId,
+        "decisionReservations": reservations.map((e) => e.toJson()).toList(),
+      };
+}
+
+/// `DecisionReservationDto`.
+class DecisionReservation {
+  const DecisionReservation({required this.id, required this.partyId, required this.name, required this.reason});
+
+  final String id;
+  final String partyId;
+  final String name;
+  final String reason;
+
+  factory DecisionReservation.fromJson(Map<String, dynamic> json) {
+    final party = json["party"] is Map ? json["party"] as Map : const {};
+    final name = [party["firstName"], party["middleName"], party["lastName"]]
+        .map((e) => e?.toString().trim() ?? "")
+        .where((e) => e.isNotEmpty)
+        .join(" ");
+    return DecisionReservation(
+      id: json["id"]?.toString() ?? "",
+      partyId: (json["partyId"] ?? party["id"] ?? "").toString(),
+      name: name,
+      reason: json["reason"]?.toString() ?? "",
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "partyId": partyId,
+        "party": {"id": partyId, "firstName": name},
+        "reason": reason,
       };
 }
 

@@ -831,5 +831,16 @@
   "liveWithdrawForHint": "As if they withdrew it themselves, for example when they leave.",
   "inHall": "{count} in the hall",
   "quantity": "Quantity",
-  "equipmentDetailsHint": "Notes (optional)"
+  "equipmentDetailsHint": "Notes (optional)",
+  "decisions": "Decisions",
+  "decisionsCount": "{count} decisions",
+  "reservationsCount": "{count} reservations",
+  "reserveOnDecision": "Reserve",
+  "reserveTitle": "Reserve on this decision?",
+  "reserveHint": "Why do you reserve?",
+  "reservationSent": "Your reservation was recorded",
+  "yourReservation": "Your reservation",
+  "withdrawReservation": "Withdraw",
+  "withdrawReservationTitle": "Withdraw your reservation?",
+  "reservationWithdrawn": "Your reservation was withdrawn"
 }

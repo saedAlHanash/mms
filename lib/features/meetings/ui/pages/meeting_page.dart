@@ -37,6 +37,7 @@ import 'package:mms/features/hall_service/ui/widgets/hall_services_section.dart'
 import 'package:mms/features/absence/ui/widgets/absence_requests_section.dart';
 import 'package:mms/features/minutes/bloc/minutes_cubit/minutes_cubit.dart';
 import 'package:mms/features/minutes/ui/widgets/minutes_section.dart';
+import 'package:mms/features/decision/ui/widgets/decisions_section.dart';
 import 'package:mms/services/pip.dart';
 
 import 'package:mms/core/strings/enum_manager.dart';
@@ -257,6 +258,7 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
                                           10.0.verticalSpace,
                                           DiscussionsTree(discussions: item.discussions),
                                         ],
+                                        if (DecisionsSection.showsFor(item)) DecisionsSection(meeting: item),
                                         if (MinutesSection.showsFor(item)) MinutesSection(meeting: item),
                                         // GoalListWidget(goals: item.goals),
                                       ],
