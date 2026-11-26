@@ -708,6 +708,51 @@ enum CirculationOutcome {
 }
 
 /// Status of an agenda item proposal (`AgendaItemRequestStatus`).
+/// `ComplianceLevel`: 0 Ok, 1 Warning, 2 Reached (over the limit).
+enum ComplianceLevel {
+  ok,
+  warning,
+  reached;
+
+  static ComplianceLevel fromIndex(Object? index) {
+    final i = int.tryParse(index?.toString() ?? '');
+    if (i == null || i < 0 || i >= values.length) return ok;
+    return values[i];
+  }
+
+  /// For a member's absences.
+  String get label => switch (this) {
+        ComplianceLevel.ok => S().complianceOk,
+        ComplianceLevel.warning => S().complianceWarning,
+        ComplianceLevel.reached => S().complianceReached,
+      };
+
+  /// For the committee's meetings against the yearly minimum.
+  String get meetingsLabel => switch (this) {
+        ComplianceLevel.ok => S().meetingsOnTrack,
+        ComplianceLevel.warning => S().meetingsBehind,
+        ComplianceLevel.reached => S().meetingsShort,
+      };
+
+  StatusColors get colors => switch (this) {
+        ComplianceLevel.ok => const StatusColors(
+            dot: AppColorManager.success,
+            bg: AppColorManager.successSoft,
+            fg: AppColorManager.successText,
+          ),
+        ComplianceLevel.warning => const StatusColors(
+            dot: AppColorManager.warning,
+            bg: AppColorManager.warningSoft,
+            fg: AppColorManager.warningText,
+          ),
+        ComplianceLevel.reached => const StatusColors(
+            dot: AppColorManager.danger,
+            bg: AppColorManager.dangerSoft,
+            fg: AppColorManager.dangerText,
+          ),
+      };
+}
+
 /// `AbsenceRequestStatus`.
 enum AbsenceStatus {
   pending,

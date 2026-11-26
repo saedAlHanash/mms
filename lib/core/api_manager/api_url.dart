@@ -111,6 +111,8 @@ class GetUrl {
 
   static const minuteApprovals = 'Minute/GetMinuteApprovals';
 
+  static const complianceStatus = 'Compliance/GetStatus';
+
   static const workload = 'Workload/Get';
 
   static const workloadTasks = 'Workload/GetTasks';

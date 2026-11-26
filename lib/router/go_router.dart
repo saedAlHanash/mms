@@ -1,3 +1,5 @@
+import 'package:mms/features/compliance/bloc/compliance_cubit/compliance_cubit.dart';
+import 'package:mms/features/compliance/ui/pages/compliance_page.dart';
 import 'package:mms/features/minutes/bloc/minutes_cubit/minutes_cubit.dart';
 import 'package:mms/features/absence/bloc/absence_review_cubit/absence_review_cubit.dart';
 import 'package:mms/features/agenda_request/bloc/review_agenda_requests_cubit/review_agenda_requests_cubit.dart';
@@ -86,6 +88,7 @@ class RouteName {
   static const checkIn = '/check-in';
   static const checkInCode = '/check-in-code';
   static const workload = '/workload';
+  static const compliance = '/compliance';
   static const recommendations = '/recommendations';
   static const circulations = '/circulations';
   static const circulation = '/circulation';
@@ -204,6 +207,13 @@ final goRouter = GoRouter(
           ),
         ],
         child: const CommitteePage(),
+      ),
+    ),
+    _route(
+      RouteName.compliance,
+      (_, state) => BlocProvider(
+        create: (_) => sl<ComplianceCubit>()..getData(committeeId: state.uri.queryParameters[RouteParam.id] ?? ''),
+        child: const CompliancePage(),
       ),
     ),
     _route(

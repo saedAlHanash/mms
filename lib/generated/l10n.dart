@@ -6737,6 +6737,211 @@ class S {
   String get rejectedState {
     return Intl.message('Rejected', name: 'rejectedState', desc: '', args: []);
   }
+
+  /// `Attendance`
+  String get attendanceCompliance {
+    return Intl.message(
+      'Attendance',
+      name: 'attendanceCompliance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Meetings this year and members at risk`
+  String get attendanceSubtitleLead {
+    return Intl.message(
+      'Meetings this year and members at risk',
+      name: 'attendanceSubtitleLead',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your attendance this year`
+  String get attendanceSubtitleMember {
+    return Intl.message(
+      'Your attendance this year',
+      name: 'attendanceSubtitleMember',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Attendance isn't available`
+  String get attendanceUnavailable {
+    return Intl.message(
+      'Attendance isn\'t available',
+      name: 'attendanceUnavailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Members at risk`
+  String get membersAtRisk {
+    return Intl.message(
+      'Members at risk',
+      name: 'membersAtRisk',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My attendance`
+  String get myAttendance {
+    return Intl.message(
+      'My attendance',
+      name: 'myAttendance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All members`
+  String get allMembers {
+    return Intl.message('All members', name: 'allMembers', desc: '', args: []);
+  }
+
+  /// `Meetings this year`
+  String get meetingsThisYear {
+    return Intl.message(
+      'Meetings this year',
+      name: 'meetingsThisYear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Held`
+  String get meetingsHeld {
+    return Intl.message('Held', name: 'meetingsHeld', desc: '', args: []);
+  }
+
+  /// `Scheduled`
+  String get meetingsScheduledLabel {
+    return Intl.message(
+      'Scheduled',
+      name: 'meetingsScheduledLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yearly minimum`
+  String get meetingsMinimum {
+    return Intl.message(
+      'Yearly minimum',
+      name: 'meetingsMinimum',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{count} more needed to reach the minimum`
+  String meetingsMissing(Object count) {
+    return Intl.message(
+      '$count more needed to reach the minimum',
+      name: 'meetingsMissing',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `This committee has no attendance rule.`
+  String get noComplianceRule {
+    return Intl.message(
+      'This committee has no attendance rule.',
+      name: 'noComplianceRule',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Attended {attended} of {invited}`
+  String attendedOf(Object attended, Object invited) {
+    return Intl.message(
+      'Attended $attended of $invited',
+      name: 'attendedOf',
+      desc: '',
+      args: [attended, invited],
+    );
+  }
+
+  /// `{count} absences`
+  String absencesCount(Object count) {
+    return Intl.message(
+      '$count absences',
+      name: 'absencesCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count} excused`
+  String excusedCount(Object count) {
+    return Intl.message(
+      '$count excused',
+      name: 'excusedCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count} in a row`
+  String absencesInRow(Object count) {
+    return Intl.message(
+      '$count in a row',
+      name: 'absencesInRow',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `OK`
+  String get complianceOk {
+    return Intl.message('OK', name: 'complianceOk', desc: '', args: []);
+  }
+
+  /// `Near the limit`
+  String get complianceWarning {
+    return Intl.message(
+      'Near the limit',
+      name: 'complianceWarning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Over the limit`
+  String get complianceReached {
+    return Intl.message(
+      'Over the limit',
+      name: 'complianceReached',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `On track`
+  String get meetingsOnTrack {
+    return Intl.message(
+      'On track',
+      name: 'meetingsOnTrack',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Behind`
+  String get meetingsBehind {
+    return Intl.message('Behind', name: 'meetingsBehind', desc: '', args: []);
+  }
+
+  /// `Short`
+  String get meetingsShort {
+    return Intl.message('Short', name: 'meetingsShort', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
