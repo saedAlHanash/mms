@@ -621,8 +621,15 @@ class Minutes {
   final String minuteId;
   final String name;
   final DateTime? date;
+
+  /// `MinuteStatus`: 0 draft (under review), 1 published.
   final num status;
   final Media? media;
+
+  /// `MinuteDto.id` (older payloads used `minuteId`).
+  String get effectiveId => id.isNotEmpty ? id : minuteId;
+
+  bool get isPublished => status == 1;
 
   factory Minutes.fromJson(Map<String, dynamic> json) {
     return Minutes(

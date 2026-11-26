@@ -107,6 +107,10 @@ class GetUrl {
 
   static const optionVoters = 'Vote/GetOptionVoters';
 
+  static const minuteApprovalPath = 'Minute/GetApprovalPath';
+
+  static const minuteApprovals = 'Minute/GetMinuteApprovals';
+
   static const workload = 'Workload/Get';
 
   static const workloadTasks = 'Workload/GetTasks';
@@ -221,6 +225,10 @@ class PostUrl {
   static const circulationVote = 'Circulation/Vote';
 
   static const addDelegation = 'Delegation/Add';
+
+  static const partyMinuteApproval = 'Minute/GetPartyApproval';
+
+  static const updateMinuteApproval = 'Minute/UpdateMinuteApproval';
 
   static const raiseRecommendation = 'SubCommittee/Raise';
 

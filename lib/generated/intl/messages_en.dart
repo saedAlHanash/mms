@@ -81,64 +81,70 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m26(count) =>
       "${Intl.plural(count, zero: 'No members', one: '1 member', other: '${count} members')}";
 
-  static String m27(count) => "My proposals (${count})";
+  static String m27(date) => "Answer by ${date}";
 
-  static String m28(count) => "Not voted yet (${count})";
+  static String m28(approved, total) => "${approved} of ${total} approved";
 
-  static String m29(count) => "${count} pending";
+  static String m29(count) => "${count} rejected";
 
-  static String m30(present, required) =>
+  static String m30(count) => "My proposals (${count})";
+
+  static String m31(count) => "Not voted yet (${count})";
+
+  static String m32(count) => "${count} pending";
+
+  static String m33(present, required) =>
       "Quorum met: ${present} of ${required}";
 
-  static String m31(present, required) =>
+  static String m34(present, required) =>
       "No quorum: ${present} of ${required}";
 
-  static String m32(present, required) =>
+  static String m35(present, required) =>
       "${present} present of ${required} required";
 
-  static String m33(count) => "Includes ${count} by proxy";
+  static String m36(count) => "Includes ${count} by proxy";
 
-  static String m34(time) => "Recorded when the meeting started, at ${time}";
+  static String m37(time) => "Recorded when the meeting started, at ${time}";
 
-  static String m35(value) => "Needs ${value} members";
+  static String m38(value) => "Needs ${value} members";
 
-  static String m36(value, base) => "Needs ${value}% of ${base} members";
+  static String m39(value, base) => "Needs ${value}% of ${base} members";
 
-  static String m37(hall, remote) => "${hall} in the hall · ${remote} remote";
+  static String m40(hall, remote) => "${hall} in the hall · ${remote} remote";
 
-  static String m38(name) => "Raised by ${name}";
+  static String m41(name) => "Raised by ${name}";
 
-  static String m39(name) => "Answered by ${name}";
+  static String m42(name) => "Answered by ${name}";
 
-  static String m40(name) => "${name} will stop acting for you right away.";
+  static String m43(name) => "${name} will stop acting for you right away.";
 
-  static String m41(count) => "Show sub-items (${count})";
+  static String m44(count) => "Show sub-items (${count})";
 
-  static String m42(count) => "Sub-committees (${count})";
+  static String m45(count) => "Sub-committees (${count})";
 
-  static String m43(count) =>
+  static String m46(count) =>
       "${Intl.plural(count, zero: 'No tasks', one: '1 task', other: '${count} tasks')}";
 
-  static String m44(name) => "${name}\'s tasks";
+  static String m47(name) => "${name}\'s tasks";
 
-  static String m45(name) => "To ${name}";
+  static String m48(name) => "To ${name}";
 
-  static String m46(voted, total) => "${voted} of ${total} voted";
+  static String m49(voted, total) => "${voted} of ${total} voted";
 
-  static String m47(count) => "${count} awaiting your vote";
+  static String m50(count) => "${count} awaiting your vote";
 
-  static String m48(count) => "${count} done this year";
+  static String m51(count) => "${count} done this year";
 
-  static String m49(count) => "${count} due this week";
+  static String m52(count) => "${count} due this week";
 
-  static String m50(count) => "${count} open";
+  static String m53(count) => "${count} open";
 
-  static String m51(count) => "${count} overdue";
+  static String m54(count) => "${count} overdue";
 
-  static String m52(choice) =>
+  static String m55(choice) =>
       "You voted ${choice}. You can change it until it closes.";
 
-  static String m53(choice) => "Your vote: ${choice}";
+  static String m56(choice) => "Your vote: ${choice}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -223,6 +229,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Approve this recommendation?",
     ),
     "approved": MessageLookupByLibrary.simpleMessage("Approved"),
+    "approvedState": MessageLookupByLibrary.simpleMessage("Approved"),
     "ar": MessageLookupByLibrary.simpleMessage("Arabic"),
     "archived": MessageLookupByLibrary.simpleMessage("Published"),
     "at": MessageLookupByLibrary.simpleMessage("At"),
@@ -943,13 +950,36 @@ class MessageLookup extends MessageLookupByLibrary {
     "middleName": MessageLookupByLibrary.simpleMessage("Middle Name"),
     "min": MessageLookupByLibrary.simpleMessage("Min"),
     "minutes": MessageLookupByLibrary.simpleMessage("Minutes"),
+    "minutesAnswerBy": m27,
+    "minutesAnswersClosed": MessageLookupByLibrary.simpleMessage(
+      "The deadline for answering has passed.",
+    ),
+    "minutesApprovals": MessageLookupByLibrary.simpleMessage(
+      "Members\' answers",
+    ),
+    "minutesApprovedDone": MessageLookupByLibrary.simpleMessage(
+      "You approved the minutes",
+    ),
+    "minutesApprovedOf": m28,
+    "minutesChairLast": MessageLookupByLibrary.simpleMessage(
+      "The chair approves after the other members.",
+    ),
+    "minutesChairWaits": MessageLookupByLibrary.simpleMessage(
+      "You can approve once the other members have answered. You can reject at any time.",
+    ),
+    "minutesConfirmed": MessageLookupByLibrary.simpleMessage("Confirmed"),
+    "minutesRejectedCount": m29,
+    "minutesRejectedDone": MessageLookupByLibrary.simpleMessage(
+      "Your rejection was sent",
+    ),
+    "minutesUnderReview": MessageLookupByLibrary.simpleMessage("Under review"),
     "muteMic": MessageLookupByLibrary.simpleMessage("Mute microphone"),
     "myComment": MessageLookupByLibrary.simpleMessage("My comment"),
     "myInfo": MessageLookupByLibrary.simpleMessage("My Info"),
     "myLocation": MessageLookupByLibrary.simpleMessage("My Location"),
     "myOrder": MessageLookupByLibrary.simpleMessage("My Orders"),
     "myOrders": MessageLookupByLibrary.simpleMessage("My Orders"),
-    "myProposals": m27,
+    "myProposals": m30,
     "myTasks": MessageLookupByLibrary.simpleMessage("My tasks"),
     "name": MessageLookupByLibrary.simpleMessage("name"),
     "nameEmpty": MessageLookupByLibrary.simpleMessage("Name field is required"),
@@ -1049,12 +1079,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "notACirculationVoter": MessageLookupByLibrary.simpleMessage(
       "You are not a voter on this decision.",
     ),
+    "notAnsweredYet": MessageLookupByLibrary.simpleMessage("No answer yet"),
     "notConnected": MessageLookupByLibrary.simpleMessage("Not connected"),
     "notLoggedIn": MessageLookupByLibrary.simpleMessage(
       "You are not signed in",
     ),
     "notVotedYet": MessageLookupByLibrary.simpleMessage("Not voted"),
-    "notVotedYetCount": m28,
+    "notVotedYetCount": m31,
     "notYet": MessageLookupByLibrary.simpleMessage("Not Yet"),
     "noteCannotHear": MessageLookupByLibrary.simpleMessage("I can\'t hear"),
     "noteCannotSee": MessageLookupByLibrary.simpleMessage(
@@ -1069,6 +1100,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "ok": MessageLookupByLibrary.simpleMessage("OK"),
     "onlineMeeting": MessageLookupByLibrary.simpleMessage("Online meeting"),
     "oops": MessageLookupByLibrary.simpleMessage("Oops!"),
+    "openMinutes": MessageLookupByLibrary.simpleMessage("Open the minutes"),
     "or": MessageLookupByLibrary.simpleMessage("or"),
     "order_summary": MessageLookupByLibrary.simpleMessage("Order summary"),
     "other": MessageLookupByLibrary.simpleMessage("Other"),
@@ -1090,7 +1122,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "paymentMethod": MessageLookupByLibrary.simpleMessage("Payment Method"),
     "payment_summary": MessageLookupByLibrary.simpleMessage("Payment Summary"),
     "pending": MessageLookupByLibrary.simpleMessage("Pending"),
-    "pendingCount": m29,
+    "pendingCount": m32,
     "phoneCall": MessageLookupByLibrary.simpleMessage("Phone call"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
     "phoneNumberCanNotBeChange": MessageLookupByLibrary.simpleMessage(
@@ -1163,14 +1195,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "quorumChairRequiredYou": MessageLookupByLibrary.simpleMessage(
       "Your presence is required for quorum.",
     ),
-    "quorumMet": m30,
-    "quorumNotMet": m31,
-    "quorumPresentOfRequired": m32,
-    "quorumProxies": m33,
-    "quorumRecordedAt": m34,
-    "quorumRuleCount": m35,
-    "quorumRulePercent": m36,
-    "quorumSplit": m37,
+    "quorumMet": m33,
+    "quorumNotMet": m34,
+    "quorumPresentOfRequired": m35,
+    "quorumProxies": m36,
+    "quorumRecordedAt": m37,
+    "quorumRuleCount": m38,
+    "quorumRulePercent": m39,
+    "quorumSplit": m40,
     "quorumStatusMet": MessageLookupByLibrary.simpleMessage("Met"),
     "quorumStatusNotMet": MessageLookupByLibrary.simpleMessage("Not met"),
     "quorumTitle": MessageLookupByLibrary.simpleMessage("Quorum"),
@@ -1178,7 +1210,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "raiseRecommendation": MessageLookupByLibrary.simpleMessage(
       "Raise a recommendation",
     ),
-    "raisedBy": m38,
+    "raisedBy": m41,
     "rated": MessageLookupByLibrary.simpleMessage("Rated"),
     "rePassword": MessageLookupByLibrary.simpleMessage("Confirm Password"),
     "readOnly": MessageLookupByLibrary.simpleMessage("Read only"),
@@ -1220,6 +1252,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "rejectAbsenceTitle": MessageLookupByLibrary.simpleMessage(
       "Reject this absence request?",
     ),
+    "rejectMinutesHint": MessageLookupByLibrary.simpleMessage(
+      "What should be corrected?",
+    ),
+    "rejectMinutesTitle": MessageLookupByLibrary.simpleMessage(
+      "Reject the minutes?",
+    ),
     "rejectProposalHint": MessageLookupByLibrary.simpleMessage(
       "Tell the member why",
     ),
@@ -1230,6 +1268,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Reject this recommendation?",
     ),
     "rejected": MessageLookupByLibrary.simpleMessage("Rejected"),
+    "rejectedState": MessageLookupByLibrary.simpleMessage("Rejected"),
     "rejectionReason": MessageLookupByLibrary.simpleMessage("Reason"),
     "related_products": MessageLookupByLibrary.simpleMessage(
       "Related Products",
@@ -1253,7 +1292,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "resend": MessageLookupByLibrary.simpleMessage("Resend"),
     "resendCode": MessageLookupByLibrary.simpleMessage("Resend code"),
     "reset_password": MessageLookupByLibrary.simpleMessage("Reset Password"),
-    "respondedBy": m39,
+    "respondedBy": m42,
     "responseNoteHint": MessageLookupByLibrary.simpleMessage(
       "A note for the sub-committee (optional)",
     ),
@@ -1271,7 +1310,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "reviews": MessageLookupByLibrary.simpleMessage("Reviews"),
     "revokeDelegation": MessageLookupByLibrary.simpleMessage("Revoke"),
-    "revokeDelegationFromMe": m40,
+    "revokeDelegationFromMe": m43,
     "revokeDelegationTitle": MessageLookupByLibrary.simpleMessage(
       "Revoke this delegation?",
     ),
@@ -1335,7 +1374,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "showLess": MessageLookupByLibrary.simpleMessage("Show less"),
     "showMore": MessageLookupByLibrary.simpleMessage("Show more"),
     "showPassword": MessageLookupByLibrary.simpleMessage("Show"),
-    "showSubItems": m41,
+    "showSubItems": m44,
     "signInToContinue": MessageLookupByLibrary.simpleMessage(
       "يجب عليك إضافة بياناتك الخاصة لتسهيل التواصل معك",
     ),
@@ -1355,7 +1394,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "statusPending": MessageLookupByLibrary.simpleMessage("Pending"),
     "stopShare": MessageLookupByLibrary.simpleMessage("Stop sharing"),
     "subCategories": MessageLookupByLibrary.simpleMessage("Sub Categories"),
-    "subCommitteesCount": m42,
+    "subCommitteesCount": m45,
     "subTitleDeleteAccount": MessageLookupByLibrary.simpleMessage(
       "Delete all your data ",
     ),
@@ -1386,13 +1425,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "taskInProgress": MessageLookupByLibrary.simpleMessage("In progress"),
     "taskOnHold": MessageLookupByLibrary.simpleMessage("On hold"),
     "tasks": MessageLookupByLibrary.simpleMessage("tasks"),
-    "tasksCount": m43,
-    "tasksOf": m44,
+    "tasksCount": m46,
+    "tasksOf": m47,
     "teachingStaff": MessageLookupByLibrary.simpleMessage("Teaching staff"),
     "termsAndConditions": MessageLookupByLibrary.simpleMessage(
       "Terms And Conditions",
     ),
-    "toCommittee": m45,
+    "toCommittee": m48,
     "toLabel": MessageLookupByLibrary.simpleMessage("To"),
     "today": MessageLookupByLibrary.simpleMessage("Today"),
     "trackingOrder": MessageLookupByLibrary.simpleMessage("Tracking Order"),
@@ -1418,8 +1457,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "voteUnit": MessageLookupByLibrary.simpleMessage("votes"),
     "voters": MessageLookupByLibrary.simpleMessage("Voters"),
     "votes": MessageLookupByLibrary.simpleMessage("Votes"),
-    "votesCount": m46,
-    "votesPending": m47,
+    "votesCount": m49,
+    "votesPending": m50,
     "votesTitle": MessageLookupByLibrary.simpleMessage("Votes"),
     "votingEnded": MessageLookupByLibrary.simpleMessage("Voting ended"),
     "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back!"),
@@ -1447,12 +1486,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Withdraw this guest suggestion?",
     ),
     "workload": MessageLookupByLibrary.simpleMessage("Workload"),
-    "workloadDoneCount": m48,
-    "workloadDueSoonCount": m49,
+    "workloadDoneCount": m51,
+    "workloadDueSoonCount": m52,
     "workloadOpen": MessageLookupByLibrary.simpleMessage("Open"),
-    "workloadOpenCount": m50,
+    "workloadOpenCount": m53,
     "workloadOverdue": MessageLookupByLibrary.simpleMessage("Overdue"),
-    "workloadOverdueCount": m51,
+    "workloadOverdueCount": m54,
     "workloadSubtitle": MessageLookupByLibrary.simpleMessage(
       "Tasks per member",
     ),
@@ -1467,8 +1506,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "wrongPhone": MessageLookupByLibrary.simpleMessage("Invalid phone number"),
     "yesterday": MessageLookupByLibrary.simpleMessage("Yesterday"),
     "you": MessageLookupByLibrary.simpleMessage("You"),
-    "youVotedCanChange": m52,
+    "youApproved": MessageLookupByLibrary.simpleMessage("You approved"),
+    "youRejected": MessageLookupByLibrary.simpleMessage("You rejected"),
+    "youVotedCanChange": m55,
     "yourAddress": MessageLookupByLibrary.simpleMessage("Your Address"),
+    "yourAnswer": MessageLookupByLibrary.simpleMessage("Your answer"),
     "yourComment": MessageLookupByLibrary.simpleMessage("Your comment"),
     "yourConnectionHasBeenSuspendedByTheAdminButYou":
         MessageLookupByLibrary.simpleMessage(
@@ -1481,6 +1523,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "yourOrder": MessageLookupByLibrary.simpleMessage("Your Order"),
     "yourPhone": MessageLookupByLibrary.simpleMessage("Your Phone"),
     "yourVote": MessageLookupByLibrary.simpleMessage("Your vote"),
-    "yourVoteIs": m53,
+    "yourVoteIs": m56,
   };
 }

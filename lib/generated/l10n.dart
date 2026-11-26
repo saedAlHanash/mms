@@ -6552,6 +6552,191 @@ class S {
       args: [],
     );
   }
+
+  /// `Under review`
+  String get minutesUnderReview {
+    return Intl.message(
+      'Under review',
+      name: 'minutesUnderReview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirmed`
+  String get minutesConfirmed {
+    return Intl.message(
+      'Confirmed',
+      name: 'minutesConfirmed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Open the minutes`
+  String get openMinutes {
+    return Intl.message(
+      'Open the minutes',
+      name: 'openMinutes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{approved} of {total} approved`
+  String minutesApprovedOf(Object approved, Object total) {
+    return Intl.message(
+      '$approved of $total approved',
+      name: 'minutesApprovedOf',
+      desc: '',
+      args: [approved, total],
+    );
+  }
+
+  /// `{count} rejected`
+  String minutesRejectedCount(Object count) {
+    return Intl.message(
+      '$count rejected',
+      name: 'minutesRejectedCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `The deadline for answering has passed.`
+  String get minutesAnswersClosed {
+    return Intl.message(
+      'The deadline for answering has passed.',
+      name: 'minutesAnswersClosed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Answer by {date}`
+  String minutesAnswerBy(Object date) {
+    return Intl.message(
+      'Answer by $date',
+      name: 'minutesAnswerBy',
+      desc: '',
+      args: [date],
+    );
+  }
+
+  /// `The chair approves after the other members.`
+  String get minutesChairLast {
+    return Intl.message(
+      'The chair approves after the other members.',
+      name: 'minutesChairLast',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can approve once the other members have answered. You can reject at any time.`
+  String get minutesChairWaits {
+    return Intl.message(
+      'You can approve once the other members have answered. You can reject at any time.',
+      name: 'minutesChairWaits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your answer`
+  String get yourAnswer {
+    return Intl.message('Your answer', name: 'yourAnswer', desc: '', args: []);
+  }
+
+  /// `You approved`
+  String get youApproved {
+    return Intl.message(
+      'You approved',
+      name: 'youApproved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You rejected`
+  String get youRejected {
+    return Intl.message(
+      'You rejected',
+      name: 'youRejected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No answer yet`
+  String get notAnsweredYet {
+    return Intl.message(
+      'No answer yet',
+      name: 'notAnsweredYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reject the minutes?`
+  String get rejectMinutesTitle {
+    return Intl.message(
+      'Reject the minutes?',
+      name: 'rejectMinutesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What should be corrected?`
+  String get rejectMinutesHint {
+    return Intl.message(
+      'What should be corrected?',
+      name: 'rejectMinutesHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your rejection was sent`
+  String get minutesRejectedDone {
+    return Intl.message(
+      'Your rejection was sent',
+      name: 'minutesRejectedDone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You approved the minutes`
+  String get minutesApprovedDone {
+    return Intl.message(
+      'You approved the minutes',
+      name: 'minutesApprovedDone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Members' answers`
+  String get minutesApprovals {
+    return Intl.message(
+      'Members\' answers',
+      name: 'minutesApprovals',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Approved`
+  String get approvedState {
+    return Intl.message('Approved', name: 'approvedState', desc: '', args: []);
+  }
+
+  /// `Rejected`
+  String get rejectedState {
+    return Intl.message('Rejected', name: 'rejectedState', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
