@@ -180,7 +180,7 @@ class CommitteePage extends StatelessWidget {
                         builder: (context, delegations) {
                           // Leads, and a delegate with the Decisions scope, answer recommendations.
                           final acting = delegations.actingAs;
-                          final isLead = !item.member.membershipType.isMember ||
+                          final isLead = item.member.membershipType.isLead ||
                               (acting != null && acting.scopes & DelegationScope.decisions.flag != 0);
                           return Row(
                             children: [

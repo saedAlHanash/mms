@@ -131,6 +131,13 @@ enum MembershipType {
   }
 
   bool get isMember => this != chair && this != secretary;
+
+  bool get isChair => this == chair;
+
+  bool get isSecretary => this == secretary;
+
+  /// Chair or secretary.
+  bool get isLead => isChair || isSecretary;
 }
 
 /// Same order as the backend (`0` Pending, `1` Open, `2` Closed).

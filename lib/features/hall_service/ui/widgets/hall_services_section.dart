@@ -26,7 +26,7 @@ class HallServicesSection extends StatelessWidget {
 
   /// The secretary, for a meeting held (at least partly) in a hall that isn't over.
   static bool showsFor(Meeting meeting) {
-    if (meeting.callerMembershipType != MembershipType.secretary) return false;
+    if (!(meeting.callerMembershipType?.isSecretary ?? false)) return false;
     if (meeting.mode == MeetingMode.online) return false;
     return switch (meeting.status) {
       MeetingStatus.canceled || MeetingStatus.completed || MeetingStatus.archived => false,

@@ -17,7 +17,7 @@ class CheckInCodeEntry extends StatelessWidget {
   final Meeting meeting;
 
   static bool showsFor(Meeting meeting) {
-    if (meeting.callerMembershipType != MembershipType.secretary) return false;
+    if (!(meeting.callerMembershipType?.isSecretary ?? false)) return false;
     if (meeting.status != MeetingStatus.scheduled && meeting.status != MeetingStatus.running) return false;
     return meeting.mode != MeetingMode.online;
   }

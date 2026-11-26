@@ -26,7 +26,7 @@ class ReviewRequestsSection extends StatelessWidget {
 
   final Meeting meeting;
 
-  static bool showsFor(Meeting meeting) => meeting.callerMembershipType == MembershipType.secretary;
+  static bool showsFor(Meeting meeting) => meeting.callerMembershipType?.isSecretary ?? false;
 
   @override
   Widget build(BuildContext context) {

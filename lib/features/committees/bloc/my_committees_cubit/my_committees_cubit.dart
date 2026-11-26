@@ -34,7 +34,8 @@ class MyCommitteesCubit extends MCubit<MyCommitteesInitial> {
 
     if (response.statusCode.success) {
       final list = CommitteesResponse.fromJson(response.jsonBody).data;
-      list.removeWhere((e) => !e.member.membershipType.isMember);
+      // Every role sees the committee; screens show what the role may do.
+      list.removeWhere((e) => e.member.membershipType == MembershipType.guest);
       return Pair(list, null);
     } else {
       return response.getPairError;

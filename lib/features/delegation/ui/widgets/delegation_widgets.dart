@@ -85,7 +85,7 @@ class DelegationsSection extends StatelessWidget {
 
   final Committee committee;
 
-  bool get _canDelegate => !committee.member.membershipType.isMember;
+  bool get _canDelegate => committee.member.membershipType.isLead;
 
   @override
   Widget build(BuildContext context) {
