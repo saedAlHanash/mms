@@ -778,5 +778,8 @@
   "host": "Host",
   "quorumChairRequiredYou": "Your presence is required for quorum.",
   "whoVoted": "Who voted",
-  "noVoters": "No one chose this"
+  "noVoters": "No one chose this",
+  "draft": "Draft",
+  "draftHiddenFromMembers": "Members can't see this yet.",
+  "pollNotOpenYet": "Not open yet"
 }

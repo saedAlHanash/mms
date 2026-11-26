@@ -4,11 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/core/strings/app_color_manager.dart';
+import 'package:mms/core/strings/enum_manager.dart';
 import 'package:mms/core/widgets/small_widgets.dart';
 import 'package:mms/core/widgets/status_chip.dart';
 import 'package:mms/features/agendas/bloc/add_comment_cubit/add_comment_cubit.dart';
 import 'package:mms/features/meetings/data/response/meetings_response.dart';
 import 'package:mms/features/meetings/ui/widgets/comment_discussion_btn.dart';
+import 'package:mms/generated/l10n.dart';
 
 /// Meeting discussions in one card: topic, status + date, my comment.
 class DiscussionsTree extends StatelessWidget {
@@ -67,7 +69,11 @@ class _DiscussionRow extends StatelessWidget {
                     6.0.verticalSpace,
                     Row(
                       children: [
-                        StatusChip.discussion(discussion.status),
+                        // Pending discussions reach only the chair and the secretary.
+                        if (discussion.status == DiscussionStatus.pending)
+                          StatusChip(colors: DiscussionStatus.pending.colors, label: S.of(context).draft)
+                        else
+                          StatusChip.discussion(discussion.status),
                         if (discussion.date != null) ...[
                           8.0.horizontalSpace,
                           Directionality(

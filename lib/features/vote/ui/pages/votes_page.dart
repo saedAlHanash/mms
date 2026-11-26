@@ -28,7 +28,10 @@ class VotesPage extends StatelessWidget {
         },
         child: BlocBuilder<MeetingCubit, MeetingInitial>(
           builder: (context, state) {
-            final myPolls = state.result.polls..removeWhere((e) => e.status == PollStatus.pending);
+            // Drafts are for the chair and the secretary (marked in the card); a copy,
+            // so the meeting's own list stays whole.
+            final isLead = state.result.callerMembershipType?.isLead ?? false;
+            final myPolls = state.result.polls.where((e) => isLead || e.status != PollStatus.pending).toList();
             final results = state.result.pollResults;
             final isEmpty = myPolls.isEmpty && results.isEmpty;
             final showSkeleton = state.loading && state.result.id.isEmpty;

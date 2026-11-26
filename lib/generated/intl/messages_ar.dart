@@ -485,6 +485,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "download": MessageLookupByLibrary.simpleMessage("تنزيل"),
     "downloadFile": MessageLookupByLibrary.simpleMessage("تحميل الملف"),
+    "draft": MessageLookupByLibrary.simpleMessage("مسودة"),
+    "draftHiddenFromMembers": MessageLookupByLibrary.simpleMessage(
+      "لا يراه الأعضاء بعد.",
+    ),
     "dueDate": MessageLookupByLibrary.simpleMessage("تاريخ الاستحقاق"),
     "dueOn": m13,
     "ePayment": MessageLookupByLibrary.simpleMessage("دفع إلكتروني"),
@@ -1054,6 +1058,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "pointOfOrder": MessageLookupByLibrary.simpleMessage("نقطة نظام"),
     "policy": MessageLookupByLibrary.simpleMessage("سياسة الاستخدام والخصوصية"),
     "policyJust": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
+    "pollNotOpenYet": MessageLookupByLibrary.simpleMessage("لم يُفتح بعد"),
     "pollOutcomePassed": MessageLookupByLibrary.simpleMessage("ناجح"),
     "pollOutcomeRejected": MessageLookupByLibrary.simpleMessage("مرفوض"),
     "pollOutcomeTied": MessageLookupByLibrary.simpleMessage("متعادل"),

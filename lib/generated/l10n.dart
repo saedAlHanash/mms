@@ -6527,6 +6527,31 @@ class S {
       args: [],
     );
   }
+
+  /// `Draft`
+  String get draft {
+    return Intl.message('Draft', name: 'draft', desc: '', args: []);
+  }
+
+  /// `Members can't see this yet.`
+  String get draftHiddenFromMembers {
+    return Intl.message(
+      'Members can\'t see this yet.',
+      name: 'draftHiddenFromMembers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not open yet`
+  String get pollNotOpenYet {
+    return Intl.message(
+      'Not open yet',
+      name: 'pollNotOpenYet',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

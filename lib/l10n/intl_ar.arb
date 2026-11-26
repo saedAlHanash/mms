@@ -778,5 +778,8 @@
   "host": "مضيف",
   "quorumChairRequiredYou": "حضورك مطلوب لاكتمال النصاب.",
   "whoVoted": "من صوّت",
-  "noVoters": "لم يختره أحد"
+  "noVoters": "لم يختره أحد",
+  "draft": "مسودة",
+  "draftHiddenFromMembers": "لا يراه الأعضاء بعد.",
+  "pollNotOpenYet": "لم يُفتح بعد"
 }

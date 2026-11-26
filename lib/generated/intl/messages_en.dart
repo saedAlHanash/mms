@@ -505,6 +505,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "download": MessageLookupByLibrary.simpleMessage("Download"),
     "downloadFile": MessageLookupByLibrary.simpleMessage("Download File"),
+    "draft": MessageLookupByLibrary.simpleMessage("Draft"),
+    "draftHiddenFromMembers": MessageLookupByLibrary.simpleMessage(
+      "Members can\'t see this yet.",
+    ),
     "dueDate": MessageLookupByLibrary.simpleMessage("Due date"),
     "dueOn": m13,
     "ePayment": MessageLookupByLibrary.simpleMessage("E-Payment"),
@@ -1108,6 +1112,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Terms of Use and Privacy Policy",
     ),
     "policyJust": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+    "pollNotOpenYet": MessageLookupByLibrary.simpleMessage("Not open yet"),
     "pollOutcomePassed": MessageLookupByLibrary.simpleMessage("Passed"),
     "pollOutcomeRejected": MessageLookupByLibrary.simpleMessage("Rejected"),
     "pollOutcomeTied": MessageLookupByLibrary.simpleMessage("Tied"),

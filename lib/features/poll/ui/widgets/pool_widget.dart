@@ -97,9 +97,16 @@ class _PollWidgetState extends State<PollWidget> {
                 ),
               ),
               8.0.horizontalSpace,
-              StatusChip.poll(poll.status),
+              if (poll.status == PollStatus.pending)
+                StatusChip(colors: PollStatus.pending.colors, label: S.of(context).draft)
+              else
+                StatusChip.poll(poll.status),
             ],
           ),
+          if (poll.status == PollStatus.pending) ...[
+            4.0.verticalSpace,
+            DrawableText(text: S.of(context).draftHiddenFromMembers, size: 12.0.sp, color: AppColorManager.neutral500),
+          ],
           12.0.verticalSpace,
           for (var i = 0; i < poll.options.length; i++) ...[
             if (i > 0) 8.0.verticalSpace,
@@ -143,6 +150,9 @@ class _PollWidgetState extends State<PollWidget> {
   }
 
   Widget _footerAction(BuildContext context, Option? myOption) {
+    if (widget.poll.status == PollStatus.pending) {
+      return DrawableText(text: S.of(context).pollNotOpenYet, size: 13.0.sp, color: AppColorManager.neutral500);
+    }
     if (!enable) {
       // The chair and the secretary see who voted once the poll is closed.
       final isLead = context.read<MeetingCubit>().state.result.callerMembershipType?.isLead ?? false;
