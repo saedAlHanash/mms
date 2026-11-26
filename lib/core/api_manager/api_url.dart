@@ -232,6 +232,8 @@ class PostUrl {
 
   static const updateMinuteApproval = 'Minute/UpdateMinuteApproval';
 
+  static const attendeeOnlineToken = 'Meeting/GetAttendeeOnlineMeetingToken';
+
   static const raiseRecommendation = 'SubCommittee/Raise';
 
   static const addHallService = 'HallServiceRequest/Add';

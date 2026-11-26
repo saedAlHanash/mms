@@ -3,6 +3,7 @@ import 'package:animated_tree_view/tree_view/tree_node.dart';
 import 'package:collection/collection.dart';
 import 'package:m_cubit/m_cubit.dart';
 import 'package:mms/core/api_manager/api_url.dart';
+import 'package:mms/core/app/app_provider.dart';
 import 'package:mms/core/extensions/extensions.dart';
 import 'package:mms/features/agendas/data/response/agendas_response.dart';
 import 'package:mms/features/meeting_hub/data/response/hub_message_response.dart';
@@ -43,10 +44,34 @@ class MeetingCubit extends MCubit<MeetingInitial> {
     );
 
     if (response.statusCode.success) {
-      return Pair(Meeting.fromJson(response.jsonBody), null);
+      final json = response.jsonBody;
+      final meeting = Meeting.fromJson(json);
+      // No token came with the meeting (RestrictHostToken): ask for my own.
+      if (meeting.joinToken.isEmpty && meeting.onlineMeetingUrl.isNotEmpty) {
+        final token = await _attendeeToken(meeting.id);
+        if (token.isNotEmpty) return Pair(Meeting.fromJson({...json, 'attendeeOnlineToken': token}), null);
+      }
+      return Pair(meeting, null);
     } else {
       return response.getPairError;
     }
+  }
+
+  /// `Meeting/GetAttendeeOnlineMeetingToken`: the caller's own join token, or ''.
+  Future<String> _attendeeToken(String meetingId) async {
+    final response = await APIService().callApi(
+      type: ApiType.post,
+      url: PostUrl.attendeeOnlineToken,
+      body: {'meetingId': meetingId, 'partyId': AppProvider.getParty.id},
+    );
+    if (!response.statusCode.success) return '';
+    final body = response.body.trim();
+    if (body.isEmpty) return '';
+    if (!body.startsWith('{')) return body.replaceAll('"', '');
+    final map = response.jsonBodyPure;
+    final value = map['token'] ?? map['data'] ?? map['attendeeOnlineToken'];
+    if (value is Map) return (value['token'] ?? '').toString();
+    return value?.toString() ?? '';
   }
 
   Future<void> addComment({

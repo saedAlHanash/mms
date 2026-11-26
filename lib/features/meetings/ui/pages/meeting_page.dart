@@ -464,7 +464,7 @@ class _VideoCallState extends State<_VideoCall> {
               child: LiveKitPage(
                 isOpen: isOpen,
                 link: state.result.onlineMeetingUrl,
-                token: state.result.onlineMeetingToken,
+                token: state.result.joinToken,
               ),
             ),
           ],

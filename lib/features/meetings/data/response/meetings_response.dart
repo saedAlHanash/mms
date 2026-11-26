@@ -58,6 +58,7 @@ class Meeting {
     required this.mode,
     required this.hijriDate,
     required this.callerMembershipType,
+    this.hallId = '',
   });
 
   final String id;
@@ -97,6 +98,18 @@ class Meeting {
   /// included); an outside invitee gets [MembershipType.member]; null when none.
   final MembershipType? callerMembershipType;
 
+  /// The booked hall, for its equipment (`Hall/Get`); empty when none.
+  final String hallId;
+
+  /// The video token to join with: the host token for the chair and the secretary,
+  /// the attendee's own token for everyone else (`Security:RestrictHostToken`
+  /// empties `onlineMeetingToken` for them), each falling back to the other.
+  String get joinToken {
+    final lead = callerMembershipType?.isLead ?? false;
+    final first = lead ? onlineMeetingToken : attendeeOnlineToken;
+    return first.isNotEmpty ? first : (lead ? attendeeOnlineToken : onlineMeetingToken);
+  }
+
   /// Copy used to apply live (SignalR) updates without a refetch.
   Meeting copyWith({
     List<Discussion>? discussions,
@@ -134,6 +147,7 @@ class Meeting {
       mode: mode,
       hijriDate: hijriDate,
       callerMembershipType: callerMembershipType,
+      hallId: hallId,
     );
   }
 
@@ -181,6 +195,7 @@ class Meeting {
       mode: MeetingMode.fromIndex(json["mode"]),
       hijriDate: json["hijriDate"] ?? "",
       callerMembershipType: _membershipType(json["callerMembershipType"]),
+      hallId: json["hallId"]?.toString() ?? "",
     );
   }
 
@@ -220,6 +235,7 @@ class Meeting {
         "mode": mode?.index,
         "hijriDate": hijriDate,
         "callerMembershipType": callerMembershipType?.index,
+        "hallId": hallId,
       };
 }
 
