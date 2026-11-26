@@ -107,7 +107,11 @@ class QuorumCard extends StatelessWidget {
                   ],
                   if (q.chairRequired && !q.chairPresent) ...[
                     10.0.verticalSpace,
-                    _Note(text: S.of(context).quorumChairRequired),
+                    _Note(
+                      text: (meeting.callerMembershipType?.isChair ?? false)
+                          ? S.of(context).quorumChairRequiredYou
+                          : S.of(context).quorumChairRequired,
+                    ),
                   ],
                 ] else ...[
                   4.0.verticalSpace,

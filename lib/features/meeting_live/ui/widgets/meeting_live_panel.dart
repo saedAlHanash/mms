@@ -12,6 +12,7 @@ import 'package:mms/core/widgets/my_button.dart';
 import 'package:mms/core/widgets/my_card_widget.dart';
 import 'package:mms/core/widgets/small_widgets.dart';
 import 'package:mms/core/widgets/status_chip.dart';
+import 'package:mms/features/meetings/bloc/meeting_cubit/meeting_cubit.dart';
 import 'package:mms/features/meeting_live/bloc/meeting_live_cubit/meeting_live_cubit.dart';
 import 'package:mms/features/meeting_live/data/response/meeting_live_response.dart';
 import 'package:mms/features/meeting_live/ui/widgets/live_clock.dart';
@@ -57,6 +58,13 @@ class MeetingLivePanel extends StatelessWidget {
             crossAxisAlignment: .stretch,
             children: [
               _Header(quorum: live.quorum, canControl: live.canControl),
+              if (live.quorum case final q?
+                  when q.chairRequired &&
+                      !q.chairPresent &&
+                      (context.read<MeetingCubit>().state.result.callerMembershipType?.isChair ?? false)) ...[
+                10.0.verticalSpace,
+                _Note(icon: Icons.person_pin_circle_outlined, text: S.of(context).quorumChairRequiredYou),
+              ],
               14.0.verticalSpace,
               _CurrentItem(item: live.currentItem, since: state.fetchedAt),
               if (live.canControl) LiveItemControls(live: live, sending: state.sending),

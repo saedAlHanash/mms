@@ -773,5 +773,8 @@
   "absenceRejected": "تم رفض الاعتذار",
   "absencePending": "بانتظار الرد",
   "absenceAcceptedState": "معتذر",
-  "absenceRejectedState": "مرفوض"
+  "absenceRejectedState": "مرفوض",
+  "joinAsHost": "انضم كمضيف",
+  "host": "مضيف",
+  "quorumChairRequiredYou": "حضورك مطلوب لاكتمال النصاب."
 }

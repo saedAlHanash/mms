@@ -800,6 +800,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "For example: coffee and water at 10:00",
     ),
     "hospitalityFor": m18,
+    "host": MessageLookupByLibrary.simpleMessage("Host"),
     "hours": MessageLookupByLibrary.simpleMessage("Hours"),
     "hubAgendaUpdated": MessageLookupByLibrary.simpleMessage("Agenda updated"),
     "hubAgendaUpdatedBody": m19,
@@ -841,6 +842,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "is_required": MessageLookupByLibrary.simpleMessage("Required"),
     "itemsCount": m20,
     "join": MessageLookupByLibrary.simpleMessage("Join"),
+    "joinAsHost": MessageLookupByLibrary.simpleMessage("Join as host"),
     "joinOnlineHint": MessageLookupByLibrary.simpleMessage(
       "Join with audio and video here while the meeting page stays in front of you.",
     ),
@@ -1151,6 +1153,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "quorumChairRequired": MessageLookupByLibrary.simpleMessage(
       "The chair has to attend for the quorum to count.",
+    ),
+    "quorumChairRequiredYou": MessageLookupByLibrary.simpleMessage(
+      "Your presence is required for quorum.",
     ),
     "quorumMet": m30,
     "quorumNotMet": m31,

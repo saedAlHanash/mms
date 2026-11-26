@@ -295,6 +295,8 @@ class _VideoCallState extends State<_VideoCall> {
     return BlocBuilder<MeetingCubit, MeetingInitial>(
       builder: (context, state) {
         final from = state.result.fromDate;
+        // The chair and the secretary get the host token (mute, remove, share).
+        final isHost = state.result.callerMembershipType?.isLead ?? false;
 
         return Column(
           mainAxisSize: MainAxisSize.min,
@@ -380,7 +382,7 @@ class _VideoCallState extends State<_VideoCall> {
                             padding: EdgeInsets.symmetric(horizontal: 18.0.w),
                             alignment: .center,
                             child: DrawableText(
-                              text: S.of(context).join,
+                              text: isHost ? S.of(context).joinAsHost : S.of(context).join,
                               size: 15.0.sp,
                               fontWeight: .w700,
                               color: AppColorManager.primary700,
@@ -421,6 +423,10 @@ class _VideoCallState extends State<_VideoCall> {
                             color: AppColorManager.neutral900,
                           ),
                         ),
+                        if (isHost) ...[
+                          StatusChip(colors: MembershipType.chair.badge, label: S.of(context).host),
+                          8.0.horizontalSpace,
+                        ],
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 10.0.w),
                           decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(999)),

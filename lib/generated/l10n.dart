@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -6489,6 +6488,26 @@ class S {
     return Intl.message(
       'Rejected',
       name: 'absenceRejectedState',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Join as host`
+  String get joinAsHost {
+    return Intl.message('Join as host', name: 'joinAsHost', desc: '', args: []);
+  }
+
+  /// `Host`
+  String get host {
+    return Intl.message('Host', name: 'host', desc: '', args: []);
+  }
+
+  /// `Your presence is required for quorum.`
+  String get quorumChairRequiredYou {
+    return Intl.message(
+      'Your presence is required for quorum.',
+      name: 'quorumChairRequiredYou',
       desc: '',
       args: [],
     );

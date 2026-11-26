@@ -773,5 +773,8 @@
   "absenceRejected": "The absence was rejected",
   "absencePending": "Pending",
   "absenceAcceptedState": "Excused",
-  "absenceRejectedState": "Rejected"
+  "absenceRejectedState": "Rejected",
+  "joinAsHost": "Join as host",
+  "host": "Host",
+  "quorumChairRequiredYou": "Your presence is required for quorum."
 }

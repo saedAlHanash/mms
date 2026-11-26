@@ -766,6 +766,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "مثلاً: قهوة وماء الساعة 10:00",
     ),
     "hospitalityFor": m18,
+    "host": MessageLookupByLibrary.simpleMessage("مضيف"),
     "hours": MessageLookupByLibrary.simpleMessage("ساعات"),
     "hubAgendaUpdated": MessageLookupByLibrary.simpleMessage(
       "تحديث على جدول الأعمال",
@@ -799,6 +800,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "is_required": MessageLookupByLibrary.simpleMessage("مطلوب"),
     "itemsCount": m20,
     "join": MessageLookupByLibrary.simpleMessage("انضمام"),
+    "joinAsHost": MessageLookupByLibrary.simpleMessage("انضم كمضيف"),
     "joinOnlineHint": MessageLookupByLibrary.simpleMessage(
       "انضم بالصوت والصورة من هنا، وتبقى صفحة الاجتماع أمامك.",
     ),
@@ -1091,6 +1093,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "quickMessage": MessageLookupByLibrary.simpleMessage("رسالة سريعة للمدير"),
     "quorumChairRequired": MessageLookupByLibrary.simpleMessage(
       "حضور الرئيس شرط لاكتمال النصاب.",
+    ),
+    "quorumChairRequiredYou": MessageLookupByLibrary.simpleMessage(
+      "حضورك مطلوب لاكتمال النصاب.",
     ),
     "quorumMet": m30,
     "quorumNotMet": m31,
