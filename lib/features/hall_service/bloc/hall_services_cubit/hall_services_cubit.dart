@@ -15,10 +15,12 @@ class HallServicesCubit extends Cubit<HallServicesInitial> {
   HallServicesCubit() : super(HallServicesInitial.initial());
 
   //region getData
-  Future<void> getData({String? meetingId}) async {
+  /// [hallId] loads the hall's equipment once, for equipment requests.
+  Future<void> getData({String? meetingId, String? hallId}) async {
     final id = meetingId ?? state.meetingId;
     if (id.isEmpty) return;
     emit(state.copyWith(statuses: CubitStatuses.loading, meetingId: id));
+    if (hallId != null && hallId.isNotEmpty && hallId != state.hallId) _loadEquipment(hallId);
 
     final response = await APIService().callApi(
       type: ApiType.get,
@@ -39,11 +41,30 @@ class HallServicesCubit extends Cubit<HallServicesInitial> {
       emit(state.copyWith(statuses: CubitStatuses.error, error: response.getPairError.second));
     }
   }
+  Future<void> _loadEquipment(String hallId) async {
+    emit(state.copyWith(hallId: hallId));
+    final response = await APIService().callApi(type: ApiType.get, url: GetUrl.hall, query: {'id': hallId});
+    if (isClosed || state.hallId != hallId || !response.statusCode.success) return;
+    final body = response.jsonBody;
+    final hall = body['data'] is Map<String, dynamic> ? body['data'] as Map<String, dynamic> : body;
+    final list = hall['hallEquipment'] is List ? hall['hallEquipment'] as List : const [];
+    final equipment = list
+        .whereType<Map<String, dynamic>>()
+        .map(HallEquipment.fromJson)
+        .where((e) => e.equipmentId.isNotEmpty)
+        .toList();
+    emit(state.copyWith(equipment: equipment));
+  }
   //endregion
 
   //region CRUD
   /// Hospitality (with the number of people) or another service; both need details.
-  Future<bool> add({required HallServiceKind kind, required int quantity, required String details}) async {
+  Future<bool> add({
+    required HallServiceKind kind,
+    required int quantity,
+    required String details,
+    String? equipmentId,
+  }) async {
     if (state.sending) return false;
     emit(state.copyWith(sending: true));
 
@@ -53,6 +74,7 @@ class HallServicesCubit extends Cubit<HallServicesInitial> {
       body: {
         'meetingId': state.meetingId,
         'kind': kind.index,
+        if (equipmentId != null && equipmentId.isNotEmpty) 'equipmentId': equipmentId,
         'quantity': quantity.clamp(0, 999),
         'details': details.trim(),
       },

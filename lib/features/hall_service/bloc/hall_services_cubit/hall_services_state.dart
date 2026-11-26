@@ -8,6 +8,8 @@ class HallServicesInitial extends AbstractState<List<HallServiceRequest>> {
     required this.meetingId,
     required this.sending,
     required this.cancellingId,
+    required this.hallId,
+    required this.equipment,
   });
 
   final String meetingId;
@@ -18,6 +20,10 @@ class HallServicesInitial extends AbstractState<List<HallServiceRequest>> {
   /// The request being cancelled, or ''.
   final String cancellingId;
 
+  /// The booked hall and what it has (empty: no equipment requests).
+  final String hallId;
+  final List<HallEquipment> equipment;
+
   factory HallServicesInitial.initial() {
     return const HallServicesInitial(
       result: [],
@@ -26,11 +32,13 @@ class HallServicesInitial extends AbstractState<List<HallServiceRequest>> {
       meetingId: '',
       sending: false,
       cancellingId: '',
+      hallId: '',
+      equipment: [],
     );
   }
 
   @override
-  List<Object> get props => [statuses, result, error, meetingId, sending, cancellingId];
+  List<Object> get props => [statuses, result, error, meetingId, sending, cancellingId, hallId, equipment];
 
   HallServicesInitial copyWith({
     CubitStatuses? statuses,
@@ -39,6 +47,8 @@ class HallServicesInitial extends AbstractState<List<HallServiceRequest>> {
     String? meetingId,
     bool? sending,
     String? cancellingId,
+    String? hallId,
+    List<HallEquipment>? equipment,
   }) {
     return HallServicesInitial(
       statuses: statuses ?? this.statuses,
@@ -47,6 +57,8 @@ class HallServicesInitial extends AbstractState<List<HallServiceRequest>> {
       meetingId: meetingId ?? this.meetingId,
       sending: sending ?? this.sending,
       cancellingId: cancellingId ?? this.cancellingId,
+      hallId: hallId ?? this.hallId,
+      equipment: equipment ?? this.equipment,
     );
   }
 }

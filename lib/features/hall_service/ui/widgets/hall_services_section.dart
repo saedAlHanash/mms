@@ -179,8 +179,8 @@ class _ServiceItem extends StatelessWidget {
   }
 }
 
-/// Hospitality (number of people) or another service, with details.
-/// Equipment needs the hall's equipment ids, which the app has no list for yet.
+/// Equipment from the booked hall (with a quantity), hospitality (number of
+/// people) or another service. Equipment shows only when the hall has some.
 class _AddServiceSheet extends StatefulWidget {
   const _AddServiceSheet();
 
@@ -196,6 +196,12 @@ class _AddServiceSheetState extends State<_AddServiceSheet> {
   final _details = TextEditingController();
   HallServiceKind _kind = HallServiceKind.hospitality;
   int _people = 10;
+  String? _equipmentId;
+  int _count = 1;
+
+  bool get _canSend => _kind == HallServiceKind.equipment
+      ? _equipmentId != null && _count > 0
+      : _details.text.trim().isNotEmpty;
 
   @override
   void dispose() {
@@ -207,8 +213,13 @@ class _AddServiceSheetState extends State<_AddServiceSheet> {
     FocusScope.of(context).unfocus();
     final ok = await context.read<HallServicesCubit>().add(
       kind: _kind,
-      quantity: _kind == HallServiceKind.hospitality ? _people : 0,
+      quantity: switch (_kind) {
+        HallServiceKind.hospitality => _people,
+        HallServiceKind.equipment => _count,
+        HallServiceKind.other => 0,
+      },
       details: _details.text,
+      equipmentId: _kind == HallServiceKind.equipment ? _equipmentId : null,
     );
     if (ok && mounted) {
       NoteMessage.showSuccessSnackBar(message: S.of(context).serviceRequested, context: context);
@@ -225,8 +236,13 @@ class _AddServiceSheetState extends State<_AddServiceSheet> {
     );
 
     return BlocBuilder<HallServicesCubit, HallServicesInitial>(
-      buildWhen: (p, c) => p.sending != c.sending,
+      buildWhen: (p, c) => p.sending != c.sending || p.equipment != c.equipment,
       builder: (context, state) {
+        final kinds = [
+          if (state.equipment.isNotEmpty) HallServiceKind.equipment,
+          HallServiceKind.hospitality,
+          HallServiceKind.other,
+        ];
         return Column(
           mainAxisSize: .min,
           crossAxisAlignment: .stretch,
@@ -237,14 +253,79 @@ class _AddServiceSheetState extends State<_AddServiceSheet> {
             16.0.verticalSpace,
             Row(
               children: [
-                for (final kind in const [HallServiceKind.hospitality, HallServiceKind.other]) ...[
+                for (final kind in kinds) ...[
+                  if (kind != kinds.first) 10.0.horizontalSpace,
                   Expanded(
                     child: _KindTile(kind: kind, selected: _kind == kind, onTap: () => setState(() => _kind = kind)),
                   ),
-                  if (kind == HallServiceKind.hospitality) 10.0.horizontalSpace,
                 ],
               ],
             ),
+            if (_kind == HallServiceKind.equipment) ...[
+              16.0.verticalSpace,
+              ConstrainedBox(
+                constraints: BoxConstraints(maxHeight: 200.0.h),
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    for (final e in state.equipment)
+                      InkWell(
+                        borderRadius: BorderRadius.circular(8.0.r),
+                        onTap: () => setState(() {
+                          _equipmentId = e.equipmentId;
+                          if (e.quantity > 0 && _count > e.quantity) _count = e.quantity;
+                        }),
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(minHeight: 48.0.h),
+                          child: Row(
+                            children: [
+                              ImageMultiType(
+                                url: _equipmentId == e.equipmentId
+                                    ? Icons.radio_button_checked_rounded
+                                    : Icons.radio_button_off_rounded,
+                                width: 22.0.r,
+                                height: 22.0.r,
+                                color: _equipmentId == e.equipmentId
+                                    ? AppColorManager.primary500
+                                    : AppColorManager.neutral300,
+                              ),
+                              10.0.horizontalSpace,
+                              Expanded(
+                                child: DrawableText(
+                                  text: e.name,
+                                  size: 14.0.sp,
+                                  fontWeight: .w600,
+                                  color: AppColorManager.neutral900,
+                                ),
+                              ),
+                              if (e.quantity > 0)
+                                DrawableText(
+                                  text: s.inHall(e.quantity),
+                                  size: 12.0.sp,
+                                  color: AppColorManager.neutral500,
+                                ),
+                            ],
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+              8.0.verticalSpace,
+              Row(
+                children: [
+                  Expanded(
+                    child: DrawableText(
+                      text: s.quantity,
+                      size: 14.0.sp,
+                      fontWeight: .w600,
+                      color: AppColorManager.neutral700,
+                    ),
+                  ),
+                  _Stepper(value: _count, onChanged: (v) => setState(() => _count = v)),
+                ],
+              ),
+            ],
             if (_kind == HallServiceKind.hospitality) ...[
               16.0.verticalSpace,
               Row(
@@ -274,7 +355,11 @@ class _AddServiceSheetState extends State<_AddServiceSheet> {
                 onChanged: (_) => setState(() {}),
                 style: MyStyle.bodyLg.copyWith(color: AppColorManager.neutral900),
                 decoration: InputDecoration(
-                  hintText: _kind == HallServiceKind.hospitality ? s.hospitalityDetailsHint : s.serviceDetailsHint,
+                  hintText: switch (_kind) {
+                    HallServiceKind.hospitality => s.hospitalityDetailsHint,
+                    HallServiceKind.equipment => s.equipmentDetailsHint,
+                    HallServiceKind.other => s.serviceDetailsHint,
+                  },
                   hintStyle: MyStyle.bodyLg.copyWith(color: AppColorManager.neutral500),
                   contentPadding: EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 12.0.h),
                   border: border,
@@ -302,7 +387,7 @@ class _AddServiceSheetState extends State<_AddServiceSheet> {
                   child: MyButton(
                     width: double.infinity,
                     text: s.sendRequest,
-                    enable: _details.text.trim().isNotEmpty,
+                    enable: _canSend,
                     loading: state.sending,
                     onTap: _submit,
                   ),

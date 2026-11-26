@@ -828,5 +828,8 @@
   "liveRemoveFromQueue": "Remove from the queue",
   "liveSkipHint": "Their turn is passed over and recorded as skipped.",
   "liveWithdrawFor": "Withdraw their request",
-  "liveWithdrawForHint": "As if they withdrew it themselves, for example when they leave."
+  "liveWithdrawForHint": "As if they withdrew it themselves, for example when they leave.",
+  "inHall": "{count} in the hall",
+  "quantity": "Quantity",
+  "equipmentDetailsHint": "Notes (optional)"
 }

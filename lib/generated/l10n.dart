@@ -6982,6 +6982,31 @@ class S {
       args: [],
     );
   }
+
+  /// `{count} in the hall`
+  String inHall(Object count) {
+    return Intl.message(
+      '$count in the hall',
+      name: 'inHall',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Quantity`
+  String get quantity {
+    return Intl.message('Quantity', name: 'quantity', desc: '', args: []);
+  }
+
+  /// `Notes (optional)`
+  String get equipmentDetailsHint {
+    return Intl.message(
+      'Notes (optional)',
+      name: 'equipmentDetailsHint',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

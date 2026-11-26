@@ -59,3 +59,23 @@ class HallServiceRequest {
     );
   }
 }
+
+/// `HallEquipmentDto` (from `Hall/Get → hallEquipment`): what the booked hall has.
+class HallEquipment {
+  const HallEquipment({required this.equipmentId, required this.name, required this.quantity});
+
+  final String equipmentId;
+  final String name;
+
+  /// How many the hall has.
+  final int quantity;
+
+  factory HallEquipment.fromJson(Map<String, dynamic> map) {
+    final equipment = map['equipment'] is Map ? map['equipment'] as Map : const {};
+    return HallEquipment(
+      equipmentId: (map['equipmentId'] ?? equipment['id'] ?? '').toString(),
+      name: (equipment['name'] ?? map['name'] ?? '').toString(),
+      quantity: int.tryParse(map['quantity']?.toString() ?? '') ?? 0,
+    );
+  }
+}

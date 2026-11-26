@@ -113,6 +113,8 @@ class GetUrl {
 
   static const complianceStatus = 'Compliance/GetStatus';
 
+  static const hall = 'Hall/Get';
+
   static const workload = 'Workload/Get';
 
   static const workloadTasks = 'Workload/GetTasks';

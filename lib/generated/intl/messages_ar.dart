@@ -73,88 +73,90 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m23(title, status) => "«${title}»: ${status}";
 
-  static String m24(count) =>
+  static String m24(count) => "${count} في القاعة";
+
+  static String m25(count) =>
       "${Intl.plural(count, zero: 'لا بنود', one: 'بند واحد', two: 'بندان', few: '${count} بنود', many: '${count} بنداً', other: '${count} بند')}";
 
-  static String m25(count) => "${count} د";
+  static String m26(count) => "${count} د";
 
-  static String m26(count) => "قائمة الانتظار (${count})";
+  static String m27(count) => "قائمة الانتظار (${count})";
 
-  static String m27(time) => "وقت كل متحدث: ${time}";
+  static String m28(time) => "وقت كل متحدث: ${time}";
 
-  static String m28(place) => "ترتيبك ${place} في قائمة الانتظار";
+  static String m29(place) => "ترتيبك ${place} في قائمة الانتظار";
 
-  static String m29(count) =>
+  static String m30(count) =>
       "${Intl.plural(count, zero: 'لا اجتماعات', one: 'اجتماع واحد', two: 'اجتماعان', few: '${count} اجتماعات', many: '${count} اجتماعاً', other: '${count} اجتماع')}";
 
-  static String m30(count) => "يلزم ${count} اجتماعات أخرى لبلوغ الحد الأدنى";
+  static String m31(count) => "يلزم ${count} اجتماعات أخرى لبلوغ الحد الأدنى";
 
-  static String m31(count) =>
+  static String m32(count) =>
       "${Intl.plural(count, zero: 'لا أعضاء', one: 'عضو واحد', two: 'عضوان', few: '${count} أعضاء', many: '${count} عضواً', other: '${count} عضو')}";
 
-  static String m32(date) => "الرد قبل ${date}";
+  static String m33(date) => "الرد قبل ${date}";
 
-  static String m33(approved, total) => "اعتمده ${approved} من ${total}";
+  static String m34(approved, total) => "اعتمده ${approved} من ${total}";
 
-  static String m34(count) => "${count} رفض";
+  static String m35(count) => "${count} رفض";
 
-  static String m35(count) => "اقتراحاتي (${count})";
+  static String m36(count) => "اقتراحاتي (${count})";
 
-  static String m36(count) => "لم يصوّتوا بعد (${count})";
+  static String m37(count) => "لم يصوّتوا بعد (${count})";
 
-  static String m37(count) => "${count} بانتظار الرد";
-
-  static String m38(present, required) =>
-      "النصاب مكتمل: ${present} من ${required}";
+  static String m38(count) => "${count} بانتظار الرد";
 
   static String m39(present, required) =>
-      "النصاب غير مكتمل: ${present} من ${required}";
+      "النصاب مكتمل: ${present} من ${required}";
 
   static String m40(present, required) =>
+      "النصاب غير مكتمل: ${present} من ${required}";
+
+  static String m41(present, required) =>
       "${present} حاضر من ${required} مطلوب";
 
-  static String m41(count) => "منهم ${count} بالإنابة";
+  static String m42(count) => "منهم ${count} بالإنابة";
 
-  static String m42(time) => "سُجّل عند بدء الاجتماع الساعة ${time}";
+  static String m43(time) => "سُجّل عند بدء الاجتماع الساعة ${time}";
 
-  static String m43(value) => "يتطلّب ${value} أعضاء";
+  static String m44(value) => "يتطلّب ${value} أعضاء";
 
-  static String m44(value, base) => "يتطلّب ${value}% من ${base} أعضاء";
+  static String m45(value, base) => "يتطلّب ${value}% من ${base} أعضاء";
 
-  static String m45(hall, remote) => "${hall} في القاعة · ${remote} عن بُعد";
+  static String m46(hall, remote) => "${hall} في القاعة · ${remote} عن بُعد";
 
-  static String m46(name) => "رفعها ${name}";
+  static String m47(name) => "رفعها ${name}";
 
-  static String m47(name) => "ردّ عليها ${name}";
+  static String m48(name) => "ردّ عليها ${name}";
 
-  static String m48(name) => "سيتوقف ${name} عن التصرّف عنك فوراً.";
+  static String m49(name) => "سيتوقف ${name} عن التصرّف عنك فوراً.";
 
-  static String m49(count) => "عرض البنود الفرعية (${count})";
+  static String m50(count) => "عرض البنود الفرعية (${count})";
 
-  static String m50(count) => "اللجان الفرعية (${count})";
+  static String m51(count) => "اللجان الفرعية (${count})";
 
-  static String m51(count) =>
+  static String m52(count) =>
       "${Intl.plural(count, zero: 'لا مهام', one: 'مهمة واحدة', two: 'مهمتان', few: '${count} مهام', many: '${count} مهمة', other: '${count} مهمة')}";
 
-  static String m52(name) => "مهام ${name}";
+  static String m53(name) => "مهام ${name}";
 
-  static String m53(name) => "إلى ${name}";
+  static String m54(name) => "إلى ${name}";
 
-  static String m54(voted, total) => "صوّت ${voted} من ${total}";
+  static String m55(voted, total) => "صوّت ${voted} من ${total}";
 
-  static String m55(count) => "${count} بانتظار تصويتك";
+  static String m56(count) => "${count} بانتظار تصويتك";
 
-  static String m56(count) => "${count} منجزة هذا العام";
+  static String m57(count) => "${count} منجزة هذا العام";
 
-  static String m57(count) => "${count} تستحق هذا الأسبوع";
+  static String m58(count) => "${count} تستحق هذا الأسبوع";
 
-  static String m58(count) => "${count} مفتوحة";
+  static String m59(count) => "${count} مفتوحة";
 
-  static String m59(count) => "${count} متأخرة";
+  static String m60(count) => "${count} متأخرة";
 
-  static String m60(choice) => "صوّتَّ «${choice}». يمكنك تغييره حتى الإغلاق.";
+  static String m61(choice) => "صوّتَّ «${choice}». يمكنك تغييره حتى الإغلاق.";
 
-  static String m61(choice) => "صوتك: ${choice}";
+  static String m62(choice) => "صوتك: ${choice}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -561,6 +563,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "enter_new_password_and_confirm": MessageLookupByLibrary.simpleMessage(
       "أدخل كلمة السر مع التأكيد",
     ),
+    "equipmentDetailsHint": MessageLookupByLibrary.simpleMessage(
+      "ملاحظات (اختياري)",
+    ),
     "equipmentQuantity": m17,
     "errAgendaRequestNotPending": MessageLookupByLibrary.simpleMessage(
       "تمت الإجابة على هذا الاقتراح بالفعل.",
@@ -828,6 +833,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "iAmNotCurrentlyAMemberOfAnyCommittees":
         MessageLookupByLibrary.simpleMessage("لا توجد لجان منضم لها حالياً"),
     "identityImage": MessageLookupByLibrary.simpleMessage("صورة الهوية"),
+    "inHall": m24,
     "interestDeclared": MessageLookupByLibrary.simpleMessage(
       "أفصحت عن تعارض مصالح في هذا البند",
     ),
@@ -839,7 +845,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "isSuccess": MessageLookupByLibrary.simpleMessage("نجح!"),
     "is_required": MessageLookupByLibrary.simpleMessage("مطلوب"),
-    "itemsCount": m24,
+    "itemsCount": m25,
     "join": MessageLookupByLibrary.simpleMessage("انضمام"),
     "joinAsHost": MessageLookupByLibrary.simpleMessage("انضم كمضيف"),
     "joinOnlineHint": MessageLookupByLibrary.simpleMessage(
@@ -861,7 +867,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "liveEndSpeaker": MessageLookupByLibrary.simpleMessage("إنهاء الكلمة"),
     "liveGiveFloor": MessageLookupByLibrary.simpleMessage("منح الكلمة"),
     "liveMinusMinute": MessageLookupByLibrary.simpleMessage("إنقاص دقيقة"),
-    "liveMinutes": m25,
+    "liveMinutes": m26,
     "liveNextSpeaker": MessageLookupByLibrary.simpleMessage("المتحدث التالي"),
     "liveNoItem": MessageLookupByLibrary.simpleMessage("لا يوجد بند معروض"),
     "liveNoLimit": MessageLookupByLibrary.simpleMessage("بلا حد"),
@@ -874,7 +880,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "livePickItem": MessageLookupByLibrary.simpleMessage("عرض بند على الشاشة"),
     "livePickItemTitle": MessageLookupByLibrary.simpleMessage("البند المعروض"),
     "livePlusMinute": MessageLookupByLibrary.simpleMessage("إضافة دقيقة"),
-    "liveQueue": m26,
+    "liveQueue": m27,
     "liveReconnecting": MessageLookupByLibrary.simpleMessage(
       "جارٍ إعادة الاتصال…",
     ),
@@ -893,7 +899,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "liveSkipHint": MessageLookupByLibrary.simpleMessage(
       "يُتجاوز دوره ويُسجَّل الطلب كمتخطّى.",
     ),
-    "liveSpeakerLimit": m27,
+    "liveSpeakerLimit": m28,
     "liveSpeakerLimitHint": MessageLookupByLibrary.simpleMessage(
       "يُطبّق على المتحدثين القادمين.",
     ),
@@ -911,7 +917,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "liveWithdrawForHint": MessageLookupByLibrary.simpleMessage(
       "كأنه سحبه بنفسه، مثلاً عند مغادرته.",
     ),
-    "liveYourPlace": m28,
+    "liveYourPlace": m29,
     "liveYourTurn": MessageLookupByLibrary.simpleMessage("الكلمة لك الآن"),
     "location": MessageLookupByLibrary.simpleMessage("الموقع"),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
@@ -936,12 +942,12 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "meetings": MessageLookupByLibrary.simpleMessage("الاجتماعات"),
     "meetingsBehind": MessageLookupByLibrary.simpleMessage("متأخر"),
-    "meetingsCount": m29,
+    "meetingsCount": m30,
     "meetingsHeld": MessageLookupByLibrary.simpleMessage("منعقدة"),
     "meetingsMinimum": MessageLookupByLibrary.simpleMessage(
       "الحد الأدنى السنوي",
     ),
-    "meetingsMissing": m30,
+    "meetingsMissing": m31,
     "meetingsOnTrack": MessageLookupByLibrary.simpleMessage("على المسار"),
     "meetingsScheduledLabel": MessageLookupByLibrary.simpleMessage("مجدولة"),
     "meetingsShort": MessageLookupByLibrary.simpleMessage("دون الحد"),
@@ -953,11 +959,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "membersAtRisk": MessageLookupByLibrary.simpleMessage(
       "أعضاء معرّضون للتجاوز",
     ),
-    "membersCount": m31,
+    "membersCount": m32,
     "middleName": MessageLookupByLibrary.simpleMessage("الاسم الأوسط"),
     "min": MessageLookupByLibrary.simpleMessage("دقيقة"),
     "minutes": MessageLookupByLibrary.simpleMessage("دقائق"),
-    "minutesAnswerBy": m32,
+    "minutesAnswerBy": m33,
     "minutesAnswersClosed": MessageLookupByLibrary.simpleMessage(
       "انتهى موعد الرد على المحضر.",
     ),
@@ -965,7 +971,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "minutesApprovedDone": MessageLookupByLibrary.simpleMessage(
       "تم اعتماد المحضر",
     ),
-    "minutesApprovedOf": m33,
+    "minutesApprovedOf": m34,
     "minutesChairLast": MessageLookupByLibrary.simpleMessage(
       "يعتمد الرئيس المحضر بعد بقية الأعضاء.",
     ),
@@ -973,7 +979,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "يمكنك الاعتماد بعد أن يرد بقية الأعضاء، ويمكنك الرفض في أي وقت.",
     ),
     "minutesConfirmed": MessageLookupByLibrary.simpleMessage("معتمد"),
-    "minutesRejectedCount": m34,
+    "minutesRejectedCount": m35,
     "minutesRejectedDone": MessageLookupByLibrary.simpleMessage(
       "تم إرسال الرفض",
     ),
@@ -985,7 +991,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "myLocation": MessageLookupByLibrary.simpleMessage("موقعي الحالي"),
     "myOrder": MessageLookupByLibrary.simpleMessage("طلباتي"),
     "myOrders": MessageLookupByLibrary.simpleMessage("طلباتي"),
-    "myProposals": m35,
+    "myProposals": m36,
     "myTasks": MessageLookupByLibrary.simpleMessage("مهامي"),
     "name": MessageLookupByLibrary.simpleMessage("الاسم"),
     "nameEmpty": MessageLookupByLibrary.simpleMessage("حقل الاسم مطلوب"),
@@ -1092,7 +1098,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "المستخدم الحالي لم يسجل الدخول",
     ),
     "notVotedYet": MessageLookupByLibrary.simpleMessage("لم يصوّت"),
-    "notVotedYetCount": m36,
+    "notVotedYetCount": m37,
     "notYet": MessageLookupByLibrary.simpleMessage("ليس بعد"),
     "noteCannotHear": MessageLookupByLibrary.simpleMessage("لا أسمع"),
     "noteCannotSee": MessageLookupByLibrary.simpleMessage("لا أرى الشاشة"),
@@ -1127,7 +1133,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "paymentMethod": MessageLookupByLibrary.simpleMessage("طريقة الدفع"),
     "payment_summary": MessageLookupByLibrary.simpleMessage("ملخص الدفع"),
     "pending": MessageLookupByLibrary.simpleMessage("معلقة"),
-    "pendingCount": m37,
+    "pendingCount": m38,
     "phoneCall": MessageLookupByLibrary.simpleMessage("اتصال هاتفي"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
     "phoneNumberCanNotBeChange": MessageLookupByLibrary.simpleMessage(
@@ -1185,6 +1191,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "publishedResults": MessageLookupByLibrary.simpleMessage(
       "النتائج المنشورة",
     ),
+    "quantity": MessageLookupByLibrary.simpleMessage("الكمية"),
     "quickMessage": MessageLookupByLibrary.simpleMessage("رسالة سريعة للمدير"),
     "quorumChairRequired": MessageLookupByLibrary.simpleMessage(
       "حضور الرئيس شرط لاكتمال النصاب.",
@@ -1192,20 +1199,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "quorumChairRequiredYou": MessageLookupByLibrary.simpleMessage(
       "حضورك مطلوب لاكتمال النصاب.",
     ),
-    "quorumMet": m38,
-    "quorumNotMet": m39,
-    "quorumPresentOfRequired": m40,
-    "quorumProxies": m41,
-    "quorumRecordedAt": m42,
-    "quorumRuleCount": m43,
-    "quorumRulePercent": m44,
-    "quorumSplit": m45,
+    "quorumMet": m39,
+    "quorumNotMet": m40,
+    "quorumPresentOfRequired": m41,
+    "quorumProxies": m42,
+    "quorumRecordedAt": m43,
+    "quorumRuleCount": m44,
+    "quorumRulePercent": m45,
+    "quorumSplit": m46,
     "quorumStatusMet": MessageLookupByLibrary.simpleMessage("مكتمل"),
     "quorumStatusNotMet": MessageLookupByLibrary.simpleMessage("غير مكتمل"),
     "quorumTitle": MessageLookupByLibrary.simpleMessage("النصاب"),
     "raise": MessageLookupByLibrary.simpleMessage("رفع"),
     "raiseRecommendation": MessageLookupByLibrary.simpleMessage("رفع توصية"),
-    "raisedBy": m46,
+    "raisedBy": m47,
     "rated": MessageLookupByLibrary.simpleMessage("تم التقييم"),
     "rePassword": MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
     "readOnly": MessageLookupByLibrary.simpleMessage("للقراءة فقط"),
@@ -1277,7 +1284,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reset_password": MessageLookupByLibrary.simpleMessage(
       "إعادة تعيين كلمة المرور",
     ),
-    "respondedBy": m47,
+    "respondedBy": m48,
     "responseNoteHint": MessageLookupByLibrary.simpleMessage(
       "ملاحظة للجنة الفرعية (اختياري)",
     ),
@@ -1291,7 +1298,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "reviews": MessageLookupByLibrary.simpleMessage("التقييمات"),
     "revokeDelegation": MessageLookupByLibrary.simpleMessage("سحب"),
-    "revokeDelegationFromMe": m48,
+    "revokeDelegationFromMe": m49,
     "revokeDelegationTitle": MessageLookupByLibrary.simpleMessage(
       "سحب هذا التفويض؟",
     ),
@@ -1351,7 +1358,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "showLess": MessageLookupByLibrary.simpleMessage("عرض أقل"),
     "showMore": MessageLookupByLibrary.simpleMessage("عرض المزيد"),
     "showPassword": MessageLookupByLibrary.simpleMessage("إظهار"),
-    "showSubItems": m49,
+    "showSubItems": m50,
     "signInToContinue": MessageLookupByLibrary.simpleMessage(
       "يجب عليك إضافة بياناتك الخاصة لتسهيل التواصل معك",
     ),
@@ -1371,7 +1378,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "statusPending": MessageLookupByLibrary.simpleMessage("قيد الانتظار"),
     "stopShare": MessageLookupByLibrary.simpleMessage("إيقاف المشاركة"),
     "subCategories": MessageLookupByLibrary.simpleMessage("تصنيفات فرعية"),
-    "subCommitteesCount": m50,
+    "subCommitteesCount": m51,
     "subTitleDeleteAccount": MessageLookupByLibrary.simpleMessage(
       "سوف يتم حذف الحساب بجميع البيانات والكورسات",
     ),
@@ -1404,13 +1411,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "taskInProgress": MessageLookupByLibrary.simpleMessage("قيد التنفيذ"),
     "taskOnHold": MessageLookupByLibrary.simpleMessage("معلّقة"),
     "tasks": MessageLookupByLibrary.simpleMessage("المهام"),
-    "tasksCount": m51,
-    "tasksOf": m52,
+    "tasksCount": m52,
+    "tasksOf": m53,
     "teachingStaff": MessageLookupByLibrary.simpleMessage("الكادر التدريسي"),
     "termsAndConditions": MessageLookupByLibrary.simpleMessage(
       "الشروط والأحكام",
     ),
-    "toCommittee": m53,
+    "toCommittee": m54,
     "toLabel": MessageLookupByLibrary.simpleMessage("إلى"),
     "today": MessageLookupByLibrary.simpleMessage("اليوم"),
     "trackingOrder": MessageLookupByLibrary.simpleMessage("تتبع الطلب"),
@@ -1434,8 +1441,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "voteUnit": MessageLookupByLibrary.simpleMessage("صوتاً"),
     "voters": MessageLookupByLibrary.simpleMessage("الناخبون"),
     "votes": MessageLookupByLibrary.simpleMessage("الأصوات"),
-    "votesCount": m54,
-    "votesPending": m55,
+    "votesCount": m55,
+    "votesPending": m56,
     "votesTitle": MessageLookupByLibrary.simpleMessage("التصويتات"),
     "votingEnded": MessageLookupByLibrary.simpleMessage("انتهى التصويت"),
     "welcomeBack": MessageLookupByLibrary.simpleMessage("أهلا بعودتك!"),
@@ -1461,12 +1468,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "سحب اقتراح هذا الضيف؟",
     ),
     "workload": MessageLookupByLibrary.simpleMessage("الأعباء"),
-    "workloadDoneCount": m56,
-    "workloadDueSoonCount": m57,
+    "workloadDoneCount": m57,
+    "workloadDueSoonCount": m58,
     "workloadOpen": MessageLookupByLibrary.simpleMessage("مفتوحة"),
-    "workloadOpenCount": m58,
+    "workloadOpenCount": m59,
     "workloadOverdue": MessageLookupByLibrary.simpleMessage("متأخرة"),
-    "workloadOverdueCount": m59,
+    "workloadOverdueCount": m60,
     "workloadSubtitle": MessageLookupByLibrary.simpleMessage("المهام لكل عضو"),
     "workloadUnassigned": MessageLookupByLibrary.simpleMessage("غير مسندة"),
     "workloadUnavailable": MessageLookupByLibrary.simpleMessage(
@@ -1483,7 +1490,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "you": MessageLookupByLibrary.simpleMessage("أنت"),
     "youApproved": MessageLookupByLibrary.simpleMessage("اعتمدته"),
     "youRejected": MessageLookupByLibrary.simpleMessage("رفضته"),
-    "youVotedCanChange": m60,
+    "youVotedCanChange": m61,
     "yourAddress": MessageLookupByLibrary.simpleMessage("عنوانك"),
     "yourAnswer": MessageLookupByLibrary.simpleMessage("ردّك"),
     "yourComment": MessageLookupByLibrary.simpleMessage("تعليقك"),
@@ -1498,6 +1505,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "yourOrder": MessageLookupByLibrary.simpleMessage("طلبك"),
     "yourPhone": MessageLookupByLibrary.simpleMessage("رقم هاتفك"),
     "yourVote": MessageLookupByLibrary.simpleMessage("صوتك"),
-    "yourVoteIs": m61,
+    "yourVoteIs": m62,
   };
 }

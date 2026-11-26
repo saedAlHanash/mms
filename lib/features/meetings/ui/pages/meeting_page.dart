@@ -71,7 +71,9 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
     if (ReviewRequestsSection.showsFor(meeting)) {
       context.read<ReviewAgendaRequestsCubit>().getData(meetingId: meeting.id);
     }
-    if (HallServicesSection.showsFor(meeting)) context.read<HallServicesCubit>().getData(meetingId: meeting.id);
+    if (HallServicesSection.showsFor(meeting)) {
+      context.read<HallServicesCubit>().getData(meetingId: meeting.id, hallId: meeting.hallId);
+    }
     if (MinutesSection.showsFor(meeting)) {
       context.read<MinutesCubit>().getData(
             minuteId: meeting.minutes.effectiveId,
