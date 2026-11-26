@@ -17,6 +17,7 @@ import 'package:mms/features/meetings/data/response/meetings_response.dart';
 import 'package:mms/features/agendas/ui/widgets/agenda_tree_widget.dart';
 import 'package:mms/features/attendees/ui/widgets/attendees_list_widget.dart';
 import 'package:mms/features/committees/ui/widgets/drawer_btn_widget.dart';
+import 'package:mms/features/meetings/ui/widgets/absent_widget.dart';
 import 'package:mms/features/meetings/ui/widgets/discussions_tree.dart';
 import 'package:mms/core/widgets/in_app_notification.dart';
 import 'package:mms/features/meeting_hub/bloc/meeting_hub_cubit/meeting_hub_cubit.dart';
@@ -229,7 +230,7 @@ class _MeetingPageState extends State<MeetingPage> with WidgetsBindingObserver {
                                           16.0.verticalSpace,
                                           const MeetingLivePanel(),
                                         ],
-                                        // const AbsentWidget(),
+                                        if (AbsentWidget.showsFor(item)) AbsentWidget(meeting: item),
                                         24.0.verticalSpace,
                                         _VotesCard(pending: item.countPollsNotVotes),
                                         24.0.verticalSpace,

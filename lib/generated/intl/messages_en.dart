@@ -170,14 +170,26 @@ class MessageLookup extends MessageLookupByLibrary {
       "The absence was accepted",
     ),
     "absenceAcceptedState": MessageLookupByLibrary.simpleMessage("Excused"),
+    "absenceExcusedHint": MessageLookupByLibrary.simpleMessage(
+      "You\'re excused from this meeting.",
+    ),
     "absencePending": MessageLookupByLibrary.simpleMessage("Pending"),
     "absenceRejected": MessageLookupByLibrary.simpleMessage(
       "The absence was rejected",
     ),
+    "absenceRejectedHint": MessageLookupByLibrary.simpleMessage(
+      "The chair didn\'t accept your request.",
+    ),
     "absenceRejectedState": MessageLookupByLibrary.simpleMessage("Rejected"),
+    "absenceRequestSent": MessageLookupByLibrary.simpleMessage(
+      "Your request was sent to the chair",
+    ),
     "absenceRequests": MessageLookupByLibrary.simpleMessage("Absence requests"),
     "absenceRequestsHint": MessageLookupByLibrary.simpleMessage(
       "Members who asked to be excused from this meeting.",
+    ),
+    "absenceWaitingChair": MessageLookupByLibrary.simpleMessage(
+      "Waiting for the chair\'s answer.",
     ),
     "absencesCount": m0,
     "absencesInRow": m1,
@@ -304,6 +316,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Cancel this request?",
     ),
     "canceled": MessageLookupByLibrary.simpleMessage("Canceled"),
+    "cantAttend": MessageLookupByLibrary.simpleMessage("Can\'t attend?"),
+    "cantAttendHint": MessageLookupByLibrary.simpleMessage(
+      "Ask the chair to excuse you from this meeting.",
+    ),
     "card_name": MessageLookupByLibrary.simpleMessage("Card Name"),
     "card_number": MessageLookupByLibrary.simpleMessage("Card Number"),
     "cart": MessageLookupByLibrary.simpleMessage("Cart"),
@@ -1349,6 +1365,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "requestAbsence": MessageLookupByLibrary.simpleMessage(
       "Requests for absence",
     ),
+    "requestAbsenceAction": MessageLookupByLibrary.simpleMessage(
+      "Request absence",
+    ),
+    "requestAbsenceHint": MessageLookupByLibrary.simpleMessage(
+      "Why can\'t you attend?",
+    ),
+    "requestAbsenceTitle": MessageLookupByLibrary.simpleMessage(
+      "Request absence",
+    ),
     "requestSent": MessageLookupByLibrary.simpleMessage(
       "Request sent to the host",
     ),
@@ -1593,6 +1618,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "youApproved": MessageLookupByLibrary.simpleMessage("You approved"),
     "youRejected": MessageLookupByLibrary.simpleMessage("You rejected"),
     "youVotedCanChange": m63,
+    "yourAbsenceRequest": MessageLookupByLibrary.simpleMessage(
+      "Your absence request",
+    ),
     "yourAddress": MessageLookupByLibrary.simpleMessage("Your Address"),
     "yourAnswer": MessageLookupByLibrary.simpleMessage("Your answer"),
     "yourComment": MessageLookupByLibrary.simpleMessage("Your comment"),

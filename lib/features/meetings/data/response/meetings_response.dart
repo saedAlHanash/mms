@@ -270,7 +270,7 @@ class AbsenceRequest {
       meetingId: json["meetingId"] ?? "",
       status: json["status"] ?? 0,
       date: DateTime.tryParse(json["date"] ?? ""),
-      reason: json["reason"] ?? "",
+      reason: json["comment"] ?? json["reason"] ?? "",
     );
   }
 
@@ -280,7 +280,7 @@ class AbsenceRequest {
         "meetingId": meetingId,
         "status": status,
         "date": date?.toIso8601String(),
-        "reason": reason,
+        "comment": reason,
       };
 }
 

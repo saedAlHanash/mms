@@ -168,12 +168,24 @@ class MessageLookup extends MessageLookupByLibrary {
     "aboutUs": MessageLookupByLibrary.simpleMessage("معلومات عنا"),
     "absenceAccepted": MessageLookupByLibrary.simpleMessage("تم قبول الاعتذار"),
     "absenceAcceptedState": MessageLookupByLibrary.simpleMessage("معتذر"),
+    "absenceExcusedHint": MessageLookupByLibrary.simpleMessage(
+      "أنت معتذر عن هذا الاجتماع.",
+    ),
     "absencePending": MessageLookupByLibrary.simpleMessage("بانتظار الرد"),
     "absenceRejected": MessageLookupByLibrary.simpleMessage("تم رفض الاعتذار"),
+    "absenceRejectedHint": MessageLookupByLibrary.simpleMessage(
+      "لم يقبل الرئيس طلبك.",
+    ),
     "absenceRejectedState": MessageLookupByLibrary.simpleMessage("مرفوض"),
+    "absenceRequestSent": MessageLookupByLibrary.simpleMessage(
+      "تم إرسال طلبك إلى الرئيس",
+    ),
     "absenceRequests": MessageLookupByLibrary.simpleMessage("طلبات الاعتذار"),
     "absenceRequestsHint": MessageLookupByLibrary.simpleMessage(
       "الأعضاء الذين طلبوا الاعتذار عن هذا الاجتماع.",
+    ),
+    "absenceWaitingChair": MessageLookupByLibrary.simpleMessage(
+      "بانتظار رد الرئيس.",
     ),
     "absencesCount": m0,
     "absencesInRow": m1,
@@ -298,6 +310,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "إلغاء هذا الطلب؟",
     ),
     "canceled": MessageLookupByLibrary.simpleMessage("ملغي"),
+    "cantAttend": MessageLookupByLibrary.simpleMessage("لن تتمكن من الحضور؟"),
+    "cantAttendHint": MessageLookupByLibrary.simpleMessage(
+      "اطلب من الرئيس إعفاءك من هذا الاجتماع.",
+    ),
     "card_name": MessageLookupByLibrary.simpleMessage("اسم البطاقة"),
     "card_number": MessageLookupByLibrary.simpleMessage("رقم البطاقة"),
     "cart": MessageLookupByLibrary.simpleMessage("السلة"),
@@ -1279,6 +1295,11 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "removeAttachment": MessageLookupByLibrary.simpleMessage("إزالة الملف"),
     "requestAbsence": MessageLookupByLibrary.simpleMessage("طلبات الغياب"),
+    "requestAbsenceAction": MessageLookupByLibrary.simpleMessage("طلب اعتذار"),
+    "requestAbsenceHint": MessageLookupByLibrary.simpleMessage(
+      "ما سبب عدم تمكنك من الحضور؟",
+    ),
+    "requestAbsenceTitle": MessageLookupByLibrary.simpleMessage("طلب اعتذار"),
     "requestSent": MessageLookupByLibrary.simpleMessage("أُرسل الطلب للمدير"),
     "requestService": MessageLookupByLibrary.simpleMessage("طلب خدمة"),
     "requestServiceHint": MessageLookupByLibrary.simpleMessage(
@@ -1511,6 +1532,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "youApproved": MessageLookupByLibrary.simpleMessage("اعتمدته"),
     "youRejected": MessageLookupByLibrary.simpleMessage("رفضته"),
     "youVotedCanChange": m63,
+    "yourAbsenceRequest": MessageLookupByLibrary.simpleMessage("طلب اعتذارك"),
     "yourAddress": MessageLookupByLibrary.simpleMessage("عنوانك"),
     "yourAnswer": MessageLookupByLibrary.simpleMessage("ردّك"),
     "yourComment": MessageLookupByLibrary.simpleMessage("تعليقك"),

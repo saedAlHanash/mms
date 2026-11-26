@@ -842,5 +842,15 @@
   "yourReservation": "Your reservation",
   "withdrawReservation": "Withdraw",
   "withdrawReservationTitle": "Withdraw your reservation?",
-  "reservationWithdrawn": "Your reservation was withdrawn"
+  "reservationWithdrawn": "Your reservation was withdrawn",
+  "cantAttend": "Can't attend?",
+  "cantAttendHint": "Ask the chair to excuse you from this meeting.",
+  "yourAbsenceRequest": "Your absence request",
+  "absenceWaitingChair": "Waiting for the chair's answer.",
+  "absenceExcusedHint": "You're excused from this meeting.",
+  "absenceRejectedHint": "The chair didn't accept your request.",
+  "requestAbsenceAction": "Request absence",
+  "requestAbsenceTitle": "Request absence",
+  "requestAbsenceHint": "Why can't you attend?",
+  "absenceRequestSent": "Your request was sent to the chair"
 }

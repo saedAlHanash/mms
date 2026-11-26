@@ -842,5 +842,15 @@
   "yourReservation": "تحفّظك",
   "withdrawReservation": "سحب التحفّظ",
   "withdrawReservationTitle": "سحب تحفّظك؟",
-  "reservationWithdrawn": "تم سحب تحفّظك"
+  "reservationWithdrawn": "تم سحب تحفّظك",
+  "cantAttend": "لن تتمكن من الحضور؟",
+  "cantAttendHint": "اطلب من الرئيس إعفاءك من هذا الاجتماع.",
+  "yourAbsenceRequest": "طلب اعتذارك",
+  "absenceWaitingChair": "بانتظار رد الرئيس.",
+  "absenceExcusedHint": "أنت معتذر عن هذا الاجتماع.",
+  "absenceRejectedHint": "لم يقبل الرئيس طلبك.",
+  "requestAbsenceAction": "طلب اعتذار",
+  "requestAbsenceTitle": "طلب اعتذار",
+  "requestAbsenceHint": "ما سبب عدم تمكنك من الحضور؟",
+  "absenceRequestSent": "تم إرسال طلبك إلى الرئيس"
 }

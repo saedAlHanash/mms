@@ -7112,6 +7112,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Can't attend?`
+  String get cantAttend {
+    return Intl.message(
+      'Can\'t attend?',
+      name: 'cantAttend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ask the chair to excuse you from this meeting.`
+  String get cantAttendHint {
+    return Intl.message(
+      'Ask the chair to excuse you from this meeting.',
+      name: 'cantAttendHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your absence request`
+  String get yourAbsenceRequest {
+    return Intl.message(
+      'Your absence request',
+      name: 'yourAbsenceRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Waiting for the chair's answer.`
+  String get absenceWaitingChair {
+    return Intl.message(
+      'Waiting for the chair\'s answer.',
+      name: 'absenceWaitingChair',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You're excused from this meeting.`
+  String get absenceExcusedHint {
+    return Intl.message(
+      'You\'re excused from this meeting.',
+      name: 'absenceExcusedHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The chair didn't accept your request.`
+  String get absenceRejectedHint {
+    return Intl.message(
+      'The chair didn\'t accept your request.',
+      name: 'absenceRejectedHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request absence`
+  String get requestAbsenceAction {
+    return Intl.message(
+      'Request absence',
+      name: 'requestAbsenceAction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request absence`
+  String get requestAbsenceTitle {
+    return Intl.message(
+      'Request absence',
+      name: 'requestAbsenceTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Why can't you attend?`
+  String get requestAbsenceHint {
+    return Intl.message(
+      'Why can\'t you attend?',
+      name: 'requestAbsenceHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your request was sent to the chair`
+  String get absenceRequestSent {
+    return Intl.message(
+      'Your request was sent to the chair',
+      name: 'absenceRequestSent',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
