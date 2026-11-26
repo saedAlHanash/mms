@@ -105,6 +105,8 @@ class GetUrl {
 
   static const delegations = 'Delegation/GetList';
 
+  static const optionVoters = 'Vote/GetOptionVoters';
+
   static const workload = 'Workload/Get';
 
   static const workloadTasks = 'Workload/GetTasks';

@@ -776,5 +776,7 @@
   "absenceRejectedState": "مرفوض",
   "joinAsHost": "انضم كمضيف",
   "host": "مضيف",
-  "quorumChairRequiredYou": "حضورك مطلوب لاكتمال النصاب."
+  "quorumChairRequiredYou": "حضورك مطلوب لاكتمال النصاب.",
+  "whoVoted": "من صوّت",
+  "noVoters": "لم يختره أحد"
 }

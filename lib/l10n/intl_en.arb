@@ -776,5 +776,7 @@
   "absenceRejectedState": "Rejected",
   "joinAsHost": "Join as host",
   "host": "Host",
-  "quorumChairRequiredYou": "Your presence is required for quorum."
+  "quorumChairRequiredYou": "Your presence is required for quorum.",
+  "whoVoted": "Who voted",
+  "noVoters": "No one chose this"
 }

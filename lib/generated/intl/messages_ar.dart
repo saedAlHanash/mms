@@ -978,6 +978,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "ليس لهذه اللجنة لجنة أم ولا لجان فرعية.",
     ),
     "noTasks": MessageLookupByLibrary.simpleMessage("لا توجد مهام"),
+    "noVoters": MessageLookupByLibrary.simpleMessage("لم يختره أحد"),
     "noVotesForMeeting": MessageLookupByLibrary.simpleMessage(
       "لا توجد تصويتات لهذا الاجتماع",
     ),
@@ -1339,6 +1340,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "votesTitle": MessageLookupByLibrary.simpleMessage("التصويتات"),
     "votingEnded": MessageLookupByLibrary.simpleMessage("انتهى التصويت"),
     "welcomeBack": MessageLookupByLibrary.simpleMessage("أهلا بعودتك!"),
+    "whoVoted": MessageLookupByLibrary.simpleMessage("من صوّت"),
     "wishList": MessageLookupByLibrary.simpleMessage("قائمة أماني"),
     "wishlist": MessageLookupByLibrary.simpleMessage("قائمة الرغبات"),
     "withdraw": MessageLookupByLibrary.simpleMessage("سحب"),

@@ -1028,6 +1028,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "This committee has no parent or sub-committees.",
     ),
     "noTasks": MessageLookupByLibrary.simpleMessage("No tasks"),
+    "noVoters": MessageLookupByLibrary.simpleMessage("No one chose this"),
     "noVotesForMeeting": MessageLookupByLibrary.simpleMessage(
       "No votes for this meeting",
     ),
@@ -1417,6 +1418,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "votesTitle": MessageLookupByLibrary.simpleMessage("Votes"),
     "votingEnded": MessageLookupByLibrary.simpleMessage("Voting ended"),
     "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back!"),
+    "whoVoted": MessageLookupByLibrary.simpleMessage("Who voted"),
     "wishList": MessageLookupByLibrary.simpleMessage("WishList"),
     "wishlist": MessageLookupByLibrary.simpleMessage("Wishlist"),
     "withdraw": MessageLookupByLibrary.simpleMessage("Withdraw"),

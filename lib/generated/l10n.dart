@@ -6512,6 +6512,21 @@ class S {
       args: [],
     );
   }
+
+  /// `Who voted`
+  String get whoVoted {
+    return Intl.message('Who voted', name: 'whoVoted', desc: '', args: []);
+  }
+
+  /// `No one chose this`
+  String get noVoters {
+    return Intl.message(
+      'No one chose this',
+      name: 'noVoters',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

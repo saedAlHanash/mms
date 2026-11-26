@@ -11,7 +11,9 @@ import 'package:mms/core/strings/enum_manager.dart';
 import 'package:mms/core/widgets/my_button.dart';
 import 'package:mms/core/widgets/my_text_form_widget.dart';
 import 'package:mms/core/widgets/status_chip.dart';
+import 'package:mms/features/meetings/bloc/meeting_cubit/meeting_cubit.dart';
 import 'package:mms/features/poll/data/response/poll_response.dart';
+import 'package:mms/features/poll/ui/widgets/option_voters_sheet.dart';
 import 'package:mms/features/vote/bloc/create_vote_cubit/create_vote_cubit.dart';
 import 'package:mms/features/vote/data/request/create_vote_request.dart';
 import 'package:mms/generated/l10n.dart';
@@ -142,6 +144,17 @@ class _PollWidgetState extends State<PollWidget> {
 
   Widget _footerAction(BuildContext context, Option? myOption) {
     if (!enable) {
+      // The chair and the secretary see who voted once the poll is closed.
+      final isLead = context.read<MeetingCubit>().state.result.callerMembershipType?.isLead ?? false;
+      if (isLead && widget.poll.status == PollStatus.closed) {
+        return _WhoVotedButton(
+          onTap: () => OptionVotersSheet.show(
+            context,
+            topic: widget.poll.topic,
+            options: [for (final o in widget.poll.options) (o.id, o.option)],
+          ),
+        );
+      }
       return DrawableText(
         text: S.of(context).votingEnded,
         size: 13.0.sp,
@@ -287,6 +300,29 @@ class _OptionRow extends StatelessWidget {
   }
 }
 
+/// "Who voted" (opens [OptionVotersSheet]).
+class _WhoVotedButton extends StatelessWidget {
+  const _WhoVotedButton({required this.onTap});
+
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return MyButton(
+      variant: .text,
+      size: .medium,
+      text: S.of(context).whoVoted,
+      startIcon: ImageMultiType(
+        url: Icons.people_outline_rounded,
+        width: 16.0.r,
+        height: 16.0.r,
+        color: AppColorManager.primary500,
+      ),
+      onTap: onTap,
+    );
+  }
+}
+
 /// Published result: donut + legend (count · percentage).
 class PollResultWidget extends StatelessWidget {
   const PollResultWidget({super.key, required this.pollResult});
@@ -427,6 +463,19 @@ class PollResultWidget extends StatelessWidget {
               ),
             ],
           ),
+          if (hasVotes) ...[
+            8.0.verticalSpace,
+            Align(
+              alignment: AlignmentDirectional.centerEnd,
+              child: _WhoVotedButton(
+                onTap: () => OptionVotersSheet.show(
+                  context,
+                  topic: pollResult.topic,
+                  options: [for (final r in results) (r.optionId, r.option)],
+                ),
+              ),
+            ),
+          ],
         ],
       ),
     );
