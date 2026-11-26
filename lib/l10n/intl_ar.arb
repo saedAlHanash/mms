@@ -852,5 +852,16 @@
   "requestAbsenceAction": "طلب اعتذار",
   "requestAbsenceTitle": "طلب اعتذار",
   "requestAbsenceHint": "ما سبب عدم تمكنك من الحضور؟",
-  "absenceRequestSent": "تم إرسال طلبك إلى الرئيس"
+  "absenceRequestSent": "تم إرسال طلبك إلى الرئيس",
+  "committeeReport": "التقرير السنوي",
+  "committeeReportSubtitle": "الاجتماعات والقرارات والمهام",
+  "reportUnavailable": "التقرير غير متاح",
+  "reportGeneratedAt": "أُعدّ في {date}",
+  "attendanceRate": "نسبة الحضور",
+  "executionRate": "نسبة التنفيذ",
+  "decisionsOverdue": "متأخرة",
+  "circulationsApprovedLabel": "تعاميم معتمدة",
+  "membersAtLimit": "{count} أعضاء تجاوزوا حد الغياب",
+  "tasksDoneOf": "أُنجزت {done} من {total} مهام",
+  "noTasksForDecision": "لا مهام مرتبطة بعد"
 }

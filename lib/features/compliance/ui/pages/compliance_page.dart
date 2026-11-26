@@ -16,7 +16,7 @@ import 'package:mms/core/widgets/small_widgets.dart';
 import 'package:mms/core/widgets/status_chip.dart';
 import 'package:mms/features/compliance/bloc/compliance_cubit/compliance_cubit.dart';
 import 'package:mms/features/compliance/data/response/compliance_response.dart';
-import 'package:mms/features/meeting_live/ui/widgets/live_controls.dart';
+import 'package:mms/core/widgets/year_switcher.dart';
 import 'package:mms/generated/l10n.dart';
 
 /// A committee's attendance for a year: meetings against the yearly minimum, members
@@ -86,7 +86,7 @@ class CompliancePage extends StatelessWidget {
             child: ListView(
               padding: EdgeInsets.fromLTRB(20.0.w, 12.0.h, 20.0.w, 32.0.h),
               children: [
-                _YearSwitcher(
+                YearSwitcher(
                   year: state.year,
                   onChange: (y) => cubit.getData(year: y),
                 ),
@@ -97,39 +97,6 @@ class CompliancePage extends StatelessWidget {
           );
         },
       ),
-    );
-  }
-}
-
-class _YearSwitcher extends StatelessWidget {
-  const _YearSwitcher({required this.year, required this.onChange});
-
-  final int year;
-  final ValueChanged<int> onChange;
-
-  @override
-  Widget build(BuildContext context) {
-    final isCurrent = year >= DateTime.now().year;
-    return Row(
-      mainAxisAlignment: .center,
-      children: [
-        LiveIconButton(
-          icon: Icons.chevron_left_rounded,
-          tooltip: '${year - 1}',
-          onTap: () => onChange(year - 1),
-        ),
-        16.0.horizontalSpace,
-        Directionality(
-          textDirection: .ltr,
-          child: DrawableText(text: '$year', size: 17.0.sp, fontWeight: .w700, color: AppColorManager.neutral900),
-        ),
-        16.0.horizontalSpace,
-        LiveIconButton(
-          icon: Icons.chevron_right_rounded,
-          tooltip: '${year + 1}',
-          onTap: isCurrent ? null : () => onChange(year + 1),
-        ),
-      ],
     );
   }
 }

@@ -707,7 +707,6 @@ enum CirculationOutcome {
       };
 }
 
-/// Status of an agenda item proposal (`AgendaItemRequestStatus`).
 /// `ComplianceLevel`: 0 Ok, 1 Warning, 2 Reached (over the limit).
 enum ComplianceLevel {
   ok,
@@ -790,6 +789,7 @@ enum AbsenceStatus {
       };
 }
 
+/// Status of an agenda item proposal (`AgendaItemRequestStatus`).
 enum AgendaRequestStatus {
   pending,
   accepted,

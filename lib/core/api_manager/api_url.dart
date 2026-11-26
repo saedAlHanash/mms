@@ -115,6 +115,8 @@ class GetUrl {
 
   static const hall = 'Hall/Get';
 
+  static const annualReport = 'Executive/GetAnnualReport';
+
   static const workload = 'Workload/Get';
 
   static const workloadTasks = 'Workload/GetTasks';

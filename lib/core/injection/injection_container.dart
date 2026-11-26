@@ -1,3 +1,4 @@
+import 'package:mms/features/annual_report/bloc/annual_report_cubit/annual_report_cubit.dart';
 import 'package:mms/features/decision/bloc/decision_reservation_cubit/decision_reservation_cubit.dart';
 import 'package:mms/features/compliance/bloc/compliance_cubit/compliance_cubit.dart';
 import 'package:mms/features/minutes/bloc/minutes_cubit/minutes_cubit.dart';
@@ -149,6 +150,7 @@ Future<void> init() async {
   sl.registerFactory(() => MinutesCubit());
   sl.registerFactory(() => ComplianceCubit());
   sl.registerFactory(() => DecisionReservationCubit());
+  sl.registerFactory(() => AnnualReportCubit());
   sl.registerFactory(() => ReviewAgendaRequestsCubit());
   sl.registerFactory(() => WorkloadCubit());
   sl.registerFactory(() => RecommendationsCubit());

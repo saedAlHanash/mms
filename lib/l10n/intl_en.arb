@@ -852,5 +852,16 @@
   "requestAbsenceAction": "Request absence",
   "requestAbsenceTitle": "Request absence",
   "requestAbsenceHint": "Why can't you attend?",
-  "absenceRequestSent": "Your request was sent to the chair"
+  "absenceRequestSent": "Your request was sent to the chair",
+  "committeeReport": "Annual report",
+  "committeeReportSubtitle": "Meetings, decisions and tasks",
+  "reportUnavailable": "The report isn't available",
+  "reportGeneratedAt": "Built {date}",
+  "attendanceRate": "Attendance",
+  "executionRate": "Carried out",
+  "decisionsOverdue": "Overdue",
+  "circulationsApprovedLabel": "Circulations approved",
+  "membersAtLimit": "{count} members over the absence limit",
+  "tasksDoneOf": "{done} of {total} tasks done",
+  "noTasksForDecision": "No tasks linked yet"
 }

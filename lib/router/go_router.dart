@@ -1,3 +1,5 @@
+import 'package:mms/features/annual_report/bloc/annual_report_cubit/annual_report_cubit.dart';
+import 'package:mms/features/annual_report/ui/pages/annual_report_page.dart';
 import 'package:mms/features/decision/bloc/decision_reservation_cubit/decision_reservation_cubit.dart';
 import 'package:mms/features/compliance/bloc/compliance_cubit/compliance_cubit.dart';
 import 'package:mms/features/compliance/ui/pages/compliance_page.dart';
@@ -90,6 +92,7 @@ class RouteName {
   static const checkInCode = '/check-in-code';
   static const workload = '/workload';
   static const compliance = '/compliance';
+  static const annualReport = '/annual-report';
   static const recommendations = '/recommendations';
   static const circulations = '/circulations';
   static const circulation = '/circulation';
@@ -208,6 +211,13 @@ final goRouter = GoRouter(
           ),
         ],
         child: const CommitteePage(),
+      ),
+    ),
+    _route(
+      RouteName.annualReport,
+      (_, state) => BlocProvider(
+        create: (_) => sl<AnnualReportCubit>()..getData(committeeId: state.uri.queryParameters[RouteParam.id] ?? ''),
+        child: const AnnualReportPage(),
       ),
     ),
     _route(

@@ -176,16 +176,37 @@ class CommitteePage extends StatelessWidget {
                         },
                       ),
                       12.0.verticalSpace,
-                      _ActionCard(
-                        icon: Icons.event_available_outlined,
-                        title: S.of(context).attendanceCompliance,
-                        subtitle: item.member.membershipType.isLead
-                            ? S.of(context).attendanceSubtitleLead
-                            : S.of(context).attendanceSubtitleMember,
-                        onTap: () => context.pushNamed(
-                          RouteName.compliance,
-                          queryParameters: {RouteParam.id: item.id},
-                        ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: _ActionCard(
+                              icon: Icons.event_available_outlined,
+                              title: S.of(context).attendanceCompliance,
+                              subtitle: item.member.membershipType.isLead
+                                  ? S.of(context).attendanceSubtitleLead
+                                  : S.of(context).attendanceSubtitleMember,
+                              onTap: () => context.pushNamed(
+                                RouteName.compliance,
+                                queryParameters: {RouteParam.id: item.id},
+                              ),
+                            ),
+                          ),
+                          // The annual report is for the chair and the secretary.
+                          if (item.member.membershipType.isLead) ...[
+                            12.0.horizontalSpace,
+                            Expanded(
+                              child: _ActionCard(
+                                icon: Icons.insights_outlined,
+                                title: S.of(context).committeeReport,
+                                subtitle: S.of(context).committeeReportSubtitle,
+                                onTap: () => context.pushNamed(
+                                  RouteName.annualReport,
+                                  queryParameters: {RouteParam.id: item.id},
+                                ),
+                              ),
+                            ),
+                          ],
+                        ],
                       ),
                       12.0.verticalSpace,
                       BlocBuilder<DelegationsCubit, DelegationsInitial>(

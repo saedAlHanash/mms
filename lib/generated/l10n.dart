@@ -7212,6 +7212,116 @@ class S {
       args: [],
     );
   }
+
+  /// `Annual report`
+  String get committeeReport {
+    return Intl.message(
+      'Annual report',
+      name: 'committeeReport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Meetings, decisions and tasks`
+  String get committeeReportSubtitle {
+    return Intl.message(
+      'Meetings, decisions and tasks',
+      name: 'committeeReportSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The report isn't available`
+  String get reportUnavailable {
+    return Intl.message(
+      'The report isn\'t available',
+      name: 'reportUnavailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Built {date}`
+  String reportGeneratedAt(Object date) {
+    return Intl.message(
+      'Built $date',
+      name: 'reportGeneratedAt',
+      desc: '',
+      args: [date],
+    );
+  }
+
+  /// `Attendance`
+  String get attendanceRate {
+    return Intl.message(
+      'Attendance',
+      name: 'attendanceRate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Carried out`
+  String get executionRate {
+    return Intl.message(
+      'Carried out',
+      name: 'executionRate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Overdue`
+  String get decisionsOverdue {
+    return Intl.message(
+      'Overdue',
+      name: 'decisionsOverdue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Circulations approved`
+  String get circulationsApprovedLabel {
+    return Intl.message(
+      'Circulations approved',
+      name: 'circulationsApprovedLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{count} members over the absence limit`
+  String membersAtLimit(Object count) {
+    return Intl.message(
+      '$count members over the absence limit',
+      name: 'membersAtLimit',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{done} of {total} tasks done`
+  String tasksDoneOf(Object done, Object total) {
+    return Intl.message(
+      '$done of $total tasks done',
+      name: 'tasksDoneOf',
+      desc: '',
+      args: [done, total],
+    );
+  }
+
+  /// `No tasks linked yet`
+  String get noTasksForDecision {
+    return Intl.message(
+      'No tasks linked yet',
+      name: 'noTasksForDecision',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
