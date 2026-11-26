@@ -143,15 +143,36 @@ String pushCirculationId(Map<String, dynamic> data) {
 }
 
 /// What tapping the push opens, kept as the local notification payload:
-/// `circulation:<id>`, or the meeting id.
+/// `circulation:<id>`, `recommendation:<committeeId>,<parentCommitteeId>`,
+/// `committee:<id>`, `item:<id>`, or the meeting id.
+///
+/// The push doesn't carry its kind, so the target comes from the data keys.
+/// Minutes (incl. `MinutesChairsTurn`), task (incl. `TaskEscalated`) and hall
+/// notices carry `MeetingId` and open the meeting.
 String pushTarget(Map<String, dynamic> data) {
   final circulationId = pushCirculationId(data);
   if (circulationId.isNotEmpty) return '$circulationTargetPrefix$circulationId';
   final meetingId = pushMeetingId(data);
   if (meetingId.isNotEmpty) return meetingId;
-  // Role delegation notices carry `{CommitteeId, DelegationId}`.
   final committeeId = pushCommitteeId(data);
-  return committeeId.isNotEmpty ? '$committeeTargetPrefix$committeeId' : '';
+  // Sub-committee recommendations: `{CommitteeId, ParentCommitteeId, RecommendationId}`.
+  if (_dataValue(data, 'recommendationId').isNotEmpty) {
+    return '$recommendationTargetPrefix$committeeId,${_dataValue(data, 'parentCommitteeId')}';
+  }
+  // Role delegation notices carry `{CommitteeId, DelegationId}`.
+  if (committeeId.isNotEmpty) return '$committeeTargetPrefix$committeeId';
+  // Reminders with no meeting (`ComplianceMeetingsShort`, `CommitteeTermEnding`,
+  // `CirculationDeadlineSoon`) carry only `ItemId`.
+  final itemId = _dataValue(data, 'itemId');
+  return itemId.isNotEmpty ? '$itemTargetPrefix$itemId' : '';
+}
+
+/// [key] at the top level or inside `data`, without case.
+String _dataValue(Map<String, dynamic> data, String key) {
+  final top = (_valueOf(data, key) ?? '').toString();
+  if (top.isNotEmpty && top != 'null') return top;
+  final inner = (_valueOf(FirebaseNotificationModel.fromJson(data).data.payload, key) ?? '').toString();
+  return inner == 'null' ? '' : inner;
 }
 
 /// `CommitteeId` of a push, read at the top level or inside `data`.
@@ -163,6 +184,10 @@ String pushCommitteeId(Map<String, dynamic> data) {
 const circulationTargetPrefix = 'circulation:';
 
 const committeeTargetPrefix = 'committee:';
+
+const recommendationTargetPrefix = 'recommendation:';
+
+const itemTargetPrefix = 'item:';
 
 class FirebaseNotificationModel {
   FirebaseNotificationModel({
